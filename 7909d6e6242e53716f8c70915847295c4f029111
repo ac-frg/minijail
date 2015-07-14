@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "187d22ed_1cfc6581",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1074340
+      },
+      "writtenOn": "2015-07-14T22:37:54Z",
+      "side": 1,
+      "message": "am i misunderstanding this description? this sha1 is different from the one in the first line. i don\u0027t see 2ec4fd in platform2, so i\u0027m guessing that this is the correct one...",
+      "revId": "7909d6e6242e53716f8c70915847295c4f029111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
