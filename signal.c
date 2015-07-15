@@ -3,6 +3,12 @@
  * found in the LICENSE file.
  */
 
+#if defined(__BRILLO__)
+#include <stddef.h>
+#include <asm/signal.h>
+#include <asm/unistd.h>
+#endif
+
 /* These header files need to be included before asm/siginfo.h such that
  * pid_t, timer_t, and clock_t are defined. */
 #include <stdlib.h>
