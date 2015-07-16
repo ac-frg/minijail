@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3837466d_95d5d4af",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-16T15:43:32Z",
+      "side": 1,
+      "message": "Yeah, we might need to add a target for a Minijail executable, so it think it makes sense to keep the variables.",
+      "parentUuid": "f8404ed5_53e204c4",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "982af212_d4dcbc57",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-16T12:30:00Z",
       "side": 1,
       "message": "nit: alphabetize these?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5834fa65_8b5a95c4",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-16T15:43:32Z",
+      "side": 1,
+      "message": "If I don\u0027t include stddef.h before asm/signal.h, there\u0027s undefined types (size_t) in asm/signal.h \u003d(",
+      "parentUuid": "982af212_d4dcbc57",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
