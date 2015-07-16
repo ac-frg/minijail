@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8404ed5_53e204c4",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1074340
+      },
+      "writtenOn": "2015-07-16T12:30:00Z",
+      "side": 1,
+      "message": "nit: you don\u0027t really need to do this unless you plan to add additional targets that share these variables; i just did it for libchrome since it\u0027ll eventually include multiple shared libs.\n\n(but maybe you do plan to add an executable or something later, in which case you can just ignore this comment.)",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "982af212_d4dcbc57",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1074340
+      },
+      "writtenOn": "2015-07-16T12:30:00Z",
+      "side": 1,
+      "message": "nit: alphabetize these?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
