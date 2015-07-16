@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78f7fee1_44b33ad5",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1052976
+      },
+      "writtenOn": "2015-07-16T00:29:00Z",
+      "side": 1,
+      "message": "/system/lib???\n\nDo you think we\u0027ll actually use preloading?",
+      "range": {
+        "startLine": 20,
+        "startChar": 41,
+        "endLine": 20,
+        "endChar": 44
+      },
+      "revId": "915262d5fde46dc6fd0cadbd54fc143c1941b43e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3837466d_2ae583ca",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1052976
+      },
+      "writtenOn": "2015-07-16T00:29:00Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "915262d5fde46dc6fd0cadbd54fc143c1941b43e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
