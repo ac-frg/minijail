@@ -334,6 +334,24 @@
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "386e667b_9dabb392",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:25:09Z",
+      "side": 1,
+      "message": "What happens if you cherry-pick this change locally and try to do \"mmm external/minijail\"?",
+      "parentUuid": "38858659_25686699",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
