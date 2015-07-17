@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "188c4286_0ae20f19",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:14:13Z",
+      "side": 1,
+      "message": "When I don\u0027t include asm/signal.h, I get the following error:\n\nIn file included from external/minijail/libminijail.c:42:\nIn file included from bionic/libc/include/unistd.h:35:\nbionic/libc/include/sys/select.h:75:82: error: unknown type name \u0027sigset_t\u0027\nextern int pselect(int, fd_set*, fd_set*, fd_set*, const struct timespec*, const sigset_t*);",
+      "parentUuid": "58823a52_c689622e",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "188c4286_7f6b5b18",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -118,6 +136,24 @@
       "writtenOn": "2015-07-17T21:06:28Z",
       "side": 1,
       "message": "why? what doesn\u0027t work in the #else code?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f88e8e7f_09f21d67",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:14:13Z",
+      "side": 1,
+      "message": "Bionic has a header definition for getgrnam_r, but no implementation (linking fails).",
+      "parentUuid": "188c4286_7f6b5b18",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -141,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "b8709650_5c10e956",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:14:13Z",
+      "side": 1,
+      "message": "Will do. Minijail uses libcap for capabilities, but Android provides libcap-ng. I\u0027d like to port Minijail to libcap-ng, but I\u0027d rather get Minijail compiling first and then do the port.",
+      "parentUuid": "b8709650_7c4a8579",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "987f5221_4086be9b",
         "filename": "libsyscalls.gen.c",
         "patchSetId": 2
@@ -158,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "58823a52_26b62ec6",
+        "filename": "libsyscalls.gen.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:14:13Z",
+      "side": 1,
+      "message": "Yeah that\u0027s a good point, I should probably leave it empty for now.\n\nAlternatively, do you know how I can run a simple script from an Android.mk file?",
+      "parentUuid": "987f5221_4086be9b",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8754a3f_98f73aca",
         "filename": "signal.c",
         "patchSetId": 2
@@ -169,6 +241,24 @@
       "writtenOn": "2015-07-17T21:06:28Z",
       "side": 1,
       "message": "why do you need these?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8709650_fc299593",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:14:13Z",
+      "side": 1,
+      "message": "Same reason as in libminijail.c: If I don\u0027t add them:\n\ntarget thumb C: libminijail \u003c\u003d external/minijail/signal.c\nIn file included from external/minijail/signal.c:15:\nIn file included from bionic/libc/include/unistd.h:35:\nbionic/libc/include/sys/select.h:75:82: error: unknown type name \u0027sigset_t\u0027\nextern int pselect(int, fd_set*, fd_set*, fd_set*, const struct timespec*, const sigset_t*);\n                                                                                 ^\nexternal/minijail/signal.c:60:19: error: variable has incomplete type \u0027struct sigaction\u0027\n        struct sigaction act;\n                         ^\nexternal/minijail/signal.c:60:9: note: forward declaration of \u0027struct sigaction\u0027\n        struct sigaction act;\n               ^\nAnd a bunch more errors. Any ideas why this doesn\u0027t work?",
+      "parentUuid": "d8754a3f_98f73aca",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
