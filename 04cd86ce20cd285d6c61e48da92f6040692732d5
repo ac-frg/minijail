@@ -316,6 +316,24 @@
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38858659_25686699",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:24:06Z",
+      "side": 1,
+      "message": "hmm. this is the same problem you guys mentioned months ago and i couldn\u0027t reproduce then. i\u0027m having trouble reproducing it now too.",
+      "parentUuid": "188c4286_4a01f738",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
