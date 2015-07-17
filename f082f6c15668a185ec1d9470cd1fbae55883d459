@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "787a9e34_bf477ff1",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 0,
+      "message": "let\u0027s just fix that in bionic: https://android-review.googlesource.com/160127",
+      "revId": "f082f6c15668a185ec1d9470cd1fbae55883d459",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

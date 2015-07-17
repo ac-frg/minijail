@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "188c4286_9fe71f5f",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "you don\u0027t care about LP64?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8404ed5_53e204c4",
         "filename": "Android.mk",
         "patchSetId": 2
@@ -66,6 +83,92 @@
       "side": 1,
       "message": "If I don\u0027t include stddef.h before asm/signal.h, there\u0027s undefined types (size_t) in asm/signal.h \u003d(",
       "parentUuid": "982af212_d4dcbc57",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58823a52_c689622e",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "but why are you including \u003casm/signal.h\u003e at all? (and why do you need \u003cstddef.h\u003e earlier than glibc does?",
+      "parentUuid": "5834fa65_8b5a95c4",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "188c4286_7f6b5b18",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "why? what doesn\u0027t work in the #else code?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8709650_7c4a8579",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "add a comment explaining why you\u0027re not doing this?",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "987f5221_4086be9b",
+        "filename": "libsyscalls.gen.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "hmm. syscalls vary by architecture, so this probably isn\u0027t exactly what you\u0027re looking for...",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8754a3f_98f73aca",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:06:28Z",
+      "side": 1,
+      "message": "why do you need these?",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
