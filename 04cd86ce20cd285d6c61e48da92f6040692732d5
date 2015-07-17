@@ -352,6 +352,24 @@
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58823a52_26e2ae9c",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-17T21:25:50Z",
+      "side": 1,
+      "message": "It\u0027s totally possible that we can fix this by changing Minijail, but I haven\u0027t been able to figure out how.",
+      "parentUuid": "386e667b_9dabb392",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
