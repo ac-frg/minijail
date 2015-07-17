@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "386e667b_fd542f27",
+        "filename": "libsyscalls.gen.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:16:55Z",
+      "side": 1,
+      "message": "there are a couple of examples in https://cs.corp.google.com/#android/system/core/toolbox/Android.mk\u0026q\u003dtoolbox/android.mk\u0026sq\u003dpackage:%5Eandroid$\u0026l\u003d1\n\nsearch for \"transform-generated-source\".",
+      "parentUuid": "58823a52_26b62ec6",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8754a3f_98f73aca",
         "filename": "signal.c",
         "patchSetId": 2
@@ -259,6 +277,24 @@
       "side": 1,
       "message": "Same reason as in libminijail.c: If I don\u0027t add them:\n\ntarget thumb C: libminijail \u003c\u003d external/minijail/signal.c\nIn file included from external/minijail/signal.c:15:\nIn file included from bionic/libc/include/unistd.h:35:\nbionic/libc/include/sys/select.h:75:82: error: unknown type name \u0027sigset_t\u0027\nextern int pselect(int, fd_set*, fd_set*, fd_set*, const struct timespec*, const sigset_t*);\n                                                                                 ^\nexternal/minijail/signal.c:60:19: error: variable has incomplete type \u0027struct sigaction\u0027\n        struct sigaction act;\n                         ^\nexternal/minijail/signal.c:60:9: note: forward declaration of \u0027struct sigaction\u0027\n        struct sigaction act;\n               ^\nAnd a bunch more errors. Any ideas why this doesn\u0027t work?",
       "parentUuid": "d8754a3f_98f73aca",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "188c4286_4a01f738",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:16:55Z",
+      "side": 1,
+      "message": "sounds like a problem with our header files. i\u0027ll look into that while you fight the build system trying to run a script :-)",
+      "parentUuid": "b8709650_fc299593",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
