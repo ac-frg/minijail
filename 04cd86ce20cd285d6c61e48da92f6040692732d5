@@ -370,6 +370,24 @@
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "586b1a6a_79a93366",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-17T21:32:30Z",
+      "side": 1,
+      "message": "yeah, i can reproduce it in situ. weird. time to work out what\u0027s special here...",
+      "parentUuid": "58823a52_26e2ae9c",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
