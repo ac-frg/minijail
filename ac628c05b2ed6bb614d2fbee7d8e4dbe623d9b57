@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38858659_20e2949c",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-18T00:38:10Z",
+      "side": 1,
+      "message": "I need a way to pass the compiler to the script, let me know if this is too ugly.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 82
+      },
+      "revId": "ac628c05b2ed6bb614d2fbee7d8e4dbe623d9b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
