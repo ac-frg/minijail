@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "188c4286_6a339bb0",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-18T00:37:21Z",
+      "side": 1,
+      "message": "Got rid of this by disabling preloading on Brillo.",
+      "parentUuid": "188c4286_9fe71f5f",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8404ed5_53e204c4",
         "filename": "Android.mk",
         "patchSetId": 2
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "When I don\u0027t include asm/signal.h, I get the following error:\n\nIn file included from external/minijail/libminijail.c:42:\nIn file included from bionic/libc/include/unistd.h:35:\nbionic/libc/include/sys/select.h:75:82: error: unknown type name \u0027sigset_t\u0027\nextern int pselect(int, fd_set*, fd_set*, fd_set*, const struct timespec*, const sigset_t*);",
       "parentUuid": "58823a52_c689622e",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "586b1a6a_b9332b80",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-18T00:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "188c4286_0ae20f19",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -385,6 +421,24 @@
       "side": 1,
       "message": "yeah, i can reproduce it in situ. weird. time to work out what\u0027s special here...",
       "parentUuid": "58823a52_26e2ae9c",
+      "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58823a52_26f5cef8",
+        "filename": "signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-18T00:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "586b1a6a_79a93366",
       "revId": "04cd86ce20cd285d6c61e48da92f6040692732d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
