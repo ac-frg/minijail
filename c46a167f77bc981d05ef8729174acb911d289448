@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8754a3f_cb05ea82",
+        "filename": "Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-07-18T00:57:28Z",
+      "side": 1,
+      "message": "You don\u0027t need the last line of \"$(GEN):\".\nJust switch the first and second line:\n$(GEN): PRIVATE_CUSTOM_TOOL \u003d $\u003c $(CLANG) $@\n$(GEN): $(LOCAL_PATH)/gen_syscalls.sh",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "c46a167f77bc981d05ef8729174acb911d289448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
