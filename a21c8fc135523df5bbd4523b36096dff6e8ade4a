@@ -16,6 +16,24 @@
       "revId": "a21c8fc135523df5bbd4523b36096dff6e8ade4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8884ea6_3f07c7d1",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-07-20T15:33:27Z",
+      "side": 1,
+      "message": "We have a \"debug/logging\" mode for our Seccomp-BPF syscall filtering implementation that allows you to build a syscall filtering policy by logging the first syscall that the policy denies. Obviously, you\u0027d need to allow the syscalls used to do the actual logging.\n\nI\u0027ll follow up with a CL to update this list.",
+      "parentUuid": "387f464e_217fae8b",
+      "revId": "a21c8fc135523df5bbd4523b36096dff6e8ade4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
