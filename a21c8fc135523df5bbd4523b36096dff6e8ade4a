@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "387f464e_217fae8b",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2015-07-20T05:26:41Z",
+      "side": 1,
+      "message": "not sure exactly what this is needed for but bionic actually uses writev. (because syslog goes to the Android log.)",
+      "revId": "a21c8fc135523df5bbd4523b36096dff6e8ade4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
