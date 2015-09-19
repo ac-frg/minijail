@@ -45,7 +45,7 @@ static void set_group(struct minijail *j, const char *arg)
 	}
 }
 
-static void use_caps(struct minijail *j, const char *arg)
+static void use_caps(struct minijail *j, const char *arg, int secure)
 {
 	uint64_t caps;
 	char *end = NULL;
@@ -54,7 +54,10 @@ static void use_caps(struct minijail *j, const char *arg)
 		fprintf(stderr, "Invalid cap set: '%s'\n", arg);
 		exit(1);
 	}
-	minijail_use_caps(j, caps);
+	if (secure)
+		minijail_use_caps(j, caps);
+	else
+		minijail_use_caps_insecure(j, caps);
 }
 
 static void add_binding(struct minijail *j, char *arg)
@@ -121,7 +124,8 @@ static void usage(const char *progn)
 	       "  -u <user>:  change uid to <user>\n"
 	       "  -U          enter new user namespace (implies -p)\n"
 	       "  -v:         enter new mount namespace\n"
-	       "  -V <file>:  enter specified mount namespace\n");
+	       "  -V <file>:  enter specified mount namespace\n"
+	       "  -x <caps>:  restrict caps to <caps>, don't set secure bits\n");
 }
 
 static void seccomp_filter_usage(const char *progn)
@@ -145,7 +149,8 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (argc > 1 && argv[1][0] != '-')
 		return 1;
 	while ((opt = getopt(argc, argv,
-			     "u:g:sS:c:C:P:b:V:f:m:M:e::vrGhHinpLtIU")) != -1) {
+			     "u:g:sS:c:C:P:b:V:f:m:M:e::x:vrGhHinpLtIU"))
+			!= -1) {
 		switch (opt) {
 		case 'u':
 			set_user(j, optarg);
@@ -181,7 +186,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			add_binding(j, optarg);
 			break;
 		case 'c':
-			use_caps(j, optarg);
+			use_caps(j, optarg, 1);
+			break;
+		case 'x':
+			use_caps(j, optarg, 0);
 			break;
 		case 'C':
 			if (pivot_root) {

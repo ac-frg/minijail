@@ -83,6 +83,7 @@ struct minijail {
 		int uid:1;
 		int gid:1;
 		int caps:1;
+		int secure_caps:1;
 		int vfs:1;
 		int enter_vfs:1;
 		int pids:1;
@@ -269,6 +270,14 @@ void API minijail_use_caps(struct minijail *j, uint64_t capmask)
 {
 	j->caps = capmask;
 	j->flags.caps = 1;
+	j->flags.secure_caps = 1;
+}
+
+void API minijail_use_caps_insecure(struct minijail *j, uint64_t capmask)
+{
+	j->caps = capmask;
+	j->flags.caps = 1;
+	j->flags.secure_caps = 0;
 }
 
 void API minijail_namespace_vfs(struct minijail *j)
@@ -1051,7 +1060,7 @@ void API minijail_enter(const struct minijail *j)
 		 */
 		if (prctl(PR_SET_KEEPCAPS, 1))
 			pdie("prctl(PR_SET_KEEPCAPS)");
-		if (prctl
+		if (j->flags.secure_caps && prctl
 		    (PR_SET_SECUREBITS, SECURE_ALL_BITS | SECURE_ALL_LOCKS))
 			pdie("prctl(PR_SET_SECUREBITS)");
 	}
@@ -1309,8 +1318,8 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	}
 
 	if (!use_preload) {
-		if (j->flags.caps)
-			die("Capabilities are not supported without "
+		if (j->flags.caps && j->flags.secure_caps)
+			die("secure capabilities are not supported without "
 			    "LD_PRELOAD");
 	}
 
