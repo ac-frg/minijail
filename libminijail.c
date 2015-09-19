@@ -86,6 +86,7 @@ struct minijail {
 		int vfs:1;
 		int enter_vfs:1;
 		int pids:1;
+		int enter_pid:1;
 		int net:1;
 		int enter_net:1;
 		int userns:1;
@@ -110,6 +111,7 @@ struct minijail {
 	pid_t initpid;
 	int mountns_fd;
 	int netns_fd;
+	int pidns_fd;
 	int filter_len;
 	int binding_count;
 	char *chrootdir;
@@ -292,6 +294,19 @@ void API minijail_namespace_pids(struct minijail *j)
 	j->flags.remount_proc_ro = 1;
 	j->flags.pids = 1;
 	j->flags.do_init = 1;
+}
+
+void API minijail_enter_namespace_pids(struct minijail *j, const char *ns_path)
+{
+	int ns_fd = open(ns_path, O_RDONLY);
+	if (ns_fd < 0) {
+		pdie("failed to open namespace '%s'", ns_path);
+	}
+	j->flags.vfs = 1;
+	j->flags.remount_proc_ro = 1;
+	j->flags.enter_pid = 1;
+	j->flags.do_init = 1;
+	j->pidns_fd = ns_fd;
 }
 
 void API minijail_namespace_net(struct minijail *j)
@@ -1260,6 +1275,62 @@ int API minijail_run_pid_pipe(struct minijail *j, const char *filename,
 				     NULL, NULL, true);
 }
 
+static int do_fork(struct minijail *j, int new_pid_namespace)
+{
+
+	/* Use sys_clone() if and only if we're creating a pid namespace.
+	 *
+	 * tl;dr: WARNING: do not mix pid namespaces and multithreading.
+	 *
+	 * In multithreaded programs, there are a bunch of locks inside libc,
+	 * some of which may be held by other threads at the time that we call
+	 * minijail_run_pid(). If we call fork(), glibc does its level best to
+	 * ensure that we hold all of these locks before it calls clone()
+	 * internally and drop them after clone() returns, but when we call
+	 * sys_clone(2) directly, all that gets bypassed and we end up with a
+	 * child address space where some of libc's important locks are held by
+	 * other threads (which did not get cloned, and hence will never release
+	 * those locks). This is okay so long as we call exec() immediately
+	 * after, but a bunch of seemingly-innocent libc functions like setenv()
+	 * take locks.
+	 *
+	 * Hence, only call sys_clone() if we need to, in order to get at pid
+	 * namespacing. If we follow this path, the child's address space might
+	 * have broken locks; you may only call functions that do not acquire
+	 * any locks.
+	 *
+	 * Unfortunately, fork() acquires every lock it can get its hands on, as
+	 * previously detailed, so this function is highly likely to deadlock
+	 * later on (see "deadlock here") if we're multithreaded.
+	 *
+	 * We might hack around this by having the clone()d child (init of the
+	 * pid namespace) return directly, rather than leaving the clone()d
+	 * process hanging around to be init for the new namespace (and having
+	 * its fork()ed child return in turn), but that process would be crippled
+	 * with its libc locks potentially broken. We might try fork()ing in the
+	 * parent before we clone() to ensure that we own all the locks, but
+	 * then we have to have the forked child hanging around consuming
+	 * resources (and possibly having file descriptors / shared memory
+	 * regions / etc attached). We'd need to keep the child around to avoid
+	 * having its children get reparented to init.
+	 *
+	 * TODO(ellyjones): figure out if the "forked child hanging around"
+	 * problem is fixable or not. It would be nice if we worked in this
+	 * case.
+	 */
+	if (new_pid_namespace && !j->flags.enter_pid) {
+		int clone_flags = CLONE_NEWPID | SIGCHLD;
+		if (j->flags.userns)
+			clone_flags |= CLONE_NEWUSER;
+		return syscall(SYS_clone, clone_flags, NULL);
+	}
+
+	if (j->flags.enter_pid && setns(j->pidns_fd, CLONE_NEWPID))
+		pdie("Entering PID namespace");
+
+	return fork();
+}
+
 int API minijail_run_pid_pipes(struct minijail *j, const char *filename,
 			       char *const argv[], pid_t *pchild_pid,
 			       int *pstdin_fd, int *pstdout_fd, int *pstderr_fd)
@@ -1289,7 +1360,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	int userns_pipe_fds[2];
 	int ret;
 	/* We need to remember this across the minijail_preexec() call. */
-	int pid_namespace = j->flags.pids;
+	int pid_namespace = j->flags.pids || j->flags.enter_pid;
 	int do_init = j->flags.do_init;
 
 	if (use_preload) {
@@ -1368,55 +1439,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			return -EFAULT;
 	}
 
-	/* Use sys_clone() if and only if we're creating a pid namespace.
-	 *
-	 * tl;dr: WARNING: do not mix pid namespaces and multithreading.
-	 *
-	 * In multithreaded programs, there are a bunch of locks inside libc,
-	 * some of which may be held by other threads at the time that we call
-	 * minijail_run_pid(). If we call fork(), glibc does its level best to
-	 * ensure that we hold all of these locks before it calls clone()
-	 * internally and drop them after clone() returns, but when we call
-	 * sys_clone(2) directly, all that gets bypassed and we end up with a
-	 * child address space where some of libc's important locks are held by
-	 * other threads (which did not get cloned, and hence will never release
-	 * those locks). This is okay so long as we call exec() immediately
-	 * after, but a bunch of seemingly-innocent libc functions like setenv()
-	 * take locks.
-	 *
-	 * Hence, only call sys_clone() if we need to, in order to get at pid
-	 * namespacing. If we follow this path, the child's address space might
-	 * have broken locks; you may only call functions that do not acquire
-	 * any locks.
-	 *
-	 * Unfortunately, fork() acquires every lock it can get its hands on, as
-	 * previously detailed, so this function is highly likely to deadlock
-	 * later on (see "deadlock here") if we're multithreaded.
-	 *
-	 * We might hack around this by having the clone()d child (init of the
-	 * pid namespace) return directly, rather than leaving the clone()d
-	 * process hanging around to be init for the new namespace (and having
-	 * its fork()ed child return in turn), but that process would be crippled
-	 * with its libc locks potentially broken. We might try fork()ing in the
-	 * parent before we clone() to ensure that we own all the locks, but
-	 * then we have to have the forked child hanging around consuming
-	 * resources (and possibly having file descriptors / shared memory
-	 * regions / etc attached). We'd need to keep the child around to avoid
-	 * having its children get reparented to init.
-	 *
-	 * TODO(ellyjones): figure out if the "forked child hanging around"
-	 * problem is fixable or not. It would be nice if we worked in this
-	 * case.
-	 */
-	if (pid_namespace) {
-		int clone_flags = CLONE_NEWPID | SIGCHLD;
-		if (j->flags.userns)
-			clone_flags |= CLONE_NEWUSER;
-		child_pid = syscall(SYS_clone, clone_flags, NULL);
-	} else {
-		child_pid = fork();
-	}
-
+	child_pid = do_fork(j, pid_namespace);
 	if (child_pid < 0) {
 		if (use_preload) {
 			free(oldenv_copy);

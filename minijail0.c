@@ -109,7 +109,7 @@ static void usage(const char *progn)
 	       "              Same arguments as newgidmap(1), multiple mappings should be separated by ',' (comma).\n"
 	       "              Not compatible with -b without writable\n"
 	       "  -n:         set no_new_privs\n"
-	       "  -p:         enter new pid namespace (implies -vr)\n"
+	       "  -p[file]:   enter new pid namespace (implies -vr), or existing one if file is provided\n"
 	       "  -P <dir>:   pivot_root to <dir> (implies -v)\n"
 	       "              Not compatible with -C\n"
 	       "  -r:         remount /proc read-only (implies -v)\n"
@@ -145,7 +145,8 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (argc > 1 && argv[1][0] != '-')
 		return 1;
 	while ((opt = getopt(argc, argv,
-			     "u:g:sS:c:C:P:b:V:f:m:M:e::v::rGhHinpLtIU")) != -1) {
+			     "u:g:sS:c:C:P:b:V:f:m:M:e::v::p::rGhHinLtIU"))
+			!= -1) {
 		switch (opt) {
 		case 'u':
 			set_user(j, optarg);
@@ -233,7 +234,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			minijail_inherit_usergroups(j);
 			break;
 		case 'p':
-			minijail_namespace_pids(j);
+			if (optarg)
+				minijail_enter_namespace_pids(j, optarg);
+			else
+				minijail_namespace_pids(j);
 			break;
 		case 'e':
 			if (optarg)
