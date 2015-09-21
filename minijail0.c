@@ -122,7 +122,7 @@ static void usage(const char *progn)
 	       "              Requires -n when not running as root\n"
 	       "  -t:         mount tmpfs at /tmp inside chroot\n"
 	       "  -u <user>:  change uid to <user>\n"
-	       "  -U          enter new user namespace (implies -p)\n"
+	       "  -U[file]:   enter new user namespace , or existing one if file is given (implies -p)\n"
 	       "  -v[file]:   enter new mount namespace, or existing one if file is provided\n"
 	       "  -V <file>:  enter specified mount namespace\n"
 	       "  -x <caps>:  restrict caps to <caps>, don't set secure bits\n");
@@ -149,7 +149,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (argc > 1 && argv[1][0] != '-')
 		return 1;
 	while ((opt = getopt(argc, argv,
-			     "u:g:sS:c:C:P:b:V:f:m:M:e::v::p::x:rGhHinLtIU"))
+			     "u:g:sS:c:C:P:b:V:f:m:M:e::v::p::x:U::rGhHinLtI"))
 			!= -1) {
 		switch (opt) {
 		case 'u':
@@ -263,7 +263,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			minijail_run_as_init(j);
 			break;
 		case 'U':
-			minijail_namespace_user(j);
+			if (optarg)
+				minijail_namespace_enter_user(j, optarg);
+			else
+				minijail_namespace_user(j);
 			minijail_namespace_pids(j);
 			break;
 		case 'm':

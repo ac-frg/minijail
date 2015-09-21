@@ -91,6 +91,7 @@ struct minijail {
 		int net:1;
 		int enter_net:1;
 		int userns:1;
+		int enter_user:1;
 		int seccomp:1;
 		int remount_proc_ro:1;
 		int usergroups:1;
@@ -113,6 +114,7 @@ struct minijail {
 	int mountns_fd;
 	int netns_fd;
 	int pidns_fd;
+	int userns_fd;
 	int filter_len;
 	int binding_count;
 	char *chrootdir;
@@ -342,6 +344,17 @@ void API minijail_remount_proc_readonly(struct minijail *j)
 void API minijail_namespace_user(struct minijail *j)
 {
 	j->flags.userns = 1;
+}
+
+void API minijail_namespace_enter_user(struct minijail *j, const char *ns_path)
+{
+	int ns_fd = open(ns_path, O_RDONLY);
+	if (ns_fd < 0) {
+		pdie("failed to open namespace '%s'", ns_path);
+	}
+	j->flags.userns = 1;
+	j->flags.enter_user = 1;
+	j->userns_fd = ns_fd;
 }
 
 int API minijail_uidmap(struct minijail *j, const char *uidmap)
@@ -1328,9 +1341,12 @@ static int do_fork(struct minijail *j, int new_pid_namespace)
 	 * problem is fixable or not. It would be nice if we worked in this
 	 * case.
 	 */
+	if (j->flags.enter_user && setns(j->userns_fd, CLONE_NEWUSER))
+		pdie("Entering user namespace");
+
 	if (new_pid_namespace && !j->flags.enter_pid) {
 		int clone_flags = CLONE_NEWPID | SIGCHLD;
-		if (j->flags.userns)
+		if (j->flags.userns && !j->flags.enter_user)
 			clone_flags |= CLONE_NEWUSER;
 		return syscall(SYS_clone, clone_flags, NULL);
 	}

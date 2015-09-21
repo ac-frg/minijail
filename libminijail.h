@@ -59,6 +59,7 @@ void minijail_namespace_enter_net(struct minijail *j, const char *ns_path);
 void minijail_namespace_pids(struct minijail *j);
 void minijail_enter_namespace_pids(struct minijail *j, const char *ns_path);
 void minijail_namespace_user(struct minijail *j);
+void minijail_namespace_enter_user(struct minijail *j, const char *ns_path);
 int minijail_uidmap(struct minijail *j, const char *uidmap);
 int minijail_gidmap(struct minijail *j, const char *gidmap);
 void minijail_remount_proc_readonly(struct minijail *j);
