@@ -1075,6 +1075,9 @@ void API minijail_enter(const struct minijail *j)
 
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
 		pdie("remount");
+	else
+		mount("", "/proc", "proc",
+		      MS_NODEV | MS_NOEXEC | MS_NOSUID, "");
 
 	if (j->flags.caps) {
 		/*
