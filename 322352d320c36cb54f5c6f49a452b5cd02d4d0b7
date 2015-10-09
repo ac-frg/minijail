@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e55355fb_84ea3611",
+        "filename": "bpf.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-09T21:20:47Z",
+      "side": 1,
+      "message": "You still have to add the include for sys/endian.h right?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "322352d320c36cb54f5c6f49a452b5cd02d4d0b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e55355fb_64ed522a",
+        "filename": "bpf.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-09T21:20:47Z",
+      "side": 1,
+      "message": "So I think I would still try to test for __LITTLE_ENDIAN__ here:\n\n#if defined(__LITTLE__ENDIAN__) || __BYTE_ORDER \u003d\u003d __LITTLE_ENDIAN",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 35
+      },
+      "revId": "322352d320c36cb54f5c6f49a452b5cd02d4d0b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
