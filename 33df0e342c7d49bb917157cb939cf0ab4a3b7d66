@@ -22,6 +22,30 @@
       "revId": "33df0e342c7d49bb917157cb939cf0ab4a3b7d66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff32061b_07397a72",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-12T22:20:45Z",
+      "side": 1,
+      "message": "it was matching the equivalent comment in gen_syscalls.sh for style",
+      "parentUuid": "3fb01e09_bb11079c",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "33df0e342c7d49bb917157cb939cf0ab4a3b7d66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
