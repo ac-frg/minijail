@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fb01e09_bb11079c",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2015-10-12T22:19:56Z",
+      "side": 1,
+      "message": "Nit: Was this whitespace intentional? It looks out of line with the #ifdef below.",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "33df0e342c7d49bb917157cb939cf0ab4a3b7d66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
