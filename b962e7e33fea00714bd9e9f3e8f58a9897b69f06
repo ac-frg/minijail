@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d90802ae_48035f90",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:26:43Z",
+      "side": 1,
+      "message": "why not [:digit:] ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "b962e7e33fea00714bd9e9f3e8f58a9897b69f06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99020a8c_493da5f4",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:26:43Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 57,
+        "startChar": 38,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "b962e7e33fea00714bd9e9f3e8f58a9897b69f06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b90b4ea8_0799d6eb",
+        "filename": "gen_syscalls.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:26:43Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 34,
+        "startChar": 50,
+        "endLine": 34,
+        "endChar": 53
+      },
+      "revId": "b962e7e33fea00714bd9e9f3e8f58a9897b69f06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
