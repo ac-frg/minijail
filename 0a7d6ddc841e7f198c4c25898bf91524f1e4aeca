@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79d47637_4108e26a",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T23:49:44Z",
+      "side": 1,
+      "message": "Let\u0027s get all these on the same line since they\u0027re related. If pchild_pid doesn\u0027t fit with filename and argv, it\u0027s OK to leave it on a line of its own.",
+      "range": {
+        "startLine": 1264,
+        "startChar": 26,
+        "endLine": 1265,
+        "endChar": 22
+      },
+      "revId": "0a7d6ddc841e7f198c4c25898bf91524f1e4aeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79d47637_c14e12ab",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T23:49:44Z",
+      "side": 1,
+      "message": "Same here, if pstdout_fd, pstderr_fd don\u0027t fit in the same line with pstdin_fd, pstdin_fd should be moved below. See minijail_run_pid_pipes for example.",
+      "range": {
+        "startLine": 1266,
+        "startChar": 61,
+        "endLine": 1267,
+        "endChar": 31
+      },
+      "revId": "0a7d6ddc841e7f198c4c25898bf91524f1e4aeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
