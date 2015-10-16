@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9bac2ed_780ee17a",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2015-10-16T18:51:35Z",
+      "side": 1,
+      "message": "because you complained about the readability of using character classes ;).  unlike A-Z, 0-9 has no known locale related issues.\n\nif you want :digit:, i can switch it.",
+      "parentUuid": "d90802ae_48035f90",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "b962e7e33fea00714bd9e9f3e8f58a9897b69f06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99020a8c_493da5f4",
         "filename": "gen_constants.sh",
         "patchSetId": 1
