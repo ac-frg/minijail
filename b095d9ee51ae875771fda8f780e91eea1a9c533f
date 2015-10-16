@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b90b4ea8_c71dfe06",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:32:36Z",
+      "side": 1,
+      "message": "gen_syscalls still uses /  - if @ is better because it allows you to use // for the comment, shouldn\u0027t you make the same modification to gen_syscalls as well?",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 17
+      },
+      "revId": "b095d9ee51ae875771fda8f780e91eea1a9c533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
