@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79d47637_500b1269",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:31:18Z",
+      "side": 1,
+      "message": "gen_syscalls.sh uses \"sed -n\" and only prints matching lines .. it would be nice to make these two scripts at least be implemented the same way - either drop the grep here, or drop the -n, in the other",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "4044ed1ea05bb1f4fba8381660737f2051e1e07b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
