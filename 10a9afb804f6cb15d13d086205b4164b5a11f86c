@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79fd56bf_eb8e8574",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T23:31:13Z",
+      "side": 1,
+      "message": "get_last_valid_cap()",
+      "range": {
+        "startLine": 899,
+        "startChar": 20,
+        "endLine": 899,
+        "endChar": 23
+      },
+      "revId": "10a9afb804f6cb15d13d086205b4164b5a11f86c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59e3321f_1599f6eb",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T23:31:13Z",
+      "side": 1,
+      "message": "I would reword this:\n\n\"Get the last valid cap from /proc, since /proc can be unmounted before drop_caps().\"",
+      "range": {
+        "startLine": 1008,
+        "startChar": 4,
+        "endLine": 1008,
+        "endChar": 70
+      },
+      "revId": "10a9afb804f6cb15d13d086205b4164b5a11f86c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
