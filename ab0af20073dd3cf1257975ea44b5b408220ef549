@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9f26ee4_2f002981",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1068428
+      },
+      "writtenOn": "2015-10-16T18:31:39Z",
+      "side": 1,
+      "message": "gen_syscalls doesn\u0027t use this - should it?",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "ab0af20073dd3cf1257975ea44b5b408220ef549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
