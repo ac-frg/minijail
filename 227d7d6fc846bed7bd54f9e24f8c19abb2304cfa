@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79fd56bf_48035f90",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T21:16:59Z",
+      "side": 1,
+      "message": "There\u0027s something wrong with your tabs here. Minijail tabs are 8 spaces.",
+      "range": {
+        "startLine": 1262,
+        "startChar": 0,
+        "endLine": 1269,
+        "endChar": 1
+      },
+      "revId": "227d7d6fc846bed7bd54f9e24f8c19abb2304cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59e3321f_b26d98c4",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T21:16:59Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 1272,
+        "startChar": 0,
+        "endLine": 1272,
+        "endChar": 22
+      },
+      "revId": "227d7d6fc846bed7bd54f9e24f8c19abb2304cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79fd56bf_68061ba2",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-16T21:16:59Z",
+      "side": 1,
+      "message": "Do we need both, or can we just get away with implementing this one?",
+      "range": {
+        "startLine": 190,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 37
+      },
+      "revId": "227d7d6fc846bed7bd54f9e24f8c19abb2304cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
