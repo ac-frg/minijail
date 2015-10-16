@@ -22,6 +22,30 @@
       "revId": "b095d9ee51ae875771fda8f780e91eea1a9c533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9975aa40_2e37e714",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2015-10-16T22:36:31Z",
+      "side": 1,
+      "message": "gen_syscalls doesn\u0027t include comments.  if anything, the comments here are pointless.",
+      "parentUuid": "b90b4ea8_c71dfe06",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 17
+      },
+      "revId": "b095d9ee51ae875771fda8f780e91eea1a9c533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
