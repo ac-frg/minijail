@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99f3ea1a_e845bc30",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:37:07Z",
+      "side": 1,
+      "message": "It might be time to rename this to \"pid\", then \"enter_pid\" is not inconsistent with \"pids\".",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "2f690dcdae1e62501b7a9be48465e8968ac2ac3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_8c095602",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:37:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure how this should work. If the namespace was created with Minijail, there\u0027s already a matching mount namespace for it, which is whatever mount ns corresponds to init inside the pid ns. Shouldn\u0027t we be entering that mount namespace as well?",
+      "range": {
+        "startLine": 305,
+        "startChar": 10,
+        "endLine": 305,
+        "endChar": 13
+      },
+      "revId": "2f690dcdae1e62501b7a9be48465e8968ac2ac3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "791716fc_64343477",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:37:07Z",
+      "side": 1,
+      "message": "Let\u0027s use the same naming convention used for the other enter* functions:\n\nminijail_namespace_enter_pids(...)",
+      "range": {
+        "startLine": 59,
+        "startChar": 5,
+        "endLine": 59,
+        "endChar": 34
+      },
+      "revId": "2f690dcdae1e62501b7a9be48465e8968ac2ac3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
