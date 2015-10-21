@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "791716fc_844eb0fd",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:46:40Z",
+      "side": 1,
+      "message": "We can, it got weird when trying to do p and U though.",
+      "parentUuid": "99020a8c_06754f51",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 19
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9f26ee4_4cec8e79",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "That doesn\u0027t work for -v, see below for the case were we want -v and -V. If we need them to be different options there\u0027s no point in also adding the optional argument. I think we should leave -v alone (but adding the optional argument for -e should be fine).",
       "parentUuid": "b9f26ee4_ccf63e43",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 59
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_cc319ebc",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:46:40Z",
+      "side": 1,
+      "message": "Got it, I\u0027ll drop the -v change.",
+      "parentUuid": "d90802ae_1446913c",
       "range": {
         "startLine": 123,
         "startChar": 0,
@@ -249,6 +297,30 @@
       "side": 1,
       "message": "Well, sometimes specifying both still makes sense! We do that for -v because we want to both enter an existing namespace, and then create a new one. That way we inherit the mounts of the namespace we\u0027re interested in, but we don\u0027t pollute it with new mounts.\n\nThis probably doesn\u0027t make sense for -e because there\u0027s no inheritance between network namespaces AFAICT.",
       "parentUuid": "99020a8c_4638e794",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_ac177a11",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:46:40Z",
+      "side": 1,
+      "message": "Interesting, thanks for the info, I\u0027ll leave -v and -V alone.",
+      "parentUuid": "f91146d4_dd27fd4f",
       "range": {
         "startLine": 148,
         "startChar": 33,
