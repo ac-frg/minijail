@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "39de7e5b_28f372d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:43:05Z",
+      "side": 1,
+      "message": "\"network\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 39,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9ec2e3d_7c3e9084",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -49,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "99020a8c_06754f51",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:43:05Z",
+      "side": 1,
+      "message": "Why not use capital \u0027E\u0027?",
+      "parentUuid": "99020a8c_663be393",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 19
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9f26ee4_4cec8e79",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -84,6 +131,30 @@
       "side": 1,
       "message": "Yes, in case there is already a user of -V.\nand this way -v will behave the same as -e and (eventually -U and -p)",
       "parentUuid": "b9f26ee4_4cec8e79",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 59
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d90802ae_1446913c",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:43:05Z",
+      "side": 1,
+      "message": "That doesn\u0027t work for -v, see below for the case were we want -v and -V. If we need them to be different options there\u0027s no point in also adding the optional argument. I think we should leave -v alone (but adding the optional argument for -e should be fine).",
+      "parentUuid": "b9f26ee4_ccf63e43",
       "range": {
         "startLine": 123,
         "startChar": 0,
@@ -154,6 +225,30 @@
       "side": 1,
       "message": "That means there is an optional argument.  We could ditch this scheme and add a separate opt for enter vs new, but we\u0027d also have to add checking that the user doesn\u0027t specify both.",
       "parentUuid": "b9f26ee4_2cf82a32",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f91146d4_dd27fd4f",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:43:05Z",
+      "side": 1,
+      "message": "Well, sometimes specifying both still makes sense! We do that for -v because we want to both enter an existing namespace, and then create a new one. That way we inherit the mounts of the namespace we\u0027re interested in, but we don\u0027t pollute it with new mounts.\n\nThis probably doesn\u0027t make sense for -e because there\u0027s no inheritance between network namespaces AFAICT.",
+      "parentUuid": "99020a8c_4638e794",
       "range": {
         "startLine": 148,
         "startChar": 33,
