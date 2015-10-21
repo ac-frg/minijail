@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "99020a8c_663be393",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:35:07Z",
+      "side": 1,
+      "message": "It\u0027s not, but it\u0027s how getopt handles optional args unfortunately.",
+      "parentUuid": "b9ec2e3d_7c3e9084",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 19
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9f26ee4_4cec8e79",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2015-10-21T03:29:40Z",
       "side": 1,
       "message": "This is duplicating flags, isn\u0027t it?",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 59
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_ccf63e43",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:35:07Z",
+      "side": 1,
+      "message": "Yes, in case there is already a user of -V.\nand this way -v will behave the same as -e and (eventually -U and -p)",
+      "parentUuid": "b9f26ee4_4cec8e79",
       "range": {
         "startLine": 123,
         "startChar": 0,
@@ -82,6 +130,30 @@
       "writtenOn": "2015-10-21T03:29:40Z",
       "side": 1,
       "message": "Why \u0027::\u0027?",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99020a8c_4638e794",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T03:35:07Z",
+      "side": 1,
+      "message": "That means there is an optional argument.  We could ditch this scheme and add a separate opt for enter vs new, but we\u0027d also have to add checking that the user doesn\u0027t specify both.",
+      "parentUuid": "b9f26ee4_2cf82a32",
       "range": {
         "startLine": 148,
         "startChar": 33,
