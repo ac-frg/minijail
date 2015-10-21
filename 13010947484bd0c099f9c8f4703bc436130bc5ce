@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d90802ae_74e26d89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:55:03Z",
+      "side": 1,
+      "message": "I\u0027m still kinda confused by this behaviour. So stuff running as root inside the container can do everything *except* for the capabilities that are being explicitly dropped? Is that the objective here?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "13010947484bd0c099f9c8f4703bc436130bc5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
