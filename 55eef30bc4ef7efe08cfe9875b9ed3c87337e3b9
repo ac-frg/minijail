@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b9618ebd_a0e100b2",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T21:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "194a9a42_3b144b0c",
+      "range": {
+        "startLine": 1028,
+        "startChar": 24,
+        "endLine": 1028,
+        "endChar": 26
+      },
+      "revId": "55eef30bc4ef7efe08cfe9875b9ed3c87337e3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3942fe30_717fd064",
         "filename": "minijail0.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-10-21T21:29:06Z",
       "side": 1,
       "message": "\u0027file\u0027 (with single quotes or something to indicate it\u0027s talking about the argument).",
+      "range": {
+        "startLine": 89,
+        "startChar": 71,
+        "endLine": 89,
+        "endChar": 75
+      },
+      "revId": "55eef30bc4ef7efe08cfe9875b9ed3c87337e3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9618ebd_00e1ccac",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-21T21:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3942fe30_717fd064",
       "range": {
         "startLine": 89,
         "startChar": 71,
