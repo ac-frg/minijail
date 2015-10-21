@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9ec2e3d_7c3e9084",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:29:40Z",
+      "side": 1,
+      "message": "No space after the option? That\u0027s not consistent with the rest of the options taking arguments.",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 19
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_4cec8e79",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:29:40Z",
+      "side": 1,
+      "message": "This is duplicating flags, isn\u0027t it?",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 59
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "791716fc_8437d07b",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:29:40Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 148,
+        "startChar": 36,
+        "endLine": 148,
+        "endChar": 38
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f26ee4_2cf82a32",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-21T03:29:40Z",
+      "side": 1,
+      "message": "Why \u0027::\u0027?",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "d71be349c2fe3b994e0a24ef6e668dfcee8db13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
