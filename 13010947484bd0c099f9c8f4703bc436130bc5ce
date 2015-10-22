@@ -46,6 +46,30 @@
       "revId": "13010947484bd0c099f9c8f4703bc436130bc5ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "194a9a42_0cb02b16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-22T05:29:52Z",
+      "side": 1,
+      "message": "And a process running as root inside the container would be able to regain these capabilities, but we don\u0027t expect the code to ever try to do this, essentially?",
+      "parentUuid": "3942fe30_8bbc0d18",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "13010947484bd0c099f9c8f4703bc436130bc5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
