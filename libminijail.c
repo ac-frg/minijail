@@ -387,20 +387,42 @@ int API minijail_enter_pivot_root(struct minijail *j, const char *dir)
 	return 0;
 }
 
-char *minijail_get_original_path(struct minijail *j, const char *chroot_path)
+static char *append_external_path(const char *external_path, const char *chroot_path)
 {
-	char *external_path;
+	char *path;
 	size_t pathlen;
 
+	/* One extra char for '/' and one for '\0', hence + 2. */
+	pathlen = strlen(chroot_path) + strlen(external_path) + 2;
+	path = malloc(pathlen);
+	snprintf(path, pathlen, "%s/%s", external_path, chroot_path);
+
+	return path;
+}
+
+char API *minijail_get_original_path(struct minijail *j, const char *chroot_path)
+{
+	struct binding *b;
+
+	/*
+	 * If the chroot path in within a bind mount, use that path concanonated
+	 * with the relative path from the bind mount destination to the chroot
+	 * path.
+	 */
+	b = j->bindings_head;
+	while (b) {
+		if (!strncmp(b->dest, chroot_path, strlen(b->dest))) {
+			const char *relative_path = chroot_path + strlen(b->dest);
+			return append_external_path(b->src, relative_path);
+		}
+		b = b->next;
+	}
+
+	/* Otherwise use the chroot path if it exists. */
 	if (!j->chrootdir)
 		return strdup(chroot_path);
 
-	/* One extra char for '/' and one for '\0', hence + 2. */
-	pathlen = strlen(chroot_path) + strlen(j->chrootdir) + 2;
-	external_path = malloc(pathlen);
-	snprintf(external_path, pathlen, "%s/%s", j->chrootdir, chroot_path);
-
-	return external_path;
+	return append_external_path(j->chrootdir, chroot_path);
 }
 
 void API minijail_mount_tmp(struct minijail *j)
