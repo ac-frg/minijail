@@ -74,6 +74,14 @@ struct binding {
 	struct binding *next;
 };
 
+struct mountpoint {
+	char *src;
+	char *dest;
+	char *type;
+	unsigned long flags;
+	struct mountpoint *next;
+};
+
 struct minijail {
 	/*
 	 * WARNING: if you add a flag here you need to make sure it's
@@ -119,6 +127,9 @@ struct minijail {
 	struct sock_fprog *filter_prog;
 	struct binding *bindings_head;
 	struct binding *bindings_tail;
+	struct mountpoint *mounts_head;
+	struct mountpoint *mounts_tail;
+	int mounts_count;
 };
 
 /*
@@ -439,6 +450,51 @@ int API minijail_write_pid_file(struct minijail *j, const char *path)
 	return 0;
 }
 
+int API minijail_mount(struct minijail *j, const char *src, const char *dest,
+		       const char *type, unsigned long flags)
+{
+	struct mountpoint *m;
+
+	if (*dest != '/')
+		return -EINVAL;
+	m = calloc(1, sizeof(*m));
+	if (!m)
+		return -ENOMEM;
+	m->dest = strdup(dest);
+	if (!m->dest)
+		goto error;
+	m->src = strdup(src);
+	if (!m->src)
+		goto error;
+	m->type = strdup(type);
+	if (!m->type)
+		goto error;
+	m->flags = flags;
+
+	info("mount %s -> %s type %s", src, dest, type);
+
+	/*
+	 * Force vfs namespacing so the mounts don't leak out into the
+	 * containing vfs namespace.
+	 */
+	minijail_namespace_vfs(j);
+
+	if (j->mounts_tail)
+		j->mounts_tail->next = m;
+	else
+		j->mounts_head = m;
+	j->mounts_tail = m;
+	j->mounts_count++;
+
+	return 0;
+
+error:
+	free(m->src);
+	free(m->dest);
+	free(m);
+	return -ENOMEM;
+}
+
 int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 		      int writeable)
 {
@@ -544,6 +600,7 @@ void minijail_marshal_helper(struct marshal_state *state,
 			     const struct minijail *j)
 {
 	struct binding *b = NULL;
+	struct mountpoint *m = NULL;
 	marshal_append(state, (char *)j, sizeof(*j));
 	if (j->user)
 		marshal_append(state, j->user, strlen(j->user) + 1);
@@ -559,6 +616,12 @@ void minijail_marshal_helper(struct marshal_state *state,
 		marshal_append(state, b->dest, strlen(b->dest) + 1);
 		marshal_append(state, (char *)&b->writeable,
 				sizeof(b->writeable));
+	}
+	for (m = j->mounts_head; m; m = m->next) {
+		marshal_append(state, m->src, strlen(m->src) + 1);
+		marshal_append(state, m->dest, strlen(m->dest) + 1);
+		marshal_append(state, m->type, strlen(m->type) + 1);
+		marshal_append(state, (char *)&m->flags, sizeof(m->flags));
 	}
 }
 
@@ -625,6 +688,8 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	/* Potentially stale pointers not used as signals. */
 	j->bindings_head = NULL;
 	j->bindings_tail = NULL;
+	j->mounts_head = NULL;
+	j->mounts_tail = NULL;
 	j->filter_prog = NULL;
 
 	if (j->user) {		/* stale pointer */
@@ -677,6 +742,28 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 		if (!writeable)
 			goto bad_bindings;
 		if (minijail_bind(j, src, dest, *writeable))
+			goto bad_bindings;
+	}
+
+	count = j->mounts_count;
+	j->mounts_count = 0;
+	for (i = 0; i < count; ++i) {
+		unsigned long *flags;
+		const char *dest;
+		const char *type;
+		const char *src = consumestr(&serialized, &length);
+		if (!src)
+			goto bad_bindings;
+		dest = consumestr(&serialized, &length);
+		if (!dest)
+			goto bad_bindings;
+		type = consumestr(&serialized, &length);
+		if (!type)
+			goto bad_bindings;
+		flags = consumebytes(sizeof(*flags), &serialized, &length);
+		if (!flags)
+			goto bad_bindings;
+		if (minijail_mount(j, src, dest, type, *flags))
 			goto bad_bindings;
 	}
 
@@ -783,9 +870,37 @@ int bind_one(const struct minijail *j, struct binding *b)
 	return ret;
 }
 
+/* mount_one: Applies mounts from @b for @j, recursing as needed.
+ * @j Minijail these mounts are for
+ * @b Head of list of mounts
+ *
+ * Returns 0 for success.
+ */
+int mount_one(const struct minijail *j, struct mountpoint *m)
+{
+	int ret = 0;
+	char *dest = NULL;
+	if (ret)
+		return ret;
+	/* dest has a leading "/" */
+	if (asprintf(&dest, "%s%s", j->chrootdir, m->dest) < 0)
+		return -ENOMEM;
+	ret = mount(m->src, dest, m->type, m->flags, NULL);
+	if (ret)
+		pdie("mount: %s -> %s", m->src, dest);
+	free(dest);
+	if (m->next)
+		return mount_one(j, m->next);
+	return ret;
+}
+
 int enter_chroot(const struct minijail *j)
 {
 	int ret;
+
+	if (j->mounts_head && (ret = mount_one(j, j->mounts_head)))
+		return ret;
+
 	if (j->bindings_head && (ret = bind_one(j, j->bindings_head)))
 		return ret;
 
@@ -801,6 +916,10 @@ int enter_chroot(const struct minijail *j)
 int enter_pivot_root(const struct minijail *j)
 {
 	int ret, oldroot, newroot;
+
+	if (j->mounts_head && (ret = mount_one(j, j->mounts_head)))
+		return ret;
+
 	if (j->bindings_head && (ret = bind_one(j, j->bindings_head)))
 		return ret;
 
@@ -1648,6 +1767,15 @@ void API minijail_destroy(struct minijail *j)
 		free(b);
 	}
 	j->bindings_tail = NULL;
+	while (j->mounts_head) {
+		struct mountpoint *m = j->mounts_head;
+		j->mounts_head = j->mounts_head->next;
+		free(m->type);
+		free(m->dest);
+		free(m->src);
+		free(m);
+	}
+	j->mounts_tail = NULL;
 	if (j->user)
 		free(j->user);
 	if (j->chrootdir)
