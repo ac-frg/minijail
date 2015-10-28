@@ -16,6 +16,24 @@
       "revId": "c37681ddf90209e4ca4741f25843dc11257e2030",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76c565cc_08abe75c",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-28T18:53:55Z",
+      "side": 1,
+      "message": "Well I already have defines for flags... so doesn\u0027t matter?",
+      "parentUuid": "7621e584_058812b3",
+      "revId": "c37681ddf90209e4ca4741f25843dc11257e2030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
