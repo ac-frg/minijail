@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "769c85d8_2d822d46",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-28T18:15:33Z",
+      "side": 1,
+      "message": "Static library should work.",
+      "parentUuid": "d6d0d18a_a8e9fb21",
+      "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6d0d18a_884517e2",
         "filename": "Android.mk",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d6d0d18a_c8f8afe9",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-28T18:15:33Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "d6d0d18a_884517e2",
+      "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36a68d28_0bb63d2a",
         "filename": "Android.mk",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-10-28T18:13:48Z",
       "side": 1,
       "message": "What does this do for you?",
+      "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56c4e1d1_c72b80b4",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-28T18:15:33Z",
+      "side": 1,
+      "message": "Dunno, that\u0027s what Ari said to add to tests.",
+      "parentUuid": "36a68d28_0bb63d2a",
       "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
