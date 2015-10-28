@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7621e584_058812b3",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2015-10-28T18:52:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t all these files go into the static library as well?  The advantage of this is that you know that you\u0027re testing the same code compiled with the same flags that you use at runtime.",
+      "revId": "c37681ddf90209e4ca4741f25843dc11257e2030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
