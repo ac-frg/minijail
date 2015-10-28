@@ -122,6 +122,24 @@
       "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36a68d28_4e6a13d7",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1057759
+      },
+      "writtenOn": "2015-10-28T18:49:47Z",
+      "side": 1,
+      "message": "Ah, thanks!  I should be adding this directive in my own artifacts.",
+      "parentUuid": "96cad9dc_09700dc5",
+      "revId": "f043539218e3adc568554b0ad74fe9581f15a4a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
