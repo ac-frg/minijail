@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6d955b5_838332cf",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-29T04:47:40Z",
+      "side": 1,
+      "message": "I think this name is confusing, since it sounds like this is the path we\u0027re chrooting to, rather than the executable path inside the chroot. Maybe change to \"path_inside_chroot\".",
+      "range": {
+        "startLine": 403,
+        "startChar": 69,
+        "endLine": 403,
+        "endChar": 80
+      },
+      "revId": "093cf3af1d2313731e515fd6f6c7257f5d13fcf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56c4e1d1_13db1687",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-29T04:47:40Z",
+      "side": 1,
+      "message": "I think this needs a bit more explanation. It\u0027s definitely not evident on first read why it should be so.\n\n\"If we\u0027re executing the exact destination of a bind mount, it means that this file will also live at the source of the bind mount, so we can check that binary instead.\"",
+      "range": {
+        "startLine": 410,
+        "startChar": 5,
+        "endLine": 411,
+        "endChar": 19
+      },
+      "revId": "093cf3af1d2313731e515fd6f6c7257f5d13fcf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7621e584_ce40d721",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-29T04:47:40Z",
+      "side": 1,
+      "message": "I find this confusing as well.\n\n\"If |path_inside_chroot| is within the destination path of a bind mount, take the suffix of the chroot path relative to the bind mount destination path, and append it to the bind mount source path.\"",
+      "range": {
+        "startLine": 417,
+        "startChar": 5,
+        "endLine": 419,
+        "endChar": 36
+      },
+      "revId": "093cf3af1d2313731e515fd6f6c7257f5d13fcf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96cad9dc_ba8db979",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-29T04:47:40Z",
+      "side": 1,
+      "message": "I\u0027m confused (again). You say \"use the chroot path if it exists\" but immediately check for it being NULL?",
+      "range": {
+        "startLine": 429,
+        "startChar": 5,
+        "endLine": 429,
+        "endChar": 18
+      },
+      "revId": "093cf3af1d2313731e515fd6f6c7257f5d13fcf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
