@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "161fca56_1db4f7a7",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-30T03:21:12Z",
+      "side": 1,
+      "message": "This feels like we\u0027re copy-pasting minijail_bind. Given that the \"mount\" command can do either, does it make sense to refactor minijail_bind so that it can be used both for -b and -k?",
+      "range": {
+        "startLine": 460,
+        "startChar": 8,
+        "endLine": 460,
+        "endChar": 22
+      },
+      "revId": "f78ce442232527902852653c704887f4d8579df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7643a650_1563b4c0",
+        "filename": "libminijail.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-10-30T03:21:12Z",
+      "side": 1,
+      "message": "\"into @j\" is confusing. I\u0027d say:\n\n\"when entering minijail @j, mounts @src at @dst with flags.\"",
+      "range": {
+        "startLine": 98,
+        "startChar": 19,
+        "endLine": 98,
+        "endChar": 59
+      },
+      "revId": "f78ce442232527902852653c704887f4d8579df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
