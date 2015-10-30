@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36204e91_a4084c3c",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-30T20:03:06Z",
+      "side": 1,
+      "message": "Good idea, I wanted to keep the bind API the same, but I can do that and still reused all this code.\n\nThanks!",
+      "parentUuid": "161fca56_1db4f7a7",
+      "range": {
+        "startLine": 460,
+        "startChar": 8,
+        "endLine": 460,
+        "endChar": 22
+      },
+      "revId": "f78ce442232527902852653c704887f4d8579df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7643a650_1563b4c0",
         "filename": "libminijail.h",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2015-10-30T03:21:12Z",
       "side": 1,
       "message": "\"into @j\" is confusing. I\u0027d say:\n\n\"when entering minijail @j, mounts @src at @dst with flags.\"",
+      "range": {
+        "startLine": 98,
+        "startChar": 19,
+        "endLine": 98,
+        "endChar": 59
+      },
+      "revId": "f78ce442232527902852653c704887f4d8579df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7643a650_7e8bfd97",
+        "filename": "libminijail.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-10-30T20:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7643a650_1563b4c0",
       "range": {
         "startLine": 98,
         "startChar": 19,
