@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d69a9277_f512523c",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-11-04T21:57:42Z",
+      "side": 1,
+      "message": "Should you be restoring this value before exiting? Realistically, the minijail description can be reused right?",
+      "range": {
+        "startLine": 811,
+        "startChar": 2,
+        "endLine": 811,
+        "endChar": 25
+      },
+      "revId": "c43eb9a1f133695a363f0a762225372ae4561715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b686fe2b_ecf1a38d",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-11-04T21:57:42Z",
+      "side": 1,
+      "message": "I know you\u0027re trying to match the error messages above but \"mount\" has a stronger system meaning than \"bind\", so this error message will probably be confusing. I\u0027d suggest saying\n\n\"minijail_mount failed.\\n\" or\n\n\"Could not add mount to list.\\n\"",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 32
+      },
+      "revId": "c43eb9a1f133695a363f0a762225372ae4561715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
