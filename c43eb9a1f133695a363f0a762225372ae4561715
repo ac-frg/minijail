@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b686fe2b_cf3a11a3",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-11-05T00:00:33Z",
+      "side": 1,
+      "message": "Good point, I hadn\u0027t thought about re-using the flags.  I\u0027ll fix that.",
+      "parentUuid": "d69a9277_f512523c",
+      "range": {
+        "startLine": 811,
+        "startChar": 2,
+        "endLine": 811,
+        "endChar": 25
+      },
+      "revId": "c43eb9a1f133695a363f0a762225372ae4561715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b686fe2b_ecf1a38d",
         "filename": "minijail0.c",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2015-11-04T21:57:42Z",
       "side": 1,
       "message": "I know you\u0027re trying to match the error messages above but \"mount\" has a stronger system meaning than \"bind\", so this error message will probably be confusing. I\u0027d suggest saying\n\n\"minijail_mount failed.\\n\" or\n\n\"Could not add mount to list.\\n\"",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 32
+      },
+      "revId": "c43eb9a1f133695a363f0a762225372ae4561715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96a49abb_36c5c0b1",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-11-05T00:00:33Z",
+      "side": 1,
+      "message": "Agreed, changed.",
+      "parentUuid": "b686fe2b_ecf1a38d",
       "range": {
         "startLine": 87,
         "startChar": 19,
