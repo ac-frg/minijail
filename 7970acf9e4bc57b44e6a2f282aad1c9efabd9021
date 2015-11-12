@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76d4867d_3cc09b4f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2015-11-12T23:09:59Z",
+      "side": 1,
+      "message": "Strictly speaking, seccomp can\u0027t block prctl, since this happens after set_seccomp_filter above. (And I think this order is correct: seccomp first.)",
+      "range": {
+        "startLine": 1189,
+        "startChar": 10,
+        "endLine": 1189,
+        "endChar": 15
+      },
+      "revId": "7970acf9e4bc57b44e6a2f282aad1c9efabd9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
