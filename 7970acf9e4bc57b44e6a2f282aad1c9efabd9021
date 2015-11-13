@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fb2e9f8f_3aa8dd9a",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1080223
+      },
+      "writtenOn": "2015-11-13T18:40:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b25eb9e_b0ee481a",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 68
+      },
+      "revId": "7970acf9e4bc57b44e6a2f282aad1c9efabd9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76d4867d_ffd8b5a6",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -106,6 +130,30 @@
       "writtenOn": "2015-11-13T03:23:47Z",
       "side": 1,
       "message": "The nitest of the nits: no ending period.",
+      "range": {
+        "startLine": 102,
+        "startChar": 58,
+        "endLine": 102,
+        "endChar": 59
+      },
+      "revId": "7970acf9e4bc57b44e6a2f282aad1c9efabd9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b2a4b7b_bd8deb55",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1080223
+      },
+      "writtenOn": "2015-11-13T18:40:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb2e9f8f_7f9e577a",
       "range": {
         "startLine": 102,
         "startChar": 58,
