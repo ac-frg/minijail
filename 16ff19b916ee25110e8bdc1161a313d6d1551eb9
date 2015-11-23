@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1bfc537c_5b81afb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-11-23T18:16:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b1b2bb8_7a1741d4",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "16ff19b916ee25110e8bdc1161a313d6d1551eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b1b2bb8_ba1099d9",
         "filename": "minijail0.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-11-23T18:12:29Z",
       "side": 1,
       "message": "Nit: \"IPC\"",
+      "range": {
+        "startLine": 119,
+        "startChar": 33,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "16ff19b916ee25110e8bdc1161a313d6d1551eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b153384_edf1bdff",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-11-23T18:16:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b1b2bb8_ba1099d9",
       "range": {
         "startLine": 119,
         "startChar": 33,
