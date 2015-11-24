@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b2123e5_8378cd0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2015-11-24T22:30:55Z",
+      "side": 1,
+      "message": "is this the right bug?  The bug is about setgroups.",
+      "revId": "d0a6e2fd0748110336fc6b28bb6fbf0bdfe1ddfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
