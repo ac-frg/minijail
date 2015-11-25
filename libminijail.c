@@ -87,6 +87,8 @@ struct minijail {
 	struct {
 		int uid:1;
 		int gid:1;
+		int usergroups:1;
+		int suppl_gids:1;
 		int caps:1;
 		int vfs:1;
 		int enter_vfs:1;
@@ -97,7 +99,6 @@ struct minijail {
 		int userns:1;
 		int seccomp:1;
 		int remount_proc_ro:1;
-		int usergroups:1;
 		int no_new_privs:1;
 		int seccomp_filter:1;
 		int log_seccomp_filter:1;
@@ -112,6 +113,8 @@ struct minijail {
 	gid_t gid;
 	gid_t usergid;
 	char *user;
+	gid_t *suppl_gids;
+	size_t suppl_gids_count;
 	uint64_t caps;
 	pid_t initpid;
 	int mountns_fd;
@@ -186,6 +189,25 @@ void API minijail_change_gid(struct minijail *j, gid_t gid)
 		die("useless change to gid 0");
 	j->gid = gid;
 	j->flags.gid = 1;
+}
+
+int API minijail_set_supplemental_gids(struct minijail *j, size_t size,
+				       const gid_t *list) {
+	if (size == 0)
+		return -1;
+
+	if (j->flags.usergroups)
+
+	/* Copy the gid_t array. */
+	j->suppl_gids = calloc(size, sizeof(gid_t));
+	if (!j->suppl_gids) {
+		return -ENOMEM;
+	}
+	for (size_t i = 0; i < size; i++) {
+		j->suppl_gids[i] = list[i];
+	}
+	j->flags.suppl_gids = 1;
+	return 0;
 }
 
 int API minijail_change_user(struct minijail *j, const char *user)
