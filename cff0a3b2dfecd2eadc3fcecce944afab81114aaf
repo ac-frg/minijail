@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb4d075c_b12dc086",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-02T20:34:32Z",
+      "side": 1,
+      "message": "I think this is gonna break the compile on every non-arm64 target on AOSP, isn\u0027t it?\n\nWe should either find out all the sets of syscalls, or default to the non-Android sets until we find them.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "cff0a3b2dfecd2eadc3fcecce944afab81114aaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
