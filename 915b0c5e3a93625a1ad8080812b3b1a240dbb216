@@ -22,6 +22,53 @@
       "revId": "915b0c5e3a93625a1ad8080812b3b1a240dbb216",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b570fea_2f95e9ff",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-02T20:05:19Z",
+      "side": 1,
+      "message": "I think we have to. I\u0027m pretty sure the actual set of system calls is tied to the libc implementation of syslog(), which will be Android-dependent given the differences in libc implementations.",
+      "parentUuid": "5b1deb19_df34f78b",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 24
+      },
+      "revId": "915b0c5e3a93625a1ad8080812b3b1a240dbb216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b3917b5_2d56cddc",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-02T20:05:19Z",
+      "side": 1,
+      "message": "endif?",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "915b0c5e3a93625a1ad8080812b3b1a240dbb216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
