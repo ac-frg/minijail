@@ -25,6 +25,13 @@
  * sendto(...)                                     <- important
  * exit_group(0)                                   <- finish!
  */
+#if defined(__ANDROID__)
+#if defined(__aarch64__)
+const char *log_syscalls[] = { "connect", "fcntl", "sendto", "socket", "writev" };
+#else
+#error "Unsupported platform"
+#endif
+#else
 #if defined(__x86_64__)
 const char *log_syscalls[] = { "connect", "sendto" };
 #elif defined(__i386__)
@@ -37,6 +44,7 @@ const char *log_syscalls[] = { "connect", "send" };
 #else
 #error "Unsupported platform"
 #endif
+#endif /* __ANDROID__ */
 
 const size_t log_syscalls_len = sizeof(log_syscalls)/sizeof(log_syscalls[0]);
 
