@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b1deb19_df34f78b",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-12-02T19:03:53Z",
+      "side": 1,
+      "message": "Not sure if this is necessary. Do we need to split up between Android and non-Android or just fix this for aarch64?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 24
+      },
+      "revId": "915b0c5e3a93625a1ad8080812b3b1a240dbb216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
