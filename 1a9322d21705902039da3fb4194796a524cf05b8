@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00486077_57a25cc0",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2015-12-04T05:52:36Z",
+      "side": 1,
+      "message": "This is technically EPERM. Should it be something more distinct like EINVAL?",
+      "range": {
+        "startLine": 201,
+        "startChar": 10,
+        "endLine": 201,
+        "endChar": 11
+      },
+      "revId": "1a9322d21705902039da3fb4194796a524cf05b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
