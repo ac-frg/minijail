@@ -208,7 +208,8 @@ int API minijail_set_supplementary_gids(struct minijail *j, size_t size,
 	if (!j->suppl_gid_list) {
 		return -ENOMEM;
 	}
-	for (size_t i = 0; i < size; i++) {
+	size_t i;
+	for (i = 0; i < size; i++) {
 		j->suppl_gid_list[i] = list[i];
 	}
 	j->suppl_gid_count = size;
