@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a567a60d_78abe14b",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2015-12-09T21:39:30Z",
+      "side": 1,
+      "message": "Suggestion (feel free to ignore): perhaps we could use a define here, since the contents of these two targets are exactly the same? i.e.\n\n  define libminijail_common\n    LOCAL_MODULE :\u003d libminijail\n    ...\n  endef\n\n  # Shared library\n  # \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n  include $(CLEAR_VARS)\n  $(eval $(libminijail_common))\n  include $(BUILD_SHARED_LIBRARY)\n\n  # Static library\n  # \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n  include $(CLEAR_VARS)\n  $(eval $(libminijail_common))\n  include $(BUILD_STATIC_LIBRARY)",
+      "revId": "43e29b3551479dd6d989b830eacd1abbd83592cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
