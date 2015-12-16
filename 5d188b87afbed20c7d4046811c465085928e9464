@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "850622ce_5abab188",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-16T23:31:36Z",
+      "side": 1,
+      "message": "\"will not\"",
+      "range": {
+        "startLine": 16,
+        "startChar": 18,
+        "endLine": 16,
+        "endChar": 22
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5dadaa8_ac9bcb85",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-16T23:31:36Z",
+      "side": 1,
+      "message": "I wonder if this should be before entering the user namespace.",
+      "range": {
+        "startLine": 1707,
+        "startChar": 0,
+        "endLine": 1711,
+        "endChar": 2
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
