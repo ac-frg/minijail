@@ -108,6 +108,7 @@ struct minijail {
 		int do_init:1;
 		int pid_file:1;
 		int alt_syscall:1;
+		int reset_signal_mask:1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -306,6 +307,10 @@ void API minijail_use_caps(struct minijail *j, uint64_t capmask)
 {
 	j->caps = capmask;
 	j->flags.caps = 1;
+}
+
+void API minijail_reset_signal_mask(struct minijail* j) {
+	j->flags.reset_signal_mask = 1;
 }
 
 void API minijail_namespace_vfs(struct minijail *j)
@@ -1698,6 +1703,12 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 	if (j->flags.userns)
 		enter_user_namespace(j, userns_pipe_fds);
+
+	if (j->flags.reset_signal_mask) {
+		sigset_t signal_mask;
+		sigemptyset(&signal_mask);
+		sigprocmask(SIG_SETMASK, &signal_mask, NULL);
+	}
 
 	/*
 	 * If we want to write to the jailed process' standard input,
