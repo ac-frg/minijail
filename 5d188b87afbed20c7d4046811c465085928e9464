@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0512320e_9628aa30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2015-12-16T23:51:30Z",
+      "side": 1,
+      "message": "Will update.",
+      "parentUuid": "a5b8863e_b07af804",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 4
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "459d0ad3_d046a2a5",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2015-12-16T23:40:47Z",
       "side": 1,
       "message": "\"daemons\"",
+      "range": {
+        "startLine": 13,
+        "startChar": 38,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5b8863e_d3c3465d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2015-12-16T23:51:30Z",
+      "side": 1,
+      "message": "Will update.",
+      "parentUuid": "459d0ad3_d046a2a5",
       "range": {
         "startLine": 13,
         "startChar": 38,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0512320e_f62d9e3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2015-12-16T23:51:30Z",
+      "side": 1,
+      "message": "Will update.",
+      "parentUuid": "850622ce_5abab188",
+      "range": {
+        "startLine": 16,
+        "startChar": 18,
+        "endLine": 16,
+        "endChar": 22
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5dadaa8_ac9bcb85",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2015-12-16T23:31:36Z",
       "side": 1,
       "message": "I wonder if this should be before entering the user namespace.",
+      "range": {
+        "startLine": 1707,
+        "startChar": 0,
+        "endLine": 1711,
+        "endChar": 2
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0512320e_56ae12ee",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2015-12-16T23:51:30Z",
+      "side": 1,
+      "message": "I don\u0027t have strong preference over one or the other. I think it is fine as long as this is done before the exec call.  Let me know what you prefer.",
+      "parentUuid": "c5dadaa8_ac9bcb85",
       "range": {
         "startLine": 1707,
         "startChar": 0,
