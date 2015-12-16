@@ -187,6 +187,30 @@
       "revId": "5d188b87afbed20c7d4046811c465085928e9464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05a79224_aeebb763",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-16T23:57:06Z",
+      "side": 1,
+      "message": "Yeah, I think I\u0027d move it above line 1704.\n\nsigprocmask can technically fail (if the first argument is not one of the flags, or if the second argument is an invalid pointer). We probably don\u0027t care about those cases, but something to keep in mind.",
+      "parentUuid": "0512320e_56ae12ee",
+      "range": {
+        "startLine": 1707,
+        "startChar": 0,
+        "endLine": 1711,
+        "endChar": 2
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
