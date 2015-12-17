@@ -211,6 +211,30 @@
       "revId": "5d188b87afbed20c7d4046811c465085928e9464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05a79224_ee6adf85",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1079868
+      },
+      "writtenOn": "2015-12-17T00:11:41Z",
+      "side": 1,
+      "message": "Will do.\n\nI will also add error checking for both sigemptyset and sigprocmask calls to be safe.",
+      "parentUuid": "05a79224_aeebb763",
+      "range": {
+        "startLine": 1707,
+        "startChar": 0,
+        "endLine": 1711,
+        "endChar": 2
+      },
+      "revId": "5d188b87afbed20c7d4046811c465085928e9464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
