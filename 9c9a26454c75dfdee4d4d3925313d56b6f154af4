@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5b8863e_b34cc220",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-17T01:45:30Z",
+      "side": 1,
+      "message": "Nits: \"For\", \"32-bit\", \"64-bit\", end with a period to match other comments.",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 66
+      },
+      "revId": "9c9a26454c75dfdee4d4d3925313d56b6f154af4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
