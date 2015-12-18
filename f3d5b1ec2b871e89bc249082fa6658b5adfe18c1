@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a52de678_2bfde520",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2015-12-18T22:38:29Z",
+      "side": 1,
+      "message": "If those global CFLAGS are missing, that means that you are not targeting the actual target you think you are. You are likely choosing the default target (which might be i686?). That seems absurdly wrong in all cases. These flags (RS_TRIPLE_CFLAGS) are used to build a multitude of targets (x86, mips, arm, 32 \u0026 64-bit) for each regular build target (i.e. arm32). We do that because we also ship part of our tools with the SDK, and that has to target everything (not just per-target).",
+      "parentUuid": "6a53bb27_efda916c",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "f3d5b1ec2b871e89bc249082fa6658b5adfe18c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a438f4f_becf2581",
         "filename": "Android.mk",
         "patchSetId": 5
