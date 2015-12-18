@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a438f4f_becf2581",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T22:27:12Z",
+      "side": 1,
+      "message": "This is not consistent with line 45, is that right?",
+      "range": {
+        "startLine": 65,
+        "startChar": 23,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "f3d5b1ec2b871e89bc249082fa6658b5adfe18c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
