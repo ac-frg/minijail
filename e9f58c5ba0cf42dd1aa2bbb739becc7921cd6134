@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "6a2adb7b_b742aa3e",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T22:14:06Z",
+      "side": 1,
+      "message": "No, you don\u0027t need this prefix for TARGET_ARCH. It\u0027s only for TARGET_2ND_ARCH.",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 32
+      },
+      "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a2517a8_c1ac520b",
         "filename": "Android.mk",
         "patchSetId": 3
@@ -41,6 +64,52 @@
         "startChar": 5,
         "endLine": 48,
         "endChar": 31
+      },
+      "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa593347_179e1edb",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T22:14:06Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa593347_97a9eef9",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T22:14:06Z",
+      "side": 1,
+      "message": "better to \"/\", to just add a subdir in the $(generated_sources_dir). Probably also do the same for the TARGET_ARCH files:\n$(generated_sources_dir)/$(TARGET_ARCH)/libsyscalls.c\nv.s.\n$(generated_sources_dir)/$(TARGET_2ND_ARCH)/libsyscalls.c",
+      "range": {
+        "startLine": 55,
+        "startChar": 24,
+        "endLine": 55,
+        "endChar": 25
       },
       "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
