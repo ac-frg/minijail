@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a2f9f8d_3f9faf89",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T21:38:06Z",
+      "side": 1,
+      "message": "Let\u0027s add a comment above this first rule that explains what RS_TRIPLE_CFLAGS usually contains. I know it\u0027s explained in the commit message but it will probably be useful in the future to just have it in this file.",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "b01b916e9b72ba5e1621e5c2143030e973bf17a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
