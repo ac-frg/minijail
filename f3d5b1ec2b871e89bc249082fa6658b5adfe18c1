@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0a2f9f8d_5a4a895f",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T22:42:30Z",
+      "side": 1,
+      "message": "These rules are only used to preprocess one included header. They\u0027re not actually used to compile anything. So, as long as we provide the right include path (which we are) and the right arch define (which this CL is doing) we should be fine.\n\nThe actual compilation happens below in BUILD_STATIC_LIBRARY which should be doing the right thing.\n\nHaving said that, if there\u0027s a better way to do this, I\u0027d love to know.",
+      "parentUuid": "a52de678_2bfde520",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "f3d5b1ec2b871e89bc249082fa6658b5adfe18c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a438f4f_becf2581",
         "filename": "Android.mk",
         "patchSetId": 5
