@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a5c6f37_70c7a697",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T22:14:06Z",
+      "side": 1,
+      "message": "I don\u0027t think you were supposed to change this.",
+      "range": {
+        "startLine": 42,
+        "startChar": 5,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a2517a8_c1ac520b",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T22:14:06Z",
+      "side": 1,
+      "message": "Or this.",
+      "range": {
+        "startLine": 48,
+        "startChar": 5,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "e9f58c5ba0cf42dd1aa2bbb739becc7921cd6134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
