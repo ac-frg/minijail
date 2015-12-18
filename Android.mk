@@ -36,24 +36,31 @@ LOCAL_MODULE := libminijail_generated
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 generated_sources_dir := $(local-generated-sources-dir)
 
-$(generated_sources_dir)/libsyscalls.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_ARCH)" $@
+# Use RS_TRIPLE_CFLAGS to ensure that we build with the proper defines on
+# targets like x86 This also changes all build targets to use the
+# proper 32/64-bit triples when creating their runtime libraries.
+$(generated_sources_dir)/libsyscalls.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) \
+	$(RS_TRIPLE_CFLAGS) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_ARCH)" $@
 $(generated_sources_dir)/libsyscalls.c: $(LOCAL_PATH)/gen_syscalls.sh
 	$(transform-generated-source)
 LOCAL_GENERATED_SOURCES_$(TARGET_ARCH) += $(generated_sources_dir)/libsyscalls.c
 
-$(generated_sources_dir)/libconstants.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_ARCH)" $@
+$(generated_sources_dir)/libconstants.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) \
+	$(RS_TRIPLE_CFLAGS) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_ARCH)" $@
 $(generated_sources_dir)/libconstants.c: $(LOCAL_PATH)/gen_constants.sh
 	$(transform-generated-source)
 LOCAL_GENERATED_SOURCES_$(TARGET_ARCH) += $(generated_sources_dir)/libconstants.c
 
 # For processes running in 32-bit compat mode on 64-bit processors.
 ifdef TARGET_2ND_ARCH
-$(generated_sources_dir)/libsyscalls.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_2ND_ARCH)" $@
+$(generated_sources_dir)/libsyscalls.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) \
+	$(RS_TRIPLE_CFLAGS) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_2ND_ARCH)" $@
 $(generated_sources_dir)/libsyscalls.c: $(LOCAL_PATH)/gen_syscalls.sh
 	$(transform-generated-source)
 LOCAL_GENERATED_SOURCES_$(TARGET_2ND_ARCH) += $(generated_sources_dir)/libsyscalls.c
 
-$(generated_sources_dir)/libconstants.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_2ND_ARCH)" $@
+$(generated_sources_dir)/libconstants.c: PRIVATE_CUSTOM_TOOL = $< "$(lastword $(CLANG)) \
+	$(RS_TRIPLE_CFLAGS) -isystem bionic/libc/kernel/uapi/asm-$(TARGET_2ND_ARCH)" $@
 $(generated_sources_dir)/libconstants.c: $(LOCAL_PATH)/gen_constants.sh
 	$(transform-generated-source)
 LOCAL_GENERATED_SOURCES_$(TARGET_2ND_ARCH) += $(generated_sources_dir)/libconstants.c
