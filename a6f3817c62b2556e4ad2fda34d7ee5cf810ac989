@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a3463db_602b5abf",
+        "filename": "Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T22:23:21Z",
+      "side": 1,
+      "message": "Please use $(generated_sources_dir)/$(TARGET_2ND_ARCH), otherwise it escapes the module\u0027s $(generated_sources_dir). That would make it harder to write cleapspec.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "a6f3817c62b2556e4ad2fda34d7ee5cf810ac989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
