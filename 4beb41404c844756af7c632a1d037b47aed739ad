@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a5c6f37_b0407ee8",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-18T21:51:13Z",
+      "side": 1,
+      "message": "We probably don\u0027t need this sentence, given that we\u0027re only using the C compiler here to process a header file. I\u0027d just say:\n\n\"Use RS_TRIPLE_CFLAGS to ensure that we build with the proper defines on targets like x86.\"",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 65
+      },
+      "revId": "4beb41404c844756af7c632a1d037b47aed739ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
