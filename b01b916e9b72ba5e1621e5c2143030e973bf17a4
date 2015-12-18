@@ -70,6 +70,52 @@
       "revId": "b01b916e9b72ba5e1621e5c2143030e973bf17a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea5fab25_707c4801",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T21:50:23Z",
+      "side": 1,
+      "message": "$($(TARGET_2ND_ARCH_VAR_PREFIX)RS_TRIPLE_CFLAGS)",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 20
+      },
+      "revId": "b01b916e9b72ba5e1621e5c2143030e973bf17a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a2517a8_812c0a88",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-18T21:50:23Z",
+      "side": 1,
+      "message": "$($(TARGET_2ND_ARCH_VAR_PREFIX)RS_TRIPLE_CFLAGS)",
+      "range": {
+        "startLine": 60,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "b01b916e9b72ba5e1621e5c2143030e973bf17a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
