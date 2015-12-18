@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6a53bb27_efda916c",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-12-18T22:35:24Z",
+      "side": 1,
+      "message": "The issue is that this Android.mk file is calling a shell script (generate_syscalls.sh) which also invokes clang. The global build flags are not present for the shell script launched clang. This is causing issues because the necessary c flags (in this case -D__i386__) are not present.",
+      "parentUuid": "8af54f3f_7fc76f97",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "f3d5b1ec2b871e89bc249082fa6658b5adfe18c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a438f4f_becf2581",
         "filename": "Android.mk",
         "patchSetId": 5
