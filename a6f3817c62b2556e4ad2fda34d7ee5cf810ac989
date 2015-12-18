@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2a4d4387_c736a023",
+        "filename": "Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2015-12-18T22:27:56Z",
+      "side": 1,
+      "message": "This really isn\u0027t intended to be used this way. RS_TRIPLE_CFLAGS is something that is RenderScript-specific. I need to look more closely at what is happening here, but it seems like you are missing the actual specification of a proper triple, or those defines would already be present for you.",
+      "revId": "a6f3817c62b2556e4ad2fda34d7ee5cf810ac989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a3463db_602b5abf",
         "filename": "Android.mk",
         "patchSetId": 4
