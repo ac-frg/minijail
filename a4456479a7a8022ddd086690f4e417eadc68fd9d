@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a438f4f_a91c9146",
+        "filename": "Android.mk",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-19T01:33:22Z",
+      "side": 1,
+      "message": "These are global flags defined by the core build system, so you don\u0027t need RS_TRIPLE_CFLAGS or -isystem bionic/libc/kernel/uapi/asm-$(TARGET_ARCH) .",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
