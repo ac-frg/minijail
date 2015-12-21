@@ -1,0 +1,7 @@
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Verified+1: Colin Cross <ccross@android.com>
+Submitted-by: Colin Cross <ccross@android.com>
+Submitted-at: Mon, 21 Dec 2015 22:50:23 +0000
+Reviewed-on: https://android-review.googlesource.com/188940
+Project: platform/external/minijail
+Branch: refs/heads/master
