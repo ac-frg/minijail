@@ -39,6 +39,47 @@
       "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a1bbbb8_86b46a3c",
+        "filename": "Android.mk",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-22T17:37:00Z",
+      "side": 1,
+      "message": "I think you misunderstood it. We are doing it in two-step way. This step only generates the libsyscalls.c but not compiling it. The problem here is, the generators (gen_syscalls.sh and gen_constants.sh) need preprocessing of of some system headers by the compiler (and the global arch-specific cflags/includes)  to extract arch-specific constructs.",
+      "parentUuid": "2a670334_d4b57cee",
+      "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2afc637c_ac5d03cf",
+        "filename": "Android.mk",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2015-12-22T17:37:00Z",
+      "side": 1,
+      "message": "Here is the 2nd step by adding $(my_gen) to LOCAL_GENERATED_SOURCES, and the generated .c will be compiled by the regular C/C++ build rules.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
