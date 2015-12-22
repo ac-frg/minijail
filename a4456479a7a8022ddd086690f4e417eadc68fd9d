@@ -22,6 +22,23 @@
       "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a670334_d4b57cee",
+        "filename": "Android.mk",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2015-12-22T15:39:57Z",
+      "side": 1,
+      "message": "Why do this all in one step? Why not generate the .c file first and then use regular C/C++ build rules (with your additional -isystem flag) to compile the library? Take a look at https://android.googlesource.com/platform/frameworks/rs/+/master/Android.mk for how we handle generating a number of C source files just like this.\n\nYou can use LOCAL_GENERATED_SOURCES to pull in the correct C files that you just created (i.e. libsyscalls.c).\n\nMy main objection is that by doing this in one step with a pipe, you make it harder to debug any compiler issues in the future. You also propagate the knowledge of doing this the \"wrong\" way, where someone will happily copy/paste this and end up not getting the compilation they really intended (i.e. no one else should be explicitly pulling in TARGET_C_INCLUDES unless they have reason to).",
+      "revId": "a4456479a7a8022ddd086690f4e417eadc68fd9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
