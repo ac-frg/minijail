@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a1bbbb8_affe991b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "What kinds of errors are you seeing?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 58
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0af79f9a_34c2f65e",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "Extra indentation on purpose?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 4
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4aed17c9_41dd4298",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "Where are you seeing opening parenthesis?",
+      "range": {
+        "startLine": 57,
+        "startChar": 53,
+        "endLine": 57,
+        "endChar": 55
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a1bbbb8_2febc960",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "Keep single quotes to match line below?",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 11
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca2ae7be_78dd8d06",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "[:alnum:]",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca2ae7be_d85e3956",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2015-12-28T18:30:38Z",
+      "side": 1,
+      "message": "Probably OK to keep [:upper:] here and in other places in this line.",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
