@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "0a6cff46_26c918d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2016-01-03T07:31:08Z",
+      "side": 1,
+      "message": "this is incorrect.  some ABIs accept 64bit args even when sizeof(long) \u003d\u003d 32bit.",
+      "range": {
+        "startLine": 14,
+        "startChar": 41,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0af79f9a_34c2f65e",
         "filename": "gen_constants.sh",
         "patchSetId": 1
@@ -128,6 +151,30 @@
       "writtenOn": "2015-12-28T18:30:38Z",
       "side": 1,
       "message": "Probably OK to keep [:upper:] here and in other places in this line.",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "3d3a18cff7ecbe601ef2366f974ef539bcef63fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a68b702_7ba577bf",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2016-01-03T07:31:08Z",
+      "side": 1,
+      "message": "we want :upper:, not A-Z (the history has more info, as do the referenced bugs / CLs)\n\nyou can use :alpha: rather than A-Za-z, or :alnum: rather than A-Za-z0-9",
+      "parentUuid": "ca2ae7be_d85e3956",
       "range": {
         "startLine": 57,
         "startChar": 24,
