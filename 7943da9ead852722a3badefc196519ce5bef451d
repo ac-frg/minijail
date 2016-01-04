@@ -1,0 +1,11 @@
+Code-Review+1: Ying Wang <wangying@android.com>
+Code-Review+1: Jeffrey Vander Stoep <jeffv@google.com>
+Code-Review+1: Daniel Cashman <dcashman@google.com>
+Code-Review+2: Nick Kralevich <nnk@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Verified+1: Jorge Lucangeli Obes <jorgelo@google.com>
+Submitted-by: Jorge Lucangeli Obes <jorgelo@google.com>
+Submitted-at: Mon, 04 Jan 2016 23:29:54 +0000
+Reviewed-on: https://android-review.googlesource.com/188790
+Project: platform/external/minijail
+Branch: refs/heads/master
