@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a562f44_3d2657f7",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2016-01-04T22:13:50Z",
+      "side": 1,
+      "message": "This is the part that is still weird to me. You are only adding one new flag to your normal compile here (the \"-isystem ...\" part of things). Why not have that be part of LOCAL_CFLAGS and do a regular build for this part? The LOCAL_GENERATED_SOURCES should take care of that, right? At least this is how I have seen us use this before in frameworks/rs/Android.mk. We have scripts to generate headers/source files and then just regularly compile them in as part of other libraries.",
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a562f44_bd39c716",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2016-01-04T22:13:50Z",
+      "side": 1,
+      "message": "Is this actually needed? I guess this is a bit problematic for the 64 vs. 32 versions, but I think that if you fixed this to use regular compile rules (plus the one extra LOCAL_CFLAGS update), it would look cleaner.",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 38
+      },
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
