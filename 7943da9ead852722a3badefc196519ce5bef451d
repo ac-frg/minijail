@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "ca86672d_af915d18",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2016-01-04T22:48:57Z",
+      "side": 1,
+      "message": "Ugh, I just looked at the shell scripts here and realized that this command line is passing clang + flags as an argument (yuck).\n\nMaybe this shouldn\u0027t be using PRIVATE_CC? Can we just define something different here, that doesn\u0027t look like you are actually compiling as part of the actual build here? That is where my mistake came from, purely based on my existing knowledge of the build.",
+      "parentUuid": "8a0b8f60_98bcb4d8",
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a1bbbb8_d003b154",
         "filename": "Android.mk",
         "patchSetId": 9
