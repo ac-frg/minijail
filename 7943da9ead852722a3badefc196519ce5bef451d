@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "aabbf3f0_01d3f0fd",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-04T23:26:26Z",
+      "side": 1,
+      "message": "We can change the name of the variable, but the reality is that we need to run the compiler because the compiler will resolve the includes needed to generate the list of syscalls.",
+      "parentUuid": "ca86672d_af915d18",
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a1bbbb8_d003b154",
         "filename": "Android.mk",
         "patchSetId": 9
