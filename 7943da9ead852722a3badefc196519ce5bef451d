@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8a0b8f60_98bcb4d8",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2016-01-04T22:25:03Z",
+      "side": 1,
+      "message": "No, the PRIVATE_CC here is used only to generate libsyscalls.c, but not to compile it. The compilation is still the \"normal compile\".\nWhat special about this module is, it needs to call the compiler (with the global flags) to generate libsyscalls.c and libconstants.c. The core build system doesn\u0027t provide such functionalities. The core build system only knows to call the compiler to do real compilation.",
+      "parentUuid": "8a562f44_3d2657f7",
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a562f44_bd39c716",
         "filename": "Android.mk",
         "patchSetId": 9
@@ -30,6 +48,30 @@
       "writtenOn": "2016-01-04T22:13:50Z",
       "side": 1,
       "message": "Is this actually needed? I guess this is a bit problematic for the 64 vs. 32 versions, but I think that if you fixed this to use regular compile rules (plus the one extra LOCAL_CFLAGS update), it would look cleaner.",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 38
+      },
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a1bbbb8_b0d9d549",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1003981
+      },
+      "writtenOn": "2016-01-04T22:25:03Z",
+      "side": 1,
+      "message": "This is using regular compile rules. The \"_$(TARGET_ARCH)\" suffix is used to exactly to solve the 64-vs-32 issue, so you don\u0027t include both the 32-bit and 64-bit versions in LOCAL_GENERATED_SOURCES.",
+      "parentUuid": "8a562f44_bd39c716",
       "range": {
         "startLine": 48,
         "startChar": 23,
