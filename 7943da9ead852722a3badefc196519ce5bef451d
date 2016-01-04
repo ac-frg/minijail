@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "aa2133e4_1d28bf28",
+        "filename": "Android.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-04T22:27:03Z",
+      "side": 1,
+      "message": "I cannot comment on the specific build system details, but one reason why you might not be able to do a regular build for this is because you need to invoke the compiler in preprocessor mode as part of the script, and then compile the result of that as part of the regular build. The script *cannot* generate the source file without invoking the compiler in preprocessor mode.",
+      "parentUuid": "8a562f44_3d2657f7",
+      "revId": "7943da9ead852722a3badefc196519ce5bef451d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a562f44_bd39c716",
         "filename": "Android.mk",
         "patchSetId": 9
