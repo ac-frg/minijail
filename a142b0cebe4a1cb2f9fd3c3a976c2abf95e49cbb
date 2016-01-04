@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea27abf2_7125a7e6",
+        "filename": "gen_constants.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-04T17:53:53Z",
+      "side": 1,
+      "message": "Should this be \\s+? Or is it enough to match exactly one whitespace character?",
+      "range": {
+        "startLine": 57,
+        "startChar": 44,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "a142b0cebe4a1cb2f9fd3c3a976c2abf95e49cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
