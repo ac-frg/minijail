@@ -69,6 +69,24 @@
       "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a41cfd9_de24d4ec",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-07T23:34:46Z",
+      "side": 1,
+      "message": "Oh, the selinux log would be rather annoying.  I\u0027m OK with this in that case.  If we need to support it on another platform, we can always add that later.  Thanks for the explanation.",
+      "parentUuid": "aa3e9347_8737e587",
+      "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
