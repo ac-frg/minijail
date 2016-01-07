@@ -33,6 +33,42 @@
       "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa3e9347_8737e587",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-07T23:05:44Z",
+      "side": 1,
+      "message": "It would, but I\u0027d argue there\u0027s no need to try to open a file  that we know doesn\u0027t exist (and generating an SELinux logging line).",
+      "parentUuid": "ca202730_8595a505",
+      "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a52a3ad_17230350",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-07T23:05:44Z",
+      "side": 1,
+      "message": "We\u0027ve used this pattern in Chrome and it actually saves a lot of headaches. #ifdef\u0027s are tricky in code like Minijail which is 1. very low-level and 2. compiled for a bunch of different platforms.\n\nBy limiting the #ifdef to the smallest possible scope, we ask the compiler to compile most of the code on most cases, and therefore we can catch compile errors earlier. Moreover, all modern compilers have Dead Code Elimination, and will detect this dead code pretty easily (since is_android() is a constant function after the preprocessor pass). In addition, functions are a lot easier to read than #ifdef\u0027s, partly because they get indented correctly (unlike ifdefs).\n\nI\u0027m planning to use this function in the other cases in this file were we have ifdefs.",
+      "parentUuid": "0a4ddf0f_383e3099",
+      "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
