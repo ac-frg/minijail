@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca202730_8595a505",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-07T23:00:01Z",
+      "side": 1,
+      "message": "Would check the return of fopen and falling back to this if it fails achieve the same thing?  Then it would work on other system where proc access isn\u0027t always available.",
+      "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
