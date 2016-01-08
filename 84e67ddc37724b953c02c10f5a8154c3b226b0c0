@@ -46,6 +46,30 @@
       "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a62afbe_b74ea818",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-08T19:20:51Z",
+      "side": 1,
+      "message": "Well, if the list has size 0, we don\u0027t need to set the flag, which will then cause an empty call to setgroups later on minijail_enter(). Better not do anything? Do you think the semantics like this is weird?",
+      "parentUuid": "4a74377b_15c2f47a",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
