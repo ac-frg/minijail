@@ -94,6 +94,30 @@
       "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a8b57a3_4065901b",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2016-01-08T20:05:12Z",
+      "side": 1,
+      "message": "I\u0027m confused how it\u0027s equivalent. Imagine a process starts with UID\u003d0 GID\u003d0 supplemental_GID\u003d1,2. \n\nI then make the following sequence of calls with the intention of clearing my supplemental GIDs while retaining UID/GID\u003d0.\n\n  minijail_set_supplementary_gids(j, 0, NULL)\n  minijail_enter(j);\n\nIt looks like this will be a no-op then? setgroups() is only called if j-\u003eflags.suppl_gids is set (line 1052), or if (j-\u003euid || j-\u003egid) (line 1060), neither of which is true in the case above.\n\n(on an aside, I don\u0027t understand why UID\u003d0 is special cased on line 1060, since it\u0027s quite possible that UID\u003d0 is running without DAC_OVERRIDE. This is done, for example, in some Android daemons controlled by SELinux.)",
+      "parentUuid": "6a901bcb_fec2c1aa",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
