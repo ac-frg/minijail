@@ -116,6 +116,24 @@
       "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a62afbe_57b2ac4f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2016-01-08T19:16:17Z",
+      "side": 1,
+      "message": "There\u0027s two options, either of which I think will work.\n\n1) Delete lines 206-209. The rest of the code below will work when size\u003d\u003d0, and set everything up as expected.\n\n2) Abort if size\u003d\u003d0, since this could be a programmer bug.\n\nEither way is fine with me.",
+      "parentUuid": "4a74377b_b5cb00a2",
+      "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
