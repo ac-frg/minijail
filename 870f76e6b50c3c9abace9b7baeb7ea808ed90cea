@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "4a74377b_f5ff38c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2016-01-08T18:59:22Z",
+      "side": 1,
+      "message": "Simplify this method for callers by...",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca6827a1_b9b21f22",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
