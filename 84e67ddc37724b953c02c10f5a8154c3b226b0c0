@@ -70,6 +70,30 @@
       "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a901bcb_fec2c1aa",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-08T19:26:08Z",
+      "side": 1,
+      "message": "If j-\u003eflags.suppl_gids \u003d 1, then minijail_enter() will do a call to setgroups(j-\u003esuppl_gid_list), which is unneeded since the list is empty. We can avoid that by making this call not actually set the flag, since the result of not calling setgroups in minijail_enter() and calling it with an empty list is equivalent.",
+      "parentUuid": "4a8b57a3_e0f21cc2",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
