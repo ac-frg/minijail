@@ -87,6 +87,24 @@
       "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a1aaf01_7604c95d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2016-01-08T00:50:13Z",
+      "side": 1,
+      "message": "Ok, SGTM.",
+      "parentUuid": "2a52a3ad_17230350",
+      "revId": "4b276a6c643cee568b9b623b1ce00fd41db9e8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
