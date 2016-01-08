@@ -203,13 +203,15 @@ int API minijail_set_supplementary_gids(struct minijail *j, size_t size,
 	if (j->flags.usergroups)
 		die("cannot inherit *and* set supplementary groups");
 
-	if (size == 0)
+	if (size == 0) {
+		warn("empty supplementary group list");
 		return -EINVAL;
+	}
 
 	/* Copy the gid_t array. */
 	j->suppl_gid_list = calloc(size, sizeof(gid_t));
 	if (!j->suppl_gid_list) {
-		return -ENOMEM;
+		die("failed to allocate internal supplementary group array");
 	}
 	for (i = 0; i < size; i++) {
 		j->suppl_gid_list[i] = list[i];
