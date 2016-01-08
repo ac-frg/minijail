@@ -80,6 +80,24 @@
       "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa5f73f8_d8434def",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2016-01-08T19:05:42Z",
+      "side": 1,
+      "message": "If that\u0027s the case, then why warn on it? It sounds like you view an empty set as working as intended. The current code says that an empty set is invalid and silently ignores it.\n\nPerhaps you shouldn\u0027t treat a size of zero any differently then?",
+      "parentUuid": "4a8b57a3_fdd5673d",
+      "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
