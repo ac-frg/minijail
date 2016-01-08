@@ -62,6 +62,24 @@
       "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a8b57a3_fdd5673d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-08T19:02:08Z",
+      "side": 1,
+      "message": "The reason why I didn\u0027t make this fatal is because you might be calling this function with a computed (rather than hardcoded) set of gids, and in some cases your computed set of gids might be empty for one specific run of the program, and we should probably not fail you in that case.",
+      "parentUuid": "0a95dfbc_9e9a9988",
+      "revId": "870f76e6b50c3c9abace9b7baeb7ea808ed90cea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
