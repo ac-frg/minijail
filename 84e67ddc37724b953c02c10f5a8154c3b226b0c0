@@ -22,6 +22,30 @@
       "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a8b57a3_e0f21cc2",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2016-01-08T19:20:19Z",
+      "side": 1,
+      "message": "oh, no it can\u0027t, since calloc() could return NULL, and line 214 would blow up.\n\nIf size\u003d\u003d0, then perhaps we should assert that j-\u003esuppl_gid_count and j-\u003eflags.suppl_gids is set.\n\nPerhaps something like:\n\n  if (size \u003d\u003d 0) {\n    j-\u003esuppl_gid_count \u003d size;\n    j-\u003eflags.suppl_gids \u003d 1;\n    return 0;\n  }",
+      "parentUuid": "4a74377b_15c2f47a",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 2
+      },
+      "revId": "84e67ddc37724b953c02c10f5a8154c3b226b0c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
