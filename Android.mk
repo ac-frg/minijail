@@ -27,7 +27,6 @@ libminijailSrcFiles := \
 minijailCommonCFlags := -Wall -Werror
 minijailCommonLibraries := libcap
 
-
 # Static library for generated code.
 # ========================================================
 include $(CLEAR_VARS)

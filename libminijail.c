@@ -33,6 +33,7 @@
 #include <sys/user.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <sys/utsname.h>
 
 #include "libminijail.h"
 #include "libminijail-private.h"
@@ -170,6 +171,26 @@ void minijail_preexec(struct minijail *j)
 	j->flags.remount_proc_ro = remount_proc_ro;
 	j->flags.userns = userns;
 	/* Note, |pids| will already have been used before this call. */
+}
+
+/* Return true if kernel version is less than 3.8 */
+bool seccomp_kernel_support_not_required()
+{
+	int major, minor;
+	struct utsname uts;
+	return (uname(&uts) != -1 &&
+			sscanf(uts.release, "%d.%d", &major, &minor) == 2 &&
+			((major < 3) || ((major == 3) && (minor < 8))));
+}
+
+/*
+ * Allowed to softfail if SECCOP_SOFTFAIL flag is set OR
+ * Android and kernel version < 3.8.
+ */
+bool can_softfail()
+{
+	return SECCOMP_SOFTFAIL ||
+		(is_android() && seccomp_kernel_support_not_required());
 }
 
 /* Minijail API. */
@@ -563,10 +584,13 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL)) {
-		if ((errno == ENOSYS) && SECCOMP_SOFTFAIL) {
+		if ((errno == ENOSYS) && can_softfail()) {
 			warn("not loading seccomp filter,"
 			     " seccomp not supported");
-			return;
+			j->flags.seccomp_filter = 0;
+			j->flags.log_seccomp_filter = 0;
+			j->filter_len = 0;
+			j->filter_prog = NULL;
 		}
 	}
 	FILE *file = fopen(path, "r");
@@ -1168,7 +1192,7 @@ void set_seccomp_filter(const struct minijail *j)
 	 * in the kernel source tree for an explanation of the parameters.
 	 */
 	if (j->flags.no_new_privs) {
-		if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0))
+		if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) && !can_softfail())
 			pdie("prctl(PR_SET_NO_NEW_PRIVS)");
 	}
 
@@ -1188,7 +1212,7 @@ void set_seccomp_filter(const struct minijail *j)
 	if (j->flags.seccomp_filter) {
 		if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER,
 			  j->filter_prog)) {
-			if ((errno == ENOSYS) && SECCOMP_SOFTFAIL) {
+			if ((errno == ENOSYS) && can_softfail()) {
 				warn("seccomp not supported");
 				return;
 			}
@@ -1311,7 +1335,7 @@ void API minijail_enter(const struct minijail *j)
 	 * privilege-dropping syscalls :)
 	 */
 	if (j->flags.seccomp && prctl(PR_SET_SECCOMP, 1)) {
-		if ((errno == ENOSYS) && SECCOMP_SOFTFAIL) {
+		if ((errno == ENOSYS) && can_softfail()) {
 			warn("seccomp not supported");
 			return;
 		}
