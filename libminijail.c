@@ -33,6 +33,7 @@
 #include <sys/user.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <sys/utsname.h>
 
 #include "libminijail.h"
 #include "libminijail-private.h"
@@ -564,6 +565,18 @@ void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL)) {
 		if ((errno == ENOSYS) && SECCOMP_SOFTFAIL) {
+			/*
+			 * Android kernels before 3.8 are not required to
+			 * support seccomp.
+			 */
+			int maj, min;
+			struct utsname uts;
+			if (uname(&uts) != -1 &&
+				sscanf(uts.release, "%d.%d", &maj, &min) == 2 &&
+				((maj < 3) || ((maj == 3) && (min < 8)))) {
+
+				j->flags.seccomp_filter = 0;
+			}
 			warn("not loading seccomp filter,"
 			     " seccomp not supported");
 			return;
