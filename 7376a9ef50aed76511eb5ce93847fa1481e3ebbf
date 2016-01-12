@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "678e9643_4ef55372",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2016-01-12T21:31:47Z",
+      "side": 1,
+      "message": "Looks like we also need unset the no_new_privs flag as well",
+      "parentUuid": "07495aa4_2fca91c5",
+      "range": {
+        "startLine": 564,
+        "startChar": 9,
+        "endLine": 564,
+        "endChar": 39
+      },
+      "revId": "7376a9ef50aed76511eb5ce93847fa1481e3ebbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07623a24_f9d98fa6",
         "filename": "libminijail.c",
         "patchSetId": 4
