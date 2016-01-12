@@ -22,6 +22,30 @@
       "revId": "1059f802ff837ce83a2a01f5cd44913cc96697a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e759a674_4e2713f4",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2016-01-12T21:31:47Z",
+      "side": 1,
+      "message": "I could go either way. I kind of like keeping the warning on in devices without seccomp",
+      "parentUuid": "07623a24_b9a1d714",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 34
+      },
+      "revId": "1059f802ff837ce83a2a01f5cd44913cc96697a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
