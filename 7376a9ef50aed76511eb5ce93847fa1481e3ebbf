@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "07495aa4_2fca91c5",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T21:27:38Z",
+      "side": 1,
+      "message": "This function will always be called, but the below code (when fixed) will prevent the call to set_seccomp_filter() that\u0027s actually causing the crash shown in the bug.",
+      "parentUuid": "27673e34_a3652420",
+      "range": {
+        "startLine": 564,
+        "startChar": 9,
+        "endLine": 564,
+        "endChar": 39
+      },
+      "revId": "7376a9ef50aed76511eb5ce93847fa1481e3ebbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07623a24_f9d98fa6",
         "filename": "libminijail.c",
         "patchSetId": 4
