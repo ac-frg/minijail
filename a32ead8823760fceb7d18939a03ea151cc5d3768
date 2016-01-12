@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "274e5eac_366668cf",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:24:48Z",
+      "side": 1,
+      "message": "Add above unistd.h to keep alphabetized.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "a32ead8823760fceb7d18939a03ea151cc5d3768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27673e34_8377481b",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:24:48Z",
+      "side": 1,
+      "message": "Nit: end with a period.",
+      "range": {
+        "startLine": 176,
+        "startChar": 46,
+        "endLine": 176,
+        "endChar": 49
+      },
+      "revId": "a32ead8823760fceb7d18939a03ea151cc5d3768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_b34e18bc",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:24:48Z",
+      "side": 1,
+      "message": "AND in the case of Android, if kernel version \u003c 3.8.",
+      "range": {
+        "startLine": 187,
+        "startChar": 54,
+        "endLine": 187,
+        "endChar": 56
+      },
+      "revId": "a32ead8823760fceb7d18939a03ea151cc5d3768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "274e5eac_f64b6031",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:24:48Z",
+      "side": 1,
+      "message": "SECCOMP",
+      "range": {
+        "startLine": 187,
+        "startChar": 26,
+        "endLine": 187,
+        "endChar": 32
+      },
+      "revId": "a32ead8823760fceb7d18939a03ea151cc5d3768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4768b202_4a8c1f22",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:24:48Z",
+      "side": 1,
+      "message": "Space after if.\n\n(Note: Minijail includes a clang-format file so you can use that for formatting.)",
+      "range": {
+        "startLine": 194,
+        "startChar": 2,
+        "endLine": 194,
+        "endChar": 4
+      },
+      "revId": "a32ead8823760fceb7d18939a03ea151cc5d3768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
