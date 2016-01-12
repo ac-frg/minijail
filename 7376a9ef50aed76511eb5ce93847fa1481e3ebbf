@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07623a24_f9d98fa6",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T18:08:42Z",
+      "side": 1,
+      "message": "Can we extract this to an int get_kernel_version(unsigned int *maj, unsigned int *min) function?",
+      "range": {
+        "startLine": 573,
+        "startChar": 3,
+        "endLine": 575,
+        "endChar": 44
+      },
+      "revId": "7376a9ef50aed76511eb5ce93847fa1481e3ebbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "676db610_0a8a2b00",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T18:08:42Z",
+      "side": 1,
+      "message": "This should happen on both branches of the if statement.",
+      "range": {
+        "startLine": 578,
+        "startChar": 4,
+        "endLine": 578,
+        "endChar": 32
+      },
+      "revId": "7376a9ef50aed76511eb5ce93847fa1481e3ebbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
