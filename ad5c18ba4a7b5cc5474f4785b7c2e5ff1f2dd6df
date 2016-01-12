@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "678e9643_51c33611",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:01:14Z",
+      "side": 1,
+      "message": "Minijail is technically C code so \u0027int\u0027.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 4
+      },
+      "revId": "ad5c18ba4a7b5cc5474f4785b7c2e5ff1f2dd6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e759a674_d487343a",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-12T23:01:14Z",
+      "side": 1,
+      "message": "int",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 4
+      },
+      "revId": "ad5c18ba4a7b5cc5474f4785b7c2e5ff1f2dd6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
