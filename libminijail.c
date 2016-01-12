@@ -32,6 +32,7 @@
 #include <sys/types.h>
 #include <sys/user.h>
 #include <sys/wait.h>
+#include <sys/utsname.h>
 #include <unistd.h>
 
 #include "libminijail.h"
@@ -170,6 +171,32 @@ void minijail_preexec(struct minijail *j)
 	j->flags.remount_proc_ro = remount_proc_ro;
 	j->flags.userns = userns;
 	/* Note, |pids| will already have been used before this call. */
+}
+
+/* Return 1 on success, 0 on error. */
+int get_kernel_version(unsigned int *maj, unsigned int *min)
+{
+	struct utsname uts;
+	return uname(&uts) != -1 && sscanf(uts.release, "%u.%u", maj, min) == 2;
+}
+
+int can_softfail() {
+#if SECCOMP_SOFTFAIL
+	if (is_android()) {
+		/*
+		 * Seccomp soft-fail on Android is only allowed in kernels < 3.8
+		 */
+		unsigned int maj, min;
+		if (get_kernel_version(&maj, &min) &&
+		    ((maj < 3) || (maj == 3 && min < 8)))
+			return 1;
+		else
+			return 0;
+	} else {
+		return 1;
+	}
+#endif
+	return 0;
 }
 
 /* Minijail API. */
@@ -562,9 +589,13 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL)) {
-		if ((errno == ENOSYS) && SECCOMP_SOFTFAIL) {
+		if ((errno == ENOSYS) && can_softfail()) {
 			warn("not loading seccomp filter,"
 			     " seccomp not supported");
+			j->flags.seccomp_filter = 0;
+			j->flags.log_seccomp_filter = 0;
+			j->filter_len = 0;
+			j->filter_prog = NULL;
 			return;
 		}
 	}
