@@ -174,6 +174,7 @@ void minijail_preexec(struct minijail *j)
 }
 
 /* Returns true if the kernel version is less than 3.8. */
+#if SECCOMP_SOFTFAIL
 int seccomp_kernel_support_not_required()
 {
 	int major, minor;
@@ -182,6 +183,7 @@ int seccomp_kernel_support_not_required()
 			sscanf(uts.release, "%d.%d", &major, &minor) == 2 &&
 			((major < 3) || ((major == 3) && (minor < 8))));
 }
+#endif
 
 /* Allow seccomp soft-fail on Android devices with kernel version < 3.8. */
 int can_softfail()
