@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07495aa4_5527acf3",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-13T00:17:02Z",
+      "side": 1,
+      "message": "Probably easier to replace ENOSYS with EINVAL.",
+      "range": {
+        "startLine": 595,
+        "startChar": 17,
+        "endLine": 595,
+        "endChar": 23
+      },
+      "revId": "f9a2cbe7b09b4f7687e4679846463695defe66af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
