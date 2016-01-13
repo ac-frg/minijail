@@ -22,6 +22,29 @@
       "revId": "c9be9039f547a73132a151c08988a9c58d284d58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87562a44_8642b423",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2016-01-13T00:07:02Z",
+      "side": 1,
+      "message": "Just tested with Keun-young. prctl is failing with errno EINVAL not ENOSYS which makes sense because prctl exists but you can\u0027t use the PR_SET_SECCOMP argument. Will upload a fix. Should I add this || (errno \u003d\u003d EINVAL) for the other checks?",
+      "range": {
+        "startLine": 595,
+        "startChar": 6,
+        "endLine": 595,
+        "endChar": 23
+      },
+      "revId": "c9be9039f547a73132a151c08988a9c58d284d58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
