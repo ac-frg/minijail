@@ -45,6 +45,30 @@
       "revId": "c9be9039f547a73132a151c08988a9c58d284d58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_333de89b",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-13T00:14:26Z",
+      "side": 1,
+      "message": "According to https://outflux.net/teach-seccomp/autodetect.html, we should just change ENOSYS to EINVAL. ENOSYS can only happen in kernels \u003c 2.6.23, which is positively ancient.",
+      "parentUuid": "87562a44_8642b423",
+      "range": {
+        "startLine": 595,
+        "startChar": 6,
+        "endLine": 595,
+        "endChar": 23
+      },
+      "revId": "c9be9039f547a73132a151c08988a9c58d284d58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
