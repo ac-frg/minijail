@@ -139,6 +139,18 @@ int minijail_bind(struct minijail *j, const char *src, const char *dest,
 		  int writeable);
 
 /*
+ * minijail_post_fork_hook: call @hook after forking but before running the
+ * jailed process.  The callback is called from the same context that calls
+ * minijail_run*.  @hook will be called with the child process' PID as an
+ * argument.
+ * @j		minijail to install callback with
+ * @hook	function to run after fork
+ * @arg		opaque pointer to be passed in to @hook along with the new PID
+ */
+void minijail_post_fork_hook(struct minijail *j, int (*hook)(int pid, void *arg),
+			     void *arg);
+
+/*
  * Lock this process into the given minijail. Note that this procedure cannot fail,
  * since there is no way to undo privilege-dropping; therefore, if any part of
  * the privilege-drop fails, minijail_enter() will abort the entire process.

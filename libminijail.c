@@ -131,6 +131,8 @@ struct minijail {
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
+	int (*post_fork_hook)(int new_pid, void *arg);
+	void *fork_hook_arg;
 };
 
 /*
@@ -584,6 +586,13 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 		flags |= MS_RDONLY;
 
 	return minijail_mount(j, src, dest, "", flags);
+}
+
+void API minijail_post_fork_hook(struct minijail *j,
+				 int (*hook)(int pid, void *arg), void *arg)
+{
+	j->post_fork_hook = hook;
+	j->fork_hook_arg = arg;
 }
 
 void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
@@ -1634,7 +1643,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	 * If we want to set up a new uid/gid mapping in the user namespace,
 	 * create the pipe(2) to sync between parent and child.
 	 */
-	if (j->flags.userns) {
+	if (j->flags.userns || j->post_fork_hook) {
 		sync_child = 1;
 		if (pipe(child_sync_pipe_fds))
 			return -EFAULT;
@@ -1716,6 +1725,10 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 		if (j->flags.userns)
 			write_ugid_mappings(j);
+
+		if (j->post_fork_hook &&
+		    j->post_fork_hook(child_pid, j->fork_hook_arg))
+			die("fork hook failed");
 
 		if (sync_child)
 			parent_setup_complete(child_sync_pipe_fds);
