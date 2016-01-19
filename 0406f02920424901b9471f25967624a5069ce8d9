@@ -94,6 +94,30 @@
       "revId": "0406f02920424901b9471f25967624a5069ce8d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87562a44_23ed88ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-19T21:19:25Z",
+      "side": 1,
+      "message": "The difference is that after minijail_run is done and the sandboxed program gets control when its main() routine is called, all sandboxing has taken place. On the other hand, after fork but before exec, there\u0027s sandboxing calls that haven\u0027t happened (because they happen in the preload code).\n\nIf you only need to write a pid to a file, the pid_file mechanism could be generalized. I\u0027m worried that the semantics in that case will not be clear (\"add to cgroup\" vs \"write to a file\"). That can probably be solved by exposing the API with the right names.\n\nI\u0027m not sure it makes sense to pass fds to libminijail. A list of files doesn\u0027t seem like a terrible idea, nor would a file with one filename per line. What do you think? How many cgroup files are we talking about?\n\nRealistically, you\u0027ve though about this in the context of consuming this API so you might have the most context on what is the best way to do it. I\u0027m not super worried about the callback but I think it\u0027s always a good goal to keep Minijail as \"data-driven\" as possible.",
+      "parentUuid": "c75ca266_fc04cf60",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "0406f02920424901b9471f25967624a5069ce8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
