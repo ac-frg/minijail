@@ -22,6 +22,30 @@
       "revId": "0406f02920424901b9471f25967624a5069ce8d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87562a44_38ff7380",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-19T18:14:46Z",
+      "side": 1,
+      "message": "My first pass at this was to do the cgroup directly from minijail.  However the sysfs interface required a lot of string and fs manipulation I wasn\u0027t comfortable adding to this codebase.\n\nAlso, sending a list of the various cgoups was cumbersome.  Specifying a path for cpu, cpuacct, devices, and freezer wasn\u0027t pretty.\n\nThe other option I considered was passing a list of FDs in to minijail, and have it write the pid to each of those, which was a little better but still didn\u0027t feel quite right.",
+      "parentUuid": "274e5eac_c32136de",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "0406f02920424901b9471f25967624a5069ce8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
