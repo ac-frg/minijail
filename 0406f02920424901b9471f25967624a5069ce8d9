@@ -70,6 +70,30 @@
       "revId": "0406f02920424901b9471f25967624a5069ce8d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_fc04cf60",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-19T19:24:30Z",
+      "side": 1,
+      "message": "The callback does give the API user an opportunity to screw things up.  Maybe it\u0027s not that bad because it\u0027s after the fork.  The callback would have to be pretty explicit about affecting the child process, and it could do the same things after minijail_run returns I guess.\n\nI could also piggy-back this on pid_file, since it has the exact same semantics.  Passing the list of cgroup/tasks paths is a little awkward, but fits the current config model better.  What do you think?\n\nThanks!",
+      "parentUuid": "07495aa4_7c94436d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "0406f02920424901b9471f25967624a5069ce8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
