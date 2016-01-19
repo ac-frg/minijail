@@ -46,6 +46,30 @@
       "revId": "0406f02920424901b9471f25967624a5069ce8d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07495aa4_7c94436d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-19T19:05:36Z",
+      "side": 1,
+      "message": "That\u0027s a good point.\n\nI think what worries me about this mechanism is that it would allow you to (accidentally) undo or change the restrictions already added by Minijail. Granted, a lot of the priv-dropping operations would prevent you from gaining any privilege, but it still feels weird to have a bunch of things that can be configured (in a \"data-only\" way), and then just a callback function.\n\nOne option would be to always set no_new_privs when we\u0027re gonna use a callback, but this might not work in the Android case since things launched from init need capabilities and such.",
+      "parentUuid": "87562a44_38ff7380",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "0406f02920424901b9471f25967624a5069ce8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
