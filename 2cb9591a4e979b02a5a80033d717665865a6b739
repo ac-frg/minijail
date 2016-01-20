@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07f95afe_3b3897c7",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T18:38:28Z",
+      "side": 1,
+      "message": "wait_for_parent_setup",
+      "range": {
+        "startLine": 914,
+        "startChar": 3,
+        "endLine": 914,
+        "endChar": 29
+      },
+      "revId": "2cb9591a4e979b02a5a80033d717665865a6b739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
