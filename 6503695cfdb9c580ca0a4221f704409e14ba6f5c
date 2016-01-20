@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c75ca266_b3dc459d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27673e34_1bd70d74",
+      "range": {
+        "startLine": 75,
+        "startChar": 64,
+        "endLine": 75,
+        "endChar": 69
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e759a674_9494836e",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-01-20T04:04:52Z",
       "side": 1,
       "message": "size_t",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07623a24_8eed9ce3",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e759a674_9494836e",
       "range": {
         "startLine": 137,
         "startChar": 1,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c75ca266_93e14150",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e759a674_34bad7f5",
+      "range": {
+        "startLine": 1087,
+        "startChar": 30,
+        "endLine": 1087,
+        "endChar": 33
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c75ca266_73858d78",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2016-01-20T04:04:52Z",
       "side": 1,
       "message": "pid_t",
+      "range": {
+        "startLine": 1104,
+        "startChar": 53,
+        "endLine": 1104,
+        "endChar": 56
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_f3e6bd64",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c75ca266_73858d78",
       "range": {
         "startLine": 1104,
         "startChar": 53,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "4768b202_f6bfc3e5",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4768b202_f6d6a347",
+      "range": {
+        "startLine": 1106,
+        "startChar": 1,
+        "endLine": 1106,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2752dead_686aa8bd",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2016-01-20T04:04:52Z",
       "side": 1,
       "message": "This should be |pid|.",
+      "range": {
+        "startLine": 1109,
+        "startChar": 25,
+        "endLine": 1109,
+        "endChar": 35
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4768b202_56bdd7ec",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "argument removed.",
+      "parentUuid": "2752dead_686aa8bd",
       "range": {
         "startLine": 1109,
         "startChar": 25,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "676db610_7a00b81d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1665,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "I want to be sure that the cgroup is set before running the jailed process.\n\nIf it forks a child before it\u0027s in a cgroup, then the child could escape the cgroup.",
+      "parentUuid": "676db610_5a633c19",
+      "range": {
+        "startLine": 1665,
+        "startChar": 20,
+        "endLine": 1665,
+        "endChar": 39
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c75ca266_1388918f",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -174,6 +342,30 @@
       "writtenOn": "2016-01-20T04:04:52Z",
       "side": 1,
       "message": "size_t",
+      "range": {
+        "startLine": 1930,
+        "startChar": 1,
+        "endLine": 1930,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4768b202_36badbf5",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1930,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T04:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c75ca266_1388918f",
       "range": {
         "startLine": 1930,
         "startChar": 1,
