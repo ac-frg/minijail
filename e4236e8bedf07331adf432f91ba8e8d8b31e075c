@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07f95afe_5eb47199",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T20:52:29Z",
+      "side": 1,
+      "message": "This doesn\u0027t really make sense right? If you fail the first consumestr function, you\u0027ll jump here and attempt to free them all... which makes no sense.\n\nIf you look through the rest of the function, bad_\u003csomething\u003e doesn\u0027t actually free the memory associated with \u003csomething\u003e, but rather the memory successfully allocated *up to but not including* something.\n\nIn this case, bad_cgroups should free the mounts (same way as bad_mounts below frees seccomp filters).",
+      "range": {
+        "startLine": 874,
+        "startChar": 1,
+        "endLine": 875,
+        "endChar": 22
+      },
+      "revId": "e4236e8bedf07331adf432f91ba8e8d8b31e075c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
