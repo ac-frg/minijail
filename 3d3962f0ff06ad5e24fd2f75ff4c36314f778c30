@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4718b22c_f54758a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T18:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27673e34_db0915b6",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 58
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2752dead_a852f0ea",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "27fe5ee6_9cd605eb",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T18:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2752dead_a852f0ea",
+      "range": {
+        "startLine": 917,
+        "startChar": 12,
+        "endLine": 917,
+        "endChar": 38
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4768b202_d1a451c7",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2016-01-20T05:18:34Z",
       "side": 1,
       "message": "This comment is probably outdated now. Maybe:\n\n\"Wait for parent to complete setup and write to the pipe.\"",
+      "range": {
+        "startLine": 923,
+        "startChar": 4,
+        "endLine": 923,
+        "endChar": 47
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07123a0e_f3f130c0",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-01-20T18:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4768b202_d1a451c7",
       "range": {
         "startLine": 923,
         "startChar": 4,
