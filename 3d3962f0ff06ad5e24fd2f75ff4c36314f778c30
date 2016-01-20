@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27673e34_db0915b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T05:18:34Z",
+      "side": 1,
+      "message": "Can we update the commit message?",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 58
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2752dead_a852f0ea",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T05:18:34Z",
+      "side": 1,
+      "message": "Maybe \"wait_for_parent_setup\"",
+      "range": {
+        "startLine": 917,
+        "startChar": 12,
+        "endLine": 917,
+        "endChar": 38
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4768b202_d1a451c7",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T05:18:34Z",
+      "side": 1,
+      "message": "This comment is probably outdated now. Maybe:\n\n\"Wait for parent to complete setup and write to the pipe.\"",
+      "range": {
+        "startLine": 923,
+        "startChar": 4,
+        "endLine": 923,
+        "endChar": 47
+      },
+      "revId": "3d3962f0ff06ad5e24fd2f75ff4c36314f778c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
