@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27673e34_1bd70d74",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "Nit: Linux.",
+      "range": {
+        "startLine": 75,
+        "startChar": 64,
+        "endLine": 75,
+        "endChar": 69
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e759a674_9494836e",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e759a674_34bad7f5",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "pid_t",
+      "range": {
+        "startLine": 1087,
+        "startChar": 30,
+        "endLine": 1087,
+        "endChar": 33
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_73858d78",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "pid_t",
+      "range": {
+        "startLine": 1104,
+        "startChar": 53,
+        "endLine": 1104,
+        "endChar": 56
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4768b202_f6d6a347",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 1106,
+        "startChar": 1,
+        "endLine": 1106,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2752dead_686aa8bd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "This should be |pid|.",
+      "range": {
+        "startLine": 1109,
+        "startChar": 25,
+        "endLine": 1109,
+        "endChar": 35
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "676db610_5a633c19",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1665,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "Why do you need to sync in this case?",
+      "range": {
+        "startLine": 1665,
+        "startChar": 20,
+        "endLine": 1665,
+        "endChar": 39
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_1388918f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1930,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 1930,
+        "startChar": 1,
+        "endLine": 1930,
+        "endChar": 4
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75ca266_d376196e",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-20T04:04:52Z",
+      "side": 1,
+      "message": "I think I\u0027d call this minijail_add_to_cgroup(). You\u0027re adding the process to a cgroup rather than adding a cgroup to the minijail.",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 23
+      },
+      "revId": "6503695cfdb9c580ca0a4221f704409e14ba6f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
