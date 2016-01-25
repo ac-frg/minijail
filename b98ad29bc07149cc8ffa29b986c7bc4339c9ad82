@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34c3ee5c_7a02b19e",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1079236
+      },
+      "writtenOn": "2016-01-25T23:28:48Z",
+      "side": 1,
+      "message": "tabs? is this kernel-style code? is there a .clang-format file?",
+      "revId": "b98ad29bc07149cc8ffa29b986c7bc4339c9ad82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
