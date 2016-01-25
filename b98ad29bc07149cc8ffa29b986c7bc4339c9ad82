@@ -16,6 +16,24 @@
       "revId": "b98ad29bc07149cc8ffa29b986c7bc4339c9ad82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4afde8e_7b471bfe",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-01-25T23:30:41Z",
+      "side": 1,
+      "message": "Yep, it\u0027s included in the repo \u003d)\n\nAnd yes, it is kernel coding style.",
+      "parentUuid": "34c3ee5c_7a02b19e",
+      "revId": "b98ad29bc07149cc8ffa29b986c7bc4339c9ad82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
