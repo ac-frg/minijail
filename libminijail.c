@@ -990,14 +990,14 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 	char *dest;
 	int remount_ro = 0;
 
-	/* dest has a leading "/" */
+	/* |dest| has a leading "/". */
 	if (asprintf(&dest, "%s%s", j->chrootdir, m->dest) < 0)
 		return -ENOMEM;
 
 	/*
-	 * R/O bind mounts have to be remounted since bind and ro can't both be
-	 * specified in the original bind mount. Remount R/O after the initial
-	 * mount.
+	 * R/O bind mounts have to be remounted since 'bind' and 'ro'
+	 * can't both be specified in the original bind mount.
+	 * Remount R/O after the initial mount.
 	 */
 	if ((m->flags & MS_BIND) && (m->flags & MS_RDONLY)) {
 		remount_ro = 1;
@@ -1341,6 +1341,9 @@ void API minijail_enter(const struct minijail *j)
 		pdie("unshare(net)");
 	}
 
+	if (j->mounts_head && !(j->flags.chroot || j->flags.pivot_root))
+		die("can't bind-mount without chroot or pivot_root");
+
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
 
@@ -1633,7 +1636,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 	if (!use_preload) {
 		if (j->flags.caps)
-			die("Capabilities are not supported without "
+			die("capabilities are not supported without "
 			    "LD_PRELOAD");
 	}
 
