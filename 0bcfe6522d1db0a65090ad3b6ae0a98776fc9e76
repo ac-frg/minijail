@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94b2daf4_d102c452",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2016-01-26T22:43:20Z",
+      "side": 1,
+      "message": "Nit: \"Print an error and exit\", since the exiting part is something this CL adds as well.",
+      "range": {
+        "startLine": 9,
+        "startChar": 54,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "0bcfe6522d1db0a65090ad3b6ae0a98776fc9e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
