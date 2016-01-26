@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34c3ee5c_a92ec563",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2016-01-26T19:18:38Z",
+      "side": 1,
+      "message": "\"and fix some comments\"?",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "20698e5a52cb4332b5a9483e3738866ce207c3b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4a43ebb_44336ee5",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1077754
+      },
+      "writtenOn": "2016-01-26T19:18:38Z",
+      "side": 1,
+      "message": "Change this to pre-increment perhaps?",
+      "range": {
+        "startLine": 546,
+        "startChar": 16,
+        "endLine": 546,
+        "endChar": 18
+      },
+      "revId": "20698e5a52cb4332b5a9483e3738866ce207c3b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
