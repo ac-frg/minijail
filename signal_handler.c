@@ -34,9 +34,9 @@ void log_sigsys_handler(int nr, siginfo_t *info, void *void_context)
 	syscall_name = lookup_syscall_name(sigsys.nr);
 
 	if (syscall_name)
-		warn("blocked syscall: %s", syscall_name);
+		die("blocked syscall: %s", syscall_name);
 	else
-		warn("blocked syscall: %d", nr);
+		die("blocked syscall: %d", nr);
 
 	(void) void_context;
 
