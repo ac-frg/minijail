@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9d1200d7_9ef3c9c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T23:23:20Z",
+      "side": 1,
+      "message": "Yep, that\u0027s unit tests, this is integration tests: http://www.chromium.org/chromium-os/testing/building-and-running-tests",
+      "parentUuid": "1dd53033_a20c241c",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd53033_e266acf8",
         "filename": "libminijail.c",
         "patchSetId": 1
