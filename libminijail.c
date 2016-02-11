@@ -8,6 +8,7 @@
 
 #include <asm/unistd.h>
 #include <ctype.h>
+#include <dlfcn.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <grp.h>
@@ -38,6 +39,7 @@
 #include "libminijail.h"
 #include "libminijail-private.h"
 
+#include "elfparse.h"
 #include "signal_handler.h"
 #include "syscall_filter.h"
 #include "util.h"
@@ -1296,22 +1298,16 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
-void API minijail_enter(const struct minijail *j)
+static void enter_minijail_vfs(const struct minijail *j,
+			       unsigned int *last_valid_cap)
 {
 	/*
 	 * If we're dropping caps, get the last valid cap from /proc now,
 	 * since /proc can be unmounted before drop_caps() is called.
 	 */
-	unsigned int last_valid_cap = 0;
+	*last_valid_cap = 0;
 	if (j->flags.caps)
-		last_valid_cap = get_last_valid_cap();
-
-	if (j->flags.pids)
-		die("tried to enter a pid-namespaced jail;"
-		    " try minijail_run()?");
-
-	if (j->flags.usergroups && !j->user)
-		die("usergroup inheritance without username");
+		*last_valid_cap = get_last_valid_cap();
 
 	/*
 	 * We can't recover from failures if we've dropped privileges partially,
@@ -1333,17 +1329,6 @@ void API minijail_enter(const struct minijail *j)
 			pdie("mount(/, private)");
 	}
 
-	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
-		pdie("unshare(ipc)");
-	}
-
-	if (j->flags.enter_net) {
-		if (setns(j->netns_fd, CLONE_NEWNET))
-			pdie("setns(CLONE_NEWNET)");
-	} else if (j->flags.net && unshare(CLONE_NEWNET)) {
-		pdie("unshare(net)");
-	}
-
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
 
@@ -1355,6 +1340,28 @@ void API minijail_enter(const struct minijail *j)
 
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
 		pdie("remount");
+}
+
+static void enter_minijail_post_vfs(const struct minijail *j,
+				    unsigned int last_valid_cap)
+{
+	if (j->flags.pids)
+		die("tried to enter a pid-namespaced jail;"
+		    " try minijail_run()?");
+
+	if (j->flags.usergroups && !j->user)
+		die("usergroup inheritance without username");
+
+	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
+		pdie("unshare(ipc)");
+	}
+
+	if (j->flags.enter_net) {
+		if (setns(j->netns_fd, CLONE_NEWNET))
+			pdie("setns(CLONE_NEWNET)");
+	} else if (j->flags.net && unshare(CLONE_NEWNET)) {
+		pdie("unshare(net)");
+	}
 
 	if (j->flags.caps) {
 		/*
@@ -1416,6 +1423,13 @@ void API minijail_enter(const struct minijail *j)
 		}
 		pdie("prctl(PR_SET_SECCOMP)");
 	}
+}
+
+void API minijail_enter(const struct minijail *j)
+{
+	unsigned int last_valid_cap;
+	enter_minijail_vfs(j, &last_valid_cap);
+	enter_minijail_post_vfs(j, last_valid_cap);
 }
 
 /* TODO(wad) will visibility affect this variable? */
@@ -1515,23 +1529,78 @@ int setup_preload(void)
 		PRELOADPATH);
 
 	/* setenv() makes a copy of the string we give it. */
-	setenv(kLdPreloadEnvVar, newenv, 1);
+	if (setenv(kLdPreloadEnvVar, newenv, 1) != 0)
+		return -errno;
+
 	free(newenv);
 	return 0;
 #endif
 }
 
-int setup_pipe(int fds[2])
+int setup_pipe(struct minijail *j)
 {
-	int r = pipe(fds);
+	/*
+	 * We marshal the minijail configuration into a pipe so we can
+	 * pass the FD to the child process.  Since Linux 2.6.11, the
+	 * default pipe capacity is 65536 bytes, which should be
+	 * plenty to hold the configuration.  Still, we set the
+	 * writing end of the pipe as O_NONBLOCK so that if we max out
+	 * the pipe write() returns EAGAIN instead of deadlocking.
+	 */
+	int pipe_fds[2];
+	if (pipe(pipe_fds))
+		return -errno;
+	if (fcntl(pipe_fds[1], F_SETFL, O_NONBLOCK))
+		return -errno;
+	if (minijail_to_fd(j, pipe_fds[1]))
+		die("failed to marshal minijail to pipe");
+	close(pipe_fds[1]);
+
 	char fd_buf[11];
-	if (r)
-		return r;
-	r = snprintf(fd_buf, sizeof(fd_buf), "%d", fds[0]);
-	if (r <= 0)
-		return -EINVAL;
-	setenv(kFdEnvVar, fd_buf, 1);
+	if (snprintf(fd_buf, sizeof(fd_buf), "%d", pipe_fds[0]) <= 0)
+		return -errno;
+	if (setenv(kFdEnvVar, fd_buf, 1) != 0)
+		return -errno;
 	return 0;
+}
+
+/*
+ * Depending on whether the target program is a static or dynamic ELF
+ * executable, we need to prepare to execute it differently.  In particular,
+ * for dynamic executables we set LD_PRELOAD to load libminijailpreload.so,
+ * which will perform additional post-execve sandboxing.
+ */
+void setup_for_elf_linkage(struct minijail *j, const char *filename,
+			   int may_preload)
+{
+	/*
+	 * If we're allowed to use LD_PRELOAD, then inspect the target program
+	 * to decide how to proceed.  Otherwise, assume it's statically linked.
+	 */
+	ElfType elftype = may_preload ? get_elf_linkage(filename) : ELFSTATIC;
+
+	switch (elftype) {
+	case ELFSTATIC:
+		if (j->flags.caps)
+			die("capabilities are not supported without "
+			    "LD_PRELOAD");
+		j->flags.pids = 0;
+		break;
+
+	case ELFDYNAMIC:
+		if (!dlopen(PRELOADPATH, RTLD_LAZY | RTLD_LOCAL))
+			die("dlopen(): %s", dlerror());
+
+		if (setup_preload() || setup_pipe(j))
+			die("failed to set up child environment");
+
+		/* Strip out flags that cannot be inherited across execve(2). */
+		minijail_preexec(j);
+		break;
+
+	default:
+		die("target program '%s' is not a valid ELF file", filename);
+	}
 }
 
 int setup_pipe_end(int fds[2], size_t index)
@@ -1556,7 +1625,7 @@ int setup_and_dupe_pipe_end(int fds[2], size_t index, int fd)
 int minijail_run_internal(struct minijail *j, const char *filename,
 			  char *const argv[], pid_t *pchild_pid,
 			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
-			  int use_preload);
+			  int may_preload);
 
 int API minijail_run(struct minijail *j, const char *filename,
 		     char *const argv[])
@@ -1607,38 +1676,17 @@ int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 int minijail_run_internal(struct minijail *j, const char *filename,
 			  char *const argv[], pid_t *pchild_pid,
 			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
-			  int use_preload)
+			  int may_preload)
 {
-	char *oldenv, *oldenv_copy = NULL;
 	pid_t child_pid;
-	int pipe_fds[2];
 	int stdin_fds[2];
 	int stdout_fds[2];
 	int stderr_fds[2];
 	int child_sync_pipe_fds[2];
 	int sync_child = 0;
-	int ret;
 	/* We need to remember this across the minijail_preexec() call. */
 	int pid_namespace = j->flags.pids;
 	int do_init = j->flags.do_init;
-
-	if (use_preload) {
-		oldenv = getenv(kLdPreloadEnvVar);
-		if (oldenv) {
-			oldenv_copy = strdup(oldenv);
-			if (!oldenv_copy)
-				return -ENOMEM;
-		}
-
-		if (setup_preload())
-			return -EFAULT;
-	}
-
-	if (!use_preload) {
-		if (j->flags.caps)
-			die("capabilities are not supported without "
-			    "LD_PRELOAD");
-	}
 
 	/*
 	 * Make the process group ID of this process equal to its PID, so that
@@ -1651,15 +1699,6 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		if (errno != EPERM) {
 			pdie("setpgid(0, 0)");
 		}
-	}
-
-	if (use_preload) {
-		/*
-		 * Before we fork(2) and execve(2) the child process, we need
-		 * to open a pipe(2) to send the minijail configuration over.
-		 */
-		if (setup_pipe(pipe_fds))
-			return -EFAULT;
 	}
 
 	/*
@@ -1751,24 +1790,10 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	}
 
 	if (child_pid < 0) {
-		if (use_preload) {
-			free(oldenv_copy);
-		}
 		die("failed to fork child");
 	}
 
 	if (child_pid) {
-		if (use_preload) {
-			/* Restore parent's LD_PRELOAD. */
-			if (oldenv_copy) {
-				setenv(kLdPreloadEnvVar, oldenv_copy, 1);
-				free(oldenv_copy);
-			} else {
-				unsetenv(kLdPreloadEnvVar);
-			}
-			unsetenv(kFdEnvVar);
-		}
-
 		j->initpid = child_pid;
 
 		if (j->flags.pid_file)
@@ -1782,17 +1807,6 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 		if (sync_child)
 			parent_setup_complete(child_sync_pipe_fds);
-
-		if (use_preload) {
-			/* Send marshalled minijail. */
-			close(pipe_fds[0]);	/* read endpoint */
-			ret = minijail_to_fd(j, pipe_fds[1]);
-			close(pipe_fds[1]);	/* write endpoint */
-			if (ret) {
-				kill(j->initpid, SIGKILL);
-				die("failed to send marshalled minijail");
-			}
-		}
 
 		if (pchild_pid)
 			*pchild_pid = child_pid;
@@ -1823,7 +1837,6 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 		return 0;
 	}
-	free(oldenv_copy);
 
 	if (j->flags.reset_signal_mask) {
 		sigset_t signal_mask;
@@ -1873,14 +1886,19 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	if (pid_namespace && !do_init)
 		j->flags.remount_proc_ro = 0;
 
-	if (use_preload) {
-		/* Strip out flags that cannot be inherited across execve(2). */
-		minijail_preexec(j);
-	} else {
-		j->flags.pids = 0;
-	}
+	unsigned int last_valid_cap;
+	enter_minijail_vfs(j, &last_valid_cap);
+
+	/*
+	 * Now that we're within the VFS sandbox, check that we can execute the
+	 * target program and inspect what sort of ELF binary it is.
+	 */
+	if (access(filename, X_OK))
+		pdie("target program '%s' is not accessible", filename);
+	setup_for_elf_linkage(j, filename, may_preload);
+
 	/* Jail this process, then execve() the target. */
-	minijail_enter(j);
+	enter_minijail_post_vfs(j, last_valid_cap);
 
 	if (pid_namespace && do_init) {
 		/*
