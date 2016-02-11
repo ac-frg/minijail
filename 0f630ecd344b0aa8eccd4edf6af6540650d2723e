@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ddaf464_42510251",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:33:37Z",
+      "side": 1,
+      "message": "I renamed it to \"setup_for_elf_linkage\".  The name \"check_elf_linkage\" makes me think it just does sanity checks, but it actually configures the environment and the serialized minijail config pipe for dynamic executables.",
+      "parentUuid": "9de920fd_9df3c690",
+      "range": {
+        "startLine": 1567,
+        "startChar": 5,
+        "endLine": 1567,
+        "endChar": 29
+      },
+      "revId": "0f630ecd344b0aa8eccd4edf6af6540650d2723e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0fc4b0_44e902fc",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-02-11T23:23:20Z",
       "side": 1,
       "message": "If you rename this, maybe also add a short explanation as to why the ELF linkage check is being done here.",
+      "range": {
+        "startLine": 1880,
+        "startChar": 1,
+        "endLine": 1880,
+        "endChar": 25
+      },
+      "revId": "0f630ecd344b0aa8eccd4edf6af6540650d2723e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7df0ecdc_6af05b83",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:33:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0fc4b0_44e902fc",
       "range": {
         "startLine": 1880,
         "startChar": 1,
