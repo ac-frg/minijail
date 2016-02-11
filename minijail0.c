@@ -3,7 +3,6 @@
  * found in the LICENSE file.
  */
 
-#include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +11,6 @@
 #include "libminijail.h"
 #include "libsyscalls.h"
 
-#include "elfparse.h"
 #include "util.h"
 
 static void set_user(struct minijail *j, const char *arg)
@@ -342,53 +340,12 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 int main(int argc, char *argv[])
 {
 	struct minijail *j = minijail_new();
-	const char *dl_mesg = NULL;
 	int exit_immediately = 0;
-	char *program_path;
 	int consumed = parse_args(j, argc, argv, &exit_immediately);
-	ElfType elftype = ELFERROR;
 	argc -= consumed;
 	argv += consumed;
 
-	/* Get the path to the program adjusted for changing root. */
-	program_path = minijail_get_original_path(j, argv[0]);
-
-	/* Check that we can access the target program. */
-	if (access(program_path, X_OK)) {
-		fprintf(stderr, "Target program '%s' is not accessible.\n",
-			argv[0]);
-		return 1;
-	}
-
-	/* Check if target is statically or dynamically linked. */
-	elftype = get_elf_linkage(program_path);
-	if (elftype == ELFSTATIC) {
-		/*
-		 * Target binary is statically linked so we cannot use
-		 * libminijailpreload.so.
-		 */
-		minijail_run_no_preload(j, argv[0], argv);
-	} else if (elftype == ELFDYNAMIC) {
-		/*
-		 * Target binary is dynamically linked so we can
-		 * inject libminijailpreload.so into it.
-		 */
-
-		/* Check that we can dlopen() libminijailpreload.so. */
-		if (!dlopen(PRELOADPATH, RTLD_LAZY | RTLD_LOCAL)) {
-			    dl_mesg = dlerror();
-			    fprintf(stderr, "dlopen(): %s\n", dl_mesg);
-			    return 1;
-		}
-		minijail_run(j, argv[0], argv);
-	} else {
-		fprintf(stderr,
-			"Target program '%s' is not a valid ELF file.\n",
-			argv[0]);
-		return 1;
-	}
-
-	free(program_path);
+	minijail_run(j, argv[0], argv);
 
 	if (exit_immediately) {
 		info("not running init loop, exiting immediately");
