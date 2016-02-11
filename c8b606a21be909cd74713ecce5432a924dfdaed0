@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5df328ea_430586f2",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1590,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T22:58:45Z",
+      "side": 0,
+      "message": "These guys are part of the Minijail API and used by other parts of the system: https://cs.corp.google.com/#android/external/libbrillo/brillo/minijail/minijail.cc\u0026l\u003d91\n\nYou cannot really remove them.",
+      "range": {
+        "startLine": 1590,
+        "startChar": 8,
+        "endLine": 1590,
+        "endChar": 31
+      },
+      "revId": "c8b606a21be909cd74713ecce5432a924dfdaed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d09ccae_7dfb7b2a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T22:58:45Z",
+      "side": 0,
+      "message": "Same.",
+      "range": {
+        "startLine": 1597,
+        "startChar": 8,
+        "endLine": 1597,
+        "endChar": 41
+      },
+      "revId": "c8b606a21be909cd74713ecce5432a924dfdaed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

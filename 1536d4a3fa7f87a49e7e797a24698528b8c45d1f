@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dd53033_e266acf8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T22:58:45Z",
+      "side": 1,
+      "message": "Thinking of a better name for this. I think maybe \"enter_minijail_post_vfs()\". It signals that you\u0027re entering a minijail, but that VFS is already done. \"enter_rest\" is very non-descriptive.",
+      "range": {
+        "startLine": 1344,
+        "startChar": 18,
+        "endLine": 1344,
+        "endChar": 22
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd0fc4b0_64c2c6a7",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1851,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T22:58:45Z",
+      "side": 1,
+      "message": "Can we extract this to a function? All the exit points are die() statements so should be fine.",
+      "range": {
+        "startLine": 1835,
+        "startChar": 0,
+        "endLine": 1851,
+        "endChar": 2
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
