@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1dd53033_a20c241c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:14:45Z",
+      "side": 1,
+      "message": "Is that different than \"cros_workon_make --board\u003damd64-generic chromeos-minijail --test\"?",
+      "parentUuid": "fde3fc1c_8197e8bf",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd53033_e266acf8",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7df0ecdc_2ae013de",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dd53033_e266acf8",
+      "range": {
+        "startLine": 1344,
+        "startChar": 18,
+        "endLine": 1344,
+        "endChar": 22
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0fc4b0_64c2c6a7",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2016-02-11T22:58:45Z",
       "side": 1,
       "message": "Can we extract this to a function? All the exit points are die() statements so should be fine.",
+      "range": {
+        "startLine": 1835,
+        "startChar": 0,
+        "endLine": 1851,
+        "endChar": 2
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9de920fd_5d7f9eb3",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1851,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:14:45Z",
+      "side": 1,
+      "message": "Extracted as setup_for_target_program.",
+      "parentUuid": "bd0fc4b0_64c2c6a7",
       "range": {
         "startLine": 1835,
         "startChar": 0,
