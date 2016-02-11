@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fde3fc1c_8197e8bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T22:59:26Z",
+      "side": 1,
+      "message": "Running security_Minijail0 now might save you some time come Minijail uprev time.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd53033_e266acf8",
         "filename": "libminijail.c",
         "patchSetId": 1
