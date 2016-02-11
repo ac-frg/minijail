@@ -164,10 +164,8 @@ TEST(test_minijail_run_pid_pipes_no_preload) {
 
   argv[0] = filename;
   argv[1] = NULL;
-  mj_run_ret = minijail_run_pid_pipes_no_preload(j, argv[0], argv,
-                                                 &pid,
-                                                 &child_stdin, &child_stdout,
-                                                 NULL);
+  mj_run_ret = minijail_run_pid_pipes(j, argv[0], argv, &pid,
+                                      &child_stdin, &child_stdout, NULL);
   EXPECT_EQ(mj_run_ret, 0);
 
   write_ret = write(child_stdin, teststr, teststr_len);
@@ -191,9 +189,8 @@ TEST(test_minijail_run_pid_pipes_no_preload) {
   argv[1] = "-c";
   argv[2] = "echo test >&2";
   argv[3] = NULL;
-  mj_run_ret = minijail_run_pid_pipes_no_preload(j, argv[0], argv, &pid,
-                                                 &child_stdin, &child_stdout,
-                                                 &child_stderr);
+  mj_run_ret = minijail_run_pid_pipes(j, argv[0], argv, &pid, &child_stdin,
+                                      &child_stdout, &child_stderr);
   EXPECT_EQ(mj_run_ret, 0);
 
   read_ret = read(child_stderr, buf, buf_len);

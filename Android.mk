@@ -19,6 +19,7 @@ LOCAL_PATH := $(call my-dir)
 # =========================================================
 libminijailSrcFiles := \
 	bpf.c \
+	elfparse.c \
 	libminijail.c \
 	signal_handler.c \
 	syscall_filter.c \
@@ -205,7 +206,6 @@ LOCAL_CFLAGS := \
 	-DPRELOADPATH=\"/invalidminijailpreload.so\"
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
-	elfparse.c \
 	minijail0.c \
 
 LOCAL_STATIC_LIBRARIES := libminijail_generated
