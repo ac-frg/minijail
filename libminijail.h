@@ -154,7 +154,7 @@ int minijail_bind(struct minijail *j, const char *src, const char *dest,
  * Some restrictions cannot be enabled this way (pid namespaces) and attempting
  * to do so will cause an abort.
  */
-void minijail_enter(const struct minijail *j);
+void minijail_enter(struct minijail *j);
 
 /*
  * Run the specified command in the given minijail, execve(2)-style. This is
