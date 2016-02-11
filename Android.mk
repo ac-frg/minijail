@@ -19,12 +19,14 @@ LOCAL_PATH := $(call my-dir)
 # =========================================================
 libminijailSrcFiles := \
 	bpf.c \
+	elfparse.c \
 	libminijail.c \
 	signal_handler.c \
 	syscall_filter.c \
 	util.c
 
-minijailCommonCFlags := -DHAVE_SECUREBITS_H -Wall -Werror
+minijailCommonCFlags := \
+	-DHAVE_SECUREBITS_H -Wall -Werror -Wno-missing-field-initializers
 minijailCommonLibraries := libcap
 
 # Android devices running kernel version < 3.8 are not required to
@@ -129,6 +131,7 @@ LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	bpf.c \
+	elfparse.c \
 	libminijail.c \
 	libminijail_unittest.c \
 	signal_handler.c \
@@ -205,7 +208,6 @@ LOCAL_CFLAGS := \
 	-DPRELOADPATH=\"/invalidminijailpreload.so\"
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
-	elfparse.c \
 	minijail0.c \
 
 LOCAL_STATIC_LIBRARIES := libminijail_generated
