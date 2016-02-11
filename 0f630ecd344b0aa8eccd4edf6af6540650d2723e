@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9de920fd_9df3c690",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T23:23:20Z",
+      "side": 1,
+      "message": "So actually the suggestion was to keep the access() call in-line, and extract ELF-linkage code to a separate function. \"setup_for_target_program\" doesn\u0027t really explain what it does (what\u0027s \"setup\")?\n\n\"check_elf_linkage\" sounds more descriptive.",
+      "range": {
+        "startLine": 1567,
+        "startChar": 5,
+        "endLine": 1567,
+        "endChar": 29
+      },
+      "revId": "0f630ecd344b0aa8eccd4edf6af6540650d2723e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd0fc4b0_44e902fc",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T23:23:20Z",
+      "side": 1,
+      "message": "If you rename this, maybe also add a short explanation as to why the ELF linkage check is being done here.",
+      "range": {
+        "startLine": 1880,
+        "startChar": 1,
+        "endLine": 1880,
+        "endChar": 25
+      },
+      "revId": "0f630ecd344b0aa8eccd4edf6af6540650d2723e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
