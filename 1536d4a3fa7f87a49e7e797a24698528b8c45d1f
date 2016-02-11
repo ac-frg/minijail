@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "bde6e426_b92ea086",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T23:33:37Z",
+      "side": 1,
+      "message": "Got it.  Looking into that.",
+      "parentUuid": "9d1200d7_9ef3c9c1",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "1536d4a3fa7f87a49e7e797a24698528b8c45d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd53033_e266acf8",
         "filename": "libminijail.c",
         "patchSetId": 1
