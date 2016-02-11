@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fde3fc1c_9b22b73a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-11T18:50:51Z",
+      "side": 1,
+      "message": "That is a good point. Arguably, Minijail does allow you to fuck some things up (but not many) -- you can always pass a full capabilities mask for example.\n\nIf you want to draft a version of this CL that delays the ELF linkage check, that\u0027s fine. If you want to land this to unblock other work, that\u0027s OK.",
+      "parentUuid": "bd0fc4b0_19e017de",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 22
+      },
+      "revId": "80d15313f9f676533bac488dea5a5ed765ae246f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fde3fc1c_5b4d6f3c",
         "filename": "minijail0.c",
         "patchSetId": 1
