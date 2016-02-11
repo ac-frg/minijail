@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd0fc4b0_19e017de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T18:43:14Z",
+      "side": 1,
+      "message": "The problem I was unsatisfied with was what to do if -V specifies a path not of the form \"/proc/PID/ns/mnt\".  E.g., if I symlink or bind mount /proc/PID/ns/mnt to /tmp/mntns and use -V /tmp/mntns, what should happen?  Do we expect minijail0 to still work then, or is it okay to require users to specify -V of the form \"/proc/PID/ns/mnt\"?  (And if so, should/can we change it to just \"-V PID\"?)\n\n\nAlternative solution: can we defer the ELF linkage check until after we\u0027ve applied the mount namespace / chroot / bind mount changes?  That would let us also check that PRELOADPATH is actually available in the target namespace too.  (It looks like glibc ld.so just ignores LD_PRELOAD entries that aren\u0027t available.)",
+      "parentUuid": "7df0ecdc_64ee5218",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 22
+      },
+      "revId": "80d15313f9f676533bac488dea5a5ed765ae246f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fde3fc1c_5b4d6f3c",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-02-11T18:23:31Z",
       "side": 1,
       "message": "End with period. This reminds me there\u0027s other cases of this in the help that I should fix.",
+      "range": {
+        "startLine": 143,
+        "startChar": 56,
+        "endLine": 143,
+        "endChar": 62
+      },
+      "revId": "80d15313f9f676533bac488dea5a5ed765ae246f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fde3fc1c_7bacabfe",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-11T18:43:14Z",
+      "side": 1,
+      "message": "Can do.  (I omitted it because most of the other help strings did not end sentences with periods.)",
+      "parentUuid": "fde3fc1c_5b4d6f3c",
       "range": {
         "startLine": 143,
         "startChar": 56,
