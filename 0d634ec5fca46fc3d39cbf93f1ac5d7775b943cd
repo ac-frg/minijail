@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd0fc4b0_df0a5f42",
+        "filename": "Android.mk",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-12T00:26:15Z",
+      "side": 1,
+      "message": "Need to add elfparse.c here.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 9
+      },
+      "revId": "0d634ec5fca46fc3d39cbf93f1ac5d7775b943cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
