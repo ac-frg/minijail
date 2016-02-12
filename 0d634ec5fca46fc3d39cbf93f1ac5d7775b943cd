@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd0fc4b0_bfcd6b32",
+        "filename": "Android.mk",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-12T00:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d09ccae_d2a011be",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "0d634ec5fca46fc3d39cbf93f1ac5d7775b943cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0fc4b0_df0a5f42",
         "filename": "Android.mk",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2016-02-12T00:26:15Z",
       "side": 1,
       "message": "Need to add elfparse.c here.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 9
+      },
+      "revId": "0d634ec5fca46fc3d39cbf93f1ac5d7775b943cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dd53033_f61e71a7",
+        "filename": "Android.mk",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-12T00:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0fc4b0_df0a5f42",
       "range": {
         "startLine": 132,
         "startChar": 0,
