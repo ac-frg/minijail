@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dd53033_4297c06e",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-12T00:01:40Z",
+      "side": 1,
+      "message": "Can we change this back to the original error message? If we use this function on Android, and enable capabilities, the error message mentioning static programs will be confusing confusing, because the programs are dynamically linked.\n\n\"capabilities are not supported without LD_PRELOAD\"",
+      "range": {
+        "startLine": 1585,
+        "startChar": 7,
+        "endLine": 1586,
+        "endChar": 17
+      },
+      "revId": "39776df8f8bdd96e51f88af2b2fe3f2fc03f60a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fde3fc1c_73596f63",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-12T00:01:40Z",
+      "side": 1,
+      "message": "Nit: The verb is \"set up\" (http://www.future-perfect.co.uk/grammar-tip/is-it-setup-set-up-or-set-up/). Yes, the function names don\u0027t have the space but comments don\u0027t have space restrictions.",
+      "range": {
+        "startLine": 1595,
+        "startChar": 18,
+        "endLine": 1595,
+        "endChar": 23
+      },
+      "revId": "39776df8f8bdd96e51f88af2b2fe3f2fc03f60a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
