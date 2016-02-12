@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1dd53033_82c6c880",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-12T00:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde6e426_591c544a",
+      "range": {
+        "startLine": 1570,
+        "startChar": 33,
+        "endLine": 1570,
+        "endChar": 35
+      },
+      "revId": "14a506ee1d30b0f49078281281523bd60cabd809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd53033_22a3940d",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-02-11T23:36:43Z",
       "side": 1,
       "message": "Nit: \"sandboxing\".",
+      "range": {
+        "startLine": 1571,
+        "startChar": 45,
+        "endLine": 1571,
+        "endChar": 52
+      },
+      "revId": "14a506ee1d30b0f49078281281523bd60cabd809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fde3fc1c_b38fd717",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-12T00:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dd53033_22a3940d",
       "range": {
         "startLine": 1571,
         "startChar": 45,
