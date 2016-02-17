@@ -16,6 +16,24 @@
       "revId": "3accbe9b3b89784ca68779ec37fa6c6f20d8e5d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d8fa87c_98f09484",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-17T03:30:37Z",
+      "side": 1,
+      "message": "Good point. Yeah, it is intended to provide better error messages than just a failing execve. It makes sense for the -T argument to also skip this check, but in that case we should document it better. I\u0027m gonna upload a CL for that.",
+      "parentUuid": "3d76744b_a863c7a7",
+      "revId": "3accbe9b3b89784ca68779ec37fa6c6f20d8e5d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
