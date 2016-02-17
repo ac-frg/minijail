@@ -362,25 +362,30 @@ int main(int argc, char *argv[])
 	argc -= consumed;
 	argv += consumed;
 
+	/*
+	 * The path of the jailed program is specified relative to possible
+	 * changes to the root directory. However, checks performed at this
+	 * point need the path as seen before those changes.
+	 */
+	char *original_path = minijail_get_original_path(j, argv[0]);
+
+	/* Check that the target program can be accessed. */
+	if (access(original_path, X_OK)) {
+		fprintf(stderr, "Target program '%s' is not accessible.\n",
+			argv[0]);
+		return 1;
+	}
+
 	if (elftype == ELFERROR) {
 		/*
 		 * -T was not specified.
-		 * Get the path to the program adjusted for changing root.
+		 * Check whether the target binary is statically or dynamically
+		 * linked.
 		 */
-		char *program_path = minijail_get_original_path(j, argv[0]);
-
-		/* Check that we can access the target program. */
-		if (access(program_path, X_OK)) {
-			fprintf(stderr,
-				"Target program '%s' is not accessible.\n",
-				argv[0]);
-			return 1;
-		}
-
-		/* Check if target is statically or dynamically linked. */
-		elftype = get_elf_linkage(program_path);
-		free(program_path);
+		elftype = get_elf_linkage(original_path);
 	}
+
+	free(original_path);
 
 	if (elftype == ELFSTATIC) {
 		/*
