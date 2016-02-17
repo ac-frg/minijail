@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d76744b_a863c7a7",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1016434
+      },
+      "writtenOn": "2016-02-17T01:20:47Z",
+      "side": 1,
+      "message": "This will break ARC++\u0027s use case.  They needed the -T flag to workaround the target program not being accessible outside of the mount namespace.\n\nWhat purpose exactly does this check serve?  I figured it\u0027s just an early non-critical convenience check as execve() will ultimately fail if the program doesn\u0027t exist or is non-executable.",
+      "revId": "3accbe9b3b89784ca68779ec37fa6c6f20d8e5d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
