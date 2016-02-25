@@ -105,6 +105,9 @@ static void usage(const char *progn)
 	       "              Multiple instances allowed.\n"
 	       "  -k:         Mount <src> to <dest> in chroot.\n"
 	       "              Multiple instances allowed, flags are passed to mount(2).\n"
+	       "  -K <path>:  Keep shared group for the mount points under the specified path.\n"
+	       "              Currently, we cannot keep SHARED for /tmp due to the implementation\n"
+	       "              limitation.\n"
 	       "  -c <caps>:  Restrict caps to <caps>.\n"
 	       "  -C <dir>:   chroot(2) to <dir>.\n"
 	       "              Not compatible with -P.\n"
@@ -171,7 +174,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (argc > 1 && argv[1][0] != '-')
 		return 1;
 	while ((opt = getopt(argc, argv,
-			     "u:g:sS:c:C:P:b:V:f:m:M:k:a:e::T:vrGhHinplLtIU"))
+			     "u:g:sS:c:C:P:b:V:f:m:M:k:K:a:e::T:vrGhHinplLtIU"))
 	       != -1) {
 		switch (opt) {
 		case 'u':
@@ -227,6 +230,13 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 'k':
 			add_mount(j, optarg);
+			break;
+		case 'K':
+			if (0 != minijail_keep_shared(j, optarg)) {
+				fprintf(stderr,
+					"minijail_keep_shared failed.\n");
+				exit(1);
+			}
 			break;
 		case 'P':
 			if (chroot) {

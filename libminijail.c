@@ -14,6 +14,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <linux/capability.h>
+#include <mntent.h>
 #include <pwd.h>
 #include <sched.h>
 #include <signal.h>
@@ -74,12 +75,23 @@
 
 #define MAX_CGROUPS 10 /* 10 different controllers supported by Linux. */
 
+#define MS_SHARED_MASK (MS_SHARED | MS_SLAVE)
+
+#define TMPFS_ROOT_TEMPLATE "/tmp/tmpdir.XXXXXX"
+#define TMPFS_ROOT_TEMPLATE_LENGTH 18
+#define INT_MAX_DIGITS 10
+
 struct mountpoint {
 	char *src;
 	char *dest;
 	char *type;
 	unsigned long flags;
 	struct mountpoint *next;
+};
+
+struct keep_shared {
+	char *path;
+	struct keep_shared *next;
 };
 
 struct minijail {
@@ -136,6 +148,9 @@ struct minijail {
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
+	struct keep_shared *keep_shared_head;
+	struct keep_shared *keep_shared_tail;
+	size_t keep_shared_count;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
 };
@@ -637,6 +652,44 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 	return minijail_mount(j, src, dest, "", flags);
 }
 
+int API minijail_keep_shared(struct minijail *j, const char *path)
+{
+	struct keep_shared *k;
+
+	/* Keep shared path must be an absolute path. */
+	if (*path != '/')
+		return -EINVAL;
+
+	/*
+	 * Currently /tmp cannot be shared. This is the limitation from the
+	 * implementation.
+	 */
+	if (strcmp("/tmp", path) == 0 || strcmp("/tmp/", path) == 0)
+		return -EINVAL;
+
+	k = calloc(1, sizeof(*k));
+	if (!k)
+		return -ENOMEM;
+
+	k->path = strdup(path);
+	if (!k->path)
+		goto error;
+
+	/* Append to the list. */
+	if (j->keep_shared_tail)
+		j->keep_shared_tail->next = k;
+	else
+		j->keep_shared_head = k;
+	j->keep_shared_tail = k;
+	j->keep_shared_count++;
+
+	return 0;
+
+error:
+	free(k);
+	return -ENOMEM;
+}
+
 void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL)) {
@@ -709,6 +762,7 @@ void minijail_marshal_helper(struct marshal_state *state,
 			     const struct minijail *j)
 {
 	struct mountpoint *m = NULL;
+        struct keep_shared *k;
 	size_t i;
 
 	marshal_append(state, (char *)j, sizeof(*j));
@@ -734,6 +788,9 @@ void minijail_marshal_helper(struct marshal_state *state,
 		marshal_append(state, m->dest, strlen(m->dest) + 1);
 		marshal_append(state, m->type, strlen(m->type) + 1);
 		marshal_append(state, (char *)&m->flags, sizeof(m->flags));
+	}
+	for (k = j->keep_shared_head; k; k = k->next) {
+		marshal_append(state, k->path, strlen(k->path) + 1);
 	}
 	for (i = 0; i < j->cgroup_count; ++i)
 		marshal_append(state, j->cgroups[i], strlen(j->cgroups[i]) + 1);
@@ -895,6 +952,16 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto bad_mounts;
 	}
 
+	count = j->keep_shared_count;
+	j->keep_shared_count = 0;
+	for (i = 0; i < count; ++i) {
+		const char *path = consumestr(&serialized, &length);
+		if (!path)
+			goto bad_keep_shared;
+		if (minijail_keep_shared(j, path))
+			goto bad_keep_shared;
+	}
+
 	count = j->cgroup_count;
 	j->cgroup_count = 0;
 	for (i = 0; i < count; ++i) {
@@ -910,6 +977,15 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	return 0;
 
 bad_cgroups:
+	for (i = 0; i < j->cgroup_count; ++i)
+		free(j->cgroups[i]);
+	while (j->keep_shared_head) {
+		struct keep_shared* k = j->keep_shared_head;
+		j->keep_shared_head = k->next;
+		free(k->path);
+		free(k);
+	}
+bad_keep_shared:
 	while (j->mounts_head) {
 		struct mountpoint *m = j->mounts_head;
 		j->mounts_head = j->mounts_head->next;
@@ -918,8 +994,6 @@ bad_cgroups:
 		free(m->src);
 		free(m);
 	}
-	for (i = 0; i < j->cgroup_count; ++i)
-		free(j->cgroups[i]);
 bad_mounts:
 	if (j->flags.seccomp_filter && j->filter_len > 0) {
 		free(j->filter_prog->filter);
@@ -1024,6 +1098,7 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 {
 	int ret;
 	char *dest;
+	int shared_flags;
 	int remount_ro = 0;
 
 	/* |dest| has a leading "/". */
@@ -1050,6 +1125,16 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 			    m->flags | MS_REMOUNT, NULL);
 		if (ret)
 			pdie("bind ro: %s -> %s", m->src, dest);
+	}
+	/*
+	 * Similarly, SHARED and SLAVE flags do not work with 'bind' or
+	 * 'remount'. Call mount(2) again, here.
+	 */
+	shared_flags = m->flags & MS_SHARED_MASK;
+	if (shared_flags && (m->flags & (MS_BIND | MS_REMOUNT))) {
+		ret = mount(NULL, dest, NULL, shared_flags, NULL);
+		if (ret)
+			pdie("Make shared: %s -> %s", m->src, dest);
 	}
 
 	free(dest);
@@ -1336,6 +1421,151 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
+/*
+ * Saves mount points specified via minijail_keep_shared().
+ * |tmpfs_root| must be a temporary directory created by mkdtemp with
+ * TEMP_ROOT_TEMPLATE.
+ */
+static void save_keep_shared_mount_points(
+	const struct keep_shared *keep_shared_head,
+	const char *tmpfs_root)
+{
+	const struct keep_shared *k;
+	int counter;
+
+	for (counter = 0, k = keep_shared_head; k; k = k->next, ++counter) {
+		char saved_dir_name[
+			TMPFS_ROOT_TEMPLATE_LENGTH + 1 + INT_MAX_DIGITS + 1];
+		snprintf(saved_dir_name, sizeof(saved_dir_name),
+			 "%s/%d", tmpfs_root, counter);
+		if (mkdir(saved_dir_name, 0700))
+			pdie("Failed to create a directory.");
+		if (mount(k->path, saved_dir_name, NULL, MS_BIND | MS_REC,
+			  NULL))
+			pdie("Failed to save the keep_shared directory.");
+	}
+}
+
+/*
+ * Restores the mount points saved by save_keep_shared_mount_points().
+ * Both |keep_shared_head| and |tmpfs_root| must be the exactly same ones
+ * passed to the save_keep_shared_mount_points().
+ */
+static void restore_keep_shared_mount_points(
+	const struct keep_shared *keep_shared_head,
+	const char *tmpfs_root)
+{
+	const struct keep_shared *k;
+	int counter;
+
+	for (counter = 0, k = keep_shared_head; k; k = k->next, ++counter) {
+		char saved_dir_name[
+			TMPFS_ROOT_TEMPLATE_LENGTH + 1 + INT_MAX_DIGITS + 1];
+		snprintf(saved_dir_name, sizeof(saved_dir_name),
+			 "%s/%d", tmpfs_root, counter);
+		if (umount2(k->path, MNT_DETACH))
+			pdie("Failed to detach the keep_shared directory "
+			     "marked PRIVATE.");
+		if (mount(saved_dir_name, k->path, NULL, MS_MOVE , NULL))
+			pdie("Failed to restore the keep_shared directory.");
+	}
+}
+
+/*
+ * Marks all mount points, except saved ones by save_keep_shared_mount_points,
+ * as PRIVATE.
+ */
+static void mark_private_recursively_under_pivot_root(const char *tmpfs_root) {
+	/* First, pivot_root to the $tmpfs_root/root. */
+
+	/* TMPFS_ROOT + / + "root" + \0. */
+	char old_root[TMPFS_ROOT_TEMPLATE_LENGTH + 1 + 4 + 1];
+	snprintf(old_root, sizeof(old_root), "%s/root", tmpfs_root);
+	if (mkdir(old_root, 0700))
+		pdie("Failed to create a new root directory.");
+	if (syscall(SYS_pivot_root, tmpfs_root, old_root))
+		pdie("Failed to pivot_root.");
+
+	/* Mark PRIVATE recursively. */
+	if (mount(NULL, "/root", NULL, MS_REC | MS_PRIVATE, NULL))
+		pdie("Failed to mark PRIVATE.");
+
+	/* Then pivot_root back. Note: tmpfs_root should have a leading '/'. */
+	snprintf(old_root, sizeof(old_root), "/root%s", tmpfs_root);
+	if (syscall(SYS_pivot_root, "/root", old_root))
+		pdie("Failed to pivot_root back.");
+}
+
+/*
+ * Marks all mount points, except mount points specified by
+ * minijail_keep_shared, as PRIVATE.
+ */
+static void mark_private_recursively_with_keep_shared(
+	const struct keep_shared *keep_shared_head)
+{
+	/* Prepare the temporary directory, and mount tmpfs on it. */
+	char tmpfs_root_template[] = TMPFS_ROOT_TEMPLATE;
+	const char *tmpfs_root = mkdtemp(tmpfs_root_template);
+
+	if (!tmpfs_root)
+		pdie("Failed to create the tmpfs");
+
+	/*
+	 * Force to mark /tmp PRIVATE. Otherwise, tmpfs being created below
+	 * will be leaked to the host namespace.
+	 */
+	if (mount(NULL, "/tmp", NULL, MS_PRIVATE, NULL))
+		pdie("Failed to make /tmp PRIVATE.");
+
+	if (mount(NULL, tmpfs_root, "tmpfs", 0, NULL))
+		pdie("Failed to create the tmpfs_root.");
+
+	save_keep_shared_mount_points(keep_shared_head, tmpfs_root);
+	mark_private_recursively_under_pivot_root(tmpfs_root);
+	restore_keep_shared_mount_points(keep_shared_head, tmpfs_root);
+
+	/* Clean up the tmpfs_root. */
+	if (umount2(tmpfs_root, MNT_FORCE))
+		pdie("Failed to clean up the tmpfs_root.");
+
+	if (rmdir(tmpfs_root))
+		pdie("Failed to remove the tmpfs_root directory.");
+}
+
+/*
+ * Marks all mount points as PRIVATE. If some paths are specified
+ * minijail_keep_shared(), then those are kept out from the marking.
+ * If they are shared new bind mounts will creep out of our namespace.
+ * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
+ */
+static void mark_private_recursively(const struct minijail *j)
+{
+	if (!j->keep_shared_head) {
+		/*
+		 * Simple case. If no minijail_keep_shared() is not called,
+		 * we can just mark all mount points as PRIVATE.
+		 */
+		if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
+			pdie("Failed to mark mount points as PRIVATE.");
+		return;
+	}
+
+	/*
+	 * Otherwise, defer to mark_private_recursively_with_keep_shared().
+	 * Intenally, pivot_root is used, so keep the CWD FD, and restore it
+	 * at the end.
+	 */
+	int cwd_fd = open(".", O_DIRECTORY | O_RDONLY);
+	if (cwd_fd < 0)
+		pdie("Failed to open the CWD.");
+
+	mark_private_recursively_with_keep_shared(j->keep_shared_head);
+
+	if (fchdir(cwd_fd))
+		pdie("Failed to restore the CWD.");
+	close(cwd_fd);
+}
+
 void API minijail_enter(const struct minijail *j)
 {
 	/*
@@ -1364,13 +1594,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.vfs) {
 		if (unshare(CLONE_NEWNS))
 			pdie("unshare(vfs)");
-		/*
-		 * Remount all filesystems as private. If they are shared
-		 * new bind mounts will creep out of our namespace.
-		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
-		 */
-		if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
-			pdie("mount(/, private)");
+		mark_private_recursively(j);
 	}
 
 	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
@@ -2023,6 +2247,13 @@ void API minijail_destroy(struct minijail *j)
 		free(m);
 	}
 	j->mounts_tail = NULL;
+	while (j->keep_shared_head) {
+		struct keep_shared *k = j->keep_shared_head;
+		j->keep_shared_head = k->next;
+		free(k->path);
+		free(k);
+	}
+	j->keep_shared_tail = NULL;
 	if (j->user)
 		free(j->user);
 	if (j->suppl_gid_list)

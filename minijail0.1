@@ -31,6 +31,13 @@ Enter a new network namespace, or if \fIfile\fR is specified, Enter an existing
 network namespace specified by \fIfile\fR which is typically of the form
 /proc/<pid>/ns/net.
 .TP
+\fB-K [path]\fR
+Keep the shared mount point bits. When \Bf-v\fR is set, all mount points are
+marked as PRIVATE by default. It prohibits to share some mount points with
+other namespaces. With this flag, the shared mount point bits under \fIpath\fR
+will be preserved. Due to the implementation limitation, currently \fI/tmp\fR
+cannot be specified.
+.TP
 \fB-f <file>\fR
 Write the pid of the jailed process to \fIfile\fR.
 .TP

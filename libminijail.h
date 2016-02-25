@@ -149,6 +149,15 @@ int minijail_bind(struct minijail *j, const char *src, const char *dest,
 		  int writeable);
 
 /*
+ * When entering a new mount namespace, immediately all mount points are marked
+ * as PRIVATE. It prohibits to share some mount points with other namespaces.
+ * This will preserve the shared bit for the mount point at |path|.
+ * Note that currently /tmp cannot be specified for |path| due to the internal
+ * implementation limitation.
+ */
+int minijail_keep_shared(struct minijail *j, const char* path);
+
+/*
  * Lock this process into the given minijail. Note that this procedure cannot fail,
  * since there is no way to undo privilege-dropping; therefore, if any part of
  * the privilege-drop fails, minijail_enter() will abort the entire process.
