@@ -14,6 +14,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <linux/capability.h>
+#include <mntent.h>
 #include <pwd.h>
 #include <sched.h>
 #include <signal.h>
@@ -1336,6 +1337,43 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
+/*
+ * Remount all filesystems as private. If they are shared
+ * new bind mounts will creep out of our namespace.
+ * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
+ */
+static void private_remount(const struct minijail *j)
+{
+	FILE *mnt_fp;
+	struct mntent *mntent;
+	struct mountpoint *m;
+	int is_shared;
+
+	mnt_fp = setmntent("/proc/mounts", "r");
+	if (mnt_fp == NULL)
+		pdie("Failed to open /proc/mounts");
+	while ((mntent = getmntent(mnt_fp)) != NULL) {
+		is_shared = 0;
+		for (m = j->mounts_head; m != NULL; m = m->next) {
+			if ((m->flags & MS_SHARED) &&
+				strcmp(m->src, mntent->mnt_dir) == 0) {
+				is_shared = 1;
+				break;
+			}
+		}
+		/*
+		 * If the mount directory is being mounted as SHARED
+		 * intentionally, we leave the SHARED bit as is.
+		 */
+		if (!is_shared) {
+			if (mount(NULL, mntent->mnt_dir, NULL, MS_PRIVATE,
+				  NULL))
+				pdie("mount(%s, private)", mntent->mnt_dir);
+		}
+	}
+	endmntent(mnt_fp);
+}
+
 void API minijail_enter(const struct minijail *j)
 {
 	/*
@@ -1364,13 +1402,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.vfs) {
 		if (unshare(CLONE_NEWNS))
 			pdie("unshare(vfs)");
-		/*
-		 * Remount all filesystems as private. If they are shared
-		 * new bind mounts will creep out of our namespace.
-		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
-		 */
-		if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
-			pdie("mount(/, private)");
+		private_remount(j);
 	}
 
 	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
