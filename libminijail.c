@@ -14,6 +14,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <linux/capability.h>
+#include <mntent.h>
 #include <pwd.h>
 #include <sched.h>
 #include <signal.h>
@@ -73,6 +74,8 @@
 #endif
 
 #define MAX_CGROUPS 10 /* 10 different controllers supported by Linux. */
+
+#define MS_SHARED_MASK (MS_SHARED | MS_SLAVE)
 
 struct mountpoint {
 	char *src;
@@ -1024,6 +1027,7 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 {
 	int ret;
 	char *dest;
+	int shared_flags;
 	int remount_ro = 0;
 
 	/* |dest| has a leading "/". */
@@ -1050,6 +1054,16 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 			    m->flags | MS_REMOUNT, NULL);
 		if (ret)
 			pdie("bind ro: %s -> %s", m->src, dest);
+	}
+	/*
+	 * Similarly, marking SHARED or SLAVE flags does not work with
+	 * 'bind' or 'remount'. Invoke mount again, here.
+	 */
+	shared_flags = m->flags & MS_SHARED_MASK;
+	if (shared_flags && (m->flags & (MS_BIND | MS_REMOUNT))) {
+		ret = mount(NULL, dest, NULL, shared_flags, NULL);
+		if (ret)
+		pdie("Make shared: %s -> %s", m->src, dest);
 	}
 
 	free(dest);
@@ -1336,6 +1350,42 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
+/*
+ * Remount all filesystems as private except ones which is being mounted as
+ * shared. If they are shared new bind mounts will creep out of our namespace.
+ * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
+ */
+static void private_remount_except_shared(const struct minijail *j)
+{
+	FILE *mnt_fp;
+	struct mntent *mntent;
+
+	mnt_fp = setmntent("/proc/mounts", "r");
+	if (mnt_fp == NULL)
+		pdie("Failed to open /proc/mounts");
+	while ((mntent = getmntent(mnt_fp)) != NULL) {
+		int is_shared = 0;
+		struct mountpoint *m;
+		for (m = j->mounts_head; m != NULL; m = m->next) {
+			if ((m->flags & MS_SHARED_MASK) &&
+				strcmp(m->src, mntent->mnt_dir) == 0) {
+				is_shared = 1;
+				break;
+			}
+		}
+		/*
+		 * If the mount directory is being mounted as SHARED or SLAVE
+		 * intentionally, we keep the original bit as is.
+		 */
+		if (!is_shared) {
+			if (mount(NULL, mntent->mnt_dir, NULL, MS_PRIVATE,
+				  NULL))
+				pdie("mount(%s, private)", mntent->mnt_dir);
+		}
+	}
+	endmntent(mnt_fp);
+}
+
 void API minijail_enter(const struct minijail *j)
 {
 	/*
@@ -1364,13 +1414,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.vfs) {
 		if (unshare(CLONE_NEWNS))
 			pdie("unshare(vfs)");
-		/*
-		 * Remount all filesystems as private. If they are shared
-		 * new bind mounts will creep out of our namespace.
-		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
-		 */
-		if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
-			pdie("mount(/, private)");
+		private_remount_except_shared(j);
 	}
 
 	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
