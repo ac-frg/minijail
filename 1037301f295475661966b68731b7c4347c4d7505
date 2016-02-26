@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "620cc9c0_8a902bcb",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2016-02-26T04:57:36Z",
+      "side": 1,
+      "message": "this is a new behavior, maybe update minijail0.1 (er... which doesn\u0027t even document -k)",
+      "range": {
+        "startLine": 1341,
+        "startChar": 0,
+        "endLine": 1342,
+        "endChar": 51
+      },
+      "revId": "1037301f295475661966b68731b7c4347c4d7505",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42034591_89b71d4e",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2016-02-26T04:57:36Z",
+      "side": 1,
+      "message": "I think you mean bool.",
+      "range": {
+        "startLine": 1350,
+        "startChar": 1,
+        "endLine": 1350,
+        "endChar": 5
+      },
+      "revId": "1037301f295475661966b68731b7c4347c4d7505",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "620cc9c0_0a2f9b68",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2016-02-26T04:57:36Z",
+      "side": 1,
+      "message": "is_shared scope could be restricted to here and not function scope.",
+      "range": {
+        "startLine": 1356,
+        "startChar": 13,
+        "endLine": 1356,
+        "endChar": 14
+      },
+      "revId": "1037301f295475661966b68731b7c4347c4d7505",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
