@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2c1f56d_d054672b",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-02-26T22:25:37Z",
+      "side": 1,
+      "message": "The name of this function (and the comment) is misleading -- it\u0027s not always mounting things MS_PRIVATE.",
+      "range": {
+        "startLine": 1345,
+        "startChar": 12,
+        "endLine": 1345,
+        "endChar": 27
+      },
+      "revId": "6883b3786c2874e163d45385a72b663aa5169917",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
