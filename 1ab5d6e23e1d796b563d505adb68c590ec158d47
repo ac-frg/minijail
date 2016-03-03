@@ -115,6 +115,30 @@
       "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c26bb568_383400c4",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-03T01:49:02Z",
+      "side": 1,
+      "message": "That\u0027s fine, the second suggestion is fine, but it should only be implemented for MS_SLAVE flags, not for MS_SHARED flags.",
+      "parentUuid": "a2e961fc_9a051132",
+      "range": {
+        "startLine": 1358,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 1
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
