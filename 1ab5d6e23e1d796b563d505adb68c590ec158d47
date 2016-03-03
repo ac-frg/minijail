@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "22ef3134_54bb9fa1",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1075838
+      },
+      "writtenOn": "2016-03-03T02:20:04Z",
+      "side": 1,
+      "message": "It\u0027d be nice if this worked even if /proc isn\u0027t mounted in the namespace (maybe the code could temporarily mount a proc fs and then unmount it later? It\u0027s really too bad that Linux uses /proc files instead of a proper API :-())",
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02feade5_71a7d0d2",
         "filename": "libminijail.c",
         "patchSetId": 4
