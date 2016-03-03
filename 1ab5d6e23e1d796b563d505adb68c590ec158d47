@@ -106,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "e211990a_f2400182",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1075838
+      },
+      "writtenOn": "2016-03-03T04:07:20Z",
+      "side": 1,
+      "message": "Ah sorry, I misread the code - this runs outside of the chroot, so assuming /proc exists is reasonable, never mind.\n\nThese kind of issues that you brought up are exactly why I\u0027m not a fan of /proc as an API though :-)",
+      "parentUuid": "a2e961fc_9a6191e2",
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02feade5_71a7d0d2",
         "filename": "libminijail.c",
         "patchSetId": 4
