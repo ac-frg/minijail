@@ -88,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "a2e961fc_9a6191e2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1058346
+      },
+      "writtenOn": "2016-03-03T03:58:20Z",
+      "side": 1,
+      "message": "-1 to supporting auto-mounting /proc. It will cause several other issues:\n\n- What if /proc directory does not exist?\n- If we mkdir /proc automatically, what if / is read-only?\n- If we mkdir /tmp/proc-XXXX automatically, what if /tmp does not exist?\n- Anyway, if we mount proc fs to some mount point temporarily, it can be visible to other processes because this is the point before we mark all mount points private and / can be shared mount. If we don\u0027t have existing /proc in current namespace, the user\u0027s intent should be that we should not expose proc fs to this namespace, so auto-mounting proc fs is bad idea. Instead we should abort.\n\nIIUC, it is Linux\u0027s design decision to use proc fs as communication channel between userland and kernel, and it has a lot of benefits. It is reasonable to assume /proc exists in Linux userland, and otherwise we should abort.",
+      "parentUuid": "22ef3134_54bb9fa1",
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02feade5_71a7d0d2",
         "filename": "libminijail.c",
         "patchSetId": 4
