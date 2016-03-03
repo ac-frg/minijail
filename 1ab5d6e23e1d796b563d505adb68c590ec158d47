@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e2251944_b919f7be",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-03T15:09:55Z",
+      "side": 1,
+      "message": "Not necessary. In the case, SHARED/SLAVE are simply ignored.",
+      "parentUuid": "82ea9d1e_1b82e583",
+      "range": {
+        "startLine": 1043,
+        "startChar": 0,
+        "endLine": 1044,
+        "endChar": 25
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2e32149_bbde5452",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "42034591_ef3331dc",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-03T15:09:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2e32149_bbde5452",
+      "range": {
+        "startLine": 1058,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 4
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42034591_2f570931",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2016-03-03T00:52:11Z",
       "side": 1,
       "message": "indent look wrong.",
+      "range": {
+        "startLine": 1066,
+        "startChar": 0,
+        "endLine": 1066,
+        "endChar": 46
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22fe51bd_0e4d6fb2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-03T15:09:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42034591_2f570931",
       "range": {
         "startLine": 1066,
         "startChar": 0,
@@ -124,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "a2da41a7_69b425ff",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-03T15:09:55Z",
+      "side": 1,
+      "message": "Acknowledged.",
+      "parentUuid": "e211990a_f2400182",
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02feade5_71a7d0d2",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -183,6 +273,30 @@
       "side": 1,
       "message": "That\u0027s fine, the second suggestion is fine, but it should only be implemented for MS_SLAVE flags, not for MS_SHARED flags.",
       "parentUuid": "a2e961fc_9a051132",
+      "range": {
+        "startLine": 1358,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 1
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2da41a7_49b1610d",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-03T15:09:55Z",
+      "side": 1,
+      "message": "Acknowledged.",
+      "parentUuid": "c26bb568_383400c4",
       "range": {
         "startLine": 1358,
         "startChar": 0,
