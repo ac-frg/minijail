@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82ea9d1e_1b82e583",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-03T00:24:07Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you be masking out SHARED and SLAVE here too?",
+      "range": {
+        "startLine": 1043,
+        "startChar": 0,
+        "endLine": 1044,
+        "endChar": 25
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2e32149_bbde5452",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-03T00:24:07Z",
+      "side": 1,
+      "message": "Nits: Remove \"marking\", \"does not\" -\u003e \"don\u0027t\", \"Invoke\" -\u003e \"Call\", \"mount\" -\u003e \"mount(2)\", remove \", here\".\n\n\"\nSimilarly, SHARED or SLAVE flags don\u0027t work with \u0027bind\u0027 or \u0027remount\u0027. Call mount(2) again.\n\"",
+      "range": {
+        "startLine": 1058,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 4
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02feade5_71a7d0d2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-03T00:24:07Z",
+      "side": 1,
+      "message": "I think I understood what I find worrying about this code: it turns a whitelist into a blacklist.\n\nBefore, we would just mount everything private. Now, we only remount some things as private.\n\nThe documentation is not very clear, but is it possible to instead remount the relevant directories as SHARED?\n\nI.e. call:\n\nmount(NULL, \"/\", NULL, MS_REC | MS_PRIVATE, NULL)\n\nand then call:\n\nfor shared_mount in shared_mounts:\n  mount(NULL, shared_mount, NULL, MS_SHARED, NULL)\n\nWill that work, or does making it private once automatically remove it from the peer group, and hence cause it to stop getting mount propagations even when re-marked as shared?\n\nIf re-marking as shared doesn\u0027t work, then the code above should be re-architected to do:\n\nExtract the inner for loop into an is_shared() function:\n\nint is_shared(mntent, j) {\n  int is_shared \u003d 0;\n  struct mountpoint *m;\n  for (m \u003d j-\u003emounts_head; m !\u003d NULL; m \u003d m-\u003enext) {\n    if (m-\u003eflags \u0026 MS_SHARED_MASK \u0026\u0026\n        strcmp(m-\u003esrc, mntent-\u003emnt_dir) \u003d\u003d 0) {\n        return 1;\n    }\n  }\n  return 0;\n}\n\nvoid remount_as_private(j):\n  mount(/, PRIVATE) # Without using MS_REC\n  while mntent !\u003d NULL \u0026\u0026 mntent !\u003d \"/\":\n    if is_shared():\n      continue\n    \n    mount(mntent, PRIVATE)",
+      "range": {
+        "startLine": 1358,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 1
+      },
+      "revId": "1ab5d6e23e1d796b563d505adb68c590ec158d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
