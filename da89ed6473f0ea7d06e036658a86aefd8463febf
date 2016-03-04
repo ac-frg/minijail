@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22fe51bd_ce0bd744",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1082965
+      },
+      "writtenOn": "2016-03-04T06:37:45Z",
+      "side": 1,
+      "message": "My understanding is;\nIf a user sets this flag, it means the user owns the responsibility to manage all the shared mount flags, otherwise security risks. It\u0027s much better to have a bit stronger warning, I believe.",
+      "revId": "da89ed6473f0ea7d06e036658a86aefd8463febf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
