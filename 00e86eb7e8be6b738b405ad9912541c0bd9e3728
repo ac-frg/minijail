@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7e8c566_0b8f055b",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-07T17:25:17Z",
+      "side": 1,
+      "message": "skip_remount_private should be cleared here too. It doesn\u0027t technically matter because skip_remount_private never gets checked when flags.vfs is 0, but we should be consistent.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 24
+      },
+      "revId": "00e86eb7e8be6b738b405ad9912541c0bd9e3728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
