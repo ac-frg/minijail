@@ -45,11 +45,14 @@
 #ifdef HAVE_SECUREBITS_H
 #include <linux/securebits.h>
 #else
-#define SECURE_ALL_BITS         0x15
-#define SECURE_ALL_LOCKS        (SECURE_ALL_BITS << 1)
+#define SECURE_ALL_BITS		0x55
+#define SECURE_ALL_LOCKS	(SECURE_ALL_BITS << 1)
 #endif
+/* For kernels < 4.3. */
+#define OLD_SECURE_ALL_BITS	0x15
+#define OLD_SECURE_ALL_LOCKS	(OLD_SECURE_ALL_BITS << 1)
 
-/* Until these are reliably available in linux/prctl.h */
+/* Until these are reliably available in linux/prctl.h. */
 #ifndef PR_SET_SECCOMP
 # define PR_SET_SECCOMP 22
 #endif
@@ -1432,8 +1435,25 @@ void API minijail_enter(const struct minijail *j)
 		 */
 		if (prctl(PR_SET_KEEPCAPS, 1))
 			pdie("prctl(PR_SET_KEEPCAPS)");
-		if (prctl
-		    (PR_SET_SECUREBITS, SECURE_ALL_BITS | SECURE_ALL_LOCKS))
+
+		/*
+		 * Kernels 4.3+ define a new securebit
+		 * (SECURE_NO_CAP_AMBIENT_RAISE), so using the SECURE_ALL_BITS
+		 * and SECURE_ALL_LOCKS masks from newer kernel headers will
+		 * return EPERM on older kernels. Detect this, and retry with
+		 * the right mask for older (2.6.26-4.2) kernels.
+		 */
+		int securebits_ret = prctl(PR_SET_SECUREBITS,
+					   SECURE_ALL_BITS | SECURE_ALL_LOCKS);
+		if (securebits_ret < 0) {
+			if (errno == EPERM) {
+				/* Possibly running on kernel < 4.3. */
+				securebits_ret = prctl(
+				    PR_SET_SECUREBITS,
+				    OLD_SECURE_ALL_BITS | OLD_SECURE_ALL_LOCKS);
+			}
+		}
+		if (securebits_ret < 0)
 			pdie("prctl(PR_SET_SECUREBITS)");
 	}
 
