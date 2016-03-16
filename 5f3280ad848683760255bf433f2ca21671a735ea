@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc842acd_c54a4c9d",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-16T23:48:00Z",
+      "side": 1,
+      "message": "This set changes per-architecture (see https://cs.corp.google.com/android/external/minijail/util.c?l\u003d29). It might be a good idea to just remove the list from the man-page, unless there\u0027s a better way to choose what to list.",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 48
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_052a74c3",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-16T23:48:00Z",
+      "side": 1,
+      "message": "Technically the field in task_struct is called \"no_new_privs\", PR_GET_NO_NEW_PRIVS is the prctl() option. So I would say the same thing the help says,\n\n\"Set \\fBno_new_privs\\fB. ...\"",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
