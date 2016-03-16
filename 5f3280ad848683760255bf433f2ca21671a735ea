@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bc842acd_8570c4de",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2016-03-16T23:54:42Z",
+      "side": 1,
+      "message": "Oh, OK. Will remove the list. Is it worth noting that the list is system-dependent?",
+      "parentUuid": "bc842acd_c54a4c9d",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 48
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc842acd_052a74c3",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-16T23:48:00Z",
       "side": 1,
       "message": "Technically the field in task_struct is called \"no_new_privs\", PR_GET_NO_NEW_PRIVS is the prctl() option. So I would say the same thing the help says,\n\n\"Set \\fBno_new_privs\\fB. ...\"",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_85e1a4bd",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2016-03-16T23:54:42Z",
+      "side": 1,
+      "message": "But we only \"set\" this by calling a system call, not by setting that bit directly in the task_struct. The help description is very much non-helpful (i.e., \"no_new_privs\" means nothing without more context), so it needs something more in my opinion, as an unfamiliar reader. Do you have a more informative explanation to propose?",
+      "parentUuid": "bc842acd_052a74c3",
       "range": {
         "startLine": 82,
         "startChar": 7,
