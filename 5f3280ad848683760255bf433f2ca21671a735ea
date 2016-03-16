@@ -93,6 +93,30 @@
       "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_a512a873",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2016-03-16T23:59:55Z",
+      "side": 1,
+      "message": "How about this?\n\n\"Set the process\u0027s no_new_privs bit. See prctl(2) and the kernel source file Documentation/prctl/no_new_privs.txt for more info.\"",
+      "parentUuid": "bc842acd_85e1a4bd",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
