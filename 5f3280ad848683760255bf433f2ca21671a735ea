@@ -117,6 +117,30 @@
       "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_c5a80c53",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-17T00:02:10Z",
+      "side": 1,
+      "message": "The informative explanation is to refer to \"no_new_privs\", which is the same thing the man page for PR_GET_NO_NEW_PRIVS does:\n\n\"Return the value of the no_new_privs bit for the current process.\"\n\nSo yes, I still propose:\n\n\"Set \\fBno_new_privs\\fR. ...\" or if you want,\n\n\"Set the \\fBno_new_privs\\fR bit. ...\"",
+      "parentUuid": "bc842acd_85e1a4bd",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "5f3280ad848683760255bf433f2ca21671a735ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
