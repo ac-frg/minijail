@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc842acd_08efeb14",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-17T03:29:33Z",
+      "side": 1,
+      "message": "j-\u003eflags.skip_remount_private",
+      "range": {
+        "startLine": 1123,
+        "startChar": 7,
+        "endLine": 1123,
+        "endChar": 27
+      },
+      "revId": "a224af3206168ec54b048ad8e97d7e40c814e3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_a8fb5fd3",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-17T03:29:33Z",
+      "side": 1,
+      "message": "Use pipes to refer to variables in code:\n\n|oldroot|",
+      "range": {
+        "startLine": 1124,
+        "startChar": 16,
+        "endLine": 1124,
+        "endChar": 23
+      },
+      "revId": "a224af3206168ec54b048ad8e97d7e40c814e3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc842acd_c8f823d9",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-03-17T03:29:33Z",
+      "side": 1,
+      "message": "Match the other error messages:\n\n\"failed to mount(/, private) for umount(/)\"",
+      "range": {
+        "startLine": 1130,
+        "startChar": 8,
+        "endLine": 1130,
+        "endChar": 45
+      },
+      "revId": "a224af3206168ec54b048ad8e97d7e40c814e3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
