@@ -159,7 +159,7 @@ struct minijail {
 /*
  * Strip out flags meant for the parent.
  * We keep things that are not inherited across execve(2) (e.g. capabilities),
- * or are easier to set after execve(2) (e.g. seccomp filters).
+ * or are easier to set after execve(2) (e.g. seccomp filter).
  */
 void minijail_preenter(struct minijail *j)
 {
@@ -1135,13 +1135,13 @@ int enter_pivot_root(const struct minijail *j)
 		pdie("failed to fchdir to old /");
 
 	/*
-	 * If j->flags.skip_remount_private was enabled for minijail_enter(), there
-	 * could be a shared mount point under |oldroot|. In that case, mounts
-	 * under this shared mount point will be unmounted below, and this
-	 * unmounting will propagate to the original mount namespace (because the
-	 * mount point is shared). To prevent this unexpected unmounting, remove
-	 * these mounts from their peer groups by recursively remounting them as
-	 * MS_PRIVATE.
+	 * If j->flags.skip_remount_private was enabled for minijail_enter(),
+	 * there could be a shared mount point under |oldroot|. In that case,
+	 * mounts under this shared mount point will be unmounted below, and
+	 * this unmounting will propagate to the original mount namespace
+	 * (because the mount point is shared). To prevent this unexpected
+	 * unmounting, remove these mounts from their peer groups by recursively
+	 * remounting them as MS_PRIVATE.
 	 */
 	if (mount(NULL, ".", NULL, MS_REC | MS_PRIVATE, NULL))
 		pdie("failed to mount(/, private) before umount(/)");
@@ -1355,6 +1355,21 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 
 	/*
+	 * Code running with ASan
+	 * (https://github.com/google/sanitizers/wiki/AddressSanitizer)
+	 * will make system calls not included in the syscall filter policy,
+	 * which will likely crash the program. Skip setting seccomp filter in
+	 * that case.
+	 * 'running_with_asan()' has no inputs and is completely defined at
+	 * build time, so this cannot be used by an attacker to skip setting
+	 * seccomp filter.
+	 */
+	if (j->flags.seccomp_filter && running_with_asan()) {
+		warn("running with ASan, not setting seccomp filter");
+		return;
+	}
+
+	/*
 	 * If we're logging seccomp filter failures,
 	 * install the SIGSYS handler first.
 	 */
@@ -1537,9 +1552,9 @@ int init(pid_t rootpid)
 {
 	pid_t pid;
 	int status;
-	/* so that we exit with the right status */
+	/* So that we exit with the right status. */
 	signal(SIGTERM, init_term);
-	/* TODO(wad) self jail with seccomp_filters here. */
+	/* TODO(wad): self jail with seccomp filter here. */
 	while ((pid = wait(&status)) > 0) {
 		/*
 		 * This loop will only end when either there are no processes
@@ -2045,7 +2060,7 @@ int API minijail_wait(struct minijail *j)
 			/*
 			 * We return MINIJAIL_ERR_JAIL if the process received
 			 * SIGSYS, which happens when a syscall is blocked by
-			 * seccomp filters.
+			 * seccomp filter.
 			 * If not, we do what bash(1) does:
 			 * $? = 128 + signum
 			 */

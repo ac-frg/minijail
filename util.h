@@ -37,6 +37,14 @@ static inline int is_android() {
 #endif
 }
 
+static inline int running_with_asan() {
+#if defined(ADDRESS_SANITIZER)
+	return 1;
+#else
+	return 0;
+#endif
+}
+
 int lookup_syscall(const char *name);
 const char *lookup_syscall_name(int nr);
 long int parse_constant(char *constant_str, char **endptr);
