@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ea720d3_a52670a8",
+        "filename": "Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2016-04-06T23:45:29Z",
+      "side": 1,
+      "message": "can we just ifdef the flag for asan builds?",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 61
+      },
+      "revId": "121d944d980c66c3c7d243d35dff44f61c544ee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea720d3_85237499",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2016-04-06T23:45:29Z",
+      "side": 1,
+      "message": "Lots of unrelated changes here :)",
+      "revId": "121d944d980c66c3c7d243d35dff44f61c544ee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
