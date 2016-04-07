@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "2ea720d3_c0c84acc",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-04-07T00:48:27Z",
+      "side": 1,
+      "message": "I know, I know, I\u0027ll extract them to another CL.",
+      "parentUuid": "2ea720d3_85237499",
+      "revId": "121d944d980c66c3c7d243d35dff44f61c544ee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea720d3_80f7e29e",
         "filename": "util.h",
         "patchSetId": 2
@@ -53,6 +71,24 @@
       "writtenOn": "2016-04-07T00:16:09Z",
       "side": 1,
       "message": "There\u0027s a different (better?) way to do this at https://android-review.googlesource.com/#/c/202590/, using:\n\n#ifdef __clang__\n#if __has_feature(address_sanitizer)",
+      "revId": "121d944d980c66c3c7d243d35dff44f61c544ee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea720d3_e0e22648",
+        "filename": "util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-04-07T00:48:27Z",
+      "side": 1,
+      "message": "I\u0027ll give that a shot.",
+      "parentUuid": "2ea720d3_80f7e29e",
       "revId": "121d944d980c66c3c7d243d35dff44f61c544ee9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
