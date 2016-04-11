@@ -56,6 +56,24 @@
       "revId": "2413f3713ae8a306a23550e2eecd59f380f34eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e22c08a_939a7e99",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-04-11T20:17:38Z",
+      "side": 1,
+      "message": "Should I get rid of defined(__clang__) then?",
+      "parentUuid": "2e22c08a_b345baf1",
+      "revId": "2413f3713ae8a306a23550e2eecd59f380f34eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
