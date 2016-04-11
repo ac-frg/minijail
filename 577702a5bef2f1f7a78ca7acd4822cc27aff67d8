@@ -22,6 +22,30 @@
       "revId": "577702a5bef2f1f7a78ca7acd4822cc27aff67d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b3d8aed_5ff06b3e",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-04-11T21:21:12Z",
+      "side": 1,
+      "message": "Easy testing, same as the commented out libminijail_asan target above. You cannot use a non-ASan executable with an ASan-ified library, and I\u0027d rather only have to uncomment this line when testing, rather than remember the name of the LOCAL_ variable.",
+      "parentUuid": "6b3d8aed_3f6487ef",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 27
+      },
+      "revId": "577702a5bef2f1f7a78ca7acd4822cc27aff67d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
