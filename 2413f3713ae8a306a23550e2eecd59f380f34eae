@@ -39,6 +39,23 @@
       "revId": "2413f3713ae8a306a23550e2eecd59f380f34eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e22c08a_b345baf1",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2016-04-11T20:04:41Z",
+      "side": 1,
+      "message": "This would not work with gcc.\nerror: missing binary operator before token \"(\"\n #if defined(__clang__) \u0026\u0026 __has_feature(address_sanitizer)\n                                        ^\n\nThis is usually written as\n#ifndef __has_feature\n#define __has_feature(x) 0\n#endif\n\n#if __has_feature(address_sanitizer)\n...\n#endif",
+      "revId": "2413f3713ae8a306a23550e2eecd59f380f34eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
