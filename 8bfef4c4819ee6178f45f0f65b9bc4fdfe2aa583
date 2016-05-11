@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "129d28d4_0d72d1d1",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076769
+      },
+      "writtenOn": "2016-05-11T11:59:20Z",
+      "side": 1,
+      "message": "Oops, there was a stupid typo...",
+      "revId": "8bfef4c4819ee6178f45f0f65b9bc4fdfe2aa583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
