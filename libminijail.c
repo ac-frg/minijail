@@ -94,6 +94,8 @@ struct mountpoint {
 	char *src;
 	char *dest;
 	char *type;
+	int has_data;
+	char *data;
 	unsigned long flags;
 	struct mountpoint *next;
 };
@@ -607,8 +609,9 @@ int API minijail_add_to_cgroup(struct minijail *j, const char *path)
 	return 0;
 }
 
-int API minijail_mount(struct minijail *j, const char *src, const char *dest,
-		       const char *type, unsigned long flags)
+int API minijail_mount_with_data(struct minijail *j, const char *src,
+				 const char *dest, const char *type,
+				 const char *data, unsigned long flags)
 {
 	struct mountpoint *m;
 
@@ -626,6 +629,12 @@ int API minijail_mount(struct minijail *j, const char *src, const char *dest,
 	m->type = strdup(type);
 	if (!m->type)
 		goto error;
+	if (data) {
+		m->data = strdup(data);
+		if (!m->data)
+			goto error;
+		m->has_data = 1;
+	}
 	m->flags = flags;
 
 	info("mount %s -> %s type '%s'", src, dest, type);
@@ -646,10 +655,17 @@ int API minijail_mount(struct minijail *j, const char *src, const char *dest,
 	return 0;
 
 error:
+	free(m->type);
 	free(m->src);
 	free(m->dest);
 	free(m);
 	return -ENOMEM;
+}
+
+int API minijail_mount(struct minijail *j, const char *src, const char *dest,
+		       const char *type, unsigned long flags)
+{
+	return minijail_mount_with_data(j, src, dest, type, NULL, flags);
 }
 
 int API minijail_bind(struct minijail *j, const char *src, const char *dest,
@@ -758,6 +774,10 @@ void minijail_marshal_helper(struct marshal_state *state,
 		marshal_append(state, m->src, strlen(m->src) + 1);
 		marshal_append(state, m->dest, strlen(m->dest) + 1);
 		marshal_append(state, m->type, strlen(m->type) + 1);
+		marshal_append(state, (char *)&m->has_data,
+			       sizeof(m->has_data));
+		if (m->has_data)
+			marshal_append(state, m->data, strlen(m->data) + 1);
 		marshal_append(state, (char *)&m->flags, sizeof(m->flags));
 	}
 	for (i = 0; i < j->cgroup_count; ++i)
@@ -902,8 +922,10 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	j->mounts_count = 0;
 	for (i = 0; i < count; ++i) {
 		unsigned long *flags;
+		int *has_data;
 		const char *dest;
 		const char *type;
+		const char *data = NULL;
 		const char *src = consumestr(&serialized, &length);
 		if (!src)
 			goto bad_mounts;
@@ -913,10 +935,19 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 		type = consumestr(&serialized, &length);
 		if (!type)
 			goto bad_mounts;
+		has_data = consumebytes(sizeof(*has_data), &serialized,
+					&length);
+		if (!has_data)
+			goto bad_mounts;
+		if (*has_data) {
+			data = consumestr(&serialized, &length);
+			if (!data)
+				goto bad_mounts;
+		}
 		flags = consumebytes(sizeof(*flags), &serialized, &length);
 		if (!flags)
 			goto bad_mounts;
-		if (minijail_mount(j, src, dest, type, *flags))
+		if (minijail_mount_with_data(j, src, dest, type, data, *flags))
 			goto bad_mounts;
 	}
 
@@ -938,6 +969,7 @@ bad_cgroups:
 	while (j->mounts_head) {
 		struct mountpoint *m = j->mounts_head;
 		j->mounts_head = j->mounts_head->next;
+		free(m->data);
 		free(m->type);
 		free(m->dest);
 		free(m->src);
@@ -1065,14 +1097,14 @@ static int mount_one(const struct minijail *j, struct mountpoint *m)
 		m->flags &= ~MS_RDONLY;
 	}
 
-	ret = mount(m->src, dest, m->type, m->flags, NULL);
+	ret = mount(m->src, dest, m->type, m->flags, m->data);
 	if (ret)
 		pdie("mount: %s -> %s", m->src, dest);
 
 	if (remount_ro) {
 		m->flags |= MS_RDONLY;
 		ret = mount(m->src, dest, NULL,
-			    m->flags | MS_REMOUNT, NULL);
+			    m->flags | MS_REMOUNT, m->data);
 		if (ret)
 			pdie("bind ro: %s -> %s", m->src, dest);
 	}
@@ -2102,6 +2134,7 @@ void API minijail_destroy(struct minijail *j)
 	while (j->mounts_head) {
 		struct mountpoint *m = j->mounts_head;
 		j->mounts_head = j->mounts_head->next;
+		free(m->data);
 		free(m->type);
 		free(m->dest);
 		free(m->src);
