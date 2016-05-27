@@ -252,7 +252,7 @@ TEST_F(arg_filter, arg0_equals) {
 	int nr = 1;
 	unsigned int id = 0;
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
@@ -294,7 +294,7 @@ TEST_F(arg_filter, arg0_mask) {
 	int nr = 1;
 	unsigned int id = 0;
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
@@ -336,7 +336,7 @@ TEST_F(arg_filter, arg0_eq_mask) {
 	int nr = 1;
 	unsigned int id = 0;
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
@@ -381,7 +381,7 @@ TEST_F(arg_filter, and_or) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 1 + 3 * (BPF_ARG_COMP_LEN + 1) + 2 + 2 + 1 + 2;
 	EXPECT_EQ(block->total_len, exp_total_len);
@@ -439,7 +439,7 @@ TEST_F(arg_filter, ret_errno) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 1 + 2 * (BPF_ARG_COMP_LEN + 1) + 2 + 2 + 1 + 2;
 	EXPECT_EQ(block->total_len, exp_total_len);
@@ -495,7 +495,7 @@ TEST_F(arg_filter, unconditional_errno) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-		compile_section(nr, fragment, id, &self->labels);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_NE(block, NULL);
 	size_t exp_total_len = 2;
 	EXPECT_EQ(block->total_len, exp_total_len);
@@ -526,11 +526,11 @@ TEST_F(arg_filter, invalid) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-			compile_section(nr, fragment, id, &self->labels);
+			compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_EQ(block, NULL);
 
 	fragment = "arg0 == 0 && arg1 == 1; return errno";
-	block = compile_section(nr, fragment, id, &self->labels);
+	block = compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_EQ(block, NULL);
 }
 
