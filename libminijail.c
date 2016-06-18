@@ -116,6 +116,7 @@ struct minijail {
 		int pids:1;
 		int ipc:1;
 		int net:1;
+		int ns_cgroups:1;
 		int enter_net:1;
 		int userns:1;
 		int seccomp:1;
@@ -450,6 +451,11 @@ void API minijail_namespace_enter_net(struct minijail *j, const char *ns_path)
 	}
 	j->netns_fd = ns_fd;
 	j->flags.enter_net = 1;
+}
+
+void API minijail_namespace_cgroups(struct minijail *j)
+{
+	j->flags.ns_cgroups = 1;
 }
 
 void API minijail_remount_proc_readonly(struct minijail *j)
@@ -1454,6 +1460,9 @@ void API minijail_enter(const struct minijail *j)
 	} else if (j->flags.net && unshare(CLONE_NEWNET)) {
 		pdie("unshare(net)");
 	}
+
+	if (j->flags.ns_cgroups && unshare(CLONE_NEWCGROUP))
+		pdie("unshare(cgroups)");
 
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
