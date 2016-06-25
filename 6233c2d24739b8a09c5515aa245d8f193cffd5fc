@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "837c7558_375c4a08",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-25T01:36:31Z",
+      "side": 1,
+      "message": "has_data is needed just for marshaling.  It allows |data| to be set to null across the marshal/un-marshal and keeps everything else aligned.",
+      "revId": "6233c2d24739b8a09c5515aa245d8f193cffd5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
