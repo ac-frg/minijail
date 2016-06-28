@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "205c9f35_a6ca834d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-28T16:14:58Z",
+      "side": 1,
+      "message": "The command line is getting rather large.  A few update scripts are building local variables up for the command line already, I\u0027ll see how easy it would be to make some of that a static file.",
+      "parentUuid": "a09c0f2b_5b406326",
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a09c0f2b_db3313e4",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -42,6 +60,24 @@
         "endLine": 119,
         "endChar": 19
       },
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "205c9f35_46daa727",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-28T16:14:58Z",
+      "side": 1,
+      "message": "moved.",
+      "parentUuid": "a09c0f2b_db3313e4",
       "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -77,6 +113,24 @@
       "side": 1,
       "message": "Yeah, that\u0027s a bit of a problem, and harder than on CrOS. For now I\u0027d just #ifndef above like we did for the prctl constants.",
       "parentUuid": "837c7558_cbf61d67",
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "205c9f35_26dfb317",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1464,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-28T16:14:58Z",
+      "side": 1,
+      "message": "Added, thanks.",
+      "parentUuid": "a09c0f2b_fb304fd9",
       "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
