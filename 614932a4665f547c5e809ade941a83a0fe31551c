@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a09c0f2b_5b406326",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-28T15:42:10Z",
+      "side": 1,
+      "message": "Is it time for Minijail to grow a config file option?",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 59
+      },
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a09c0f2b_db3313e4",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-28T15:42:10Z",
+      "side": 1,
+      "message": "Maybe move below enter_net so that we don\u0027t split the net namespace related options.",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 19
+      },
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "837c7558_cbf61d67",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -13,6 +59,24 @@
       "writtenOn": "2016-06-24T21:18:15Z",
       "side": 1,
       "message": "I had to update linux-headers on cros as this is relatively new.  Do you know the process for that on the aosp side?",
+      "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a09c0f2b_fb304fd9",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1464,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-28T15:42:10Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s a bit of a problem, and harder than on CrOS. For now I\u0027d just #ifndef above like we did for the prctl constants.",
+      "parentUuid": "837c7558_cbf61d67",
       "revId": "614932a4665f547c5e809ade941a83a0fe31551c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
