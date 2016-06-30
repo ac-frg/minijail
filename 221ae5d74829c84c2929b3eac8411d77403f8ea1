@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "606e977c_4977c151",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-30T18:20:06Z",
+      "side": 1,
+      "message": "You can add security_Minijail0 or security_Minijail_mount to the TEST\u003d line.",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "606e977c_e90c75ea",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2156,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-30T18:20:06Z",
+      "side": 1,
+      "message": "I was a little worried about this free but it doesn\u0027t look like we can be in a situation where |data| is non-NULL but |has_data| is 0 (and therefore |data| is garbage).",
+      "range": {
+        "startLine": 2156,
+        "startChar": 2,
+        "endLine": 2156,
+        "endChar": 15
+      },
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "606e977c_89113905",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-06-30T18:20:06Z",
+      "side": 1,
+      "message": "Nit: End with period to match other lines.",
+      "range": {
+        "startLine": 108,
+        "startChar": 65,
+        "endLine": 108,
+        "endChar": 73
+      },
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
