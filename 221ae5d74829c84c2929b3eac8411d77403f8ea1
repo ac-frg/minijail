@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "fd6cf216_592527b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-30T18:37:32Z",
+      "side": 1,
+      "message": "added.",
+      "parentUuid": "606e977c_4977c151",
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "606e977c_e90c75ea",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -48,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "fd6cf216_39f14b36",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2156,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-30T18:37:32Z",
+      "side": 1,
+      "message": "Correct, it will either be left as NULL or set to a valid value.",
+      "parentUuid": "606e977c_e90c75ea",
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "606e977c_89113905",
         "filename": "minijail0.c",
         "patchSetId": 2
@@ -65,6 +101,24 @@
         "endLine": 108,
         "endChar": 73
       },
+      "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd6cf216_191d6f5e",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-06-30T18:37:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "606e977c_89113905",
       "revId": "221ae5d74829c84c2929b3eac8411d77403f8ea1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
