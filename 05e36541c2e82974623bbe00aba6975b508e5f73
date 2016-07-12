@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab520fa_fcef8952",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-12T18:00:13Z",
+      "side": 1,
+      "message": "4.6",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "05e36541c2e82974623bbe00aba6975b508e5f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab520fa_1c123559",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-12T18:00:13Z",
+      "side": 1,
+      "message": "4.6",
+      "range": {
+        "startLine": 88,
+        "startChar": 74,
+        "endLine": 88,
+        "endChar": 77
+      },
+      "revId": "05e36541c2e82974623bbe00aba6975b508e5f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
