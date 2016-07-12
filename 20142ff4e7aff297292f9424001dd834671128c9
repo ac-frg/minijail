@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "5acfc472_593edecf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-07-12T17:57:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bab520fa_fc2669c0",
+      "revId": "20142ff4e7aff297292f9424001dd834671128c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab520fa_dc2bad86",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -42,6 +60,24 @@
         "endLine": 88,
         "endChar": 75
       },
+      "revId": "20142ff4e7aff297292f9424001dd834671128c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5acfc472_7943a254",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-07-12T17:57:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bab520fa_dc2bad86",
       "revId": "20142ff4e7aff297292f9424001dd834671128c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
