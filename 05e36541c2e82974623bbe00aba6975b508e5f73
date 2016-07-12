@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "5acfc472_f929727b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-07-12T18:01:26Z",
+      "side": 1,
+      "message": "sorry, still on my first cup of coffee today.",
+      "parentUuid": "bab520fa_fcef8952",
+      "revId": "05e36541c2e82974623bbe00aba6975b508e5f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab520fa_1c123559",
         "filename": "minijail0.1",
         "patchSetId": 2
