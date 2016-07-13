@@ -240,6 +240,14 @@ int minijail_run_pid_pipes_no_preload(struct minijail *j, const char *filename,
 				      int *pstdin_fd, int *pstdout_fd,
 				      int *pstderr_fd);
 
+int minijail_run_pid_pipes_no_preload_with_envp(struct minijail *j,
+						    const char *filename,
+						    char *const argv[],
+						    char *const envp[],
+						    pid_t *pchild_pid,
+						    int *pstdin_fd, int *pstdout_fd,
+						    int *pstderr_fd);
+
 /*
  * Kill the specified minijail. The minijail must have been created with pid
  * namespacing; if it was, all processes inside it are atomically killed.

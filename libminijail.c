@@ -1741,6 +1741,12 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
 			  int use_preload);
 
+int minijail_run_internal_with_envp(struct minijail *j, const char *filename,
+				    char *const argv[], char *const envp[],
+				    pid_t *pchild_pid, int *pstdin_fd,
+				    int *pstdout_fd, int *pstderr_fd,
+				    int use_preload);
+
 int API minijail_run(struct minijail *j, const char *filename,
 		     char *const argv[])
 {
@@ -1788,10 +1794,23 @@ int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 				     pstdin_fd, pstdout_fd, pstderr_fd, false);
 }
 
-int minijail_run_internal(struct minijail *j, const char *filename,
-			  char *const argv[], pid_t *pchild_pid,
-			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
-			  int use_preload)
+int API minijail_run_pid_pipes_no_preload_with_envp(struct minijail *j,
+						    const char *filename,
+						    char *const argv[],
+						    char *const envp[],
+						    pid_t *pchild_pid,
+						    int *pstdin_fd, int *pstdout_fd,
+						    int *pstderr_fd)
+{
+	return minijail_run_internal_with_envp(j, filename, argv, envp, pchild_pid,
+					       pstdin_fd, pstdout_fd, pstderr_fd, false);
+}
+
+int minijail_run_internal_with_envp(struct minijail *j, const char *filename,
+				    char *const argv[], char *const envp[],
+				    pid_t *pchild_pid, int *pstdin_fd,
+				    int *pstdout_fd, int *pstderr_fd,
+				    int use_preload)
 {
 	char *oldenv, *oldenv_copy = NULL;
 	pid_t child_pid;
@@ -2093,7 +2112,17 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	 *   -> init()-ing process
 	 *      -> execve()-ing process
 	 */
-	_exit(execve(filename, argv, environ));
+	_exit(execve(filename, argv, envp));
+}
+
+int minijail_run_internal(struct minijail *j, const char *filename,
+			  char *const argv[], pid_t *pchild_pid,
+			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
+			  int use_preload)
+{
+	return minijail_run_internal_with_envp(j, filename, argv, environ,
+					       pchild_pid, pstdin_fd, pstdout_fd,
+					       pstderr_fd, use_preload);
 }
 
 int API minijail_kill(struct minijail *j)
