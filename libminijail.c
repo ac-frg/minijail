@@ -126,6 +126,7 @@ struct minijail {
 		int enter_net:1;
 		int ns_cgroups:1;
 		int userns:1;
+		int enter_user:1;
 		int seccomp:1;
 		int remount_proc_ro:1;
 		int no_new_privs:1;
@@ -151,6 +152,7 @@ struct minijail {
 	pid_t initpid;
 	int mountns_fd;
 	int netns_fd;
+	int userns_fd;
 	char *chrootdir;
 	char *pid_file_path;
 	char *uidmap;
@@ -474,6 +476,16 @@ void API minijail_remount_proc_readonly(struct minijail *j)
 void API minijail_namespace_user(struct minijail *j)
 {
 	j->flags.userns = 1;
+}
+
+void API minijail_namespace_enter_user(struct minijail *j, const char *ns_path)
+{
+	int ns_fd = open(ns_path, O_RDONLY | O_CLOEXEC);
+	if (ns_fd < 0) {
+		pdie("failed to open namespace '%s'", ns_path);
+	}
+	j->userns_fd = ns_fd;
+	j->flags.enter_user = 1;
 }
 
 int API minijail_uidmap(struct minijail *j, const char *uidmap)
@@ -1884,6 +1896,9 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			return -EFAULT;
 	}
 
+	if (j->flags.enter_user && setns(j->userns_fd, CLONE_NEWUSER))
+		pdie("setns(CLONE_NEWUSER)");
+
 	/*
 	 * Use sys_clone() if and only if we're creating a pid namespace.
 	 *
@@ -1927,7 +1942,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	 */
 	if (pid_namespace) {
 		int clone_flags = CLONE_NEWPID | SIGCHLD;
-		if (j->flags.userns)
+		if (j->flags.userns && !j->flags.enter_user)
 			clone_flags |= CLONE_NEWUSER;
 		child_pid = syscall(SYS_clone, clone_flags, NULL);
 	} else {
@@ -1961,7 +1976,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		if (j->flags.cgroups)
 			add_to_cgroups(j);
 
-		if (j->flags.userns)
+		if (j->flags.userns && !j->flags.enter_user)
 			write_ugid_mappings(j);
 
 		if (sync_child)
@@ -2007,6 +2022,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 		return 0;
 	}
+
 	free(oldenv_copy);
 
 	if (j->flags.reset_signal_mask) {
@@ -2020,7 +2036,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	if (sync_child)
 		wait_for_parent_setup(child_sync_pipe_fds);
 
-	if (j->flags.userns)
+	if (j->flags.userns && !j->flags.enter_user)
 		enter_user_namespace(j);
 
 	/*
