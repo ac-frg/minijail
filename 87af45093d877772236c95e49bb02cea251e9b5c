@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a5b3b40_fa88081f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1900,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-07-20T00:32:20Z",
+      "side": 1,
+      "message": "Doing this before the fork will change the userns of the calling process, which is most likely an unexpected side-effect.  Can it move to after the fork near line 2025?",
+      "revId": "87af45093d877772236c95e49bb02cea251e9b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
