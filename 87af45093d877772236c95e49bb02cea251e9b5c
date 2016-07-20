@@ -16,6 +16,24 @@
       "revId": "87af45093d877772236c95e49bb02cea251e9b5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a5b3b40_f5bdbbac",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1900,
+      "author": {
+        "id": 1113703
+      },
+      "writtenOn": "2016-07-20T00:39:26Z",
+      "side": 1,
+      "message": "If we do it after the fork then clone fails with EPERM, presumably because we need to have CAP_SYS_ADMIN to do CLONE_NEWPID. I think this was previously done by having the CLONE_NEWUSER flag added to the clone flags, but then we can\u0027t enter the existing user namespace from the new user namespace because the new user namespace won\u0027t have CAP_SYS_ADMIN in the existing user namespace.",
+      "parentUuid": "0a5b3b40_fa88081f",
+      "revId": "87af45093d877772236c95e49bb02cea251e9b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
