@@ -7,6 +7,7 @@
 #define _DEFAULT_SOURCE
 #define _GNU_SOURCE
 
+#include <arpa/inet.h>
 #include <asm/unistd.h>
 #include <ctype.h>
 #include <errno.h>
@@ -15,6 +16,9 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <linux/capability.h>
+#include <linux/sockios.h>
+#include <net/if.h>
+#include <netinet/in.h>
 #include <pwd.h>
 #include <sched.h>
 #include <signal.h>
@@ -1452,6 +1456,34 @@ void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
+int config_loopback_dev()
+{
+	struct ifreq ifr;
+	struct sockaddr_in *addr;
+	int sockfd;
+
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+	strncpy(ifr.ifr_name, "lo", IFNAMSIZ);
+
+	addr = (struct sockaddr_in *)&ifr.ifr_addr;
+	addr->sin_family = AF_INET;
+	inet_pton(AF_INET, "127.0.0.1", &addr->sin_addr);
+
+	ioctl(sockfd, SIOCSIFADDR, &ifr);
+
+	ioctl(sockfd, SIOCGIFFLAGS, &ifr);
+	ifr.ifr_flags |= IFF_UP | IFF_RUNNING;
+	ioctl(sockfd, SIOCSIFFLAGS, &ifr);
+
+	addr->sin_family = AF_INET;
+	inet_pton(AF_INET, "0.0.0.0", &addr->sin_addr);
+	ioctl(sockfd, SIOCSIFNETMASK, &ifr);
+	close(sockfd);
+
+	return 0;
+}
+
 void API minijail_enter(const struct minijail *j)
 {
 	/*
@@ -2074,9 +2106,14 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		 * a child to actually run the program. If |do_init == 0|, we
 		 * let the program keep pid 1 and be init.
 		 *
+		 * If the program isn't init and it is running in a new network
+		 * namespace, configure the loopback device.
+		 *
 		 * If we're multithreaded, we'll probably deadlock here. See
 		 * WARNING above.
 		 */
+		if (j->flags.net)
+			config_loopback_dev();
 		child_pid = fork();
 		if (child_pid < 0)
 			_exit(child_pid);
