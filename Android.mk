@@ -47,7 +47,8 @@ generated_sources_dir := $(local-generated-sources-dir)
 my_gen := $(generated_sources_dir)/$(TARGET_ARCH)/libsyscalls.c
 # We need the quotes so the shell script treats the following as one argument.
 my_cc := "$(lastword $(CLANG)) \
-    $(addprefix -isystem ,$(TARGET_C_INCLUDES)) \
+    $(addprefix -I ,$(TARGET_C_INCLUDES)) \
+    $(addprefix -isystem ,$(TARGET_C_SYSTEM_INCLUDES)) \
     $(CLANG_TARGET_GLOBAL_CFLAGS)"
 $(my_gen): PRIVATE_CC := $(my_cc)
 $(my_gen): PRIVATE_CUSTOM_TOOL = $< $(PRIVATE_CC) $@
