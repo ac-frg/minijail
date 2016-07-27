@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f2d7d96_ee917f45",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-27T15:04:02Z",
+      "side": 1,
+      "message": "Given that this only gets called once, I\u0027d use the full word:\n\n\"config_loopback_device\"",
+      "range": {
+        "startLine": 1459,
+        "startChar": 20,
+        "endLine": 1459,
+        "endChar": 23
+      },
+      "revId": "644bde2820084f27e50fb1a53eb6c6968671d21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f2d7d96_ce8ec321",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-27T15:04:02Z",
+      "side": 1,
+      "message": "can this fail?",
+      "range": {
+        "startLine": 1465,
+        "startChar": 1,
+        "endLine": 1465,
+        "endChar": 7
+      },
+      "revId": "644bde2820084f27e50fb1a53eb6c6968671d21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f2d7d96_ae9b7761",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1477,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-27T15:04:02Z",
+      "side": 1,
+      "message": "can any of these ioctls fail?",
+      "range": {
+        "startLine": 1477,
+        "startChar": 1,
+        "endLine": 1477,
+        "endChar": 6
+      },
+      "revId": "644bde2820084f27e50fb1a53eb6c6968671d21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f2d7d96_6ea7cfa8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-07-27T15:04:02Z",
+      "side": 1,
+      "message": "This comment splits up the pidns explanation above from the comment about deadlocking below. I\u0027d extract this and put it as a separate explanation right before the if statement:\n\n  * ...\n  * WARNING above.\n  */\n  \u003cempty line\u003e\n  /*\n   * If the program isn\u0027t init and is running...\n   */\n  if (j-\u003eflags.net)\n    ...\n  \u003cempty line\u003e\n  child_pid \u003d fork()",
+      "range": {
+        "startLine": 2109,
+        "startChar": 0,
+        "endLine": 2110,
+        "endChar": 46
+      },
+      "revId": "644bde2820084f27e50fb1a53eb6c6968671d21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
