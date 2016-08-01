@@ -16,6 +16,24 @@
       "revId": "31b96b0f8bd36c2f71bab617446178d238332b83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af44013b_3bd28359",
+        "filename": ".gitignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-01T20:37:52Z",
+      "side": 1,
+      "message": "It\u0027s not an impossible pathname, AFAICT:\n\n\"\nA leading slash matches the beginning of the pathname. For example, \"/*.c\" matches \"cat-file.c\" but not \"mozilla-sha1/sha1.c\".\n\"\n\nFrom https://git-scm.com/docs/gitignore.",
+      "parentUuid": "af44013b_9be0d728",
+      "revId": "31b96b0f8bd36c2f71bab617446178d238332b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
