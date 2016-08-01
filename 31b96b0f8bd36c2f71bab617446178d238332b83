@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af44013b_9be0d728",
+        "filename": ".gitignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2016-08-01T20:36:25Z",
+      "side": 1,
+      "message": "Maybe just comment it out with the rationale instead of creating an impossible pathname?",
+      "revId": "31b96b0f8bd36c2f71bab617446178d238332b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
