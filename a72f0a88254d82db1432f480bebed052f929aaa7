@@ -1,0 +1,8 @@
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Dan Willemsen <dwillemsen@google.com>
+Submitted-by: Dan Willemsen <dwillemsen@google.com>
+Submitted-at: Tue, 02 Aug 2016 20:30:05 +0000
+Reviewed-on: https://android-review.googlesource.com/252620
+Project: platform/external/minijail
+Branch: refs/heads/master
