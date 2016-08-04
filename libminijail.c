@@ -960,25 +960,25 @@ static void write_ugid_mappings(const struct minijail *j)
 	if (j->uidmap) {
 		ret = snprintf(fname, sz, "/proc/%d/uid_map", j->initpid);
 		if (ret < 0 || (size_t)ret >= sz)
-			die("failed to write file name of uid_map");
+			die("failed to generate uid_map filename");
 		fd = open(fname, O_WRONLY | O_CLOEXEC);
 		if (fd < 0)
 			pdie("failed to open '%s'", fname);
 		len = strlen(j->uidmap);
 		if (write(fd, j->uidmap, len) < len)
-			die("failed to set uid_map");
+			die("failed to write uid_map file '%s'", fname);
 		close(fd);
 	}
 	if (j->gidmap) {
 		ret = snprintf(fname, sz, "/proc/%d/gid_map", j->initpid);
 		if (ret < 0 || (size_t)ret >= sz)
-			die("failed to write file name of gid_map");
+			die("failed to generate gid_map filename");
 		fd = open(fname, O_WRONLY | O_CLOEXEC);
 		if (fd < 0)
 			pdie("failed to open '%s'", fname);
 		len = strlen(j->gidmap);
 		if (write(fd, j->gidmap, len) < len)
-			die("failed to set gid_map");
+			die("failed to write gid_map file '%s'", fname);
 		close(fd);
 	}
 }

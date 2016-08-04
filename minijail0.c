@@ -15,6 +15,8 @@
 #include "elfparse.h"
 #include "util.h"
 
+#define IDMAP_LEN 32U
+
 static void set_user(struct minijail *j, const char *arg)
 {
 	char *end = NULL;
@@ -84,10 +86,33 @@ static void add_mount(struct minijail *j, char *arg)
 		exit(1);
 	}
 	if (minijail_mount_with_data(j, src, dest, type,
-			   flags ? strtoul(flags, NULL, 16) : 0, data)) {
+				     flags ? strtoul(flags, NULL, 16) : 0,
+				     data)) {
 		fprintf(stderr, "minijail_mount failed.\n");
 		exit(1);
 	}
+}
+
+static char *build_idmap(id_t id)
+{
+	char *idmap = malloc(IDMAP_LEN);
+	if (snprintf(idmap, IDMAP_LEN, "0 %d 1", id) >= IDMAP_LEN) {
+		free(idmap);
+		fprintf(stderr, "Could not build ID map.\n");
+		exit(1);
+	}
+	return idmap;
+}
+
+static void add_uidmap_self(struct minijail *j)
+{
+	char *uidmap = build_idmap(getuid());
+	if (minijail_uidmap(j, uidmap)) {
+		free(uidmap);
+		fprintf(stderr, "Could not set UID map.\n");
+		exit(1);
+	}
+	free(uidmap);
 }
 
 static void usage(const char *progn)
@@ -99,7 +124,7 @@ static void usage(const char *progn)
 	       " [-c <caps>] [-C <dir>] [-g <group>] [-u <user>]\n"
 	       "  [-S <file>] [-k <src>,<dest>,<type>[,<flags>][,<data>]] [-T <type>]\n"
 	       "  [-m \"<uid> <loweruid> <count>[,<uid> <loweruid> <count>]\"]\n"
-	       "  [-M \"<gid> <lowergid> <count>[,<uid> <loweruid> <count>]\"]\n"
+	       "  [-M \"<gid> <lowergid> <count>[,<gid> <lowergid> <count>]\"]\n"
 	       "  <program> [args...]\n"
 	       "  -a <table>: Use alternate syscall table <table>.\n"
 	       "  -b:         Bind <src> to <dest> in chroot.\n"
@@ -110,7 +135,7 @@ static void usage(const char *progn)
 	       "  -c <caps>:  Restrict caps to <caps>.\n"
 	       "  -C <dir>:   chroot(2) to <dir>.\n"
 	       "              Not compatible with -P.\n"
-	       "  -e[file]:   Enter new network namespace, or existing one if 'file' is provided.\n"
+	       "  -e[file]:   Enter new network namespace, or existing one if |file| is provided.\n"
 	       "  -f <file>:  Write the pid of the jailed process to <file>.\n"
 	       "  -G:         Inherit supplementary groups from uid.\n"
 	       "  -g <group>: Change gid to <group>.\n"
@@ -148,7 +173,8 @@ static void usage(const char *progn)
 	       "  -T <type>:  Don't access <program> before execve(2), assume <type> ELF binary.\n"
 	       "              <type> must be 'static' or 'dynamic'.\n"
 	       "  -u <user>:  Change uid to <user>.\n"
-	       "  -U:         Enter new user namespace (implies -p).\n"
+	       "  -U[self]:   Enter new user namespace (implies -p). \n"
+	       "              If the 'self' option is provided, map the current UID to root inside the namespace.\n"
 	       "  -v:         Enter new mount namespace.\n"
 	       "  -V <file>:  Enter specified mount namespace.\n");
 }
@@ -175,9 +201,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	const char *filter_path;
 	if (argc > 1 && argv[1][0] != '-')
 		return 1;
-	while ((opt = getopt(argc, argv,
-			     "u:g:sS:c:C:P:b:V:f:m:M:k:a:e::T:vrGhHinNplLtIUK"))
-	       != -1) {
+
+	const char *optstring =
+	    "u:g:sS:c:C:P:b:V:f:m:M:k:a:e::T:U::vrGhHinNplLtIK";
+	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
 			set_user(j, optarg);
@@ -254,7 +281,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'f':
 			if (0 != minijail_write_pid_file(j, optarg)) {
 				fprintf(stderr,
-					"Could not prepare pid file path.\n");
+					"Could not prepare PID file path.\n");
 				exit(1);
 			}
 			break;
@@ -299,12 +326,19 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'U':
 			minijail_namespace_user(j);
 			minijail_namespace_pids(j);
+
+			if (strcmp("self", optarg) == 0) {
+				add_uidmap_self(j);
+			} else {
+				fprintf(stderr, "-U only supports 'self' as an option.\n");
+				exit(1);
+			}
 			break;
 		case 'm':
 			minijail_namespace_user(j);
 			minijail_namespace_pids(j);
 			if (0 != minijail_uidmap(j, optarg)) {
-				fprintf(stderr, "Could not set uidmap.\n");
+				fprintf(stderr, "Could not set UID map.\n");
 				exit(1);
 			}
 			break;
@@ -312,7 +346,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			minijail_namespace_user(j);
 			minijail_namespace_pids(j);
 			if (0 != minijail_gidmap(j, optarg)) {
-				fprintf(stderr, "Could not set gidmap.\n");
+				fprintf(stderr, "Could not set GID map.\n");
 				exit(1);
 			}
 			break;
