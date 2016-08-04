@@ -950,36 +950,39 @@ out:
 	return ret;
 }
 
+static void write_id_mapping(id_t pid, const char *type, const char *content) {
+	int fd, ret;
+	size_t sz, len;
+	ssize_t written;
+	char filename[32];
+
+	sz = sizeof(filename);
+	ret = snprintf(filename, sz, "/proc/%d/%s_map", pid, type);
+	if (ret < 0 || (size_t)ret >= sz)
+		die("failed to generate %s_map filename", type);
+
+	fd = open(filename, O_WRONLY | O_CLOEXEC);
+	if (fd < 0)
+		pdie("failed to open '%s'", filename);
+
+	len = strlen(content);
+	written = write(fd, content, len);
+	if (written < 0)
+		pdie("failed to write '%s'", filename);
+
+	if ((size_t)written < len)
+		die("failed to write %zu bytes to '%s'", len, filename);
+
+	close(fd);
+}
+
 static void write_ugid_mappings(const struct minijail *j)
 {
-	int fd, ret, len;
-	size_t sz;
-	char fname[32];
-
-	sz = sizeof(fname);
 	if (j->uidmap) {
-		ret = snprintf(fname, sz, "/proc/%d/uid_map", j->initpid);
-		if (ret < 0 || (size_t)ret >= sz)
-			die("failed to write file name of uid_map");
-		fd = open(fname, O_WRONLY | O_CLOEXEC);
-		if (fd < 0)
-			pdie("failed to open '%s'", fname);
-		len = strlen(j->uidmap);
-		if (write(fd, j->uidmap, len) < len)
-			die("failed to set uid_map");
-		close(fd);
+		write_id_mapping(j->initpid, "uid", j->uidmap);
 	}
 	if (j->gidmap) {
-		ret = snprintf(fname, sz, "/proc/%d/gid_map", j->initpid);
-		if (ret < 0 || (size_t)ret >= sz)
-			die("failed to write file name of gid_map");
-		fd = open(fname, O_WRONLY | O_CLOEXEC);
-		if (fd < 0)
-			pdie("failed to open '%s'", fname);
-		len = strlen(j->gidmap);
-		if (write(fd, j->gidmap, len) < len)
-			die("failed to set gid_map");
-		close(fd);
+		write_id_mapping(j->initpid, "gid", j->gidmap);
 	}
 }
 
