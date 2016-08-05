@@ -34,6 +34,24 @@
       "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b977f3bf_c95ee1e7",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-08-05T21:56:04Z",
+      "side": 1,
+      "message": "Interesting.\n\nWhy does this work?\nchronos@localhost ~ $ /sbin/minijail0 -M \u00270 1000 1\u0027 /bin/ls\n...\n\nThe man page leads me to believe it shouldn\u0027t.",
+      "parentUuid": "b9f8d38a_ec838ba9",
+      "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
