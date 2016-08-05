@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b977f3bf_c98021a0",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2016-08-05T21:34:42Z",
+      "side": 1,
+      "message": "should this be added for gid too?",
+      "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
