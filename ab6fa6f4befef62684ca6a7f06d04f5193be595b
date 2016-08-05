@@ -16,6 +16,24 @@
       "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f8d38a_ec838ba9",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-05T21:41:06Z",
+      "side": 1,
+      "message": "I thought about it, but there\u0027s currently a bug in that -M doesn\u0027t work when you execute Minijail as non-root (and the security_Minijail0 autotest didn\u0027t catch it because it runs its tests as root).\n\nWe need to set /proc/\u003cusernspid\u003e/setgroups to \"deny\" (as explained in http://man7.org/linux/man-pages/man7/user_namespaces.7.html) before we can write to gid_map as non-root, but we cannot do that unconditionally, because if we do no-one inside the user namespace can call setgroups, and plenty of Android processes do (including obviously init). We should only set \"deny\" for setgroups when Minijail is being executed by a non-root user, or by a user without CAP_SETGID in the parent user namespace (the link above explains this better).\n\nI will likely add another option to select whether the caller wants to deny setgroups inside the user namespace, but for now -m works and it allows me to test user namespaces easily  on a regular linux distro.",
+      "parentUuid": "b977f3bf_c98021a0",
+      "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
