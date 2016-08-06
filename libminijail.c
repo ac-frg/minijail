@@ -944,7 +944,7 @@ out:
 	return ret;
 }
 
-static void write_proc_file(pid_t pid, const char *content,
+static int write_proc_file(pid_t pid, const char *content,
 			    const char *basename)
 {
 	int fd, ret;
@@ -954,32 +954,43 @@ static void write_proc_file(pid_t pid, const char *content,
 
 	sz = sizeof(filename);
 	ret = snprintf(filename, sz, "/proc/%d/%s", pid, basename);
-	if (ret < 0 || (size_t)ret >= sz)
-		die("failed to generate %s filename", basename);
+	if (ret < 0 || (size_t)ret >= sz) {
+		warn("failed to generate %s filename", basename);
+		return -1;
+	}
 
 	fd = open(filename, O_WRONLY | O_CLOEXEC);
-	if (fd < 0)
-		pdie("failed to open '%s'", filename);
+	if (fd < 0) {
+		pwarn("failed to open '%s'", filename);
+		return -errno;
+	}
 
 	len = strlen(content);
 	written = write(fd, content, len);
-	if (written < 0)
-		pdie("failed to write '%s'", filename);
+	if (written < 0) {
+		pwarn("failed to write '%s'", filename);
+		return -1;
+	}
 
-	if ((size_t)written < len)
-		die("failed to write %zu bytes to '%s'", len, filename);
-
+	if ((size_t)written < len) {
+		warn("failed to write %zu bytes to '%s'", len, filename);
+		return -1;
+	}
 	close(fd);
+	return 0;
 }
 
-static void write_ugid_maps(const struct minijail *j)
+static void kill_child_and_die(const struct minijail *j, const char *msg) {
+	kill(j->initpid, SIGKILL);
+	die("%s", msg);
+}
+
+static void write_ugid_maps_or_die(const struct minijail *j)
 {
-	if (j->uidmap) {
-		write_proc_file(j->initpid, j->uidmap, "uid_map");
-	}
-	if (j->gidmap) {
-		write_proc_file(j->initpid, j->gidmap, "gid_map");
-	}
+	if (j->uidmap && write_proc_file(j->initpid, j->uidmap, "uid_map") != 0)
+		kill_child_and_die(j, "failed to write uid_map");
+	if (j->gidmap && write_proc_file(j->initpid, j->gidmap, "gid_map") != 0)
+		kill_child_and_die(j, "failed to write gid_map");
 }
 
 static void parent_setup_complete(int *pipe_fds)
@@ -1007,9 +1018,9 @@ static void wait_for_parent_setup(int *pipe_fds)
 static void enter_user_namespace(const struct minijail *j)
 {
 	if (j->uidmap && setresuid(0, 0, 0))
-		pdie("setresuid");
+		pdie("user_namespaces: setresuid(0, 0, 0) failed");
 	if (j->gidmap && setresgid(0, 0, 0))
-		pdie("setresgid");
+		pdie("user_namespaces: setresgid(0, 0, 0) failed");
 }
 
 /*
@@ -1208,29 +1219,41 @@ int remount_proc_readonly(const struct minijail *j)
 	return 0;
 }
 
-static void write_pid_to_path(pid_t pid, const char *path)
+static int write_pid_to_path(pid_t pid, const char *path)
 {
 	FILE *fp = fopen(path, "w");
 
-	if (!fp)
-		pdie("failed to open '%s'", path);
-	if (fprintf(fp, "%d\n", (int)pid) < 0)
-		pdie("fprintf(%s)", path);
-	if (fclose(fp))
-		pdie("fclose(%s)", path);
+	if (!fp) {
+		pwarn("failed to open '%s'", path);
+		return -errno;
+	}
+	if (fprintf(fp, "%d\n", (int)pid) < 0) {
+		/* fprintf(3) does not set errno on failure. */
+		warn("fprintf(%s) failed", path);
+		return -1;
+	}
+	if (fclose(fp)) {
+		pwarn("fclose(%s) failed", path);
+		return -errno;
+	}
+
+	return 0;
 }
 
-static void write_pid_file(const struct minijail *j)
+static void write_pid_file_or_die(const struct minijail *j)
 {
-	write_pid_to_path(j->initpid, j->pid_file_path);
+	if (!write_pid_to_path(j->initpid, j->pid_file_path))
+		kill_child_and_die(j, "failed to write pid file");
 }
 
-static void add_to_cgroups(const struct minijail *j)
+static void add_to_cgroups_or_die(const struct minijail *j)
 {
 	size_t i;
 
-	for (i = 0; i < j->cgroup_count; ++i)
-		write_pid_to_path(j->initpid, j->cgroups[i]);
+	for (i = 0; i < j->cgroup_count; ++i) {
+		if (!write_pid_to_path(j->initpid, j->cgroups[i]))
+			kill_child_and_die(j, "failed to add to cgroups");
+	}
 }
 
 void drop_ugid(const struct minijail *j)
@@ -1917,13 +1940,13 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		j->initpid = child_pid;
 
 		if (j->flags.pid_file)
-			write_pid_file(j);
+			write_pid_file_or_die(j);
 
 		if (j->flags.cgroups)
-			add_to_cgroups(j);
+			add_to_cgroups_or_die(j);
 
 		if (j->flags.userns)
-			write_ugid_maps(j);
+			write_ugid_maps_or_die(j);
 
 		if (sync_child)
 			parent_setup_complete(child_sync_pipe_fds);
