@@ -52,6 +52,24 @@
       "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9f8d38a_ec426b46",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-06T01:50:07Z",
+      "side": 1,
+      "message": "I will give it a shot on Chrome OS next week. That invocation (with 5000 as the gid which is the \"eng\" gid we get on our Goobuntu workstations) would not work for me. A different kernel might be a reason why.",
+      "parentUuid": "b977f3bf_c95ee1e7",
+      "revId": "ab6fa6f4befef62684ca6a7f06d04f5193be595b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
