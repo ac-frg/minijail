@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "99794f41_ee1c7fce",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-10T21:23:19Z",
+      "side": 1,
+      "message": "Probably.",
+      "parentUuid": "59827783_0138eaf1",
+      "range": {
+        "startLine": 1541,
+        "startChar": 0,
+        "endLine": 1541,
+        "endChar": 3
+      },
+      "revId": "538c0496eb44091051fa61a88af10de4e8cd265d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79665bd2_3ab601d7",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "99794f41_2ee287cb",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1547,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-10T21:23:19Z",
+      "side": 1,
+      "message": "I guess this guy shares a PID namespace with possibly exploited code. Will file a new bug.",
+      "parentUuid": "79665bd2_3ab601d7",
+      "range": {
+        "startLine": 1547,
+        "startChar": 0,
+        "endLine": 1547,
+        "endChar": 54
+      },
+      "revId": "538c0496eb44091051fa61a88af10de4e8cd265d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b927f349_258cd195",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-10T21:19:42Z",
       "side": 1,
       "message": "Bikeshed time! ;) How about \"minijail-init\" to be as discoverable as possible. e.g. avoid \"jail? which jail?\" kinds of head-scratching from admins.",
+      "range": {
+        "startLine": 2019,
+        "startChar": 23,
+        "endLine": 2019,
+        "endChar": 27
+      },
+      "revId": "538c0496eb44091051fa61a88af10de4e8cd265d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99794f41_ce1743aa",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2019,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-10T21:23:19Z",
+      "side": 1,
+      "message": "Fine with me. I had \"minijail-init\" first and then thought it was too long.",
+      "parentUuid": "b927f349_258cd195",
       "range": {
         "startLine": 2019,
         "startChar": 23,
