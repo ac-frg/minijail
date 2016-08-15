@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e19c50e_2bd111ce",
+        "filename": "syscall_filter.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-15T13:54:30Z",
+      "side": 1,
+      "message": "Fix formatting here.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "a7f818c36df5c2fd1812644a4525068d1534411f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e19c50e_6bee2985",
+        "filename": "syscall_filter_unittest.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-15T13:54:30Z",
+      "side": 1,
+      "message": "All these test cases should be moved above together with the other tests in the arg_filter fixture, right after line 542.",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 6
+      },
+      "revId": "a7f818c36df5c2fd1812644a4525068d1534411f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e19c50e_abd3e1d1",
+        "filename": "syscall_filter_unittest.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-15T13:54:30Z",
+      "side": 1,
+      "message": "End comment with a period.",
+      "range": {
+        "startLine": 705,
+        "startChar": 46,
+        "endLine": 705,
+        "endChar": 51
+      },
+      "revId": "a7f818c36df5c2fd1812644a4525068d1534411f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
