@@ -533,7 +533,7 @@ TEST_F(arg_filter, invalid) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-			compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
+	    compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_EQ(block, NULL);
 
 	fragment = "arg0 == 0 && arg1 == 1; return errno";
@@ -683,10 +683,40 @@ FIXTURE(filter) {};
 FIXTURE_SETUP(filter) {}
 FIXTURE_TEARDOWN(filter) {}
 
+int write_policy_to_pipe(char *const *policy, size_t len) {
+	int pipefd[2];
+
+	if (pipe(pipefd) == -1) {
+		return -errno;
+	}
+
+	size_t i;
+	ssize_t ret;
+	for (i = 0; i < len; i++) {
+		ret = write(pipefd[1], policy[i], strlen(policy[i]));
+		if (ret == -1) {
+			close(pipefd[0]);
+			close(pipefd[1]);
+			return -1;
+		}
+	}
+
+	close(pipefd[1]);
+	return pipefd[0];
+}
+
 TEST_F(filter, seccomp_mode1) {
 	struct sock_fprog actual;
-	FILE *policy = fopen("test/seccomp.policy", "r");
-	int res = compile_filter(policy, &actual, NO_LOGGING);
+	char *policy[] = {
+		"read: 1\n",
+		"write: 1\n",
+		"rt_sigreturn: 1\n",
+		"exit: 1\n",
+	};
+
+	int policy_fd = write_policy_to_pipe(policy, 4U);
+	FILE *policy_file = fdopen(policy_fd, "r");
+	int res = compile_filter(policy_file, &actual, NO_LOGGING);
 
 	/*
 	 * Checks return value, filter length, and that the filter
@@ -710,7 +740,7 @@ TEST_F(filter, seccomp_mode1) {
 			SECCOMP_RET_KILL);
 
 	free(actual.filter);
-	fclose(policy);
+	fclose(policy_file);
 }
 
 TEST_F(filter, seccomp_read_write) {
