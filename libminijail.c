@@ -643,34 +643,70 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 	return minijail_mount(j, src, dest, "", flags);
 }
 
-void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
+static int seccomp_should_parse_filters(struct minijail *j)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL)) {
+		/*
+		 * |errno| will be set to EINVAL when seccomp has not been
+		 * compiled into the kernel. On certain platforms and kernels
+		 * this is not a fatal failure.
+		 */
 		if ((errno == EINVAL) && seccomp_can_softfail()) {
-			warn("not loading seccomp filter,"
+			warn("not loading seccomp filters,"
 			     " seccomp not supported");
 			j->flags.seccomp_filter = 0;
 			j->flags.log_seccomp_filter = 0;
 			j->filter_len = 0;
 			j->filter_prog = NULL;
 			j->flags.no_new_privs = 0;
+			return 0;
 		}
+		/*
+		 * If |errno| != EINVAL or seccomp_can_softfail() is false,
+		 * we proceed, since we'll fail when applying the filters.
+		 */
 	}
-	FILE *file = fopen(path, "r");
-	if (!file) {
-		pdie("failed to open seccomp filter file '%s'", path);
-	}
+	return 1;
+}
 
+static int parse_seccomp_filters_from_fd(struct minijail *j, int fd)
+{
 	struct sock_fprog *fprog = malloc(sizeof(struct sock_fprog));
-	if (compile_filter(file, fprog, j->flags.log_seccomp_filter)) {
-		die("failed to compile seccomp filter BPF program in '%s'",
-		    path);
+	if (compile_filter(fd, fprog, j->flags.log_seccomp_filter)) {
+		warn("cannot parse seccomp filters from fd %d", fd);
+		free(fprog);
+		return -1;
 	}
 
 	j->filter_len = fprog->len;
 	j->filter_prog = fprog;
+	return 0;
+}
 
-	fclose(file);
+void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
+{
+	if (!seccomp_should_parse_filters(j))
+		return;
+
+	int policy_fd = open(path, O_RDONLY | O_CLOEXEC);
+	if (policy_fd == -1) {
+		pdie("failed to open seccomp filter file '%s'", path);
+	}
+
+	if (parse_seccomp_filters_from_fd(j, policy_fd) != 0) {
+		die("failed to compile seccomp filter BPF program in '%s'",
+		    path);
+	}
+}
+
+void API minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd)
+{
+	if (!seccomp_should_parse_filters(j))
+		return;
+
+	if (parse_seccomp_filters_from_fd(j, fd) != 0) {
+		die("failed to compile seccomp filter BPF program");
+	}
 }
 
 int API minijail_use_alt_syscall(struct minijail *j, const char *table)
