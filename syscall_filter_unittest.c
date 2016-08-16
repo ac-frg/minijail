@@ -533,7 +533,7 @@ TEST_F(arg_filter, invalid) {
 	unsigned int id = 0;
 
 	struct filter_block *block =
-			compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
+		compile_section(nr, fragment, id, &self->labels, NO_LOGGING);
 	ASSERT_EQ(block, NULL);
 
 	fragment = "arg0 == 0 && arg1 == 1; return errno";
@@ -675,18 +675,46 @@ TEST_F(arg_filter, no_log_bad_ret_error) {
 
 FIXTURE(filter) {};
 
-/*
- * When compiling for Android, disable tests that require data files.
- * TODO(b/259497279): Re-enable this.
- */
-#if !defined(__ANDROID__)
 FIXTURE_SETUP(filter) {}
 FIXTURE_TEARDOWN(filter) {}
 
+int write_policy_to_pipe(const char *const *policy, size_t len){
+	int pipefd[2];
+	if (pipe(pipefd) == -1) {
+		pwarn("pipe(pipefd) failed");
+		return -1;
+	}
+
+	size_t i;
+	ssize_t ret;
+	for (i = 0; i < len; i++) {
+		ret = write(pipefd[1], policy[i], strlen(policy[i]));
+		if (ret == -1) {
+			close(pipefd[0]);
+			close(pipefd[1]);
+			return -1;
+		}
+	}
+
+	close(pipefd[1]);
+	return pipefd[0];
+}
+
 TEST_F(filter, seccomp_mode1) {
 	struct sock_fprog actual;
-	FILE *policy = fopen("test/seccomp.policy", "r");
-	int res = compile_filter(policy, &actual, NO_LOGGING);
+	const char *policy[] = {
+		"read: 1\n",
+		"write: 1\n",
+		"rt_sigreturn: 1\n",
+		"exit: 1\n",
+	};
+
+	int policy_fd =
+	    write_policy_to_pipe(policy, sizeof(policy) / sizeof(policy[0]));
+	ASSERT_GE(policy_fd, 0);
+
+	int res = compile_filter(policy_fd, &actual, NO_LOGGING);
+	close(policy_fd);
 
 	/*
 	 * Checks return value, filter length, and that the filter
@@ -710,13 +738,23 @@ TEST_F(filter, seccomp_mode1) {
 			SECCOMP_RET_KILL);
 
 	free(actual.filter);
-	fclose(policy);
 }
 
 TEST_F(filter, seccomp_read_write) {
 	struct sock_fprog actual;
-	FILE *policy = fopen("test/stdin_stdout.policy", "r");
-	int res = compile_filter(policy, &actual, NO_LOGGING);
+	const char *policy[] = {
+		"read: arg0 == 0\n",
+		"write: arg0 == 1 || arg0 == 2\n",
+		"rt_sigreturn: 1\n",
+		"exit: 1\n",
+	};
+
+	int policy_fd =
+	    write_policy_to_pipe(policy, sizeof(policy) / sizeof(policy[0]));
+	ASSERT_GE(policy_fd, 0);
+
+	int res = compile_filter(policy_fd, &actual, NO_LOGGING);
+	close(policy_fd);
 
 	/*
 	 * Checks return value, filter length, and that the filter
@@ -743,36 +781,57 @@ TEST_F(filter, seccomp_read_write) {
 			SECCOMP_RET_KILL);
 
 	free(actual.filter);
-	fclose(policy);
 }
 
-TEST_F(filter, invalid) {
+TEST_F(filter, invalid_name) {
 	struct sock_fprog actual;
+	const char *policy[] = {
+		"notasyscall: 1\n",
+	};
 
-	FILE *policy = fopen("test/invalid_syscall_name.policy", "r");
-	int res = compile_filter(policy, &actual, NO_LOGGING);
-	ASSERT_NE(res, 0);
-	fclose(policy);
+	int policy_fd = write_policy_to_pipe(policy, 1U);
+	ASSERT_GE(policy_fd, 0);
 
-	policy = fopen("test/invalid_arg_filter.policy", "r");
-	res = compile_filter(policy, &actual, NO_LOGGING);
+	int res = compile_filter(policy_fd, &actual, NO_LOGGING);
+	close(policy_fd);
 	ASSERT_NE(res, 0);
-	fclose(policy);
+}
+
+TEST_F(filter, invalid_arg) {
+	struct sock_fprog actual;
+	const char *policy[] = {
+		"open: argnn ==\n",
+	};
+
+	int policy_fd = write_policy_to_pipe(policy, 1U);
+	ASSERT_GE(policy_fd, 0);
+
+	int res = compile_filter(policy_fd, &actual, NO_LOGGING);
+	close(policy_fd);
+	ASSERT_NE(res, 0);
 }
 
 TEST_F(filter, nonexistent) {
 	struct sock_fprog actual;
-
-	FILE *policy = fopen("test/nonexistent-file.policy", "r");
-	int res = compile_filter(policy, &actual, NO_LOGGING);
+	int res = compile_filter(-1, &actual, NO_LOGGING);
 	ASSERT_NE(res, 0);
 }
 
 TEST_F(filter, log) {
 	struct sock_fprog actual;
+	const char *policy[] = {
+		"read: 1\n",
+		"write: 1\n",
+		"rt_sigreturn: 1\n",
+		"exit: 1\n",
+	};
 
-	FILE *policy = fopen("test/seccomp.policy", "r");
-	int res = compile_filter(policy, &actual, USE_LOGGING);
+	int policy_fd =
+	    write_policy_to_pipe(policy, sizeof(policy) / sizeof(policy[0]));
+	ASSERT_GE(policy_fd, 0);
+
+	int res = compile_filter(policy_fd, &actual, USE_LOGGING);
+	close(policy_fd);
 
 	size_t i;
 	size_t index = 0;
@@ -804,8 +863,6 @@ TEST_F(filter, log) {
 			SECCOMP_RET_TRAP);
 
 	free(actual.filter);
-	fclose(policy);
 }
-#endif	/* __ANDROID__ */
 
 TEST_HARNESS_MAIN

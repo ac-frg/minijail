@@ -394,7 +394,7 @@ struct filter_block *compile_section(int nr, const char *policy_line,
 	return head;
 }
 
-int compile_filter(FILE *policy_file, struct sock_fprog *prog, int log_failures)
+int compile_filter(int policy_fd, struct sock_fprog *prog, int log_failures)
 {
 	char line[MAX_LINE_LENGTH];
 	int line_count = 0;
@@ -402,8 +402,14 @@ int compile_filter(FILE *policy_file, struct sock_fprog *prog, int log_failures)
 	struct bpf_labels labels;
 	labels.count = 0;
 
-	if (!policy_file)
+	if (policy_fd < 0)
 		return -1;
+
+	FILE *policy_file = fdopen(policy_fd, "r");
+	if (!policy_file) {
+		pwarn("fdopen(policy_fd=%d) failed", policy_fd);
+		return -1;
+	}
 
 	struct filter_block *head = new_filter_block();
 	struct filter_block *arg_blocks = NULL;
