@@ -22,6 +22,30 @@
       "revId": "4bf1ae0511a2020f86ad54c93113b5d720d1d48d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb77a30c_e6245eb2",
+        "filename": "syscall_filter_unittest.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-17T17:49:39Z",
+      "side": 0,
+      "message": "No, but I\u0027m gonna wait until this is upreved on the CrOS side before removing them.",
+      "parentUuid": "fb77a30c_a64fc690",
+      "range": {
+        "startLine": 718,
+        "startChar": 23,
+        "endLine": 718,
+        "endChar": 47
+      },
+      "revId": "4bf1ae0511a2020f86ad54c93113b5d720d1d48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
