@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bb7c4b2e_6ff72dc1",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-18T02:17:46Z",
+      "side": 1,
+      "message": "This would be closed by compile_filter if we call fclose() there.",
+      "parentUuid": "fb77a30c_fa523111",
+      "range": {
+        "startLine": 691,
+        "startChar": 5,
+        "endLine": 691,
+        "endChar": 14
+      },
+      "revId": "f889482e45010430b7bb0d3ff797124eda71c3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb77a30c_ba48b961",
         "filename": "syscall_filter.c",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-17T21:33:18Z",
       "side": 1,
       "message": "Since this is now a local variable, we need to close it before returning from this function...",
+      "range": {
+        "startLine": 408,
+        "startChar": 7,
+        "endLine": 408,
+        "endChar": 18
+      },
+      "revId": "f889482e45010430b7bb0d3ff797124eda71c3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb7c4b2e_afcd158c",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-18T02:17:46Z",
+      "side": 1,
+      "message": "Not necessarily, right? We don\u0027t own the file descriptor, and closing the stream will close the underlying file descriptor, which we don\u0027t own. It\u0027s unlikely the caller would want to read from the fd though -- we\u0027re obviously reading until EOF.\n\nWe can close the file description here, or alternatively we can change this back to taking a FILE* and having minijail_parse_seccomp_filters_from_fd do fdopen().",
+      "parentUuid": "fb77a30c_ba48b961",
       "range": {
         "startLine": 408,
         "startChar": 7,
