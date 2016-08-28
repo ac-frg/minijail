@@ -39,8 +39,6 @@ int flatten_block_list(struct filter_block *head, struct sock_filter *filter,
 		       size_t index, size_t cap);
 void free_block_list(struct filter_block *head);
 
-int seccomp_can_softfail();
-
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif

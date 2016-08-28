@@ -86,6 +86,12 @@ _Static_assert(SECURE_ALL_BITS == 0x55, "SECURE_ALL_BITS == 0x55.");
 # define CLONE_NEWCGROUP 0x02000000
 #endif
 
+#ifdef USE_SECCOMP_SOFTFAIL
+# define SECCOMP_SOFTFAIL 1
+#else
+# define SECCOMP_SOFTFAIL 0
+#endif
+
 #define MAX_CGROUPS 10 /* 10 different controllers supported by Linux. */
 
 struct mountpoint {
@@ -652,7 +658,7 @@ static int seccomp_should_parse_filters(struct minijail *j)
 		 * versions this is not a fatal failure. In that case, and only
 		 * in that case, disable seccomp and skip loading the filters.
 		 */
-		if ((errno == EINVAL) && seccomp_can_softfail()) {
+		if ((errno == EINVAL) && SECCOMP_SOFTFAIL) {
 			warn("not loading seccomp filters,"
 			     " seccomp not supported");
 			j->flags.seccomp_filter = 0;
@@ -663,7 +669,7 @@ static int seccomp_should_parse_filters(struct minijail *j)
 			return 0;
 		}
 		/*
-		 * If |errno| != EINVAL or seccomp_can_softfail() is false,
+		 * If |errno| != EINVAL or SECCOMP_SOFTFAIL is false,
 		 * we can proceed. Worst case scenario minijail_enter() will
 		 * abort() if seccomp fails.
 		 */
@@ -1417,7 +1423,7 @@ static void set_seccomp_filter(const struct minijail *j)
 	if (j->flags.seccomp_filter) {
 		if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER,
 			  j->filter_prog)) {
-			if ((errno == EINVAL) && seccomp_can_softfail()) {
+			if ((errno == EINVAL) && SECCOMP_SOFTFAIL) {
 				warn("seccomp not supported");
 				return;
 			}
@@ -1567,7 +1573,7 @@ void API minijail_enter(const struct minijail *j)
 	 * privilege-dropping syscalls :)
 	 */
 	if (j->flags.seccomp && prctl(PR_SET_SECCOMP, 1)) {
-		if ((errno == EINVAL) && seccomp_can_softfail()) {
+		if ((errno == EINVAL) && SECCOMP_SOFTFAIL) {
 			warn("seccomp not supported");
 			return;
 		}
