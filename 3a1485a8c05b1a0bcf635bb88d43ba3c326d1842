@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f2fae6_92d85a24",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 0,
+      "message": "Keep as:\n\nint seccomp_can_softfail()\n{\n#if defined(USE_SECCOMP_SOFTFAIL)\n        return 1;\n#else\n        return 0;\n}",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "3a1485a8c05b1a0bcf635bb88d43ba3c326d1842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f2fae6_b2d35e09",
+        "filename": "syscall_filter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 0,
+      "message": "Keep.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "3a1485a8c05b1a0bcf635bb88d43ba3c326d1842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f2fae6_52b2f2df",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 1,
+      "message": "I\u0027d leave this in syscall_filter.{c|h} where it was before, it\u0027s clearer that way.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 6
+      },
+      "revId": "0692978454f2f17c7cba44dfeb65bc0644ecb01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f2fae6_32af6e78",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 1,
+      "message": "Leave as before.",
+      "range": {
+        "startLine": 661,
+        "startChar": 27,
+        "endLine": 661,
+        "endChar": 43
+      },
+      "revId": "0692978454f2f17c7cba44dfeb65bc0644ecb01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f2fae6_12ac6a7f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 1,
+      "message": "Leave as before.",
+      "range": {
+        "startLine": 672,
+        "startChar": 29,
+        "endLine": 672,
+        "endChar": 45
+      },
+      "revId": "0692978454f2f17c7cba44dfeb65bc0644ecb01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f2fae6_f2c9e65c",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1426,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 1,
+      "message": "Leave as before.",
+      "range": {
+        "startLine": 1426,
+        "startChar": 28,
+        "endLine": 1426,
+        "endChar": 44
+      },
+      "revId": "0692978454f2f17c7cba44dfeb65bc0644ecb01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f2fae6_d2cee262",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-08-29T14:17:09Z",
+      "side": 1,
+      "message": "Leave as before.",
+      "range": {
+        "startLine": 1576,
+        "startChar": 27,
+        "endLine": 1576,
+        "endChar": 43
+      },
+      "revId": "0692978454f2f17c7cba44dfeb65bc0644ecb01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
