@@ -16,6 +16,47 @@
       "revId": "a031be6f3cdc6ce264fe89318abb6d0573dbb45e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6241f97_c5cc3a86",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-09-08T19:52:16Z",
+      "side": 1,
+      "message": "I can use the seccomp() syscall. I guess Kees will know if this is supposed to work. I should write a simple multithreaded program that tests this to make sure.",
+      "parentUuid": "f6241f97_85d24224",
+      "revId": "a031be6f3cdc6ce264fe89318abb6d0573dbb45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6241f97_e5d1361f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-09-08T19:52:16Z",
+      "side": 1,
+      "message": "And this should probably be the TSYNC flag, not 0.",
+      "range": {
+        "startLine": 699,
+        "startChar": 29,
+        "endLine": 699,
+        "endChar": 30
+      },
+      "revId": "a031be6f3cdc6ce264fe89318abb6d0573dbb45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
