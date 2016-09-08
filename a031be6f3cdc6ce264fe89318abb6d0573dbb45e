@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6241f97_85d24224",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1042203
+      },
+      "writtenOn": "2016-09-08T19:48:55Z",
+      "side": 1,
+      "message": "Is TSYNC exposed via the prctl? I think this has to go through the new seccomp() system call. This is how we engage Seccomp-TSYNC in Chromium:\n\nhttps://cs.chromium.org/chromium/src/sandbox/linux/seccomp-bpf/sandbox_bpf.cc?q\u003dsandbox_bpf\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d265\n\nI think these flags come from the selftest file (http://lxr.free-electrons.com/source/tools/testing/selftests/seccomp/seccomp_bpf.c?v\u003d4.5#L52), but I don\u0027t see other references to them (e.g., in http://lxr.free-electrons.com/source/include/uapi/linux/prctl.h?v\u003d3.18#L67). I do see references to SECCOMP_FILTER_FLAG_TSYNC though.",
+      "revId": "a031be6f3cdc6ce264fe89318abb6d0573dbb45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
