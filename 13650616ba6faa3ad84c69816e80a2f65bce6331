@@ -40,6 +40,24 @@
       "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b9bba7b_72cf587b",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2016-09-09T20:41:50Z",
+      "side": 1,
+      "message": "But with the syscall_wrapper.c, isn\u0027t this solved? Or is the issue the missing __NR_seccomp ? That can be per-arch hard-coded too:\n\n#ifndef __NR_seccomp\n# if defined(__i386__)\n#  define __NR_seccomp 354\n# elif defined(__x86_64__)\n#  define __NR_seccomp 317\n# elif defined(__arm__)\n#  define __NR_seccomp 383\n# elif defined(__aarch64__)\n#  define __NR_seccomp 277\n# else\n#  error \"Unknown syscall number for seccomp\"\n# endif\n#endif",
+      "parentUuid": "6bd84609_f4a6165f",
+      "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
