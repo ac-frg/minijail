@@ -58,6 +58,24 @@
       "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bb8e2f5_38aaa974",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-09-09T22:01:39Z",
+      "side": 1,
+      "message": "It is lacking in Bionic indeed, but that is solved by the wrapper. Even though it doesn\u0027t have a syscall, Bionic does correctly provide both SYS_seccomp and __NR_seccomp.\n\nFor some reason, though, the wrapper doesn\u0027t work for *host* builds. I didn\u0027t have time to figure out why, and I\u0027m on vacation next week, so I wanted to put this up for rsesek to play next week. Since I\u0027m not using the host unit tests at the moment, it made sense to temporarily compile things out.",
+      "parentUuid": "8b9bba7b_72cf587b",
+      "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
