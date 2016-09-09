@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b9bba7b_d281e432",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2016-09-09T20:37:27Z",
+      "side": 1,
+      "message": "What doesn\u0027t have the syscall available? I thought rsesek and leecam backported it everywhere?",
+      "range": {
+        "startLine": 175,
+        "startChar": 39,
+        "endLine": 175,
+        "endChar": 46
+      },
+      "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
