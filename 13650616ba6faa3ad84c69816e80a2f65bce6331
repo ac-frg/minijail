@@ -22,6 +22,24 @@
       "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bd84609_f4a6165f",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1042203
+      },
+      "writtenOn": "2016-09-09T20:38:10Z",
+      "side": 1,
+      "message": "We forgot to add it to Bionic. This (still) on my to-do list.",
+      "parentUuid": "8b9bba7b_d281e432",
+      "revId": "13650616ba6faa3ad84c69816e80a2f65bce6331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
