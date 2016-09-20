@@ -22,6 +22,30 @@
       "revId": "fbe04b3333cbb5375ff120fc3a9a0f36ab258f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0ac2770_38d008f0",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2016-09-20T21:53:45Z",
+      "side": 1,
+      "message": "Yes, __asan_init is part of the interface and it must have global visibility for the tool to work.\n\nIt would not work on Mac, which has no support for weak functions, but minijail seems to be linux/elf only.",
+      "parentUuid": "30423f4d_832ace9e",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "fbe04b3333cbb5375ff120fc3a9a0f36ab258f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
