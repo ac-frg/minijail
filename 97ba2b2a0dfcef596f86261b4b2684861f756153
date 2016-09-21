@@ -1,0 +1,10 @@
+Code-Review+1: Jeffrey Vander Stoep <jeffv@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Code-Review+1: Evgenii Stepanov <eugenis@google.com>
+Verified+1: Evgenii Stepanov <eugenis@google.com>
+Presubmit-Verified-1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Evgenii Stepanov <eugenis@google.com>
+Submitted-at: Wed, 21 Sep 2016 00:08:03 +0000
+Reviewed-on: https://android-review.googlesource.com/274924
+Project: platform/external/minijail
+Branch: refs/heads/master
