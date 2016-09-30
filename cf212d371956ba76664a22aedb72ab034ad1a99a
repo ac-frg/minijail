@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c247598e_bb1267bb",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042203
+      },
+      "writtenOn": "2016-09-30T18:21:15Z",
+      "side": 1,
+      "message": "License header?",
+      "revId": "cf212d371956ba76664a22aedb72ab034ad1a99a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
