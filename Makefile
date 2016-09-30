@@ -49,6 +49,10 @@ CC_BINARY(syscall_filter_unittest): syscall_filter_unittest.o syscall_filter.o \
 		bpf.o util.o libconstants.gen.o libsyscalls.gen.o
 clean: CLEAN(syscall_filter_unittest)
 
+CC_BINARY(parse_policy): parse_policy.o syscall_filter.o bpf.o util.o \
+		libconstants.gen.o libsyscalls.gen.o
+clean: CLEAN(parse_policy)
+
 libsyscalls.gen.o: CPPFLAGS += -I$(SRC)
 
 libsyscalls.gen.o.depends: libsyscalls.gen.c
