@@ -9,6 +9,7 @@
 
 #include <asm/unistd.h>
 #include <ctype.h>
+#include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <grp.h>
@@ -148,6 +149,7 @@ struct minijail {
 		int cgroups:1;
 		int alt_syscall:1;
 		int reset_signal_mask:1;
+		int close_open_fds:1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -459,6 +461,11 @@ void API minijail_namespace_enter_net(struct minijail *j, const char *ns_path)
 void API minijail_namespace_cgroups(struct minijail *j)
 {
 	j->flags.ns_cgroups = 1;
+}
+
+void API minijail_close_open_fds(struct minijail *j)
+{
+	j->flags.close_open_fds = 1;
 }
 
 void API minijail_remount_proc_readonly(struct minijail *j)
@@ -2075,6 +2082,51 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			pdie("sigemptyset failed");
 		if (sigprocmask(SIG_SETMASK, &signal_mask, NULL) != 0)
 			pdie("sigprocmask failed");
+	}
+
+	if (j->flags.close_open_fds) {
+		const char *kFdPath = "/proc/self/fd";
+		DIR *d = opendir(kFdPath);
+		struct dirent *e;
+		if (d == NULL)
+			die("can't open /proc/self/fd");
+		int dir_fd = dirfd(d);
+		while ((e = readdir(d)) != NULL) {
+			char* end;
+			const int fd = strtol(e->d_name, &end, 10);
+			if ((*end) != '\0') {
+				continue;
+			}
+			/*
+			 * We might have set up some pipes that we should not
+			 * close.
+			 */
+			if (use_preload && (fd == pipe_fds[0] ||
+					    fd == pipe_fds[1])) {
+				continue;
+			}
+			if (sync_child && (fd == child_sync_pipe_fds[0] ||
+					   fd == child_sync_pipe_fds[1])) {
+				continue;
+			}
+			if (pstdin_fd && (fd == stdin_fds[0] ||
+					  fd == stdin_fds[1])) {
+				continue;
+			}
+			if (pstdout_fd && (fd == stdout_fds[0] ||
+					   fd == stdout_fds[1])) {
+				continue;
+			}
+			if (pstderr_fd && (fd == stderr_fds[0] ||
+					   fd == stderr_fds[1])) {
+				continue;
+			}
+			/* Also avoid closing the directory fd. */
+			if (fd == dir_fd)
+				continue;
+			close(fd);
+		}
+		closedir(d);
 	}
 
 	if (sync_child)
