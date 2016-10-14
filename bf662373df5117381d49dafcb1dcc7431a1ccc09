@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dcfae2f1_7f3deb12",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T15:34:10Z",
+      "side": 1,
+      "message": "There\u0027s a clang-format file in this directory, but it only applies to the .c files, not to the .cpp files. If the presubmit can be applied only to .c files, then by all means. Also, it might require to piecemeal-reformat libminijail_unittest.c which for some reason always had a different formatting.\n\nI\u0027m assuming the presubmit would only apply to new or modified code.",
+      "parentUuid": "fc73265a_d9b2a650",
+      "range": {
+        "startLine": 1818,
+        "startChar": 6,
+        "endLine": 1818,
+        "endChar": 7
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcfae2f1_9f6a7712",
         "filename": "libminijail.c",
         "patchSetId": 3
