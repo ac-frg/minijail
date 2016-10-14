@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "3c613ebc_778b301e",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2016-10-14T16:21:28Z",
+      "side": 1,
+      "message": "Yes, the presubmit only looks at the delta each commit is introducing and leaves the rest of the code alone.\n\nAs to the .c/.cpp I am not sure if there is support for it already, but I\u0027ll give it a try.",
+      "parentUuid": "dcfae2f1_7f3deb12",
+      "range": {
+        "startLine": 1818,
+        "startChar": 6,
+        "endLine": 1818,
+        "endChar": 7
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcfae2f1_9f6a7712",
         "filename": "libminijail.c",
         "patchSetId": 3
