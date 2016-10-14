@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fc73265a_d9b2a650",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2016-10-14T15:25:38Z",
+      "side": 1,
+      "message": "Done. Would you be opposed to me adding a clang-format pre-submit check in another change?",
+      "parentUuid": "dcfae2f1_3f5a4383",
+      "range": {
+        "startLine": 1818,
+        "startChar": 6,
+        "endLine": 1818,
+        "endChar": 7
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcfae2f1_9f6a7712",
         "filename": "libminijail.c",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fc73265a_79b8522e",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1827,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2016-10-14T15:25:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcfae2f1_9f6a7712",
+      "range": {
+        "startLine": 1827,
+        "startChar": 9,
+        "endLine": 1827,
+        "endChar": 14
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcfae2f1_7f64cb42",
         "filename": "libminijail.c",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2016-10-14T15:21:26Z",
       "side": 1,
       "message": "Maybe:\n\n/* Avoid closing the directory fd. */\nif (!(keep_open || fd \u003d\u003d dir_fd)) {\n        close(fd);\n}",
+      "range": {
+        "startLine": 1835,
+        "startChar": 2,
+        "endLine": 1840,
+        "endChar": 12
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc73265a_39c2ca9c",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2016-10-14T15:25:38Z",
+      "side": 1,
+      "message": "Simplified the boolean logic, but done.",
+      "parentUuid": "dcfae2f1_7f64cb42",
       "range": {
         "startLine": 1835,
         "startChar": 2,
