@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcfae2f1_3f5a4383",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T15:21:26Z",
+      "side": 1,
+      "message": "Pointer alignment.",
+      "range": {
+        "startLine": 1818,
+        "startChar": 6,
+        "endLine": 1818,
+        "endChar": 7
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcfae2f1_9f6a7712",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1827,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T15:21:26Z",
+      "side": 1,
+      "message": "This should be \"parent\" process right? By the time we do this, we\u0027re in the child, so the stuff we want to share is with the parent process.",
+      "range": {
+        "startLine": 1827,
+        "startChar": 9,
+        "endLine": 1827,
+        "endChar": 14
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcfae2f1_7f64cb42",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T15:21:26Z",
+      "side": 1,
+      "message": "Maybe:\n\n/* Avoid closing the directory fd. */\nif (!(keep_open || fd \u003d\u003d dir_fd)) {\n        close(fd);\n}",
+      "range": {
+        "startLine": 1835,
+        "startChar": 2,
+        "endLine": 1840,
+        "endChar": 12
+      },
+      "revId": "bf662373df5117381d49dafcb1dcc7431a1ccc09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
