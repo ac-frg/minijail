@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcfae2f1_9f9d575f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2094,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T14:02:14Z",
+      "side": 1,
+      "message": "dir_entry for clarity.",
+      "range": {
+        "startLine": 2094,
+        "startChar": 10,
+        "endLine": 2094,
+        "endChar": 11
+      },
+      "revId": "b3c0d6aa26b76dc6cd4e9839f3baaf4cc067bcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcfae2f1_bf98136f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2129,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T14:02:14Z",
+      "side": 1,
+      "message": "I\u0027d extract this into a separate function, even if we need to pass all the fds into the function.",
+      "range": {
+        "startLine": 2088,
+        "startChar": 0,
+        "endLine": 2129,
+        "endChar": 14
+      },
+      "revId": "b3c0d6aa26b76dc6cd4e9839f3baaf4cc067bcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
