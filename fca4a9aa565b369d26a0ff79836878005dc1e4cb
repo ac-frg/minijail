@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcfae2f1_df799f84",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-10-14T18:00:07Z",
+      "side": 0,
+      "message": "Let\u0027s not format the help message. It\u0027s formatted so that it works on an 80-col screen, which obviously requires longer than 80 cols here since the lines are indented.",
+      "range": {
+        "startLine": 113,
+        "startChar": 1,
+        "endLine": 171,
+        "endChar": 1
+      },
+      "revId": "fca4a9aa565b369d26a0ff79836878005dc1e4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
