@@ -20,11 +20,75 @@
 #include <fcntl.h> /* For O_WRONLY. */
 
 #include <gtest/gtest.h>
+#include <string>
 
 #include "bpf.h"
 #include "syscall_filter.h"
 #include "syscall_filter_unittest_macros.h"
 #include "util.h"
+
+TEST(util, parse_constant_unsigned) {
+  char *end;
+  long int c = 0;
+  std::string constant;
+
+#if defined(BITS32)
+  constant = "0x80000000";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(static_cast<unsigned long int>(c), 0x80000000U);
+
+#elif defined(BITS64)
+  constant = "0x8000000000000000";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(static_cast<unsigned long int>(c), 0x8000000000000000UL);
+#endif
+}
+
+TEST(util, parse_constant_unsigned_toobig) {
+  char *end;
+  long int c = 0;
+  std::string constant;
+
+#if defined(BITS32)
+  constant = "0x10000000";  // Too big for 32-bit unsigned long int.
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  // Error case should return 0.
+  EXPECT_EQ(c, 0);
+
+#elif defined(BITS64)
+  constant = "0x10000000000000000";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  // Error case should return 0.
+  EXPECT_EQ(c, 0);
+#endif
+}
+
+TEST(util, parse_constant_signed) {
+  char *end;
+  long int c = 0;
+  std::string constant = "-1";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, -1);
+}
+
+TEST(util, parse_constant_signed_toonegative) {
+  char *end;
+  long int c = 0;
+  std::string constant;
+
+#if defined(BITS32)
+  constant = "-0x80000001";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  // Error case should return 0.
+  EXPECT_EQ(c, 0);
+
+#elif defined(BITS64)
+  constant = "-0x8000000000000001";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  // Error case should return 0.
+  EXPECT_EQ(c, 0);
+#endif
+}
 
 /* Test that setting one BPF instruction works. */
 TEST(bpf, set_bpf_instr) {
