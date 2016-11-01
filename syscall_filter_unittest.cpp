@@ -339,6 +339,36 @@ class ArgFilterTest : public ::testing::Test {
   struct bpf_labels labels_;
 };
 
+TEST_F(ArgFilterTest, empty_atom) {
+  const char* fragment = "";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
+TEST_F(ArgFilterTest, no_comparison) {
+  const char* fragment = "arg0";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
+TEST_F(ArgFilterTest, no_constant) {
+  const char* fragment = "arg0 ==";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
 TEST_F(ArgFilterTest, arg0_equals) {
   const char *fragment = "arg0 == 0";
   int nr = 1;
@@ -660,8 +690,38 @@ TEST_F(ArgFilterTest, invalid_arg_number) {
   ASSERT_EQ(block, nullptr);
 }
 
+TEST_F(ArgFilterTest, invalid_arg_token) {
+  const char* fragment = "arg0n == 0";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
+TEST_F(ArgFilterTest, invalid_operator) {
+  const char* fragment = "arg0 invalidop 0";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
 TEST_F(ArgFilterTest, invalid_constant) {
   const char *fragment = "arg0 == INVALIDCONSTANT";
+  int nr = 1;
+  unsigned int id = 0;
+
+  struct filter_block* block =
+      compile_section(nr, fragment, id, &labels_, NO_LOGGING);
+  ASSERT_EQ(block, nullptr);
+}
+
+TEST_F(ArgFilterTest, extra_tokens) {
+  const char* fragment = "arg0 == 0 EXTRATOKEN";
   int nr = 1;
   unsigned int id = 0;
 
@@ -966,6 +1026,18 @@ TEST(FilterTest, seccomp_read_write) {
                  SECCOMP_RET_KILL);
 
   free(actual.filter);
+}
+
+TEST(FilterTest, missing_atom) {
+  struct sock_fprog actual;
+  const char* policy = "open:\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy, strlen(policy));
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = compile_filter(policy_file, &actual, 0, NO_LOGGING);
+  fclose(policy_file);
+  ASSERT_NE(res, 0);
 }
 
 TEST(FilterTest, invalid_name) {
