@@ -22,6 +22,30 @@
       "revId": "e9740afce623e99ac1abdd01b90446adc423f7d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e69396d8_812ddef3",
+        "filename": "syscall_filter_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-11-02T19:24:17Z",
+      "side": 1,
+      "message": "I thought about that, but I figured it\u0027s easier to review if I first change things to nullptr and then change the order of the operands in a different CL. It\u0027s very easy to scan this file and the structure of the diff makes it clear that there\u0027s no change in meaning.",
+      "parentUuid": "a6dd1ea2_de19815d",
+      "range": {
+        "startLine": 379,
+        "startChar": 2,
+        "endLine": 379,
+        "endChar": 11
+      },
+      "revId": "e9740afce623e99ac1abdd01b90446adc423f7d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
