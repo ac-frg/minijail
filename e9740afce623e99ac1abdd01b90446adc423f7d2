@@ -46,6 +46,30 @@
       "revId": "e9740afce623e99ac1abdd01b90446adc423f7d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6dd1ea2_928b7d03",
+        "filename": "syscall_filter_unittest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2016-11-02T19:25:22Z",
+      "side": 1,
+      "message": "Fair enough.",
+      "parentUuid": "e69396d8_812ddef3",
+      "range": {
+        "startLine": 379,
+        "startChar": 2,
+        "endLine": 379,
+        "endChar": 11
+      },
+      "revId": "e9740afce623e99ac1abdd01b90446adc423f7d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
