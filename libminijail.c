@@ -50,9 +50,27 @@
 # define SECURE_ALL_BITS	0x55
 # define SECURE_ALL_LOCKS	(SECURE_ALL_BITS << 1)
 #endif
+
 /* For kernels < 4.3. */
-#define OLD_SECURE_ALL_BITS	0x15
-#define OLD_SECURE_ALL_LOCKS	(OLD_SECURE_ALL_BITS << 1)
+#ifndef SECBIT_NO_CAP_AMBIENT_RAISE
+# define SECBIT_NO_CAP_AMBIENT_RAISE 0x40
+#endif
+
+#ifndef SECBIT_NO_CAP_AMBIENT_RAISE_LOCKED
+# define SECBIT_NO_CAP_AMBIENT_RAISE_LOCKED (SECBIT_NO_CAP_AMBIENT_RAISE << 1)
+#endif
+
+/* Test if the linked capabilities header supports AMBIENT caps
+ * NB, just because the library supports it does not mean the kennel
+ * version does, so check that by eventually calling CAP_AMBIENT_SUPORTED
+ */
+#ifdef CAP_AMBIENT_SUPPORTED
+# define CAP_SET_AMBIENT(i, j) cap_set_ambient((i), (j))
+#else
+# define CAP_AMBIENT_SUPPORTED() 0
+# define CAP_SET_AMBIENT(i, j) do {\
+	} while(0)
+#endif
 
 /*
  * Assert the value of SECURE_ALL_BITS at compile-time.
@@ -1396,6 +1414,21 @@ static void drop_capbset(uint64_t keep_mask, unsigned int last_valid_cap)
 	}
 }
 
+static void add_ambient_caps(uint64_t ambient_mask, unsigned int last_valid_cap)
+{
+	if (!CAP_AMBIENT_SUPPORTED()) {
+		warn("Ambient capabilities not supported! caps lost on  exec");
+		return;
+	}
+
+	const uint64_t one = 1;
+	unsigned int i;
+	for (i = 0; i < sizeof(ambient_mask) * 8 && i <= last_valid_cap; ++i) {
+		if ((ambient_mask & (one << i)) && CAP_SET_AMBIENT(i, CAP_SET))
+			pdie("could not add capability to the ambient set");
+	}
+}
+
 static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 {
 	if (!j->flags.use_caps)
@@ -1427,6 +1460,14 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 	}
 	if (cap_set_proc(caps))
 		die("can't apply initial cleaned capset");
+
+	/*
+	 * Add the flags to the ambient set if required.
+	 * Done here because the capabilities must already have been set
+	 * in the PERMITTED and INHERITABLE set in order to allow us to
+	 * set them in the ambient.
+	 */
+	add_ambient_caps(j->caps, last_valid_cap);
 
 	/*
 	 * Instead of dropping bounding set first, do it here in case
@@ -1603,24 +1644,13 @@ void API minijail_enter(const struct minijail *j)
 		if (prctl(PR_SET_KEEPCAPS, 1))
 			pdie("prctl(PR_SET_KEEPCAPS)");
 
-		/*
-		 * Kernels 4.3+ define a new securebit
-		 * (SECURE_NO_CAP_AMBIENT_RAISE), so using the SECURE_ALL_BITS
-		 * and SECURE_ALL_LOCKS masks from newer kernel headers will
-		 * return EPERM on older kernels. Detect this, and retry with
-		 * the right mask for older (2.6.26-4.2) kernels.
-		 */
-		int securebits_ret = prctl(PR_SET_SECUREBITS,
-					   SECURE_ALL_BITS | SECURE_ALL_LOCKS);
-		if (securebits_ret < 0) {
-			if (errno == EPERM) {
-				/* Possibly running on kernel < 4.3. */
-				securebits_ret = prctl(
-				    PR_SET_SECUREBITS,
-				    OLD_SECURE_ALL_BITS | OLD_SECURE_ALL_LOCKS);
-			}
-		}
-		if (securebits_ret < 0)
+		int secbits = SECURE_ALL_BITS | SECURE_ALL_LOCKS;
+
+		/* Relax the restrictions to allow ambient caps to be set */
+		secbits &= ~(SECBIT_NO_CAP_AMBIENT_RAISE |
+			     SECBIT_NO_CAP_AMBIENT_RAISE_LOCKED);
+
+		if (prctl(PR_SET_SECUREBITS, secbits))
 			pdie("prctl(PR_SET_SECUREBITS)");
 	}
 
