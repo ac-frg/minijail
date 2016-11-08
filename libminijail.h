@@ -28,11 +28,26 @@ enum {
 	MINIJAIL_ERR_INIT = 254,
 };
 
+
 struct minijail;
+
+enum minijail_cb_type {
+	MINIJAIL_SELINUX_CB,
+	MINIJAIL_UNUSED_TYPE,
+};
+
+/* Define an opaque call back mechanism to make minijail extensible */
+typedef void (*minijail_cb_t)(void *context);
 
 /* Allocates a new minijail with no restrictions. */
 struct minijail *minijail_new(void);
 
+/*
+ * Register a callback function, data to be passed to it and the functionality
+ * that is to be implemented in that function. Does not take ownership of ctx.
+ */
+int minijail_register_callback(struct minijail *j, minijail_cb_t cb,
+			       void *ctx, enum minijail_cb_type t);
 /*
  * These functions add restrictions to the minijail. They are not applied until
  * minijail_enter() is called. See the documentation in minijail0.1 for

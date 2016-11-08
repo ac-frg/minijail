@@ -131,6 +131,13 @@ struct mountpoint {
 	struct mountpoint *next;
 };
 
+struct callback_inf {
+	minijail_cb_t f;
+	void *ctx;
+	enum minijail_cb_type type;
+	struct callback_inf *next;
+};
+
 struct minijail {
 	/*
 	 * WARNING: if you add a flag here you need to make sure it's
@@ -192,6 +199,7 @@ struct minijail {
 	size_t mounts_count;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
+	struct callback_inf *callbacks;
 };
 
 /*
@@ -243,6 +251,30 @@ void minijail_preexec(struct minijail *j)
 struct minijail API *minijail_new(void)
 {
 	return calloc(1, sizeof(struct minijail));
+}
+
+int API minijail_register_callback(struct minijail *j, minijail_cb_t cb,
+				   void *ctx, enum minijail_cb_type t)
+{
+	struct callback_inf *inf;
+
+	if (t >= MINIJAIL_UNUSED_TYPE)
+		return -EINVAL;
+
+	inf = calloc(1, sizeof(struct callback_inf));
+	if (!inf)
+		return -ENOMEM;
+
+	inf->f = cb;
+	inf->ctx = ctx;
+	inf->type = t;
+
+	if (j->callbacks)
+		j->callbacks->next = inf;
+	else
+		j->callbacks = inf;
+
+	return 0;
 }
 
 void API minijail_change_uid(struct minijail *j, uid_t uid)
@@ -1494,6 +1526,29 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 	cap_free(caps);
 }
 
+static struct callback_inf *get_callback_inf(const struct minijail *j,
+					     enum minijail_cb_type type)
+{
+	struct callback_inf *inf = j->callbacks;
+
+	while (inf) {
+		if (inf->type == type)
+			return inf;
+		inf = j->callbacks->next;
+	}
+
+	return NULL;
+}
+
+static void set_selinux_context(const struct minijail *j)
+{
+	struct callback_inf *inf;
+
+	inf = get_callback_inf(j, MINIJAIL_SELINUX_CB);
+	if (inf)
+		(*inf->f)(inf->ctx);
+}
+
 static void set_seccomp_filter(const struct minijail *j)
 {
 	/*
@@ -1662,6 +1717,8 @@ void API minijail_enter(const struct minijail *j)
 		 */
 		drop_ugid(j);
 		drop_caps(j, last_valid_cap);
+		/* set selinux policy before setting the no_new_privs */
+		set_selinux_context(j);
 		set_seccomp_filter(j);
 	} else {
 		/*
@@ -1674,6 +1731,7 @@ void API minijail_enter(const struct minijail *j)
 		set_seccomp_filter(j);
 		drop_ugid(j);
 		drop_caps(j, last_valid_cap);
+		set_selinux_context(j);
 	}
 
 	/*
@@ -2353,5 +2411,14 @@ void API minijail_destroy(struct minijail *j)
 		free(j->alt_syscall_table);
 	for (i = 0; i < j->cgroup_count; ++i)
 		free(j->cgroups[i]);
+	while (j->callbacks) {
+		struct callback_inf *cb = j->callbacks;
+		j->callbacks = j->callbacks->next;
+		/*
+		 * The caller who registered the callback is responsible
+		 * for freeing any data.
+		 */
+		free(cb);
+	}
 	free(j);
 }
