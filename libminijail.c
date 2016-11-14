@@ -422,36 +422,12 @@ void API minijail_log_seccomp_filter_failures(struct minijail *j)
 
 void API minijail_use_caps(struct minijail *j, uint64_t capmask)
 {
-	/*
-	 * 'minijail_use_caps' configures a runtime-capabilities-only
-	 * environment, including a bounding set matching the thread's runtime
-	 * (permitted|inheritable|effective) sets.
-	 * Therefore, it will override any existing bounding set configurations
-	 * since the latter would allow gaining extra runtime capabilities from
-	 * file capabilities.
-	 */
-	if (j->flags.capbset_drop) {
-		warn("overriding bounding set configuration");
-		j->cap_bset = 0;
-		j->flags.capbset_drop = 0;
-	}
 	j->caps = capmask;
 	j->flags.use_caps = 1;
 }
 
 void API minijail_capbset_drop(struct minijail *j, uint64_t capmask)
 {
-	if (j->flags.use_caps) {
-		/*
-		 * 'minijail_use_caps' will have already configured a capability
-		 * bounding set matching the (permitted|inheritable|effective)
-		 * sets. Abort if the user tries to configure a separate
-		 * bounding set. 'minijail_capbset_drop' and 'minijail_use_caps'
-		 * are mutually exclusive.
-		 */
-		die("runtime capabilities already configured, can't drop "
-		    "bounding set separately");
-	}
 	j->cap_bset = capmask;
 	j->flags.capbset_drop = 1;
 }
@@ -1507,8 +1483,15 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 	 * the caller had a more permissive bounding set which could
 	 * have been used above to raise a capability that wasn't already
 	 * present. This requires CAP_SETPCAP, so we raised/kept it above.
+	 *
+	 * See if we have been asked to drop our bounding set. If so use the
+	 * intersection of the mask requested and the capabilities requested,
+	 * otherwise use the same caps as pE, pP and pI
 	 */
-	drop_capbset(j->caps, last_valid_cap);
+	uint64_t bcaps = j->flags.capbset_drop ?
+		(j->cap_bset & j->caps) : j->caps;
+
+	drop_capbset(bcaps, last_valid_cap);
 
 	/* If CAP_SETPCAP wasn't specifically requested, now we remove it. */
 	if ((j->caps & (one << CAP_SETPCAP)) == 0) {
@@ -1718,7 +1701,7 @@ void API minijail_enter(const struct minijail *j)
 	 * If we're only dropping capabilities from the bounding set, but not
 	 * from the thread's (permitted|inheritable|effective) sets, do it now.
 	 */
-	if (j->flags.capbset_drop) {
+	if (j->flags.capbset_drop && !j->flags.use_caps) {
 		drop_capbset(j->cap_bset, last_valid_cap);
 	}
 
