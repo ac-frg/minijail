@@ -65,7 +65,7 @@ libsyscalls.gen.o.depends: libsyscalls.gen.c
 # TODO(jorgelo): fix generation when 'CC' env variable is not set.
 libsyscalls.gen.c: $(SRC)/Makefile $(SRC)/libsyscalls.h
 	@printf "Generating target-arch specific $@... "
-	$(QUIET)$(SRC)/gen_syscalls.sh $@
+	$(QUIET)$(SRC)/gen_syscalls.sh "$(CC)" "$@"
 	@printf "done.\n"
 clean: CLEAN(libsyscalls.gen.c)
 
@@ -80,7 +80,7 @@ libconstants.gen.o.depends: libconstants.gen.c
 # TODO(jorgelo): fix generation when 'CC' env variable is not set.
 libconstants.gen.c: $(SRC)/Makefile $(SRC)/libconstants.h
 	@printf "Generating target-arch specific $@... "
-	$(QUIET)$(SRC)/gen_constants.sh $@
+	$(QUIET)$(SRC)/gen_constants.sh "$(CC)" "$@"
 	@printf "done.\n"
 clean: CLEAN(libconstants.gen.c)
 
