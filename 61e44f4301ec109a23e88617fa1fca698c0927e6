@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3045e884_12840e5d",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-11-16T16:39:47Z",
+      "side": 1,
+      "message": "Can we remove this comment?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "61e44f4301ec109a23e88617fa1fca698c0927e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3045e884_f280824a",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-11-16T16:39:47Z",
+      "side": 1,
+      "message": "And this comment.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 66
+      },
+      "revId": "61e44f4301ec109a23e88617fa1fca698c0927e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
