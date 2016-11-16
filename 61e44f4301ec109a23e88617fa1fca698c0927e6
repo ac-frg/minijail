@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3045e884_0051547f",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-11-16T19:01:00Z",
+      "side": 1,
+      "message": "So this is effectively setting the variable in the environment, rather than passing the variable as an argument?",
+      "parentUuid": "3045e884_80e0c4b2",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "61e44f4301ec109a23e88617fa1fca698c0927e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3045e884_f280824a",
         "filename": "Makefile",
         "patchSetId": 1
