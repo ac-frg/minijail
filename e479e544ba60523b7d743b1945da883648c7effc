@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3045e884_61201ab1",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2016-11-16T20:17:44Z",
+      "side": 1,
+      "message": "it\u0027s probably more defensive than is necessary nowadays.  marking it static/const like this forces the data into the read-only section and ifname is just the address of that.  this way i know it\u0027s not being done on the stack.",
+      "parentUuid": "3045e884_8048c42f",
+      "range": {
+        "startLine": 1526,
+        "startChar": 1,
+        "endLine": 1526,
+        "endChar": 7
+      },
+      "revId": "e479e544ba60523b7d743b1945da883648c7effc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3045e884_a0ab406b",
         "filename": "libminijail.c",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-11-16T19:23:19Z",
       "side": 1,
       "message": "This should be a \u003c right? if sizeof(ifname) \u003d\u003d IFNAMSIZ you don\u0027t have space for the NUL.",
+      "range": {
+        "startLine": 1531,
+        "startChar": 31,
+        "endLine": 1531,
+        "endChar": 33
+      },
+      "revId": "e479e544ba60523b7d743b1945da883648c7effc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3045e884_e180aa4a",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2016-11-16T20:17:44Z",
+      "side": 1,
+      "message": "\u003c\u003d is correct -- sizeof on a string includes the trailing NUL byte.  so sizeof(ifname) here is 3.\n\nthat said, an even more esoteric edge case is that the string doesn\u0027t need to be NUL terminated iff the name is exactly IFNAMSIZ in bytes.  but i didn\u0027t think it\u0027d be worth supporting that case.",
+      "parentUuid": "3045e884_a0ab406b",
       "range": {
         "startLine": 1531,
         "startChar": 31,
