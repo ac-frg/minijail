@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "3045e884_13536d30",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2016-11-16T20:46:42Z",
+      "side": 1,
+      "message": "common.mk will set up CC in make\u0027s env (which is not the same as the process env because we don\u0027t `export` it) if it\u0027s not already set or passed in to make\n\nso below i\u0027m just expanding the CC value the same way make will when compiling objects and then passing that down to the scripts.  those scripts already have a simple interface to parse two args as compiler+output.\n\ni\u0027m not changing the env of any tools here.",
+      "parentUuid": "3045e884_0051547f",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "61e44f4301ec109a23e88617fa1fca698c0927e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3045e884_f280824a",
         "filename": "Makefile",
         "patchSetId": 1
