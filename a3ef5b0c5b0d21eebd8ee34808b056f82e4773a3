@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3045e884_80fc4402",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2016-11-16T19:10:56Z",
+      "side": 1,
+      "message": "strncpy only fails to null-terminate when you\u0027re copying a string of length \u0027size\u0027 or more. *sigh* What we really want is strlcpy.\n\nHow about a compile-time assert that IFNAMSIZ is strictly longer than 2? you can use _Static_assert() in C.",
+      "parentUuid": "3045e884_c0192cf4",
+      "range": {
+        "startLine": 1537,
+        "startChar": 1,
+        "endLine": 1537,
+        "endChar": 28
+      },
+      "revId": "a3ef5b0c5b0d21eebd8ee34808b056f82e4773a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3045e884_b2cefabe",
         "filename": "libminijail.c",
         "patchSetId": 1
