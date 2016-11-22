@@ -2190,6 +2190,15 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		enter_user_namespace(j);
 
 	/*
+	 * Create a new session. This prevents the jailed process from using the
+	 * TIOCSTI ioctl to push characters into the parent process terminal's
+	 * input buffer, therefore escaping the jail.
+	 */
+	if (setsid() < 0) {
+		pdie("setsid()");
+	}
+
+	/*
 	 * If we want to write to the jailed process' standard input,
 	 * set up the read end of the pipe.
 	 */
