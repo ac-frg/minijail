@@ -20,9 +20,11 @@
 #include "util.h"
 
 #if defined(__ANDROID__)
-const char *kShellPath = "/system/bin/sh";
+const char kShellPath[] = "/system/bin/sh";
+const char kCatPath[] = "/system/bin/cat";
 #else
-const char *kShellPath = "/bin/sh";
+const char kShellPath[] = "/bin/sh";
+const char kCatPath[] = "/bin/cat";
 #endif
 
 /* Prototypes needed only by test. */
@@ -178,18 +180,13 @@ TEST(test_minijail_run_pid_pipes_no_preload)
 	const size_t buf_len = 128;
 	char buf[buf_len];
 	int status;
-#if defined(__ANDROID__)
-	char filename[] = "/system/bin/cat";
-#else
-	char filename[] = "/bin/cat";
-#endif
 	char teststr[] = "test\n";
 	size_t teststr_len = strlen(teststr);
 	char *argv[4];
 
 	struct minijail *j = minijail_new();
 
-	argv[0] = filename;
+	argv[0] = (char *)kCatPath;
 	argv[1] = NULL;
 	mj_run_ret = minijail_run_pid_pipes_no_preload(
 	    j, argv[0], argv, &pid, &child_stdin, &child_stdout, NULL);
@@ -224,6 +221,43 @@ TEST(test_minijail_run_pid_pipes_no_preload)
 	EXPECT_EQ(WEXITSTATUS(status), 0);
 
 	minijail_destroy(j);
+}
+
+TEST(test_minijail_run_pid_pipes_no_preload_with_envp) {
+  pid_t pid;
+  int child_stdin, child_stdout, child_stderr;
+  int mj_run_ret;
+  ssize_t read_ret;
+  const size_t buf_len = 128;
+  char buf[buf_len] = { 0 };
+  int status;
+	char teststr[] = "test\n";
+	size_t teststr_len = strlen(teststr);
+  char *argv[4];
+  char *envp[2];
+
+  struct minijail *j = minijail_new();
+
+	argv[0] = (char *)kShellPath;
+  argv[1] = "-c";
+  argv[2] = "echo $TEST >&2";
+  argv[3] = NULL;
+  envp[0] = "TEST=test";
+  envp[1] = NULL;
+  mj_run_ret = minijail_run_pid_pipes_no_preload_with_envp(
+    j, argv[0], argv, envp, &pid, &child_stdin, &child_stdout, &child_stderr);
+  EXPECT_EQ(mj_run_ret, 0);
+
+  read_ret = read(child_stderr, buf, buf_len);
+
+  EXPECT_EQ(read_ret, teststr_len);
+  EXPECT_STREQ(buf, teststr);
+
+  waitpid(pid, &status, 0);
+  ASSERT_TRUE(WIFEXITED(status));
+  EXPECT_EQ(WEXITSTATUS(status), 0);
+
+  minijail_destroy(j);
 }
 
 TEST(test_minijail_no_fd_leaks)
