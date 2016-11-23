@@ -1521,7 +1521,7 @@ static void set_seccomp_filter(const struct minijail *j)
 	}
 }
 
-static void net_bring_up_loopback(void)
+static void config_net_loopback(void)
 {
 	static const char ifname[] = "lo";
 	int sock;
@@ -1573,11 +1573,11 @@ void API minijail_enter(const struct minijail *j)
 	 * entire process.
 	 */
 	if (j->flags.enter_vfs && setns(j->mountns_fd, CLONE_NEWNS))
-		pdie("setns(CLONE_NEWNS)");
+		pdie("setns(CLONE_NEWNS) failed");
 
 	if (j->flags.vfs) {
 		if (unshare(CLONE_NEWNS))
-			pdie("unshare(vfs)");
+			pdie("unshare(CLONE_NEWNS) failed");
 		/*
 		 * Unless asked not to, remount all filesystems as private.
 		 * If they are shared, new bind mounts will creep out of our
@@ -1591,20 +1591,20 @@ void API minijail_enter(const struct minijail *j)
 	}
 
 	if (j->flags.ipc && unshare(CLONE_NEWIPC)) {
-		pdie("unshare(ipc)");
+		pdie("unshare(CLONE_NEWIPC) failed");
 	}
 
 	if (j->flags.enter_net) {
 		if (setns(j->netns_fd, CLONE_NEWNET))
-			pdie("setns(CLONE_NEWNET)");
+			pdie("setns(CLONE_NEWNET) failed");
 	} else if (j->flags.net) {
 		if (unshare(CLONE_NEWNET))
-			pdie("unshare(net)");
-		net_bring_up_loopback();
+			pdie("unshare(CLONE_NEWNET) failed");
+		config_net_loopback();
 	}
 
 	if (j->flags.ns_cgroups && unshare(CLONE_NEWCGROUP))
-		pdie("unshare(cgroups)");
+		pdie("unshare(CLONE_NEWCGROUP) failed");
 
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
@@ -1957,7 +1957,8 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 
 	if (!use_preload) {
 		if (j->flags.use_caps && j->caps != 0)
-			die("non-empty capabilities are not supported without LD_PRELOAD");
+			die("non-empty capabilities are not supported without "
+			    "LD_PRELOAD");
 	}
 
 	/*
