@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f044303c_ec968bd8",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2227,
+      "author": {
+        "id": 1080683
+      },
+      "writtenOn": "2016-11-24T09:58:16Z",
+      "side": 1,
+      "message": "Arguably, this should also be done for other FDs that are TTYs? Or is that a too-infrequent corner case?",
+      "range": {
+        "startLine": 2227,
+        "startChar": 7,
+        "endLine": 2227,
+        "endChar": 38
+      },
+      "revId": "aa235b98fca2408c5f6bc2fbb8495591c8f70a88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
