@@ -135,6 +135,20 @@ independent of the rest of the system's.
 \fB-V <file>\fR
 Enter the VFS namespace specified by \fIfile\fR.
 .TP
+\fB-x <user>\fR
+Change saved user to \fIuser\fR, which may be either a user name or a numeric
+user. With this, minijailed process may switch to the saved user without
+requiring capabilities. Requires \fB-u\fR.
+.TP
+\fB-X <group>\fR
+Change saved group to \fIgroup\fR, which may be either a group name or a numeric
+group. With this, minijailed process may switch to the saved group without
+requiring capabilities. Requires \fB-g\fR.
+.TP
+\fB-y\fR
+Keep the current user's supplementary groups. Do not clear the list of
+supplementary group ids.
+.TP
 \fB-Y\fR
 Synchronize seccomp filters across thread group.
 .SH IMPLEMENTATION
