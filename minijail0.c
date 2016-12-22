@@ -23,10 +23,7 @@ static void set_user(struct minijail *j, const char *arg)
 	int uid = strtod(arg, &end);
 	if (!*end && *arg) {
 		minijail_change_uid(j, uid);
-		return;
-	}
-
-	if (minijail_change_user(j, arg)) {
+	} else if (minijail_change_user(j, arg)) {
 		fprintf(stderr, "Bad user: '%s'\n", arg);
 		exit(1);
 	}
@@ -38,10 +35,31 @@ static void set_group(struct minijail *j, const char *arg)
 	int gid = strtod(arg, &end);
 	if (!*end && *arg) {
 		minijail_change_gid(j, gid);
-		return;
+	} else if (minijail_change_group(j, arg)) {
+		fprintf(stderr, "Bad group: '%s'\n", arg);
+		exit(1);
 	}
+}
 
-	if (minijail_change_group(j, arg)) {
+static void set_saved_user(struct minijail *j, const char *arg)
+{
+	char *end = NULL;
+	int uid = strtod(arg, &end);
+	if (!*end && *arg) {
+		minijail_change_saved_uid(j, uid);
+	} else if (minijail_change_saved_user(j, arg)) {
+		fprintf(stderr, "Bad user: '%s'\n", arg);
+		exit(1);
+	}
+}
+
+static void set_saved_group(struct minijail *j, const char *arg)
+{
+	char *end = NULL;
+	int gid = strtod(arg, &end);
+	if (!*end && *arg) {
+		minijail_change_saved_gid(j, gid);
+	} else if (minijail_change_saved_group(j, arg)) {
 		fprintf(stderr, "Bad group: '%s'\n", arg);
 		exit(1);
 	}
@@ -110,12 +128,12 @@ static void usage(const char *progn)
 {
 	size_t i;
 	/* clang-format off */
-	printf("Usage: %s [-GhHiIKlLnNprstUvY]\n"
+	printf("Usage: %s [-GhHiIKlLnNprstUvyY]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
 	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
 	       "  [-m[<uid> <loweruid> <count>]*] [-M[<gid> <lowergid> <count>]*]\n"
-	       "  [-S <file>] [-T <type>] [-u <user>] [-V <file>]\n"
+	       "  [-S <file>] [-T <type>] [-u <user>] [-V <file>] [-x <user>] [-X <group>]\n"
 	       "  <program> [args...]\n"
 	       "  -a <table>: Use alternate syscall table <table>.\n"
 	       "  -b:         Bind <src> to <dest> in chroot.\n"
@@ -132,6 +150,9 @@ static void usage(const char *progn)
 	       "  -f <file>:  Write the pid of the jailed process to <file>.\n"
 	       "  -g <group>: Change gid to <group>.\n"
 	       "  -G:         Inherit supplementary groups from uid.\n"
+	       "              Not compatible with -y.\n"
+	       "  -y:         Keep uid's supplementary groups, do not clear the list.\n"
+	       "              Not compatible with -G.\n"
 	       "  -h:         Help (this message).\n"
 	       "  -H:         Seccomp filter help message.\n"
 	       "  -i:         Exit immediately after fork (do not act as init).\n"
@@ -169,6 +190,8 @@ static void usage(const char *progn)
 	       "  -U:         Enter new user namespace (implies -p).\n"
 	       "  -v:         Enter new mount namespace.\n"
 	       "  -V <file>:  Enter specified mount namespace.\n"
+	       "  -x <user>:  Change saved uid to <user>. Requires -u.\n"
+	       "  -X <group>: Change saved gid to <group>. Requires -g.\n"
 	       "  -Y:         Synchronize seccomp filters across thread group.\n");
 	/* clang-format on */
 }
@@ -191,6 +214,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	int binding = 0;
 	int pivot_root = 0, chroot = 0;
 	int mount_ns = 0, skip_remount = 0;
+	int inherit_suppl_gids = 0, keep_suppl_gids = 0;
 	const size_t path_max = 4096;
 	char *map;
 	const char *filter_path;
@@ -198,7 +222,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		return 1;
 
 	const char *optstring =
-	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKY";
+	    "u:g:x:X:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKyY";
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
@@ -206,6 +230,12 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 'g':
 			set_group(j, optarg);
+			break;
+		case 'x':
+			set_saved_user(j, optarg);
+			break;
+		case 'X':
+			set_saved_group(j, optarg);
 			break;
 		case 'n':
 			minijail_no_new_privs(j);
@@ -294,7 +324,22 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			minijail_remount_proc_readonly(j);
 			break;
 		case 'G':
+			if (keep_suppl_gids) {
+				fprintf(stderr,
+					"-y and -G are not compatible.\n");
+				exit(1);
+			}
 			minijail_inherit_usergroups(j);
+			inherit_suppl_gids = 1;
+			break;
+		case 'y':
+			if (inherit_suppl_gids) {
+				fprintf(stderr,
+					"-y and -G are not compatible.\n");
+				exit(1);
+			}
+			minijail_keep_supplementary_gids(j);
+			keep_suppl_gids = 1;
 			break;
 		case 'N':
 			minijail_namespace_cgroups(j);
