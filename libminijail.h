@@ -40,13 +40,22 @@ struct minijail *minijail_new(void);
  */
 void minijail_change_uid(struct minijail *j, uid_t uid);
 void minijail_change_gid(struct minijail *j, gid_t gid);
+void minijail_change_saved_uid(struct minijail *j, uid_t uid);
+void minijail_change_saved_gid(struct minijail *j, uid_t gid);
 /* Copies |list|. */
 void minijail_set_supplementary_gids(struct minijail *j, size_t size,
 				     const gid_t *list);
+void minijail_keep_supplementary_gids(struct minijail *j);
 /* Stores user to change to and copies |user| for internal consistency. */
 int minijail_change_user(struct minijail *j, const char *user);
 /* Does not take ownership of |group|. */
 int minijail_change_group(struct minijail *j, const char *group);
+/* Allows a child process to switch to the given user even without CAP_SETUID.
+ * Requires changing user. Does not take ownership of |user|. */
+int minijail_change_saved_user(struct minijail *j, const char *user);
+/* Allows a child process to switch to the given group even without CAP_SETGID.
+ * Requires changing group. Does not take ownership of |group|. */
+int minijail_change_saved_group(struct minijail *j, const char *group);
 void minijail_use_seccomp(struct minijail *j);
 void minijail_no_new_privs(struct minijail *j);
 void minijail_use_seccomp_filter(struct minijail *j);

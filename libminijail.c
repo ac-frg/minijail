@@ -123,8 +123,11 @@ struct minijail {
 	struct {
 		int uid : 1;
 		int gid : 1;
+		int suid : 1;
+		int sgid : 1;
 		int usergroups : 1;
 		int suppl_gids : 1;
+		int keep_suppl_gids : 1;
 		int use_caps : 1;
 		int capbset_drop : 1;
 		int vfs : 1;
@@ -155,6 +158,8 @@ struct minijail {
 	} flags;
 	uid_t uid;
 	gid_t gid;
+	uid_t suid;
+	gid_t sgid;
 	gid_t usergid;
 	char *user;
 	size_t suppl_gid_count;
@@ -231,6 +236,7 @@ struct minijail API *minijail_new(void)
 
 void API minijail_change_uid(struct minijail *j, uid_t uid)
 {
+	/* LJ: This is only useless if the current uid is 0. */
 	if (uid == 0)
 		die("useless change to uid 0");
 	j->uid = uid;
@@ -239,10 +245,23 @@ void API minijail_change_uid(struct minijail *j, uid_t uid)
 
 void API minijail_change_gid(struct minijail *j, gid_t gid)
 {
+	/* LJ: This is only useless if the current gid is 0. */
 	if (gid == 0)
 		die("useless change to gid 0");
 	j->gid = gid;
 	j->flags.gid = 1;
+}
+
+void API minijail_change_saved_uid(struct minijail *j, uid_t uid)
+{
+	j->suid = uid;
+	j->flags.suid = 1;
+}
+
+void API minijail_change_saved_gid(struct minijail *j, uid_t gid)
+{
+	j->sgid = gid;
+	j->flags.sgid = 1;
 }
 
 void API minijail_set_supplementary_gids(struct minijail *j, size_t size,
@@ -273,9 +292,13 @@ void API minijail_set_supplementary_gids(struct minijail *j, size_t size,
 	j->flags.suppl_gids = 1;
 }
 
-int API minijail_change_user(struct minijail *j, const char *user)
+void API minijail_keep_supplementary_gids(struct minijail *j) {
+	j->flags.keep_suppl_gids = 1;
+}
+
+static int get_uid_and_gid(const char* user, uid_t *out_uid, uid_t *out_gid)
 {
-	char *buf = NULL;
+ 	char *buf = NULL;
 	struct passwd pw;
 	struct passwd *ppw = NULL;
 	ssize_t sz = sysconf(_SC_GETPW_R_SIZE_MAX);
@@ -300,15 +323,12 @@ int API minijail_change_user(struct minijail *j, const char *user)
 	/* getpwnam_r(3) does *not* set errno when |ppw| is NULL. */
 	if (!ppw)
 		return -1;
-	minijail_change_uid(j, ppw->pw_uid);
-	j->user = strdup(user);
-	if (!j->user)
-		return -ENOMEM;
-	j->usergid = ppw->pw_gid;
-	return 0;
+	*out_uid = ppw->pw_uid;
+        *out_gid = ppw->pw_gid;
+ 	return 0;
 }
 
-int API minijail_change_group(struct minijail *j, const char *group)
+static int get_gid(const char* group, gid_t* out_gid)
 {
 	char *buf = NULL;
 	struct group gr;
@@ -334,7 +354,61 @@ int API minijail_change_group(struct minijail *j, const char *group)
 	/* getgrnam_r(3) does *not* set errno when |pgr| is NULL. */
 	if (!pgr)
 		return -1;
-	minijail_change_gid(j, pgr->gr_gid);
+	*out_gid = pgr->gr_gid;
+	return 0;
+}
+
+int API minijail_change_user(struct minijail *j, const char *user)
+{
+        uid_t uid;
+        gid_t gid;
+        int res;
+        res = get_uid_and_gid(user, &uid, &gid);
+        if (res < 0)
+                return res;
+
+	minijail_change_uid(j, uid);
+	j->user = strdup(user);
+	if (!j->user)
+		return -ENOMEM;
+	j->usergid = gid;
+	return 0;
+}
+
+int API minijail_change_group(struct minijail *j, const char *group)
+{
+        gid_t gid;
+        int res;
+        res = get_gid(group, &gid);
+        if (res < 0)
+                return res;
+
+	minijail_change_gid(j, gid);
+	return 0;
+}
+
+int API minijail_change_saved_user(struct minijail *j, const char *user)
+{
+        uid_t uid;
+        gid_t gid;
+        int res;
+        res = get_uid_and_gid(user, &uid, &gid);
+        if (res < 0)
+                return res;
+
+	minijail_change_saved_uid(j, uid);
+	return 0;
+}
+
+int API minijail_change_saved_group(struct minijail *j, const char *group)
+{
+        gid_t gid;
+        int res;
+        res = get_gid(group, &gid);
+        if (res < 0)
+                return res;
+
+	minijail_change_saved_gid(j, gid);
 	return 0;
 }
 
@@ -1332,27 +1406,42 @@ static void drop_ugid(const struct minijail *j)
 		    " can only do one");
 	}
 
+	if ((j->flags.usergroups || j->flags.suppl_gids) &&
+	    j->flags.keep_suppl_gids) {
+		die("tried to inherit or set supplementary groups *and* keep "
+		    "the current groups; can only do one");
+	}
+
 	if (j->flags.usergroups) {
 		if (initgroups(j->user, j->usergid))
 			pdie("initgroups(%s, %d) failed", j->user, j->usergid);
 	} else if (j->flags.suppl_gids) {
-		if (setgroups(j->suppl_gid_count, j->suppl_gid_list)) {
+		if (setgroups(j->suppl_gid_count, j->suppl_gid_list))
 			pdie("setgroups(suppl_gids) failed");
-		}
-	} else {
+	} else if (!j->flags.keep_suppl_gids) {
 		/*
 		 * Only attempt to clear supplementary groups if we are changing
-		 * users.
+		 * users or groups.
 		 */
 		if ((j->flags.uid || j->flags.gid) && setgroups(0, NULL))
 			pdie("setgroups(0, NULL) failed");
 	}
 
-	if (j->flags.gid && setresgid(j->gid, j->gid, j->gid))
-		pdie("setresgid(%d, %d, %d) failed", j->gid, j->gid, j->gid);
+	if (j->flags.gid) {
+		uid_t sgid = j->flags.sgid ? j->sgid : j->gid;
+		if (setresgid(j->gid, j->gid, sgid)) {
+			pdie("setresgid(%d, %d, %d) failed",
+			     j->gid, j->gid, sgid);
+		}
+	}
 
-	if (j->flags.uid && setresuid(j->uid, j->uid, j->uid))
-		pdie("setresuid(%d, %d, %d) failed", j->uid, j->uid, j->uid);
+	if (j->flags.uid) {
+		uid_t suid = j->flags.suid ? j->suid : j->uid;
+		if (setresuid(j->uid, j->uid, suid)) {
+			pdie("setresuid(%d, %d, %d) failed",
+			     j->uid, j->uid, suid);
+		}
+	}
 }
 
 /*
