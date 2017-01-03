@@ -125,6 +125,7 @@ struct minijail {
 		int gid : 1;
 		int usergroups : 1;
 		int suppl_gids : 1;
+		int keep_suppl_gids : 1;
 		int use_caps : 1;
 		int capbset_drop : 1;
 		int vfs : 1;
@@ -273,9 +274,13 @@ void API minijail_set_supplementary_gids(struct minijail *j, size_t size,
 	j->flags.suppl_gids = 1;
 }
 
+void API minijail_keep_supplementary_gids(struct minijail *j) {
+	j->flags.keep_suppl_gids = 1;
+}
+
 int API minijail_change_user(struct minijail *j, const char *user)
 {
-	char *buf = NULL;
+ 	char *buf = NULL;
 	struct passwd pw;
 	struct passwd *ppw = NULL;
 	ssize_t sz = sysconf(_SC_GETPW_R_SIZE_MAX);
@@ -305,7 +310,7 @@ int API minijail_change_user(struct minijail *j, const char *user)
 	if (!j->user)
 		return -ENOMEM;
 	j->usergid = ppw->pw_gid;
-	return 0;
+ 	return 0;
 }
 
 int API minijail_change_group(struct minijail *j, const char *group)
@@ -1332,17 +1337,22 @@ static void drop_ugid(const struct minijail *j)
 		    " can only do one");
 	}
 
+	if ((j->flags.usergroups || j->flags.suppl_gids) &&
+	    j->flags.keep_suppl_gids) {
+		die("tried to inherit or set supplementary groups *and* keep "
+		    "the current groups; can only do one");
+	}
+
 	if (j->flags.usergroups) {
 		if (initgroups(j->user, j->usergid))
 			pdie("initgroups(%s, %d) failed", j->user, j->usergid);
 	} else if (j->flags.suppl_gids) {
-		if (setgroups(j->suppl_gid_count, j->suppl_gid_list)) {
+		if (setgroups(j->suppl_gid_count, j->suppl_gid_list))
 			pdie("setgroups(suppl_gids) failed");
-		}
-	} else {
+	} else if (!j->flags.keep_suppl_gids) {
 		/*
 		 * Only attempt to clear supplementary groups if we are changing
-		 * users.
+		 * users or groups.
 		 */
 		if ((j->flags.uid || j->flags.gid) && setgroups(0, NULL))
 			pdie("setgroups(0, NULL) failed");
