@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7b632e5_35e847c4",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-01-04T22:07:06Z",
+      "side": 1,
+      "message": "This should be exposed on the command line tool too, I think (with usage note).",
+      "range": {
+        "startLine": 277,
+        "startChar": 9,
+        "endLine": 277,
+        "endChar": 41
+      },
+      "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
