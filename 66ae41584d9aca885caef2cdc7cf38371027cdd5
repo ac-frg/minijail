@@ -40,6 +40,24 @@
       "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7b632e5_2ff0e81c",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-01-05T19:40:56Z",
+      "side": 1,
+      "message": "Heh, whoops! Thanks for the clean up, regardless. :)",
+      "parentUuid": "b73712da_a1314849",
+      "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
