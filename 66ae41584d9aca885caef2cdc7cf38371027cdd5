@@ -22,6 +22,24 @@
       "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b73712da_a1314849",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1130134
+      },
+      "writtenOn": "2017-01-05T13:28:36Z",
+      "side": 1,
+      "message": "Done. I\u0027ve also renamed the flags a bit for more clarity and simplified error handling.\n\nBtw, I\u0027ve noticed that minijail0 exposes a way to inherit (-G), but not to set supplementary gids.",
+      "parentUuid": "b7b632e5_35e847c4",
+      "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
