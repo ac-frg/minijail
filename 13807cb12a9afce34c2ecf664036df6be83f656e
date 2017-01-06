@@ -1,0 +1,9 @@
+Code-Review+2: Kees Cook <keescook@google.com>
+Verified+1: Lutz Justen <ljusten@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Autosubmit+1: Lutz Justen <ljusten@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Fri, 06 Jan 2017 19:33:43 +0000
+Reviewed-on: https://android-review.googlesource.com/317586
+Project: platform/external/minijail
+Branch: refs/heads/master
