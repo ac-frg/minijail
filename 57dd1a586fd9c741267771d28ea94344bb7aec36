@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b70ab2d0_da0245be",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-10T15:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57ba5638_929ffaec",
+      "range": {
+        "startLine": 1292,
+        "startChar": 34,
+        "endLine": 1292,
+        "endChar": 53
+      },
+      "revId": "57dd1a586fd9c741267771d28ea94344bb7aec36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57ba5638_f29486d2",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-10T14:59:33Z",
       "side": 1,
       "message": "} else {\n        /* See http://man7.org/linux/man-pages/man7/user_namespaces.7.html .*/\n        warn(\"could not disable setgroups(2)\");\n}",
+      "range": {
+        "startLine": 1296,
+        "startChar": 1,
+        "endLine": 1296,
+        "endChar": 2
+      },
+      "revId": "57dd1a586fd9c741267771d28ea94344bb7aec36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b70ab2d0_3a08a1db",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1296,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-10T15:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57ba5638_f29486d2",
       "range": {
         "startLine": 1296,
         "startChar": 1,
