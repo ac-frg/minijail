@@ -58,6 +58,24 @@
       "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57ba5638_78beb561",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-11T18:50:02Z",
+      "side": 1,
+      "message": "That was mostly intentional. We wanted to be able to set supplementary GIDs mostly for Android work -- on Android, Bionic does not support the concept of associating a list of GIDs with a UID -- i.e., it does not support the /etc/groups file. This means that being able to set supplementary GIDs becomes the only way for a process to get more than one GID associated with it, since you cannot inherit anything when you switch UIDs.\n\nOn Chrome OS, the way to get supplementary GIDs in your process is not to set them manually, but to inherit them with a UID switch. The advantage of this is that the configuration is declarative rather than programmatic, and that it all lives in the euser/egroup eclasses in ebuilds.\n\nThat means we don\u0027t really need to expose a command-line switch for setting supplementary GIDs on Linux/Chrome OS, because you should just be inheriting them when you switch UIDs rather than setting them manually.",
+      "parentUuid": "b7b632e5_2ff0e81c",
+      "revId": "66ae41584d9aca885caef2cdc7cf38371027cdd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
