@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e331cd17_e27606a5",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T23:32:02Z",
+      "side": 1,
+      "message": "pwarn is a macro which ends up calling syslog.  that func isn\u0027t defined as failing which means it shouldn\u0027t modify errno.  but that doesn\u0027t mean it\u0027s bug free.  the use of %m does mean that errno should be the right value at least through most of the code :).\n\nwrite_pid_to_path has the same issue.\n\nwdyt jorgelo ?",
+      "parentUuid": "a33d15bf_99811fe9",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1298,
+        "endChar": 27
+      },
+      "revId": "6b190c0ff461b707357d5fdab1155e31845c48cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a33d15bf_b984e3f8",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-13T22:11:36Z",
       "side": 1,
       "message": "Nit: This is inconsistent with the other code that checks for write_proc_file() !\u003d 0, but it looks OK from the code.",
+      "range": {
+        "startLine": 1299,
+        "startChar": 2,
+        "endLine": 1299,
+        "endChar": 16
+      },
+      "revId": "6b190c0ff461b707357d5fdab1155e31845c48cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_62c2f688",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T23:32:02Z",
+      "side": 1,
+      "message": "posted CL:322408 to address",
+      "parentUuid": "a33d15bf_b984e3f8",
       "range": {
         "startLine": 1299,
         "startChar": 2,
