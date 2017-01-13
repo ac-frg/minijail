@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e331cd17_c22ae29a",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "the standard does not guarantee a sign, so i think you need to do something like:\n\n /* The standard says enum will not be larger than an int. */\n if ((unsigned int)t \u003e\u003d MINIJAIL_UNUSED_TYPE)",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_e231e60d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "what if the type has more than one cb registered ?\n\ni think you should model this on the mount_one and similar funcs.  namely, you should have one func like run_callbacks with the same API as this one, except instead of returning inf, you execute it and then recursively call itself on -\u003enext.",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_c251421d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "once you make the func above recursive, this becomes a one-line statement.  which makes me think it should just be inlined at the call sites below like:\n\n run_callbacks(j, MINIJAIL_SELINUX_CB);",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_a24ebe78",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1753,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "\"Set\", and put a period at the end",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_226aaec6",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1767,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "above we run after dropping privs, but before seccomp.  here we run after dropping privs \u0026 seccomp.  seems like they should behave the same.\n\nplus, the header needs to document *when* the callback happens.",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_a227ded0",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2469,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "this API contract should be in the header file",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_e2ea8627",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "this is used as a sentinel for error checking.  usually those are called \"max\" instead of \"unused\".  unused to me is confusing here.",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331cd17_4217f264",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-13T20:51:36Z",
+      "side": 1,
+      "message": "period at the end",
+      "revId": "da8f1b1794ffd3a63f61bfc3573b8ce254a25759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
