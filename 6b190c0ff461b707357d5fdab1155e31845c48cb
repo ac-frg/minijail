@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a33d15bf_99811fe9",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1130134
+      },
+      "writtenOn": "2017-01-13T22:11:36Z",
+      "side": 1,
+      "message": "Unrelated, but for the record: write_proc_file does this:\n\t\tpwarn(\"failed to open \u0027%s\u0027\", filename);\n\t\treturn -errno;\nIt\u0027s not clear whether pwarn changes errno, so it\u0027s safer to cache the value.",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1298,
+        "endChar": 27
+      },
+      "revId": "6b190c0ff461b707357d5fdab1155e31845c48cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a33d15bf_b984e3f8",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1130134
+      },
+      "writtenOn": "2017-01-13T22:11:36Z",
+      "side": 1,
+      "message": "Nit: This is inconsistent with the other code that checks for write_proc_file() !\u003d 0, but it looks OK from the code.",
+      "range": {
+        "startLine": 1299,
+        "startChar": 2,
+        "endLine": 1299,
+        "endChar": 16
+      },
+      "revId": "6b190c0ff461b707357d5fdab1155e31845c48cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
