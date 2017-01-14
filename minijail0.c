@@ -110,7 +110,7 @@ static void usage(const char *progn)
 {
 	size_t i;
 	/* clang-format off */
-	printf("Usage: %s [-GhHiIKlLnNprstUvyY]\n"
+	printf("Usage: %s [-dGhHiIKlLnNprstUvyY]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
 	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
@@ -128,6 +128,7 @@ static void usage(const char *progn)
 	       "              Not compatible with -P.\n"
 	       "  -P <dir>:   pivot_root(2) to <dir> (implies -v).\n"
 	       "              Not compatible with -C.\n"
+	       "  -d          Create a new /dev with a minimal set of nodes (implies -v).\n"
 	       "  -e[file]:   Enter new network namespace, or existing one if |file| is provided.\n"
 	       "  -f <file>:  Write the pid of the jailed process to <file>.\n"
 	       "  -g <group>: Change gid to <group>.\n"
@@ -143,7 +144,7 @@ static void usage(const char *progn)
 	       "  -K:         Don't mark all existing mounts as MS_PRIVATE.\n"
 	       "  -l:         Enter new IPC namespace.\n"
 	       "  -L:         Report blocked syscalls to syslog when using seccomp filter.\n"
-	       "              Forces the following syscalls to be allowed:\n"
+	       "              Forces the following syscalls (for this arch) to be allowed:\n"
 	       "                  ", progn);
 	/* clang-format on */
 	for (i = 0; i < log_syscalls_len; i++)
@@ -202,7 +203,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		return 1;
 
 	const char *optstring =
-	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKyY";
+	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKyYd";
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
@@ -406,6 +407,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 'Y':
 			minijail_set_seccomp_filter_tsync(j);
+			break;
+		case 'd':
+			minijail_namespace_vfs(j);
+			minijail_mount_dev(j);
 			break;
 		default:
 			usage(argv[0]);

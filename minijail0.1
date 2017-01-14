@@ -26,6 +26,9 @@ capabilities unless those subprocesses have POSIX file capabilities. See
 \fB-C <dir>\fR
 Change root (using chroot(2)) to \fIdir\fR.
 .TP
+\fB-d\fR
+Create a new /dev mount with a minimal set of nodes. Implies \fB-v\fR.
+.TP
 \fB-e[file]\fR
 Enter a new network namespace, or if \fIfile\fR is specified, enter an existing
 network namespace specified by \fIfile\fR which is typically of the form

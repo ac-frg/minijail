@@ -32,6 +32,7 @@
 #include <sys/prctl.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <sys/user.h>
 #include <sys/wait.h>
@@ -146,6 +147,7 @@ struct minijail {
 		int seccomp_filter_logging : 1;
 		int chroot : 1;
 		int pivot_root : 1;
+		int mount_dev : 1;
 		int mount_tmp : 1;
 		int do_init : 1;
 		int pid_file : 1;
@@ -595,6 +597,11 @@ char API *minijail_get_original_path(struct minijail *j,
 
 	/* No chroot, so the path outside is the same as it is inside. */
 	return strdup(path_inside_chroot);
+}
+
+void API minijail_mount_dev(struct minijail *j)
+{
+	j->flags.mount_dev = 1;
 }
 
 void API minijail_mount_tmp(struct minijail *j)
@@ -1236,6 +1243,89 @@ static int enter_pivot_root(const struct minijail *j)
 	return 0;
 }
 
+struct dev_spec {
+	const char *name;
+	mode_t mode;
+	dev_t major, minor;
+};
+
+static const struct dev_spec device_nodes[] = {
+	{
+		"/dev/null",
+		S_IFCHR | 0666, 1, 3,
+	},
+	{
+		"/dev/zero",
+		S_IFCHR | 0666, 1, 5,
+	},
+	{
+		"/dev/full",
+		S_IFCHR | 0666, 1, 7,
+	},
+	{
+		"/dev/urandom",
+		S_IFCHR | 0444, 1, 9,
+	},
+	{
+		"/dev/tty",
+		S_IFCHR | 0666, 5, 0,
+	},
+};
+
+struct dev_sym_spec {
+	const char *source, *dest;
+};
+
+static const struct dev_sym_spec device_symlinks[] = {
+	{ "/dev/ptmx", "pts/ptmx", },
+	{ "/dev/fd", "/proc/self/fd", },
+	{ "/dev/stdin", "fd/0", },
+	{ "/dev/stdout", "fd/1", },
+	{ "/dev/stderr", "fd/2", },
+};
+
+static int mount_dev(void)
+{
+	int ret;
+	size_t i;
+	mode_t mask;
+
+	/* Unmount the /dev mount if possible. */
+	if (umount2("/dev", MNT_DETACH))
+		pdie("Could not detach /dev");
+
+	/* Set up the empty /dev mount point first. */
+	ret = mount("minijail-devfs", "/dev", "tmpfs", MS_NOEXEC | MS_NOSUID,
+	            "size=5M,mode=755");
+	if (ret)
+		return ret;
+
+	/* We want to set the mode directly from the spec. */
+	mask = umask(0);
+
+	/* Create all the nodes in /dev. */
+	for (i = 0; i < ARRAY_SIZE(device_nodes); ++i) {
+		const struct dev_spec *ds = &device_nodes[i];
+		ret = mknod(ds->name, ds->mode, makedev(ds->major, ds->minor));
+		if (ret)
+			goto done;
+	}
+
+	/* Create all the symlinks in /dev. */
+	for (i = 0; i < ARRAY_SIZE(device_symlinks); ++i) {
+		const struct dev_sym_spec *ds = &device_symlinks[i];
+		ret = symlink(ds->dest, ds->source);
+		if (ret)
+			goto done;
+	}
+
+	/* Restore old mask. */
+ done:
+	umask(mask);
+
+	return ret;
+}
+
 static int mount_tmp(void)
 {
 	return mount("none", "/tmp", "tmpfs", 0, "size=64M,mode=1777");
@@ -1631,6 +1721,9 @@ void API minijail_enter(const struct minijail *j)
 
 	if (j->flags.mount_tmp && mount_tmp())
 		pdie("mount_tmp");
+
+	if (j->flags.mount_dev && mount_dev())
+		pdie("mount_dev");
 
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
 		pdie("remount");
