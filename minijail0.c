@@ -139,7 +139,7 @@ static void usage(const char *progn)
 {
 	size_t i;
 	/* clang-format off */
-	printf("Usage: %s [-GhHiIKlLnNprRstUvyYz]\n"
+	printf("Usage: %s [-dGhHiIKlLnNprRstUvyYz]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
 	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
@@ -160,6 +160,7 @@ static void usage(const char *progn)
 	       "                Not compatible with -P.\n"
 	       "  -P <dir>:     pivot_root(2) to <dir> (implies -v).\n"
 	       "                Not compatible with -C.\n"
+	       "  -d            Create a new /dev with a minimal set of nodes (implies -v).\n"
 	       "  -e[file]:     Enter new network namespace, or existing one if |file| is provided.\n"
 	       "  -f <file>:    Write the pid of the jailed process to <file>.\n"
 	       "  -g <group>:   Change gid to <group>.\n"
@@ -244,7 +245,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	const char *filter_path;
 
 	const char *optstring =
-	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYz";
+	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYzd";
 	int longoption_index = 0;
 	/* clang-format off */
 	const struct option long_options[] = {
@@ -487,6 +488,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 'z':
 			forward = 0;
+			break;
+		case 'd':
+			minijail_namespace_vfs(j);
+			minijail_mount_dev(j);
 			break;
 		/* Long options. */
 		case 128: /* Ambient caps. */
