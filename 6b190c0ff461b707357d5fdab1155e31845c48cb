@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "43aa999c_fdd5479c",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-14T00:44:04Z",
+      "side": 1,
+      "message": "syslog returns void, so I wouldn\u0027t be too worried about this. Filed b/34285364 as P3 to not forget. I\u0027d happily +2 a change to fix this though.",
+      "parentUuid": "e331cd17_e27606a5",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1298,
+        "endChar": 27
+      },
+      "revId": "6b190c0ff461b707357d5fdab1155e31845c48cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a33d15bf_b984e3f8",
         "filename": "libminijail.c",
         "patchSetId": 4
