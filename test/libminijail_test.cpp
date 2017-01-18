@@ -114,7 +114,7 @@ int main(void) {
   minijail* j = minijail_new();
   minijail_change_user(j, "system");
   minijail_change_group(j, "system");
-  size_t num_groups = sizeof(groups) / sizeof(groups[0]);
+  size_t num_groups = ARRAY_SIZE(groups);
   minijail_set_supplementary_gids(j, num_groups, groups);
   minijail_use_caps(j, CAP_TO_MASK(CAP_SETUID) | CAP_TO_MASK(CAP_SETGID));
   minijail_enter(j);
