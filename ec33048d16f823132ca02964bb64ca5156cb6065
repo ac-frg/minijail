@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43aa999c_26171766",
+        "filename": "examples/drop_privs.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-18T15:11:40Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 59,
+        "startChar": 39,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "ec33048d16f823132ca02964bb64ca5156cb6065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43aa999c_46eb432d",
+        "filename": "test/libminijail_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-18T15:11:40Z",
+      "side": 1,
+      "message": "Given that this is already using android-base includes, maybe we should just include android-base/macros.h and use the arraysize from there.",
+      "range": {
+        "startLine": 117,
+        "startChar": 22,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "ec33048d16f823132ca02964bb64ca5156cb6065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
