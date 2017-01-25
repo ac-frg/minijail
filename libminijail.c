@@ -175,6 +175,7 @@ struct minijail {
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
+	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
 };
@@ -597,9 +598,65 @@ char API *minijail_get_original_path(struct minijail *j,
 	return strdup(path_inside_chroot);
 }
 
-void API minijail_mount_tmp(struct minijail *j)
+/*
+ * parse_tmpfs_size, specified as a string with a decimal number,
+ * in bytes, possibly with one 1-character suffix like "10K" or "6G".
+ */
+static int parse_tmpfs_size(struct minijail *j, const char *sizespec)
 {
+	const char prefixes[] = "KMGTPE";
+	size_t i, multiplier = 1, nsize, size = 0;
+	unsigned long long parsed;
+	const size_t len = strlen(sizespec);
+	char *end;
+
+	if (len == 0 || sizespec[0] == '-')
+		return -EINVAL;
+
+	for (i = 0; i < sizeof(prefixes); ++i) {
+		if (sizespec[len - 1] == prefixes[i]) {
+#if __WORDSIZE == 32
+			if (i >= 3)
+				return -ERANGE;
+#endif
+			multiplier = 1024;
+			while (i-- > 0)
+				multiplier *= 1024;
+			break;
+		}
+	}
+
+	/* We only need size_t but strtoul(3) is too small on IL32P64. */
+	parsed = strtoull(sizespec, &end, 10);
+	if (parsed == ULLONG_MAX)
+		return -errno;
+	if (parsed >= SIZE_MAX)
+		return -ERANGE;
+	if ((multiplier != 1 && end != sizespec + len - 1) ||
+	    (multiplier == 1 && end != sizespec + len))
+		return -EINVAL;
+	size = (size_t) parsed;
+
+	nsize = size * multiplier;
+	if (nsize / multiplier != size)
+		return -ERANGE;
+	j->tmpfs_size = nsize;
+	return 0;
+}
+
+size_t minijail_get_tmpfs_size(const struct minijail *j)
+{
+	return j->tmpfs_size;
+}
+
+int API minijail_mount_tmp(struct minijail *j, const char *sizespec)
+{
+	int ret = parse_tmpfs_size(j, sizespec ? sizespec : "64M");
+
+	if (ret)
+		return ret;
 	j->flags.mount_tmp = 1;
+	return 0;
 }
 
 int API minijail_write_pid_file(struct minijail *j, const char *path)
@@ -1236,10 +1293,15 @@ static int enter_pivot_root(const struct minijail *j)
 	return 0;
 }
 
-static int mount_tmp(void)
+static int mount_tmp(const struct minijail *j)
 {
+	const char fmt[] = "size=%zu,mode=1777";
+	char data[sizeof(fmt) + sizeof("18446744073709551615ULL")];
+
+	if (snprintf(data, sizeof(data), fmt, j->tmpfs_size) >= sizeof(data))
+		pdie("tmpfs size spec too large");
 	return mount("none", "/tmp", "tmpfs", MS_NODEV | MS_NOEXEC | MS_NOSUID,
-	             "size=64M,mode=1777");
+		     data);
 }
 
 static int remount_proc_readonly(const struct minijail *j)
@@ -1630,7 +1692,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.pivot_root && enter_pivot_root(j))
 		pdie("pivot_root");
 
-	if (j->flags.mount_tmp && mount_tmp())
+	if (j->flags.mount_tmp && mount_tmp(j))
 		pdie("mount_tmp");
 
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
