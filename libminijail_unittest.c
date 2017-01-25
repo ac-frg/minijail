@@ -28,6 +28,7 @@ const char *kShellPath = "/bin/sh";
 /* Prototypes needed only by test. */
 void *consumebytes(size_t length, char **buf, size_t *buflength);
 char *consumestr(char **buf, size_t *buflength);
+size_t minijail_get_tmpfs_size(const struct minijail *);
 
 /* Silence unused variable warnings. */
 TEST(silence_unused)
@@ -279,6 +280,62 @@ TEST(test_minijail_no_fd_leaks)
 	minijail_destroy(j);
 
 	close(dev_null);
+}
+
+TEST(test_minijail_tmpfs_size_parse)
+{
+	struct minijail *j = minijail_new();
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "42"));
+	ASSERT_EQ(42, minijail_get_tmpfs_size(j));
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "16K"));
+	ASSERT_EQ(16384, minijail_get_tmpfs_size(j));
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "1M"));
+	ASSERT_EQ(1024 * 1024, minijail_get_tmpfs_size(j));
+
+	uint64_t gigabyte = 1024ULL * 1024 * 1024;
+	ASSERT_EQ(0, minijail_mount_tmp(j, "3G"));
+	ASSERT_EQ(3, minijail_get_tmpfs_size(j) / gigabyte);
+	ASSERT_EQ(0, minijail_get_tmpfs_size(j) % gigabyte);
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "4294967295"));
+	ASSERT_EQ(3, minijail_get_tmpfs_size(j) / gigabyte);
+	ASSERT_EQ(gigabyte - 1, minijail_get_tmpfs_size(j) % gigabyte);
+
+#if __WORDSIZE == 64
+	uint64_t exabyte = gigabyte * 1024 * 1024 * 1024;
+	ASSERT_EQ(0, minijail_mount_tmp(j, "9E"));
+	ASSERT_EQ(9, minijail_get_tmpfs_size(j) / exabyte);
+	ASSERT_EQ(0, minijail_get_tmpfs_size(j) % exabyte);
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "15E"));
+	ASSERT_EQ(15, minijail_get_tmpfs_size(j) / exabyte);
+	ASSERT_EQ(0, minijail_get_tmpfs_size(j) % exabyte);
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, "18446744073709551615"));
+	ASSERT_EQ(15, minijail_get_tmpfs_size(j) / exabyte);
+	ASSERT_EQ(exabyte - 1, minijail_get_tmpfs_size(j) % exabyte);
+
+	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "16E"));
+	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "19E"));
+#elif __WORDSIZE == 32
+	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "5G"));
+	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "9G"));
+	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "9E"));
+#endif
+
+	ASSERT_EQ(0, minijail_mount_tmp(j, NULL));
+	ASSERT_EQ(64ULL * 1024 * 1024, minijail_get_tmpfs_size(j));
+
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, ""));
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "14u"));
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "14.2G"));
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "-1G"));
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "; /bin/rm -- "));
+
+	minijail_destroy(j);
 }
 
 TEST_HARNESS_MAIN
