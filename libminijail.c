@@ -175,6 +175,7 @@ struct minijail {
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
+	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
 };
@@ -597,9 +598,19 @@ char API *minijail_get_original_path(struct minijail *j,
 	return strdup(path_inside_chroot);
 }
 
-void API minijail_mount_tmp(struct minijail *j)
+size_t minijail_get_tmpfs_size(const struct minijail *j)
 {
+	return j->tmpfs_size;
+}
+
+int API minijail_mount_tmp(struct minijail *j, const char *sizespec)
+{
+	int ret = parse_size(&j->tmpfs_size, sizespec ? sizespec : "64M");
+
+	if (ret)
+		return ret;
 	j->flags.mount_tmp = 1;
+	return 0;
 }
 
 int API minijail_write_pid_file(struct minijail *j, const char *path)
@@ -1236,10 +1247,21 @@ static int enter_pivot_root(const struct minijail *j)
 	return 0;
 }
 
-static int mount_tmp(void)
+static int mount_tmp(const struct minijail *j)
 {
+	const char fmt[] = "size=%zu,mode=1777";
+	/* Count for the user storing ULLONG_MAX literally + extra space. */
+	char data[sizeof(fmt) + sizeof("18446744073709551615ULL")];
+	int ret;
+
+	ret = snprintf(data, sizeof(data), fmt, j->tmpfs_size);
+
+	if (ret <= 0)
+		pdie("tmpfs size spec error");
+	else if ((size_t) ret >= sizeof(data))
+		pdie("tmpfs size spec too large");
 	return mount("none", "/tmp", "tmpfs", MS_NODEV | MS_NOEXEC | MS_NOSUID,
-	             "size=64M,mode=1777");
+		     data);
 }
 
 static int remount_proc_readonly(const struct minijail *j)
@@ -1630,7 +1652,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.pivot_root && enter_pivot_root(j))
 		pdie("pivot_root");
 
-	if (j->flags.mount_tmp && mount_tmp())
+	if (j->flags.mount_tmp && mount_tmp(j))
 		pdie("mount_tmp");
 
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
