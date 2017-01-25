@@ -9,6 +9,8 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
+/* TEST */
+
 #include <stdlib.h>
 #include <sys/types.h>
 #include <syslog.h>
