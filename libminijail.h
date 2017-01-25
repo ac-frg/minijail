@@ -129,8 +129,10 @@ char *minijail_get_original_path(struct minijail *j, const char *chroot_path);
 /*
  * minijail_mount_tmp: enables mounting of a tmpfs filesystem on /tmp.
  * As be rules of bind mounts, /tmp must exist in chroot.
+ *
+ * Returns 0 on success.
  */
-void minijail_mount_tmp(struct minijail *j);
+int minijail_mount_tmp(struct minijail *j, const char *sizespec);
 
 /*
  * minijail_mount_with_data: when entering minijail @j,
