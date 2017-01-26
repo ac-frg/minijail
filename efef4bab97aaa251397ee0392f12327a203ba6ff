@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3e1cfd8_66c2e5ef",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "you\u0027ll want to add some vars at the top like:\n\n USE_SYSTEM_GTEST ?\u003d no\n ifeq ($(USE_SYSTEM_GTEST),no)\n GTEST_CXXFLAGS :\u003d\n GTEST_MAIN :\u003d gtest_main.a\n GTEST_LIBS :\u003d gtest.a\n else\n GTEST_CXXFLAGS :\u003d $(gtest-config --cxxflags)\n GTEST_MAIN :\u003d -lgtest_main\n GTEST_LIBS :\u003d $(gtest-config --libs)\n fi\n\nthen you can update the LDLIBS rule above like so:\n\n CXX_BINARY(libminijail_unittest_gtest): CXXFLAGS +\u003d -Wno-write-strings $(GTEST_CXXFLAGS)\nCXX_BINARY(libminijail_unittest_gtest): LDLIBS +\u003d -lcap $(GTEST_MAIN)",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03e2be8b_eed8acfc",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "should wrap this block in:\n\n ifeq ($(USE_SYSTEM_GTEST),no)\n ...\n endif",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ebc369c_89c19385",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "these flags affect all of minijail which is probably not what you want.  the -g/-W flags should already be pulled in via common.mk.  the rest should get their own variable and added to the explicit rules you have below.",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c20b38a_b15c5eff",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "you\u0027ll want to add -o $@",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7dcccde_791abd49",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "indent with tabs ?",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f21ae4b7_d4f1d9ee",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "you\u0027ll want to add -o $@",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7fee17f_7c9c2025",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-01-26T23:48:07Z",
+      "side": 1,
+      "message": "indent with tabs ?",
+      "revId": "efef4bab97aaa251397ee0392f12327a203ba6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
