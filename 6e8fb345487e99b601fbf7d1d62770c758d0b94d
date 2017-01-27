@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "423c2c1c_6ee0bb8c",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Probably add a short comment above with an example sizespec, even if it\u0027s just \"10M\".",
+      "range": {
+        "startLine": 601,
+        "startChar": 11,
+        "endLine": 601,
+        "endChar": 27
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9817ebee_002c3dd6",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Do these really make sense? Or are they just here for completeness?",
+      "range": {
+        "startLine": 603,
+        "startChar": 29,
+        "endLine": 603,
+        "endChar": 32
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12b5d3e3_50442090",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "nit: sizeof(prefixes) to be consistent with the rest of the code.",
+      "range": {
+        "startLine": 610,
+        "startChar": 23,
+        "endLine": 610,
+        "endChar": 32
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffd9e473_9d51c458",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Can\u0027t this be replaced with strtoul? strtoul will return a pointer to the first non-numeric char which can then be used in the multiplier above.",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 2
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23fe1536_7ffa5d77",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Nit: same comment about sizeof with ().",
+      "range": {
+        "startLine": 1299,
+        "startChar": 11,
+        "endLine": 1299,
+        "endChar": 30
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d82163ab_ba35d52d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "What\u0027s this meant to represent?",
+      "range": {
+        "startLine": 1299,
+        "startChar": 32,
+        "endLine": 1299,
+        "endChar": 55
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d4292d4_bb557cf6",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Nit: single space to be consistent with the rest of the text. We\u0027re not using typewriters anymore \u003d).",
+      "range": {
+        "startLine": 118,
+        "startChar": 9,
+        "endLine": 118,
+        "endChar": 11
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04a4ae68_edd4601c",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Nit: single space to be consistent with the rest of the code.",
+      "range": {
+        "startLine": 291,
+        "startChar": 48,
+        "endLine": 291,
+        "endChar": 51
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "904222c5_3f31836b",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-27T20:40:53Z",
+      "side": 1,
+      "message": "Print the possibly invalid size here?",
+      "range": {
+        "startLine": 292,
+        "startChar": 7,
+        "endLine": 292,
+        "endChar": 20
+      },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
