@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "0bfdba0b_39880adf",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9817ebee_002c3dd6",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -42,6 +59,23 @@
         "endLine": 603,
         "endChar": 32
       },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2dccf3ac_bba8c6be",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "They\u0027re there for the tests to make sure I haven\u0027t made an overflow error by accident.  No reason to not have them there and introduce an arbitrarily-high limit instead.",
       "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -71,6 +105,23 @@
     },
     {
       "key": {
+        "uuid": "439af004_143c11de",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffd9e473_9d51c458",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -88,6 +139,23 @@
         "endLine": 638,
         "endChar": 2
       },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce4f4c17_8078588a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "You\u0027re right, I\u0027ve mis-read the API.  I\u0027m used to a non-portable strtonum(3) which returns an error string rather than characters after the parsed number.  strtoul(3) should be safe to use in this case, when negative numbers and suffixes are handled.  Notice that it is roughly the same amount of code, with the same amount of care about the corner cases ;-)\n\nOn Windows (anything else IL32P64 out there?) \"ul\" is not wide enough for a perfectly reasonable tmpfs size (4GB).  I\u0027ll use \"ull\" and verify the number accordingly.\n\nI\u0027ve also updated the tests for the now-impossible SIZE_MAX input value.",
       "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -140,6 +208,57 @@
     },
     {
       "key": {
+        "uuid": "297492d2_71ebcd70",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35089084_21f21294",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14244990_d8dcb6d0",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done.  All my pre-processor tricks to turn the value of SIZE_MAX into a string and then measure its length at compile time have failed, and without constexpr they started to get pretty nasty.  This is theoretically the largest number the user can enter, that we\u0027ll allow into the string (and, subsequently, into the kernel).  The ULL is technically not necessary but better than have an off-by-one stack overrun ;-)",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d4292d4_bb557cf6",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -157,6 +276,23 @@
         "endLine": 118,
         "endChar": 11
       },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "785da602_481eeadf",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done.  It looks better even without a typewriter, just as 80-character code looks better even without a punch card.",
       "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -186,6 +322,23 @@
     },
     {
       "key": {
+        "uuid": "c0f60ff6_016618f6",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "904222c5_3f31836b",
         "filename": "minijail0.c",
         "patchSetId": 1
@@ -203,6 +356,23 @@
         "endLine": 292,
         "endChar": 20
       },
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f65e596_41438a62",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1136824
+      },
+      "writtenOn": "2017-01-31T07:44:07Z",
+      "side": 1,
+      "message": "I would very much not merely repeat user-supplied strings when the error message is clear without them, in a security-critical piece of software.  Imagine an XSS in a web UI for a system that processes logs from this, where users control the arguments.\n\nDirect users of this software know what tmpfs is and whether or not they supplied the optional value.",
       "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
