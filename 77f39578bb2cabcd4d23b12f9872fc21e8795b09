@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff40d7b9_00207fab",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-31T20:33:55Z",
+      "side": 1,
+      "message": "Add a comment clarifying this is 0xFFFFFFFFFFFFFFFF?",
+      "range": {
+        "startLine": 1299,
+        "startChar": 33,
+        "endLine": 1299,
+        "endChar": 56
+      },
+      "revId": "77f39578bb2cabcd4d23b12f9872fc21e8795b09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
