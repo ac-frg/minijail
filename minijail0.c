@@ -288,7 +288,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 't':
 			minijail_namespace_vfs(j);
 			if (0 != minijail_mount_tmp(j, optarg)) {
-				fprintf(stderr, "Could not mount /tmp tmpfs.  "
+				fprintf(stderr, "Could not mount /tmp tmpfs. "
 						"Invalid size?\n");
 				exit(1);
 			}

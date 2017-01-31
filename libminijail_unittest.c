@@ -300,9 +300,9 @@ TEST(test_minijail_tmpfs_size_parse)
 	ASSERT_EQ(3, minijail_get_tmpfs_size(j) / gigabyte);
 	ASSERT_EQ(0, minijail_get_tmpfs_size(j) % gigabyte);
 
-	ASSERT_EQ(0, minijail_mount_tmp(j, "4294967295"));
+	ASSERT_EQ(0, minijail_mount_tmp(j, "4294967294"));
 	ASSERT_EQ(3, minijail_get_tmpfs_size(j) / gigabyte);
-	ASSERT_EQ(gigabyte - 1, minijail_get_tmpfs_size(j) % gigabyte);
+	ASSERT_EQ(gigabyte - 2, minijail_get_tmpfs_size(j) % gigabyte);
 
 #if __WORDSIZE == 64
 	uint64_t exabyte = gigabyte * 1024 * 1024 * 1024;
@@ -314,9 +314,9 @@ TEST(test_minijail_tmpfs_size_parse)
 	ASSERT_EQ(15, minijail_get_tmpfs_size(j) / exabyte);
 	ASSERT_EQ(0, minijail_get_tmpfs_size(j) % exabyte);
 
-	ASSERT_EQ(0, minijail_mount_tmp(j, "18446744073709551615"));
+	ASSERT_EQ(0, minijail_mount_tmp(j, "18446744073709551614"));
 	ASSERT_EQ(15, minijail_get_tmpfs_size(j) / exabyte);
-	ASSERT_EQ(exabyte - 1, minijail_get_tmpfs_size(j) % exabyte);
+	ASSERT_EQ(exabyte - 2, minijail_get_tmpfs_size(j) % exabyte);
 
 	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "16E"));
 	ASSERT_EQ(-ERANGE, minijail_mount_tmp(j, "19E"));
@@ -332,6 +332,7 @@ TEST(test_minijail_tmpfs_size_parse)
 	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, ""));
 	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "14u"));
 	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "14.2G"));
+	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "7GTPE"));
 	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "-1G"));
 	ASSERT_EQ(-EINVAL, minijail_mount_tmp(j, "; /bin/rm -- "));
 

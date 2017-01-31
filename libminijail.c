@@ -598,16 +598,22 @@ char API *minijail_get_original_path(struct minijail *j,
 	return strdup(path_inside_chroot);
 }
 
+/*
+ * parse_tmpfs_size, specified as a string with a decimal number,
+ * in bytes, possibly with one 1-character suffix like "10K" or "6G".
+ */
 static int parse_tmpfs_size(struct minijail *j, const char *sizespec)
 {
 	const char prefixes[] = "KMGTPE";
 	size_t i, multiplier = 1, nsize, size = 0;
+	unsigned long long parsed;
 	const size_t len = strlen(sizespec);
+	char *end;
 
-	if (len == 0)
+	if (len == 0 || sizespec[0] == '-')
 		return -EINVAL;
 
-	for (i = 0; i < sizeof prefixes; ++i) {
+	for (i = 0; i < sizeof(prefixes); ++i) {
 		if (sizespec[len - 1] == prefixes[i]) {
 #if __WORDSIZE == 32
 			if (i >= 3)
@@ -620,22 +626,16 @@ static int parse_tmpfs_size(struct minijail *j, const char *sizespec)
 		}
 	}
 
-	for (i = 0; i < len; ++i) {
-		if (multiplier != 1 && i == len - 1)
-			break;
-
-		if (sizespec[i] < '0' || sizespec[i] > '9')
-			return -EINVAL;
-
-		if (SIZE_MAX / 10 < size)
-			return -ERANGE;
-
-		nsize = size * 10 + (sizespec[i] - '0');
-		if (nsize < size)
-			return -ERANGE;
-
-		size = nsize;
-	}
+	/* We only need size_t but strtoul(3) is too small on IL32P64. */
+	parsed = strtoull(sizespec, &end, 10);
+	if (parsed == ULLONG_MAX)
+		return -errno;
+	if (parsed >= SIZE_MAX)
+		return -ERANGE;
+	if ((multiplier != 1 && end != sizespec + len - 1) ||
+	    (multiplier == 1 && end != sizespec + len))
+		return -EINVAL;
+	size = (size_t) parsed;
 
 	nsize = size * multiplier;
 	if (nsize / multiplier != size)
@@ -1296,9 +1296,9 @@ static int enter_pivot_root(const struct minijail *j)
 static int mount_tmp(const struct minijail *j)
 {
 	const char fmt[] = "size=%zu,mode=1777";
-	char data[sizeof fmt + sizeof "18446744073709551615ULL"];
+	char data[sizeof(fmt) + sizeof("18446744073709551615ULL")];
 
-	if (snprintf(data, sizeof data, fmt, j->tmpfs_size) >= sizeof data)
+	if (snprintf(data, sizeof(data), fmt, j->tmpfs_size) >= sizeof(data))
 		pdie("tmpfs size spec too large");
 	return mount("none", "/tmp", "tmpfs", MS_NODEV | MS_NOEXEC | MS_NOSUID,
 		     data);
