@@ -376,6 +376,23 @@
       "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0344017a_b2946a1d",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-01-31T20:33:55Z",
+      "side": 1,
+      "message": "I don\u0027t think that analogy holds. We don\u0027t usually consider the user of Minijail to be inside the threat model. For example, in regular usage, the program inside the jail would be able to execute code before sandboxing is completed by using a specially-crafted ELF header.\n\nMoreover, given that this is not using %n, I don\u0027t really see the risk. But it\u0027s not a big deal.",
+      "revId": "6e8fb345487e99b601fbf7d1d62770c758d0b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
