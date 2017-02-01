@@ -16,6 +16,23 @@
       "revId": "f4fd37cd83b5eff68a8574cc81d3ab158b9ed4bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c8b0b17_de228eb2",
+        "filename": "get_googletest.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-02-01T22:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "f4fd37cd83b5eff68a8574cc81d3ab158b9ed4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
