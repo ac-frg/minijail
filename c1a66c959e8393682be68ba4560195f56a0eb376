@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2302ac9c_75828e7c",
+        "filename": "minijail0.1",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-01T23:14:17Z",
+      "side": 1,
+      "message": "should mention [size] here",
+      "revId": "c1a66c959e8393682be68ba4560195f56a0eb376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
