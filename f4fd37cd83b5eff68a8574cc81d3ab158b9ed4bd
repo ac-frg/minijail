@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "591c5419_3b6fadcd",
+        "filename": "get_googletest.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-01T20:14:44Z",
+      "side": 1,
+      "message": "maybe do add a:\n\n PV\u003d\"1.8.0\"\n\nthat way when you update to a new release, you only need to change that one var ?",
+      "revId": "f4fd37cd83b5eff68a8574cc81d3ab158b9ed4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
