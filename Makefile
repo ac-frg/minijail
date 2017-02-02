@@ -16,8 +16,8 @@ ifneq ($(USE_seccomp),yes)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
 endif
 
-CFLAGS += -Wextra
-CXXFLAGS += -Wextra
+CFLAGS += -Wextra -Wno-missing-field-initializers
+CXXFLAGS += -Wextra -Wno-missing-field-initializers
 
 USE_SYSTEM_GTEST ?= no
 ifeq ($(USE_SYSTEM_GTEST),no)
