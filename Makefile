@@ -16,8 +16,8 @@ ifneq ($(USE_seccomp),yes)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
 endif
 
-CFLAGS += -Wextra
-CXXFLAGS += -Wextra
+CFLAGS += -Wextra -Wno-missing-field-initializers
+CXXFLAGS += -Wextra -Wno-missing-field-initializers -std=gnu++11
 
 USE_SYSTEM_GTEST ?= no
 ifeq ($(USE_SYSTEM_GTEST),no)
@@ -26,7 +26,7 @@ GTEST_MAIN := gtest_main.a
 GTEST_LIBS := gtest.a
 else
 GTEST_CXXFLAGS := $(gtest-config --cxxflags)
-GTEST_MAIN := -lgtest_main
+GTEST_MAIN := -lgtest -lgtest_main
 GTEST_LIBS := $(gtest-config --libs)
 endif
 
