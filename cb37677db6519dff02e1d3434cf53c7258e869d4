@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "b394350a_80c5a2eb",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-02-03T21:04:12Z",
+      "side": 1,
+      "message": "But those .cc files *are* compiled as part of common.mk:\n\nCXX_BINARY(libminijail_unittest): libminijail_unittest.o\n\nSo the individual compilation step that produces libminijail_unittest.o (which is what fails on the Chrome OS side) is not working, even before we try to link against libgtest_main.a.\n\nlibminijail_unittest.cc:52:13: error: use of undeclared identifier \u0027nullptr\u0027\n  EXPECT_NE(nullptr, consumebytes(0, \u0026pos, \u0026len));\n\nIn particular, right now:\n\nCXX             libminijail_unittest.cc -\u003e  libminijail_unittest.pie.o\nCXX             libminijail_unittest.cc -\u003e  libminijail_unittest.pic.o\nCXX             syscall_filter_unittest.cc -\u003e  syscall_filter_unittest.pie.o\nCXX             syscall_filter_unittest.cc -\u003e  syscall_filter_unittest.pic.o\nLDCXX           libminijail_unittest\nLDCXX           syscall_filter_unittest\nBIN             libminijail_unittest\n        -----\nBIN             syscall_filter_unittest\n        -----\n\nThis is clearly using common.mk.",
+      "parentUuid": "72bf03b0_3802fbac",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f775151d_4920e775",
         "filename": "Makefile",
         "patchSetId": 4
