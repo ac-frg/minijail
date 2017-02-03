@@ -109,6 +109,24 @@
     },
     {
       "key": {
+        "uuid": "88b71afc_13ad3181",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-02-03T22:06:50Z",
+      "side": 1,
+      "message": "Seems like actually using TEST() now works. Might need to adjust the ebuild file (since it\u0027s executing the unit test binaries directly as well) but we can do that later.",
+      "parentUuid": "865ed0cd_a2702b22",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f775151d_4920e775",
         "filename": "Makefile",
         "patchSetId": 4
