@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e08dd76_ce4240b3",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-03T20:35:34Z",
+      "side": 1,
+      "message": "pretty sure the -std\u003d part is only needed for gtest ?  so maybe add that to GTEST_CXXFLAGS below in the non-system case ?",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f775151d_4920e775",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-03T20:35:34Z",
+      "side": 1,
+      "message": "this clobbers your earlier settings",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
