@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2b8f5de5_b1342587",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-02-03T20:46:25Z",
+      "side": 1,
+      "message": "It\u0027s needed for the .cc unit test source files for some reason. libminijail_unittest.cc/syscall_filter_unittest.cc don\u0027t build without it (because of use of nullptr).",
+      "parentUuid": "2e08dd76_ce4240b3",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f775151d_4920e775",
         "filename": "Makefile",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-03T20:35:34Z",
       "side": 1,
       "message": "this clobbers your earlier settings",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79d2c8da_2b8aa553",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-02-03T20:46:25Z",
+      "side": 1,
+      "message": "Technically, all this is defined when USE_SYSTEM_GTEST \u003d\u003d \"no\", and in that case GTEST_CXXFLAGS is empty, but agreed this is a bad idea.",
+      "parentUuid": "f775151d_4920e775",
       "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
