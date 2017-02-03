@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "72bf03b0_3802fbac",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-03T20:57:16Z",
+      "side": 1,
+      "message": "i suspect it\u0027s because you aren\u0027t defining targets with standard common.mk helpers.  note the TODO below ;).  adding the -std\u003d part here is probably just papering that over.\n\nan easy way to check is: when the object is compiled, do you see the pretty common.mk output (e.g. \" CXX       foo.o\") or do you see the standard make output (e.g. \"xxx-g++ -foo -o ...\").  if the latter, the common.mk integration isn\u0027t working.",
+      "parentUuid": "2b8f5de5_b1342587",
+      "revId": "cb37677db6519dff02e1d3434cf53c7258e869d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f775151d_4920e775",
         "filename": "Makefile",
         "patchSetId": 4
