@@ -39,14 +39,14 @@ tests: TEST(CXX_BINARY(libminijail_unittest)) \
 	TEST(CXX_BINARY(syscall_filter_unittest))
 
 
-CC_BINARY(minijail0): LDLIBS += -lcap -ldl
+CC_BINARY(minijail0): LDLIBS += -lcap -ldl -lkeyutils
 CC_BINARY(minijail0): libconstants.gen.o libsyscalls.gen.o libminijail.o \
 		syscall_filter.o signal_handler.o bpf.o util.o elfparse.o \
 		syscall_wrapper.o minijail0.o
 clean: CLEAN(minijail0)
 
 
-CC_LIBRARY(libminijail.so): LDLIBS += -lcap
+CC_LIBRARY(libminijail.so): LDLIBS += -lcap -lkeyutils
 CC_LIBRARY(libminijail.so): libminijail.o syscall_filter.o signal_handler.o \
 		bpf.o util.o syscall_wrapper.o libconstants.gen.o \
 		libsyscalls.gen.o
@@ -55,7 +55,7 @@ clean: CLEAN(libminijail.so)
 
 CXX_BINARY(libminijail_unittest): CXXFLAGS += -Wno-write-strings \
 						$(GTEST_CXXFLAGS)
-CXX_BINARY(libminijail_unittest): LDLIBS += -lcap $(GTEST_MAIN)
+CXX_BINARY(libminijail_unittest): LDLIBS += -lcap -lkeyutils $(GTEST_MAIN)
 ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(libminijail_unittest): $(GTEST_MAIN)
 endif
@@ -65,7 +65,7 @@ CXX_BINARY(libminijail_unittest): libminijail_unittest.o libminijail.o \
 clean: CLEAN(libminijail_unittest)
 
 
-CC_LIBRARY(libminijailpreload.so): LDLIBS += -lcap -ldl
+CC_LIBRARY(libminijailpreload.so): LDLIBS += -lcap -ldl -lkeyutils
 CC_LIBRARY(libminijailpreload.so): libminijailpreload.o libminijail.o \
 		libconstants.gen.o libsyscalls.gen.o syscall_filter.o \
 		signal_handler.o bpf.o util.o syscall_wrapper.o

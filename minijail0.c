@@ -172,6 +172,7 @@ static void usage(const char *progn)
 	       "  -U:         Enter new user namespace (implies -p).\n"
 	       "  -v:         Enter new mount namespace.\n"
 	       "  -V <file>:  Enter specified mount namespace.\n"
+	       "  -w:         Create and join a new, anonymous, session keyring.\n"
 	       "  -Y:         Synchronize seccomp filters across thread group.\n");
 	/* clang-format on */
 }
@@ -202,7 +203,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		return 1;
 
 	const char *optstring =
-	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKyY";
+	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLtIUKwyY";
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
@@ -403,6 +404,9 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 						"'dynamic'.\n");
 				exit(1);
 			}
+			break;
+		case 'w':
+			minijail_new_session_keyring(j);
 			break;
 		case 'Y':
 			minijail_set_seccomp_filter_tsync(j);

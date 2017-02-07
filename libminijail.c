@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <grp.h>
 #include <inttypes.h>
+#include <keyutils.h>
 #include <limits.h>
 #include <linux/capability.h>
 #include <net/if.h>
@@ -153,6 +154,7 @@ struct minijail {
 		int alt_syscall : 1;
 		int reset_signal_mask : 1;
 		int close_open_fds : 1;
+		int new_session_keyring : 1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -432,6 +434,11 @@ void API minijail_namespace_enter_vfs(struct minijail *j, const char *ns_path)
 	}
 	j->mountns_fd = ns_fd;
 	j->flags.enter_vfs = 1;
+}
+
+void API minijail_new_session_keyring(struct minijail *j)
+{
+	j->flags.new_session_keyring = 1;
 }
 
 void API minijail_skip_remount_private(struct minijail *j)
@@ -1623,6 +1630,9 @@ void API minijail_enter(const struct minijail *j)
 
 	if (j->flags.ns_cgroups && unshare(CLONE_NEWCGROUP))
 		pdie("unshare(CLONE_NEWCGROUP) failed");
+
+	if (j->flags.new_session_keyring && keyctl_join_session_keyring(NULL) < 0)
+		pdie("keyctl_join_session_keyring(NULL) failed");
 
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
