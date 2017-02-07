@@ -71,13 +71,15 @@ Report blocked syscalls to syslog when using seccomp filter. This option will
 force certain syscalls to be allowed in order to achieve this, depending on the
 system.
 .TP
-\fB-m "<uid> <loweruid> <count>[,<uid> <loweruid> <count>]"\fR
+\fB-m[<uid> <loweruid> <count>[,<uid> <loweruid> <count>]]\fR
 Set the uid mapping of a user namespace (implies \fB-pU\fR). Same arguments as
-\fBnewuidmap(1)\fR. Multiple mappings should be separated by ','.
+\fBnewuidmap(1)\fR. Multiple mappings should be separated by ','. With no mapping,
+map the current uid to root inside the user namespace.
 .TP
-\fB-M "<uid> <loweruid> <count>[,<uid> <loweruid> <count>]"\fR
+\fB-M[<uid> <loweruid> <count>[,<uid> <loweruid> <count>]]\fR
 Set the gid mapping of a user namespace (implies \fB-pU\fR). Same arguments as
-\fBnewgidmap(1)\fR. Multiple mappings should be separated by ','.
+\fBnewgidmap(1)\fR. Multiple mappings should be separated by ','. With no mapping,
+map the current gid to root inside the user namespace.
 .TP
 \fB-n\fR
 Set the process's \fIno_new_privs\fR bit. See \fBprctl(2)\fR and the kernel
