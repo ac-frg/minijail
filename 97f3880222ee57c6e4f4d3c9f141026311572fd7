@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be25880_f2497bd5",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-08T19:26:53Z",
+      "side": 1,
+      "message": "period at the end ? :)",
+      "revId": "97f3880222ee57c6e4f4d3c9f141026311572fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63e402e4_30732333",
+        "filename": "minijail0.1",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-02-08T19:26:53Z",
+      "side": 1,
+      "message": "if you\u0027re not familiar with in-kernel keyrings, this help text will just confuse you :).\n\nmaybe add:\n\n See \\fBkeyrings\\fR(7) for more details.",
+      "revId": "97f3880222ee57c6e4f4d3c9f141026311572fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
