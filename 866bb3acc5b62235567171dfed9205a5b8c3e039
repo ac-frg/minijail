@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbbe81ee_65f49f8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1070555
+      },
+      "writtenOn": "2017-02-09T22:10:37Z",
+      "side": 1,
+      "message": "Technically, you are not dropping access, you run the application in a new empty session key ring.",
+      "revId": "866bb3acc5b62235567171dfed9205a5b8c3e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
