@@ -225,11 +225,13 @@ LOCAL_COMPATIBILITY_SUITE := device-tests
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
+LOCAL_GTEST := false
 LOCAL_SRC_FILES := \
 	test/libminijail_test.cpp
 
 LOCAL_SHARED_LIBRARIES := libbase libminijail
-include $(BUILD_EXECUTABLE)
+LOCAL_COMPATIBILITY_SUITE := device-tests
+include $(BUILD_NATIVE_TEST)
 
 
 # libminijail usage example.
