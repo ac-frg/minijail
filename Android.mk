@@ -222,11 +222,12 @@ LOCAL_MODULE := libminijail_test
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
+LOCAL_GTEST := false
 LOCAL_SRC_FILES := \
 	test/libminijail_test.cpp
 
 LOCAL_SHARED_LIBRARIES := libbase libminijail
-include $(BUILD_EXECUTABLE)
+include $(BUILD_NATIVE_TEST)
 
 
 # libminijail usage example.
