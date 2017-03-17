@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b0c5a21_5549b00d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-17T02:35:02Z",
+      "side": 1,
+      "message": "should have (void)",
+      "revId": "b23fc3977039ceca22c327e360e8c8351a4c8345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "046a0ee2_3afd8c84",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-17T02:35:02Z",
+      "side": 1,
+      "message": "should have (void)",
+      "revId": "b23fc3977039ceca22c327e360e8c8351a4c8345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac00c07e_8f9535cc",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-17T02:35:02Z",
+      "side": 1,
+      "message": "fgets makes me crazy.  is there a reason we can\u0027t switch to getline and drop MAX_LINE_LENGTH ?",
+      "revId": "b23fc3977039ceca22c327e360e8c8351a4c8345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99879913_74af2db0",
+        "filename": "syscall_filter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-17T02:35:02Z",
+      "side": 1,
+      "message": "needs (void) here to avoid C misbehavior",
+      "revId": "b23fc3977039ceca22c327e360e8c8351a4c8345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e5c65ec_f616ae10",
+        "filename": "syscall_filter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-17T02:35:02Z",
+      "side": 1,
+      "message": "here too",
+      "revId": "b23fc3977039ceca22c327e360e8c8351a4c8345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
