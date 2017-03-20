@@ -444,16 +444,48 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 	size_t len = 0;
 	while (getline(&line, &len, policy_file) != -1) {
 		char *policy_line = line;
-		char *syscall_name = strsep(&policy_line, ":");
+		char *token = strsep(&policy_line, ":");
 		int nr = -1;
 
-		syscall_name = strip(syscall_name);
+		token = strip(token);
 
 		/* Allow comments and empty lines. */
-		if (*syscall_name == '#' || *syscall_name == '\0') {
+		if (*token == '#' || *token == '\0') {
 			/* Reuse |line| in the next getline() call. */
 			continue;
 		}
+
+		/* Allow @include statements. */
+		if (strncmp("@include", token, strlen("@include")) == 0) {
+			/* Discard "@include" token. */
+			(void)strsep(&token, " ");
+
+			char *filename = token;
+			FILE *included_file = fopen(filename, "r");
+			if (included_file == NULL) {
+				pwarn("compile_file: fopen('%s') failed",
+				      filename);
+				free(line);
+				return -1;
+			}
+			if (compile_file(included_file, head, arg_blocks,
+					 labels, use_ret_trap,
+					 allow_logging) == -1) {
+				warn("compile_file: '@include %s' failed",
+				     filename);
+				fclose(included_file);
+				free(line);
+				return -1;
+			}
+			fclose(included_file);
+			continue;
+		}
+
+		/*
+		 * If it's not a comment, or an empty line, or an @include
+		 * statement, treat |line| as a regular policy line.
+		 */
+		char *syscall_name = token;
 
 		policy_line = strip(policy_line);
 		if (*policy_line == '\0') {
