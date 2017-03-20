@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80e95817_a85153d7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-20T14:52:42Z",
+      "side": 1,
+      "message": "this would allow a policy of whitespace:\n\n mmap:    \n\nshould there be first:\n\n policy_line \u003d strip(policy_line)\n\nactually, getline() includes the trailing newline, so this check would never pass even if it was \"mmap:\\n\".\n\nalso, calling strlen() to effectively check if the first byte is \u0027\\0\u0027 is inefficient.  should just do:\n\n if (policy_line[0] \u003d\u003d \u0027\\0\u0027) {",
+      "revId": "ae6b5375c0f9e8b04ca30722509cf29f0e2ad8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
