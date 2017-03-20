@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c84c8b83_a7852031",
+        "filename": "syscall_filter.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-20T17:27:35Z",
+      "side": 1,
+      "message": "this is redundant now ;)",
+      "revId": "a2129be0ba122774990edc95fac599a3b421230b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
