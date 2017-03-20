@@ -430,7 +430,8 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 
 int compile_file(FILE *policy_file, struct filter_block *head,
 		 struct filter_block **arg_blocks, struct bpf_labels *labels,
-		 int use_ret_trap, int allow_logging)
+		 int use_ret_trap, int allow_logging,
+		 unsigned int include_level)
 {
 	/*
 	 * Loop through all the lines in the policy file.
@@ -442,24 +443,77 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 	 */
 	char *line = NULL;
 	size_t len = 0;
+	int ret = 0;
+
 	while (getline(&line, &len, policy_file) != -1) {
 		char *policy_line = line;
-		char *syscall_name = strsep(&policy_line, ":");
+		char *token = strsep(&policy_line, ":");
 		int nr = -1;
 
-		syscall_name = strip(syscall_name);
+		token = strip(token);
 
 		/* Allow comments and empty lines. */
-		if (*syscall_name == '#' || *syscall_name == '\0') {
+		if (*token == '#' || *token == '\0') {
 			/* Reuse |line| in the next getline() call. */
 			continue;
 		}
 
+		/* Allow @include statements. */
+		if (*token == '@') {
+			if (strncmp("@include", token, strlen("@include")) !=
+			    0) {
+				warn("invalid token '%s'", token);
+				ret = -1;
+				goto free_line;
+			}
+
+			if (*(token + strlen("@include")) != ' ') {
+				warn("invalid include statement '%s'", line);
+				ret = -1;
+				goto free_line;
+			}
+
+			if (include_level > 0) {
+				warn("@include statement nested too deep");
+				ret = -1;
+				goto free_line;
+			}
+
+			/* Discard "@include" token. */
+			(void)strsep(&token, " ");
+
+			const char *filename = token;
+			FILE *included_file = fopen(filename, "re");
+			if (included_file == NULL) {
+				pwarn("compile_file: fopen('%s') failed",
+				      filename);
+				ret = -1;
+				goto free_line;
+			}
+			if (compile_file(included_file, head, arg_blocks,
+					 labels, use_ret_trap, allow_logging,
+					 ++include_level) == -1) {
+				warn("compile_file: '@include %s' failed",
+				     filename);
+				fclose(included_file);
+				ret = -1;
+				goto free_line;
+			}
+			fclose(included_file);
+			continue;
+		}
+
+		/*
+		 * If it's not a comment, or an empty line, or an @include
+		 * statement, treat |line| as a regular policy line.
+		 */
+		char *syscall_name = token;
+
 		policy_line = strip(policy_line);
 		if (*policy_line == '\0') {
 			warn("compile_file: empty policy line");
-			free(line);
-			return -1;
+			ret = -1;
+			goto free_line;
 		}
 
 		nr = lookup_syscall(syscall_name);
@@ -481,8 +535,8 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 				/* Reuse |line| in the next getline() call. */
 				continue;
 			}
-			free(line);
-			return -1;
+			ret = -1;
+			goto free_line;
 		}
 
 		/*
@@ -511,8 +565,8 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 				if (*arg_blocks) {
 					free_block_list(*arg_blocks);
 				}
-				free(line);
-				return -1;
+				ret = -1;
+				goto free_line;
 			}
 
 			if (*arg_blocks) {
@@ -523,8 +577,10 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		}
 		/* Reuse |line| in the next getline() call. */
 	}
+
+free_line:
 	free(line);
-	return 0;
+	return ret;
 }
 
 int compile_filter(FILE *initial_file, struct sock_fprog *prog,
@@ -556,7 +612,7 @@ int compile_filter(FILE *initial_file, struct sock_fprog *prog,
 		allow_logging_syscalls(head);
 
 	if (compile_file(initial_file, head, &arg_blocks, &labels, use_ret_trap,
-			 allow_logging) != 0) {
+			 allow_logging, 0 /* include_level */) != 0) {
 		warn("compile_filter: compile_file() failed");
 		free_block_list(head);
 		free_block_list(arg_blocks);
