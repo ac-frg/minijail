@@ -16,6 +16,24 @@
       "revId": "ae6b5375c0f9e8b04ca30722509cf29f0e2ad8fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e71ae207_e91e83ba",
+        "filename": "syscall_filter.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-20T15:09:41Z",
+      "side": 1,
+      "message": "This will be rejected in compile_policy_line above, but might as well fix it here.",
+      "parentUuid": "80e95817_a85153d7",
+      "revId": "ae6b5375c0f9e8b04ca30722509cf29f0e2ad8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
