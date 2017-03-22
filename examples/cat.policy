@@ -1,0 +1,14 @@
+# In this directory, test with:
+# make LIBDIR=.
+# ./minijail0 -n -S examples/cat.policy -- /bin/cat /proc/self/status
+
+read: 1
+write: 1
+rt_sigreturn: 1
+exit_group: 1
+
+open: 1
+close: 1
+fstat: 1
+mmap: 1
+fadvise64: 1
