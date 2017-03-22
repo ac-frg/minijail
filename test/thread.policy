@@ -1,0 +1,19 @@
+read: 1
+write: 1
+rt_sigreturn: 1
+exit: 1
+
+open: 1
+close: 1
+fstat: 1
+mmap: 1
+munmap: 1
+madvise: 1
+fadvise64: 1
+exit_group: 1
+nanosleep: 1
+writev: 1
+
+access: 1
+mprotect: 1
+futex: 1
