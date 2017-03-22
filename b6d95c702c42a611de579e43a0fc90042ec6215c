@@ -123,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "6ec85d51_7e53420d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-22T21:25:56Z",
+      "side": 1,
+      "message": "Yes, not thinking about this from an impl perspective but from a \"simplicity of the feature\" perspective. If you\u0027re nesting your policies 10 deep, maybe you really have no idea what you\u0027re allowing anymore.",
+      "parentUuid": "343d7a5e_03d0a42a",
+      "revId": "b6d95c702c42a611de579e43a0fc90042ec6215c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78797a39_68964173",
         "filename": "syscall_filter_unittest.cc",
         "patchSetId": 1
