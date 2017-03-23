@@ -53,6 +53,23 @@
     },
     {
       "key": {
+        "uuid": "03bcbb1f_3991ea90",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-23T01:56:24Z",
+      "side": 1,
+      "message": "another issue with filename: what is it relative to ?  shouldn\u0027t it be relative to the policy file we\u0027re currently parsing vs whatever cwd happens to be ?",
+      "revId": "b6d95c702c42a611de579e43a0fc90042ec6215c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "349d8909_db334ba9",
         "filename": "syscall_filter.c",
         "patchSetId": 1
@@ -135,6 +152,24 @@
       "side": 1,
       "message": "Yes, not thinking about this from an impl perspective but from a \"simplicity of the feature\" perspective. If you\u0027re nesting your policies 10 deep, maybe you really have no idea what you\u0027re allowing anymore.",
       "parentUuid": "343d7a5e_03d0a42a",
+      "revId": "b6d95c702c42a611de579e43a0fc90042ec6215c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "518a8b50_4f1d4cc7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-23T01:56:24Z",
+      "side": 1,
+      "message": "i picked 50 as an arbitrary number along the lines of \"that\u0027s so large, we\u0027d never hit it with a reasonable system\".  it doesn\u0027t seem like doing more than 1 deep would be unreasonable, but we can start with single include\u0027s and see if anyone complains.",
+      "parentUuid": "6ec85d51_7e53420d",
       "revId": "b6d95c702c42a611de579e43a0fc90042ec6215c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
