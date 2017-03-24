@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffe28d4f_c59f8a2e",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-24T21:11:52Z",
+      "side": 1,
+      "message": "if i\u0027m reading this correctly, this means this line will be considered valid:\n\n @include /some/file : sneaky comment!\n\nor this will split the name up:\n\n @include /some/file:colons.policy\n\nand thus it\u0027ll load \"/some/file\"",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b8cf61a_6ab0bff7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-24T21:11:52Z",
+      "side": 1,
+      "message": "i think it\u0027s cleaner to write:\n\n token[strlen(\"@include\")] !\u003d \u0027 \u0027",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7536970a_47c4776c",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-24T21:11:52Z",
+      "side": 1,
+      "message": "might be worth adding a comment here discussing depth choice",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

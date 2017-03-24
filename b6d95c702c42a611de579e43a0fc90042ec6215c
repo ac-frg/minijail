@@ -124,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "dec410d1_6dcb22a2",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-03-24T21:11:52Z",
+      "side": 1,
+      "message": "i\u0027m not sure parsing /proc/self/fd/ paths is worth the effort.  we can always reject it to start with and see who complains.  then figure out how to plumb down the filename you\u0027ve already been given higher up in the chain.\n\nwhich means you should reject implicit relative paths.  if the policy file starts with a \"./\", i think that\u0027s a reasonable signal that people expect to load the file relative to cwd.",
+      "parentUuid": "bf2d402c_2482c7d5",
+      "revId": "b6d95c702c42a611de579e43a0fc90042ec6215c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "349d8909_db334ba9",
         "filename": "syscall_filter.c",
         "patchSetId": 1
