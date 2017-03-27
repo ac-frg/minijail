@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bf798aef_b50e397d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-27T15:08:29Z",
+      "side": 1,
+      "message": "Fixed by moving initial checks before the \":\" split.",
+      "parentUuid": "ffe28d4f_c59f8a2e",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b8cf61a_6ab0bff7",
         "filename": "syscall_filter.c",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ee99b249_5425e235",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-27T15:08:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b8cf61a_6ab0bff7",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7536970a_47c4776c",
         "filename": "syscall_filter.c",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-03-24T21:11:52Z",
       "side": 1,
       "message": "might be worth adding a comment here discussing depth choice",
+      "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ba22a5d_bd5ea5d1",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-27T15:08:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7536970a_47c4776c",
       "revId": "82a9ac8af8883480d09ce972064b541657ee7828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
