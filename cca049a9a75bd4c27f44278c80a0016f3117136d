@@ -16,6 +16,24 @@
       "revId": "cca049a9a75bd4c27f44278c80a0016f3117136d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "517999d4_e6bdea76",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-03-29T16:59:17Z",
+      "side": 1,
+      "message": "I should just remove it.",
+      "parentUuid": "43d75a6f_3809a5b0",
+      "revId": "cca049a9a75bd4c27f44278c80a0016f3117136d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
