@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43d75a6f_3809a5b0",
+        "filename": "Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2017-03-29T16:24:17Z",
+      "side": 1,
+      "message": "I guess this line will have a merge issue with:\nhttps://android-review.googlesource.com/#/c/358047/1/Android.mk",
+      "revId": "cca049a9a75bd4c27f44278c80a0016f3117136d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
