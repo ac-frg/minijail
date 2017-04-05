@@ -255,6 +255,14 @@ int minijail_run_pid_pipes_no_preload(struct minijail *j, const char *filename,
 				      int *pstderr_fd);
 
 /*
+ * Run the specified command in the given minijail, execve(2)-style.
+ * Update |*pchild_pid| with the pid of the child.
+ * Used with static binaries, or on systems without support for LD_PRELOAD.
+ */
+int minijail_run_pid_no_preload(struct minijail *j, const char *filename,
+				      char *const argv[], pid_t *pchild_pid);
+
+/*
  * Kill the specified minijail. The minijail must have been created with pid
  * namespacing; if it was, all processes inside it are atomically killed.
  */
