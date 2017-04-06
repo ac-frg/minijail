@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f7de753_8112d08d",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T22:22:42Z",
+      "side": 1,
+      "message": "Oops I have to remove this: I made child_pid a global non-static so that minijail0\u0027s main can see it.",
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e093f1fa_3816d41a",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T22:22:42Z",
+      "side": 1,
+      "message": "Can\u0027t be static because main needs to pass it to the api and it doesn\u0027t have full type information to introspect and pull out the member i defined above.",
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d9705bb_d371467a",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T22:22:42Z",
+      "side": 1,
+      "message": "Hopefully this made it more clear why I don\u0027t care to check for -1/errno",
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
