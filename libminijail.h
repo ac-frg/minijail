@@ -102,6 +102,12 @@ int minijail_use_alt_syscall(struct minijail *j, const char *table);
 int minijail_add_to_cgroup(struct minijail *j, const char *path);
 
 /*
+ * Avoids installing signal handlers in the minijail process that forward
+ * received signals to the jailed child process.
+ */
+int minijail_dont_forward_signals(struct minijail *j);
+
+/*
  * minijail_enter_chroot: enables chroot() restriction for @j
  * @j   minijail to apply restriction to
  * @dir directory to chroot() to. Owned by caller.
@@ -253,6 +259,14 @@ int minijail_run_pid_pipes_no_preload(struct minijail *j, const char *filename,
 				      char *const argv[], pid_t *pchild_pid,
 				      int *pstdin_fd, int *pstdout_fd,
 				      int *pstderr_fd);
+
+/*
+ * Run the specified command in the given minijail, execve(2)-style.
+ * Update |*pchild_pid| with the pid of the child.
+ * Used with static binaries, or on systems without support for LD_PRELOAD.
+ */
+int minijail_run_pid_no_preload(struct minijail *j, const char *filename,
+				char *const argv[], pid_t *pchild_pid);
 
 /*
  * Kill the specified minijail. The minijail must have been created with pid

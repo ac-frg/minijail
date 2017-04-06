@@ -157,6 +157,7 @@ struct minijail {
 		int reset_signal_mask : 1;
 		int close_open_fds : 1;
 		int new_session_keyring : 1;
+		int dont_forward_signals: 1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -167,6 +168,7 @@ struct minijail {
 	uint64_t caps;
 	uint64_t cap_bset;
 	pid_t initpid;
+	pid_t child_pid;
 	int mountns_fd;
 	int netns_fd;
 	char *chrootdir;
@@ -199,6 +201,7 @@ void minijail_preenter(struct minijail *j)
 	j->flags.do_init = 0;
 	j->flags.pid_file = 0;
 	j->flags.cgroups = 0;
+	j->flags.dont_forward_signals = 0;
 }
 
 /*
@@ -641,6 +644,12 @@ int API minijail_add_to_cgroup(struct minijail *j, const char *path)
 		return -ENOMEM;
 	j->cgroup_count++;
 	j->flags.cgroups = 1;
+	return 0;
+}
+
+int API minijail_dont_forward_signals(struct minijail *j)
+{
+	j->flags.dont_forward_signals = 1;
 	return 0;
 }
 
@@ -1598,6 +1607,43 @@ static void config_net_loopback(void)
 	close(sock);
 }
 
+pid_t child_pid = -1;
+
+static void forward_signal(__attribute__((unused)) int nr,
+			   __attribute__((unused)) siginfo_t *siginfo,
+			   __attribute__((unused)) void *void_context)
+{
+	if (child_pid != -1) {
+		kill(child_pid, nr);
+	}
+}
+
+static void install_signal_handlers(void)
+{
+	struct sigaction act;
+
+	memset(&act, 0, sizeof(act));
+	act.sa_sigaction = &forward_signal;
+	act.sa_flags = SA_SIGINFO|SA_RESTART;
+
+	/* Handle all signals, except SIGCHLD. */
+	for (int nr = 1; nr <= SIGUNUSED; nr++) {
+		/*
+		 * We don't care if we get EINVAL: that just means that we
+		 * can't handle this signal, so let's skip it and continue.
+		 */
+		sigaction(nr, &act, NULL);
+	}
+	/* Reset SIGCHLD's handler. */
+	signal(SIGCHLD, SIG_DFL);
+
+	/* Handle real-time signals. */
+	for (int nr = SIGRTMIN; nr <= SIGRTMAX; nr++) {
+		sigaction(nr, &act, NULL);
+	}
+}
+
+
 void API minijail_enter(const struct minijail *j)
 {
 	/*
@@ -1969,6 +2015,15 @@ int API minijail_run_no_preload(struct minijail *j, const char *filename,
 				     false);
 }
 
+int API minijail_run_pid_no_preload(struct minijail *j,
+				    const char *filename,
+				    char *const argv[],
+				    pid_t *pchild_pid)
+{
+	return minijail_run_internal(j, filename, argv, pchild_pid,
+				     NULL, NULL, NULL, false);
+}
+
 int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 					  const char *filename,
 					  char *const argv[],
@@ -2150,6 +2205,10 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		}
 
 		j->initpid = child_pid;
+
+		/* Install forwarding signal handlers for every signal unless told not to. */
+		if (!j->flags.dont_forward_signals)
+			install_signal_handlers();
 
 		if (j->flags.pid_file)
 			write_pid_file_or_die(j);
