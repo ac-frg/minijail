@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "6ffbbc76_47587974",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T19:06:17Z",
+      "side": 1,
+      "message": "I think it\u0027s SIGSYS:\n\nfrom man 7 signal:\n\n(Where three values are given, the first one is usu‐\n       ally valid for alpha and sparc, the middle one for x86, arm, and most other architectures, and the last one for mips.\n\nSIGUSR2   31,12,17\nSIGSYS      12,31,12\n\nSo I think 31 is SIGSYS on the platforms that we likely care the most about... but this mismatch also suggests we should keep 31 instead of matching an individual signal name.",
+      "parentUuid": "ebc3da67_360eaf98",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8eaadff_71f7f18d",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -224,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "5f7ca65a_878571b8",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T19:06:17Z",
+      "side": 1,
+      "message": "You make good points. If we add a comment I think we\u0027re fine. We should indeed never get EFAULT.",
+      "parentUuid": "a85fdeed_f8730a44",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "296a6154_0e21983b",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -259,6 +307,30 @@
       "side": 1,
       "message": "My only issue here would be that this would change the behaviour in existing setups if they pull in new changes.",
       "parentUuid": "296a6154_0e21983b",
+      "range": {
+        "startLine": 138,
+        "startChar": 39,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee17298b_56ef5368",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T19:06:17Z",
+      "side": 1,
+      "message": "I think we have enough testing that we should notice if things are getting funky, and I\u0027d also want to avoid having to add -z in a bunch of init scripts. Maybe Mike has a better idea how likely this is to break our current Upstart-based Chrome OS systems.\n\nWe can probably land as-is for now.",
+      "parentUuid": "18f50b28_cd54ec09",
       "range": {
         "startLine": 138,
         "startChar": 39,
