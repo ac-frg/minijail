@@ -137,6 +137,30 @@
     },
     {
       "key": {
+        "uuid": "ba0f466b_f33c9913",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T19:10:15Z",
+      "side": 1,
+      "message": "you cannot hardcode any limit like this as it\u0027s not portable\n\none option would be to handle [1,SIGUNUSED) and then [SIGRTMIN,SIGRTMAX]",
+      "parentUuid": "ebc3da67_360eaf98",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8eaadff_71f7f18d",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -148,6 +172,24 @@
       "writtenOn": "2017-04-06T18:42:06Z",
       "side": 1,
       "message": "Using sa_handler instead. Cleaner signature avoids compiler warnings.",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8320b49_73314607",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T19:10:15Z",
+      "side": 1,
+      "message": "use sa_sigaction and pass SA_SIGINFO | SA_RESTART\n\nthe siginfo will be needed when dealing with pid namespaces",
+      "parentUuid": "c8eaadff_71f7f18d",
       "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -198,6 +240,40 @@
       "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8f4dc5c_a96c223b",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T19:10:15Z",
+      "side": 1,
+      "message": "missing space before the (",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2710623_592b3a34",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T19:10:15Z",
+      "side": 1,
+      "message": "cuddle braces to the previous line",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     },
     {
       "key": {
@@ -330,6 +406,30 @@
       "writtenOn": "2017-04-06T19:06:17Z",
       "side": 1,
       "message": "I think we have enough testing that we should notice if things are getting funky, and I\u0027d also want to avoid having to add -z in a bunch of init scripts. Maybe Mike has a better idea how likely this is to break our current Upstart-based Chrome OS systems.\n\nWe can probably land as-is for now.",
+      "parentUuid": "18f50b28_cd54ec09",
+      "range": {
+        "startLine": 138,
+        "startChar": 39,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "916f2da6_699c33c0",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T19:10:15Z",
+      "side": 1,
+      "message": "i don\u0027t see a problem with that.  the current behavior isn\u0027t useful.",
       "parentUuid": "18f50b28_cd54ec09",
       "range": {
         "startLine": 138,
