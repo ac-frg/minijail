@@ -121,6 +121,24 @@
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9163e49_3dcaff57",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T21:44:17Z",
+      "side": 1,
+      "message": "seems to me this does belong in libminijail.  that\u0027s what\u0027s responsible for forking the child and managing things.  `minijail0` itself is meant as a thin CLI layer on top of the C API.  more succinctly, there is no functionality available to the CLI that isn\u0027t available to the C API.  people who use libminijail directly to sandbox processes and launch daemons should be able to also sanely set up signal forwarding.",
+      "parentUuid": "76635055_202cca3b",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
