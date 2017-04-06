@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e71b7ec2_56fe2ea3",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T20:34:00Z",
+      "side": 1,
+      "message": "Need to/can fix this, but don\u0027t see the need rn, if I am not handling siginfo. Would you prefer I use the new signature and re-add the (void)x lines to get around the unused arg warnings?",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
