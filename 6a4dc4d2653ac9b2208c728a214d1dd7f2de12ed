@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0f7a033b_0edc95c4",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T23:29:32Z",
+      "side": 1,
+      "message": "Nit: space before :\n\nYou can use the .clang-format file in the repo to avoid having formatting issues.",
+      "range": {
+        "startLine": 160,
+        "startChar": 26,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f7de753_8112d08d",
         "filename": "libminijail.c",
         "patchSetId": 7
@@ -47,6 +70,70 @@
       "writtenOn": "2017-04-06T22:22:42Z",
       "side": 1,
       "message": "Hopefully this made it more clear why I don\u0027t care to check for -1/errno",
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "591fa00c_1c68a831",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T23:29:32Z",
+      "side": 1,
+      "message": "That looks good.",
+      "parentUuid": "8d9705bb_d371467a",
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3193a406_83a9558a",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2209,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T23:29:32Z",
+      "side": 1,
+      "message": "Is this past 80 cols?",
+      "range": {
+        "startLine": 2209,
+        "startChar": 72,
+        "endLine": 2209,
+        "endChar": 73
+      },
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b29dd42c_fb8430fa",
+        "filename": "minijail0.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T23:29:32Z",
+      "side": 1,
+      "message": "Do you still need this given that everything happens in libminijail?",
+      "range": {
+        "startLine": 506,
+        "startChar": 49,
+        "endLine": 506,
+        "endChar": 58
+      },
       "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
