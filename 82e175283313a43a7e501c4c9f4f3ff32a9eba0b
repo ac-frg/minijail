@@ -16,6 +16,75 @@
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "813464f4_f1a86fda",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T21:02:18Z",
+      "side": 1,
+      "message": "you can use __attribute__ ((unused)) in the func signature to avoid the (void)foo style silencing",
+      "parentUuid": "e71b7ec2_56fe2ea3",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acb927af_38c82577",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T21:02:18Z",
+      "side": 1,
+      "message": "you could just set the handler, and then after the loop, reset it back to SIG_DFL using signal().  that way you only have one loop.\n\nperiod at the end\n\nwe use /* comments */",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb1a76f_b3a62410",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T21:02:18Z",
+      "side": 1,
+      "message": "there is no EINVAL logic here because you aren\u0027t checking the return value ;)",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3502b29f_b2d8acc1",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-06T21:02:18Z",
+      "side": 1,
+      "message": "we shouldn\u0027t be running code in the CLI parser.  delay this to a more appropriate location.",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
