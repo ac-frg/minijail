@@ -4,6 +4,7 @@
  */
 
 #include <dlfcn.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +17,30 @@
 #include "util.h"
 
 #define IDMAP_LEN 32U
+#define NUM_SIGNALS 31U
+
+static pid_t child_pid = -1;
+
+static void forward_signal(int nr)
+{
+	if (child_pid != -1) {
+		kill(child_pid, nr);
+	}
+}
+
+static void install_signal_handlers(void)
+{
+	struct sigaction act;
+
+	memset(&act, 0, sizeof(act));
+	act.sa_handler = &forward_signal;
+
+	// Handle all signals
+	for(unsigned nr = 1; nr <= NUM_SIGNALS; nr++)
+	{
+		sigaction(nr, &act, NULL);
+	}
+}
 
 static void set_user(struct minijail *j, const char *arg)
 {
@@ -110,7 +135,7 @@ static void usage(const char *progn)
 {
 	size_t i;
 	/* clang-format off */
-	printf("Usage: %s [-GhHiIKlLnNprstUvyY]\n"
+	printf("Usage: %s [-GhHiIKlLnNprstUvyYz]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
 	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
@@ -176,7 +201,8 @@ static void usage(const char *progn)
 	       "  -v:         Enter new mount namespace.\n"
 	       "  -V <file>:  Enter specified mount namespace.\n"
 	       "  -w:         Create and join a new anonymous session keyring.\n"
-	       "  -Y:         Synchronize seccomp filters across thread group.\n");
+	       "  -Y:         Synchronize seccomp filters across thread group.\n"
+	       "  -z:         Pass signals along to spawned process.\n");
 	/* clang-format on */
 }
 
@@ -207,7 +233,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		return 1;
 
 	const char *optstring =
-	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLt::IUKwyY";
+	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLt::IUKwyYz";
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
@@ -420,6 +446,9 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'Y':
 			minijail_set_seccomp_filter_tsync(j);
 			break;
+		case 'z':
+			install_signal_handlers();
+			break;
 		default:
 			usage(argv[0]);
 			exit(1);
@@ -497,7 +526,7 @@ int main(int argc, char *argv[])
 		 * Target binary is statically linked so we cannot use
 		 * libminijailpreload.so.
 		 */
-		minijail_run_no_preload(j, argv[0], argv);
+		minijail_run_pid_no_preload(j, argv[0], argv, &child_pid);
 	} else if (elftype == ELFDYNAMIC) {
 		/*
 		 * Target binary is dynamically linked so we can
@@ -510,7 +539,7 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "dlopen(): %s\n", dl_mesg);
 			return 1;
 		}
-		minijail_run(j, argv[0], argv);
+		minijail_run_pid(j, argv[0], argv, &child_pid);
 	} else {
 		fprintf(stderr,
 			"Target program '%s' is not a valid ELF file.\n",
