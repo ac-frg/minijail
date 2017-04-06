@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "313a29db_5db5089c",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:42:06Z",
+      "side": 1,
+      "message": "There\u0027s no real harm \u0027future proofing\u0027 this (sigaction will just return -1 for invalid signals).\n\nNot sure what you\u0027d prefer, but for now I just pulled the real list of valid signals from _signal.h_",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8eaadff_71f7f18d",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:42:06Z",
+      "side": 1,
+      "message": "Using sa_handler instead. Cleaner signature avoids compiler warnings.",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
