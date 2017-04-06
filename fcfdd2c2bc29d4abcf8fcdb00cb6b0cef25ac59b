@@ -161,6 +161,30 @@
     },
     {
       "key": {
+        "uuid": "d0efaf7c_99c1286a",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T19:31:18Z",
+      "side": 1,
+      "message": "I can do this. SIGUNUSED is the same as SIGSYS so I DO want to include it in the range.",
+      "parentUuid": "ba0f466b_f33c9913",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8eaadff_71f7f18d",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -190,6 +214,24 @@
       "side": 1,
       "message": "use sa_sigaction and pass SA_SIGINFO | SA_RESTART\n\nthe siginfo will be needed when dealing with pid namespaces",
       "parentUuid": "c8eaadff_71f7f18d",
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d48249a_d5b80d5c",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T19:31:18Z",
+      "side": 1,
+      "message": "OK. I had this before but wasn\u0027t using the siginfo. How would I use it in the handler?",
+      "parentUuid": "c8320b49_73314607",
       "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -431,6 +473,30 @@
       "side": 1,
       "message": "i don\u0027t see a problem with that.  the current behavior isn\u0027t useful.",
       "parentUuid": "18f50b28_cd54ec09",
+      "range": {
+        "startLine": 138,
+        "startChar": 39,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f643d07a_f0d99cc4",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T19:31:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "916f2da6_699c33c0",
       "range": {
         "startLine": 138,
         "startChar": 39,
