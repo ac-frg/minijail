@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "e62e2cbe_88432e29",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T21:18:41Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s the intent. I\u0027ll make the comment more clear. Basically don\u0027t care about the failure\u0027s that\u0027ll come from SIGKILL and SIGSTOP, for example",
+      "parentUuid": "beb1a76f_b3a62410",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3502b29f_b2d8acc1",
         "filename": "minijail0.c",
         "patchSetId": 6
@@ -82,6 +100,24 @@
       "writtenOn": "2017-04-06T21:02:18Z",
       "side": 1,
       "message": "we shouldn\u0027t be running code in the CLI parser.  delay this to a more appropriate location.",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76635055_202cca3b",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T21:18:41Z",
+      "side": 1,
+      "message": "I didn\u0027t like this either, but it doesn\u0027t make sense to me to add it to the struct minijail since that is used by the lib, and this doesn\u0027t really have anything to do with that. How would you propose I propagate the flag back to `main`?",
+      "parentUuid": "3502b29f_b2d8acc1",
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
