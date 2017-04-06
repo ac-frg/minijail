@@ -139,6 +139,24 @@
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caa8dbdb_b3fe4311",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-06T23:47:14Z",
+      "side": 1,
+      "message": "Actually, I was just thinking about this over dinner and I don\u0027t think this belongs in libminijail. We should not be overwriting the signal handlers of the process calling minijail_run in libminijail -- that can break programs\u0027 correctness. If processes using libminijail directly want to propagate, they can do so themselves. Apologies for not mentioning this earlier.",
+      "parentUuid": "c9163e49_3dcaff57",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
