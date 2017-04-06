@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "46891b6e_280ca119",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e58672d_de2c4828",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 10
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "313a29db_5db5089c",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -53,6 +77,30 @@
       "writtenOn": "2017-04-06T18:48:23Z",
       "side": 1,
       "message": "Given that this gets compared with \u003c\u003d below, I\u0027d call it LAST_VALID_SIGNAL, and can always be made into an actual const int equal to SIGSYS.",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebc3da67_360eaf98",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:59:32Z",
+      "side": 1,
+      "message": "You mean SIGUSR2?\n\nGood call though.",
+      "parentUuid": "fc971dd0_43aeb5ba",
       "range": {
         "startLine": 20,
         "startChar": 8,
@@ -105,6 +153,30 @@
     },
     {
       "key": {
+        "uuid": "25f7459f_8447988b",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc9aa3f3_52edb578",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d18b84bc_fdcbe65e",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -128,6 +200,30 @@
     },
     {
       "key": {
+        "uuid": "a85fdeed_f8730a44",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:59:32Z",
+      "side": 1,
+      "message": "I don\u0027t think error checking gets us anything other than complicatiing the code: It\u0027s an easy check, but \u0026act is not user-controlled, and we basically want to ignore EINVAL. I\u0027ll add a comment explaining this.",
+      "parentUuid": "d18b84bc_fdcbe65e",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "296a6154_0e21983b",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -139,6 +235,30 @@
       "writtenOn": "2017-04-06T18:48:23Z",
       "side": 1,
       "message": "Maybe this option gets flipped and we pass all signals in by default, but allow the user to opt out. Mike, what do you think?",
+      "range": {
+        "startLine": 138,
+        "startChar": 39,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "fcfdd2c2bc29d4abcf8fcdb00cb6b0cef25ac59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18f50b28_cd54ec09",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T18:59:32Z",
+      "side": 1,
+      "message": "My only issue here would be that this would change the behaviour in existing setups if they pull in new changes.",
+      "parentUuid": "296a6154_0e21983b",
       "range": {
         "startLine": 138,
         "startChar": 39,
