@@ -157,6 +157,24 @@
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b65e713f_b9a5f077",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-06T23:52:13Z",
+      "side": 1,
+      "message": "That was my intuition, but it looks like the struct minijail has a concept of internal and external settings. I\u0027m clearing the signal flag in minijail_preenter, and the flag is only checked/handled in the parent branch after the clone. I good also just set this up before the clone",
+      "parentUuid": "caa8dbdb_b3fe4311",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
