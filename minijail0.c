@@ -4,6 +4,7 @@
  */
 
 #include <dlfcn.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -110,7 +111,7 @@ static void usage(const char *progn)
 {
 	size_t i;
 	/* clang-format off */
-	printf("Usage: %s [-GhHiIKlLnNprstUvyY]\n"
+	printf("Usage: %s [-GhHiIKlLnNprstUvyYz]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
 	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
@@ -176,7 +177,8 @@ static void usage(const char *progn)
 	       "  -v:         Enter new mount namespace.\n"
 	       "  -V <file>:  Enter specified mount namespace.\n"
 	       "  -w:         Create and join a new anonymous session keyring.\n"
-	       "  -Y:         Synchronize seccomp filters across thread group.\n");
+	       "  -Y:         Synchronize seccomp filters across thread group.\n"
+	       "  -z:         Don't forward signals to jailed process.\n");
 	/* clang-format on */
 }
 
@@ -195,6 +197,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 {
 	int opt;
 	int use_seccomp_filter = 0;
+	int dont_forward = 0;
 	int binding = 0;
 	int pivot_root = 0, chroot = 0;
 	int mount_ns = 0, skip_remount = 0;
@@ -207,7 +210,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		return 1;
 
 	const char *optstring =
-	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLt::IUKwyY";
+	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLt::IUKwyYz";
 	while ((opt = getopt(argc, argv, optstring)) != -1) {
 		switch (opt) {
 		case 'u':
@@ -420,6 +423,9 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'Y':
 			minijail_set_seccomp_filter_tsync(j);
 			break;
+		case 'z':
+			dont_forward = 1;
+			break;
 		default:
 			usage(argv[0]);
 			exit(1);
@@ -427,6 +433,10 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		if (optind < argc && argv[optind][0] != '-')
 			break;
 	}
+
+	/* Set up signal handlers in minijail unless asked not to. */
+	if (!dont_forward)
+		minijail_forward_signals(j);
 
 	/* Only allow bind mounts when entering a chroot or using pivot_root. */
 	if (binding && !(chroot || pivot_root)) {
