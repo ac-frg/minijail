@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "6170fa72_d6637bda",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-07T17:28:54Z",
+      "side": 1,
+      "message": "This needs braces, right?",
+      "range": {
+        "startLine": 2209,
+        "startChar": 0,
+        "endLine": 2210,
+        "endChar": 29
+      },
+      "revId": "0f8c2d6b082b155b836c09a65e098f855f830bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "627ce1e3_abc779b1",
         "filename": "minijail0.c",
         "patchSetId": 8
@@ -30,6 +53,29 @@
       "writtenOn": "2017-04-07T16:04:06Z",
       "side": 1,
       "message": "Can be removed.",
+      "revId": "0f8c2d6b082b155b836c09a65e098f855f830bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "daa3974f_7c48d0a7",
+        "filename": "minijail0.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-07T17:28:54Z",
+      "side": 1,
+      "message": "Probably clearer to use positive conditions:\n\nint forward \u003d 1;\n...\n\ncase \u0027z\u0027:\n        forward \u003d 0\n\n...\n\nif (forward) {\n        minijail_forward_signals)\n\nI think if (forward) is clearer than if (!dont_forward).",
+      "range": {
+        "startLine": 200,
+        "startChar": 5,
+        "endLine": 200,
+        "endChar": 17
+      },
       "revId": "0f8c2d6b082b155b836c09a65e098f855f830bf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
