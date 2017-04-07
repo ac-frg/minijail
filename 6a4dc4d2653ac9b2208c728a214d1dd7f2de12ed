@@ -185,6 +185,30 @@
       "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcef6fd6_e9de4a3f",
+        "filename": "minijail0.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1153474
+      },
+      "writtenOn": "2017-04-07T16:03:13Z",
+      "side": 1,
+      "message": "You\u0027re right I get get rid of this, but I still need global so that the handler has a handle to the child pid. I just don\u0027t need it in this file.\n\nThat also means that I don\u0027t need the new API method that I added. Should I keep it?",
+      "parentUuid": "b29dd42c_fb8430fa",
+      "range": {
+        "startLine": 506,
+        "startChar": 49,
+        "endLine": 506,
+        "endChar": 58
+      },
+      "revId": "6a4dc4d2653ac9b2208c728a214d1dd7f2de12ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
