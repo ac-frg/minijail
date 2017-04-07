@@ -175,6 +175,24 @@
       "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66093930_e2bdc630",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-07T00:18:03Z",
+      "side": 1,
+      "message": "Right, but wouldn\u0027t that be the problem? When libminijail is used by a random program to launch a sandboxed helper, the \"parent\" branch is the program itself. So, in that case, we would be possibly overwriting already-defined signal handlers used by the program.\n\nMoving it before the clone also doesn\u0027t help, that would still overwrite previously existing signal handlers.\n\nI actually think that libminijail as a library should not attempt to overwrite all signal handlers of the process using that library -- a service running sandboxed helpers using libminijail might have good reasons to have specific signal handlers.\n\nI think your original intuition is correct: minijail0, as a program, has no other objective than launching and reaping a sandboxed process. As such, it should forward all signals. But we should not force other programs using libminijail to have to give up their signal handlers just to use minijail_run.",
+      "parentUuid": "b65e713f_b9a5f077",
+      "revId": "82e175283313a43a7e501c4c9f4f3ff32a9eba0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
