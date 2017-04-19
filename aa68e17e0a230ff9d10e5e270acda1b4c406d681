@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "666d38e0_fcc0b56f",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-19T19:33:56Z",
+      "side": 1,
+      "message": "Yeah I should do that.",
+      "parentUuid": "49370612_da80782d",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b681c20_10a19f32",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a4b028d5_ce538894",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-19T19:33:56Z",
+      "side": 1,
+      "message": "clang-format, essentially. We have a presubmit check that enforces clang-format on modified lines. I modified the line to Start with a capital letter so it needs to also lose the space.\n\nI can wrap it in /* clang-format off/on */ if need be.",
+      "parentUuid": "1b681c20_10a19f32",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b508fe39_672a00ef",
         "filename": "util.c",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-04-19T19:15:52Z",
       "side": 1,
       "message": "What\u0027s this whitespace change? looks like it doesn\u0027t line up with define on prior line any more?",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf9ef496_26467942",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-19T19:33:56Z",
+      "side": 1,
+      "message": "clang format again, but this one is not needed so I\u0027m going to undo it.",
+      "parentUuid": "b508fe39_672a00ef",
       "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
