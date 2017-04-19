@@ -1,0 +1,9 @@
+Verified+1: Jorge Lucangeli Obes <jorgelo@google.com>
+Code-Review+2: Kees Cook <keescook@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Autosubmit+1: Jorge Lucangeli Obes <jorgelo@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 19 Apr 2017 22:30:37 +0000
+Reviewed-on: https://android-review.googlesource.com/375992
+Project: platform/external/minijail
+Branch: refs/heads/master
