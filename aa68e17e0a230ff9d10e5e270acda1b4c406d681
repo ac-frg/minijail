@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49370612_da80782d",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-04-19T19:15:52Z",
+      "side": 1,
+      "message": "I wonder if it\u0027d make sense to define a single variable for \"core object files\" to include everywhere. I always get suspicious about maintainability/fragility when I see the same file added in a bunch of rules in a Makefile",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b681c20_10a19f32",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-04-19T19:15:52Z",
+      "side": 1,
+      "message": "Why drop the leading \" \" before the define? This remains present in all the other ifdef/define/endif lines nearby...",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b508fe39_672a00ef",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-04-19T19:15:52Z",
+      "side": 1,
+      "message": "What\u0027s this whitespace change? looks like it doesn\u0027t line up with define on prior line any more?",
+      "revId": "aa68e17e0a230ff9d10e5e270acda1b4c406d681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
