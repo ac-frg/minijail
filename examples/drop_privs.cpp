@@ -58,17 +58,19 @@ int main(void) {
     minijail_change_user(j, "system");
     minijail_change_group(j, "system");
     minijail_set_supplementary_gids(j, arraysize(groups), groups);
-    // minijail_use_caps(j, CAP_TO_MASK(CAP_SETUID) | CAP_TO_MASK(CAP_SETGID));
+    minijail_use_caps(j, CAP_TO_MASK(CAP_SETUID) | CAP_TO_MASK(CAP_SETGID));
+    minijail_set_ambient_caps(j);
     // minijail_use_seccomp_filter(j);
     // minijail_log_seccomp_filter_failures(j);
     // minijail_parse_seccomp_filters(j, "/data/filter.policy");
     minijail_enter(j);
     log_resugid();
     minijail_destroy(j);
-    // minijail *j2 = minijail_new();
-    // minijail_change_uid(j2, 5000);
-    // minijail_change_gid(j2, 5000);
-    // minijail_enter(j2);
-    // log_resugid();
+    minijail *j2 = minijail_new();
+    minijail_change_uid(j2, 5000);
+    minijail_change_gid(j2, 5000);
+    minijail_enter(j2);
+    log_resugid();
+    sleep(10);
     return 0;
 }
