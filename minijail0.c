@@ -201,6 +201,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	int chroot = 0, pivot_root = 0;
 	int mount_ns = 0, skip_remount = 0;
 	int inherit_suppl_gids = 0, keep_suppl_gids = 0;
+	int caps = 0, ambient_caps = 0;
 	const size_t path_max = 4096;
 	char *map;
 	size_t size;
@@ -211,7 +212,8 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	const char *optstring =
 	    "u:g:sS:c:C:P:b:V:f:m::M::k:a:e::T:vrGhHinNplLt::IUKwyY";
 	int longoption_index = 0;
-	const struct option long_options[] = {{0, 0, 0, 0}};
+	const struct option long_options[] = {{"ambient", no_argument, 0, 'A'},
+					      {0, 0, 0, 0}};
 
 	while ((opt = getopt_long(argc, argv, optstring, long_options,
 				  &longoption_index)) != -1) {
@@ -253,7 +255,12 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			binding = 1;
 			break;
 		case 'c':
+			caps = 1;
 			use_caps(j, optarg);
+			break;
+		case 'A':
+			ambient_caps = 1;
+			minijail_set_ambient_caps(j);
 			break;
 		case 'C':
 			if (pivot_root) {
@@ -433,6 +440,13 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		}
 		if (optind < argc && argv[optind][0] != '-')
 			break;
+	}
+
+	/* Can only set ambient caps when using regular caps. */
+	if (ambient_caps && !caps) {
+		fprintf(stderr, "Can't set ambient capabilities (--ambient) "
+				"without actually using capabilities (-c).\n");
+		exit(1);
 	}
 
 	/* Only allow bind mounts when entering a chroot or using pivot_root. */
