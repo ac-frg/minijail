@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73ce14f3_d54797a3",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1082649
+      },
+      "writtenOn": "2017-04-24T17:49:27Z",
+      "side": 1,
+      "message": "Is this a separate loop to avoid carrying CAP_SETPCAP forward via ambient caps?",
+      "range": {
+        "startLine": 1412,
+        "startChar": 35,
+        "endLine": 1412,
+        "endChar": 40
+      },
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
