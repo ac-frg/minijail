@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3277e654_d219c093",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "Essentially, yes. Also, the loop above doesn\u0027t actually call the syscall, it just sets up the |cap| struct, so interspersing calls to |cap_set_flag| with calls to prctl would make it trickier to report errors.",
+      "parentUuid": "73ce14f3_d54797a3",
+      "range": {
+        "startLine": 1412,
+        "startChar": 35,
+        "endLine": 1412,
+        "endChar": 40
+      },
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39b90751_e395e88b",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -36,6 +60,24 @@
       "writtenOn": "2017-04-24T22:22:38Z",
       "side": 1,
       "message": "should we use PR_CAP_AMBIENT_CLEAR_ALL before this loop ?",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "238268ba_b36b3575",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "We can do that, but bear in mind that the ambient set starts at 0:\n\nCapInh:\t0000000000000000\nCapPrm:\t0000001fffffffff\nCapEff:\t0000001fffffffff\nCapBnd:\t0000001fffffffff\nCapAmb:\t0000000000000000\n\nAnd that you can only add to ambient if you have it in inh+prm. And you start with an empty inh.\n\nSo this would be mostly if the process has gained some caps before using Minijail. Usually doesn\u0027t happen, but better be safe.",
+      "parentUuid": "39b90751_e395e88b",
       "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "619ba4f2_688c1899",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "I actually would like to make some options to be long-options only.",
+      "parentUuid": "9f1c6148_7a552026",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "63f3d8a9_1647442d",
         "filename": "minijail0.c",
         "patchSetId": 4
@@ -70,6 +130,24 @@
       "writtenOn": "2017-04-24T22:22:38Z",
       "side": 1,
       "message": "for line length, we probably want to unwrap this now",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1122128d_f0f00d2f",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "Unwrap... how?\n\n{\n        {\n                \"ambient\",\n                no_argument, \n                0,\n                \u0027A\u0027\n         }\n\n?\n\nBear in mind this is what clang-format does. Given that we have formatting hooks, I\u0027d rather not deviate.",
+      "parentUuid": "63f3d8a9_1647442d",
       "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "670ee9d1_0fa23274",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81b17850_8216da93",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c59c2b47_a29d817e",
         "filename": "system.h",
         "patchSetId": 4
@@ -104,6 +200,30 @@
       "writtenOn": "2017-04-24T22:22:38Z",
       "side": 1,
       "message": "dead code ?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0904b0f9_25df5d1d",
+        "filename": "system.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T13:56:59Z",
+      "side": 1,
+      "message": "*sigh* mesucks",
+      "parentUuid": "c59c2b47_a29d817e",
       "range": {
         "startLine": 31,
         "startChar": 0,
