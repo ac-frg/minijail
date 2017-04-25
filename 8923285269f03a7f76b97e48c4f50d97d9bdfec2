@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "5a83f007_24f0ace2",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-25T17:32:05Z",
+      "side": 1,
+      "message": "in that case, instead of using \u0027A\u0027 below, should we go with 128+ values for indexes ?  that way we leave the short option space open.",
+      "parentUuid": "619ba4f2_688c1899",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "63f3d8a9_1647442d",
         "filename": "minijail0.c",
         "patchSetId": 4
@@ -148,6 +166,24 @@
       "side": 1,
       "message": "Unwrap... how?\n\n{\n        {\n                \"ambient\",\n                no_argument, \n                0,\n                \u0027A\u0027\n         }\n\n?\n\nBear in mind this is what clang-format does. Given that we have formatting hooks, I\u0027d rather not deviate.",
       "parentUuid": "63f3d8a9_1647442d",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2ea728a_e174ef04",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-25T17:32:05Z",
+      "side": 1,
+      "message": "i mean:\n\n const struct option long_options[] \u003d {\n     {\"ambient\", no_argument, 0, \u0027A\u0027},\n     {0, 0, 0, 0},\n };",
+      "parentUuid": "1122128d_f0f00d2f",
       "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
