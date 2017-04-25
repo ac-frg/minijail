@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "9970b286_664b007a",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-25T19:06:18Z",
+      "side": 1,
+      "message": "it prob isn\u0027t a big deal for `minijail0`, but libminijail.so users can be hostile :)",
+      "parentUuid": "238268ba_b36b3575",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f1c6148_7a552026",
         "filename": "minijail0.c",
         "patchSetId": 4
