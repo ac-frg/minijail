@@ -155,6 +155,24 @@
     },
     {
       "key": {
+        "uuid": "6f0a7dcb_9d77bb3b",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-04-25T17:37:03Z",
+      "side": 1,
+      "message": "i grok that, it\u0027s just that when i look at this code as-is, it says to me \"oh, he forgot to add -A support\" vs \"he doesn\u0027t want this to have a short option\".  using the 128-255 space says \"he doesn\u0027t want short options\".",
+      "parentUuid": "0b1e9621_5216a7c8",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "63f3d8a9_1647442d",
         "filename": "minijail0.c",
         "patchSetId": 4
