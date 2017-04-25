@@ -173,6 +173,24 @@
     },
     {
       "key": {
+        "uuid": "0b9fe988_5659edf3",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T18:00:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f0a7dcb_9d77bb3b",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "63f3d8a9_1647442d",
         "filename": "minijail0.c",
         "patchSetId": 4
@@ -220,6 +238,24 @@
       "side": 1,
       "message": "i mean:\n\n const struct option long_options[] \u003d {\n     {\"ambient\", no_argument, 0, \u0027A\u0027},\n     {0, 0, 0, 0},\n };",
       "parentUuid": "1122128d_f0f00d2f",
+      "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "579ade92_d8a35bb3",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-04-25T18:00:34Z",
+      "side": 1,
+      "message": "I think this might trigger the presubmit check, so wrapped in clang-format lines.",
+      "parentUuid": "d2ea728a_e174ef04",
       "revId": "8923285269f03a7f76b97e48c4f50d97d9bdfec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
