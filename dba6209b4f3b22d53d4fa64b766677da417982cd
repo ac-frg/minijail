@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ede0741_5665b73f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-05-18T21:14:48Z",
+      "side": 1,
+      "message": "This is the only change.",
+      "range": {
+        "startLine": 1535,
+        "startChar": 21,
+        "endLine": 1535,
+        "endChar": 27
+      },
+      "revId": "dba6209b4f3b22d53d4fa64b766677da417982cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
