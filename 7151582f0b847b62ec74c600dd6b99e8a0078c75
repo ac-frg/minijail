@@ -1,0 +1,9 @@
+Code-Review+2: Colin Cross <ccross@android.com>
+Autosubmit+1: Roozbeh Pournader <roozbeh@google.com>
+Presubmit-Ready+1: Roozbeh Pournader <roozbeh@google.com>
+Verified+1: Roozbeh Pournader <roozbeh@google.com>
+Submitted-by: Roozbeh Pournader <roozbeh@google.com>
+Submitted-at: Thu, 18 May 2017 18:28:01 +0000
+Reviewed-on: https://android-review.googlesource.com/399063
+Project: platform/external/minijail
+Branch: refs/heads/master
