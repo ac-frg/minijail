@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d8d5055_c1e03c24",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-01T15:04:11Z",
+      "side": 1,
+      "message": "Would it be useful to print the hostname we were trying to set, to distinguish different invocations? Or do we not expect to be creating lots of different containers with different names?",
+      "range": {
+        "startLine": 1635,
+        "startChar": 20,
+        "endLine": 1635,
+        "endChar": 22
+      },
+      "revId": "eeb19e896d293eb2483aaf765cc2c2d306202601",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
