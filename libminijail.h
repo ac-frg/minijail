@@ -95,6 +95,9 @@ void minijail_inherit_usergroups(struct minijail *j);
  */
 int minijail_use_alt_syscall(struct minijail *j, const char *table);
 
+/* Sets a the given runtime limit. See getrlimit(2). */
+int minijail_rlimit(struct minijail *j, int type, uint32_t cur, uint32_t max);
+
 /*
  * Adds the jailed process to the cgroup given by |path|.  |path| should be the
  * full path to the cgroups "tasks" file.
