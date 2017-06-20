@@ -163,7 +163,7 @@ static void usage(const char *progn)
 	       "  -N:           Enter a new cgroup namespace.\n"
 	       "  -p:           Enter new pid namespace (implies -vr).\n"
 	       "  -r:           Remount /proc read-only (implies -v).\n"
-	       "  -s:           Use seccomp.\n"
+	       "  -s:           Use seccomp mode 1 (not the same as -S).\n"
 	       "  -S <file>:    Set seccomp filter using <file>.\n"
 	       "                E.g., '-S /usr/share/filters/<prog>.$(uname -m)'.\n"
 	       "                Requires -n when not running as root.\n"
