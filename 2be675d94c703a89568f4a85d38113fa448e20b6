@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e502a77_ff87961b",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-21T20:18:24Z",
+      "side": 1,
+      "message": "Should we prevent a caller from setting the same rlimit more than once?",
+      "range": {
+        "startLine": 653,
+        "startChar": 8,
+        "endLine": 653,
+        "endChar": 23
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23fa90cd_be8421ec",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-21T20:18:24Z",
+      "side": 1,
+      "message": "I think Mike changed these to be \\fBgetrlimit\\fR(2) in https://android-review.googlesource.com/#/c/419179/.",
+      "range": {
+        "startLine": 109,
+        "startChar": 25,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1fb439_4e1762a0",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-21T20:18:24Z",
+      "side": 1,
+      "message": "Would it be useful to point out which one was bad?",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 2
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
