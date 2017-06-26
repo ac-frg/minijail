@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8937679a_a2ce9a16",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-06-26T17:55:40Z",
+      "side": 1,
+      "message": "Sure thing, that will make errors more obvious.",
+      "parentUuid": "8e502a77_ff87961b",
+      "range": {
+        "startLine": 653,
+        "startChar": 8,
+        "endLine": 653,
+        "endChar": 23
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23fa90cd_be8421ec",
         "filename": "minijail0.1",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ead44b04_d730c7a3",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-06-26T17:55:40Z",
+      "side": 1,
+      "message": "cool, that looks better thanks.",
+      "parentUuid": "23fa90cd_be8421ec",
+      "range": {
+        "startLine": 109,
+        "startChar": 25,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e1fb439_4e1762a0",
         "filename": "minijail0.c",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2017-06-21T20:18:24Z",
       "side": 1,
       "message": "Would it be useful to point out which one was bad?",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 2
+      },
+      "revId": "2be675d94c703a89568f4a85d38113fa448e20b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fa555ce_e7d6490c",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-06-26T17:55:40Z",
+      "side": 1,
+      "message": "Yes, future users thank you in advance.",
+      "parentUuid": "2e1fb439_4e1762a0",
       "range": {
         "startLine": 83,
         "startChar": 0,
