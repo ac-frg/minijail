@@ -64,6 +64,8 @@ void minijail_reset_signal_mask(struct minijail *j);
 void minijail_namespace_vfs(struct minijail *j);
 void minijail_namespace_enter_vfs(struct minijail *j, const char *ns_path);
 void minijail_new_session_keyring(struct minijail *j);
+void minijail_drop_securebits(struct minijail *j,
+			      uint64_t securebits_drop_mask);
 
 /*
  * This option is *dangerous* as it negates most of the functionality of
