@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8744f4d8_a2523f6a",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-30T19:25:59Z",
+      "side": 1,
+      "message": "Nit: execve(2).",
+      "range": {
+        "startLine": 539,
+        "startChar": 4,
+        "endLine": 539,
+        "endChar": 12
+      },
+      "revId": "c986519261ea27c10475a6dcb0e0711bb9673f95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75f81913_b980ac24",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-06-30T19:25:59Z",
+      "side": 1,
+      "message": "Nit: finish with period.",
+      "range": {
+        "startLine": 545,
+        "startChar": 13,
+        "endLine": 545,
+        "endChar": 14
+      },
+      "revId": "c986519261ea27c10475a6dcb0e0711bb9673f95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
