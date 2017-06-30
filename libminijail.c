@@ -155,6 +155,7 @@ struct minijail {
 	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
+	uint64_t securebits_drop_mask;
 };
 
 /*
@@ -421,6 +422,12 @@ void API minijail_namespace_enter_vfs(struct minijail *j, const char *ns_path)
 void API minijail_new_session_keyring(struct minijail *j)
 {
 	j->flags.new_session_keyring = 1;
+}
+
+void API minijail_drop_securebits(struct minijail *j,
+				  uint64_t securebits_drop_mask)
+{
+	j->securebits_drop_mask = securebits_drop_mask;
 }
 
 void API minijail_skip_remount_private(struct minijail *j)
@@ -1682,7 +1689,7 @@ void API minijail_enter(const struct minijail *j)
 		if (prctl(PR_SET_KEEPCAPS, 1))
 			pdie("prctl(PR_SET_KEEPCAPS) failed");
 
-		if (lock_securebits() < 0) {
+		if (lock_securebits(j->securebits_drop_mask) < 0) {
 			pdie("locking securebits failed");
 		}
 	}
