@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9da06ae3_83ae7425",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "\"not setting/locking\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bde6605e_40132d16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "\"skip setting/locking\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 42,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b88b309e_aa75ebed",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "skip",
+      "range": {
+        "startLine": 169,
+        "startChar": 21,
+        "endLine": 169,
+        "endChar": 25
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f909fb08_47154eaa",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "change name here to match.",
+      "range": {
+        "startLine": 438,
+        "startChar": 18,
+        "endLine": 438,
+        "endChar": 22
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96d8d203_ee769104",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "same here and in the body of the function.",
+      "range": {
+        "startLine": 439,
+        "startChar": 26,
+        "endLine": 439,
+        "endChar": 30
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75de7e2f_91f1dd95",
+        "filename": "libminijail.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "I find \"drop\" here confusing. Maybe \"minijail_skip_setting_securebits\"",
+      "range": {
+        "startLine": 67,
+        "startChar": 14,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14ef4931_bf12965a",
+        "filename": "minijail0.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "\"skip\", here and in the body of the func.",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb604c92_68b31fad",
+        "filename": "minijail0.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "I would say:\n\n\"Skip setting securebits in \u003cmask\u003e when restricting capabilities (-c).\"",
+      "range": {
+        "startLine": 152,
+        "startChar": 25,
+        "endLine": 152,
+        "endChar": 30
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b504693_66aaf8bf",
+        "filename": "minijail0.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "We don\u0027t need to do strict 80 col lines here. This can probably go in the line above.",
+      "range": {
+        "startLine": 153,
+        "startChar": 25,
+        "endLine": 153,
+        "endChar": 29
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "942ea063_61ce00ff",
+        "filename": "minijail0.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "Change matching new function name above.",
+      "range": {
+        "startLine": 307,
+        "startChar": 3,
+        "endLine": 307,
+        "endChar": 7
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "079b0283_8a6dcde5",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "skip",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "863685b2_1651f101",
+        "filename": "system.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:04:09Z",
+      "side": 1,
+      "message": "skip",
+      "range": {
+        "startLine": 51,
+        "startChar": 29,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "5d17013c1ba7db10893a3037f3c30398dc9a7a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
