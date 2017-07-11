@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3e4a8aa_6d3de5a6",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-11T18:14:49Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 152,
+        "startChar": 89,
+        "endLine": 152,
+        "endChar": 93
+      },
+      "revId": "9911555dc51e086bcb500c26fbea1334a2f4714e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
