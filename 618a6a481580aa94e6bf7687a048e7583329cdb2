@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cffa68ec_ff37cdc8",
+        "filename": "scoped_minijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-12T19:09:39Z",
+      "side": 1,
+      "message": "I think all the other include guards in the project don\u0027t use leading nor trailing underscores.",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "618a6a481580aa94e6bf7687a048e7583329cdb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
