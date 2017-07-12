@@ -1,0 +1,10 @@
+Verified+1: Chirantan Ekbote <chirantan@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Autosubmit+1: Chirantan Ekbote <chirantan@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 12 Jul 2017 20:36:13 +0000
+Reviewed-on: https://android-review.googlesource.com/433844
+Project: platform/external/minijail
+Branch: refs/heads/master
