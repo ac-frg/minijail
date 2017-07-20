@@ -96,6 +96,12 @@ struct mountpoint {
 	struct mountpoint *next;
 };
 
+struct lsm_callback {
+	minijail_lsm_callback_t callback;
+	void *payload;
+	struct lsm_callback *next;
+};
+
 struct minijail {
 	/*
 	 * WARNING: if you add a flag here you need to make sure it's
@@ -167,6 +173,8 @@ struct minijail {
 	struct minijail_rlimit rlimits[MAX_RLIMITS];
 	size_t rlimit_count;
 	uint64_t securebits_skip_mask;
+	struct lsm_callback *lsm_callbacks_head;
+	struct lsm_callback *lsm_callbacks_tail;
 };
 
 /*
@@ -753,6 +761,30 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 	return minijail_mount(j, src, dest, "", flags);
 }
 
+int API minijail_add_lsm_callback(struct minijail *j,
+				  minijail_lsm_callback_t callback,
+				  void *payload)
+{
+	struct lsm_callback *c;
+
+	if (callback == NULL)
+		return -EINVAL;
+	c = calloc(1, sizeof(*c));
+	if (!c)
+		return -ENOMEM;
+
+	c->callback = callback;
+	c->payload = payload;
+
+	if (j->lsm_callbacks_tail)
+		j->lsm_callbacks_tail->next = c;
+	else
+		j->lsm_callbacks_head = c;
+	j->lsm_callbacks_tail = c;
+
+	return 0;
+}
+
 static void clear_seccomp_options(struct minijail *j)
 {
 	j->flags.seccomp_filter = 0;
@@ -978,6 +1010,8 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	j->mounts_head = NULL;
 	j->mounts_tail = NULL;
 	j->filter_prog = NULL;
+	j->lsm_callbacks_head = NULL;
+	j->lsm_callbacks_tail = NULL;
 
 	if (j->user) {		/* stale pointer */
 		char *user = consumestr(&serialized, &length);
@@ -1629,6 +1663,18 @@ static void install_signal_handlers(void)
 	/* Handle real-time signals. */
 	for (int nr = SIGRTMIN; nr <= SIGRTMAX; nr++) {
 		sigaction(nr, &act, NULL);
+	}
+}
+
+static void run_lsm_callbacks_or_die(const struct minijail *j)
+{
+	int rc;
+	for (struct lsm_callback *c = j->lsm_callbacks_head; c; c = c->next) {
+		rc = c->callback(c->payload);
+		if (rc != 0) {
+			errno = -rc;
+			pdie("lsm_callback failed");
+		}
 	}
 }
 
@@ -2350,6 +2396,8 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		}
 	}
 
+	run_lsm_callbacks_or_die(j);
+
 	/*
 	 * If we aren't pid-namespaced, or the jailed program asked to be init:
 	 *   calling process
@@ -2430,6 +2478,12 @@ void API minijail_destroy(struct minijail *j)
 		free(m);
 	}
 	j->mounts_tail = NULL;
+	while (j->lsm_callbacks_head) {
+		struct lsm_callback *c = j->lsm_callbacks_head;
+		j->lsm_callbacks_head = c->next;
+		free(c);
+	}
+	j->lsm_callbacks_tail = NULL;
 	if (j->user)
 		free(j->user);
 	if (j->suppl_gid_list)
