@@ -30,6 +30,15 @@ enum {
 
 struct minijail;
 
+/*
+ * An opaque callback that can be used to install LSM mechanisms just prior to
+ * calling execve().
+ *
+ * If the return value is non-zero, it will be interpreted as -errno and the
+ * process will abort.
+ */
+typedef int (*minijail_lsm_callback_t)(void *context);
+
 /* Allocates a new minijail with no restrictions. */
 struct minijail *minijail_new(void);
 
@@ -198,6 +207,17 @@ int minijail_mount(struct minijail *j, const char *src, const char *dest,
  */
 int minijail_bind(struct minijail *j, const char *src, const char *dest,
 		  int writeable);
+
+/*
+ * minijail_add_lsm_callback: adds @cb to the list of callbacks that will be
+ * invoked just prior to calling execve(2). The caller is responsible for
+ * the lifetime of @payload.
+ * @j         minijail to add the callback to
+ * @callback  the callback
+ * @payload   an opaque pointer
+ */
+int minijail_add_lsm_callback(struct minijail *j,
+			      minijail_lsm_callback_t callback, void *payload);
 
 /*
  * Lock this process into the given minijail. Note that this procedure cannot

@@ -273,6 +273,42 @@ TEST(Test, test_minijail_no_fd_leaks) {
   close(dev_null);
 }
 
+static int setname(void*) {
+  exit(42);
+}
+
+TEST(Test, test_minijail_lsm_callback) {
+  pid_t pid;
+  int child_stdin, child_stdout;
+  int mj_run_ret;
+  int status;
+#if defined(__ANDROID__)
+  char filename[] = "/system/bin/cat";
+#else
+  char filename[] = "/bin/cat";
+#endif
+  char process_name[] = "test";
+  char *argv[2];
+
+  struct minijail *j = minijail_new();
+
+  status = minijail_add_lsm_callback(j, &setname, process_name);
+  EXPECT_EQ(status, 0);
+
+  argv[0] = filename;
+  argv[1] = NULL;
+  mj_run_ret = minijail_run_pid_pipes_no_preload(j, argv[0], argv,
+                                                 &pid,
+                                                 &child_stdin, &child_stdout,
+                                                 NULL);
+  EXPECT_EQ(mj_run_ret, 0);
+
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 42);
+
+  minijail_destroy(j);
+}
+
 TEST(Test, parse_size) {
   size_t size;
 
