@@ -54,7 +54,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libminijail
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := $(libminijailSrcFiles)
 
 LOCAL_STATIC_LIBRARIES := libminijail_generated
@@ -66,7 +65,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libminijail_vendor
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := $(libminijailSrcFiles)
 LOCAL_VENDOR_MODULE := true
 
@@ -83,7 +81,6 @@ include $(BUILD_SHARED_LIBRARY)
 # LOCAL_MODULE_TAGS := optional
 #
 # LOCAL_CFLAGS := $(minijailCommonCFlags)
-# LOCAL_CLANG := true
 # LOCAL_SANITIZE := address
 # LOCAL_MODULE_RELATIVE_PATH := asan
 # LOCAL_SRC_FILES := $(libminijailSrcFiles)
@@ -100,7 +97,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libminijail
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := $(libminijailSrcFiles)
 
 LOCAL_WHOLE_STATIC_LIBRARIES := libminijail_generated $(minijailCommonLibraries)
@@ -117,7 +113,6 @@ LOCAL_COMPATIBILITY_SUITE := device-tests
 
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_CFLAGS := $(minijailCommonCFlags) -Wno-writable-strings
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	$(libminijailSrcFiles) \
 	libminijail_unittest.cc \
@@ -137,7 +132,6 @@ include $(BUILD_NATIVE_TEST)
 
 # LOCAL_CPP_EXTENSION := .cc
 # LOCAL_CFLAGS := $(minijailCommonCFlags) -DPRELOADPATH=\"/invalid\"
-# LOCAL_CLANG := true
 # LOCAL_SRC_FILES := \
 # 	$(libminijailSrcFiles) \
 # 	libminijail_unittest.cc \
@@ -156,7 +150,6 @@ LOCAL_COMPATIBILITY_SUITE := device-tests
 
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	bpf.c \
 	syscall_filter.c \
@@ -177,7 +170,6 @@ LOCAL_MODULE_HOST_OS := linux
 
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	bpf.c \
 	syscall_filter.c \
@@ -196,7 +188,6 @@ LOCAL_MODULE := libminijail_test
 LOCAL_COMPATIBILITY_SUITE := device-tests
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 LOCAL_GTEST := false
 LOCAL_SRC_FILES := \
 	test/libminijail_test.cpp
@@ -211,7 +202,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := drop_privs
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
 # Don't build with ASan, but leave commented out for easy local debugging.
 # LOCAL_SANITIZE := address
 LOCAL_SRC_FILES := \
@@ -231,7 +221,6 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS := \
 	$(minijailCommonCFlags) -Wno-missing-field-initializers \
 	-DPRELOADPATH=\"/invalidminijailpreload.so\"
-LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	elfparse.c \
 	minijail0.c \

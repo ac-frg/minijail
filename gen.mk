@@ -44,4 +44,3 @@ LOCAL_GENERATED_SOURCES_$(TARGET_2ND_ARCH) += $(my_gen)
 endif
 
 LOCAL_CFLAGS := $(minijailCommonCFlags)
-LOCAL_CLANG := true
