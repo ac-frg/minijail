@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8020cd8_835588fb",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-26T01:12:32Z",
+      "side": 1,
+      "message": "TIL clang-format does not align this.",
+      "range": {
+        "startLine": 237,
+        "startChar": 2,
+        "endLine": 237,
+        "endChar": 3
+      },
+      "revId": "1e459499a024b1fbcd9d36e1907bdb0058867230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
