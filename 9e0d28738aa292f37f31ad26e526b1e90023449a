@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7adfd21d_657eb6f1",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-26T00:33:17Z",
+      "side": 1,
+      "message": "No count? How do you deserialize this?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 33
+      },
+      "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
