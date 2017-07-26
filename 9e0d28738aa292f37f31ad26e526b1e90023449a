@@ -69,6 +69,30 @@
       "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca545d5f_35b410e0",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-26T01:10:42Z",
+      "side": 1,
+      "message": "removed all LSM references with s/lsm_//gi (and amended a few stragglers such as the comment above).",
+      "parentUuid": "2f6afe93_bfe16bff",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
