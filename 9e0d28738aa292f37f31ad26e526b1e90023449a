@@ -46,6 +46,29 @@
       "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f6afe93_bfe16bff",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-26T01:04:52Z",
+      "side": 1,
+      "message": "If Dylan wants to use this for network namespace config, we probably should remove all mentions of LSM from the code. No preference for \"callback\" or \"hook\" on my side.",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
