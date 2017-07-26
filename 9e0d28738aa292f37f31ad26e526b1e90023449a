@@ -22,6 +22,30 @@
       "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a634209_41f76b1e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-26T00:55:47Z",
+      "side": 1,
+      "message": "Deserialization does not make sense, since the |hook|/|payload| pointers cannot be serialized since they point to arbitrary code pre-execve(2).",
+      "parentUuid": "7adfd21d_657eb6f1",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 33
+      },
+      "revId": "9e0d28738aa292f37f31ad26e526b1e90023449a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
