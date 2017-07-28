@@ -22,6 +22,30 @@
       "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79e95632_d2759af0",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-28T14:36:28Z",
+      "side": 1,
+      "message": "Yeah, these are all stored in .rodata section of libminijail.so, so they are always accessible from elsewhere[1]:\n\nI also did test a failing hook, but didn\u0027t find a nice way to intercept syslog\u0027s output in the unit tests, so here\u0027s the output of dmesg for a hook that returned -EPERM:\n\nlibminijail[7338]: pre-drop-caps hook (index 0) failed: Operation not permitted\n\n1: Moving this to the bottom because Gerrit messes up the formatting :/\n\n    objdump -d libminijail.so (after adding __attribute__((noinline))):\n     00000000000076f0 \u003clookup_hook_name\u003e:\n        ...\n        7706:       48 8d 05 cb 7c 00 00    lea    0x7ccb(%rip),%rax        # f3d8 \u003c_fini+0x10\u003e\n        ...\n\n    readelf -a libminijail.so:\n      [13] .rodata           PROGBITS         000000000000f3d8  0000f3d8\n           0000000000003c5d  0000000000000000   A       0     0     8",
+      "parentUuid": "4ca7d87d_eef05df8",
+      "range": {
+        "startLine": 1676,
+        "startChar": 2,
+        "endLine": 1676,
+        "endChar": 25
+      },
+      "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
