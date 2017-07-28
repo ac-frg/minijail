@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f75b768d_3bfee6a0",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-28T14:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3cdcd9_d001a7da",
+      "range": {
+        "startLine": 1682,
+        "startChar": 9,
+        "endLine": 1682,
+        "endChar": 20
+      },
+      "revId": "949eb5779ec52e0edec6d2591a73fc74eca226f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e436c65_797ea24d",
         "filename": "libminijail.c",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-28T13:28:43Z",
       "side": 1,
       "message": "Change this error message? \"Minijail hooks...\"",
+      "range": {
+        "startLine": 2083,
+        "startChar": 7,
+        "endLine": 2083,
+        "endChar": 10
+      },
+      "revId": "949eb5779ec52e0edec6d2591a73fc74eca226f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66006cdf_24073d9f",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2083,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-07-28T14:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e436c65_797ea24d",
       "range": {
         "startLine": 2083,
         "startChar": 7,
