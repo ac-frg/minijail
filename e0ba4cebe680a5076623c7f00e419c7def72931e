@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ca7d87d_eef05df8",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-07-28T14:18:02Z",
+      "side": 1,
+      "message": "Does the compiler do the right thing with this? Where is the string stored? Did you test a failing hook?",
+      "range": {
+        "startLine": 1676,
+        "startChar": 2,
+        "endLine": 1676,
+        "endChar": 25
+      },
+      "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
