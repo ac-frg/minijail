@@ -273,7 +273,7 @@ TEST(Test, test_minijail_no_fd_leaks) {
   close(dev_null);
 }
 
-static int early_exit(void* payload) {
+static int early_exit(void* payload, int __attribute__((unused)) child_pid) {
   exit(static_cast<int>(reinterpret_cast<intptr_t>(payload)));
 }
 
@@ -304,6 +304,43 @@ TEST(Test, test_minijail_callback) {
 
   status = minijail_wait(j);
   EXPECT_EQ(status, exit_code);
+
+  minijail_destroy(j);
+}
+
+static int pre_start_hook(void* payload, int child_pid) {
+  *reinterpret_cast<int*>(payload) = child_pid;
+  return 0;
+}
+
+TEST(Test, test_minijail_pre_start_hook) {
+  pid_t pid;
+  int mj_run_ret;
+  int status;
+#if defined(__ANDROID__)
+  char filename[] = "/system/bin/true";
+#else
+  char filename[] = "/bin/true";
+#endif
+  char *argv[2];
+  int child_pid = 0;
+
+  struct minijail *j = minijail_new();
+
+  status =
+      minijail_add_hook(j, &pre_start_hook, &child_pid,
+			MINIJAIL_HOOK_EVENT_PRE_START);
+  EXPECT_EQ(status, 0);
+
+  argv[0] = filename;
+  argv[1] = NULL;
+  mj_run_ret = minijail_run_pid_pipes_no_preload(j, argv[0], argv, &pid, NULL,
+						 NULL, NULL);
+  EXPECT_EQ(mj_run_ret, 0);
+
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(child_pid, pid);
 
   minijail_destroy(j);
 }

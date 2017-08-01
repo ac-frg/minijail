@@ -1422,17 +1422,21 @@ static void enter_user_namespace(const struct minijail *j)
 		pdie("user_namespaces: setresgid(0, 0, 0) failed");
 }
 
-static void parent_setup_complete(int *pipe_fds)
+/*
+ * setup_complete: Called by one process to signal the other that all setup has
+ * been completed and can continue.
+ */
+static void setup_complete(int *pipe_fds)
 {
 	close(pipe_fds[0]);
 	close(pipe_fds[1]);
 }
 
 /*
- * wait_for_parent_setup: Called by the child process to wait for any
- * further parent-side setup to complete before continuing.
+ * wait_for_setup: Called by one process to wait for any further setup on the
+ * other process to complete before continuing.
  */
-static void wait_for_parent_setup(int *pipe_fds)
+static void wait_for_setup(int *pipe_fds)
 {
 	char buf;
 
@@ -1676,6 +1680,8 @@ static const char *lookup_hook_name(minijail_hook_event_t event)
 		return "pre-drop-caps";
 	case MINIJAIL_HOOK_EVENT_PRE_EXECVE:
 		return "pre-execve";
+	case MINIJAIL_HOOK_EVENT_PRE_START:
+		return "pre-start";
 	case MINIJAIL_HOOK_EVENT_MAX:
 		/*
 		 * Adding this in favor of a default case to force the
@@ -1686,15 +1692,26 @@ static const char *lookup_hook_name(minijail_hook_event_t event)
 	return "unknown";
 }
 
+static int count_hooks(const struct minijail *j, minijail_hook_event_t event)
+{
+	int hook_count = 0;
+	for (struct hook *c = j->hooks_head; c; c = c->next) {
+		if (c->event != event)
+			continue;
+		++hook_count;
+	}
+	return hook_count;
+}
+
 static void run_hooks_or_die(const struct minijail *j,
-			     minijail_hook_event_t event)
+			     minijail_hook_event_t event, int child_pid)
 {
 	int rc;
 	int hook_index = 0;
 	for (struct hook *c = j->hooks_head; c; c = c->next) {
 		if (c->event != event)
 			continue;
-		rc = c->hook(c->payload);
+		rc = c->hook(c->payload, child_pid);
 		if (rc != 0) {
 			errno = -rc;
 			pdie("%s hook (index %d) failed",
@@ -1788,7 +1805,7 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
 		pdie("remount");
 
-	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS);
+	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS, 0);
 
 	/*
 	 * If we're only dropping capabilities from the bounding set, but not
@@ -2075,6 +2092,15 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	int stderr_fds[2];
 	int child_sync_pipe_fds[2];
 	int sync_child = 0;
+	/*
+	 * The pre-start hook is a bit more convoluted: the parent needs to wait
+	 * for the child to reach the pre-execve stage of setup, then run the
+	 * hooks, and then signal the child that it can proceed calling
+	 * execve(2). Thus, two sets of pipes are needed.
+	 */
+	int child_sync_reached_pre_start_pipe_fds[2];
+	int child_sync_ready_pre_start_pipe_fds[2];
+	int sync_pre_start_child = 0;
 	int ret;
 	/* We need to remember this across the minijail_preexec() call. */
 	int pid_namespace = j->flags.pids;
@@ -2168,6 +2194,14 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			return -EFAULT;
 	}
 
+	if (count_hooks(j, MINIJAIL_HOOK_EVENT_PRE_START)) {
+		sync_pre_start_child = 1;
+		if (pipe(child_sync_reached_pre_start_pipe_fds))
+			return -EFAULT;
+		if (pipe(child_sync_ready_pre_start_pipe_fds))
+			return -EFAULT;
+	}
+
 	/*
 	 * Use sys_clone() if and only if we're creating a pid namespace.
 	 *
@@ -2257,7 +2291,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			write_ugid_maps_or_die(j);
 
 		if (sync_child)
-			parent_setup_complete(child_sync_pipe_fds);
+			setup_complete(child_sync_pipe_fds);
 
 		if (use_preload) {
 			/* Send marshalled minijail. */
@@ -2297,6 +2331,13 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			*pstderr_fd = setup_pipe_end(stderr_fds,
 						     0 /* read end */);
 
+		if (sync_pre_start_child) {
+			wait_for_setup(child_sync_reached_pre_start_pipe_fds);
+			run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_START,
+					 child_pid);
+			setup_complete(child_sync_ready_pre_start_pipe_fds);
+		}
+
 		return 0;
 	}
 	/* Child process. */
@@ -2311,7 +2352,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	}
 
 	if (j->flags.close_open_fds) {
-		const size_t kMaxInheritableFdsSize = 10;
+		const size_t kMaxInheritableFdsSize = 14;
 		int inheritable_fds[kMaxInheritableFdsSize];
 		size_t size = 0;
 		if (use_preload) {
@@ -2321,6 +2362,16 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		if (sync_child) {
 			inheritable_fds[size++] = child_sync_pipe_fds[0];
 			inheritable_fds[size++] = child_sync_pipe_fds[1];
+		}
+		if (sync_pre_start_child) {
+			inheritable_fds[size++] =
+			    child_sync_reached_pre_start_pipe_fds[0];
+			inheritable_fds[size++] =
+			    child_sync_reached_pre_start_pipe_fds[1];
+			inheritable_fds[size++] =
+			    child_sync_ready_pre_start_pipe_fds[0];
+			inheritable_fds[size++] =
+			    child_sync_ready_pre_start_pipe_fds[1];
 		}
 		if (pstdin_fd) {
 			inheritable_fds[size++] = stdin_fds[0];
@@ -2340,7 +2391,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	}
 
 	if (sync_child)
-		wait_for_parent_setup(child_sync_pipe_fds);
+		wait_for_setup(child_sync_pipe_fds);
 
 	if (j->flags.userns)
 		enter_user_namespace(j);
@@ -2406,6 +2457,11 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 	/* Jail this process, then execve(2) the target. */
 	minijail_enter(j);
 
+	if (sync_pre_start_child) {
+		setup_complete(child_sync_reached_pre_start_pipe_fds);
+		wait_for_setup(child_sync_ready_pre_start_pipe_fds);
+	}
+
 	if (pid_namespace && do_init) {
 		/*
 		 * pid namespace: this process will become init inside the new
@@ -2429,7 +2485,7 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		}
 	}
 
-	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_EXECVE);
+	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_EXECVE, 0);
 
 	/*
 	 * If we aren't pid-namespaced, or the jailed program asked to be init:

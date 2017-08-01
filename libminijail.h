@@ -33,23 +33,36 @@ struct minijail;
 /*
  * A hook that can be used to execute code at various events during minijail
  * setup in the forked process. These can only be used if the jailed process is
- * not going to be invoked with LD_PRELOAD.
+ * not going to be invoked with LD_PRELOAD. @context is passed in as a parameter
+ * to minijail_add_hook() and @child_pid is the child pid when running in the
+ * context of the parent process, 0 otherwise.
  *
  * If the return value is non-zero, it will be interpreted as -errno and the
  * process will abort.
  */
-typedef int (*minijail_hook_t)(void *context);
+typedef int (*minijail_hook_t)(void *context, int child_pid);
 
 /*
- * The events during minijail setup in which hooks can run. All the events are
- * run in the new process.
+ * The events during minijail setup in which hooks can run.
  */
 typedef enum {
-	/* The hook will run just before dropping capabilities. */
+	/*
+	 * The hook will run in the jailed process just before dropping
+	 * capabilities.
+	 */
 	MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS,
 
-	/* The hook will run just before calling execve(2). */
+	/*
+	 * The hook will run in the jailed process just before calling
+	 * execve(2).
+	 */
 	MINIJAIL_HOOK_EVENT_PRE_EXECVE,
+
+	/*
+	 * The hook will run in the parent process before calling execve(2) and
+	 * running the MINIJAIL_HOOK_EVENT_PRE_EXECVE hooks.
+	 */
+	MINIJAIL_HOOK_EVENT_PRE_START,
 
 	/* Sentinel for error checking. Must be last. */
 	MINIJAIL_HOOK_EVENT_MAX,
