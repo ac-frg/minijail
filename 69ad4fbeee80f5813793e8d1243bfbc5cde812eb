@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "182b091d_5f5cb88c",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-08T14:24:42Z",
+      "side": 1,
+      "message": "\"in the child process\"",
+      "range": {
+        "startLine": 242,
+        "startChar": 13,
+        "endLine": 242,
+        "endChar": 33
+      },
+      "revId": "69ad4fbeee80f5813793e8d1243bfbc5cde812eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cef93f2d_57cb81a1",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-08T14:24:42Z",
+      "side": 1,
+      "message": "Tabs \u003d)",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 25
+      },
+      "revId": "69ad4fbeee80f5813793e8d1243bfbc5cde812eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9dbe28fd_0c31b1ff",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-08T14:24:42Z",
+      "side": 1,
+      "message": "Also, format in the same line as the other args?",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 39
+      },
+      "revId": "69ad4fbeee80f5813793e8d1243bfbc5cde812eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
