@@ -244,6 +244,8 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 	 */
 	rc = stat(source, &st_buf);
 	if (rc || S_ISDIR(st_buf.st_mode) || S_ISBLK(st_buf.st_mode)) {
+		if (rc && errno == ENOENT)
+			return -errno;
 		if (mkdir(dest, 0700))
 			return -errno;
 	} else {
