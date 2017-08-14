@@ -22,6 +22,30 @@
       "revId": "952aa84a82b631fc07481169501a7ce47723ba75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ee57dd7_9b9ac79a",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2044,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-08-14T16:31:20Z",
+      "side": 1,
+      "message": "The current planned use case only uses it pre-execve(2), so we can just pass the fd into the hook\u0027s payload.\n\nBut this is done in a flexible way that can also be used to make the fds available to the child after execve(2): some use cases include redirecting stdin/stdio/stderr without the need for pipes, or pass in the Mojo primordial pipe fd through commandline parameters.",
+      "parentUuid": "a7b5237c_b7c3b990",
+      "range": {
+        "startLine": 2038,
+        "startChar": 0,
+        "endLine": 2044,
+        "endChar": 2
+      },
+      "revId": "952aa84a82b631fc07481169501a7ce47723ba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
