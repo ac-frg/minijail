@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7b5237c_b7c3b990",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2044,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-14T16:24:28Z",
+      "side": 1,
+      "message": "We\u0027re expecting these fd\u0027s to be available in the child after execve(2) right? We expect the sandboxed executable to use them, not just Minijail code before execve(2).\n\nIn that case, how will the child process know which fd\u0027s to use? Are we planning on using env variables or something?",
+      "range": {
+        "startLine": 2038,
+        "startChar": 0,
+        "endLine": 2044,
+        "endChar": 2
+      },
+      "revId": "952aa84a82b631fc07481169501a7ce47723ba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
