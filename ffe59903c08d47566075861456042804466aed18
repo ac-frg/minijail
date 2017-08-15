@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "946e6d82_b1d54fc0",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-15T19:58:55Z",
+      "side": 1,
+      "message": "since the spec for -b/-k is quite long, i omitted it.  i still wanted to indicate that these took arguments though as a quick --help scan confused me as the output indicates they take no arguments.",
+      "revId": "ffe59903c08d47566075861456042804466aed18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56227408_cd72d0e2",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-15T19:58:55Z",
+      "side": 1,
+      "message": "not strictly related to this CL, just something i noticed while i was here poking around.",
+      "revId": "ffe59903c08d47566075861456042804466aed18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

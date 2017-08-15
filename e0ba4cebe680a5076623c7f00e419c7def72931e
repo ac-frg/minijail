@@ -70,6 +70,23 @@
       "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b85b19a_4c9d13cd",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-15T19:58:55Z",
+      "side": 0,
+      "message": "i spent a bit of time going back and forth here to try and hit a good balance between readability/convoluted/commingled code paths while avoiding duplication.  hopefully i hit it, but happy to bikeshed a bit.",
+      "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
