@@ -52,6 +52,24 @@
       "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92e5d4f8_1f3e65cc",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-15T18:37:55Z",
+      "side": 0,
+      "message": "yes, for bind mounts it doesn\u0027t make much sense. I don\u0027t think we ever need to handle a relative path here, so the check against a leading / should work.\n\nThanks for investigating, we certainly shouldn\u0027t be creating the source directories if they don\u0027t exist.",
+      "parentUuid": "d115781f_d480489b",
+      "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
