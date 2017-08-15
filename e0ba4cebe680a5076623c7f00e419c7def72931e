@@ -34,6 +34,24 @@
       "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d115781f_d480489b",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-15T18:31:11Z",
+      "side": 0,
+      "message": "so this is only for -k where we\u0027re creating new mounts ?  this logic is still bad in that case ... if the cwd happens to contain a file named \"none\" (or whatever pseudo name was passed in for the source), it\u0027ll mess things up.\n\ni\u0027m looking at -b where a non-existent source should be a failure, but it runs through this code currently and messes things up.\n\ni guess the way out of this is to pass in a bool to setup_mount_destination to control the creation behavior.  mount_one will set that based on flags\u0026MS_BIND.  further, if source does not contain a /, we assume it\u0027s a pseudo filesystem, and assume the destination is always a directory.",
+      "parentUuid": "11912296_3fc002e6",
+      "revId": "e0ba4cebe680a5076623c7f00e419c7def72931e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
