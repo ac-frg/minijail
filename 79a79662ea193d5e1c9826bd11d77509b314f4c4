@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95c79f73_19fdaed1",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-16T14:21:59Z",
+      "side": 1,
+      "message": "\"System functionality\" or \"OS-dependent functionality\"",
+      "range": {
+        "startLine": 192,
+        "startChar": 2,
+        "endLine": 192,
+        "endChar": 19
+      },
+      "revId": "79a79662ea193d5e1c9826bd11d77509b314f4c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a340420_14e5b29f",
+        "filename": "Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-16T14:21:59Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 211,
+        "startChar": 2,
+        "endLine": 211,
+        "endChar": 19
+      },
+      "revId": "79a79662ea193d5e1c9826bd11d77509b314f4c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
