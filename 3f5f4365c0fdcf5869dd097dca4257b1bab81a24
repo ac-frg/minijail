@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f71989bc_21c71b3b",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-24T19:46:30Z",
+      "side": 1,
+      "message": "Is it time for this to be a config struct, or some better defined flags?",
+      "parentUuid": "485d0e62_b4fc13e9",
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d65cfce_bb60ca49",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -33,6 +51,29 @@
       "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "306b4b25_5c046564",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2358,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-24T19:46:30Z",
+      "side": 1,
+      "message": "nit: end with period.",
+      "range": {
+        "startLine": 2358,
+        "startChar": 18,
+        "endLine": 2358,
+        "endChar": 25
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -73,6 +114,29 @@
       "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baa70516_a5ee5292",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-24T19:46:30Z",
+      "side": 1,
+      "message": "Nit: let\u0027s not mix single and double spaces.",
+      "range": {
+        "startLine": 325,
+        "startChar": 66,
+        "endLine": 325,
+        "endChar": 68
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
