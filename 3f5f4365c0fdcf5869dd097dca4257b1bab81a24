@@ -50,6 +50,29 @@
       "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39093d8c_68a67617",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1137204
+      },
+      "writtenOn": "2017-08-24T19:41:45Z",
+      "side": 1,
+      "message": "minijail_run and friends are no longer the exclusive users of namespace pids, right?",
+      "range": {
+        "startLine": 264,
+        "startChar": 15,
+        "endLine": 264,
+        "endChar": 38
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
