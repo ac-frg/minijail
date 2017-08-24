@@ -2060,42 +2060,42 @@ static int redirect_fds(struct minijail *j)
 int minijail_run_internal(struct minijail *j, const char *filename,
 			  char *const argv[], pid_t *pchild_pid,
 			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
-			  int use_preload);
+			  int use_preload, int exec);
 
 int API minijail_run(struct minijail *j, const char *filename,
 		     char *const argv[])
 {
 	return minijail_run_internal(j, filename, argv, NULL, NULL, NULL, NULL,
-				     true);
+				     true, true);
 }
 
 int API minijail_run_pid(struct minijail *j, const char *filename,
 			 char *const argv[], pid_t *pchild_pid)
 {
 	return minijail_run_internal(j, filename, argv, pchild_pid,
-				     NULL, NULL, NULL, true);
+				     NULL, NULL, NULL, true, true);
 }
 
 int API minijail_run_pipe(struct minijail *j, const char *filename,
 			  char *const argv[], int *pstdin_fd)
 {
 	return minijail_run_internal(j, filename, argv, NULL, pstdin_fd,
-				     NULL, NULL, true);
+				     NULL, NULL, true, true);
 }
 
 int API minijail_run_pid_pipes(struct minijail *j, const char *filename,
 			       char *const argv[], pid_t *pchild_pid,
 			       int *pstdin_fd, int *pstdout_fd, int *pstderr_fd)
 {
-	return minijail_run_internal(j, filename, argv, pchild_pid,
-				     pstdin_fd, pstdout_fd, pstderr_fd, true);
+	return minijail_run_internal(j, filename, argv, pchild_pid, pstdin_fd,
+				     pstdout_fd, pstderr_fd, true, true);
 }
 
 int API minijail_run_no_preload(struct minijail *j, const char *filename,
 				char *const argv[])
 {
 	return minijail_run_internal(j, filename, argv, NULL, NULL, NULL, NULL,
-				     false);
+				     false, true);
 }
 
 int API minijail_run_pid_pipes_no_preload(struct minijail *j,
@@ -2105,14 +2105,20 @@ int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 					  int *pstdin_fd, int *pstdout_fd,
 					  int *pstderr_fd)
 {
-	return minijail_run_internal(j, filename, argv, pchild_pid,
-				     pstdin_fd, pstdout_fd, pstderr_fd, false);
+	return minijail_run_internal(j, filename, argv, pchild_pid, pstdin_fd,
+				     pstdout_fd, pstderr_fd, false, true);
+}
+
+pid_t API minijail_fork(struct minijail *j)
+{
+	return minijail_run_internal(j, NULL, NULL, NULL, NULL, NULL, NULL,
+				     false, false);
 }
 
 int minijail_run_internal(struct minijail *j, const char *filename,
 			  char *const argv[], pid_t *pchild_pid,
 			  int *pstdin_fd, int *pstdout_fd, int *pstderr_fd,
-			  int use_preload)
+			  int use_preload, int exec)
 {
 	char *oldenv, *oldenv_copy = NULL;
 	pid_t child_pid;
@@ -2147,8 +2153,11 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		}
 	}
 
-	if (use_preload && j->hooks_head != NULL) {
-		die("Minijail hooks are not supported with LD_PRELOAD");
+	if (use_preload) {
+		if (j->hooks_head != NULL)
+			die("Minijail hooks are not supported with LD_PRELOAD");
+		if (!exec)
+			die("minijail_fork is not supported with LD_PRELOAD");
 	}
 
 	/*
@@ -2344,6 +2353,12 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 			*pstderr_fd = setup_pipe_end(stderr_fds,
 						     0 /* read end */);
 
+		/*
+		 * If forking return the child pid, in the normal exec case
+		 * return 0 for success
+		 */
+		if (!exec)
+			return child_pid;
 		return 0;
 	}
 	/* Child process. */
@@ -2461,8 +2476,11 @@ int minijail_run_internal(struct minijail *j, const char *filename,
 		 */
 		j->flags.pids = 0;
 	}
-	/* Jail this process, then execve(2) the target. */
+	/* Jail this process, then execve(2) the target or return if forking. */
 	minijail_enter(j);
+
+	if (exec)
+		return 0;
 
 	if (pid_namespace && do_init) {
 		/*

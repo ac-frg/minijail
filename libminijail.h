@@ -319,6 +319,15 @@ int minijail_run_pid_pipes_no_preload(struct minijail *j, const char *filename,
 				      int *pstderr_fd);
 
 /*
+ * Fork, jail the child, and return. This behaves similar to fork(2), except it
+ * puts the child process in a jail before returning.
+ * `minijail_fork` returns in both the parent and the child. The pid of the
+ * child is returned to the parent. Zero is returned in the child.  LD_PRELOAD
+ * and PRE_EXEC hooks are not supported.
+ */
+pid_t minijail_fork(struct minijail *j);
+
+/*
  * Kill the specified minijail. The minijail must have been created with pid
  * namespacing; if it was, all processes inside it are atomically killed.
  */
