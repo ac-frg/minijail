@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "06947cc3_4d3276ad",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "I\u0027ll put together a change to make a config and a status struct for inputs and outputs respectively.",
+      "parentUuid": "f71989bc_21c71b3b",
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d65cfce_bb60ca49",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2017-08-24T19:41:22Z",
       "side": 1,
       "message": "since use_preload \u0026 exec are internal args, this almost feels like it should be an assert since it\u0027s an internal library error ?\n\nalso, seems like both these checks should inside the \"if (use_preload)\" check above on line ~2130.",
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7bd8d17_3b1826ef",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2159,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "you\u0027re right, the only way for this to happen is to add a function that sets both preload and exec, I figured die() is as good an an assert an more inline with the rest of the file.\n\nI moved both of the checks to the above use_preload check.",
+      "parentUuid": "3d65cfce_bb60ca49",
       "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -77,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "5091fe9b_4e8d0cb3",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2358,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "306b4b25_5c046564",
+      "range": {
+        "startLine": 2358,
+        "startChar": 18,
+        "endLine": 2358,
+        "endChar": 25
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "122be1ae_4384cd12",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -88,6 +148,24 @@
       "writtenOn": "2017-08-24T19:41:22Z",
       "side": 1,
       "message": "so pid namespaces \u0026 mj init aren\u0027t supported with minijail_fork either.  should we also assert if these are enabled ?\n\nthen again, why can\u0027t we allow them ?  same with the hooks below ?\n\ni.e. should this be moved down below to before the exec ?",
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6270a52c_35be4da6",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2482,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "pid_namespaces do work, they are set up in clone.\nmj_init does not, I don\u0027t think it makes a lot of sense in the fork case, as it would mean the parent has to track two children somehow.\nI\u0027ll move the return below the hook and explicitly skip the fork below in the !exec case.",
+      "parentUuid": "122be1ae_4384cd12",
       "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -117,6 +195,30 @@
     },
     {
       "key": {
+        "uuid": "b67b6618_ac57dd55",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "Correct, I\u0027ll re-word.",
+      "parentUuid": "39093d8c_68a67617",
+      "range": {
+        "startLine": 264,
+        "startChar": 15,
+        "endLine": 264,
+        "endChar": 38
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "baa70516_a5ee5292",
         "filename": "libminijail.h",
         "patchSetId": 1
@@ -128,6 +230,30 @@
       "writtenOn": "2017-08-24T19:46:30Z",
       "side": 1,
       "message": "Nit: let\u0027s not mix single and double spaces.",
+      "range": {
+        "startLine": 325,
+        "startChar": 66,
+        "endLine": 325,
+        "endChar": 68
+      },
+      "revId": "3f5f4365c0fdcf5869dd097dca4257b1bab81a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6defd3b0_b0744245",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-08-26T01:45:46Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m a recovering double spacer.",
+      "parentUuid": "baa70516_a5ee5292",
       "range": {
         "startLine": 325,
         "startChar": 66,
