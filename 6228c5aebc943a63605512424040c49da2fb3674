@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ff9d868_867c9c01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-08-29T02:45:00Z",
+      "side": 1,
+      "message": "I haven\u0027t found a good way of testing this from the minijail0 binary, since the -M option does not call minijail_namespace_user_disable_setgroups(). I also could not come up with a clean way of specifying the information needed to support this that didn\u0027t involve tons of extra flags or breaking the current interface.\n\nThoughts?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "6228c5aebc943a63605512424040c49da2fb3674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
