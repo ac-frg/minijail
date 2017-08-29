@@ -168,6 +168,8 @@ struct minijail {
 	char *pid_file_path;
 	char *uidmap;
 	char *gidmap;
+	int userns_uid;
+	int userns_gid;
 	char *hostname;
 	size_t filter_len;
 	struct sock_fprog *filter_prog;
@@ -538,6 +540,16 @@ void API minijail_namespace_user(struct minijail *j)
 void API minijail_namespace_user_disable_setgroups(struct minijail *j)
 {
 	j->flags.disable_setgroups = 1;
+}
+
+void API minijail_set_userns_uid(struct minijail *j, int uid)
+{
+	j->userns_uid = uid;
+}
+
+void API minijail_set_userns_gid(struct minijail *j, int gid)
+{
+	j->userns_gid = gid;
 }
 
 int API minijail_uidmap(struct minijail *j, const char *uidmap)
@@ -1476,10 +1488,18 @@ static void write_ugid_maps_or_die(const struct minijail *j)
 
 static void enter_user_namespace(const struct minijail *j)
 {
-	if (j->uidmap && setresuid(0, 0, 0))
-		pdie(&j->logger, "user_namespaces: setresuid(0, 0, 0) failed");
-	if (j->gidmap && setresgid(0, 0, 0))
-		pdie(&j->logger, "user_namespaces: setresgid(0, 0, 0) failed");
+	if (j->gidmap &&
+	    setresgid(j->userns_uid, j->userns_uid, j->userns_uid)) {
+		pdie(&j->logger,
+		     "user_namespaces: setresgid(%d, %d, %d) failed",
+		     j->userns_uid, j->userns_uid, j->userns_uid);
+	}
+	if (j->uidmap &&
+	    setresuid(j->userns_gid, j->userns_gid, j->userns_gid)) {
+		pdie(&j->logger,
+		     "user_namespaces: setresuid(%d, %d, %d) failed",
+		     j->userns_gid, j->userns_gid, j->userns_gid);
+	}
 }
 
 static void parent_setup_complete(int *pipe_fds)
