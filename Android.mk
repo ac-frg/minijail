@@ -200,6 +200,7 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
+	util.c \
 	system.c \
 	system_unittest.cc \
 
@@ -219,6 +220,7 @@ LOCAL_CPP_EXTENSION := .cc
 LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
+	util.c \
 	system.c \
 	system_unittest.cc \
 	$(hostUnittestSrcFiles)
