@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b1c0c43_31bbb381",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-30T20:30:12Z",
+      "side": 1,
+      "message": "The reason we originally added this option is for where the final runtime environment results in a situation in which Minijail cannot access the binary to sandbox. I\u0027d like to keep the clarification that this avoid accessing \u003cprogram\u003e before execve(2).",
+      "range": {
+        "startLine": 204,
+        "startChar": 25,
+        "endLine": 204,
+        "endChar": 55
+      },
+      "revId": "5a6ecd9c59e21906ff4445d8fa207ba83bb4e519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
