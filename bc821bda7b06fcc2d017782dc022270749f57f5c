@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ecb8259_f417432e",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T19:49:15Z",
+      "side": 1,
+      "message": "how about:\n\n Assume ELF is a \u003ctype\u003e binary. ...what you wrote already...",
+      "revId": "bc821bda7b06fcc2d017782dc022270749f57f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
