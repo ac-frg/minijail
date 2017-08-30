@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc49ee6d_c532ccf4",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "PATH_MAX is evil and non-portable.  you should be able to use asprintf instead to simplify the logic (at the expense of a heap allocation).",
+      "range": {
+        "startLine": 916,
+        "startChar": 14,
+        "endLine": 916,
+        "endChar": 22
+      },
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "756b4228_145473c1",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "it\u0027s pretty unfortunate that we spend time on this when we won\u0027t need it most of the time",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ff57d5_58397493",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "this checking logic is incorrect ... snprintf is trickier than this.  but once you switch to asprintf, it\u0027s moot.",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef16a73_055e0080",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "realpath has a nicer API:\n\n char path \u003d realpath(fd_path, NULL);\n if (path \u003d\u003d NULL)\n   ...",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff23277_c04a82d2",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "there\u0027s no need for the leading underscores here, other than because util.h is written that way ?  if that\u0027s the case, you should have a space after the ## below.",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "040d99e5_fd19e2bd",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "this should build off of compiler_warn instead",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1df35fc1_2a8e5a7b",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "personally prefer to have one item per line\n\ni think the block indent should use tabs and not spaces ?",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdffcdea_75f5f816",
+        "filename": "syscall_filter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-08-30T18:39:43Z",
+      "side": 1,
+      "message": "size_t ?",
+      "revId": "4b692f11a60032d60d64b675972131defa7dec9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
