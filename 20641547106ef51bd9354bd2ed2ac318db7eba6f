@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b484fba8_8945ec35",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-08-31T15:12:45Z",
+      "side": 1,
+      "message": "I would phrase it like this (with the right formatting).\n\n\"-T \u003ctype\u003e: Assume \u003cprogram\u003e is a \u003ctype\u003e ELF binary; \u003ctype\u003e can be \u0027static\u0027 or \u0027dynamic\u0027.\\n\"\n\"This will avoid accessing \u003cprogram\u003e before execve(2).\\n\"\n\"Type \u0027static\u0027 will also avoid preload hooking.\\n\"",
+      "range": {
+        "startLine": 204,
+        "startChar": 25,
+        "endLine": 204,
+        "endChar": 120
+      },
+      "revId": "20641547106ef51bd9354bd2ed2ac318db7eba6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
