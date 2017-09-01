@@ -16,6 +16,24 @@
       "revId": "46d1e6368a1c8a7ce91c3dbef6b346a62295181d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59586678_8c42feee",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2017-09-01T18:11:49Z",
+      "side": 1,
+      "message": "\"Elements that are omitted are initialized as if they are static objects: arithmetic types are initialized to 0; pointers are initialized to NULL.\"\n\nSo you\u0027re right, I\u0027ll update to omit 0 and NULL, that will make it simpler, thanks.",
+      "parentUuid": "c10e6553_155345eb",
+      "revId": "46d1e6368a1c8a7ce91c3dbef6b346a62295181d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
