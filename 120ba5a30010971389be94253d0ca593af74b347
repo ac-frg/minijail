@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc0575ce_f83e532d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-01T19:17:00Z",
+      "side": 1,
+      "message": "f",
+      "range": {
+        "startLine": 2066,
+        "startChar": 20,
+        "endLine": 2066,
+        "endChar": 21
+      },
+      "revId": "120ba5a30010971389be94253d0ca593af74b347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac7928fb_2b99126d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-01T19:17:00Z",
+      "side": 1,
+      "message": "Maybe:\n\n/*\n * Jail this process.\n * If forking, return.\n * If not, execve(2) the target.\n */",
+      "range": {
+        "startLine": 2586,
+        "startChar": 4,
+        "endLine": 2586,
+        "endChar": 70
+      },
+      "revId": "120ba5a30010971389be94253d0ca593af74b347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c6afbd_a19ada07",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2589,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-01T19:17:00Z",
+      "side": 1,
+      "message": "Move this first since arguably it\u0027s the most important piece of config.",
+      "range": {
+        "startLine": 2589,
+        "startChar": 29,
+        "endLine": 2589,
+        "endChar": 54
+      },
+      "revId": "120ba5a30010971389be94253d0ca593af74b347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e87ff86a_3a326092",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-01T19:17:00Z",
+      "side": 1,
+      "message": "namespace",
+      "range": {
+        "startLine": 264,
+        "startChar": 44,
+        "endLine": 264,
+        "endChar": 53
+      },
+      "revId": "120ba5a30010971389be94253d0ca593af74b347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b193792_27882428",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-01T19:17:00Z",
+      "side": 1,
+      "message": "namespace",
+      "range": {
+        "startLine": 328,
+        "startChar": 44,
+        "endLine": 328,
+        "endChar": 53
+      },
+      "revId": "120ba5a30010971389be94253d0ca593af74b347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
