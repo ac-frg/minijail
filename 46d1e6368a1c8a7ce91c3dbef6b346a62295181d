@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c10e6553_155345eb",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-01T18:05:15Z",
+      "side": 1,
+      "message": "to simplify, can we just omit all the NULL members ?  C should guarantee that non-specified members are zero initialized right ?\n\n struct minijail_run_status status \u003d {};",
+      "revId": "46d1e6368a1c8a7ce91c3dbef6b346a62295181d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
