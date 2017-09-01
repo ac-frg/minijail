@@ -22,6 +22,30 @@
       "revId": "c3a2f5f44df93fb3ee9bd014dc0d064d94fce6a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2711710c_b16d5c59",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-01T19:30:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24bde08c_247a4830",
+      "range": {
+        "startLine": 548,
+        "startChar": 9,
+        "endLine": 548,
+        "endChar": 14
+      },
+      "revId": "c3a2f5f44df93fb3ee9bd014dc0d064d94fce6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
