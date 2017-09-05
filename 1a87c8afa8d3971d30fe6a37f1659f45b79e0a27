@@ -22,6 +22,30 @@
       "revId": "1a87c8afa8d3971d30fe6a37f1659f45b79e0a27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98c1d28b_27ea7b63",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-05T17:30:44Z",
+      "side": 1,
+      "message": "Totally agree! I can make that happen, but afl/libfuzzer really dislike the fact that we\u0027re logging to syslog (/var/log/syslog eats up all disk space pretty quickly).\n\nI can make the Makefile changes to make it possible to just do `USE_ASAN\u003dyes make clean all` \n and `USE_LIBFUZZER\u003dyes make clean all` after https://android-review.googlesource.com/c/platform/external/minijail/+/470997 and https://android-review.googlesource.com/c/platform/external/minijail/+/470998 land.",
+      "parentUuid": "3e5b1355_36766a17",
+      "range": {
+        "startLine": 1619,
+        "startChar": 0,
+        "endLine": 1634,
+        "endChar": 1
+      },
+      "revId": "1a87c8afa8d3971d30fe6a37f1659f45b79e0a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
