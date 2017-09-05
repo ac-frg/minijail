@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d82d1605_872b3592",
+        "filename": "libminijail.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-05T20:24:16Z",
+      "side": 1,
+      "message": "Ah now that I think about it, a probably better idea is to extract the user-\u003euid/gid logic of minijail_change_user/group()\u0027s implementation into system.c, and then have both libminijail.c and minijail0.c call it. That way we don\u0027t need to add a new interface.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "f841a29cb235c967942b4ad8f8fc81d377de69d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
