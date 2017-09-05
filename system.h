@@ -68,6 +68,9 @@ int write_proc_file(const struct logger *logger, pid_t pid, const char *content,
 int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 			    uid_t gid, bool bind);
 
+int lookup_user(const char *user, uid_t *uid, gid_t *gid);
+int lookup_group(const char *group, gid_t *gid);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif
