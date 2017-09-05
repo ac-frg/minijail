@@ -16,6 +16,13 @@
 
 #define ONE_INSTR	1
 #define TWO_INSTRS	2
+
+#define compiler_warn(_state, _msg, ...)                                       \
+	warn((_state)->logger, "%s: %s(%zd): " _msg, __func__,                 \
+	     (_state)->filename, (_state)->line_number, ## __VA_ARGS__)
+
+#define compiler_pwarn(_state, _msg, ...)                                      \
+	compiler_warn(_state, _msg ": %m", ## __VA_ARGS__)
 /* clang-format on */
 
 int seccomp_can_softfail(void)
@@ -41,20 +48,20 @@ int str_to_op(const char *op_str)
 	}
 }
 
-struct sock_filter *new_instr_buf(size_t count)
+struct sock_filter *new_instr_buf(const struct logger *logger, size_t count)
 {
 	struct sock_filter *buf = calloc(count, sizeof(struct sock_filter));
 	if (!buf)
-		die("could not allocate BPF instruction buffer");
+		die(logger, "could not allocate BPF instruction buffer");
 
 	return buf;
 }
 
-struct filter_block *new_filter_block(void)
+struct filter_block *new_filter_block(const struct logger *logger)
 {
 	struct filter_block *block = calloc(1, sizeof(struct filter_block));
 	if (!block)
-		die("could not allocate BPF filter block");
+		die(logger, "could not allocate BPF filter block");
 
 	block->instrs = NULL;
 	block->last = block->next = NULL;
@@ -62,8 +69,8 @@ struct filter_block *new_filter_block(void)
 	return block;
 }
 
-void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
-			 size_t len)
+void append_filter_block(const struct logger *logger, struct filter_block *head,
+			 struct sock_filter *instrs, size_t len)
 {
 	struct filter_block *new_last;
 
@@ -74,7 +81,7 @@ void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
 	if (head->instrs == NULL) {
 		new_last = head;
 	} else {
-		new_last = new_filter_block();
+		new_last = new_filter_block(logger);
 		if (head->next != NULL) {
 			head->last->next = new_last;
 			head->last = new_last;
@@ -102,66 +109,73 @@ void extend_filter_block_list(struct filter_block *list,
 	list->total_len += another->total_len;
 }
 
-void append_ret_kill(struct filter_block *head)
+void append_ret_kill(const struct logger *logger, struct filter_block *head)
 {
-	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
+	struct sock_filter *filter = new_instr_buf(logger, ONE_INSTR);
 	set_bpf_ret_kill(filter);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(logger, head, filter, ONE_INSTR);
 }
 
-void append_ret_trap(struct filter_block *head)
+void append_ret_trap(const struct logger *logger, struct filter_block *head)
 {
-	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
+	struct sock_filter *filter = new_instr_buf(logger, ONE_INSTR);
 	set_bpf_ret_trap(filter);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(logger, head, filter, ONE_INSTR);
 }
 
-void append_ret_errno(struct filter_block *head, int errno_val)
+void append_ret_errno(const struct logger *logger, struct filter_block *head,
+		      int errno_val)
 {
-	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
+	struct sock_filter *filter = new_instr_buf(logger, ONE_INSTR);
 	set_bpf_ret_errno(filter, errno_val);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(logger, head, filter, ONE_INSTR);
 }
 
-void append_allow_syscall(struct filter_block *head, int nr)
+void append_allow_syscall(const struct logger *logger,
+			  struct filter_block *head, int nr)
 {
-	struct sock_filter *filter = new_instr_buf(ALLOW_SYSCALL_LEN);
+	struct sock_filter *filter = new_instr_buf(logger, ALLOW_SYSCALL_LEN);
 	size_t len = bpf_allow_syscall(filter, nr);
 	if (len != ALLOW_SYSCALL_LEN)
-		die("error building syscall number comparison");
+		die(logger, "error building syscall number comparison");
 
-	append_filter_block(head, filter, len);
+	append_filter_block(logger, head, filter, len);
 }
 
-void allow_logging_syscalls(struct filter_block *head)
+void allow_logging_syscalls(const struct logger *logger,
+			    struct filter_block *head)
 {
 	unsigned int i;
 	for (i = 0; i < log_syscalls_len; i++) {
-		warn("allowing syscall: %s", log_syscalls[i]);
-		append_allow_syscall(head, lookup_syscall(log_syscalls[i]));
+		warn(logger, "allowing syscall: %s", log_syscalls[i]);
+		append_allow_syscall(logger, head,
+				     lookup_syscall(log_syscalls[i]));
 	}
 }
 
-unsigned int get_label_id(struct bpf_labels *labels, const char *label_str)
+unsigned int get_label_id(const struct logger *logger,
+			  struct bpf_labels *labels, const char *label_str)
 {
 	int label_id = bpf_label_id(labels, label_str);
 	if (label_id < 0)
-		die("could not allocate BPF label string");
+		die(logger, "could not allocate BPF label string");
 	return label_id;
 }
 
-unsigned int group_end_lbl(struct bpf_labels *labels, int nr, int idx)
+unsigned int group_end_lbl(const struct logger *logger,
+			   struct bpf_labels *labels, int nr, int idx)
 {
 	char lbl_str[MAX_BPF_LABEL_LEN];
 	snprintf(lbl_str, MAX_BPF_LABEL_LEN, "%d_%d_end", nr, idx);
-	return get_label_id(labels, lbl_str);
+	return get_label_id(logger, labels, lbl_str);
 }
 
-unsigned int success_lbl(struct bpf_labels *labels, int nr)
+unsigned int success_lbl(const struct logger *logger, struct bpf_labels *labels,
+			 int nr)
 {
 	char lbl_str[MAX_BPF_LABEL_LEN];
 	snprintf(lbl_str, MAX_BPF_LABEL_LEN, "%d_success", nr);
-	return get_label_id(labels, lbl_str);
+	return get_label_id(logger, labels, lbl_str);
 }
 
 int is_implicit_relative_path(const char *filename)
@@ -169,38 +183,39 @@ int is_implicit_relative_path(const char *filename)
 	return filename[0] != '/' && (filename[0] != '.' || filename[1] != '/');
 }
 
-int compile_atom(struct filter_block *head, char *atom,
-		 struct bpf_labels *labels, int nr, int grp_idx)
+int compile_atom(struct parser_state *state, struct filter_block *head,
+		 char *atom, struct bpf_labels *labels, int nr, int grp_idx)
 {
 	/* Splits the atom. */
 	char *atom_ptr = NULL;
 	char *argidx_str = strtok_r(atom, " ", &atom_ptr);
 	if (argidx_str == NULL) {
-		warn("empty atom");
+		compiler_warn(state, "empty atom");
 		return -1;
 	}
 
 	char *operator_str = strtok_r(NULL, " ", &atom_ptr);
 	if (operator_str == NULL) {
-		warn("invalid atom '%s'", argidx_str);
+		compiler_warn(state, "invalid atom '%s'", argidx_str);
 		return -1;
 	}
 
 	char *constant_str = strtok_r(NULL, " ", &atom_ptr);
 	if (constant_str == NULL) {
-		warn("invalid atom '%s %s'", argidx_str, operator_str);
+		compiler_warn(state, "invalid atom '%s %s'", argidx_str,
+			      operator_str);
 		return -1;
 	}
 
 	/* Checks that there are no extra tokens. */
 	const char *extra = strtok_r(NULL, " ", &atom_ptr);
 	if (extra != NULL) {
-		warn("extra token '%s'", extra);
+		compiler_warn(state, "extra token '%s'", extra);
 		return -1;
 	}
 
 	if (strncmp(argidx_str, "arg", 3)) {
-		warn("invalid argument token '%s'", argidx_str);
+		compiler_warn(state, "invalid argument token '%s'", argidx_str);
 		return -1;
 	}
 
@@ -211,20 +226,22 @@ int compile_atom(struct filter_block *head, char *atom,
 	 * and that there was nothing left after the index.
 	 */
 	if (argidx_ptr == argidx_str + 3 || *argidx_ptr != '\0') {
-		warn("invalid argument index '%s'", argidx_str + 3);
+		compiler_warn(state, "invalid argument index '%s'",
+			      argidx_str + 3);
 		return -1;
 	}
 
 	int op = str_to_op(operator_str);
 	if (op < MIN_OPERATOR) {
-		warn("invalid operator '%s'", operator_str);
+		compiler_warn(state, "invalid operator '%s'", operator_str);
 		return -1;
 	}
 
 	char *constant_str_ptr;
-	long int c = parse_constant(constant_str, &constant_str_ptr);
+	long int c =
+	    parse_constant(state->logger, constant_str, &constant_str_ptr);
 	if (constant_str_ptr == constant_str) {
-		warn("invalid constant '%s'", constant_str);
+		compiler_warn(state, "invalid constant '%s'", constant_str);
 		return -1;
 	}
 
@@ -232,7 +249,7 @@ int compile_atom(struct filter_block *head, char *atom,
 	 * Looks up the label for the end of the AND statement
 	 * this atom belongs to.
 	 */
-	unsigned int id = group_end_lbl(labels, nr, grp_idx);
+	unsigned int id = group_end_lbl(state->logger, labels, nr, grp_idx);
 
 	/*
 	 * Builds a BPF comparison between a syscall argument
@@ -248,11 +265,12 @@ int compile_atom(struct filter_block *head, char *atom,
 	if (len == 0)
 		return -1;
 
-	append_filter_block(head, comp_block, len);
+	append_filter_block(state->logger, head, comp_block, len);
 	return 0;
 }
 
-int compile_errno(struct filter_block *head, char *ret_errno, int use_ret_trap)
+int compile_errno(struct parser_state *state, struct filter_block *head,
+		  char *ret_errno, int use_ret_trap)
 {
 	char *errno_ptr = NULL;
 
@@ -265,24 +283,27 @@ int compile_errno(struct filter_block *head, char *ret_errno, int use_ret_trap)
 
 	if (errno_val_str) {
 		char *errno_val_ptr;
-		int errno_val = parse_constant(errno_val_str, &errno_val_ptr);
+		int errno_val = parse_constant(state->logger, errno_val_str,
+					       &errno_val_ptr);
 		/* Checks to see if we parsed an actual errno. */
 		if (errno_val_ptr == errno_val_str || errno_val == -1) {
-			warn("invalid errno value '%s'", errno_val_ptr);
+			compiler_warn(state, "invalid errno value '%s'",
+				      errno_val_ptr);
 			return -1;
 		}
 
-		append_ret_errno(head, errno_val);
+		append_ret_errno(state->logger, head, errno_val);
 	} else {
 		if (!use_ret_trap)
-			append_ret_kill(head);
+			append_ret_kill(state->logger, head);
 		else
-			append_ret_trap(head);
+			append_ret_trap(state->logger, head);
 	}
 	return 0;
 }
 
-struct filter_block *compile_policy_line(int nr, const char *policy_line,
+struct filter_block *compile_policy_line(struct parser_state *state, int nr,
+					 const char *policy_line,
 					 unsigned int entry_lbl_id,
 					 struct bpf_labels *labels,
 					 int use_ret_trap)
@@ -324,7 +345,7 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 
 	/* Checks for empty policy lines. */
 	if (strlen(policy_line) == 0) {
-		warn("empty policy line");
+		compiler_warn(state, "empty policy line");
 		return NULL;
 	}
 
@@ -341,19 +362,20 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 	 * We build the filter section as a collection of smaller
 	 * "filter blocks" linked together in a singly-linked list.
 	 */
-	struct filter_block *head = new_filter_block();
+	struct filter_block *head = new_filter_block(state->logger);
 
 	/*
 	 * Filter sections begin with a label where the main filter
 	 * will jump after checking the syscall number.
 	 */
-	struct sock_filter *entry_label = new_instr_buf(ONE_INSTR);
+	struct sock_filter *entry_label =
+	    new_instr_buf(state->logger, ONE_INSTR);
 	set_bpf_lbl(entry_label, entry_lbl_id);
-	append_filter_block(head, entry_label, ONE_INSTR);
+	append_filter_block(state->logger, head, entry_label, ONE_INSTR);
 
 	/* Checks whether we're unconditionally blocking this syscall. */
 	if (strncmp(line, "return", strlen("return")) == 0) {
-		if (compile_errno(head, line, use_ret_trap) < 0) {
+		if (compile_errno(state, head, line, use_ret_trap) < 0) {
 			free_block_list(head);
 			free(line);
 			return NULL;
@@ -378,7 +400,8 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 		char *comp = NULL;
 		while ((comp = tokenize(&group_str, "&&")) != NULL) {
 			/* Compiles each atom into a BPF block. */
-			if (compile_atom(head, comp, labels, nr, grp_idx) < 0) {
+			if (compile_atom(state, head, comp, labels, nr,
+					 grp_idx) < 0) {
 				free_block_list(head);
 				free(line);
 				return NULL;
@@ -388,16 +411,17 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 		 * If the AND statement succeeds, we're done,
 		 * so jump to SUCCESS line.
 		 */
-		unsigned int id = success_lbl(labels, nr);
-		struct sock_filter *group_end_block = new_instr_buf(TWO_INSTRS);
+		unsigned int id = success_lbl(state->logger, labels, nr);
+		struct sock_filter *group_end_block =
+		    new_instr_buf(state->logger, TWO_INSTRS);
 		len = set_bpf_jump_lbl(group_end_block, id);
 		/*
 		 * The end of each AND statement falls after the
 		 * jump to SUCCESS.
 		 */
-		id = group_end_lbl(labels, nr, grp_idx++);
+		id = group_end_lbl(state->logger, labels, nr, grp_idx++);
 		len += set_bpf_lbl(group_end_block + len, id);
-		append_filter_block(head, group_end_block, len);
+		append_filter_block(state->logger, head, group_end_block, len);
 	}
 
 	/*
@@ -407,42 +431,45 @@ struct filter_block *compile_policy_line(int nr, const char *policy_line,
 	 * otherwise just kill the task.
 	 */
 	if (ret_errno) {
-		if (compile_errno(head, ret_errno, use_ret_trap) < 0) {
+		if (compile_errno(state, head, ret_errno, use_ret_trap) < 0) {
 			free_block_list(head);
 			free(line);
 			return NULL;
 		}
 	} else {
 		if (!use_ret_trap)
-			append_ret_kill(head);
+			append_ret_kill(state->logger, head);
 		else
-			append_ret_trap(head);
+			append_ret_trap(state->logger, head);
 	}
 
 	/*
 	 * Every time the filter succeeds we jump to a predefined SUCCESS
 	 * label. Add that label and BPF RET_ALLOW code now.
 	 */
-	unsigned int id = success_lbl(labels, nr);
-	struct sock_filter *success_block = new_instr_buf(TWO_INSTRS);
+	unsigned int id = success_lbl(state->logger, labels, nr);
+	struct sock_filter *success_block =
+	    new_instr_buf(state->logger, TWO_INSTRS);
 	len = set_bpf_lbl(success_block, id);
 	len += set_bpf_ret_allow(success_block + len);
-	append_filter_block(head, success_block, len);
+	append_filter_block(state->logger, head, success_block, len);
 
 	free(line);
 	return head;
 }
 
-int parse_include_statement(char *policy_line, unsigned int include_level,
+int parse_include_statement(struct parser_state *state, char *policy_line,
+			    unsigned int include_level,
 			    const char **ret_filename)
 {
 	if (strncmp("@include", policy_line, strlen("@include")) != 0) {
-		warn("invalid statement '%s'", policy_line);
+		compiler_warn(state, "invalid statement '%s'", policy_line);
 		return -1;
 	}
 
 	if (policy_line[strlen("@include")] != ' ') {
-		warn("invalid include statement '%s'", policy_line);
+		compiler_warn(state, "invalid include statement '%s'",
+			      policy_line);
 		return -1;
 	}
 
@@ -453,7 +480,7 @@ int parse_include_statement(char *policy_line, unsigned int include_level,
 	 * harder to understand.
 	 */
 	if (include_level > 0) {
-		warn("@include statement nested too deep");
+		compiler_warn(state, "@include statement nested too deep");
 		return -1;
 	}
 
@@ -470,9 +497,10 @@ int parse_include_statement(char *policy_line, unsigned int include_level,
 	 */
 	const char *filename = statement;
 	if (is_implicit_relative_path(filename)) {
-		warn("compile_file: implicit relative path '%s' not supported, "
-		     "use './%s'",
-		     filename, filename);
+		compiler_warn(
+		    state,
+		    "implicit relative path '%s' not supported, use './%s'",
+		    filename, filename);
 		return -1;
 	}
 
@@ -480,11 +508,19 @@ int parse_include_statement(char *policy_line, unsigned int include_level,
 	return 0;
 }
 
-int compile_file(FILE *policy_file, struct filter_block *head,
+int compile_file(const struct logger *logger, const char *filename,
+		 FILE *policy_file, struct filter_block *head,
 		 struct filter_block **arg_blocks, struct bpf_labels *labels,
 		 int use_ret_trap, int allow_logging,
 		 unsigned int include_level)
 {
+	/* clang-format off */
+	struct parser_state state = {
+		.filename = filename,
+		.line_number = 0,
+		.logger = logger,
+	};
+	/* clang-format on */
 	/*
 	 * Loop through all the lines in the policy file.
 	 * Build a jump table for the syscall number.
@@ -501,6 +537,8 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		char *policy_line = line;
 		policy_line = strip(policy_line);
 
+		state.line_number++;
+
 		/* Allow comments and empty lines. */
 		if (*policy_line == '#' || *policy_line == '\0') {
 			/* Reuse |line| in the next getline() call. */
@@ -510,26 +548,29 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		/* Allow @include statements. */
 		if (*policy_line == '@') {
 			const char *filename = NULL;
-			if (parse_include_statement(policy_line, include_level,
+			if (parse_include_statement(&state, policy_line,
+						    include_level,
 						    &filename) != 0) {
-				warn("compile_file: failed to parse include "
-				     "statement");
+				compiler_warn(
+				    &state,
+				    "failed to parse include statement");
 				ret = -1;
 				goto free_line;
 			}
 
 			FILE *included_file = fopen(filename, "re");
 			if (included_file == NULL) {
-				pwarn("compile_file: fopen('%s') failed",
-				      filename);
+				compiler_pwarn(&state, "fopen('%s') failed",
+					       filename);
 				ret = -1;
 				goto free_line;
 			}
-			if (compile_file(included_file, head, arg_blocks,
-					 labels, use_ret_trap, allow_logging,
+			if (compile_file(logger, filename, included_file, head,
+					 arg_blocks, labels, use_ret_trap,
+					 allow_logging,
 					 ++include_level) == -1) {
-				warn("compile_file: '@include %s' failed",
-				     filename);
+				compiler_warn(&state, "'@include %s' failed",
+					      filename);
 				fclose(included_file);
 				ret = -1;
 				goto free_line;
@@ -544,15 +585,16 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		 */
 		char *syscall_name = strsep(&policy_line, ":");
 		if (policy_line == NULL) {
-			warn("compile_file: malformed policy line, missing "
-			     "':'");
+			compiler_warn(
+			    &state,
+			    "compile_file: malformed policy line, missing ':'");
 			ret = -1;
 			goto free_line;
 		}
 
 		policy_line = strip(policy_line);
 		if (*policy_line == '\0') {
-			warn("compile_file: empty policy line");
+			compiler_warn(&state, "empty policy line");
 			ret = -1;
 			goto free_line;
 		}
@@ -560,8 +602,8 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		syscall_name = strip(syscall_name);
 		int nr = lookup_syscall(syscall_name);
 		if (nr < 0) {
-			warn("compile_file: nonexistent syscall '%s'",
-			     syscall_name);
+			compiler_warn(&state, "nonexistent syscall '%s'",
+				      syscall_name);
 			if (allow_logging) {
 				/*
 				 * If we're logging failures, assume we're in a
@@ -587,7 +629,7 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 		 */
 		if (strcmp(policy_line, "1") == 0) {
 			/* Add simple ALLOW. */
-			append_allow_syscall(head, nr);
+			append_allow_syscall(state.logger, head, nr);
 		} else {
 			/*
 			 * Create and jump to the label that will hold
@@ -595,13 +637,14 @@ int compile_file(FILE *policy_file, struct filter_block *head,
 			 */
 			unsigned int id = bpf_label_id(labels, syscall_name);
 			struct sock_filter *nr_comp =
-			    new_instr_buf(ALLOW_SYSCALL_LEN);
+			    new_instr_buf(state.logger, ALLOW_SYSCALL_LEN);
 			bpf_allow_syscall_args(nr_comp, nr, id);
-			append_filter_block(head, nr_comp, ALLOW_SYSCALL_LEN);
+			append_filter_block(state.logger, head, nr_comp,
+					    ALLOW_SYSCALL_LEN);
 
 			/* Build the arg filter block. */
 			struct filter_block *block = compile_policy_line(
-			    nr, policy_line, id, labels, use_ret_trap);
+			    &state, nr, policy_line, id, labels, use_ret_trap);
 
 			if (!block) {
 				if (*arg_blocks) {
@@ -626,7 +669,8 @@ free_line:
 	return ret;
 }
 
-int compile_filter(FILE *initial_file, struct sock_fprog *prog,
+int compile_filter(const struct logger *logger, const char *filename,
+		   FILE *initial_file, struct sock_fprog *prog,
 		   int use_ret_trap, int allow_logging)
 {
 	int ret = 0;
@@ -634,30 +678,32 @@ int compile_filter(FILE *initial_file, struct sock_fprog *prog,
 	labels.count = 0;
 
 	if (!initial_file) {
-		warn("compile_filter: |initial_file| is NULL");
+		warn(logger, "compile_filter: |initial_file| is NULL");
 		return -1;
 	}
 
-	struct filter_block *head = new_filter_block();
+	struct filter_block *head = new_filter_block(logger);
 	struct filter_block *arg_blocks = NULL;
 
 	/* Start filter by validating arch. */
-	struct sock_filter *valid_arch = new_instr_buf(ARCH_VALIDATION_LEN);
+	struct sock_filter *valid_arch =
+	    new_instr_buf(logger, ARCH_VALIDATION_LEN);
 	size_t len = bpf_validate_arch(valid_arch);
-	append_filter_block(head, valid_arch, len);
+	append_filter_block(logger, head, valid_arch, len);
 
 	/* Load syscall number. */
-	struct sock_filter *load_nr = new_instr_buf(ONE_INSTR);
+	struct sock_filter *load_nr = new_instr_buf(logger, ONE_INSTR);
 	len = bpf_load_syscall_nr(load_nr);
-	append_filter_block(head, load_nr, len);
+	append_filter_block(logger, head, load_nr, len);
 
 	/* If logging failures, allow the necessary syscalls first. */
 	if (allow_logging)
-		allow_logging_syscalls(head);
+		allow_logging_syscalls(logger, head);
 
-	if (compile_file(initial_file, head, &arg_blocks, &labels, use_ret_trap,
-			 allow_logging, 0 /* include_level */) != 0) {
-		warn("compile_filter: compile_file() failed");
+	if (compile_file(logger, filename, initial_file, head, &arg_blocks,
+			 &labels, use_ret_trap, allow_logging,
+			 0 /* include_level */) != 0) {
+		warn(logger, "compile_filter: compile_file() failed");
 		ret = -1;
 		goto free_filter;
 	}
@@ -667,9 +713,9 @@ int compile_filter(FILE *initial_file, struct sock_fprog *prog,
 	 * or return TRAP.
 	 */
 	if (!use_ret_trap)
-		append_ret_kill(head);
+		append_ret_kill(logger, head);
 	else
-		append_ret_trap(head);
+		append_ret_trap(logger, head);
 
 	/* Allocate the final buffer, now that we know its size. */
 	size_t final_filter_len =
@@ -695,7 +741,8 @@ int compile_filter(FILE *initial_file, struct sock_fprog *prog,
 		goto free_filter;
 	}
 
-	if (bpf_resolve_jumps(&labels, final_filter, final_filter_len) < 0) {
+	if (bpf_resolve_jumps(logger, &labels, final_filter, final_filter_len) <
+	    0) {
 		free(final_filter);
 		ret = -1;
 		goto free_filter;

@@ -19,6 +19,14 @@
 #include "syscall_filter.h"
 #include "util.h"
 
+namespace {
+
+struct logger stderr_logger {
+	LOG_TO_FD, STDERR_FILENO, LOG_INFO,
+};
+
+}  // namespace
+
 /* TODO(jorgelo): Use libseccomp disassembler here. */
 int main(int argc, char **argv) {
 	if (argc < 2) {
@@ -28,13 +36,13 @@ int main(int argc, char **argv) {
 
 	FILE *f = fopen(argv[1], "r");
 	if (!f) {
-		pdie("fopen(%s) failed", argv[1]);
+		pdie(&stderr_logger, "fopen(%s) failed", argv[1]);
 	}
 
 	struct sock_fprog fp;
-	int res = compile_filter(f, &fp, 0, 0);
+	int res = compile_filter(&stderr_logger, argv[1], f, &fp, 0, 0);
 	if (res != 0) {
-		die("compile_filter failed");
+		die(&stderr_logger, "compile_filter failed");
 	}
 	dump_bpf_prog(&fp);
 
