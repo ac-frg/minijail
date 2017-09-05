@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e5b1355_36766a17",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-05T17:26:39Z",
+      "side": 1,
+      "message": "For example, how do we test this with the current makefiles?",
+      "range": {
+        "startLine": 1619,
+        "startChar": 0,
+        "endLine": 1634,
+        "endChar": 1
+      },
+      "revId": "1a87c8afa8d3971d30fe6a37f1659f45b79e0a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
