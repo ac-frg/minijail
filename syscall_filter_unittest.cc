@@ -1627,3 +1627,18 @@ TEST(FilterTest, error_cleanup_leak) {
 }
 
 #endif  // !__ANDROID__
+
+class Environment : public ::testing::Environment {
+ public:
+  ~Environment() override = default;
+
+  void SetUp() {
+    init_logging(LOG_TO_FD, STDERR_FILENO, LOG_INFO);
+  }
+};
+
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  ::testing::AddGlobalTestEnvironment(new Environment());
+  return RUN_ALL_TESTS();
+}

@@ -409,3 +409,18 @@ TEST(Test, parse_size) {
   ASSERT_EQ(-EINVAL, parse_size(&size, "-1G"));
   ASSERT_EQ(-EINVAL, parse_size(&size, "; /bin/rm -- "));
 }
+
+class Environment : public ::testing::Environment {
+ public:
+  ~Environment() override = default;
+
+  void SetUp() {
+    init_logging(LOG_TO_FD, STDERR_FILENO, LOG_INFO);
+  }
+};
+
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  ::testing::AddGlobalTestEnvironment(new Environment());
+  return RUN_ALL_TESTS();
+}
