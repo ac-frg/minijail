@@ -201,6 +201,7 @@ LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	system.c \
+	util.c \
 	system_unittest.cc \
 
 LOCAL_STATIC_LIBRARIES := libminijail_generated
@@ -220,6 +221,7 @@ LOCAL_CFLAGS := $(minijailCommonCFlags)
 LOCAL_CLANG := true
 LOCAL_SRC_FILES := \
 	system.c \
+	util.c \
 	system_unittest.cc \
 	$(hostUnittestSrcFiles)
 

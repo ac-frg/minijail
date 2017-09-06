@@ -8,6 +8,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <limits.h>
+#include <stdarg.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -63,6 +64,54 @@ const char *log_syscalls[] = {"connect", "send"};
 #endif
 
 const size_t log_syscalls_len = ARRAY_SIZE(log_syscalls);
+
+/* clang-format off */
+struct logging_config_t {
+	/* The logging system to use. The default is syslog. */
+	enum logging_system_t logger;
+
+	/* File descriptor to log to. Only used when logger is LOG_TO_FD. */
+	int fd;
+
+	/* Minimum priority to log. Only used when logger is LOG_TO_FD. */
+	int min_priority;
+} g_logging_config = {
+	.logger = LOG_TO_SYSLOG,
+};
+/* clang-format on */
+
+void do_log(int priority, const char *format, ...)
+{
+	if (g_logging_config.logger == LOG_TO_SYSLOG) {
+		va_list args;
+		va_start(args, format);
+		vsyslog(priority, format, args);
+		va_end(args);
+		return;
+	}
+
+	if (g_logging_config.min_priority < priority)
+		return;
+
+	char buffer[1024], *pos = buffer;
+	int buffer_length;
+	ssize_t written;
+	va_list args;
+
+	va_start(args, format);
+	buffer_length = vsnprintf(buffer, sizeof(buffer) - 1, format, args);
+	va_end(args);
+
+	buffer[buffer_length++] = '\n';
+
+	while (buffer_length) {
+		written = write(g_logging_config.fd, pos, buffer_length);
+		if (written <= 0)
+			return;
+		pos += written;
+		buffer_length -= written;
+	}
+}
 
 int lookup_syscall(const char *name)
 {
@@ -297,4 +346,11 @@ char *consumestr(char **buf, size_t *buflength)
 		/* There's no null-terminator. */
 		return NULL;
 	return consumebytes(len + 1, buf, buflength);
+}
+
+void init_logging(enum logging_system_t logger, int fd, int min_priority)
+{
+	g_logging_config.logger = logger;
+	g_logging_config.fd = fd;
+	g_logging_config.min_priority = min_priority;
 }
