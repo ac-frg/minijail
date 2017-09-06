@@ -30,13 +30,15 @@ int main(int argc, char **argv) {
 
 	FILE *f = fopen(argv[1], "r");
 	if (!f) {
-		pdie("fopen(%s) failed", argv[1]);
+		perr("fopen(%s) failed", argv[1]);
+		return 1;
 	}
 
 	struct sock_fprog fp;
 	int res = compile_filter(argv[1], f, &fp, 0, 0);
 	if (res != 0) {
-		die("compile_filter failed");
+		err("compile_filter failed");
+		return 1;
 	}
 	dump_bpf_prog(&fp);
 
