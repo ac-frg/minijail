@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bac0fb60_418c9623",
+        "filename": "libminijail.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-07T15:08:31Z",
+      "side": 1,
+      "message": "maybe add a short comment as to why this is needed now?",
+      "range": {
+        "startLine": 1461,
+        "startChar": 37,
+        "endLine": 1461,
+        "endChar": 68
+      },
+      "revId": "b92adddd15d5a032082c2fe685f93c6ba1a8e3e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae6b302d_9d7823fb",
+        "filename": "minijail0.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-07T15:08:31Z",
+      "side": 1,
+      "message": "Now that this is outside the switch() statement, maybe extract to a function? Seems like it can take two booleans and two strings as input.",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 600,
+        "endChar": 2
+      },
+      "revId": "b92adddd15d5a032082c2fe685f93c6ba1a8e3e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
