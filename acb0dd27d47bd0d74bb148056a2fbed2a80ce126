@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a3b20885_15a5351f",
+        "filename": "Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-07T18:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25b2c505_3278be01",
+      "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb24d8ce_ebc42255",
         "filename": "Makefile",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cf9c977_003e60b8",
+        "filename": "Makefile",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-07T18:03:37Z",
+      "side": 1,
+      "message": "Yeah, util.o needs them. dunno why the linker does not prune them. In any case, now I\u0027m using CORE_OBJECT_FILES consistently.",
+      "parentUuid": "cb24d8ce_ebc42255",
+      "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "48d7fe27_160ecad0",
+        "filename": "testrunner.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-07T18:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "239c4f81_b974d18f",
+      "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a102f02_f8696c75",
         "filename": "util.c",
         "patchSetId": 9
@@ -64,6 +118,24 @@
       "writtenOn": "2017-09-07T17:10:29Z",
       "side": 1,
       "message": "it\u0027s kind of annoying the va_list logic is the same now but not shared.  not sure unifying it makes it read that much better :/.",
+      "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e5c28a_510a4607",
+        "filename": "util.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-07T18:03:37Z",
+      "side": 1,
+      "message": "Things become a bit messier due to the early-return in L94. I could introduce a goto, but that makes things even worse :(",
+      "parentUuid": "9a102f02_f8696c75",
       "revId": "acb0dd27d47bd0d74bb148056a2fbed2a80ce126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
