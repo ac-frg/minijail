@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ff3bcfc_23e4d1ec",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-07T07:53:09Z",
+      "side": 1,
+      "message": "this is duplicated in all the unittests now right ?  how about creating a new testrunner.cc file instead and putting it in there ?",
+      "revId": "389c075f368817cdcbd3656989cc0bf83a869872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d3ab70_6c62f845",
+        "filename": "minijail0.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-07T07:53:09Z",
+      "side": 1,
+      "message": "i think we want to keep this as info",
+      "revId": "389c075f368817cdcbd3656989cc0bf83a869872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed6f416b_3e59b938",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-07T07:53:09Z",
+      "side": 1,
+      "message": "what\u0027s with the g_ prefix ?  this makes it look like glib code to me, and it\u0027s not something we do elsewhere in minijail.\n\nit\u0027s only used in this file, so should be marked static.",
+      "revId": "389c075f368817cdcbd3656989cc0bf83a869872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c7974de_f3bda99c",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-07T07:53:09Z",
+      "side": 1,
+      "message": "use vdprintf and avoid the buffer entirely ?",
+      "revId": "389c075f368817cdcbd3656989cc0bf83a869872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
