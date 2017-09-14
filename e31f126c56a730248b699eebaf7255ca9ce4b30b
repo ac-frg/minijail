@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bcf02eb_c0a3dc84",
+        "filename": "Android.mk",
+        "patchSetId": 12
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-14T04:51:38Z",
+      "side": 1,
+      "message": "looks like you got a random leading space here",
+      "revId": "e31f126c56a730248b699eebaf7255ca9ce4b30b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbb26967_83f8cfe7",
+        "filename": "Android.mk",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-14T04:51:38Z",
+      "side": 1,
+      "message": "looks like you got a random leading space here",
+      "revId": "e31f126c56a730248b699eebaf7255ca9ce4b30b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fea26fd_62c12e96",
+        "filename": "Android.mk",
+        "patchSetId": 12
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-14T04:51:38Z",
+      "side": 1,
+      "message": "looks like you got a random leading space here",
+      "revId": "e31f126c56a730248b699eebaf7255ca9ce4b30b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b802de20_340e369b",
+        "filename": "Makefile",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-14T04:51:38Z",
+      "side": 1,
+      "message": "use tabs instead of spaces ?",
+      "revId": "e31f126c56a730248b699eebaf7255ca9ce4b30b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
