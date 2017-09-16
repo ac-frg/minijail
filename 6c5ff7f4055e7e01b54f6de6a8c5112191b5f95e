@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb53990d_5e61eada",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-16T18:51:18Z",
+      "side": 1,
+      "message": "the Chrome OS is not fixable!",
+      "revId": "6c5ff7f4055e7e01b54f6de6a8c5112191b5f95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
