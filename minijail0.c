@@ -343,6 +343,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	size_t size;
 	const char *filter_path = NULL;
 	int log_to_stderr = 0;
+	int run_as_init = 0;
 
 	const char *optstring =
 	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYz";
@@ -510,8 +511,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			seccomp_filter_usage(argv[0]);
 			exit(1);
 		case 'I':
-			minijail_namespace_pids(j);
-			minijail_run_as_init(j);
+			run_as_init = 1;
 			break;
 		case 'U':
 			minijail_namespace_user(j);
@@ -608,6 +608,12 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (set_uidmap || set_gidmap) {
 		set_ugid_mapping(j, set_uidmap, uid, uidmap, set_gidmap, gid,
 				 gidmap);
+	}
+
+	/* set_ugid_mapping() will reset the state of the do_init flag. */
+	if (run_as_init) {
+		minijail_namespace_pids(j);
+		minijail_run_as_init(j);
 	}
 
 	/* Can only set ambient caps when using regular caps. */
