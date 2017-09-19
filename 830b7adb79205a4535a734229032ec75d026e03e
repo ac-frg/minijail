@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "6b1664a7_e7d25497",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1074628
+      },
+      "writtenOn": "2017-09-19T03:43:15Z",
+      "side": 1,
+      "message": "Since this won\u0027t work directly, should I go back to gen_constants.c, or make a new gen_constants.c that just #includes \"gen_constants-inl.h\" so that we\u0027re not including a .c file?",
+      "parentUuid": "7ef5356b_3f6c806e",
+      "range": {
+        "startLine": 55,
+        "startChar": 23,
+        "endLine": 55,
+        "endChar": 25
+      },
+      "revId": "830b7adb79205a4535a734229032ec75d026e03e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c520ad4_e8bb3560",
         "filename": "gen_syscalls.sh",
         "patchSetId": 1
