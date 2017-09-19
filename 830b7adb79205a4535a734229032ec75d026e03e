@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0bdc6e5_e26e466b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-19T01:21:31Z",
+      "side": 1,
+      "message": "can you run `make all tests`? You might need to call `./get_googletest.sh` first.",
+      "range": {
+        "startLine": 12,
+        "startChar": 28,
+        "endLine": 12,
+        "endChar": 36
+      },
+      "revId": "830b7adb79205a4535a734229032ec75d026e03e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd03505b_a9a7ce79",
+        "filename": "gen_constants.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-19T01:21:31Z",
+      "side": 1,
+      "message": "can you rename this to \"gen_constants-inl.h\"?",
+      "range": {
+        "startLine": 55,
+        "startChar": 23,
+        "endLine": 55,
+        "endChar": 25
+      },
+      "revId": "830b7adb79205a4535a734229032ec75d026e03e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c520ad4_e8bb3560",
+        "filename": "gen_syscalls.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-09-19T01:21:31Z",
+      "side": 1,
+      "message": "same here, gen_syscalls-inl.h",
+      "range": {
+        "startLine": 21,
+        "startChar": 29,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "830b7adb79205a4535a734229032ec75d026e03e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
