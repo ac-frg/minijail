@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ac9f285_1c84a32b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-19T01:30:23Z",
+      "side": 1,
+      "message": "that doesn\u0027t explain why the changes to the gen scripts are necessary.  the commit message should cover the mj-specific bits.\n\nAndroid.mk-\u003eAndroid.bp itself is a rubber stamp.",
+      "revId": "830b7adb79205a4535a734229032ec75d026e03e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0bdc6e5_e26e466b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
