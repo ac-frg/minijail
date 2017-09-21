@@ -16,6 +16,24 @@
       "revId": "31931cad4e410e0baadaa8a887251d7b2d69fcd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bdab7f0_7b514173",
+        "filename": "Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1074628
+      },
+      "writtenOn": "2017-09-21T08:56:41Z",
+      "side": 1,
+      "message": "The majority of this file is machined translated, so it copies the original copyright header (which we don\u0027t update on content changes)",
+      "parentUuid": "e6915f49_c7e0b36c",
+      "revId": "31931cad4e410e0baadaa8a887251d7b2d69fcd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
