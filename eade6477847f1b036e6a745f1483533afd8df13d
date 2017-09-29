@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63afea32_751181e7",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-29T13:56:14Z",
+      "side": 1,
+      "message": "What happens if we fail before relocating?",
+      "range": {
+        "startLine": 2485,
+        "startChar": 2,
+        "endLine": 2485,
+        "endChar": 55
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98f2c42f_fd5c6d3a",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2846,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-29T13:56:14Z",
+      "side": 1,
+      "message": "Gotta free some stuff here too?",
+      "range": {
+        "startLine": 2846,
+        "startChar": 9,
+        "endLine": 2846,
+        "endChar": 25
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "199be61a_e82acc56",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-29T13:56:14Z",
+      "side": 1,
+      "message": "Can we list them here?",
+      "range": {
+        "startLine": 188,
+        "startChar": 31,
+        "endLine": 188,
+        "endChar": 58
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a8e21bd_4ca03d04",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-09-29T13:56:14Z",
+      "side": 1,
+      "message": "Maybe long option?",
+      "range": {
+        "startLine": 257,
+        "startChar": 11,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
