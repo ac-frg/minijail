@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3c1a22b3_ed6c03c0",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-29T23:47:42Z",
+      "side": 1,
+      "message": "i\u0027m guessing you\u0027re referring to the mkdtemp call below rather than this strdup exactly\n\nin the case of all the die() calls below, we will orphan an empty tempdir.  the actual mounts should get garbage collected by the kernel since we\u0027ll be in a unique namespace.\n\ni tried locally creating the dir, getting an fd to it, rmdir-ing it, and then trying to create paths via that existing fd.  unfortunately the kernel doesn\u0027t allow creating of files under that dir once it gets unlinked from the fs (or i couldn\u0027t figure out a way).\n\n mkdir(\"/tmp/foo.UQFZNs\", 0700)          \u003d 0\n open(\"/tmp/foo.UQFZNs\", O_RDONLY|O_DIRECTORY|O_PATH) \u003d 3\n openat(3, \"fo\", O_RDWR|O_CREAT|O_EXCL, 0644) \u003d 4\n write(4, \"hihi\", 4)                     \u003d 4\n close(4)                                \u003d 0\n ...vs...\n mkdir(\"/tmp/foo.2z0ID2\", 0700)          \u003d 0\n open(\"/tmp/foo.2z0ID2\", O_RDONLY|O_DIRECTORY|O_PATH) \u003d 3\n rmdir(\"/tmp/foo.2z0ID2\")                \u003d 0\n openat(3, \"fo\", O_RDWR|O_CREAT|O_EXCL, 0644) \u003d -1 ENOENT (No such file or directory)\n\natexit wouldn\u0027t help as those don\u0027t run when abort() is used.  minijail offers no other cleanup avenue.  we can\u0027t really add hooks to die() because all minijail state is maintained within a struct ... the lib itself maintains nothing.\n\nlooking closer at how things work, i think i can improve this by pushing the mkdtemp logic further down to shrink the window.  but so long as much of minijail is written using die, there\u0027s no way to clean this up nicely.",
+      "parentUuid": "63afea32_751181e7",
+      "range": {
+        "startLine": 2485,
+        "startChar": 2,
+        "endLine": 2485,
+        "endChar": 55
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98f2c42f_fd5c6d3a",
         "filename": "libminijail.c",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-09-29T13:56:14Z",
       "side": 1,
       "message": "Gotta free some stuff here too?",
+      "range": {
+        "startLine": 2846,
+        "startChar": 9,
+        "endLine": 2846,
+        "endChar": 25
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74a82f4b_b89fb29e",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2846,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-29T23:47:42Z",
+      "side": 1,
+      "message": "currently no because the state is created/destroyed entirely within minijail_run_internal",
+      "parentUuid": "98f2c42f_fd5c6d3a",
       "range": {
         "startLine": 2846,
         "startChar": 9,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "af2efdc3_eb640752",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-29T23:47:42Z",
+      "side": 1,
+      "message": "so i don\u0027t have to duplicate in too many places, what if i just extend the man page (and refer to the man page here) ?",
+      "parentUuid": "199be61a_e82acc56",
+      "range": {
+        "startLine": 188,
+        "startChar": 31,
+        "endLine": 188,
+        "endChar": 58
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a8e21bd_4ca03d04",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2017-09-29T13:56:14Z",
       "side": 1,
       "message": "Maybe long option?",
+      "range": {
+        "startLine": 257,
+        "startChar": 11,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ad54c19_b338c603",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-09-29T23:47:42Z",
+      "side": 1,
+      "message": "like in addition to, or in place of ?\n\n-d seemed like a good one to take for dev :)",
+      "parentUuid": "0a8e21bd_4ca03d04",
       "range": {
         "startLine": 257,
         "startChar": 11,
