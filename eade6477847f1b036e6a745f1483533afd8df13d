@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a46b50dd_ca3eab54",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-02T14:35:42Z",
+      "side": 1,
+      "message": "I was referring to the mkdtemp, yes.\n\nIf we can shrink the window in which we can leak the mount, that\u0027s good. I agree that doing cleanup with the current way things are structured is hard, but it\u0027s also true that there are not a lot of features creating new stuff in the FS.\n\nI agree that since we\u0027re creating this inside a new mount namespace, I\u0027m not too worried about it.",
+      "parentUuid": "3c1a22b3_ed6c03c0",
+      "range": {
+        "startLine": 2485,
+        "startChar": 2,
+        "endLine": 2485,
+        "endChar": 55
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98f2c42f_fd5c6d3a",
         "filename": "libminijail.c",
         "patchSetId": 5
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "currently no because the state is created/destroyed entirely within minijail_run_internal",
       "parentUuid": "98f2c42f_fd5c6d3a",
+      "range": {
+        "startLine": 2846,
+        "startChar": 9,
+        "endLine": 2846,
+        "endChar": 25
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1662fa1_637eae4e",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2846,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-02T14:35:42Z",
+      "side": 1,
+      "message": "Cool.",
+      "parentUuid": "74a82f4b_b89fb29e",
       "range": {
         "startLine": 2846,
         "startChar": 9,
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "4b9be2dd_6051961d",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-02T14:35:42Z",
+      "side": 1,
+      "message": "I was trying to keep the comment mostly self-contained, but I guess whoever\u0027s really interested in the set of nodes can just read the code.",
+      "parentUuid": "af2efdc3_eb640752",
+      "range": {
+        "startLine": 188,
+        "startChar": 31,
+        "endLine": 188,
+        "endChar": 58
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a8e21bd_4ca03d04",
         "filename": "minijail0.c",
         "patchSetId": 5
@@ -178,6 +250,30 @@
       "side": 1,
       "message": "like in addition to, or in place of ?\n\n-d seemed like a good one to take for dev :)",
       "parentUuid": "0a8e21bd_4ca03d04",
+      "range": {
+        "startLine": 257,
+        "startChar": 11,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "eade6477847f1b036e6a745f1483533afd8df13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ba15d83_c1c0f8ed",
+        "filename": "minijail0.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-02T14:35:42Z",
+      "side": 1,
+      "message": "Up to you. I find the short options really hard to remember, that\u0027s all. As-is is fine. Maybe --mount-dev in addition?",
+      "parentUuid": "8ad54c19_b338c603",
       "range": {
         "startLine": 257,
         "startChar": 11,
