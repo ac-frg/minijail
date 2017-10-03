@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71592394_0c351dbd",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-10-03T15:20:20Z",
+      "side": 1,
+      "message": "nit: can we add some logging to indicate that the test was not run? either here or in NamespaceTest::SetUp()",
+      "range": {
+        "startLine": 427,
+        "startChar": 4,
+        "endLine": 427,
+        "endChar": 14
+      },
+      "revId": "73c124604d7abae0481cac2290ecfe8424dd24a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
