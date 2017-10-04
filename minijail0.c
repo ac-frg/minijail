@@ -348,7 +348,6 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 
 	const char *optstring =
 	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYzd";
-	int longoption_index = 0;
 	/* clang-format off */
 	const struct option long_options[] = {
 		{"mount-dev", no_argument, 0, 'd'},
@@ -360,7 +359,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	/* clang-format on */
 
 	while ((opt = getopt_long(argc, argv, optstring, long_options,
-				  &longoption_index)) != -1) {
+				  NULL)) != -1) {
 		switch (opt) {
 		case 'u':
 			set_user(j, optarg, &uid, &gid);
