@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23912372_b550645b",
+        "filename": "minijail0.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-04T15:40:01Z",
+      "side": 1,
+      "message": "Will this not look like two separate options? I guess you\u0027re relying on indenting to show the difference?\n\nDo you think that -d, --mount-dev: \u003cdescription\u003e would look weird?",
+      "range": {
+        "startLine": 258,
+        "startChar": 20,
+        "endLine": 258,
+        "endChar": 22
+      },
+      "revId": "29bc8b918289827424bbf495968109ccb9eb1d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
