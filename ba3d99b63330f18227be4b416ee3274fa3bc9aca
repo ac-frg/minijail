@@ -22,6 +22,30 @@
       "revId": "ba3d99b63330f18227be4b416ee3274fa3bc9aca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baca283b_b61c4c1b",
+        "filename": "minijail0.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-05T15:01:21Z",
+      "side": 1,
+      "message": "i\u0027ve been developing in the CrOS tree which doesn\u0027t have any clang checks\n\nthat said, no, clang-format doesn\u0027t mind this on the AOSP side.  what did you think would happen ?  if you mean unwrap it, it\u0027s still slightly too long for 80 cols.",
+      "parentUuid": "ee4e4c9e_e0501ac2",
+      "range": {
+        "startLine": 361,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 21
+      },
+      "revId": "ba3d99b63330f18227be4b416ee3274fa3bc9aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
