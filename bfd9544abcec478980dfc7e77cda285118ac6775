@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e152f9c_542dddaf",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-10T06:22:30Z",
+      "side": 1,
+      "message": "feel free to bikeshed the name",
+      "revId": "bfd9544abcec478980dfc7e77cda285118ac6775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48b02bc8_b2e1faa1",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-10T06:22:30Z",
+      "side": 1,
+      "message": "since minijail_enter is half processed in the parent and half in the child, i have to clear the mount list in the parent so the mounts don\u0027t happen twice.\n\ni could have just set mounts_head/mounts_tail to NULL here to get the same result, but the code here looked to use the free/NULLify pattern.",
+      "revId": "bfd9544abcec478980dfc7e77cda285118ac6775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
