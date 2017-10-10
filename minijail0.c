@@ -628,8 +628,11 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	if (forward)
 		minijail_forward_signals(j);
 
-	/* Only allow bind mounts when entering a chroot or using pivot_root. */
-	if (binding && !(chroot || pivot_root)) {
+	/*
+	 * Only allow bind mounts when entering a chroot or using pivot_root or
+	 * a new mount namespace.
+	 */
+	if (binding && !(chroot || pivot_root || mount_ns)) {
 		fprintf(stderr, "Can't add bind mounts without chroot or"
 				" pivot_root.\n");
 		exit(1);
