@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0c34c6a_b6b13b0f",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2017-10-13T21:10:48Z",
+      "side": 1,
+      "message": "nit: all other functions that can die have the _or_die suffix.",
+      "range": {
+        "startLine": 1410,
+        "startChar": 12,
+        "endLine": 1410,
+        "endChar": 26
+      },
+      "revId": "9d57a6b0ad013469e88e31678c54a0c6ce7aff77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
