@@ -1399,22 +1399,18 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 	return ret;
 }
 
-static int enter_chroot(const struct minijail *j, char *dev_path)
+static int mount_all(const struct minijail *j, char *dev_path)
 {
 	int ret;
 
 	if (j->mounts_head && (ret = mount_one(j, j->mounts_head, dev_path)))
 		return ret;
 
-	/*
-	 * Once all bind mounts have been processed, but before we chroot,
-	 * move the temp dev to its final /dev home.
-	 */
-	if (j->flags.mount_dev && mount_dev_finalize(j, dev_path))
-		return ret;
+	return 0;
+}
 
-	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_CHROOT);
-
+static int enter_chroot(const struct minijail *j)
+{
 	if (chroot(j->chrootdir))
 		return -errno;
 
@@ -1424,21 +1420,9 @@ static int enter_chroot(const struct minijail *j, char *dev_path)
 	return 0;
 }
 
-static int enter_pivot_root(const struct minijail *j, char *dev_path)
+static int enter_pivot_root(const struct minijail *j)
 {
-	int ret, oldroot, newroot;
-
-	if (j->mounts_head && (ret = mount_one(j, j->mounts_head, dev_path)))
-		return ret;
-
-	/*
-	 * Once all bind mounts have been processed, but before we pivot,
-	 * move the temp dev to its final /dev home.
-	 */
-	if (j->flags.mount_dev && mount_dev_finalize(j, dev_path))
-		return ret;
-
-	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_CHROOT);
+	int oldroot, newroot;
 
 	/*
 	 * Keep the fd for both old and new root.
@@ -1978,25 +1962,34 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.mount_dev && mount_dev(&dev_path))
 		pdie("mount_dev");
 
-	if (j->flags.chroot && enter_chroot(j, dev_path)) {
-		if (dev_path)
-			mount_dev_cleanup(dev_path);
-		pdie("chroot");
-	}
+	if (j->flags.chroot || j->flags.pivot_root) {
+		if (mount_all(j, dev_path))
+			pdie("mount_all");
 
-	if (j->flags.pivot_root && enter_pivot_root(j, dev_path)) {
-		if (dev_path)
-			mount_dev_cleanup(dev_path);
-		pdie("pivot_root");
-	}
+		/*
+		 * Once all bind mounts have been processed, but before we chroot,
+		 * move the temp dev to its final /dev home.
+		 */
+		if (j->flags.mount_dev && mount_dev_finalize(j, dev_path))
+			pdie("mount_dev_finalize");
 
-	/*
-	 * If using a chroot or pivot root, we already finalized /dev at
-	 * the right point.  If not, we need to call it ourselves.
-	 */
-	if (j->flags.mount_dev && !j->flags.chroot && !j->flags.pivot_root &&
-	    mount_dev_finalize(j, dev_path))
-		pdie("mount_dev_finalize");
+		run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_CHROOT);
+
+		if (j->flags.chroot && enter_chroot(j)) {
+			if (dev_path)
+				mount_dev_cleanup(dev_path);
+			pdie("chroot");
+		}
+
+		if (j->flags.pivot_root && enter_pivot_root(j)) {
+			if (dev_path)
+				mount_dev_cleanup(dev_path);
+			pdie("pivot_root");
+		}
+	} else {
+		if (j->flags.mount_dev && mount_dev_finalize(j, dev_path))
+			pdie("mount_dev_finalize");
+	}
 
 	if (j->flags.mount_tmp && mount_tmp(j))
 		pdie("mount_tmp");
