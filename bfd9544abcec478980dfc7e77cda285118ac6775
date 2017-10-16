@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5fe8146a_90d56578",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "free_mounts_list since the pointers are mount*s*_{head,tail}?",
+      "parentUuid": "7e152f9c_542dddaf",
+      "revId": "bfd9544abcec478980dfc7e77cda285118ac6775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48b02bc8_b2e1faa1",
         "filename": "libminijail.c",
         "patchSetId": 2

@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddc25fb5_46a6c332",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "\"mount_dev failed\"?",
+      "range": {
+        "startLine": 1418,
+        "startChar": 8,
+        "endLine": 1418,
+        "endChar": 17
+      },
+      "revId": "16d4cf833a0f15009f8fb6935f77a91850a8eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13d017ac_ff686c4e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1426,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "\"mount_one failed\"",
+      "range": {
+        "startLine": 1426,
+        "startChar": 8,
+        "endLine": 1426,
+        "endChar": 17
+      },
+      "revId": "16d4cf833a0f15009f8fb6935f77a91850a8eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30bf5ce9_daf3cfeb",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "\"mount_dev_finalize failed\"? easier to find in logs",
+      "range": {
+        "startLine": 1434,
+        "startChar": 8,
+        "endLine": 1434,
+        "endChar": 26
+      },
+      "revId": "16d4cf833a0f15009f8fb6935f77a91850a8eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cfcac45_504df2f4",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "...\"chroot, using pivot_root, or a new mount namespace\"\n\nOxford commas FTW.",
+      "range": {
+        "startLine": 632,
+        "startChar": 43,
+        "endLine": 633,
+        "endChar": 25
+      },
+      "revId": "16d4cf833a0f15009f8fb6935f77a91850a8eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3096874_9c61547f",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-16T14:41:53Z",
+      "side": 1,
+      "message": "Update error msg?\n\n\"Can\u0027t add bind mounts without chroot, pivot_root, or a new mount namespace.\"",
+      "range": {
+        "startLine": 636,
+        "startChar": 19,
+        "endLine": 637,
+        "endChar": 16
+      },
+      "revId": "16d4cf833a0f15009f8fb6935f77a91850a8eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
