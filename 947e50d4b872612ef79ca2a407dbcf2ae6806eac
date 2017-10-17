@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cdfb967_dc99de66",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-17T14:07:27Z",
+      "side": 1,
+      "message": "Since you\u0027re here can you make this 32U? We should realistically do that for all constants but gotta start somewhere.",
+      "range": {
+        "startLine": 80,
+        "startChar": 26,
+        "endLine": 80,
+        "endChar": 28
+      },
+      "revId": "947e50d4b872612ef79ca2a407dbcf2ae6806eac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
