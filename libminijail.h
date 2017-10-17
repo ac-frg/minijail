@@ -145,6 +145,12 @@ int minijail_add_to_cgroup(struct minijail *j, const char *path);
 int minijail_forward_signals(struct minijail *j);
 
 /*
+ * Keep the process group of the parent process, instead of sharing a process
+ * group with the jailed child process.
+ */
+int minijail_keep_process_group(struct minijail *j);
+
+/*
  * minijail_enter_chroot: enables chroot() restriction for @j
  * @j   minijail to apply restriction to
  * @dir directory to chroot() to. Owned by caller.

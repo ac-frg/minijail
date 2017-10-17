@@ -154,6 +154,7 @@ struct minijail {
 		int close_open_fds : 1;
 		int new_session_keyring : 1;
 		int forward_signals : 1;
+		int keep_process_group : 1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -209,6 +210,7 @@ void minijail_preenter(struct minijail *j)
 	j->flags.pid_file = 0;
 	j->flags.cgroups = 0;
 	j->flags.forward_signals = 0;
+	j->flags.keep_process_group = 0;
 }
 
 /*
@@ -669,6 +671,12 @@ int API minijail_rlimit(struct minijail *j, int type, uint32_t cur,
 int API minijail_forward_signals(struct minijail *j)
 {
 	j->flags.forward_signals = 1;
+	return 0;
+}
+
+int API minijail_keep_process_group(struct minijail *j)
+{
+	j->flags.keep_process_group = 1;
 	return 0;
 }
 
@@ -2451,7 +2459,8 @@ static int minijail_run_internal(struct minijail *j,
 	 * Don't fail on EPERM, since setpgid(0, 0) can only EPERM when
 	 * the process is already a process group leader.
 	 */
-	if (setpgid(0 /* use calling PID */, 0 /* make PGID = PID */)) {
+	if (!j->flags.keep_process_group &&
+	    setpgid(0 /* use calling PID */, 0 /* make PGID = PID */)) {
 		if (errno != EPERM) {
 			pdie("setpgid(0, 0) failed");
 		}
