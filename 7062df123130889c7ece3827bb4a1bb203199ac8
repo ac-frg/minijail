@@ -22,6 +22,30 @@
       "revId": "7062df123130889c7ece3827bb4a1bb203199ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "727b2141_9c93a0f9",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2457,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2017-10-17T23:15:28Z",
+      "side": 1,
+      "message": "I\u0027m not sure what sequence of events would actually cause this to fail. From the man page for setsid, the only error returned is:\n\nEPERM  The process group ID of any process equals the PID of the calling process.  Thus, in particular, setsid() fails if the calling process is already a process group leader.\n\nBut after forking, I don\u0027t see how the child could be a process group leader.",
+      "parentUuid": "bd0b0cf8_b3033f6d",
+      "range": {
+        "startLine": 2456,
+        "startChar": 4,
+        "endLine": 2457,
+        "endChar": 57
+      },
+      "revId": "7062df123130889c7ece3827bb4a1bb203199ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
