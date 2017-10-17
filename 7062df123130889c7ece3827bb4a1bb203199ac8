@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd0b0cf8_b3033f6d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2457,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-17T16:19:04Z",
+      "side": 1,
+      "message": "Can this change now make setsid() fail?",
+      "range": {
+        "startLine": 2456,
+        "startChar": 4,
+        "endLine": 2457,
+        "endChar": 57
+      },
+      "revId": "7062df123130889c7ece3827bb4a1bb203199ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
