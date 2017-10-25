@@ -335,6 +335,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	int binding = 0;
 	int chroot = 0, pivot_root = 0;
 	int mount_ns = 0, skip_remount = 0;
+	int remount_proc_ro = 0, run_as_init = 0;
 	int inherit_suppl_gids = 0, keep_suppl_gids = 0;
 	int caps = 0, ambient_caps = 0;
 	int seccomp = -1;
@@ -476,6 +477,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 'r':
 			minijail_remount_proc_readonly(j);
+			remount_proc_ro = 1;
 			break;
 		case 'G':
 			if (keep_suppl_gids) {
@@ -516,6 +518,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'I':
 			minijail_namespace_pids(j);
 			minijail_run_as_init(j);
+			run_as_init = 1;
 			break;
 		case 'U':
 			minijail_namespace_user(j);
@@ -647,6 +650,20 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		fprintf(stderr, "Can't skip marking mounts as MS_PRIVATE"
 				" without mount namespaces.\n");
 		exit(1);
+	}
+
+	/*
+	 * If remounting /proc read-only was explicitly requested, but running
+	 * as init was requested too, we need to manually mount /proc as
+	 * read-only since that is skipped in minijail_run_internal().
+	 */
+	if (run_as_init && remount_proc_ro) {
+		if (minijail_mount_with_data(
+			j, "proc", "/proc", "proc",
+			MS_NODEV | MS_NOEXEC | MS_NOSUID | MS_RDONLY, NULL)) {
+			fprintf(stderr, "mounting /proc failed.\n");
+			exit(1);
+		}
 	}
 
 	/*
