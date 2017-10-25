@@ -21,6 +21,7 @@
 #include "util.h"
 
 #define IDMAP_LEN 32U
+#define DEFAULT_TMP_SIZE (64 * 1024 * 1024)
 
 static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 		     gid_t *out_gid)
@@ -230,6 +231,58 @@ static void set_ugid_mapping(struct minijail *j, int set_uidmap, uid_t uid,
 	}
 }
 
+static void use_chroot(struct minijail *j, int *chroot, int pivot_root)
+{
+	if (pivot_root) {
+		fprintf(stderr, "Could not set chroot because "
+				"'-P' was specified.\n");
+		exit(1);
+	}
+	if (0 != minijail_enter_chroot(j, optarg)) {
+		fprintf(stderr, "Could not set chroot.\n");
+		exit(1);
+	}
+	*chroot = 1;
+}
+
+static void use_pivot_root(struct minijail *j, int *pivot_root, int chroot)
+{
+	if (chroot) {
+		fprintf(stderr, "Could not set pivot_root because "
+				"'-C' was specified.\n");
+		exit(1);
+	}
+	if (0 != minijail_enter_pivot_root(j, optarg)) {
+		fprintf(stderr, "Could not set pivot_root.\n");
+		exit(1);
+	}
+	minijail_namespace_vfs(j);
+	*pivot_root = 1;
+}
+
+static void use_profile(struct minijail *j, const char *profile,
+			int *pivot_root, int chroot)
+{
+	if (!strcmp(profile, "setup-mount")) {
+		minijail_namespace_vfs(j);
+		if (0 != minijail_bind(j, "/", "/", 0)) {
+			fprintf(stderr, "minijail_bind failed.\n");
+			exit(1);
+		}
+		if (minijail_bind(j, "/proc", "/proc", 0)) {
+			fprintf(stderr, "minijail_bind failed.\n");
+			exit(1);
+		}
+		minijail_mount_dev(j);
+		minijail_mount_tmp_size(j, DEFAULT_TMP_SIZE);
+		minijail_remount_proc_readonly(j);
+		use_pivot_root(j, pivot_root, chroot);
+	} else {
+		fprintf(stderr, "Unrecognized profile name '%s'\n", profile);
+		exit(1);
+	}
+}
+
 static void usage(const char *progn)
 {
 	size_t i;
@@ -237,8 +290,8 @@ static void usage(const char *progn)
 	printf("Usage: %s [-dGhHiIKlLnNprRstUvyYz]\n"
 	       "  [-a <table>]\n"
 	       "  [-b <src>,<dest>[,<writeable>]] [-k <src>,<dest>,<type>[,<flags>][,<data>]]\n"
-	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-g <group>]\n"
-	       "  [-m[<uid> <loweruid> <count>]*] [-M[<gid> <lowergid> <count>]*]\n"
+	       "  [-c <caps>] [-C <dir>] [-P <dir>] [-e[file]] [-f <file>] [-F <profile> ]\n"
+               "  [-g <group>] [-m[<uid> <loweruid> <count>]*] [-M[<gid> <lowergid> <count>]*]\n"
 	       "  [-R <type,cur,max>] [-S <file>] [-t[size]] [-T <type>] [-u <user>] [-V <file>]\n"
 	       "  <program> [args...]\n"
 	       "  -a <table>:   Use alternate syscall table <table>.\n"
@@ -311,7 +364,11 @@ static void usage(const char *progn)
 	       "  --ambient:    Raise ambient capabilities. Requires -c.\n"
 	       "  --uts[=name]: Enter a new UTS namespace (and set hostname).\n"
 	       "  --logging=<s>:Use <s> as the logging system.\n"
-	       "                <s> must be 'syslog' (default) or 'stderr'.\n");
+	       "                <s> must be 'syslog' (default) or 'stderr'.\n"
+	       "  --profile <p>,Configure minijail0 to run with the <p> sandboxing profile,\n"
+	       "         -F <p>:which is a convenient way to express multiple flags\n"
+	       "                that are typically used together.\n"
+	       "                See the minijail0(1) man page for the full list.\n");
 	/* clang-format on */
 }
 
@@ -348,11 +405,12 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 	int log_to_stderr = 0;
 
 	const char *optstring =
-	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYzd";
+	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUKwyYzdF:";
 	/* clang-format off */
 	const struct option long_options[] = {
 		{"help", no_argument, 0, 'h'},
 		{"mount-dev", no_argument, 0, 'd'},
+		{"profile", required_argument, 0, 'F'},
 		{"ambient", no_argument, 0, 128},
 		{"uts", optional_argument, 0, 129},
 		{"logging", required_argument, 0, 130},
@@ -419,16 +477,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			use_caps(j, optarg);
 			break;
 		case 'C':
-			if (pivot_root) {
-				fprintf(stderr, "Could not set chroot because "
-						"'-P' was specified.\n");
-				exit(1);
-			}
-			if (0 != minijail_enter_chroot(j, optarg)) {
-				fprintf(stderr, "Could not set chroot.\n");
-				exit(1);
-			}
-			chroot = 1;
+			use_chroot(j, &chroot, pivot_root);
 			break;
 		case 'k':
 			add_mount(j, optarg);
@@ -438,18 +487,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			skip_remount = 1;
 			break;
 		case 'P':
-			if (chroot) {
-				fprintf(stderr,
-					"Could not set pivot_root because "
-					"'-C' was specified.\n");
-				exit(1);
-			}
-			if (0 != minijail_enter_pivot_root(j, optarg)) {
-				fprintf(stderr, "Could not set pivot_root.\n");
-				exit(1);
-			}
-			minijail_namespace_vfs(j);
-			pivot_root = 1;
+			use_pivot_root(j, &pivot_root, chroot);
 			break;
 		case 'f':
 			if (0 != minijail_write_pid_file(j, optarg)) {
@@ -460,7 +498,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 't':
 			minijail_namespace_vfs(j);
-			size = 64 * 1024 * 1024;
+			size = DEFAULT_TMP_SIZE;
 			if (optarg != NULL && 0 != parse_size(&size, optarg)) {
 				fprintf(stderr, "Invalid /tmp tmpfs size.\n");
 				exit(1);
@@ -572,6 +610,9 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		case 'd':
 			minijail_namespace_vfs(j);
 			minijail_mount_dev(j);
+			break;
+		case 'F':
+			use_profile(j, optarg, &pivot_root, chroot);
 			break;
 		/* Long options. */
 		case 128: /* Ambient caps. */

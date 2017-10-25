@@ -177,6 +177,14 @@ namespace to \fIhostname\fR.
 \fB--logging=<system>\fR
 Use \fIsystem\fR as the logging system. \fIsystem\fR must be one of
 \fBsyslog\fR (the default) or \fBstderr\fR.
+.TP
+\fB--profile=<profile>\fR
+Choose from one of the available sandboxing profiles, which are convenient ways
+to express multiple flags that are typically used together.  The following
+values of \fIprofile\fR are supported:
+.IP setup-mount 0.4i
+Set up a minimalistic mount namespace.  Equivalent to \fB-v -p /var/empty
+-b /,/ -b /proc,/proc -d -t -r\fR.
 .SH IMPLEMENTATION
 This program is broken up into two parts: \fBminijail0\fR (the frontend) and a helper
 library called \fBlibminijailpreload\fR. Some jailings can only be achieved from
