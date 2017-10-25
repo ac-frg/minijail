@@ -183,6 +183,13 @@ Choose from one of the available sandboxing profiles, which are simple way to
 get a standardized environment. See the
 .BR "SANDBOXING PROFILES"
 section below for the full list of supported values for \fIprofile\fR.
+.TP
+\fB--root-propagation-type=<type>\fR
+Use \fItype\fR as the propagation type of \fB/\fR inside the mount namespace.
+\fItype\fR must be one of the shared subtree flags understood by
+\fBmount\fR(8): \fBshared\fR, \fBslave\fR, \fBprivate\fR, \fBunbindable\fR,
+\fBrshared\fR, \fBrslave\fR, \fBrprivate\fR, \fBrunbindable\fR. Defaults to
+\fBrprivate\fR.
 .SH SANDBOXING PROFILES
 The following sandboxing profiles are supported:
 .TP
