@@ -181,6 +181,13 @@ Use \fIsystem\fR as the logging system. \fIsystem\fR must be one of
 \fB--setup-mount-namespace\fR
 Set up a minimalistic mount namespace.  Equivalent to \fB-v -p /var/empty
 -b /,/ -b /proc,/proc -d -t -r\fR.
+.TP
+\fB--root-propagation-type=<type>\fR
+Use \fItype\fR as the propagation type of \fB/\fR inside the mount namespace.
+\fItype\fR must be one of the shared subtree flags understood by
+\fBmount\fR(8): \fBshared\fR, \fBslave\fR, \fBprivate\fR, \fBunbindable\fR,
+\fBrshared\fR, \fBrslave\fR, \fBrprivate\fR, \fBrunbindable\fR. Defaults to
+\fBrprivate\fR.
 .SH IMPLEMENTATION
 This program is broken up into two parts: \fBminijail0\fR (the frontend) and a helper
 library called \fBlibminijailpreload\fR. Some jailings can only be achieved from
