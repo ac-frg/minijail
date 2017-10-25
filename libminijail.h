@@ -100,6 +100,14 @@ void minijail_skip_setting_securebits(struct minijail *j,
  * minijail_namespace_vfs(). You very likely don't need this.
  */
 void minijail_skip_remount_private(struct minijail *j);
+
+/*
+ * Instead of using minijail_skip_remount_private(), this can be used to set the
+ * propagation flags of / in the mount namespace. The default value of the
+ * propagation flags is MS_REC | MS_PRIVATE.
+ */
+void minijail_set_root_propagation_flags(struct minijail *j,
+					 unsigned long propagation_flags);
 void minijail_namespace_ipc(struct minijail *j);
 void minijail_namespace_uts(struct minijail *j);
 int minijail_namespace_set_hostname(struct minijail *j, const char *name);
