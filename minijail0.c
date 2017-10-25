@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/capability.h>
+#include <sys/mount.h>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -283,6 +284,39 @@ static void use_profile(struct minijail *j, const char *profile,
 	}
 }
 
+static long propagation_type_to_flags(const char* propagation_type)
+{
+	if (!strcmp(propagation_type, "shared"))
+		return MS_SHARED;
+	if (!strcmp(propagation_type, "slave"))
+		return MS_SLAVE;
+	if (!strcmp(propagation_type, "private"))
+		return MS_PRIVATE;
+	if (!strcmp(propagation_type, "unbindable"))
+		return MS_UNBINDABLE;
+	if (!strcmp(propagation_type, "rshared"))
+		return MS_SHARED | MS_REC;
+	if (!strcmp(propagation_type, "rslave"))
+		return MS_SLAVE | MS_REC;
+	if (!strcmp(propagation_type, "rprivate"))
+		return MS_PRIVATE | MS_REC;
+	if (!strcmp(propagation_type, "runbindable"))
+		return MS_UNBINDABLE | MS_REC;
+	return -1;
+}
+
+static void set_root_propagation_type(struct minijail *j,
+				      const char *propagation_type)
+{
+	long propagation_flags = propagation_type_to_flags(propagation_type);
+	if (propagation_flags == -1) {
+		fprintf(stderr, "Unrecognized propagation type: %s.\n",
+			propagation_type);
+		exit(1);
+	}
+	minijail_set_root_propagation_flags(j, propagation_flags);
+}
+
 static void usage(const char *progn)
 {
 	size_t i;
@@ -368,7 +402,12 @@ static void usage(const char *progn)
 	       "  --profile <p>,Configure minijail0 to run with the <p> sandboxing profile,\n"
 	       "         -F <p>:which is a convenient way to express multiple flags\n"
 	       "                that are typically used together.\n"
-	       "                See the minijail0(1) man page for the full list.\n");
+	       "                See the minijail0(1) man page for the full list.\n"
+	       "  --root-propagation-type=<s>:\n"
+	       "                Use <s> as the propagation type of / inside the mount namespace.\n"
+	       "                <s> must be one of the shared subtree flags understood by mount(8):\n"
+	       "                shared, slave, private, unbindable, rshared, rslave, rprivate, runbindable.\n"
+	       "                Defaults to rprivate.\n");
 	/* clang-format on */
 }
 
@@ -414,6 +453,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		{"ambient", no_argument, 0, 128},
 		{"uts", optional_argument, 0, 129},
 		{"logging", required_argument, 0, 130},
+		{"root-propagation-type", required_argument, 0, 131},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -634,6 +674,9 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 						"'stderr'.\n");
 				exit(1);
 			}
+			break;
+		case 131: /* Root propagation type. */
+			set_root_propagation_type(j, optarg);
 			break;
 		default:
 			usage(argv[0]);
