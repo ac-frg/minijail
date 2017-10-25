@@ -127,6 +127,7 @@ struct minijail {
 		int vfs : 1;
 		int enter_vfs : 1;
 		int skip_remount_private : 1;
+		int root_propagation_flags : 1;
 		int pids : 1;
 		int ipc : 1;
 		int uts : 1;
@@ -183,6 +184,7 @@ struct minijail {
 	struct minijail_rlimit rlimits[MAX_RLIMITS];
 	size_t rlimit_count;
 	uint64_t securebits_skip_mask;
+	uint64_t root_propagation_flags;
 	struct hook *hooks_head;
 	struct hook *hooks_tail;
 	struct preserved_fd preserved_fds[MAX_PRESERVED_FDS];
@@ -217,6 +219,7 @@ void minijail_preenter(struct minijail *j)
 	j->flags.vfs = 0;
 	j->flags.enter_vfs = 0;
 	j->flags.skip_remount_private = 0;
+	j->flags.root_propagation_flags = 0;
 	j->flags.remount_proc_ro = 0;
 	j->flags.pids = 0;
 	j->flags.do_init = 0;
@@ -235,6 +238,7 @@ void minijail_preexec(struct minijail *j)
 	int vfs = j->flags.vfs;
 	int enter_vfs = j->flags.enter_vfs;
 	int skip_remount_private = j->flags.skip_remount_private;
+	int root_propagation_flags = j->flags.root_propagation_flags;
 	int remount_proc_ro = j->flags.remount_proc_ro;
 	int userns = j->flags.userns;
 	if (j->user)
@@ -249,6 +253,7 @@ void minijail_preexec(struct minijail *j)
 	j->flags.vfs = vfs;
 	j->flags.enter_vfs = enter_vfs;
 	j->flags.skip_remount_private = skip_remount_private;
+	j->flags.root_propagation_flags = root_propagation_flags;
 	j->flags.remount_proc_ro = remount_proc_ro;
 	j->flags.userns = userns;
 	/* Note, |pids| will already have been used before this call. */
@@ -444,6 +449,13 @@ void API minijail_skip_setting_securebits(struct minijail *j,
 void API minijail_skip_remount_private(struct minijail *j)
 {
 	j->flags.skip_remount_private = 1;
+}
+
+void API minijail_set_root_propagation_flags(
+    struct minijail *j, unsigned long root_propagation_flags)
+{
+	j->flags.root_propagation_flags = 1;
+	j->root_propagation_flags = root_propagation_flags;
 }
 
 void API minijail_namespace_pids(struct minijail *j)
@@ -1438,6 +1450,12 @@ static void process_mounts_or_die(const struct minijail *j)
 		pdie("mount_dev_finalize failed");
 }
 
+static unsigned long propagation_flags(const struct minijail *j)
+{
+	return j->flags.root_propagation_flags ? j->root_propagation_flags
+					       : MS_REC | MS_PRIVATE;
+}
+
 static int enter_chroot(const struct minijail *j)
 {
 	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_CHROOT);
@@ -1487,13 +1505,13 @@ static int enter_pivot_root(const struct minijail *j)
 		pdie("failed to fchdir to old /");
 
 	/*
-	 * If j->flags.skip_remount_private was enabled for minijail_enter(),
-	 * there could be a shared mount point under |oldroot|. In that case,
-	 * mounts under this shared mount point will be unmounted below, and
-	 * this unmounting will propagate to the original mount namespace
-	 * (because the mount point is shared). To prevent this unexpected
-	 * unmounting, remove these mounts from their peer groups by recursively
-	 * remounting them as MS_PRIVATE.
+	 * If j->flags.skip_remount_private or j->flags.root_propagation_flags
+	 * were enabled for minijail_enter(), there could be a shared mount
+	 * point under |oldroot|. In that case, mounts under this shared mount
+	 * point will be unmounted below, and this unmounting will propagate to
+	 * the original mount namespace (because the mount point is shared). To
+	 * prevent this unexpected unmounting, remove these mounts from their
+	 * peer groups by recursively remounting them as MS_PRIVATE.
 	 */
 	if (mount(NULL, ".", NULL, MS_REC | MS_PRIVATE, NULL))
 		pdie("failed to mount(/, private) before umount(/)");
@@ -1946,14 +1964,15 @@ void API minijail_enter(const struct minijail *j)
 		if (unshare(CLONE_NEWNS))
 			pdie("unshare(CLONE_NEWNS) failed");
 		/*
-		 * Unless asked not to, remount all filesystems as private.
-		 * If they are shared, new bind mounts will creep out of our
-		 * namespace.
+		 * Unless asked not to, remount / with the correct propagation
+		 * flags (which default to MS_REC | MS_PRIVATE).
+		 * If they are left unchanged, new bind mounts will creep out of
+		 * our namespace.
 		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
 		 */
 		if (!j->flags.skip_remount_private) {
-			if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
-				pdie("mount(NULL, /, NULL, MS_REC | MS_PRIVATE,"
+			if (mount(NULL, "/", NULL, propagation_flags(j), NULL))
+				pdie("mount(NULL, /, NULL, propagation_flags,"
 				     " NULL) failed");
 		}
 	}
