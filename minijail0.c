@@ -21,6 +21,7 @@
 #include "util.h"
 
 #define IDMAP_LEN 32U
+#define DEFAULT_TMP_SIZE (64 * 1024 * 1024)
 
 static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 		     gid_t *out_gid)
@@ -311,7 +312,10 @@ static void usage(const char *progn)
 	       "  --ambient:    Raise ambient capabilities. Requires -c.\n"
 	       "  --uts[=name]: Enter a new UTS namespace (and set hostname).\n"
 	       "  --logging=<s>:Use <s> as the logging system.\n"
-	       "                <s> must be 'syslog' (default) or 'stderr'.\n");
+	       "                <s> must be 'syslog' (default) or 'stderr'.\n"
+	       "  --setup-mount-namespace:\n"
+	       "                Set up a minimalistic mount namespace.\n"
+	       "                Equivalent to -v -P /var/empty -b /,/ -b /proc,/proc -d -t -r\n");
 	/* clang-format on */
 }
 
@@ -356,6 +360,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 		{"ambient", no_argument, 0, 128},
 		{"uts", optional_argument, 0, 129},
 		{"logging", required_argument, 0, 130},
+		{"setup-mount-namespace", no_argument, 0, 131},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -460,7 +465,7 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 			break;
 		case 't':
 			minijail_namespace_vfs(j);
-			size = 64 * 1024 * 1024;
+			size = DEFAULT_TMP_SIZE;
 			if (optarg != NULL && 0 != parse_size(&size, optarg)) {
 				fprintf(stderr, "Invalid /tmp tmpfs size.\n");
 				exit(1);
@@ -593,6 +598,33 @@ static int parse_args(struct minijail *j, int argc, char *argv[],
 						"'stderr'.\n");
 				exit(1);
 			}
+			break;
+		case 131: /* Setup mount namespace. */
+			minijail_namespace_vfs(j);
+			if (0 != minijail_bind(j, "/", "/", 0)) {
+				fprintf(stderr, "minijail_bind failed.\n");
+				exit(1);
+			}
+			if (minijail_bind(j, "/proc", "/proc", 0)) {
+				fprintf(stderr, "minijail_bind failed.\n");
+				exit(1);
+			}
+			minijail_mount_dev(j);
+			minijail_mount_tmp_size(j, DEFAULT_TMP_SIZE);
+			minijail_remount_proc_readonly(j);
+			if (chroot) {
+				fprintf(stderr,
+					"Could not perform "
+					"--setup-mount-namespace because '-C' "
+					"was specified.\n");
+				exit(1);
+			}
+			if (0 != minijail_enter_pivot_root(j, "/var/empty")) {
+				fprintf(stderr, "Could not set pivot_root.\n");
+				exit(1);
+			}
+			minijail_namespace_vfs(j);
+			pivot_root = 1;
 			break;
 		default:
 			usage(argv[0]);
