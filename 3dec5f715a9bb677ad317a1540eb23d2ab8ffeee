@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b68c3b2_61e5d087",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "lets sell this as a way of getting a simple/standard env rather than just a shortcut to combining flags",
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "717175a5_fd268698",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "-P ?",
+      "range": {
+        "startLine": 190,
+        "startChar": 60,
+        "endLine": 190,
+        "endChar": 62
+      },
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08902c96_64c76807",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "\"optarg\" here (and below) should be an explicit option",
+      "range": {
+        "startLine": 241,
+        "startChar": 35,
+        "endLine": 241,
+        "endChar": 41
+      },
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "168f2d3f_c0fc30b8",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "drop the \"0 !\u003d\" check here and below ?  some of the code below already does.",
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd4913a9_8346c5d3",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "this misbehaves.  you meant to pivot to /var/empty, but this func implicitly uses optarg which is \"minimalistic-mountns\" currently.",
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e40769c3_68ff2d03",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-10-26T21:24:29Z",
+      "side": 1,
+      "message": "this doesn\u0027t accumulate well with other options\n\n -F minimalistic-mountns -t1024\n -t1024 -F minimalistic-mountns\n\nthese don\u0027t behave the same.\n\nfor other conflicting options, we accumulate them and then do consistency checks at the end of this func",
+      "revId": "3dec5f715a9bb677ad317a1540eb23d2ab8ffeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
