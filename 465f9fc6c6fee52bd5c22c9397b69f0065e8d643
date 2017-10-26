@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9647b4a_e137dbf1",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-26T14:30:57Z",
+      "side": 1,
+      "message": "This is the part where I take advantage of your kindness and suggest that maybe this flag should just be something like a sandboxing \"profile\" (and it\u0027s totally fine for that profile to start as a predefined mount namespace). Something like --profile\u003dsimple or (hopefully) a better word.",
+      "range": {
+        "startLine": 181,
+        "startChar": 3,
+        "endLine": 181,
+        "endChar": 26
+      },
+      "revId": "465f9fc6c6fee52bd5c22c9397b69f0065e8d643",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
