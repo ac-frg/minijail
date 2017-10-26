@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f4686be_6dab6a91",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-10-26T21:00:13Z",
+      "side": 1,
+      "message": "I would call this \"simple-mountns\" or \"minimalistic-mountns\"",
+      "range": {
+        "startLine": 189,
+        "startChar": 3,
+        "endLine": 189,
+        "endChar": 14
+      },
+      "revId": "b8d13fc804afc4312be382877473ee602c277437",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
