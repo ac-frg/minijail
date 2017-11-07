@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25618e09_04c85458",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-11-07T20:07:30Z",
+      "side": 1,
+      "message": "This looks like a weird indent -- did the hook not run?",
+      "range": {
+        "startLine": 455,
+        "startChar": 2,
+        "endLine": 455,
+        "endChar": 3
+      },
+      "revId": "4b0145cd878f044276bd7ff450b2b658a0c146cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c75938e_6c50622a",
+        "filename": "minijail0.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-11-07T20:07:30Z",
+      "side": 1,
+      "message": "Do we need this feature to be accessible from minijail0?",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 1
+      },
+      "revId": "4b0145cd878f044276bd7ff450b2b658a0c146cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
