@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2629ecf8_69703417",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-11-28T07:34:11Z",
+      "side": 1,
+      "message": "this last sentence doesn\u0027t really parse for me",
+      "revId": "ccb7553f775802ea2f88f116b74f9245b312b812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19ba9c86_5d8de57f",
+        "filename": "minijail0.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-11-28T07:34:11Z",
+      "side": 1,
+      "message": "broken indentation",
+      "revId": "ccb7553f775802ea2f88f116b74f9245b312b812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73469a5_a704cf36",
+        "filename": "minijail0.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-11-28T07:34:11Z",
+      "side": 1,
+      "message": "i think Jorge would prefer to omit short options when they don\u0027t cleanly map.  -F in my mind doesn\u0027t immediately trigger \"profile\".",
+      "revId": "ccb7553f775802ea2f88f116b74f9245b312b812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
