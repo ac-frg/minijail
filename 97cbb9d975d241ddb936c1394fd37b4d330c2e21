@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bbef7813_467995a9",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-12-11T22:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f9e0168_0f0d1178",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5004a907_1519285f",
         "filename": "TAGGING.md",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "def487a2_f39eb56b",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-12-11T22:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5004a907_1519285f",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90b35cdc_a31bea28",
         "filename": "TAGGING.md",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77a93d00_587a8b72",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2017-12-11T22:11:13Z",
+      "side": 1,
+      "message": "I\u0027d rather push the only relevant tag.",
+      "parentUuid": "90b35cdc_a31bea28",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
