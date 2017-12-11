@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f9e0168_0f0d1178",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-12-11T20:28:08Z",
+      "side": 1,
+      "message": "\"RELEASE\" instead of \"TAGGING\" ?",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5004a907_1519285f",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-12-11T20:28:08Z",
+      "side": 1,
+      "message": "period outside of the paren",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90b35cdc_a31bea28",
+        "filename": "TAGGING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2017-12-11T20:28:08Z",
+      "side": 1,
+      "message": "you could use --tags too\n\n git push --tags",
+      "revId": "97cbb9d975d241ddb936c1394fd37b4d330c2e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
