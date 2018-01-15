@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b87d6f9_aca4c54b",
+        "filename": "signal_handler.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-01-15T20:58:30Z",
+      "side": 1,
+      "message": "you need to check if this is defined first as it\u0027s a glibc-internal define",
+      "revId": "de09c209ce686c4d5cd4af7a7c3b3c994bd37072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
