@@ -8,10 +8,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <asm/siginfo.h>
-#define __have_siginfo_t 1
-#define __have_sigval_t 1
-#define __have_sigevent_t 1
+
+/*
+ * glibc 2.26 and later have SIGSYS in siginfo_t. Before that,
+ * we need to use the kernel's siginfo.h file and trick glibc
+ * into accepting it.
+ */
+#if !__GLIBC_PREREQ(2, 26)
+# include <asm/siginfo.h>
+# define __have_siginfo_t 1
+# define __have_sigval_t 1
+# define __have_sigevent_t 1
+#endif
 
 #include <signal.h>
 #include <string.h>
