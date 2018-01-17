@@ -225,6 +225,37 @@ int write_pid_to_path(pid_t pid, const char *path)
 }
 
 /*
+ * Create the |path| directory and its parents (if need be).
+ */
+int mkdir_p(const char *path, mode_t mode)
+{
+	char *dir = strdup(path);
+	if (!dir)
+		return -errno;
+
+	/* Starting from the root, work our way out to the end. */
+	char *p = strchr(dir + 1, '/');
+	while (p) {
+		*p = '\0';
+		if (mkdir(dir, mode) && errno != EEXIST) {
+			free(dir);
+			return -errno;
+		}
+		*p = '/';
+		p = strchr(p + 1, '/');
+	}
+
+	/*
+	 * Create the last directory.  We still check EEXIST here in case
+	 * of trailing slashes.
+	 */
+	free(dir);
+	if (mkdir(path, mode) && errno != EEXIST)
+		return -errno;
+	return 0;
+}
+
+/*
  * setup_mount_destination: Ensures the mount target exists.
  * Creates it if needed and possible.
  */
@@ -279,7 +310,7 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 
 	/* Now that we know what we want to do, do it! */
 	if (domkdir) {
-		if (mkdir(dest, 0700))
+		if (mkdir_p(dest, 0700))
 			return -errno;
 	} else {
 		int fd = open(dest, O_RDWR | O_CREAT | O_CLOEXEC, 0700);
