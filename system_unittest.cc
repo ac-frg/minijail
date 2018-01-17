@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #include <gtest/gtest.h>
@@ -131,6 +132,46 @@ TEST(write_pid_to_path, basic) {
   fclose(fp);
   EXPECT_EQ(0, strcmp(data, "1234\n"));
 
+  free(path);
+}
+
+// If the destination exists, there's nothing to do.
+// Also check trailing slash handling.
+TEST(mkdir_p, dest_exists) {
+  EXPECT_EQ(0, mkdir_p("/", 0));
+  EXPECT_EQ(0, mkdir_p("///", 0));
+  EXPECT_EQ(0, mkdir_p("/proc", 0));
+  EXPECT_EQ(0, mkdir_p("/proc/", 0));
+  EXPECT_EQ(0, mkdir_p("/dev", 0));
+  EXPECT_EQ(0, mkdir_p("/dev/", 0));
+}
+
+// Create a directory tree that doesn't exist.
+TEST(mkdir_p, create_tree) {
+  char *path = get_temp_path();
+  ASSERT_NE(nullptr, path);
+  unlink(path);
+
+  // Run `mkdir -p <path>/a/b/c`.
+  char *path_a, *path_a_b, *path_a_b_c;
+  ASSERT_NE(-1, asprintf(&path_a, "%s/a", path));
+  ASSERT_NE(-1, asprintf(&path_a_b, "%s/b", path_a));
+  ASSERT_NE(-1, asprintf(&path_a_b_c, "%s/c", path_a_b));
+  EXPECT_EQ(0, mkdir_p(path_a_b_c, 0700));
+
+  // Make sure the final dir actually exists.
+  struct stat st;
+  EXPECT_EQ(0, stat(path_a_b_c, &st));
+  EXPECT_EQ(true, S_ISDIR(st.st_mode));
+
+  // Clean up.
+  ASSERT_EQ(0, rmdir(path_a_b_c));
+  ASSERT_EQ(0, rmdir(path_a_b));
+  ASSERT_EQ(0, rmdir(path_a));
+
+  free(path_a_b_c);
+  free(path_a_b);
+  free(path_a);
   free(path);
 }
 
