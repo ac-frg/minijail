@@ -95,10 +95,12 @@ static void add_binding(struct minijail *j, char *arg)
 	char *src = strtok(arg, ",");
 	char *dest = strtok(NULL, ",");
 	char *flags = strtok(NULL, ",");
-	if (!src || !dest) {
+	if (!src) {
 		fprintf(stderr, "Bad binding: %s %s\n", src, dest);
 		exit(1);
 	}
+	if (!dest)
+		dest = src;
 	if (minijail_bind(j, src, dest, flags ? atoi(flags) : 0)) {
 		fprintf(stderr, "minijail_bind failed.\n");
 		exit(1);
