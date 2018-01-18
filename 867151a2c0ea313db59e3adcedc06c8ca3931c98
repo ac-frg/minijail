@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a46e09b5_fd6c53a6",
+        "filename": "minijail0.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-01-18T20:34:28Z",
+      "side": 1,
+      "message": "ah forgot to ask in the previous one: is it work also checking if |cur[0] \u003d\u003d \u0027\\0\u0027| and the rest too? atoi(3) will silently return 0 otherwise.",
+      "range": {
+        "startLine": 117,
+        "startChar": 15,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "867151a2c0ea313db59e3adcedc06c8ca3931c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
