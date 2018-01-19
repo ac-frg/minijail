@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a43fe29d_f8248086",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1074798
+      },
+      "writtenOn": "2018-01-19T23:50:30Z",
+      "side": 1,
+      "message": "So I think this breaks for mount options with extra data arguments.  For example:\n\n    -k none,/some_dir,tmpfs,0xe,mode\u003d755,size\u003d32m\n\nThis now triggers an error because arg !\u003d NULL even though the data passed in is perfectly valid.  Actually this is also broken in the previous code because it would set data\u003d\"mode\u003d755\" and completely ignore the size\u003d32m part.\n\nI think the only way to do this correctly is to assume everything after the 4th comma is the data.",
+      "revId": "fea05c6dcac6b69e9cc7ba03ee9c3d074e66ad4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
