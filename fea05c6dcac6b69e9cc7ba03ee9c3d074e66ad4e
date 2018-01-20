@@ -16,6 +16,24 @@
       "revId": "fea05c6dcac6b69e9cc7ba03ee9c3d074e66ad4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abb786a6_105f04fc",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-01-20T00:07:31Z",
+      "side": 1,
+      "message": "yeah i saw the crosvm comment [1].  guess i\u0027ll bite the bullet and refactor some of these helpers so we can unittest them.\n\n[1] https://chromium-review.googlesource.com/c/chromiumos/platform2/+/838846/4/vm_tools/init/vm_concierge.conf#49",
+      "parentUuid": "a43fe29d_f8248086",
+      "revId": "fea05c6dcac6b69e9cc7ba03ee9c3d074e66ad4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
