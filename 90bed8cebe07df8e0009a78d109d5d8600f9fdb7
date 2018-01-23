@@ -22,6 +22,30 @@
       "revId": "90bed8cebe07df8e0009a78d109d5d8600f9fdb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08470886_36516437",
+        "filename": "elfparse.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-01-23T16:33:36Z",
+      "side": 1,
+      "message": "right, i go with IWYU rather than what headers happen to implicitly include.  i can finish sorting this.",
+      "parentUuid": "0de94e4b_f2c50b14",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "90bed8cebe07df8e0009a78d109d5d8600f9fdb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
