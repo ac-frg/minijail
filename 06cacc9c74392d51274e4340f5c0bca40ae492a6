@@ -1,0 +1,7 @@
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Verified+1: Mike Frysinger <vapier@google.com>
+Submitted-by: Mike Frysinger <vapier@google.com>
+Submitted-at: Wed, 24 Jan 2018 22:33:05 +0000
+Reviewed-on: https://android-review.googlesource.com/598953
+Project: platform/external/minijail
+Branch: refs/heads/master
