@@ -216,7 +216,7 @@ cc_test {
 // out/host/linux-x86/nativetest(64)/system_unittest_gtest/system_unittest_gtest
 // =========================================================
 cc_test {
-    name: "system_unittest_gtest",
+    name: "mj_system_unittest_gtest",
     defaults: ["libminijail_flags"],
     host_supported: true,
 
@@ -245,7 +245,7 @@ cc_test {
 // out/host/linux-x86/nativetest(64)/util_unittest_gtest/util_unittest_gtest
 // =========================================================
 cc_test {
-    name: "util_unittest_gtest",
+    name: "mj_util_unittest_gtest",
     defaults: ["libminijail_flags"],
     host_supported: true,
 
