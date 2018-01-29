@@ -16,6 +16,24 @@
       "revId": "d13d0c96f30330f4ced87bdc6c5a5510275ac75f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45558ee2_80a7cab4",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-01-29T21:40:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27be1495_5b112610",
+      "revId": "d13d0c96f30330f4ced87bdc6c5a5510275ac75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
