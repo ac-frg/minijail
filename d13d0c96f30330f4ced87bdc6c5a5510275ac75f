@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27be1495_5b112610",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-01-29T21:35:35Z",
+      "side": 1,
+      "message": "how about a test like \"0j\" ?",
+      "revId": "d13d0c96f30330f4ced87bdc6c5a5510275ac75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
