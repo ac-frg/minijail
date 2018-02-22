@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c59813d_78b13184",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-02-22T17:57:40Z",
+      "side": 1,
+      "message": "Can this be 0755? Alternatively, can you pass the uid/gid so that mkdir_p can chown the created intermediate directories?",
+      "range": {
+        "startLine": 304,
+        "startChar": 19,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "revId": "1d4ddfe9f1b49c773a44ee12f008011283f98a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
