@@ -22,6 +22,30 @@
       "revId": "1d4ddfe9f1b49c773a44ee12f008011283f98a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "047b125e_b4c5ebef",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-02-22T18:25:48Z",
+      "side": 1,
+      "message": "Thought about it a bit better: In addition to the uid/gid change for the intermediate directories, can they also have 0755 mode? The eventual mountpoint can still have 0700? Otherwise this can break some of the potential users: https://chrome-internal-review.googlesource.com/c/chromeos/cheets-scripts/+/572734 (since no user except root would be able to traverse to that directory).",
+      "parentUuid": "3c59813d_78b13184",
+      "range": {
+        "startLine": 304,
+        "startChar": 19,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "revId": "1d4ddfe9f1b49c773a44ee12f008011283f98a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
