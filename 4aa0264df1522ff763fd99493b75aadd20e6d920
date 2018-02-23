@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36b6df2b_9cff5a8e",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1071083
+      },
+      "writtenOn": "2018-02-23T21:05:04Z",
+      "side": 1,
+      "message": "nit: const auto\u0026",
+      "range": {
+        "startLine": 435,
+        "startChar": 7,
+        "endLine": 435,
+        "endChar": 17
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e86bc9f_058d149f",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1071083
+      },
+      "writtenOn": "2018-02-23T21:05:04Z",
+      "side": 1,
+      "message": "nit: technically, \"-K\" + mode should just work as |mode| is already std::string",
+      "range": {
+        "startLine": 436,
+        "startChar": 14,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "418385cd_4bd1ff3a",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1071083
+      },
+      "writtenOn": "2018-02-23T21:05:04Z",
+      "side": 1,
+      "message": "q: why not simply combine them, this seems unnecessarily convoluted \n\ne.g.\n\nconst std::vector\u003cstd::string\u003e argv \u003d {\n   \"-v\",\n   \"-Kfoo\",  // unknown mode\n   \"/bin/sh\",\n};",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 19
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
