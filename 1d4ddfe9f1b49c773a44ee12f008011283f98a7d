@@ -46,6 +46,30 @@
       "revId": "1d4ddfe9f1b49c773a44ee12f008011283f98a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e66a6c2f_656ca4d8",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-23T18:58:26Z",
+      "side": 1,
+      "message": "i think just using 0755 and root/root should be fine for the majority of users.  the actual mount would still change the permissions of the dir regardless of the underlying dir, and most mount types allow you to control that (in addition to the uid/gid).  this wouldn\u0027t prevent anyone from writing that final mount point even if the previous paths are root/root.",
+      "parentUuid": "047b125e_b4c5ebef",
+      "range": {
+        "startLine": 304,
+        "startChar": 19,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "revId": "1d4ddfe9f1b49c773a44ee12f008011283f98a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
