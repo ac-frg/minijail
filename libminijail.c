@@ -177,6 +177,7 @@ struct minijail {
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
+	unsigned long remount_mode;
 	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
@@ -439,6 +440,11 @@ void API minijail_skip_setting_securebits(struct minijail *j,
 					  uint64_t securebits_skip_mask)
 {
 	j->securebits_skip_mask = securebits_skip_mask;
+}
+
+void API minijail_remount_mode(struct minijail *j, unsigned long mode)
+{
+	j->remount_mode = mode;
 }
 
 void API minijail_skip_remount_private(struct minijail *j)
@@ -1950,8 +1956,9 @@ void API minijail_enter(const struct minijail *j)
 		 * namespace.
 		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
 		 */
-		if (!j->flags.skip_remount_private) {
-			if (mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL))
+		if (!j->flags.skip_remount_private || j->remount_mode) {
+			unsigned long remount_mode = j->remount_mode ? : MS_PRIVATE;
+			if (mount(NULL, "/", NULL, MS_REC | remount_mode, NULL))
 				pdie("mount(NULL, /, NULL, MS_REC | MS_PRIVATE,"
 				     " NULL) failed");
 		}
