@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b2ad1c9_744db43e",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-23T22:45:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36b6df2b_9cff5a8e",
+      "range": {
+        "startLine": 435,
+        "startChar": 7,
+        "endLine": 435,
+        "endChar": 17
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e86bc9f_058d149f",
         "filename": "minijail0_cli_unittest.cc",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ba20d3ef_bf963cd7",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-23T22:45:04Z",
+      "side": 1,
+      "message": "i remembered scenarios where the first type mattered (so i couldn\u0027t add a string literal to a C++ type), but i don\u0027t recall what exactly that was.  and your suggestion works.",
+      "parentUuid": "3e86bc9f_058d149f",
+      "range": {
+        "startLine": 436,
+        "startChar": 14,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "418385cd_4bd1ff3a",
         "filename": "minijail0_cli_unittest.cc",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "416b79c0_bbb5220c",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-23T22:45:04Z",
+      "side": 1,
+      "message": "i was keeping the form where i\u0027d test more bad forms as they came up.  see invalid_binding above as an example.\n\nyou\u0027re correct that right now the code doesn\u0027t need it.",
+      "parentUuid": "418385cd_4bd1ff3a",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 19
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
