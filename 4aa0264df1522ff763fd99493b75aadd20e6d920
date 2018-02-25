@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "19455ba8_67778fb4",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1071083
+      },
+      "writtenOn": "2018-02-25T02:48:34Z",
+      "side": 1,
+      "message": "the first type matters when there is no non-member overload of operator+, but there is one for char+string :)\n\n   string operator+ (const char* lhs, const string\u0026 rhs)",
+      "parentUuid": "ba20d3ef_bf963cd7",
+      "range": {
+        "startLine": 436,
+        "startChar": 14,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "4aa0264df1522ff763fd99493b75aadd20e6d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "418385cd_4bd1ff3a",
         "filename": "minijail0_cli_unittest.cc",
         "patchSetId": 1
