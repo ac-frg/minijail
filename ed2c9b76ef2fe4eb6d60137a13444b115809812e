@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c9be2e1_f64cd73d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-02-26T16:21:10Z",
+      "side": 1,
+      "message": "Can we update this comment? It\u0027s no longer valid.\n\nSomething like:\n\n\"\nRemount all filesystems as private, unless\n-Passed a specific remount mode, in which case remount with that mode, or\n-Asked not to remount at all, in which case skip the mount(2) call.\n\"",
+      "range": {
+        "startLine": 1954,
+        "startChar": 5,
+        "endLine": 1954,
+        "endChar": 61
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a938dae8_8cfea4ca",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-02-26T16:21:10Z",
+      "side": 1,
+      "message": "This seems clunky. We\u0027re using two flags to track the same thing.\n\nj-\u003eremount_mode could default to MS_PRIVATE, and then minijail_set_remount_mode can do its thing, and minijail_skip_remount_private can just set it to zero. And if the flag is zero we don\u0027t call mount(2). Thoughts?",
+      "range": {
+        "startLine": 1959,
+        "startChar": 6,
+        "endLine": 1959,
+        "endChar": 55
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
