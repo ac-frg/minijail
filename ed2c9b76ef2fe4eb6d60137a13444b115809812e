@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5443baf9_7922ee05",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-26T22:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c9be2e1_f64cd73d",
+      "range": {
+        "startLine": 1954,
+        "startChar": 5,
+        "endLine": 1954,
+        "endChar": 61
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a938dae8_8cfea4ca",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-26T16:21:10Z",
       "side": 1,
       "message": "This seems clunky. We\u0027re using two flags to track the same thing.\n\nj-\u003eremount_mode could default to MS_PRIVATE, and then minijail_set_remount_mode can do its thing, and minijail_skip_remount_private can just set it to zero. And if the flag is zero we don\u0027t call mount(2). Thoughts?",
+      "range": {
+        "startLine": 1959,
+        "startChar": 6,
+        "endLine": 1959,
+        "endChar": 55
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83079e98_d51d97c0",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-26T22:32:41Z",
+      "side": 1,
+      "message": "i agree it\u0027s clunky.  the reason for it is that minijail state initializes to zero (see how minijail_new only calls calloc and nothing else) and no other value.  in order to change the default, we\u0027d have to change that func to start assigning non-zero default values in fields, and i was avoiding doing that because we\u0027ve never done it before.",
+      "parentUuid": "a938dae8_8cfea4ca",
       "range": {
         "startLine": 1959,
         "startChar": 6,
