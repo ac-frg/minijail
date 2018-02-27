@@ -117,6 +117,30 @@
       "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e402a6c_d54573e0",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-02-27T00:32:51Z",
+      "side": 1,
+      "message": "i think we have a set of -K/-k flags that can replicate this behavior now if necessary, so i don\u0027t think we have to rush this through\n\ni\u0027ll move to initialize during minijail_new and collapse these two knobs into one",
+      "parentUuid": "9c484dcd_9c736333",
+      "range": {
+        "startLine": 1959,
+        "startChar": 6,
+        "endLine": 1959,
+        "endChar": 55
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
