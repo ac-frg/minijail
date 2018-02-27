@@ -93,6 +93,30 @@
       "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c484dcd_9c736333",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-02-27T00:25:57Z",
+      "side": 1,
+      "message": "Yeah, that was what I thought -- just initialize in minijail_new. But maybe that does require a bit more thinking, so if this is needed soon, we can land this and re-evaluate.",
+      "parentUuid": "83079e98_d51d97c0",
+      "range": {
+        "startLine": 1959,
+        "startChar": 6,
+        "endLine": 1959,
+        "endChar": 55
+      },
+      "revId": "ed2c9b76ef2fe4eb6d60137a13444b115809812e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
