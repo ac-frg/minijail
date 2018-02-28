@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3523a9_4884e6e6",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-02-28T15:38:34Z",
+      "side": 1,
+      "message": "Nit: maybe surround this with single quotes to match above, but no biggie.",
+      "range": {
+        "startLine": 351,
+        "startChar": 41,
+        "endLine": 351,
+        "endChar": 43
+      },
+      "revId": "cf5a389612b090ffdd3c11fb47eb17edd63886bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
