@@ -315,7 +315,11 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 			return -errno;
 		close(fd);
 	}
-	return chown(dest, uid, gid);
+	if (chown(dest, uid, gid)) {
+		pwarn("chown(%s, %u, %u) failed", dest, uid, gid);
+		return -errno;
+	}
+	return 0;
 }
 
 /*
