@@ -22,6 +22,30 @@
       "revId": "8c346a53af82790d7a62f0aa3c1606ad3b53ab96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f05ec093_6813777c",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 1032760
+      },
+      "writtenOn": "2018-03-05T19:24:59Z",
+      "side": 1,
+      "message": "I think pwarn() automatically reads |errno| (because of the %m format string pwarn() uses) but setup_mount_destination() does not always set |errno|. Specifically, the following path does not:\n\n                /* Disallow relative bind mounts. */\n                if (bind) {\n                        warn(\"relative bind-mounts are not allowed: source\u003d%s\",\n                             source);\n                        return -EINVAL;\n                }\n\nThis CL is to support the -EINVAL path.\n\n(If it\u0027s better to fix the -EINVAL path, I\u0027ll do that instead. I mean, errno \u003d EINVAL; return -errno; in setup_mount_destination().)",
+      "parentUuid": "1ac15db5_afa6c187",
+      "range": {
+        "startLine": 1378,
+        "startChar": 2,
+        "endLine": 1378,
+        "endChar": 15
+      },
+      "revId": "8c346a53af82790d7a62f0aa3c1606ad3b53ab96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
