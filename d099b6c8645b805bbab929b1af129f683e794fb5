@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b87371d8_5e214216",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-03-05T18:45:29Z",
+      "side": 1,
+      "message": "nit: pwarn itself can change errno, so you might want to preserve it.",
+      "range": {
+        "startLine": 320,
+        "startChar": 2,
+        "endLine": 320,
+        "endChar": 16
+      },
+      "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
