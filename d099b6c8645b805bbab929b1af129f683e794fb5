@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "479186a8_1dbca342",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-03-05T22:03:03Z",
+      "side": 1,
+      "message": "Luis is likely right here, pwarn ends up calling syslog, which likely updates errno. That idiom is probably wrong.\n\nFeel free to only change the code that you touch, we\u0027ll fix the other ones later.",
+      "parentUuid": "2d9c79b4_5a12ddbc",
+      "range": {
+        "startLine": 320,
+        "startChar": 2,
+        "endLine": 320,
+        "endChar": 16
+      },
+      "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed31263b_0f0c6981",
         "filename": "system_unittest.cc",
         "patchSetId": 1
