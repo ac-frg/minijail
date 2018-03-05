@@ -222,14 +222,17 @@ int write_pid_to_path(pid_t pid, const char *path)
 int mkdir_p(const char *path, mode_t mode, bool isdir)
 {
 	char *dir = strdup(path);
-	if (!dir)
+	if (!dir) {
+		pwarn("failed to strdup(%s)", path);
 		return -errno;
+	}
 
 	/* Starting from the root, work our way out to the end. */
 	char *p = strchr(dir + 1, '/');
 	while (p) {
 		*p = '\0';
 		if (mkdir(dir, mode) && errno != EEXIST) {
+			pwarn("failed to mkdir(%s, 0%o)", dir, mode);
 			free(dir);
 			return -errno;
 		}
@@ -242,8 +245,10 @@ int mkdir_p(const char *path, mode_t mode, bool isdir)
 	 * of trailing slashes.
 	 */
 	free(dir);
-	if (isdir && mkdir(path, mode) && errno != EEXIST)
+	if (isdir && mkdir(path, mode) && errno != EEXIST) {
+		pwarn("failed to mkdir(%s, 0%o)", path, mode);
 		return -errno;
+	}
 	return 0;
 }
 
@@ -273,8 +278,10 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 	if (source[0] == '/') {
 		/* The source is an absolute path -- it better exist! */
 		rc = stat(source, &st_buf);
-		if (rc)
+		if (rc) {
+			pwarn("failed to stat(%s)", source);
 			return -errno;
+		}
 
 		/*
 		 * If bind mounting, we only create a directory if the source
@@ -294,8 +301,11 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 		/* The source is a relative path -- assume it's a pseudo fs. */
 
 		/* Disallow relative bind mounts. */
-		if (bind)
+		if (bind) {
+			warn("Relative bind-mounts are not allowed: source=%s",
+			     source);
 			return -EINVAL;
+		}
 
 		domkdir = true;
 	}
@@ -311,8 +321,10 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 		return -errno;
 	if (!domkdir) {
 		int fd = open(dest, O_RDWR | O_CREAT | O_CLOEXEC, 0700);
-		if (fd < 0)
+		if (fd < 0) {
+			pwarn("failed to open(%s)", dest);
 			return -errno;
+		}
 		close(fd);
 	}
 	if (chown(dest, uid, gid)) {
