@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22cc8968_4d42778d",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1032760
+      },
+      "writtenOn": "2018-03-05T19:19:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b617ba6d_4da3bbc5",
+      "range": {
+        "startLine": 319,
+        "startChar": 9,
+        "endLine": 319,
+        "endChar": 36
+      },
+      "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b87371d8_5e214216",
         "filename": "system.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-05T18:45:29Z",
       "side": 1,
       "message": "nit: pwarn itself can change errno, so you might want to preserve it.",
+      "range": {
+        "startLine": 320,
+        "startChar": 2,
+        "endLine": 320,
+        "endChar": 16
+      },
+      "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d9c79b4_5a12ddbc",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1032760
+      },
+      "writtenOn": "2018-03-05T19:19:32Z",
+      "side": 1,
+      "message": "pwarn(); then return -errno; is a widely used idiom in minijail/. Also, errno is overwritten in a very unlikely event like write(2) failure anyway.\n\nJorge: should we preserve errno here?",
+      "parentUuid": "b87371d8_5e214216",
       "range": {
         "startLine": 320,
         "startChar": 2,
@@ -68,6 +116,30 @@
       "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4c48647_ea883adc",
+        "filename": "system_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1032760
+      },
+      "writtenOn": "2018-03-05T19:19:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed31263b_0f0c6981",
+      "range": {
+        "startLine": 204,
+        "startChar": 53,
+        "endLine": 204,
+        "endChar": 63
+      },
+      "revId": "d099b6c8645b805bbab929b1af129f683e794fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
