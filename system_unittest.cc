@@ -200,6 +200,8 @@ TEST(setup_mount_destination, create_pseudo_fs) {
   EXPECT_EQ(0, setup_mount_destination("none", path, -1, -1, false));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(path));
+  // Confirm that a bad uid/gid fails the function as expected.
+  EXPECT_NE(0, setup_mount_destination("none", path, -100, -100, false));
 
   free(path);
 }
