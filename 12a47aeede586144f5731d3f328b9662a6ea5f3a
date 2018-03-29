@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a2171a2_4d6397c1",
+        "filename": "CleanSpec.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-03-29T23:26:10Z",
+      "side": 1,
+      "message": "there\u0027s no need to use -print0|xargs -0 anymore.  use -exec ... {} + instead.",
+      "revId": "12a47aeede586144f5731d3f328b9662a6ea5f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
