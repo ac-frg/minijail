@@ -34,6 +34,24 @@
       "revId": "fea05c6dcac6b69e9cc7ba03ee9c3d074e66ad4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9dd87bd_b9a24cc7",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-03-29T20:15:09Z",
+      "side": 1,
+      "message": "this should be resolved now in ToT via\n\n* https://android-review.googlesource.com/596214\n* https://android-review.googlesource.com/596215\n* https://android-review.googlesource.com/599413",
+      "parentUuid": "abb786a6_105f04fc",
+      "revId": "fea05c6dcac6b69e9cc7ba03ee9c3d074e66ad4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
