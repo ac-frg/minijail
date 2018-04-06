@@ -22,6 +22,30 @@
       "revId": "8de109b706fa50ac013f8142182d8c10f06827dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d8d9e0c_4f115dce",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-06T13:29:57Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "962356d1_ef9bfbaa",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 74
+      },
+      "revId": "8de109b706fa50ac013f8142182d8c10f06827dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
