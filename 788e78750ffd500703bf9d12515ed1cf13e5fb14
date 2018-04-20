@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d2f825f3_28e52c9f",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-20T15:41:24Z",
+      "side": 1,
+      "message": "Good idea, done.",
+      "parentUuid": "35a83091_16e105d8",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e3616b0_aa04fc9f",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "8c03b48f_c005cd8f",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-20T15:41:24Z",
+      "side": 1,
+      "message": "also mentioned the \"running in the background\" thing, because that\u0027s something that doesn\u0027t necessarily follow from not-acting-as-init.\n\nAlso, isn\u0027t -I the one that governs the running-as-init thing? IIUC -i just does the orphaning part of the whole process tree:\n\n $ sudo out/host/linux-x86/bin/minijail0 -p -i -Tstatic -- /bin/bash -c \u0027echo $$\u0027\n 2\n $ sudo out/host/linux-x86/bin/minijail0 -p -i -I -Tstatic -- /bin/bash -c \u0027echo $$\u0027\n 1\n\nIf so, I think we should also amend the --help message.",
+      "parentUuid": "f181880c_9602c515",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "054eaf6b_e1e6658e",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "4321dbe8_80783b35",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-20T15:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "054eaf6b_e1e6658e",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90f5bf12_39d1bad3",
         "filename": "minijail0.1",
         "patchSetId": 1
@@ -85,6 +139,24 @@
       "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8f05c81_78b658dd",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-20T15:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90f5bf12_39d1bad3",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
