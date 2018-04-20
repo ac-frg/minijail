@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "769b6022_45d65e2a",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-04-20T17:24:50Z",
+      "side": 1,
+      "message": "Right. I clarified the wording so that it reflects reality a bit better.",
+      "parentUuid": "876420fb_8a0746de",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "054eaf6b_e1e6658e",
         "filename": "minijail0.1",
         "patchSetId": 1
