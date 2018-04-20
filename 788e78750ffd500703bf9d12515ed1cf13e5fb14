@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "876420fb_8a0746de",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-20T16:46:16Z",
+      "side": 1,
+      "message": "i think Jorge just mean \"act as init\" in so much that minijail waits for the child process and reaps things.  the -I init flag controls whether minijail is pid 1 inside the new pid namespace (and thus acts as a \"normal\" init) or the jailed process is pid 1.\n\n-i is for the very first minijail process only.",
+      "parentUuid": "8c03b48f_c005cd8f",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "054eaf6b_e1e6658e",
         "filename": "minijail0.1",
         "patchSetId": 1
