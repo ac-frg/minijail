@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "f181880c_9602c515",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-04-20T14:30:51Z",
+      "side": 1,
+      "message": "Yeah, realistically this just exits and orphans the child, which does half of what daemon() does, but not all of it.\n\nI\u0027d say:\n\n\"Exit immediately after \\fBfork\\fR(2). minijail0 will not act as \\fBinit\\fR(1).\"",
+      "parentUuid": "5e3616b0_aa04fc9f",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "054eaf6b_e1e6658e",
         "filename": "minijail0.1",
         "patchSetId": 1
