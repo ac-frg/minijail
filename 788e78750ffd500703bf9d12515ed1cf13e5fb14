@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35a83091_16e105d8",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-20T04:11:55Z",
+      "side": 1,
+      "message": "we prob should document the format of \u003cmask\u003e and \u003ccaps\u003e (below).  the description makes it sound like you can pass in constant names when only a single hex value is accepted.",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e3616b0_aa04fc9f",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-20T04:11:55Z",
+      "side": 1,
+      "message": "\"daemonize\" is usually associated with things like daemon() which have specific implications related to std{out,err,in} and session behavior.\n\ni think we should just describe this as running in the foreground-vs-backgrounding.",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "054eaf6b_e1e6658e",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-20T04:11:55Z",
+      "side": 1,
+      "message": "missing .TP",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f5bf12_39d1bad3",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-20T04:11:55Z",
+      "side": 1,
+      "message": "should we discuss the implications of this ?\n\nwhen not using -i, a SIGINT (e.g. CTRL+C) will kill the parent minijail but not the actual process that minijail ran ...\n\nshould at least be a warning to not pass this normally.",
+      "revId": "788e78750ffd500703bf9d12515ed1cf13e5fb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
