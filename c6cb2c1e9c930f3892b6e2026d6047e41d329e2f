@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36ef4dd1_2aef3fee",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-04-26T19:28:55Z",
+      "side": 1,
+      "message": "Let me see what it would look like. I think it makes sense.",
+      "parentUuid": "37c35b5d_f2debe3f",
+      "range": {
+        "startLine": 1755,
+        "startChar": 5,
+        "endLine": 1755,
+        "endChar": 59
+      },
+      "revId": "c6cb2c1e9c930f3892b6e2026d6047e41d329e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3df08060_c4a88403",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-26T16:12:39Z",
       "side": 1,
       "message": "Can we add a warning here?",
+      "range": {
+        "startLine": 1756,
+        "startChar": 2,
+        "endLine": 1756,
+        "endChar": 14
+      },
+      "revId": "c6cb2c1e9c930f3892b6e2026d6047e41d329e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63f0a05b_bcaab9ed",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1756,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-04-26T19:28:55Z",
+      "side": 1,
+      "message": "what exactly do you want to warn about? \"Skipping dropping bounding set\" maybe?",
+      "parentUuid": "3df08060_c4a88403",
       "range": {
         "startLine": 1756,
         "startChar": 2,
