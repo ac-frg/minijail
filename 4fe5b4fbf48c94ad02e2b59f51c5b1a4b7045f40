@@ -16,6 +16,24 @@
       "revId": "4fe5b4fbf48c94ad02e2b59f51c5b1a4b7045f40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de2a3e58_9fa3ffcd",
+        "filename": "RELEASE.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-04-27T14:05:26Z",
+      "side": 1,
+      "message": "Well the commit messages themselves are not Markdown, and this is all blockquoted, so... maybe not?",
+      "parentUuid": "55b449ae_28c4c88c",
+      "revId": "4fe5b4fbf48c94ad02e2b59f51c5b1a4b7045f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
