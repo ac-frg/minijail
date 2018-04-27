@@ -34,6 +34,24 @@
       "revId": "4fe5b4fbf48c94ad02e2b59f51c5b1a4b7045f40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94a6a99b_0bf2862c",
+        "filename": "RELEASE.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-27T15:10:57Z",
+      "side": 1,
+      "message": "i don\u0027t mean for markdown purposes.  even in plain text, imo it\u0027s much more common to see a space after the bullet point in changelogs.",
+      "parentUuid": "de2a3e58_9fa3ffcd",
+      "revId": "4fe5b4fbf48c94ad02e2b59f51c5b1a4b7045f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
