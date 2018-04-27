@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55b449ae_28c4c88c",
+        "filename": "RELEASE.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-04-27T09:15:23Z",
+      "side": 1,
+      "message": "shouldn\u0027t there be spaces after the * ? :)",
+      "revId": "4fe5b4fbf48c94ad02e2b59f51c5b1a4b7045f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
