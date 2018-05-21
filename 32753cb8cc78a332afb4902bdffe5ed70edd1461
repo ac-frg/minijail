@@ -46,6 +46,30 @@
       "revId": "32753cb8cc78a332afb4902bdffe5ed70edd1461",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb82b1a4_c862ea70",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-05-21T17:16:46Z",
+      "side": 1,
+      "message": "Ah I got confused. It appears to me that the straightforward reading, given that it says \"parse_args_ *call*\", is for this to refer to the function.",
+      "parentUuid": "51ba9023_7c10ba48",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 53
+      },
+      "revId": "32753cb8cc78a332afb4902bdffe5ed70edd1461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
