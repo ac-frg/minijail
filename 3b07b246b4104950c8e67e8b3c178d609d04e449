@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "932bfc75_3a2f8c51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-24T05:44:24Z",
+      "side": 1,
+      "message": "\"to be created\"",
+      "revId": "3b07b246b4104950c8e67e8b3c178d609d04e449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d66eaf6a_1c8fa416",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-24T05:44:24Z",
+      "side": 1,
+      "message": "\"depended on by\"",
+      "revId": "3b07b246b4104950c8e67e8b3c178d609d04e449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
