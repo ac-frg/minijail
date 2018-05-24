@@ -8,10 +8,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/* These symbols are exposed from glibc since 2.27, so there is no need
+ * to include the header file with newer glibc */
+#if !(defined  __GNU_LIBRARY__ && __GLIBC__ == 2 && __GLIBC_MINOR__ >= 27)
 #include <asm/siginfo.h>
 #define __have_siginfo_t 1
 #define __have_sigval_t 1
 #define __have_sigevent_t 1
+#endif
 
 #include <signal.h>
 #include <string.h>
