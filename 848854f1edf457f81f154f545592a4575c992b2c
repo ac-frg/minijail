@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27725a68_fca82172",
+        "filename": "signal_handler.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-25T07:56:29Z",
+      "side": 1,
+      "message": "going by CL:588974, at least 2.26 did this",
+      "revId": "848854f1edf457f81f154f545592a4575c992b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e56e2f24_c7773b8e",
+        "filename": "signal_handler.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-25T07:56:29Z",
+      "side": 1,
+      "message": "i think we should just delete all this code, and local_sigsys below.  change the lookup_syscall_name to use info-\u003esi_syscall.  glibc \u0026 bionic have been carrying these for long enough that i don\u0027t think we need to hack this ourselves anymore.\n\nif we do come up with a concrete scenario where there\u0027s a system we want to support, we can add the hack back in a targeted way and document things.",
+      "revId": "848854f1edf457f81f154f545592a4575c992b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
