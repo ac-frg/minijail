@@ -8,11 +8,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <asm/siginfo.h>
-#define __have_siginfo_t 1
-#define __have_sigval_t 1
-#define __have_sigevent_t 1
-
 #include <signal.h>
 #include <string.h>
 
