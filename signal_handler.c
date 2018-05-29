@@ -8,11 +8,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <asm/siginfo.h>
-#define __have_siginfo_t 1
-#define __have_sigval_t 1
-#define __have_sigevent_t 1
-
 #include <signal.h>
 #include <string.h>
 
@@ -20,18 +15,10 @@
 
 #include "util.h"
 
-struct local_sigsys {
-	void		*ip;
-	int		nr;
-	unsigned int	arch;
-};
-
 void log_sigsys_handler(int nr, siginfo_t *info, void *void_context)
 {
-	struct local_sigsys sigsys;
 	const char *syscall_name;
-	memcpy(&sigsys, &info->_sifields, sizeof(sigsys));
-	syscall_name = lookup_syscall_name(sigsys.nr);
+	syscall_name = lookup_syscall_name(info->si_syscall);
 
 	(void) void_context;
 
