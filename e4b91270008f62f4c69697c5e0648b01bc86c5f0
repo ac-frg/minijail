@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ed484d9e_9e563523",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-31T15:07:54Z",
+      "side": 1,
+      "message": "it was a required hack because when this code was written, there were no userland defines, so people had to write their own accessors.  but it was still a hack ;).",
+      "parentUuid": "94138552_63637e25",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "e4b91270008f62f4c69697c5e0648b01bc86c5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99a7a34b_11c1f44d",
         "filename": "signal_handler.c",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "e4b91270008f62f4c69697c5e0648b01bc86c5f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466e3357_731b1882",
+        "filename": "signal_handler.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-05-31T15:07:54Z",
+      "side": 1,
+      "message": "i can use either.  the Google/Chromium style guides don\u0027t cover this afaict even if the code itself happens to display a preference.",
+      "parentUuid": "99a7a34b_11c1f44d",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "e4b91270008f62f4c69697c5e0648b01bc86c5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
