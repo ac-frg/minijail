@@ -1,0 +1,11 @@
+Verified+1: Ryo Hashimoto <hashimoto@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Code-Review+1: Luis Hector Chavez <lhchavez@google.com>
+Code-Review+1: Mike Frysinger <vapier@google.com>
+Autosubmit+1: Ryo Hashimoto <hashimoto@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 13 Jun 2018 04:21:18 +0000
+Reviewed-on: https://android-review.googlesource.com/703926
+Project: platform/external/minijail
+Branch: refs/heads/master
