@@ -22,6 +22,30 @@
       "revId": "07ba090fcf14a1a8d10c4ec4f557835df9e84db9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe76e9d_44ae3d8a",
+        "filename": "HACKING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-06-15T15:44:51Z",
+      "side": 1,
+      "message": "i\u0027ll roll this into CL:705506",
+      "parentUuid": "b249e30f_9c3ea709",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "07ba090fcf14a1a8d10c4ec4f557835df9e84db9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
