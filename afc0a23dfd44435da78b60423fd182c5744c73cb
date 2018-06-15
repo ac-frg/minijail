@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88f16aa7_c07e9e6c",
+        "filename": "HACKING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-06-15T14:48:20Z",
+      "side": 1,
+      "message": "unit tests?",
+      "range": {
+        "startLine": 31,
+        "startChar": 50,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "afc0a23dfd44435da78b60423fd182c5744c73cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71cd8a3d_5cbf1b16",
+        "filename": "HACKING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-06-15T14:48:20Z",
+      "side": 1,
+      "message": "https://git.kernel.org/pub/scm/linux/kernel/git/morgan/libcap.git/",
+      "range": {
+        "startLine": 75,
+        "startChar": 10,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "afc0a23dfd44435da78b60423fd182c5744c73cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
