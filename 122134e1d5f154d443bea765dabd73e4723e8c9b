@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e4a581b_23df5ea4",
+        "filename": "HACKING.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-06-18T15:27:34Z",
+      "side": 1,
+      "message": "libminijailpreload",
+      "range": {
+        "startLine": 26,
+        "startChar": 35,
+        "endLine": 26,
+        "endChar": 46
+      },
+      "revId": "122134e1d5f154d443bea765dabd73e4723e8c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66016acf_40dc7997",
+        "filename": "minijail0.5",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-06-18T15:27:34Z",
+      "side": 1,
+      "message": "\"EBADF\" should work since it\u0027s in the list of included constants.",
+      "range": {
+        "startLine": 103,
+        "startChar": 15,
+        "endLine": 103,
+        "endChar": 16
+      },
+      "revId": "122134e1d5f154d443bea765dabd73e4723e8c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
