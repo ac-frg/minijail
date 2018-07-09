@@ -87,6 +87,24 @@
       "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a315ce4a_ca0be476",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-09T22:51:20Z",
+      "side": 1,
+      "message": "I guess, but I couldn\u0027t find a better solution. Let\u0027s say this is best-effort.",
+      "parentUuid": "20a37fff_73d6cea4",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
