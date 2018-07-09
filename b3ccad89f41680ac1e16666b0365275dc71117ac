@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0838d6d4_d2f19779",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T21:45:47Z",
+      "side": 1,
+      "message": "these codepaths duplicate a lot.  how about:\n\nvoid do_fatal_log(int priority, const char *format, ...)\n{\n\tva_list args;\n\tva_start(args, format);\n\tif (logging_config.logger \u003d\u003d LOG_TO_SYSLOG) {\n\t\tvsyslog(priority, format, args);\n\t} else {\n\t\tvdprintf(logging_config.fd, format, args);\n\t\tdprintf(logging_config.fd, \"\\n\");\n\t}\n\tva_end(args);\n\tdo_abort();\n}",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b32c8a5_31acf1f3",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T21:45:47Z",
+      "side": 1,
+      "message": "seems like we should be able to mark this with the noreturn attribute",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
