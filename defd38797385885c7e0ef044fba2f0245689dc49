@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e52b55fc_6d7dd8b5",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T22:51:56Z",
+      "side": 1,
+      "message": "you could move this decl down below where it\u0027s used\n\nthen you could update the comment below with the logic behind the choice of 1k.  minidumps don\u0027t take the entire stack, only a chunk of the top (i forget how much exactly), so we need to keep the buffer small enough to not push out previous callers.\n\nto that end, i might even suggest using a 256 or 512 byte buffer.  seems unlikely a 1k buffer is needed for the die message.",
+      "revId": "defd38797385885c7e0ef044fba2f0245689dc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcafefa2_1024845d",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T22:51:56Z",
+      "side": 1,
+      "message": "you meant stack_args here instead of args",
+      "revId": "defd38797385885c7e0ef044fba2f0245689dc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dfc03af_a9a758d6",
+        "filename": "util.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T22:51:56Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "defd38797385885c7e0ef044fba2f0245689dc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
