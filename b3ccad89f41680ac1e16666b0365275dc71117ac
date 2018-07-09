@@ -69,6 +69,24 @@
       "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20a37fff_73d6cea4",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T22:47:39Z",
+      "side": 1,
+      "message": "that sounds like relying on existing internal optimization behavior that just happens to work and there\u0027s really no guarantee that clang won\u0027t change in the future such that the code even as written exhibits the same behavior",
+      "parentUuid": "36e4f4bd_1ad5de31",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
