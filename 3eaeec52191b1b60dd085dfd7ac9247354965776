@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2bf5905c_c9bec5e7",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-09T22:42:19Z",
+      "side": 1,
+      "message": "Had to tweak it a bit because clang didn\u0027t like it, but done.",
+      "parentUuid": "fd3f8a48_c4309012",
+      "revId": "3eaeec52191b1b60dd085dfd7ac9247354965776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19c12d11_11db3d05",
         "filename": "util.c",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "3eaeec52191b1b60dd085dfd7ac9247354965776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21f5e1d_20abb22d",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-09T22:42:19Z",
+      "side": 1,
+      "message": "Using va_copy instead.",
+      "parentUuid": "19c12d11_11db3d05",
+      "revId": "3eaeec52191b1b60dd085dfd7ac9247354965776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
