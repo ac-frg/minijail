@@ -87,22 +87,31 @@ static struct logging_config_t {
 #define do_abort() abort()
 #endif
 
+/* Forces the compiler to perform no optimizations on |var|. */
+static void __attribute__((optimize("O0"))) alias(const void *var)
+{
+	(void)var;
+}
+
 void do_fatal_log(int priority, const char *format, ...)
 {
-	if (logging_config.logger == LOG_TO_SYSLOG) {
-		va_list args;
-		va_start(args, format);
-		vsyslog(priority, format, args);
-		va_end(args);
-		do_abort();
-		return;
-	}
-
+	/*
+	 * Format the message into a stack-based variable so that it appears in
+	 * the minidump.
+	 */
+	char log_line[1024];
 	va_list args;
 	va_start(args, format);
-	vdprintf(logging_config.fd, format, args);
+	vsnprintf(log_line, sizeof(log_line), format, args);
 	va_end(args);
-	dprintf(logging_config.fd, "\n");
+
+	if (logging_config.logger == LOG_TO_SYSLOG) {
+		syslog(priority, "%s", log_line);
+	} else {
+		dprintf(logging_config.fd, "%s\n", log_line);
+	}
+
+	alias(log_line);
 	do_abort();
 }
 
