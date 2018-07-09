@@ -81,6 +81,31 @@ static struct logging_config_t {
 };
 /* clang-format on */
 
+#if defined(USE_EXIT_ON_DIE)
+#define do_abort() exit(1)
+#else
+#define do_abort() abort()
+#endif
+
+void do_fatal_log(int priority, const char *format, ...)
+{
+	if (logging_config.logger == LOG_TO_SYSLOG) {
+		va_list args;
+		va_start(args, format);
+		vsyslog(priority, format, args);
+		va_end(args);
+		do_abort();
+		return;
+	}
+
+	va_list args;
+	va_start(args, format);
+	vdprintf(logging_config.fd, format, args);
+	va_end(args);
+	dprintf(logging_config.fd, "\n");
+	do_abort();
+}
+
 void do_log(int priority, const char *format, ...)
 {
 	if (logging_config.logger == LOG_TO_SYSLOG) {
