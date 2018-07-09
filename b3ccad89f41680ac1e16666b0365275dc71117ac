@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "efbe47be_b911cf61",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-09T22:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0838d6d4_d2f19779",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b32c8a5_31acf1f3",
         "filename": "util.h",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36e4f4bd_1ad5de31",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-09T22:42:03Z",
+      "side": 1,
+      "message": "Unfortunately clang is clever enough to coalesce several of the do_fatal_log() invocations in large methods (like minijail_enter()) in a way that completely defeats the purpose of this change :( I\u0027ll add a comment about why it\u0027s missing instead.\n\nWith noreturn:\n\n aosp$ objdump -d out/host/linux-x86/lib64/libminijail.so | grep do_fatal_log | wc -l\n 50\n\nwithout:\n\n aosp$ objdump -d out/host/linux-x86/lib64/libminijail.so | grep do_fatal_log | wc -l\n 144",
+      "parentUuid": "1b32c8a5_31acf1f3",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
