@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd3f8a48_c4309012",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T21:48:20Z",
+      "side": 1,
+      "message": "__optimize__",
+      "revId": "3eaeec52191b1b60dd085dfd7ac9247354965776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c12d11_11db3d05",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-09T21:48:20Z",
+      "side": 1,
+      "message": "this limits the line to 1023 bytes all the time.  i\u0027m not sure we have any messages that\u0027ll be truncated, but it seems wrong to do that in general.",
+      "revId": "3eaeec52191b1b60dd085dfd7ac9247354965776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
