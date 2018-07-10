@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2010454_3e74081a",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-10T13:41:12Z",
+      "side": 1,
+      "message": "Nit: Capital M.",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "ad88607c1c0127e58292e767a752e2cffd8cb427",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
