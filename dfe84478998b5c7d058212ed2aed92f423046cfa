@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fc444b6_6100972f",
+        "filename": "util.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-10T17:03:06Z",
+      "side": 1,
+      "message": "Minijail-\u003ebreakpad",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 40
+      },
+      "revId": "dfe84478998b5c7d058212ed2aed92f423046cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
