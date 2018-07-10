@@ -105,6 +105,24 @@
       "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca52bb41_ac464fa1",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-10T19:42:35Z",
+      "side": 1,
+      "message": "Tried a couple more things, like adding -fno-optimize-sibling-calls and clang still wanted to merge the tail calls. I guess not adding noreturn is the best we can do for the moment :(",
+      "parentUuid": "a315ce4a_ca0be476",
+      "revId": "b3ccad89f41680ac1e16666b0365275dc71117ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
