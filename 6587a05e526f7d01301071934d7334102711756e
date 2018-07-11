@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21557db4_70ef3e25",
+        "filename": "system_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-11T19:42:46Z",
+      "side": 1,
+      "message": "I guess nothing like this exists in standard libs?",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "6587a05e526f7d01301071934d7334102711756e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87990d33_171ab0d6",
+        "filename": "system_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-11T19:42:46Z",
+      "side": 1,
+      "message": "unlink",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "6587a05e526f7d01301071934d7334102711756e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
