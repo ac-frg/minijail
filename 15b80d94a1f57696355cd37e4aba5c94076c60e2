@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d472b9d_f4f3dac0",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T03:32:39Z",
+      "side": 1,
+      "message": "use tabs for indent ?",
+      "revId": "15b80d94a1f57696355cd37e4aba5c94076c60e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ddf3070_8ffd1f5d",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T03:32:39Z",
+      "side": 1,
+      "message": "use \"e\" with fopen everywhere",
+      "revId": "15b80d94a1f57696355cd37e4aba5c94076c60e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
