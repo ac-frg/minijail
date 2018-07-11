@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d07ea3_c2dc3723",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-11T13:49:57Z",
+      "side": 1,
+      "message": "Nit: \"look up\" is the verb, \"lookup\" or \"look-up\" is the noun.",
+      "range": {
+        "startLine": 320,
+        "startChar": 21,
+        "endLine": 320,
+        "endChar": 27
+      },
+      "revId": "17e168d7a8b01701664e0292a240f5e96ce32be1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
