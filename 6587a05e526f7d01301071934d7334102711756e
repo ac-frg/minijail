@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "f51e9a06_a7ef10cb",
+        "filename": "system_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T19:44:29Z",
+      "side": 1,
+      "message": "i assume bionic supports the GNU %m extension",
+      "revId": "6587a05e526f7d01301071934d7334102711756e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87990d33_171ab0d6",
         "filename": "system_unittest.cc",
         "patchSetId": 1
@@ -42,6 +59,23 @@
         "endLine": 76,
         "endChar": 31
       },
+      "revId": "6587a05e526f7d01301071934d7334102711756e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55c87b2a_b92b9964",
+        "filename": "system_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T19:44:29Z",
+      "side": 1,
+      "message": "why struct and not class ?",
       "revId": "6587a05e526f7d01301071934d7334102711756e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
