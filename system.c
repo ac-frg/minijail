@@ -8,12 +8,14 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <grp.h>
+#include <mntent.h>
 #include <net/if.h>
 #include <pwd.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/ioctl.h>
+#include <sys/mount.h>
 #include <sys/prctl.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -417,4 +419,67 @@ int lookup_group(const char *group, gid_t *gid)
 
 	*gid = pgr->gr_gid;
 	return 0;
+}
+
+/*
+ * lookup_mount_flags: Gets the mount flags for the most specific mountpoint
+ * that contains the given path.
+ */
+int lookup_mount_flags(const char *proc_mounts_path, const char *path)
+{
+	struct mntent mount_entry;
+	FILE *mounts;
+	const size_t path_max = 4096;
+	char buffer[path_max];
+	size_t path_len = 0, mnt_dir_len = 0, best_match_len = 0;
+	int mnt_flags = -ENOENT;
+	size_t i;
+
+	static const struct {
+		const char *name;
+		int flag;
+	} flag_mapping[] = {
+	    {"ro", MS_RDONLY},
+	    {"noexec", MS_NOEXEC},
+	    {"nosuid", MS_NOSUID},
+	    {"nodev", MS_NODEV},
+	};
+
+	mounts = fopen(proc_mounts_path, "r");
+	if (!mounts) {
+		return -errno;
+	}
+	path_len = strlen(path);
+	while (getmntent_r(mounts, &mount_entry, buffer, sizeof(buffer))) {
+		mnt_dir_len = strlen(mount_entry.mnt_dir);
+		if (mnt_dir_len > path_len) {
+			/*
+			 * mount_entry.mnt_dir cannot possibly be a prefix of
+			 * path.
+			 */
+			continue;
+		}
+		if (mnt_dir_len < best_match_len) {
+			/* We have found a more specific match so far. */
+			continue;
+		}
+		if (strncmp(mount_entry.mnt_dir, path, mnt_dir_len) != 0) {
+			/*
+			 * mount_entry.mnt_dir is not a prefix of path.
+			 */
+			continue;
+		}
+		best_match_len = mnt_dir_len;
+
+		mnt_flags = 0;
+		for (i = 0; i < ARRAY_SIZE(flag_mapping); ++i) {
+			if (hasmntopt(&mount_entry, flag_mapping[i].name) !=
+			    NULL) {
+				mnt_flags |= flag_mapping[i].flag;
+			}
+		}
+	}
+
+	fclose(mounts);
+	return mnt_flags;
 }

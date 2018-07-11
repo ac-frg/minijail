@@ -5,11 +5,13 @@
  * Test system.[ch] module code using gtest.
  */
 
+#include <fcntl.h>
 #include <limits.h>
 #include <linux/securebits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/mount.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -279,4 +281,42 @@ TEST(setup_mount_destination, create_char_dev) {
   EXPECT_EQ(0, setup_mount_destination(kValidCharDev, path.c_str(), -1, -1, false));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(path.c_str()));
+}
+
+// Lookup of mount flags should succeed.
+TEST(lookup_mount_flags, lookup_mount_flags) {
+  constexpr const char kProcMountsContents[] = R"(
+proc /proc proc ro,relatime 0 0
+run /run/dbus tmpfs ro,seclabel,relatime,mode=755 0 0
+tmpfs /run tmpfs rw,nodev,nosuid,noexec,seclabel,relatime 0 0
+minijail-devfs /dev tmpfs rw,seclabel,nosuid,noexec,relatime,size=5120k,mode=755 0 0
+/dev/root / ext2 ro,nodev,nosuid,seclabel,relatime,block_validity,barrier,user_xattr,acl 0 0
+none /tmp tmpfs rw,seclabel,nosuid,nodev,noexec,relatime,size=65536k 0 0
+)";
+  std::string path = get_temp_path();
+  ASSERT_NE(std::string(), path);
+
+  int fd = open(path.c_str(), O_WRONLY | O_CREAT | O_EXCL, 0644);
+  ASSERT_NE(-1, fd);
+  ASSERT_NE(-1, write(fd, kProcMountsContents, strlen(kProcMountsContents)));
+  close(fd);
+
+  // Exact match for root.
+  EXPECT_EQ(MS_RDONLY | MS_NODEV | MS_NOSUID,
+            lookup_mount_flags(path.c_str(), "/"));
+  // Prefix match for a file.
+  EXPECT_EQ(MS_RDONLY | MS_NODEV | MS_NOSUID,
+            lookup_mount_flags(path.c_str(), "/sbin/minijail0"));
+  // Invalid path
+  EXPECT_EQ(-ENOENT, lookup_mount_flags(path.c_str(), "invalid"));
+
+  // Some common paths.
+  EXPECT_EQ(MS_NOEXEC | MS_NOSUID, lookup_mount_flags(path.c_str(), "/dev"));
+  EXPECT_EQ(MS_NODEV | MS_NOEXEC | MS_NOSUID, lookup_mount_flags(path.c_str(), "/run"));
+  EXPECT_EQ(MS_RDONLY, lookup_mount_flags(path.c_str(), "/run/dbus"));
+  EXPECT_EQ(MS_RDONLY, lookup_mount_flags(path.c_str(), "/run/dbus/"));
+  EXPECT_EQ(MS_RDONLY,
+            lookup_mount_flags(path.c_str(), "/run/dbus/system_bus_socket"));
+
+  unlink(path.c_str());
 }

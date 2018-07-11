@@ -60,6 +60,8 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 int lookup_user(const char *user, uid_t *uid, gid_t *gid);
 int lookup_group(const char *group, gid_t *gid);
 
+int lookup_mount_flags(const char *proc_self_mounts_path, const char *path);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif
