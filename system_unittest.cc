@@ -212,15 +212,16 @@ TEST(mkdir_p, create_tree) {
 TEST(setup_mount_destination, dest_exists) {
   // Pick some paths that should always exist.  We pass in invalid pointers
   // for other args so we crash if the dest check doesn't short circuit.
-  EXPECT_EQ(0, setup_mount_destination(nullptr, kValidDir, 0, 0, false));
-  EXPECT_EQ(0, setup_mount_destination(nullptr, "/proc", 0, 0, true));
-  EXPECT_EQ(0, setup_mount_destination(nullptr, "/dev", 0, 0, false));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, kValidDir, 0, 0, false,
+                                       nullptr));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, "/proc", 0, 0, true, nullptr));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, "/dev", 0, 0, false, nullptr));
 }
 
 // When given a bind mount where the source is relative, reject it.
 TEST(setup_mount_destination, reject_relative_bind) {
   // Pick a destination we know doesn't exist.
-  EXPECT_NE(0, setup_mount_destination("foo", kNoSuchDir, 0, 0, true));
+  EXPECT_NE(0, setup_mount_destination("foo", kNoSuchDir, 0, 0, true, nullptr));
 }
 
 // A mount of a pseudo filesystem should make the destination dir.
@@ -229,7 +230,8 @@ TEST(setup_mount_destination, create_pseudo_fs) {
   ASSERT_NE(std::string(), path);
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  EXPECT_EQ(0, setup_mount_destination("none", path.c_str(), -1, -1, false));
+  EXPECT_EQ(0, setup_mount_destination("none", path.c_str(), -1, -1, false,
+                                       nullptr));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(path.c_str()));
 
@@ -239,15 +241,18 @@ TEST(setup_mount_destination, create_pseudo_fs) {
   // invalid user ID, just skip this check.
   if (!is_android()) {
     EXPECT_NE(0, setup_mount_destination("none", path.c_str(),
-                                         UINT_MAX / 2, UINT_MAX / 2, false));
+                                         UINT_MAX / 2, UINT_MAX / 2, false,
+                                         nullptr));
   }
 }
 
 // If the source path does not exist, we should error out.
 TEST(setup_mount_destination, missing_source) {
   // The missing dest path is so we can exercise the source logic.
-  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, false));
-  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, true));
+  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, false,
+                                       nullptr));
+  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, true,
+                                       nullptr));
 }
 
 // A bind mount of a directory should create the destination dir.
@@ -256,7 +261,8 @@ TEST(setup_mount_destination, create_bind_dir) {
   ASSERT_NE(std::string(), path);
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  EXPECT_EQ(0, setup_mount_destination(kValidDir, path.c_str(), -1, -1, true));
+  EXPECT_EQ(0, setup_mount_destination(kValidDir, path.c_str(), -1, -1, true,
+                                       nullptr));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(path.c_str()));
 }
@@ -267,7 +273,8 @@ TEST(setup_mount_destination, create_bind_file) {
   ASSERT_NE(std::string(), path);
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  EXPECT_EQ(0, setup_mount_destination(kValidFile, path.c_str(), -1, -1, true));
+  EXPECT_EQ(0, setup_mount_destination(kValidFile, path.c_str(), -1, -1, true,
+                                       nullptr));
   // We check it's a file by deleting it as such.
   EXPECT_EQ(0, unlink(path.c_str()));
 }
@@ -278,7 +285,8 @@ TEST(setup_mount_destination, create_char_dev) {
   ASSERT_NE(std::string(), path);
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  EXPECT_EQ(0, setup_mount_destination(kValidCharDev, path.c_str(), -1, -1, false));
+  EXPECT_EQ(0, setup_mount_destination(kValidCharDev, path.c_str(), -1, -1,
+                                       false, nullptr));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(path.c_str()));
 }

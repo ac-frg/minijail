@@ -270,7 +270,7 @@ int mkdir_p(const char *path, mode_t mode, bool isdir)
  * Creates it if needed and possible.
  */
 int setup_mount_destination(const char *source, const char *dest, uid_t uid,
-			    uid_t gid, bool bind)
+			    uid_t gid, bool bind, int *mnt_flags)
 {
 	int rc;
 	struct stat st_buf;
@@ -311,6 +311,21 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 		domkdir = S_ISDIR(st_buf.st_mode) ||
 			  (!bind && (S_ISBLK(st_buf.st_mode) ||
 				     S_ISCHR(st_buf.st_mode)));
+
+		/* If bind mounting, also grab the mount flags of the source. */
+		if (bind && mnt_flags) {
+			char *abspath = realpath(source, NULL);
+			if (!abspath)
+				return -ENOMEM;
+			*mnt_flags =
+			    lookup_mount_flags("/proc/mounts", abspath);
+			free(abspath);
+			if (*mnt_flags < 0) {
+				pwarn("failed to lookup mount flags: source=%s",
+				      source);
+				return *mnt_flags;
+			}
+		}
 	} else {
 		/* The source is a relative path -- assume it's a pseudo fs. */
 
