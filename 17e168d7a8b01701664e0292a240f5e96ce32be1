@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "854f7998_0c6e3e20",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1377,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T15:36:35Z",
+      "side": 1,
+      "message": "mount flags should be unsigned long, not int",
+      "revId": "17e168d7a8b01701664e0292a240f5e96ce32be1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5097192_b94f460f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-11T15:36:35Z",
+      "side": 1,
+      "message": "personally i really dislike wrapping at the \u003d especially when it only gains you like two spaces.  would rather wrap the later args by themselves as needed.",
+      "revId": "17e168d7a8b01701664e0292a240f5e96ce32be1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30d07ea3_c2dc3723",
         "filename": "system.c",
         "patchSetId": 2
