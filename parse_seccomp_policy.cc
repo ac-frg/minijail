@@ -14,7 +14,7 @@
 
 namespace {
 
-void DumpOneFilter(size_t i, struct sock_filter* filter) {
+void DumpOneFilter(size_t i, struct sock_filter* filter, struct filter_info *info) {
   constexpr int kWidth = 40;
   int written;
   const char *opcode, *op_name;
@@ -82,8 +82,12 @@ void DumpOneFilter(size_t i, struct sock_filter* filter) {
       }
       written =
           printf("%s %d %d %#x", opcode, filter->jt, filter->jf, filter->k);
-      printf("%*s; %s %#x, t: %zu f: %zu\n", kWidth - written, "", op_name,
-             filter->k, i + filter->jt + 1, i + filter->jf + 1);
+      printf("%*s; ", kWidth - written, "");
+      if (info->syscall_block_start <= i && i < info->syscall_block_end)
+        printf("%s %s, ", op_name, lookup_syscall_name(filter->k));
+      else
+        printf("%s %#x, ", op_name, filter->k);
+      printf("t: %zu f: %zu\n", i + filter->jt + 1, i + filter->jf + 1);
       return;
     case 0x06:
       if (filter->k == SECCOMP_RET_KILL) {
@@ -108,14 +112,14 @@ void DumpOneFilter(size_t i, struct sock_filter* filter) {
          filter->jf, filter->k);
 }
 
-void DumpBpfProg(struct sock_fprog* fprog) {
+void DumpBpfProg(struct sock_fprog* fprog, struct filter_info *info) {
   struct sock_filter* filter = fprog->filter;
   unsigned short len = fprog->len;
 
   printf("len == %d\n", len);
   printf("filter:\n");
   for (size_t i = 0; i < len; i++) {
-    DumpOneFilter(i, &filter[i]);
+    DumpOneFilter(i, &filter[i], info);
   }
 }
 
@@ -167,13 +171,14 @@ int main(int argc, char** argv) {
     pdie("fopen(%s) failed", argv[1]);
 
   struct sock_fprog fp;
-  int res = compile_filter(argv[1], f, &fp, 0, 0);
+  struct filter_info info;
+  int res = compile_filter(argv[1], f, &fp, 0, 0, &info);
   fclose(f);
   if (res != 0)
     die("compile_filter failed");
 
   if (dump_path.empty()) {
-    DumpBpfProg(&fp);
+    DumpBpfProg(&fp, &info);
   } else {
     FILE* out = fopen(dump_path.c_str(), "we");
     if (!out)
