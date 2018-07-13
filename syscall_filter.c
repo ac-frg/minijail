@@ -663,7 +663,8 @@ free_line:
 }
 
 int compile_filter(const char *filename, FILE *initial_file,
-		   struct sock_fprog *prog, int use_ret_trap, int allow_logging)
+		   struct sock_fprog *prog, int use_ret_trap, int allow_logging,
+		   struct filter_info *info)
 {
 	int ret = 0;
 	struct bpf_labels labels;
@@ -687,6 +688,11 @@ int compile_filter(const char *filename, FILE *initial_file,
 	len = bpf_load_syscall_nr(load_nr);
 	append_filter_block(head, load_nr, len);
 
+	if (info) {
+		info->arch_validation_start = 0;
+		info->arch_validation_end = head->total_len;
+	}
+
 	/* If logging failures, allow the necessary syscalls first. */
 	if (allow_logging)
 		allow_logging_syscalls(head);
@@ -707,6 +713,11 @@ int compile_filter(const char *filename, FILE *initial_file,
 		append_ret_kill(head);
 	else
 		append_ret_trap(head);
+
+	if (info) {
+		info->syscall_block_start = info->arch_validation_end;
+		info->syscall_block_end = head->total_len;
+	}
 
 	/* Allocate the final buffer, now that we know its size. */
 	size_t final_filter_len =

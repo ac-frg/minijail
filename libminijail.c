@@ -881,7 +881,7 @@ static int parse_seccomp_filters(struct minijail *j, const char *filename,
 	int allow_logging = j->flags.seccomp_filter_logging;
 
 	if (compile_filter(filename, policy_file, fprog, use_ret_trap,
-			   allow_logging)) {
+			   allow_logging, NULL)) {
 		free(fprog);
 		return -1;
 	}
