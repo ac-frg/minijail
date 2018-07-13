@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e3cad55_56ef9275",
+        "filename": "syscall_filter.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-13T14:01:30Z",
+      "side": 1,
+      "message": "is total_len an index and not a len? If not validation_end should be validation_length?",
+      "range": {
+        "startLine": 693,
+        "startChar": 2,
+        "endLine": 693,
+        "endChar": 46
+      },
+      "revId": "1215c1e4e26c30e0f52fe4b815b315e9dbc99637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6de99e60_32378a5a",
+        "filename": "syscall_filter.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-13T14:01:30Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 719,
+        "startChar": 2,
+        "endLine": 719,
+        "endChar": 44
+      },
+      "revId": "1215c1e4e26c30e0f52fe4b815b315e9dbc99637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
