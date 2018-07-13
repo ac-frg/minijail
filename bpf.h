@@ -194,8 +194,15 @@ size_t bpf_allow_syscall_args(struct sock_filter *filter,
 		int nr, unsigned int id);
 
 /* Debug functions. */
-void dump_bpf_prog(struct sock_fprog *fprog);
-void dump_bpf_filter(struct sock_filter *filter, unsigned short len);
+struct filter_info {
+	size_t arch_validation_start;
+	size_t arch_validation_end;
+	size_t syscall_block_start;
+	size_t syscall_block_end;
+};
+void dump_bpf_prog(struct sock_fprog *fprog, struct filter_info *info);
+void dump_bpf_filter(struct sock_filter *filter, unsigned short len,
+		     struct filter_info *info);
 
 #ifdef __cplusplus
 }; /* extern "C" */

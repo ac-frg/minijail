@@ -42,7 +42,7 @@ int compile_file(const char *filename, FILE *policy_file,
 		 unsigned int include_level);
 int compile_filter(const char *filename, FILE *policy_file,
 		   struct sock_fprog *prog, int do_ret_trap,
-		   int add_logging_syscalls);
+		   int add_logging_syscalls, struct filter_info *info);
 
 struct filter_block *new_filter_block(void);
 int flatten_block_list(struct filter_block *head, struct sock_filter *filter,

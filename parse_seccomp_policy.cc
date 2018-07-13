@@ -23,11 +23,12 @@ int main(int argc, char **argv) {
 	}
 
 	struct sock_fprog fp;
-	int res = compile_filter(argv[1], f, &fp, 0, 0);
+	struct filter_info info;
+	int res = compile_filter(argv[1], f, &fp, 0, 0, &info);
 	if (res != 0) {
 		die("compile_filter failed");
 	}
-	dump_bpf_prog(&fp);
+	dump_bpf_prog(&fp, &info);
 
 	free(fp.filter);
 	fclose(f);

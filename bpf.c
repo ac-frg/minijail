@@ -182,7 +182,8 @@ size_t bpf_arg_comp(struct sock_filter **pfilter, int op, int argidx,
 	return curr_block - filter;
 }
 
-static void dump_one_filter(size_t i, struct sock_filter *filter)
+static void dump_one_filter(size_t i, struct sock_filter *filter,
+			    struct filter_info *info)
 {
 	const int width = 40;
 	int written;
@@ -252,8 +253,15 @@ static void dump_one_filter(size_t i, struct sock_filter *filter)
 		}
 		written = printf("%s %d %d %#x", opcode, filter->jt, filter->jf,
 				 filter->k);
-		printf("%*s; %s %#x, t: %zu f: %zu\n", width - written,
-		       "", operator, filter->k, i + filter->jt + 1,
+		printf("%*s; ", width - written, "");
+		if (info->syscall_block_start <= i &&
+		    i < info->syscall_block_end) {
+			printf("%s %s, ", operator,
+			       lookup_syscall_name(filter->k));
+		} else {
+			printf("%s %#x, ", operator, filter->k);
+		}
+		printf("t: %zu f: %zu\n", i + filter->jt + 1,
 		       i + filter->jf + 1);
 		return;
 	case 0x06:
@@ -283,22 +291,23 @@ static void dump_one_filter(size_t i, struct sock_filter *filter)
 	       filter->jf, filter->k);
 }
 
-void dump_bpf_filter(struct sock_filter *filter, unsigned short len)
+void dump_bpf_filter(struct sock_filter *filter, unsigned short len,
+		     struct filter_info *info)
 {
 	size_t i = 0;
 
 	printf("len == %d\n", len);
 	printf("filter:\n");
 	for (i = 0; i < len; i++) {
-		dump_one_filter(i, &filter[i]);
+		dump_one_filter(i, &filter[i], info);
 	}
 }
 
-void dump_bpf_prog(struct sock_fprog *fprog)
+void dump_bpf_prog(struct sock_fprog *fprog, struct filter_info *info)
 {
 	struct sock_filter *filter = fprog->filter;
 	unsigned short len = fprog->len;
-	dump_bpf_filter(filter, len);
+	dump_bpf_filter(filter, len, info);
 }
 
 int bpf_resolve_jumps(struct bpf_labels *labels, struct sock_filter *filter,
