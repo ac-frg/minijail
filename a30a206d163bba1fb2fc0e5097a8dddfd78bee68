@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2097b85a_b538e6e7",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-07-13T13:53:30Z",
+      "side": 0,
+      "message": "Hah I wonder how long ago I wrote this.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "a30a206d163bba1fb2fc0e5097a8dddfd78bee68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
