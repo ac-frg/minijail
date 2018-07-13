@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c67c9b28_180d3aea",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-13T14:33:25Z",
+      "side": 1,
+      "message": "stderr should only be used when showing an error.  --help should write to stdout instead.\n\nusually you can pass in the status as an argument and then let the usage func call exit itself.\n\n fprintf(status ? stderr : stdout,",
+      "revId": "2aa6bfdf96d79f702fed867910974a1239d95a45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f403bf8e_92d35b0e",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-13T14:33:25Z",
+      "side": 1,
+      "message": "should make it an optional_argument and have it dump to stdout if there\u0027s no path",
+      "revId": "2aa6bfdf96d79f702fed867910974a1239d95a45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27bb8bd2_aac0861e",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-13T14:33:25Z",
+      "side": 1,
+      "message": "pdie",
+      "revId": "2aa6bfdf96d79f702fed867910974a1239d95a45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eddb2e8_1ecdd288",
+        "filename": "parse_seccomp_policy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-13T14:33:25Z",
+      "side": 1,
+      "message": "pdie",
+      "revId": "2aa6bfdf96d79f702fed867910974a1239d95a45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
