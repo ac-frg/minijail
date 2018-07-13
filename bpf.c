@@ -182,15 +182,115 @@ size_t bpf_arg_comp(struct sock_filter **pfilter, int op, int argidx,
 	return curr_block - filter;
 }
 
+static void dump_one_filter(size_t i, struct sock_filter *filter)
+{
+	const int width = 40;
+	int written;
+	const char *opcode, *operator;
+
+	/* Print the index followed by the hex dump of filter. */
+	printf("%5zu: | %04x %02x %02x %08x | ", i, filter->code, filter->jt,
+	       filter->jf, filter->k);
+	switch (filter->code & 0x7) {
+	case 0x00:
+		switch (filter->code) {
+		case 0x60:
+			printf("LD M[%d]\n", filter->k);
+			return;
+		case 0x20:
+			printf("LDABSW %d\n", filter->k);
+			return;
+		}
+		break;
+	case 0x02:
+		switch (filter->code) {
+		case 0x02:
+			printf("ST M[%d]\n", filter->k);
+			return;
+		}
+		break;
+	case 0x05:
+		if (filter->code == 0x05) {
+			written = printf("JMP %d", filter->k);
+			printf("%*s; goto %zu\n", width - written, "",
+			       i + filter->k + 1);
+			return;
+		}
+		switch (filter->code) {
+		case 0x15:
+			opcode = "JEQ";
+			operator= "==";
+			break;
+		case 0x25:
+			opcode = "JNE";
+			operator= "!=";
+			break;
+		case 0x35:
+			opcode = "JLT";
+			operator= "<";
+			break;
+		case 0x45:
+			opcode = "JLE";
+			operator= "<=";
+			break;
+		case 0x55:
+			opcode = "JGT";
+			operator= ">";
+			break;
+		case 0x65:
+			opcode = "JGE";
+			operator= ">=";
+			break;
+		case 0x75:
+			opcode = "JSET";
+			operator= "&";
+			break;
+		case 0x85:
+			opcode = "JIN";
+			operator= "in";
+			break;
+		}
+		written = printf("%s %d %d %#x", opcode, filter->jt, filter->jf,
+				 filter->k);
+		printf("%*s; %s %#x, t: %zu f: %zu\n", width - written,
+		       "", operator, filter->k, i + filter->jt + 1,
+		       i + filter->jf + 1);
+		return;
+	case 0x06:
+		if (filter->k == SECCOMP_RET_KILL) {
+			printf("RET SECCOMP_RET_KILL\n");
+		} else if (filter->k == SECCOMP_RET_TRAP) {
+			printf("RET SECCOMP_RET_TRAP\n");
+		} else if ((filter->k & SECCOMP_RET_ACTION) ==
+			   SECCOMP_RET_ERRNO) {
+			printf("%-*s; errno = %d\n", width,
+			       "RET SECCOMP_RET_ERRNO",
+			       filter->k & SECCOMP_RET_DATA);
+		} else if (filter->k == SECCOMP_RET_TRACE) {
+			printf("RET SECCOMP_RET_TRACE\n");
+		} else if (filter->k == SECCOMP_RET_ALLOW) {
+			printf("RET SECCOMP_RET_ALLOW\n");
+		} else {
+			printf("RET #%x\n", filter->k);
+		}
+		return;
+	}
+	/*
+	 * If we could not find a better match, just print out the formatted raw
+	 * structure.
+	 */
+	printf("{ code=%#x, jt=%u, jf=%u, k=%#x }\n", filter->code, filter->jt,
+	       filter->jf, filter->k);
+}
+
 void dump_bpf_filter(struct sock_filter *filter, unsigned short len)
 {
-	int i = 0;
+	size_t i = 0;
 
 	printf("len == %d\n", len);
 	printf("filter:\n");
 	for (i = 0; i < len; i++) {
-		printf("%d: \t{ code=%#x, jt=%u, jf=%u, k=%#x \t}\n", i,
-		       filter[i].code, filter[i].jt, filter[i].jf, filter[i].k);
+		dump_one_filter(i, &filter[i]);
 	}
 }
 

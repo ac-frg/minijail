@@ -9,7 +9,6 @@
 #include "syscall_filter.h"
 #include "util.h"
 
-/* TODO(jorgelo): Use libseccomp disassembler here. */
 int main(int argc, char **argv) {
 	init_logging(LOG_TO_FD, STDERR_FILENO, LOG_INFO);
 

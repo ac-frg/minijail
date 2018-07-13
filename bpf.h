@@ -42,14 +42,15 @@ enum {
 };
 
 /*
- * BPF return values and data structures,
- * since they're not yet in the kernel.
+ * BPF return values and data structures, since they're not in older kernels.
  */
 #define SECCOMP_RET_KILL	0x00000000U /* kill the task immediately */
 #define SECCOMP_RET_TRAP	0x00030000U /* return SIGSYS */
 #define SECCOMP_RET_ERRNO	0x00050000U /* return -1 and set errno */
+#define SECCOMP_RET_TRACE	0x7ff00000U /* pass a tracer or disallow */
 #define SECCOMP_RET_ALLOW	0x7fff0000U /* allow */
 
+#define SECCOMP_RET_ACTION	0xffff0000U /* mask for action */
 #define SECCOMP_RET_DATA	0x0000ffffU /* mask for return value */
 
 struct seccomp_data {
