@@ -5,6 +5,7 @@
 
 #include <getopt.h>
 #include <stdio.h>
+#include <string.h>
 
 #include <string>
 
@@ -71,7 +72,9 @@ int main(int argc, char** argv) {
   if (argc == optind)
     Usage(argv[0], 1);
 
-  FILE* f = fopen(argv[optind], "re");
+  FILE* f = stdin;
+  if (strcmp(argv[optind], "-") != 0)
+    f = fopen(argv[optind], "re");
   if (!f)
     pdie("fopen(%s) failed", argv[1]);
 
