@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7b64a2b_1993e4b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-23T17:44:25Z",
+      "side": 1,
+      "message": "on-\u003ein",
+      "range": {
+        "startLine": 9,
+        "startChar": 70,
+        "endLine": 9,
+        "endChar": 72
+      },
+      "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a500fbea_dba73852",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-23T17:44:25Z",
+      "side": 1,
+      "message": "i\u0027m a bit lost here.  the BPF registers are all 32-bits right ?  on a system with 64-bit syscall args, we\u0027re writing 32-bit BPF insns to test those values ?  so how can we omit the test ?\n\nsay the filter has:\n\n close: arg0 \u003c 0x10\n\narg0 is a 64-bit register.  if you omit the hi\u003d\u003d0 part, won\u0027t someone be able to call close(0xff00000000) ?  hi\u003d0xff and lo\u003d0x00000000.",
+      "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
