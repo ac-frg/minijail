@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97276638_3aefc32a",
+        "filename": "bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-23T17:27:06Z",
+      "side": 1,
+      "message": "is this * supposed to be here ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 9
+      },
+      "revId": "a57f7dee8f2bab01da0981e2fc11a7bb45b2e424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d40c63a7_24e1993f",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-07-23T17:27:06Z",
+      "side": 1,
+      "message": "there\u0027s new tests for \u003c and \u003e\u003d ... i\u0027d prefer to have tests cover every operator explicitly",
+      "revId": "a57f7dee8f2bab01da0981e2fc11a7bb45b2e424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
