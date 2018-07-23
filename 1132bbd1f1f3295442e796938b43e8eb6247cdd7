@@ -39,6 +39,24 @@
       "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba1d2358_88c62854",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-23T17:53:35Z",
+      "side": 1,
+      "message": "That would be implemented as\n\n close: !(arg0 \u003e\u003d 0x10)\n\nso that would roughly translate to\n\n if (hi(arg0) \u003e hi(0x10)) jump KILL;\n if (hi(arg0) \u003d\u003d hi(0x10) \u0026\u0026 lo(arg0) \u003e\u003d lo(0x10)) jump KILL;\n jump ALLOW;\n\nWhat this optimization does is that it removes the first part of the second if, (|hi(arg0) \u003d\u003d hi(0x10)|), given that we know it\u0027s going to be true always, since |!(hi(arg0) \u003e hi(0x10))|, which means that the only value |hi(arg0)| can legally have is zero. We\u0027d still be doing the very first check, so any non-zero |hi(arg0)| value should still jump to KILL.\n\nLet me see if I can reword this to be clearer.",
+      "parentUuid": "a500fbea_dba73852",
+      "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
