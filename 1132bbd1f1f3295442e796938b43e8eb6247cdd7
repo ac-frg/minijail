@@ -99,6 +99,24 @@
       "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc946ee7_e2a8da6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-25T00:40:09Z",
+      "side": 1,
+      "message": "the inversion of the test operand only happens with \u003c and \u003c\u003d since cBPF only supports \u003e and \u003e\u003d.",
+      "parentUuid": "48aa8196_5bbca249",
+      "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
