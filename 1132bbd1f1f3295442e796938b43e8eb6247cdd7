@@ -117,6 +117,24 @@
       "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf46857_e2d103a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-07-25T00:49:39Z",
+      "side": 1,
+      "message": "How does the new wording look?",
+      "parentUuid": "fc946ee7_e2a8da6f",
+      "revId": "1132bbd1f1f3295442e796938b43e8eb6247cdd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
