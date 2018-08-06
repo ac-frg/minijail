@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cff7d1a_6c0345e0",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-08-06T22:57:10Z",
+      "side": 1,
+      "message": "(void)",
+      "revId": "c13a7530c9be2410b93ea21902c0701488adba12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e74545d0_ab6dc2b5",
+        "filename": "system.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-08-06T22:57:10Z",
+      "side": 1,
+      "message": "C code needs to use (void)",
+      "revId": "c13a7530c9be2410b93ea21902c0701488adba12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
