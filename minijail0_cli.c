@@ -189,7 +189,7 @@ static void add_mount(struct minijail *j, char *arg)
 
 	unsigned long mountflags;
 	if (flags == NULL || flags[0] == '\0') {
-		mountflags = 0;
+		mountflags = MS_NODEV | MS_NOEXEC | MS_NOSUID;
 	} else {
 		end = NULL;
 		mountflags = parse_constant(flags, &end);
