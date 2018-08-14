@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8359edb_2229b319",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-08-14T21:49:59Z",
+      "side": 1,
+      "message": "Maybe make this, frequent_set, and the entries in syscall_set_list be sets, too.",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 13
+      },
+      "revId": "8e1d0908fdbc20d54b6f9e9b936af408b12565fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
