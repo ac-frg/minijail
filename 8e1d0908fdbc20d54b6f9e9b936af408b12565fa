@@ -70,6 +70,30 @@
       "revId": "8e1d0908fdbc20d54b6f9e9b936af408b12565fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae2ee33c_dca07135",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-08-14T22:01:52Z",
+      "side": 1,
+      "message": "i *think* i see what it was going for, but i also see that the sorted() logic before handles it, so i\u0027ve nerfed it\n\nif people have some foreknowledge of what\u0027s more frequent in their system, they can always hand edit/sort the generated output\n\ni\u0027ll leave basic_set/syscall_set_list as lists for now out of laziness",
+      "parentUuid": "0d81d037_1ad3a84f",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 13
+      },
+      "revId": "8e1d0908fdbc20d54b6f9e9b936af408b12565fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
