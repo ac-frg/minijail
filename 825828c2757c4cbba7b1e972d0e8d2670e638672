@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05a6e348_49b5931d",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-08-22T17:42:19Z",
+      "side": 1,
+      "message": "i don\u0027t see why we need to add \"hwasan\" to the func name.  mj doesn\u0027t care here.",
+      "revId": "825828c2757c4cbba7b1e972d0e8d2670e638672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
