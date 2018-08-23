@@ -16,6 +16,24 @@
       "revId": "825828c2757c4cbba7b1e972d0e8d2670e638672",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e5a2d3_d31c9eea",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2018-08-23T21:43:16Z",
+      "side": 1,
+      "message": "Do you want me to rename it back?\nI\u0027ll also update the other change then to keep names in sync:\n  https://android-review.googlesource.com/c/platform/frameworks/av/+/735987",
+      "parentUuid": "05a6e348_49b5931d",
+      "revId": "825828c2757c4cbba7b1e972d0e8d2670e638672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
