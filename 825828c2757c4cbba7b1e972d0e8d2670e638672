@@ -34,6 +34,24 @@
       "revId": "825828c2757c4cbba7b1e972d0e8d2670e638672",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d45b19_2b7d1a18",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-08-23T23:01:24Z",
+      "side": 1,
+      "message": "i don\u0027t have opinions about other android repos ;)\n\nit\u0027s a huge nit :/.  but you\u0027ve posted CL:737175 at this point to rename it in mj.",
+      "parentUuid": "c1e5a2d3_d31c9eea",
+      "revId": "825828c2757c4cbba7b1e972d0e8d2670e638672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
