@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eaceaa4d_0565db15",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-09-21T16:36:48Z",
+      "side": 1,
+      "message": "how about we just say we support hex constants or the text format via cap_from_text ?  \"parsed mask\" makes me think too hard.",
+      "range": {
+        "startLine": 33,
+        "startChar": 37,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "7d9fa8a5aa865344259d5d17a1a4a150905d176d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

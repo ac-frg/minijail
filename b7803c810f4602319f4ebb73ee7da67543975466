@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "317f4836_fc07443b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-09-21T16:36:48Z",
+      "side": 0,
+      "message": "feels like this should be in the \"else\" code path of the if statement above so both code paths can hit the same minijail_use_caps call below",
+      "revId": "b7803c810f4602319f4ebb73ee7da67543975466",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
