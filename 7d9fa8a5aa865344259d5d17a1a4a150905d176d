@@ -22,6 +22,30 @@
       "revId": "7d9fa8a5aa865344259d5d17a1a4a150905d176d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac5e0f4_d186e4ae",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-09-21T16:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaceaa4d_0565db15",
+      "range": {
+        "startLine": 33,
+        "startChar": 37,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "7d9fa8a5aa865344259d5d17a1a4a150905d176d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
