@@ -82,8 +82,30 @@ static void skip_securebits(struct minijail *j, const char *arg)
 
 static void use_caps(struct minijail *j, const char *arg)
 {
-	uint64_t caps;
+	uint64_t caps = 0;
 	char *end = NULL;
+	cap_t parsed_caps = cap_from_text(arg);
+
+	if (parsed_caps != NULL) {
+		unsigned int i;
+		const uint64_t one = 1;
+		cap_flag_value_t cap_value;
+		unsigned int last_valid_cap = get_last_valid_cap();
+		for (i = 0; i <= last_valid_cap; ++i) {
+			if (cap_get_flag(parsed_caps, i, CAP_EFFECTIVE,
+					 &cap_value)) {
+				fprintf(stderr, "Could not get the value of "
+						"CAP_SETGID: %m\n");
+				exit(1);
+			}
+			if (cap_value == CAP_SET)
+				caps |= (one << i);
+		}
+		cap_free(parsed_caps);
+		minijail_use_caps(j, caps);
+		return;
+	}
+
 	caps = strtoull(arg, &end, 16);
 	if (*end) {
 		fprintf(stderr, "Invalid cap set: '%s'\n", arg);
