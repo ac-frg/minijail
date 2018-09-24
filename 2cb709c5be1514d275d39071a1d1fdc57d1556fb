@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8ff8c1b_87c0f81a",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-09-24T16:18:26Z",
+      "side": 1,
+      "message": "Currently this is \"all\", but I want to send an upstream patch to fix this.",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "2cb709c5be1514d275d39071a1d1fdc57d1556fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
