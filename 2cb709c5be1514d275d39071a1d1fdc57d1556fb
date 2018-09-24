@@ -22,6 +22,75 @@
       "revId": "2cb709c5be1514d275d39071a1d1fdc57d1556fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c487d6c7_b808df17",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-09-24T17:58:39Z",
+      "side": 1,
+      "message": "Nit: \"reject\", since \"versions\" is plural.",
+      "range": {
+        "startLine": 99,
+        "startChar": 32,
+        "endLine": 99,
+        "endChar": 39
+      },
+      "revId": "2cb709c5be1514d275d39071a1d1fdc57d1556fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc97da24_2764616d",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-09-24T17:58:39Z",
+      "side": 1,
+      "message": "\"they were\"",
+      "range": {
+        "startLine": 100,
+        "startChar": 21,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "2cb709c5be1514d275d39071a1d1fdc57d1556fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "838a864c_71f5f45f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-09-24T17:58:39Z",
+      "side": 1,
+      "message": "I\u0027d say \"by returning EINVAL\" to avoid the repeated \"with\".",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 19
+      },
+      "revId": "2cb709c5be1514d275d39071a1d1fdc57d1556fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
