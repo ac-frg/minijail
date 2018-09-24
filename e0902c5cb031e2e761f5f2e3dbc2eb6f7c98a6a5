@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f90cefb_8df294a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-09-24T18:31:08Z",
+      "side": 1,
+      "message": "i think you can delete \"all\" ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 67,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "e0902c5cb031e2e761f5f2e3dbc2eb6f7c98a6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
