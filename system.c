@@ -3,6 +3,8 @@
  * found in the LICENSE file.
  */
 
+#define _GNU_SOURCE
+
 #include "system.h"
 
 #include <errno.h>
@@ -18,6 +20,7 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/statvfs.h>
+#include <syscall.h>
 #include <unistd.h>
 
 #include "util.h"
@@ -440,4 +443,39 @@ int lookup_group(const char *group, gid_t *gid)
 
 	*gid = pgr->gr_gid;
 	return 0;
+}
+
+int open_selinux_context_file(const char *attr_name)
+{
+	char *path = NULL;
+	int fd = -1;
+
+	if (asprintf(&path, "/proc/self/attr/%s", attr_name) == -1)
+		goto error;
+
+	fd = open(path, O_WRONLY | O_TRUNC | O_CLOEXEC);
+error:
+	if (path)
+		free(path);
+	return fd;
+}
+
+int write_selinux_context(int fd, const char *context)
+{
+	int ret = -1;
+	size_t length = strlen(context);
+
+	if (write(fd, context, length) == (ssize_t)length)
+		ret = 0;
+	if (close(fd) == -1)
+		ret = -1;
+	return ret;
+}
+
+int set_selinux_context(const char *attr_name, const char *context)
+{
+	int fd = open_selinux_context_file(attr_name);
+	if (fd < 0)
+		return -1;
+	return write_selinux_context(fd, context);
 }
