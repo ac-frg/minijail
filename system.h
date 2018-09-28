@@ -61,6 +61,10 @@ int setup_mount_destination(const char *source, const char *dest, uid_t uid,
 int lookup_user(const char *user, uid_t *uid, gid_t *gid);
 int lookup_group(const char *group, gid_t *gid);
 
+int open_selinux_context_file(const char *attr_name);
+int write_selinux_context(int fd, const char *context);
+int set_selinux_context(const char *attr_name, const char *context);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif

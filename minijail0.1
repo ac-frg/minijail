@@ -263,6 +263,10 @@ Don't forward any signals to the jailed process.  For example, when not using
 \fB-i\fR, sending \fBSIGINT\fR (e.g., CTRL-C on the terminal), will kill the
 minijail0 process, not the jailed process.
 .TP
+\fB-Z <context>, --context <context>\fR
+Set the SELinux context for the jailed process.  This is not compatible with
+\fB-T dynamic -r\fR.
+.TP
 \fB--ambient\fR
 Raise ambient capabilities to match the mask specified by \fB-c\fR.  Since
 ambient capabilities are preserved across \fBexecve\fR(2), this allows for

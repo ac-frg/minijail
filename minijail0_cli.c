@@ -487,6 +487,8 @@ static void usage(const char *progn)
 	       "  -w:           Create and join a new anonymous session keyring.\n"
 	       "  -Y:           Synchronize seccomp filters across thread group.\n"
 	       "  -z:           Don't forward signals to jailed process.\n"
+	       "  -Z <context>: Set the SELinux context for the jailed process.\n"
+	       "  --context <context>\n"
 	       "  --ambient:    Raise ambient capabilities. Requires -c.\n"
 	       "  --uts[=name]: Enter a new UTS namespace (and set hostname).\n"
 	       "  --logging=<s>:Use <s> as the logging system.\n"
@@ -531,7 +533,7 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 	int log_to_stderr = 0;
 
 	const char *optstring =
-	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzd";
+	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzZ:d";
 	/* clang-format off */
 	const struct option long_options[] = {
 		{"help", no_argument, 0, 'h'},
@@ -540,6 +542,7 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 		{"uts", optional_argument, 0, 129},
 		{"logging", required_argument, 0, 130},
 		{"profile", required_argument, 0, 131},
+		{"context", required_argument, 0, 'Z'},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -741,6 +744,13 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 			break;
 		case 'z':
 			forward = 0;
+			break;
+		case 'Z':
+			if (0 != minijail_set_selinux_context(j, optarg)) {
+				fprintf(stderr,
+					"Could not set SELinux context.\n");
+				exit(1);
+			}
 			break;
 		case 'd':
 			minijail_namespace_vfs(j);

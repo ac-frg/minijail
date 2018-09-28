@@ -182,6 +182,7 @@ struct minijail {
 	size_t filter_len;
 	struct sock_fprog *filter_prog;
 	char *alt_syscall_table;
+	char *selinux_context;
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
@@ -251,6 +252,9 @@ void minijail_preexec(struct minijail *j)
 	if (j->suppl_gid_list)
 		free(j->suppl_gid_list);
 	j->suppl_gid_list = NULL;
+	if (j->selinux_context)
+		free(j->selinux_context);
+	j->selinux_context = NULL;
 	free_mounts_list(j);
 	memset(&j->flags, 0, sizeof(j->flags));
 	/* Now restore anything we meant to keep. */
@@ -457,6 +461,14 @@ void API minijail_skip_setting_securebits(struct minijail *j,
 					  uint64_t securebits_skip_mask)
 {
 	j->securebits_skip_mask = securebits_skip_mask;
+}
+
+int API minijail_set_selinux_context(struct minijail *j, const char *context)
+{
+	j->selinux_context = strdup(context);
+	if (!j->selinux_context)
+		return -ENOMEM;
+	return 0;
 }
 
 void API minijail_remount_mode(struct minijail *j, unsigned long mode)
@@ -1026,6 +1038,10 @@ void minijail_marshal_helper(struct marshal_state *state,
 		marshal_append(state, j->alt_syscall_table,
 			       strlen(j->alt_syscall_table) + 1);
 	}
+	if (j->selinux_context) {
+		marshal_append(state, j->selinux_context,
+			       strlen(j->selinux_context) + 1);
+	}
 	if (j->flags.seccomp_filter && j->filter_prog) {
 		struct sock_fprog *fp = j->filter_prog;
 		marshal_append(state, (char *)fp->filter,
@@ -1126,6 +1142,15 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto bad_syscall_table;
 		j->alt_syscall_table = strdup(alt_syscall_table);
 		if (!j->alt_syscall_table)
+			goto bad_syscall_table;
+	}
+
+	if (j->selinux_context) { /* stale pointer */
+		char *selinux_context = consumestr(&serialized, &length);
+		if (!selinux_context)
+			goto bad_syscall_table;
+		j->selinux_context = strdup(selinux_context);
+		if (!j->selinux_context)
 			goto bad_syscall_table;
 	}
 
@@ -2130,15 +2155,23 @@ void API minijail_enter(const struct minijail *j)
 	}
 
 	/*
-	 * seccomp has to come last since it cuts off all the other
-	 * privilege-dropping syscalls :)
+	 * seccomp has to come after all other privilege-dropping code since it
+	 * cuts off all the other privilege-dropping syscalls :)
 	 */
 	if (j->flags.seccomp && prctl(PR_SET_SECCOMP, 1)) {
-		if ((errno == EINVAL) && seccomp_can_softfail()) {
+		if ((errno == EINVAL) && seccomp_can_softfail())
 			warn("seccomp not supported");
-			return;
-		}
-		pdie("prctl(PR_SET_SECCOMP) failed");
+		else
+			pdie("prctl(PR_SET_SECCOMP) failed");
+	}
+
+	/*
+	 * SELinux context setting should come last to avoid having to add
+	 * SELinux permissions unnecessarily.
+	 */
+	if (j->selinux_context &&
+	    set_selinux_context("current", j->selinux_context) < 0) {
+		pdie("set_selinux_context() failed");
 	}
 }
 
@@ -2483,10 +2516,17 @@ static int minijail_run_internal(struct minijail *j,
 	 */
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
+	/* If running an init program, let it decide when/how to mount /proc. */
+	int remount_proc_ro =
+	    j->flags.remount_proc_ro && pid_namespace && !do_init;
 
 	if (use_preload) {
 		if (j->hooks_head != NULL)
 			die("Minijail hooks are not supported with LD_PRELOAD");
+		if (j->selinux_context != NULL && remount_proc_ro) {
+			die("minijail_set_selinux_context() is not supported "
+			    "when remounting /proc read-only with LD_PRELOAD");
+		}
 		if (!config->exec_in_child)
 			die("minijail_fork is not supported with LD_PRELOAD");
 
@@ -2811,9 +2851,17 @@ static int minijail_run_internal(struct minijail *j,
 		}
 	}
 
-	/* If running an init program, let it decide when/how to mount /proc. */
-	if (pid_namespace && !do_init)
-		j->flags.remount_proc_ro = 0;
+	/* If we are going to call execve(2), set up the SELinux context. */
+	if (config->exec_in_child && !use_preload && j->selinux_context) {
+		if (set_selinux_context("exec", j->selinux_context) < 0) {
+			pdie("set_selinux_context() failed");
+		}
+		/* Free the SELinux context to avoid it being set again. */
+		free(j->selinux_context);
+		j->selinux_context = NULL;
+	}
+
+	j->flags.remount_proc_ro = remount_proc_ro;
 
 	if (use_preload) {
 		/* Strip out flags that cannot be inherited across execve(2). */
