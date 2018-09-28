@@ -22,6 +22,30 @@
       "revId": "070b3278205c97b654a13e3dc31cb0e088dc2f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee18a8c_87d89ba2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-09-28T15:34:10Z",
+      "side": 1,
+      "message": "i don\u0027t disagree that -L makes it a bit more visible, but i don\u0027t think it justifies the security downsides when the info is available in the crash report",
+      "parentUuid": "b264bb77_f06c2505",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "070b3278205c97b654a13e3dc31cb0e088dc2f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
