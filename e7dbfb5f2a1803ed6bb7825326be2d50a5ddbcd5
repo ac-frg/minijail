@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbcaefa9_6fb66875",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-01T15:44:21Z",
+      "side": 1,
+      "message": "\"strict review\" for what? For not using -I? We should clarify.",
+      "range": {
+        "startLine": 100,
+        "startChar": 45,
+        "endLine": 100,
+        "endChar": 74
+      },
+      "revId": "e7dbfb5f2a1803ed6bb7825326be2d50a5ddbcd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
