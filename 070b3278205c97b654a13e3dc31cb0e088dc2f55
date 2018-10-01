@@ -46,6 +46,30 @@
       "revId": "070b3278205c97b654a13e3dc31cb0e088dc2f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e7a87bb_4a2addbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-01T06:57:13Z",
+      "side": 1,
+      "message": "oh after reading this several times, I think I finally was able to parse it the way you intended.\n\nThe wording is okay as-is.",
+      "parentUuid": "8ee18a8c_87d89ba2",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "070b3278205c97b654a13e3dc31cb0e088dc2f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
