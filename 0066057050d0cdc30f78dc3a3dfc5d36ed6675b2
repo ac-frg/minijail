@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "6880a5e2_f0ad3752",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "style on these funcs is incorrect.  please look at the rest of this file and match it up.",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d68c09fd_d80e4bd7",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "don\u0027t use static buffers.  asprintf can handle this fine.",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ee43c90_8892602e",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -25,6 +59,47 @@
     },
     {
       "key": {
+        "uuid": "36d59797_aaab39fe",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "i would say let it fail for now and wait for the scenario to matter\n\nyou need to use O_CLOEXEC with all open calls",
+      "parentUuid": "6ee43c90_8892602e",
+      "range": {
+        "startLine": 1657,
+        "startChar": 16,
+        "endLine": 1657,
+        "endChar": 33
+      },
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bad6578_327b3629",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "print out the path instead",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bfadd88e_35cce2e4",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -36,6 +111,23 @@
       "writtenOn": "2018-10-03T05:57:09Z",
       "side": 1,
       "message": "TODO(fqj) to correctly handle system where SELinux is not enabled.",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b18f9e2c_ab3bc2b7",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "i\u0027m assuming all these printf statements are debug and you\u0027ll just delete them before the final CL",
       "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -59,6 +151,40 @@
     },
     {
       "key": {
+        "uuid": "44d1c34a_d923f901",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2184,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "the NULL logic doesn\u0027t make sense.  getenv already returns NULL if the env var isn\u0027t found.",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a1a383_9a4c80e6",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2187,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "use atoi to keep it simple",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f3bd7e5_14af96d8",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -70,6 +196,57 @@
       "writtenOn": "2018-10-03T06:06:46Z",
       "side": 1,
       "message": "for (and only for) -Tstatic, this can also be done via the policy itself without patching minijail.\n\ntype_transition old_context program_being_exeved:process new_context",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879f6329_e6853fdb",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2941,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "use asprintf to allocate memory",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93eb6246_51d77a72",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2943,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "once you switch to asprintf, you can use putenv directly to avoid having to free the memory",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "188bc7a3_05800370",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-03T15:44:59Z",
+      "side": 1,
+      "message": "this file uses tabs, not spaces",
       "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
