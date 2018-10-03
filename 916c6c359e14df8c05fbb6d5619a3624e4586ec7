@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2c91e57_7af6be47",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T05:57:09Z",
+      "side": 0,
+      "message": "For preload + pid_namespace + do_init,\n\nPID 2 needs to have its new SELinux set.\nMoving vfs and proc ro remounts into child (PID \u003d 2) so the PID 2 can open /proc/self/attr/current for before preload library executes minijail_enter.\n\n\nLuis has concerns here that PID 1 and 2 have different mountns.",
+      "revId": "916c6c359e14df8c05fbb6d5619a3624e4586ec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
