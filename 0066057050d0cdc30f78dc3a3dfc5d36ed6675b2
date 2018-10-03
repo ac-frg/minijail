@@ -33,6 +33,23 @@
       "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f3bd7e5_14af96d8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2884,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T06:06:46Z",
+      "side": 1,
+      "message": "for (and only for) -Tstatic, this can also be done via the policy itself without patching minijail.\n\ntype_transition old_context program_being_exeved:process new_context",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
