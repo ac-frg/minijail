@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8cb72ed7_e25c36a0",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T16:10:49Z",
+      "side": 1,
+      "message": "Let\u0027s ignore styling problem and debugging message first since this is a demo-purpose change as stated in our email.",
+      "parentUuid": "6880a5e2_f0ad3752",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d68c09fd_d80e4bd7",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -83,6 +101,30 @@
     },
     {
       "key": {
+        "uuid": "b194860f_a987dce6",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T16:10:49Z",
+      "side": 1,
+      "message": "It\u0027s delibertly not to use O_CLOEXEC so this fd can be preserved across exec.\n(For preload)\nWe need this fd after execve, but we may lack permissions at that time. so we open it, pass it to after execve, and minijail_enter will handle/use this fd and close it)\n(For static)\nThis was never called.\n(Others)\nThis is closed manually before returning.",
+      "parentUuid": "36d59797_aaab39fe",
+      "range": {
+        "startLine": 1657,
+        "startChar": 16,
+        "endLine": 1657,
+        "endChar": 33
+      },
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2bad6578_327b3629",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -134,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "b5dacd90_6d2654fd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T16:10:49Z",
+      "side": 1,
+      "message": "yes.",
+      "parentUuid": "b18f9e2c_ab3bc2b7",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aaeb63cd_a70ee0fa",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -165,6 +225,24 @@
       "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f3a66b1_7b563e88",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2184,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T16:10:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44d1c34a_d923f901",
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
