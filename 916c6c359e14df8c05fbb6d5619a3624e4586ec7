@@ -105,6 +105,29 @@
       "revId": "916c6c359e14df8c05fbb6d5619a3624e4586ec7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b64a9c17_24a6e50f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-03T18:04:14Z",
+      "side": 0,
+      "message": "I finally remembered an example of things breaking because of this: some processes that depend on the /proc/$CONTAINER_PID/ns/* files will find that they won\u0027t be able to enter the real process\u0027 mount namespace, only the one for the minijail_init, which is the initns.\n\nSo we really, _really_ shouldn\u0027t go with this route.",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 30
+      },
+      "revId": "916c6c359e14df8c05fbb6d5619a3624e4586ec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
