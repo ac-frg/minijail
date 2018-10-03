@@ -81,6 +81,7 @@ void minijail_use_seccomp(struct minijail *j);
 void minijail_no_new_privs(struct minijail *j);
 void minijail_use_seccomp_filter(struct minijail *j);
 void minijail_set_seccomp_filter_tsync(struct minijail *j);
+void minijail_set_secontext(struct minijail *j, const char *secontext);
 void minijail_parse_seccomp_filters(struct minijail *j, const char *path);
 void minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd);
 void minijail_log_seccomp_filter_failures(struct minijail *j);
