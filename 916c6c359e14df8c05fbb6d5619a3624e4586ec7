@@ -87,6 +87,24 @@
       "revId": "916c6c359e14df8c05fbb6d5619a3624e4586ec7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef925270_b745a399",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T16:16:06Z",
+      "side": 0,
+      "message": "for -l IPC namespace. It shouldn\u0027t be a problem but I\u0027ll see tomorrow or on Friday in the office.\n\nEither before this change or after, IPC is jailed at after execve for preload, e.g. PID \u003d 2 (child or child, if pid namespace). For non-preload, this change doesn\u0027t change anything on when to jail what.",
+      "parentUuid": "b5e3fe93_73b08fd8",
+      "revId": "916c6c359e14df8c05fbb6d5619a3624e4586ec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
