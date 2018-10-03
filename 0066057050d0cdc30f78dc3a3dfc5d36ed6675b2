@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6ee43c90_8892602e",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2018-10-03T06:15:23Z",
+      "side": 1,
+      "message": "minijail inside minijail may fail since /proc is already only when inner minijail tries to change the context.\n\nWe need to discuss a solution. Maybe remount it rw, and back to ro?",
+      "range": {
+        "startLine": 1657,
+        "startChar": 16,
+        "endLine": 1657,
+        "endChar": 33
+      },
+      "revId": "0066057050d0cdc30f78dc3a3dfc5d36ed6675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bfadd88e_35cce2e4",
         "filename": "libminijail.c",
         "patchSetId": 1
