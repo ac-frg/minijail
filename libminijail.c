@@ -196,6 +196,7 @@ struct minijail {
 	struct hook *hooks_tail;
 	struct preserved_fd preserved_fds[MAX_PRESERVED_FDS];
 	size_t preserved_fd_count;
+	char *secontext;
 };
 
 static void run_hooks_or_die(const struct minijail *j,
@@ -223,9 +224,6 @@ static void free_mounts_list(struct minijail *j)
  */
 void minijail_preenter(struct minijail *j)
 {
-	j->flags.vfs = 0;
-	j->flags.enter_vfs = 0;
-	j->flags.remount_proc_ro = 0;
 	j->flags.pids = 0;
 	j->flags.do_init = 0;
 	j->flags.run_as_init = 0;
@@ -241,9 +239,6 @@ void minijail_preenter(struct minijail *j)
  */
 void minijail_preexec(struct minijail *j)
 {
-	int vfs = j->flags.vfs;
-	int enter_vfs = j->flags.enter_vfs;
-	int remount_proc_ro = j->flags.remount_proc_ro;
 	int userns = j->flags.userns;
 	if (j->user)
 		free(j->user);
@@ -254,9 +249,6 @@ void minijail_preexec(struct minijail *j)
 	free_mounts_list(j);
 	memset(&j->flags, 0, sizeof(j->flags));
 	/* Now restore anything we meant to keep. */
-	j->flags.vfs = vfs;
-	j->flags.enter_vfs = enter_vfs;
-	j->flags.remount_proc_ro = remount_proc_ro;
 	j->flags.userns = userns;
 	/* Note, |pids| will already have been used before this call. */
 }
@@ -268,6 +260,10 @@ struct minijail API *minijail_new(void)
 	struct minijail *j = calloc(1, sizeof(struct minijail));
 	j->remount_mode = MS_PRIVATE;
 	return j;
+}
+
+void API minijail_set_secontext(struct minijail *j, const char *context) {
+	j->secontext = strdup(context);
 }
 
 void API minijail_change_uid(struct minijail *j, uid_t uid)
@@ -1014,6 +1010,8 @@ void minijail_marshal_helper(struct marshal_state *state,
 	marshal_append(state, (char *)j, sizeof(*j));
 	if (j->user)
 		marshal_append(state, j->user, strlen(j->user) + 1);
+	if (j->secontext)
+		marshal_append(state, j->secontext, strlen(j->secontext) + 1);
 	if (j->suppl_gid_list) {
 		marshal_append(state, j->suppl_gid_list,
 			       j->suppl_gid_count * sizeof(gid_t));
@@ -1082,6 +1080,14 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto clear_pointers;
 		j->user = strdup(user);
 		if (!j->user)
+			goto clear_pointers;
+	}
+	if (j->secontext) {
+		char *secontext = consumestr(&serialized, &length);
+		if (!secontext)
+			goto clear_pointers;
+		j->secontext = strdup(secontext);
+		if (!j->secontext)
 			goto clear_pointers;
 	}
 
@@ -1645,6 +1651,40 @@ static void set_rlimits_or_die(const struct minijail *j)
 	}
 }
 
+static int open_selinux_fd(const char *which) {
+  char selinux_file_path[256];
+  snprintf(selinux_file_path, 256, "/proc/self/attr/%s", which);
+  int fd = open(selinux_file_path, O_WRONLY);
+  if (fd < 0) {
+    die("failed to open execcon");
+  }
+  return fd;
+}
+
+static void write_selinux_to_fd(int fd, const char *context) {
+  if (fd < 0) return;
+  if (context == NULL) return;
+  if (write(fd, context, strlen(context) + 1) != (ssize_t) (strlen(context) + 1)) {
+    printf("failed to write\n");
+    die("failed to set exec con");
+  }
+  if (close(fd) < 0) {
+    printf("failed to close\n");
+    die("failed to close exec con");
+  }
+}
+
+static void set_selinux_context(const char *which, const char *context) {
+  printf("set selinux context: %s %s\n", which, context);
+  if (context == NULL) return;
+  int fd = open_selinux_fd(which);
+  write_selinux_to_fd(fd, context);
+}
+
+static void set_selinux_exec_context(const char *context) {
+  set_selinux_context("exec", context);
+}
+
 static void write_ugid_maps_or_die(const struct minijail *j)
 {
 	if (j->uidmap && write_proc_file(j->initpid, j->uidmap, "uid_map") != 0)
@@ -2140,6 +2180,14 @@ void API minijail_enter(const struct minijail *j)
 		}
 		pdie("prctl(PR_SET_SECCOMP) failed");
 	}
+
+	char *selinux_fd_str = getenv(kCurrentSELinuxContextFdEnvVar) ? : NULL;
+	if (selinux_fd_str && j->secontext) {
+	  int selinux_fd = -1;
+	  sscanf(selinux_fd_str, "%d", &selinux_fd);
+	  write_selinux_to_fd(selinux_fd, j->secontext);
+	  unsetenv(kCurrentSELinuxContextFdEnvVar);
+	}
 }
 
 /* TODO(wad): will visibility affect this variable? */
@@ -2475,7 +2523,7 @@ static int minijail_run_internal(struct minijail *j,
 	int child_sync_pipe_fds[2];
 	int sync_child = 0;
 	int ret;
-	/* We need to remember this across the minijail_preexec() call. */
+	/* We need to remember these across the minijail_preexec() call. */
 	int pid_namespace = j->flags.pids;
 	/*
 	 * Create an init process if we are entering a pid namespace, unless the
@@ -2827,6 +2875,23 @@ static int minijail_run_internal(struct minijail *j,
 		j->flags.pids = 0;
 	}
 
+	int selinux_fd = 0;
+	if (!use_preload) {
+		// If it's static exec mode, setting execcon should be enough, since
+		// it tells the kernel to transit current process to a new context once
+		// execve is called.
+		if (config->exec_in_child) {
+			set_selinux_exec_context(j->secontext);
+			j->secontext = NULL;
+		}
+
+		// For minijail_fork, we need to open fd before procfs is locked down.
+		if (j->secontext) {
+		    selinux_fd = open_selinux_fd("current");
+		}
+	}
+
+
 	/*
 	 * Jail this process.
 	 * If forking, return.
@@ -2859,8 +2924,24 @@ static int minijail_run_internal(struct minijail *j,
 
 	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_EXECVE);
 
-	if (!config->exec_in_child)
+	if (!config->exec_in_child) {
+		if (selinux_fd) {
+			write_selinux_to_fd(selinux_fd, j->secontext);
+		}
 		return 0;
+	}
+
+	// For preload mode, we should let minijail_enter during
+	// libminijailpreload stage to set current context since minijail
+	// jailing is not fully set-up before execve.
+	// If we have pid_namespace, and do_init, the earlist point the correct
+	// /proc/self exist is after the fork (PID =2).
+	if (use_preload && j->secontext) {
+	  selinux_fd = open_selinux_fd("current");
+	  char selinux_fd_str[64];
+	  snprintf(selinux_fd_str, 64, "%d", selinux_fd);
+	  setenv(kCurrentSELinuxContextFdEnvVar, selinux_fd_str, true);
+	}
 
 	/*
 	 * If we aren't pid-namespaced, or the jailed program asked to be init:

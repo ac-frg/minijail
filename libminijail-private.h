@@ -20,6 +20,7 @@ extern "C" {
 #define API __attribute__((__visibility__("default")))
 
 static const char *kFdEnvVar = "__MINIJAIL_FD";
+static const char *kCurrentSELinuxContextFdEnvVar = "__MINIJAIL_CURRENT_SELINUX_FD";
 static const char *kLdPreloadEnvVar = "LD_PRELOAD";
 
 struct minijail;

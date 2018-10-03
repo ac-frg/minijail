@@ -531,7 +531,7 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 	int log_to_stderr = 0;
 
 	const char *optstring =
-	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzd";
+	    "+u:g:sS:c:C:P:Z:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzd";
 	/* clang-format off */
 	const struct option long_options[] = {
 		{"help", no_argument, 0, 'h'},
@@ -746,6 +746,9 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 			minijail_namespace_vfs(j);
 			minijail_mount_dev(j);
 			break;
+                case 'Z':
+                        minijail_set_secontext(j, optarg);
+                        break;
 		/* Long options. */
 		case 128: /* Ambient caps. */
 			ambient_caps = 1;
