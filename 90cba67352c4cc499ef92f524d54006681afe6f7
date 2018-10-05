@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f434b0d1_4e07e465",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-05T17:58:29Z",
+      "side": 1,
+      "message": "I would say \"Ambient capabilities (the \\fB--ambient\\fR flag) fix capability inheritance across \\fBexecve\\fR(2) to avoid the need for file capabilities.\"",
+      "range": {
+        "startLine": 270,
+        "startChar": 37,
+        "endLine": 270,
+        "endChar": 73
+      },
+      "revId": "90cba67352c4cc499ef92f524d54006681afe6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "854c8306_86fd6ded",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-05T17:58:29Z",
+      "side": 1,
+      "message": "\"across \\fBexecve\\fR(2) unless the file being executed has POSIX file capabilities.\"\n\nThe process doesn\u0027t really have file caps, only files can have them.",
+      "range": {
+        "startLine": 269,
+        "startChar": 31,
+        "endLine": 270,
+        "endChar": 35
+      },
+      "revId": "90cba67352c4cc499ef92f524d54006681afe6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1063d6c_00e705cc",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-05T17:58:29Z",
+      "side": 1,
+      "message": "I don\u0027t know that this is the best way to phrase this. It suggests that most seccomp policies don\u0027t allow execve... juse because? But of course the real reason is that it makes it easier to reason what actual executable will run in the process.\n\nSo, I suggest:\n\nseccomp: a meaningful seccomp filter policy should disallow \\fBexecve\\fR(2), to prevent a compromised process from executing a different binary. However, this would prevent the seccomp policy from being applied before \\fBexecve\\fR(2).",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 3
+      },
+      "revId": "90cba67352c4cc499ef92f524d54006681afe6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
