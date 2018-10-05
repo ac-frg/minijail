@@ -1607,10 +1607,12 @@ static int mount_tmp(const struct minijail *j)
 		     data);
 }
 
-static int remount_proc_readonly(const struct minijail *j)
+static int remount_proc(const struct minijail *j, bool readonly)
 {
 	const char *kProcPath = "/proc";
 	const unsigned int kSafeFlags = MS_NODEV | MS_NOEXEC | MS_NOSUID;
+	int flags = kSafeFlags;
+
 	/*
 	 * Right now, we're holding a reference to our parent's old mount of
 	 * /proc in our namespace, which means using MS_REMOUNT here would
@@ -1621,7 +1623,8 @@ static int remount_proc_readonly(const struct minijail *j)
 	if (umount2(kProcPath, MNT_DETACH)) {
 		/*
 		 * If we are in a new user namespace, umount(2) will fail.
-		 * See http://man7.org/linux/man-pages/man7/user_namespaces.7.html
+		 * See
+		 * http://man7.org/linux/man-pages/man7/user_namespaces.7.html
 		 */
 		if (j->flags.userns) {
 			info("umount(/proc, MNT_DETACH) failed, "
@@ -1630,7 +1633,9 @@ static int remount_proc_readonly(const struct minijail *j)
 			return -errno;
 		}
 	}
-	if (mount("proc", kProcPath, "proc", kSafeFlags | MS_RDONLY, ""))
+	if (readonly)
+		flags |= MS_RDONLY;
+	if (mount("proc", kProcPath, "proc", flags, ""))
 		return -errno;
 	return 0;
 }
@@ -2007,6 +2012,7 @@ static void run_hooks_or_die(const struct minijail *j,
 
 void API minijail_enter(const struct minijail *j)
 {
+	int selinux_context_fd = -1;
 	/*
 	 * If we're dropping caps, get the last valid cap from /proc now,
 	 * since /proc can be unmounted before drop_caps() is called.
@@ -2088,8 +2094,25 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.mount_tmp && mount_tmp(j))
 		pdie("mount_tmp");
 
-	if (j->flags.remount_proc_ro && remount_proc_readonly(j))
-		pdie("remount");
+	if (j->flags.remount_proc_ro) {
+		if (j->selinux_context) {
+			if (remount_proc(j, false))
+				pdie("remount /proc");
+			selinux_context_fd =
+			    open_selinux_context_file("current");
+			if (selinux_context_fd == -1)
+				pdie("open SELinux context file");
+			/*
+			 * TODO(lhchavez): Make the parent process remount /proc
+			 * read-only once everything is said and done.
+			 */
+		} else {
+			if (remount_proc(j, true))
+				pdie("remount /proc");
+		}
+	} else if (j->selinux_context) {
+		selinux_context_fd = open_selinux_context_file("current");
+	}
 
 	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS);
 
@@ -2169,9 +2192,9 @@ void API minijail_enter(const struct minijail *j)
 	 * SELinux context setting should come last to avoid having to add
 	 * SELinux permissions unnecessarily.
 	 */
-	if (j->selinux_context &&
-	    set_selinux_context("current", j->selinux_context) < 0) {
-		pdie("set_selinux_context() failed");
+	if (selinux_context_fd != -1 &&
+	    write_selinux_context(selinux_context_fd, j->selinux_context) < 0) {
+		pdie("write_selinux_context() failed");
 	}
 }
 
@@ -2516,17 +2539,10 @@ static int minijail_run_internal(struct minijail *j,
 	 */
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
-	/* If running an init program, let it decide when/how to mount /proc. */
-	int remount_proc_ro =
-	    j->flags.remount_proc_ro && pid_namespace && !do_init;
 
 	if (use_preload) {
 		if (j->hooks_head != NULL)
 			die("Minijail hooks are not supported with LD_PRELOAD");
-		if (j->selinux_context != NULL && remount_proc_ro) {
-			die("minijail_set_selinux_context() is not supported "
-			    "when remounting /proc read-only with LD_PRELOAD");
-		}
 		if (!config->exec_in_child)
 			die("minijail_fork is not supported with LD_PRELOAD");
 
@@ -2851,17 +2867,9 @@ static int minijail_run_internal(struct minijail *j,
 		}
 	}
 
-	/* If we are going to call execve(2), set up the SELinux context. */
-	if (config->exec_in_child && !use_preload && j->selinux_context) {
-		if (set_selinux_context("exec", j->selinux_context) < 0) {
-			pdie("set_selinux_context() failed");
-		}
-		/* Free the SELinux context to avoid it being set again. */
-		free(j->selinux_context);
-		j->selinux_context = NULL;
-	}
-
-	j->flags.remount_proc_ro = remount_proc_ro;
+	/* If running an init program, let it decide when/how to mount /proc. */
+	j->flags.remount_proc_ro =
+	    j->flags.remount_proc_ro && pid_namespace && !do_init;
 
 	if (use_preload) {
 		/* Strip out flags that cannot be inherited across execve(2). */
