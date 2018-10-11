@@ -511,8 +511,9 @@ static void seccomp_filter_usage(const char *progn)
 	printf("\nSee minijail0(5) for example policies.\n");
 }
 
-int parse_args(struct minijail *j, int argc, char * const argv[],
-	       int *exit_immediately, ElfType *elftype)
+int parse_args(struct minijail *j, int argc, char *const argv[],
+	       int *exit_immediately, ElfType *elftype,
+	       const char **preload_path)
 {
 	int opt;
 	int use_seccomp_filter = 0;
@@ -538,11 +539,12 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 	const struct option long_options[] = {
 		{"help", no_argument, 0, 'h'},
 		{"mount-dev", no_argument, 0, 'd'},
+		{"context", required_argument, 0, 'Z'},
 		{"ambient", no_argument, 0, 128},
 		{"uts", optional_argument, 0, 129},
 		{"logging", required_argument, 0, 130},
 		{"profile", required_argument, 0, 131},
-		{"context", required_argument, 0, 'Z'},
+		{"preload-path", required_argument, 0, 132},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -779,6 +781,9 @@ int parse_args(struct minijail *j, int argc, char * const argv[],
 			break;
 		case 131: /* Profile */
 			use_profile(j, optarg, &pivot_root, chroot, &tmp_size);
+			break;
+		case 132: /* PRELOADPATH */
+			*preload_path = optarg;
 			break;
 		default:
 			usage(argv[0]);
