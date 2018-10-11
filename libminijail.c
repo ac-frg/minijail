@@ -2084,16 +2084,12 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.use_caps) {
 		/*
 		 * Using ambient capabilities takes care of most of the cases
-		 * where PR_SET_KEEPCAPS would be needed, but still try to set
-		 * them unless it is locked (maybe due to running minijail
+		 * where SECBIT_KEEP_CAPS would be needed, but still try to set
+		 * it unless it is locked (maybe due to running minijail
 		 * within an already-minijailed process).
 		 */
-		if (!j->flags.set_ambient_caps || !secure_keep_caps_locked()) {
-			if (prctl(PR_SET_KEEPCAPS, 1))
-				pdie("prctl(PR_SET_KEEPCAPS) failed");
-		}
-
-		if (lock_securebits(j->securebits_skip_mask) < 0) {
+		if (lock_securebits(j->securebits_skip_mask,
+				    !j->flags.set_ambient_caps) < 0) {
 			pdie("locking securebits failed");
 		}
 	}
