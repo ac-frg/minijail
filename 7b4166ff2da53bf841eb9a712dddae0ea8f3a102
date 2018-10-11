@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b65dc7cb_aca978c6",
+        "filename": "HACKING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-11T22:33:21Z",
+      "side": 1,
+      "message": "the default is /lib, and the `make LIBDIR\u003d/lib64` has been deleted above, so recommending people install to /lib64 won\u0027t work anymore",
+      "revId": "7b4166ff2da53bf841eb9a712dddae0ea8f3a102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef904126_5d3fe027",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-11T22:33:21Z",
+      "side": 1,
+      "message": "we need this for execution, not linking right ?  so do you want to add this as a TEST/run dep instead ?",
+      "revId": "7b4166ff2da53bf841eb9a712dddae0ea8f3a102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69813fa4_a3082971",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2311,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-11T22:33:21Z",
+      "side": 1,
+      "message": "we already use asprintf elsewhere in this file, so we should delete all of this and replace it with a single asprintf call",
+      "range": {
+        "startLine": 2303,
+        "startChar": 0,
+        "endLine": 2311,
+        "endChar": 16
+      },
+      "revId": "7b4166ff2da53bf841eb9a712dddae0ea8f3a102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "306d7a1f_7a62b68e",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2314,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-11T22:33:21Z",
+      "side": 1,
+      "message": "if we changed the asprintf call to include the var, we could use putenv and avoid having to free() ourselves.\n\n asprintf(\u0026newenv, \"%s\u003d%s%s%s\", kLdPreloadEnvVar, oldenv, oldenv[0] \u003d\u003d \u0027\\0\u0027 ? \"\" : oldenv, kLdPreloadEnvVar);\n putenv(newenv);\n return 0;\n\nobviously we also want error checking on the asprintf return value :)",
+      "revId": "7b4166ff2da53bf841eb9a712dddae0ea8f3a102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69b64155_13c54a38",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-11T22:33:21Z",
+      "side": 1,
+      "message": "this seems easy to confuse with the libdir instead of the lib itself.  how about \"preload-file\" or \"preload-library\" or something ?",
+      "revId": "7b4166ff2da53bf841eb9a712dddae0ea8f3a102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
