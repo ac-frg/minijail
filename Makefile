@@ -99,7 +99,8 @@ ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(minijail0_cli_unittest): $(GTEST_LIBS)
 endif
 CXX_BINARY(minijail0_cli_unittest): minijail0_cli_unittest.o \
-		$(CORE_OBJECT_FILES) minijail0_cli.o elfparse.o testrunner.o
+		$(CORE_OBJECT_FILES) minijail0_cli.o elfparse.o testrunner.o \
+		| CC_LIBRARY(libminijailpreload.so)
 clean: CLEAN(minijail0_cli_unittest)
 
 

@@ -36,8 +36,10 @@ class CliTest : public ::testing::Test {
   // We use a vector of strings rather than const char * pointers because we
   // need the backing memory to be writable.  The CLI might mutate the strings
   // as it parses things (which is normally permissible with argv).
-  int parse_args_(const std::vector<std::string>& argv, int *exit_immediately,
-                  ElfType *elftype) {
+  int parse_args_(const std::vector<std::string>& argv,
+                  int* exit_immediately,
+                  ElfType* elftype,
+                  std::string* preload_path = nullptr) {
     // Make sure we reset the getopts state when scanning a new argv.  Setting
     // this to 0 is a GNU extension, but AOSP/BSD also checks this (as an alias
     // to their "optreset").
@@ -55,12 +57,17 @@ class CliTest : public ::testing::Test {
     // We grab stdout from parse_args itself as it might dump things we don't
     // usually care about like help output.
     testing::internal::CaptureStdout();
-    int ret = parse_args(j, pargv.size(),
-                         const_cast<char* const*>(pargv.data()),
-                         exit_immediately, elftype);
+
+    const char* preload_path_cstr = PRELOADPATH;
+    int ret =
+        parse_args(j, pargv.size(), const_cast<char* const*>(pargv.data()),
+                   exit_immediately, elftype, &preload_path_cstr);
     testing::internal::GetCapturedStdout();
 
     minijail_destroy(j);
+
+    if (preload_path)
+      preload_path->assign(preload_path_cstr);
 
     return ret;
   }
