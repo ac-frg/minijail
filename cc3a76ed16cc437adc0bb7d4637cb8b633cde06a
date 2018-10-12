@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3b36eed_ec5f2531",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-12T14:22:29Z",
+      "side": 1,
+      "message": "maybe use a constant?",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "cc3a76ed16cc437adc0bb7d4637cb8b633cde06a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e03d7f6_260ea189",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-12T14:22:29Z",
+      "side": 1,
+      "message": "so that we can use snprintf here. I totally get this is a unit test, but we should lead by example in all Minijail code \u003d)",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 13
+      },
+      "revId": "cc3a76ed16cc437adc0bb7d4637cb8b633cde06a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2847aba1_6d048dc4",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2018-10-12T14:22:29Z",
+      "side": 1,
+      "message": "and same here",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "cc3a76ed16cc437adc0bb7d4637cb8b633cde06a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
