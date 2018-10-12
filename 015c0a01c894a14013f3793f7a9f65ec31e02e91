@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e9e5fcc_384d845c",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2244,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-12T05:10:54Z",
+      "side": 1,
+      "message": "we have attribute_unused you could apply to each arg in the func ...",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b55e7e8_701345b8",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-12T05:10:54Z",
+      "side": 1,
+      "message": "accidentally duplicated some of these lines ?",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f87b2124_080d120a",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-12T05:10:54Z",
+      "side": 1,
+      "message": "the , after the arg is supposed to be a :.  the --profile above is incorrect too.  i\u0027m guessing this is copied from the --mount-dev form where we used a , to match it up with the following -d option.\n\ninstead of \u003cp\u003e, maybe use \u003cf\u003e to indicate it\u0027s a file ?",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e55ed95_2c5b897f",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-12T05:10:54Z",
+      "side": 1,
+      "message": "if we don\u0027t use preload_path in any of these unittests, maybe just always pass in nullptr ?",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
