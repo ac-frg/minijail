@@ -22,6 +22,30 @@
       "revId": "a9a40db55d75b0be1e5b1f3730e701fb48d1edf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddbe011a_b36c4cb5",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-12T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac6df2e_5e07de98",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "a9a40db55d75b0be1e5b1f3730e701fb48d1edf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
