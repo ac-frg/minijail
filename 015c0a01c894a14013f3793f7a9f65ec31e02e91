@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "43fd8756_ab76e5a0",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2244,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-12T15:03:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e9e5fcc_384d845c",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b55e7e8_701345b8",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d3e7daa_8f7ff45f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-12T15:03:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b55e7e8_701345b8",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5de185b9_6f3a8bb9",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-12T15:03:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f87b2124_080d120a",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e55ed95_2c5b897f",
         "filename": "minijail0_cli_unittest.cc",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e039fa_39a07003",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-12T15:03:53Z",
+      "side": 1,
+      "message": "the pointer needs to be valid (so it cannot be nullptr), but point taken about not being used. removed the parameter to |parse_args_|. YAGNI.",
+      "parentUuid": "1e55ed95_2c5b897f",
+      "revId": "015c0a01c894a14013f3793f7a9f65ec31e02e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
