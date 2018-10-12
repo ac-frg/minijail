@@ -7,16 +7,24 @@
 
 #include <errno.h>
 
+#include <dirent.h>
 #include <fcntl.h>
-#include <sys/types.h>
+#include <sys/mount.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
 #include <gtest/gtest.h>
 
-#include "libminijail.h"
+#include <functional>
+#include <map>
+#include <set>
+#include <string>
+
 #include "libminijail-private.h"
+#include "libminijail.h"
+#include "scoped_minijail.h"
 #include "util.h"
 
 namespace {
@@ -30,6 +38,59 @@ namespace {
 constexpr char kShellPath[] = ROOT_PREFIX "/bin/sh";
 constexpr char kCatPath[] = ROOT_PREFIX "/bin/cat";
 constexpr char kPreloadPath[] = "./libminijailpreload.so";
+
+std::set<pid_t> GetProcessSubtreePids(pid_t root_pid) {
+  std::set<pid_t> pids{root_pid};
+  char path[128];
+  bool progress = false;
+
+  do {
+    progress = false;
+    DIR* d = opendir("/proc");
+    if (!d)
+      pdie("opendir(\"/proc\")");
+
+    struct dirent* dir_entry;
+    while ((dir_entry = readdir(d)) != nullptr) {
+      if (dir_entry->d_type != DT_DIR)
+        continue;
+      char* end;
+      const int pid = strtol(dir_entry->d_name, &end, 10);
+      if ((*end) != '\0')
+        continue;
+      sprintf(path, "/proc/%d/stat", pid);
+
+      FILE* f = fopen(path, "r");
+      if (!f)
+        pdie("fopen(%s)", path);
+      pid_t ppid;
+      int ret = fscanf(f, "%*d (%*[^)]) %*c %d", &ppid);
+      if (ret != 1)
+        continue;
+      fclose(f);
+      if (pids.find(ppid) == pids.end())
+        continue;
+      progress |= pids.insert(pid).second;
+    }
+    closedir(d);
+  } while (progress);
+  return pids;
+}
+
+std::map<std::string, std::string> GetNamespaces(
+    pid_t pid,
+    const std::vector<std::string>& namespace_names) {
+  std::map<std::string, std::string> namespaces;
+  char path[128], buf[128];
+  for (const auto& namespace_name : namespace_names) {
+    sprintf(path, "/proc/%d/ns/%s", pid, namespace_name.c_str());
+    ssize_t len = readlink(path, buf, sizeof(buf));
+    if (len == -1)
+      pdie("readlink(\"%s\")", path);
+    namespaces.emplace(namespace_name, std::string(buf, len));
+  }
+  return namespaces;
+}
 
 }  // namespace
 
@@ -562,6 +623,94 @@ TEST_F(NamespaceTest, test_tmpfs_userns) {
   EXPECT_EQ(status, 0);
 
   minijail_destroy(j);
+}
+
+TEST_F(NamespaceTest, test_namespaces) {
+  constexpr char teststr[] = "test\n";
+
+  if (!userns_supported_) {
+    SUCCEED();
+    return;
+  }
+
+  char uidmap[128];
+  snprintf(uidmap, sizeof(uidmap), "0 %d 1", getuid());
+  char gidmap[128];
+  snprintf(gidmap, sizeof(gidmap), "0 %d 1", getgid());
+
+  // TODO: Figure out how to also make "net", "cgroup", "uts" be in the same
+  // namespace.
+  const std::vector<std::string> namespace_names = {"pid", "mnt", "user"};
+  // Grab the set of namespaces outside the container.
+  std::map<std::string, std::string> init_namespaces =
+      GetNamespaces(getpid(), namespace_names);
+  std::function<void(struct minijail*)> test_functions[] = {
+      [](struct minijail* j attribute_unused) {},
+      [](struct minijail* j) {
+        minijail_mount(j, "/", "/", "", MS_BIND | MS_REC | MS_RDONLY);
+        minijail_enter_pivot_root(j, "/tmp");
+      },
+      [](struct minijail* j) { minijail_enter_chroot(j, "/"); },
+  };
+
+  // This test is run with and without the preload library.
+  for (const auto& run_function :
+       {minijail_run_pid_pipes, minijail_run_pid_pipes_no_preload}) {
+    for (const auto& test_function : test_functions) {
+      ScopedMinijail j(minijail_new());
+      minijail_set_preload_path(j.get(), kPreloadPath);
+
+      // Enter all the namespaces we can.
+      minijail_namespace_cgroups(j.get());
+      minijail_namespace_net(j.get());
+      minijail_namespace_pids(j.get());
+      minijail_namespace_user(j.get());
+      minijail_namespace_vfs(j.get());
+      minijail_namespace_uts(j.get());
+
+      // Set up the user namespace
+      minijail_uidmap(j.get(), uidmap);
+      minijail_gidmap(j.get(), gidmap);
+      minijail_namespace_user_disable_setgroups(j.get());
+
+      minijail_close_open_fds(j.get());
+      test_function(j.get());
+
+      const char* argv[] = {kCatPath, nullptr};
+      pid_t container_pid;
+      int child_stdin, child_stdout;
+      int mj_run_ret =
+          run_function(j.get(), argv[0], const_cast<char* const*>(argv),
+                       &container_pid, &child_stdin, &child_stdout, nullptr);
+      EXPECT_EQ(mj_run_ret, 0);
+
+      // Send some data to stdin and read it back to ensure that the child
+      // process is running.
+      const size_t teststr_len = strlen(teststr);
+      ssize_t write_ret = write(child_stdin, teststr, teststr_len);
+      EXPECT_EQ(write_ret, static_cast<ssize_t>(teststr_len));
+
+      char buf[128];
+      ssize_t read_ret = read(child_stdout, buf, 8);
+      EXPECT_EQ(read_ret, static_cast<ssize_t>(teststr_len));
+      buf[teststr_len] = 0;
+      EXPECT_EQ(strcmp(buf, teststr), 0);
+
+      // Grab the set of namespaces in every container process. They must not
+      // match the ones in the init namespace, and they must all match each
+      // other.
+      std::map<std::string, std::string> container_namespaces =
+          GetNamespaces(container_pid, namespace_names);
+      EXPECT_NE(container_namespaces, init_namespaces);
+      for (pid_t pid : GetProcessSubtreePids(container_pid))
+        EXPECT_EQ(container_namespaces, GetNamespaces(pid, namespace_names));
+
+      EXPECT_EQ(0, close(child_stdin));
+
+      int status = minijail_wait(j.get());
+      EXPECT_EQ(status, 0);
+    }
+  }
 }
 
 TEST(Test, parse_size) {
