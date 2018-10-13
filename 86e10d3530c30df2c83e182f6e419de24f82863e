@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "141b6f8a_27b5d387",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "don\u0027t need these inner params",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b55d0726_52952aac",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "i don\u0027t think you need to use snprintf in these places.  you could use std::string to avoid these static buffers.\n\n std::string path;\n ...\n path \u003d \"/proc/\" + std::to_string(pid) + \"/stat\";\n FILE* f \u003d fopen(path.c_str(), ...",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b58639cd_91c94b80",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "not a big deal, but should use \"e\" with all fopen calls",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10bdd133_859c7b01",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "this misses fclose(f), so prob want to move that above this if statement",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e465bbe_a3705420",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "same here ... you can use std::string and std::to_string to avoid the static buf",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d27902f_face6620",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "you can use std::string for both of these maps",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72fbf242_1b4f9627",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-13T21:31:25Z",
+      "side": 1,
+      "message": "period at the end",
+      "revId": "86e10d3530c30df2c83e182f6e419de24f82863e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
