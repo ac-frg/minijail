@@ -43,7 +43,7 @@ NOTICE = """# Copyright (C) 2018 The Android Open Source Project
 # limitations under the License.
 """
 
-ALLOW = '%s: 1'
+ALLOW = '1'
 
 # This ignores any leading PID tag and trailing <unfinished ...>, and extracts
 # the syscall name and the argument list.
@@ -80,56 +80,28 @@ ArgInspectionEntry = collections.namedtuple('ArgInspectionEntry',
                                             ('arg_index', 'value_set'))
 
 
-def get_parser():
-    """Return a CLI parser for this tool."""
+def parse_args(argv):
+    """Returns the parsed CLI arguments for this tool."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('traces', nargs='+', help='The strace logs.')
-    return parser
+    return parser.parse_args(argv)
 
 
-def main(argv):
-    parser = get_parser()
-    opts = parser.parse_args(argv)
+def get_seccomp_bpf_filter(entry):
+    """Return a minijail seccomp-bpf filter expression for the syscall."""
+    arg_index = entry.arg_index
+    arg_values = entry.value_set
+    return ' || ' .join('arg%d == %s' % (arg_index, arg_value)
+                        for arg_value in arg_values)
 
-    syscalls = collections.defaultdict(int)
 
-    uses_socketcall = False
+def parse_trace_file(trace_filename, syscalls, arg_inspection):
+    """Parses one file produced by strace."""
+    uses_socketcall = ('i386' in trace_filename or
+                       ('x86' in trace_filename and
+                        '64' not in trace_filename))
 
-    basic_set = [
-        'restart_syscall', 'exit', 'exit_group', 'rt_sigreturn',
-    ]
-
-    syscall_sets = {}
-    syscall_set_list = [
-        ['sigreturn', 'rt_sigreturn'],
-        ['sigaction', 'rt_sigaction'],
-        ['sigprocmask', 'rt_sigprocmask'],
-        ['open', 'openat'],
-        ['mmap', 'mremap'],
-        ['mmap2', 'mremap'],
-    ]
-
-    arg_inspection = {
-        'socket': ArgInspectionEntry(0, set([])),   # int domain
-        'ioctl': ArgInspectionEntry(1, set([])),    # int request
-        'prctl': ArgInspectionEntry(0, set([])),    # int option
-        'mmap': ArgInspectionEntry(2, set([])),     # int prot
-        'mmap2': ArgInspectionEntry(2, set([])),    # int prot
-        'mprotect': ArgInspectionEntry(2, set([])), # int prot
-    }
-
-    for syscall_list in syscall_set_list:
-        for syscall in syscall_list:
-            other_syscalls = syscall_list[:]
-            other_syscalls.remove(syscall)
-            syscall_sets[syscall] = other_syscalls
-
-    for trace_filename in opts.traces:
-        if 'i386' in trace_filename or ('x86' in trace_filename and
-                                        '64' not in trace_filename):
-            uses_socketcall = True
-
-        trace_file = open(trace_filename)
+    with open(trace_filename) as trace_file:
         for line in trace_file:
             matches = LINE_RE.match(line)
             if not matches:
@@ -147,6 +119,33 @@ def main(argv):
                 arg_value = args[arg_inspection[syscall].arg_index]
                 arg_inspection[syscall].value_set.add(arg_value)
 
+
+def main(argv):
+    """Main entrypoint."""
+    opts = parse_args(argv)
+
+    syscalls = collections.defaultdict(int)
+
+    arg_inspection = {
+        'socket': ArgInspectionEntry(0, set([])),   # int domain
+        'ioctl': ArgInspectionEntry(1, set([])),    # int request
+        'prctl': ArgInspectionEntry(0, set([])),    # int option
+        'mmap': ArgInspectionEntry(2, set([])),     # int prot
+        'mmap2': ArgInspectionEntry(2, set([])),    # int prot
+        'mprotect': ArgInspectionEntry(2, set([])), # int prot
+    }
+
+    for trace_filename in opts.traces:
+        parse_trace_file(trace_filename, syscalls, arg_inspection)
+
+    # Add the basic set if they are not yet present.
+    basic_set = [
+        'restart_syscall', 'exit', 'exit_group', 'rt_sigreturn',
+    ]
+    for basic_syscall in basic_set:
+        if basic_syscall not in syscalls:
+            syscalls[basic_syscall] = 1
+
     # Sort the syscalls based on frequency.  This way the calls that are used
     # more often come first which in turn speeds up the filter slightly.
     sorted_syscalls = list(
@@ -156,31 +155,12 @@ def main(argv):
 
     print(NOTICE)
 
-    all_syscalls = sorted_syscalls
-
-    # Add the basic set once the frequency drops below 2.
-    below_ten_index = -1
-    for sorted_syscall in sorted_syscalls:
-        if syscalls[sorted_syscall] < 2:
-            below_ten_index = all_syscalls.index(sorted_syscall)
-            break
-
-    first_half = all_syscalls[:below_ten_index]
-    for basic_syscall in basic_set:
-        if basic_syscall not in all_syscalls:
-            first_half.append(basic_syscall)
-
-    all_syscalls = first_half + all_syscalls[below_ten_index:]
-
-    for syscall in all_syscalls:
+    for syscall in sorted_syscalls:
         if syscall in arg_inspection:
-            arg_index = arg_inspection[syscall].arg_index
-            arg_values = arg_inspection[syscall].value_set
-            arg_filter = ' || '.join('arg%d == %s' % (arg_index, arg_value)
-                                     for arg_value in arg_values)
-            print(syscall + ': ' + arg_filter)
+            arg_filter = get_seccomp_bpf_filter(arg_inspection[syscall])
         else:
-            print(ALLOW % syscall)
+            arg_filter = ALLOW
+        print('%s: %s' % (syscall, arg_filter))
 
 
 if __name__ == '__main__':
