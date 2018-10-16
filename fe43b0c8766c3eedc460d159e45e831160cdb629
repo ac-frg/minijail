@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ad062a6_c460f896",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-16T05:15:18Z",
+      "side": 1,
+      "message": "this is new code and unrelated to pylint3 changes ?",
+      "revId": "fe43b0c8766c3eedc460d159e45e831160cdb629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
