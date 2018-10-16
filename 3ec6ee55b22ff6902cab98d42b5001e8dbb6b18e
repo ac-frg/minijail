@@ -22,6 +22,30 @@
       "revId": "3ec6ee55b22ff6902cab98d42b5001e8dbb6b18e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acfdc70e_de97d709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-16T23:11:26Z",
+      "side": 1,
+      "message": "The Android copy of repohooks does not like that style :(\nhttps://android.googlesource.com/platform/tools/repohooks/+/master/rh/hooks.py#331",
+      "parentUuid": "146e242a_53b09e73",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "3ec6ee55b22ff6902cab98d42b5001e8dbb6b18e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
