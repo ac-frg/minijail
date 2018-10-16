@@ -16,6 +16,24 @@
       "revId": "fe43b0c8766c3eedc460d159e45e831160cdb629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dbcc478_43b8236c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-16T16:13:44Z",
+      "side": 1,
+      "message": "Moved to its own change.",
+      "parentUuid": "6ad062a6_c460f896",
+      "revId": "fe43b0c8766c3eedc460d159e45e831160cdb629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
