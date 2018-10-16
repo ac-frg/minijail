@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41f1a692_ce70ddf6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-16T05:11:18Z",
+      "side": 1,
+      "message": "seems like we should be fixing that instead of having two completely independent implementations that check the same thing ?",
+      "revId": "d3bcbba786d28a5beea982ceeae4704df862c2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
