@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "146e242a_53b09e73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-16T21:05:19Z",
+      "side": 1,
+      "message": "this is what the Bug tag is for ...\n\n Bug: chromium:852235",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "3ec6ee55b22ff6902cab98d42b5001e8dbb6b18e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
