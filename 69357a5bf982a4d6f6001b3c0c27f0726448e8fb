@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40b91fc0_dd7f2945",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-17T17:31:22Z",
+      "side": 0,
+      "message": "if we\u0027re going to drop this, can we clean it up everywhere ?  might be worth sending a CL out to delete HAVE_SECUREBITS_H from all files and assuming linux/securebits.h is always available.\n\nlooks like the header was first introduced with linux-2.6.33, so requiring headers from at least that shouldn\u0027t be a problem.",
+      "revId": "69357a5bf982a4d6f6001b3c0c27f0726448e8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
