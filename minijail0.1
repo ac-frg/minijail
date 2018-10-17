@@ -286,6 +286,13 @@ section below for the full list of supported values for \fIprofile\fR.
 \fB--preload-library <file path>\fR
 Allows overriding the default path of \fI/lib/libminijailpreload.so\fR.  This
 is only really useful for testing.
+\fB--seccomp-bpf-binary <arch-specific BPF binary>\fR
+Enable \fBseccomp\fR(2) in mode 13 which restricts the child process to a set
+of system calls defined in the policy file.  This is similar to \fB-S\fR, but
+instead of using a policy file, \fB--secomp-bpf-binary\fR expects a
+arch-and-kernel-version-specific pre-compiled BPF binary (such as the ones
+produced by \fBparse_seccomp_policy\fR).  Note that system calls often change
+based on the architecture, mode, or kernel version.
 .SH SANDBOXING PROFILES
 The following sandboxing profiles are supported:
 .TP
