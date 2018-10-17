@@ -46,6 +46,30 @@
       "revId": "3ec6ee55b22ff6902cab98d42b5001e8dbb6b18e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59f0ad43_794dc4ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-17T03:46:42Z",
+      "side": 1,
+      "message": "huh, nevermind, it did let me upload it with that syntax. weird.",
+      "parentUuid": "acfdc70e_de97d709",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "3ec6ee55b22ff6902cab98d42b5001e8dbb6b18e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
