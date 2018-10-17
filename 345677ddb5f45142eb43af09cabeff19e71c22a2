@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdff5012_cec8b172",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-17T17:36:41Z",
+      "side": 1,
+      "message": "actually, along the backwards compat lines, these ambient defines are new to linux-4.3.  i\u0027m not sure we can assume that Android\u0027s linux headers are that new :/.  so we\u0027ll need to add #ifdef fallbacks like:\n\n #ifndef SECBIT_NO_CAP_AMBIENT_RAISE\n # define SECBIT_NO_CAP_AMBIENT_RAISE ...\n #endif",
+      "revId": "345677ddb5f45142eb43af09cabeff19e71c22a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
