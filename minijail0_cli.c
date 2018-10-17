@@ -6,6 +6,7 @@
 #include <dlfcn.h>
 #include <errno.h>
 #include <getopt.h>
+#include <linux/filter.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -406,6 +407,46 @@ static void set_remount_mode(struct minijail *j, const char *mode)
 	minijail_remount_mode(j, msmode);
 }
 
+static void read_seccomp_filter(const char *filter_path,
+				struct sock_fprog *filter)
+{
+	FILE *f = fopen(filter_path, "re");
+	if (!f) {
+		fprintf(stderr, "failed to open %s: %m", filter_path);
+		exit(1);
+	}
+	long filter_size = 0;
+	if (fseek(f, 0, SEEK_END) == -1 || (filter_size = ftell(f)) == -1) {
+		fclose(f);
+		fprintf(stderr, "failed to get file size of %s: %m",
+			filter_path);
+		exit(1);
+	}
+	if (filter_size % sizeof(struct sock_filter) != 0) {
+		fclose(f);
+		fprintf(stderr,
+			"filter size (%ld) of %s is not a multiple of %zu: %m",
+			filter_size, filter_path, sizeof(struct sock_filter));
+		exit(1);
+	}
+	rewind(f);
+
+	filter->len = filter_size / sizeof(struct sock_filter);
+	filter->filter = malloc(filter_size);
+	if (!filter->filter) {
+		fclose(f);
+		fprintf(stderr, "failed to allocate memory for filter: %m");
+		exit(1);
+	}
+	if (fread(filter->filter, sizeof(struct sock_filter), filter->len, f) !=
+	    filter->len) {
+		fclose(f);
+		fprintf(stderr, "failed read %s: %m", filter_path);
+		exit(1);
+	}
+	fclose(f);
+}
+
 static void usage(const char *progn)
 {
 	size_t i;
@@ -496,7 +537,12 @@ static void usage(const char *progn)
 	       "                that are typically used together.\n"
 	       "                See the minijail0(1) man page for the full list.\n"
 	       "  --preload-library=<f>:Overrides the path to \"" PRELOADPATH "\".\n"
-	       "                This is only really useful for local testing.\n");
+	       "                This is only really useful for local testing.\n"
+	       "  --seccomp-bpf-binary=<f>:Set a pre-compiled seccomp filter using <f>.\n"
+	       "                E.g., '-S /usr/share/filters/<prog>.$(uname -m).bpf'.\n"
+	       "                Requires -n when not running as root.\n"
+	       "                The user is responsible for ensuring that the binary\n"
+	       "                was compiled for the correct architecture / kernel version.\n");
 	/* clang-format on */
 }
 
@@ -516,7 +562,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	       const char **preload_path)
 {
 	int opt;
-	int use_seccomp_filter = 0;
+	int use_seccomp_filter = 0, use_seccomp_filter_binary = 0;
 	int forward = 1;
 	int binding = 0;
 	int chroot = 0, pivot_root = 0;
@@ -544,6 +590,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"logging", required_argument, 0, 130},
 		{"profile", required_argument, 0, 131},
 		{"preload-library", required_argument, 0, 132},
+		{"seccomp-bpf-binary", required_argument, 0, 133},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -563,7 +610,8 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		case 's':
 			if (seccomp != -1 && seccomp != 1) {
 				fprintf(stderr,
-					"Do not use -s & -S together.\n");
+					"Do not use -s, -S, "
+					"--seccomp-bpf-binary together.\n");
 				exit(1);
 			}
 			seccomp = 1;
@@ -572,7 +620,8 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		case 'S':
 			if (seccomp != -1 && seccomp != 2) {
 				fprintf(stderr,
-					"Do not use -s & -S together.\n");
+					"Do not use -s, -S, "
+					"--seccomp-bpf-binary together.\n");
 				exit(1);
 			}
 			seccomp = 2;
@@ -777,6 +826,28 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		case 132: /* PRELOADPATH */
 			*preload_path = optarg;
 			break;
+		case 133: /* seccomp-bpf binary. */
+			if (seccomp != -1 && seccomp != 3) {
+				fprintf(stderr,
+					"Do not use -s, -S, "
+					"--seccomp-bpf-binary together.\n");
+				exit(1);
+			}
+			seccomp = 3;
+			minijail_use_seccomp_filter(j);
+			if (strlen(optarg) >= path_max) {
+				fprintf(stderr, "Filter path is too long.\n");
+				exit(1);
+			}
+			filter_path = strndup(optarg, path_max);
+			if (!filter_path) {
+				fprintf(stderr,
+					"Could not strndup(3) filter path.\n");
+				exit(1);
+			}
+			use_seccomp_filter_binary = 1;
+			break;
+			break;
 		default:
 			usage(argv[0]);
 			exit(opt == 'h' ? 0 : 1);
@@ -838,6 +909,12 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	 */
 	if (use_seccomp_filter) {
 		minijail_parse_seccomp_filters(j, filter_path);
+		free((void *)filter_path);
+	} else if (use_seccomp_filter_binary) {
+		struct sock_fprog filter;
+		read_seccomp_filter(filter_path, &filter);
+		minijail_set_seccomp_filters(j, &filter);
+		free((void *)filter.filter);
 		free((void *)filter_path);
 	}
 
