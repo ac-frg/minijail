@@ -16,6 +16,24 @@
       "revId": "cc4f7a547772aa0790cf50d2a0967142c361f47a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9753e22_5acc4233",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-18T22:04:27Z",
+      "side": 1,
+      "message": "I guess it shouldn\u0027t hurt.",
+      "parentUuid": "ae44cd94_e3a4a097",
+      "revId": "cc4f7a547772aa0790cf50d2a0967142c361f47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
