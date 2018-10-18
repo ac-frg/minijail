@@ -16,6 +16,24 @@
       "revId": "345677ddb5f45142eb43af09cabeff19e71c22a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c600c423_ce4d4f12",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1080683
+      },
+      "writtenOn": "2018-10-18T11:21:20Z",
+      "side": 1,
+      "message": "Good point, rolling into the securebits.h cleanup commit as well.",
+      "parentUuid": "fdff5012_cec8b172",
+      "revId": "345677ddb5f45142eb43af09cabeff19e71c22a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }

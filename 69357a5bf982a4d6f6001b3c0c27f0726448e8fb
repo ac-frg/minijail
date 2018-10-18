@@ -16,6 +16,24 @@
       "revId": "69357a5bf982a4d6f6001b3c0c27f0726448e8fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d0152af_34d25f9d",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1080683
+      },
+      "writtenOn": "2018-10-18T11:21:20Z",
+      "side": 0,
+      "message": "Yup, let me send a separate CL for that. FWIW, I decided to drop this after realizing that we have references to various SECBIT_ constants in the code below, and by implication that code can\u0027t have compiled successfully without the securebits.h include.",
+      "parentUuid": "40b91fc0_dd7f2945",
+      "revId": "69357a5bf982a4d6f6001b3c0c27f0726448e8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
