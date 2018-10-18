@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae44cd94_e3a4a097",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-18T22:00:30Z",
+      "side": 1,
+      "message": "is this dead code we should delete ?",
+      "revId": "cc4f7a547772aa0790cf50d2a0967142c361f47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
