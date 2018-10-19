@@ -16,6 +16,24 @@
       "revId": "d4ca0670b1cb177f55c557ad44ab06f464fe7dc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8b3aa94_c974c25e",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1080683
+      },
+      "writtenOn": "2018-10-19T10:22:23Z",
+      "side": 1,
+      "message": "It\u0027s declared with an int return value in the header.",
+      "parentUuid": "ce79aed5_767f2d1b",
+      "revId": "d4ca0670b1cb177f55c557ad44ab06f464fe7dc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
