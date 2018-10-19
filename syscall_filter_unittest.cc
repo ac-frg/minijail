@@ -990,6 +990,55 @@ TEST_F(ArgFilterTest, no_log_bad_ret_error) {
   free_policy_list(entry);
 }
 
+TEST_F(ArgFilterTest, empty_attributes) {
+  std::string fragment = "arg0 == 0 []";
+
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
+  free_policy_list(entry);
+}
+
+TEST_F(ArgFilterTest, unclosed_attributes) {
+  std::string fragment = "arg0 == 0 [";
+
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+
+  EXPECT_EQ(entry, nullptr);
+}
+
+TEST_F(ArgFilterTest, invalid_attributes) {
+  std::string fragment = "arg0 == 0 [invalid]";
+
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+
+  EXPECT_EQ(entry, nullptr);
+}
+
+TEST_F(ArgFilterTest, attribute_frequency) {
+  std::string fragment = "arg0 == 0 [frequency = 1]";
+
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
+  free_policy_list(entry);
+}
+
+TEST_F(ArgFilterTest, attribute_frequency_missing_value) {
+  std::string fragment = "arg0 == 0 [frequency=]";
+
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+
+  EXPECT_EQ(entry, nullptr);
+}
+
 namespace {
 
 FILE* write_policy_to_pipe(std::string policy) {
@@ -1098,6 +1147,44 @@ TEST_F(FileTest, seccomp_mode1) {
       "write: 1\n"
       "rt_sigreturn: 1\n"
       "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
+  fclose(policy_file);
+
+  /*
+   * Checks return value and that the blocks only allow expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
+  struct syscall_policy_entry* curr_entry = entry_list_;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_read);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_write);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_rt_sigreturn);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_exit);
+
+  EXPECT_EQ(curr_entry->next, nullptr);
+}
+
+TEST_F(FileTest, seccomp_mode1_frequencies) {
+  // Same as seccomp_mode1, but sorted lexicographically and with frequency
+  // information.
+  std::string policy =
+      "exit: 1 [frequency=1]\n"
+      "read: 1 [frequency=4]\n"
+      "rt_sigreturn: 1 [frequency=2]\n"
+      "write: 1 [frequency=3]\n";
 
   FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);

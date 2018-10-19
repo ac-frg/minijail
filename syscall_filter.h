@@ -10,6 +10,7 @@
 #define SYSCALL_FILTER_H
 
 #include <stdbool.h>
+#include <stdint.h>
 
 #include "bpf.h"
 
@@ -38,6 +39,7 @@ struct syscall_policy_entry {
 	enum syscall_policy_action action;
 	int errno_val;
 	int lbl_id;
+	int64_t frequency;
 
 	struct filter_block *filter_block;
 

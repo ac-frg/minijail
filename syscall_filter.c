@@ -307,6 +307,60 @@ static int compile_atom(struct parser_state *state, struct filter_block *head,
 	return 0;
 }
 
+static int compile_attributes(struct parser_state *state, char *line,
+			      int64_t *frequency)
+{
+	char *attribute_str = strrchr(line, '[');
+	if (!attribute_str) {
+		return 0;
+	}
+
+	/* Splits the string into the policy line and the attributes. */
+	*(attribute_str++) = '\0';
+	char *closing_bracket = strrchr(attribute_str, ']');
+	if (!closing_bracket) {
+		compiler_warn(state, "unclosed attribute expression");
+		return -1;
+	}
+	*closing_bracket = '\0';
+	strip(line);
+
+	char *attribute_list_ptr = NULL;
+	for (char *attribute =
+		 strtok_r(attribute_str, ";", &attribute_list_ptr);
+	     attribute; attribute = strtok_r(NULL, ";", &attribute_list_ptr)) {
+		char *attribute_ptr = NULL;
+		char *attribute_name = strtok_r(attribute, "=", &attribute_ptr);
+		attribute_name = strip(attribute_name);
+		char *attribute_value = strtok_r(NULL, "=", &attribute_ptr);
+		if (!attribute_value) {
+			compiler_warn(state, "missing attribute value for %s",
+				      attribute_name);
+			return -1;
+		}
+		attribute_value = strip(attribute_value);
+
+		if (strcmp(attribute_name, "frequency") == 0) {
+			char *frequency_long_ptr = NULL;
+			long int frequency_long =
+			    strtol(attribute_value, &frequency_long_ptr, 10);
+			if (frequency_long < 0 || *frequency_long_ptr != '\0') {
+				compiler_warn(
+				    state,
+				    "invalid non-negative value for frequency");
+				return -1;
+			}
+			*frequency = (int64_t)frequency_long;
+		} else {
+			compiler_warn(state, "invalid metadata attribute: %s",
+				      attribute_name);
+			return -1;
+		}
+	}
+
+	return 0;
+}
+
 static int compile_errno(struct parser_state *state,
 			 enum syscall_policy_action *action, int *errno_val,
 			 char *ret_errno)
@@ -372,6 +426,13 @@ compile_policy_line(struct parser_state *state, int nr, const char *policy_line,
 	 *
 	 * If the syscall arguments don't make the expression true,
 	 * the syscall will be blocked as above instead of killing the process.
+	 *
+	 * Optionally, metadata can be added to the end of a policy line:
+	 * "arg0 == 3 && arg1 == 1 || arg0 == 0x8 [frequency=5]
+	 *
+	 * The only metadata supported at the moment is the frequency of a
+	 * particular syscall, that will be used to sort the list of syscalls in
+	 * order to make the bpf program more efficient.
 	 */
 
 	size_t len = 0;
@@ -388,12 +449,19 @@ compile_policy_line(struct parser_state *state, int nr, const char *policy_line,
 	if (!line)
 		return NULL;
 
+	int64_t frequency = 1;
+	if (compile_attributes(state, line, &frequency) < 0) {
+		free(line);
+		return NULL;
+	}
+
 	/*
 	 * We build the filter section as a collection of smaller
 	 * "filter blocks" linked together in a singly-linked list.
 	 */
 	struct syscall_policy_entry *policy_entry =
 	    new_syscall_policy_entry(nr);
+	policy_entry->frequency = frequency;
 
 	/* Checks whether we're unconditionally allowing this syscall. */
 	if (strcmp(line, "1") == 0) {
@@ -556,6 +624,86 @@ static int parse_include_statement(struct parser_state *state,
 	return 0;
 }
 
+static void sort_policy_list_impl(struct syscall_policy_entry **policy_list,
+				  size_t len)
+{
+	/*
+	 * Performs a stable merge-sort on the policy list. Most frequently
+	 * used syscalls go first.
+	 */
+	if (len <= 1)
+		return;
+
+	struct syscall_policy_entry *left = *policy_list, *right = *policy_list,
+				    *head = NULL, *curr = NULL, *tail = NULL;
+
+	/*
+	 * Split the list in left and right halves, and sort them independently.
+	 */
+	size_t i, left_remaining = len / 2,
+		  right_remaining = len - left_remaining;
+
+	for (i = 0; i < left_remaining; i++)
+		right = right->next;
+
+	sort_policy_list_impl(&left, left_remaining);
+	sort_policy_list_impl(&right, right_remaining);
+
+	/*
+	 * Merge both halves, giving the left sublist priority to guarantee
+	 * stability.
+	 */
+	while (left_remaining || right_remaining) {
+		if (!right_remaining ||
+		    (left_remaining && left->frequency >= right->frequency)) {
+			curr = left;
+			left = left->next;
+			--left_remaining;
+		} else {
+			curr = right;
+			right = right->next;
+			--right_remaining;
+		}
+		/*
+		 * Reset the pointers of this node since they
+		 * are now stale.
+		 */
+		curr->last = NULL;
+		if (!head)
+			head = curr;
+		else
+			tail->next = curr;
+		tail = curr;
+	}
+
+	/* Fixup the overall list. */
+	tail->next = NULL;
+	head->last = tail;
+
+	*policy_list = head;
+}
+
+static void sort_policy_list(struct syscall_policy_entry **policy_list)
+{
+	/* Avoid sorting if the list is already sorted. */
+	size_t len = 0;
+	int64_t last_frequency = INT64_MAX;
+	struct syscall_policy_entry *curr;
+	bool sorted = true;
+
+	for (curr = *policy_list; curr; curr = curr->next) {
+		if (last_frequency < curr->frequency)
+			sorted = false;
+		++len;
+		last_frequency = curr->frequency;
+	}
+
+	if (sorted)
+		return;
+
+	sort_policy_list_impl(policy_list, len);
+}
+
 int compile_file(const char *filename, FILE *policy_file,
 		 struct syscall_policy_entry **policy_list,
 		 struct bpf_labels *labels, int use_ret_trap, int allow_logging,
@@ -682,6 +830,9 @@ int compile_file(const char *filename, FILE *policy_file,
 	if (errno == EINVAL || errno == ENOMEM) {
 		ret = -1;
 	}
+
+	if (ret == 0 && include_level == 0 && *policy_list)
+		sort_policy_list(policy_list);
 
 free_line:
 	free(line);

@@ -142,18 +142,19 @@ def main(argv):
     # Sort the syscalls based on frequency.  This way the calls that are used
     # more often come first which in turn speeds up the filter slightly.
     sorted_syscalls = list(
-        x[0] for x in sorted(syscalls.items(), key=lambda pair: pair[1],
-                             reverse=True)
+        x for x in sorted(syscalls.items(), key=lambda pair: pair[1],
+                          reverse=True)
     )
 
     print(NOTICE)
 
-    for syscall in sorted_syscalls:
+    for syscall, frequency in sorted_syscalls:
         if syscall in arg_inspection:
-            arg_filter = get_seccomp_bpf_filter(syscall, arg_inspection[syscall])
+            arg_filter = get_seccomp_bpf_filter(syscall,
+                                                arg_inspection[syscall])
         else:
             arg_filter = ALLOW
-        print('%s: %s' % (syscall, arg_filter))
+        print('%s: %s [frequency=%d]' % (syscall, arg_filter, frequency))
 
 
 if __name__ == '__main__':
