@@ -32,7 +32,7 @@ int seccomp_can_softfail(void)
 	return 0;
 }
 
-int str_to_op(const char *op_str)
+static int str_to_op(const char *op_str)
 {
 	if (!strcmp(op_str, "==")) {
 		return EQ;
@@ -55,7 +55,7 @@ int str_to_op(const char *op_str)
 	}
 }
 
-struct sock_filter *new_instr_buf(size_t count)
+static struct sock_filter *new_instr_buf(size_t count)
 {
 	struct sock_filter *buf = calloc(count, sizeof(struct sock_filter));
 	if (!buf)
@@ -64,7 +64,7 @@ struct sock_filter *new_instr_buf(size_t count)
 	return buf;
 }
 
-struct filter_block *new_filter_block(void)
+static struct filter_block *new_filter_block(void)
 {
 	struct filter_block *block = calloc(1, sizeof(struct filter_block));
 	if (!block)
@@ -76,8 +76,8 @@ struct filter_block *new_filter_block(void)
 	return block;
 }
 
-void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
-			 size_t len)
+static void append_filter_block(struct filter_block *head,
+				struct sock_filter *instrs, size_t len)
 {
 	struct filter_block *new_last;
 
@@ -103,41 +103,78 @@ void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
 	new_last->last = new_last->next = NULL;
 }
 
-void extend_filter_block_list(struct filter_block *list,
-			      struct filter_block *another)
+static struct syscall_policy_entry *new_syscall_policy_entry(int nr)
 {
-	if (list->last != NULL) {
-		list->last->next = another;
-		list->last = another->last;
-	} else {
-		list->next = another;
-		list->last = another->last;
-	}
-	list->total_len += another->total_len;
+	struct syscall_policy_entry *policy_entry =
+	    calloc(1, sizeof(struct syscall_policy_entry));
+	if (!policy_entry)
+		die("could not allocate syscall policy entry");
+
+	policy_entry->nr = nr;
+	policy_entry->last = policy_entry;
+	return policy_entry;
 }
 
-void append_ret_kill(struct filter_block *head)
+static void
+extend_syscall_policy_list(struct syscall_policy_entry **policy_list,
+			   struct syscall_policy_entry *another)
+{
+	if (*policy_list == NULL) {
+		*policy_list = another;
+	} else {
+		(*policy_list)->last->next = another;
+		(*policy_list)->last = another->last;
+	}
+}
+
+static size_t
+syscall_policy_list_filter_length(struct syscall_policy_entry *policy_list)
+{
+	size_t total_len = 0;
+	struct syscall_policy_entry *curr;
+
+	for (curr = policy_list; curr; curr = curr->next) {
+		switch (curr->action) {
+		case SYSCALL_POLICY_ACTION_ALLOW:
+			total_len += ALLOW_SYSCALL_LEN;
+			break;
+		case SYSCALL_POLICY_ACTION_DENY:
+		case SYSCALL_POLICY_ACTION_ERRNO:
+			total_len += ONE_INSTR;
+			break;
+		case SYSCALL_POLICY_ACTION_FILTER:
+			/* The size of the jump. */
+			total_len += ALLOW_SYSCALL_LEN;
+			/* The size of the filter itself. */
+			total_len += curr->filter_block->total_len;
+			break;
+		}
+	}
+	return total_len;
+}
+
+static void append_ret_kill(struct filter_block *head)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_kill(filter);
 	append_filter_block(head, filter, ONE_INSTR);
 }
 
-void append_ret_trap(struct filter_block *head)
+static void append_ret_trap(struct filter_block *head)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_trap(filter);
 	append_filter_block(head, filter, ONE_INSTR);
 }
 
-void append_ret_errno(struct filter_block *head, int errno_val)
+static void append_ret_errno(struct filter_block *head, int errno_val)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_errno(filter, errno_val);
 	append_filter_block(head, filter, ONE_INSTR);
 }
 
-void append_allow_syscall(struct filter_block *head, int nr)
+static void append_allow_syscall(struct filter_block *head, int nr)
 {
 	struct sock_filter *filter = new_instr_buf(ALLOW_SYSCALL_LEN);
 	size_t len = bpf_allow_syscall(filter, nr);
@@ -147,7 +184,7 @@ void append_allow_syscall(struct filter_block *head, int nr)
 	append_filter_block(head, filter, len);
 }
 
-void allow_logging_syscalls(struct filter_block *head)
+static void allow_logging_syscalls(struct filter_block *head)
 {
 	unsigned int i;
 	for (i = 0; i < log_syscalls_len; i++) {
@@ -156,7 +193,8 @@ void allow_logging_syscalls(struct filter_block *head)
 	}
 }
 
-unsigned int get_label_id(struct bpf_labels *labels, const char *label_str)
+static unsigned int get_label_id(struct bpf_labels *labels,
+				 const char *label_str)
 {
 	int label_id = bpf_label_id(labels, label_str);
 	if (label_id < 0)
@@ -164,27 +202,28 @@ unsigned int get_label_id(struct bpf_labels *labels, const char *label_str)
 	return label_id;
 }
 
-unsigned int group_end_lbl(struct bpf_labels *labels, int nr, int idx)
+static unsigned int group_end_lbl(struct bpf_labels *labels, int nr, int idx)
 {
 	char lbl_str[MAX_BPF_LABEL_LEN];
 	snprintf(lbl_str, MAX_BPF_LABEL_LEN, "%d_%d_end", nr, idx);
 	return get_label_id(labels, lbl_str);
 }
 
-unsigned int success_lbl(struct bpf_labels *labels, int nr)
+static unsigned int success_lbl(struct bpf_labels *labels, int nr)
 {
 	char lbl_str[MAX_BPF_LABEL_LEN];
 	snprintf(lbl_str, MAX_BPF_LABEL_LEN, "%d_success", nr);
 	return get_label_id(labels, lbl_str);
 }
 
-int is_implicit_relative_path(const char *filename)
+static int is_implicit_relative_path(const char *filename)
 {
 	return filename[0] != '/' && (filename[0] != '.' || filename[1] != '/');
 }
 
-int compile_atom(struct parser_state *state, struct filter_block *head,
-		 char *atom, struct bpf_labels *labels, int nr, int grp_idx)
+static int compile_atom(struct parser_state *state, struct filter_block *head,
+			char *atom, struct bpf_labels *labels, int nr,
+			int grp_idx)
 {
 	/* Splits the atom. */
 	char *atom_ptr = NULL;
@@ -268,43 +307,40 @@ int compile_atom(struct parser_state *state, struct filter_block *head,
 	return 0;
 }
 
-int compile_errno(struct parser_state *state, struct filter_block *head,
-		  char *ret_errno, int use_ret_trap)
+static int compile_errno(struct parser_state *state,
+			 enum syscall_policy_action *action, int *errno_val,
+			 char *ret_errno)
 {
 	char *errno_ptr = NULL;
 
 	/* Splits the 'return' keyword and the actual errno value. */
 	char *ret_str = strtok_r(ret_errno, " ", &errno_ptr);
-	if (!ret_str || strncmp(ret_str, "return", strlen("return")))
+	if (!ret_str || strcmp(ret_str, "return")) {
+		compiler_warn(state, "invalid first token '%s'", ret_str);
 		return -1;
+	}
 
 	char *errno_val_str = strtok_r(NULL, " ", &errno_ptr);
 
 	if (errno_val_str) {
 		char *errno_val_ptr;
-		int errno_val = parse_constant(errno_val_str, &errno_val_ptr);
+		*errno_val = parse_constant(errno_val_str, &errno_val_ptr);
 		/* Checks to see if we parsed an actual errno. */
-		if (errno_val_ptr == errno_val_str || errno_val == -1) {
+		if (errno_val_ptr == errno_val_str || *errno_val == -1) {
 			compiler_warn(state, "invalid errno value '%s'",
 				      errno_val_ptr);
 			return -1;
 		}
-
-		append_ret_errno(head, errno_val);
+		*action = SYSCALL_POLICY_ACTION_ERRNO;
 	} else {
-		if (!use_ret_trap)
-			append_ret_kill(head);
-		else
-			append_ret_trap(head);
+		*action = SYSCALL_POLICY_ACTION_DENY;
 	}
 	return 0;
 }
 
-struct filter_block *compile_policy_line(struct parser_state *state, int nr,
-					 const char *policy_line,
-					 unsigned int entry_lbl_id,
-					 struct bpf_labels *labels,
-					 int use_ret_trap)
+struct syscall_policy_entry *
+compile_policy_line(struct parser_state *state, int nr, const char *policy_line,
+		    struct bpf_labels *labels, int use_ret_trap)
 {
 	/*
 	 * |policy_line| should be an expression of the form:
@@ -356,26 +392,38 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	 * We build the filter section as a collection of smaller
 	 * "filter blocks" linked together in a singly-linked list.
 	 */
-	struct filter_block *head = new_filter_block();
+	struct syscall_policy_entry *policy_entry =
+	    new_syscall_policy_entry(nr);
+
+	/* Checks whether we're unconditionally allowing this syscall. */
+	if (strcmp(line, "1") == 0) {
+		policy_entry->action = SYSCALL_POLICY_ACTION_ALLOW;
+		free(line);
+		return policy_entry;
+	}
+
+	/* Checks whether we're unconditionally blocking this syscall. */
+	if (strncmp(line, "return", strlen("return")) == 0) {
+		if (compile_errno(state, &policy_entry->action,
+				  &policy_entry->errno_val, line) < 0) {
+			free_policy_list(policy_entry);
+			free(line);
+			return NULL;
+		}
+		free(line);
+		return policy_entry;
+	}
 
 	/*
 	 * Filter sections begin with a label where the main filter
 	 * will jump after checking the syscall number.
 	 */
+	policy_entry->action = SYSCALL_POLICY_ACTION_FILTER;
+	policy_entry->filter_block = new_filter_block();
+	policy_entry->lbl_id = bpf_label_id(labels, lookup_syscall_name(nr));
 	struct sock_filter *entry_label = new_instr_buf(ONE_INSTR);
-	set_bpf_lbl(entry_label, entry_lbl_id);
-	append_filter_block(head, entry_label, ONE_INSTR);
-
-	/* Checks whether we're unconditionally blocking this syscall. */
-	if (strncmp(line, "return", strlen("return")) == 0) {
-		if (compile_errno(state, head, line, use_ret_trap) < 0) {
-			free_block_list(head);
-			free(line);
-			return NULL;
-		}
-		free(line);
-		return head;
-	}
+	set_bpf_lbl(entry_label, policy_entry->lbl_id);
+	append_filter_block(policy_entry->filter_block, entry_label, ONE_INSTR);
 
 	/* Splits the optional "return <errno>" part. */
 	char *line_ptr;
@@ -393,9 +441,9 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 		char *comp;
 		while ((comp = tokenize(&group_str, "&&")) != NULL) {
 			/* Compiles each atom into a BPF block. */
-			if (compile_atom(state, head, comp, labels, nr,
-					 grp_idx) < 0) {
-				free_block_list(head);
+			if (compile_atom(state, policy_entry->filter_block,
+					 comp, labels, nr, grp_idx) < 0) {
+				free_policy_list(policy_entry);
 				free(line);
 				return NULL;
 			}
@@ -413,7 +461,8 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 		 */
 		id = group_end_lbl(labels, nr, grp_idx++);
 		len += set_bpf_lbl(group_end_block + len, id);
-		append_filter_block(head, group_end_block, len);
+		append_filter_block(policy_entry->filter_block, group_end_block,
+				    len);
 	}
 
 	/*
@@ -422,17 +471,24 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	 * If we have to return an errno, do it,
 	 * otherwise just kill the task.
 	 */
+	enum syscall_policy_action last_action = SYSCALL_POLICY_ACTION_DENY;
+	int errno_val = -1;
 	if (ret_errno) {
-		if (compile_errno(state, head, ret_errno, use_ret_trap) < 0) {
-			free_block_list(head);
+		if (compile_errno(state, &last_action, &errno_val, ret_errno) <
+		    0) {
+			free_policy_list(policy_entry);
 			free(line);
 			return NULL;
 		}
+	}
+
+	if (last_action == SYSCALL_POLICY_ACTION_ERRNO) {
+		append_ret_errno(policy_entry->filter_block, errno_val);
 	} else {
 		if (!use_ret_trap)
-			append_ret_kill(head);
+			append_ret_kill(policy_entry->filter_block);
 		else
-			append_ret_trap(head);
+			append_ret_trap(policy_entry->filter_block);
 	}
 
 	/*
@@ -443,15 +499,16 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	struct sock_filter *success_block = new_instr_buf(TWO_INSTRS);
 	len = set_bpf_lbl(success_block, id);
 	len += set_bpf_ret_allow(success_block + len);
-	append_filter_block(head, success_block, len);
+	append_filter_block(policy_entry->filter_block, success_block, len);
 
 	free(line);
-	return head;
+	return policy_entry;
 }
 
-int parse_include_statement(struct parser_state *state, char *policy_line,
-			    unsigned int include_level,
-			    const char **ret_filename)
+static int parse_include_statement(struct parser_state *state,
+				   char *policy_line,
+				   unsigned int include_level,
+				   const char **ret_filename)
 {
 	if (strncmp("@include", policy_line, strlen("@include")) != 0) {
 		compiler_warn(state, "invalid statement '%s'", policy_line);
@@ -500,7 +557,7 @@ int parse_include_statement(struct parser_state *state, char *policy_line,
 }
 
 int compile_file(const char *filename, FILE *policy_file,
-		 struct filter_block *head, struct filter_block **arg_blocks,
+		 struct syscall_policy_entry **policy_list,
 		 struct bpf_labels *labels, int use_ret_trap, int allow_logging,
 		 unsigned int include_level)
 {
@@ -554,9 +611,8 @@ int compile_file(const char *filename, FILE *policy_file,
 				ret = -1;
 				goto free_line;
 			}
-			if (compile_file(filename, included_file, head,
-					 arg_blocks, labels, use_ret_trap,
-					 allow_logging,
+			if (compile_file(filename, included_file, policy_list,
+					 labels, use_ret_trap, allow_logging,
 					 ++include_level) == -1) {
 				compiler_warn(&state, "'@include %s' failed",
 					      filename);
@@ -611,57 +667,111 @@ int compile_file(const char *filename, FILE *policy_file,
 			goto free_line;
 		}
 
-		/*
-		 * For each syscall, add either a simple ALLOW,
-		 * or an arg filter block.
-		 */
-		if (strcmp(policy_line, "1") == 0) {
-			/* Add simple ALLOW. */
-			append_allow_syscall(head, nr);
-		} else {
-			/*
-			 * Create and jump to the label that will hold
-			 * the arg filter block.
-			 */
-			unsigned int id = bpf_label_id(labels, syscall_name);
-			struct sock_filter *nr_comp =
-			    new_instr_buf(ALLOW_SYSCALL_LEN);
-			bpf_allow_syscall_args(nr_comp, nr, id);
-			append_filter_block(head, nr_comp, ALLOW_SYSCALL_LEN);
+		/* For each syscall, build a filter block. */
+		struct syscall_policy_entry *entry = compile_policy_line(
+		    &state, nr, policy_line, labels, use_ret_trap);
 
-			/* Build the arg filter block. */
-			struct filter_block *block = compile_policy_line(
-			    &state, nr, policy_line, id, labels, use_ret_trap);
-
-			if (!block) {
-				if (*arg_blocks) {
-					free_block_list(*arg_blocks);
-					*arg_blocks = NULL;
-				}
-				ret = -1;
-				goto free_line;
-			}
-
-			if (*arg_blocks) {
-				extend_filter_block_list(*arg_blocks, block);
-			} else {
-				*arg_blocks = block;
-			}
+		if (!entry) {
+			ret = -1;
+			goto free_line;
 		}
+		extend_syscall_policy_list(policy_list, entry);
 		/* Reuse |line| in the next getline() call. */
 	}
 	/* getline(3) returned -1. This can mean EOF or the below errors. */
 	if (errno == EINVAL || errno == ENOMEM) {
-		if (*arg_blocks) {
-			free_block_list(*arg_blocks);
-			*arg_blocks = NULL;
-		}
 		ret = -1;
 	}
 
 free_line:
 	free(line);
 	return ret;
+}
+
+static int flatten_policy_list(struct syscall_policy_entry *policy_list,
+			       struct sock_filter *filter, size_t *index,
+			       size_t cap, int use_ret_trap)
+{
+	struct syscall_policy_entry *curr;
+	size_t len;
+
+	/* Flatten the syscall comparisons and jumps. */
+	for (curr = policy_list; curr; curr = curr->next) {
+		if (*index >= cap)
+			return -1;
+		switch (curr->action) {
+		case SYSCALL_POLICY_ACTION_ALLOW:
+			len = bpf_allow_syscall(&filter[*index], curr->nr);
+			if (len != ALLOW_SYSCALL_LEN) {
+				die("error building syscall number "
+				    "comparison");
+			}
+			*index += len;
+			break;
+		case SYSCALL_POLICY_ACTION_DENY:
+			if (use_ret_trap)
+				set_bpf_ret_trap(&filter[(*index)++]);
+			else
+				set_bpf_ret_kill(&filter[(*index)++]);
+			break;
+		case SYSCALL_POLICY_ACTION_ERRNO:
+			set_bpf_ret_errno(&filter[*(index++)], curr->errno_val);
+			break;
+		case SYSCALL_POLICY_ACTION_FILTER:
+			len = bpf_allow_syscall_args(&filter[*index], curr->nr,
+						     curr->lbl_id);
+			if (len != ALLOW_SYSCALL_LEN)
+				die("error building syscall filter");
+			*index += len;
+			break;
+		}
+	}
+	return 0;
+}
+
+static int flatten_block_list(struct filter_block *head,
+			      struct sock_filter *filter, size_t *index,
+			      size_t cap)
+{
+	struct filter_block *curr;
+	size_t i;
+
+	for (curr = head; curr; curr = curr->next) {
+		for (i = 0; i < curr->len; i++) {
+			if (*index >= cap)
+				return -1;
+			filter[(*index)++] = curr->instrs[i];
+		}
+	}
+	return 0;
+}
+
+static int flatten_policy_filters(struct syscall_policy_entry *policy_list,
+				  struct sock_filter *filter, size_t *index,
+				  size_t cap)
+{
+	struct syscall_policy_entry *curr;
+
+	for (curr = policy_list; curr; curr = curr->next) {
+		if (flatten_block_list(curr->filter_block, filter, index, cap) <
+		    0) {
+			return -1;
+		}
+	}
+	return 0;
+}
+
+static void free_block_list(struct filter_block *head)
+{
+	struct filter_block *current, *prev;
+
+	current = head;
+	while (current) {
+		free(current->instrs);
+		prev = current;
+		current = current->next;
+		free(prev);
+	}
 }
 
 int compile_filter(const char *filename, FILE *initial_file,
@@ -676,24 +786,25 @@ int compile_filter(const char *filename, FILE *initial_file,
 		return -1;
 	}
 
-	struct filter_block *head = new_filter_block();
-	struct filter_block *arg_blocks = NULL;
+	struct filter_block *prologue = new_filter_block();
+	struct filter_block *epilogue = new_filter_block();
+	struct syscall_policy_entry *policy_list = NULL;
 
 	/* Start filter by validating arch. */
 	struct sock_filter *valid_arch = new_instr_buf(ARCH_VALIDATION_LEN);
 	size_t len = bpf_validate_arch(valid_arch);
-	append_filter_block(head, valid_arch, len);
+	append_filter_block(prologue, valid_arch, len);
 
 	/* Load syscall number. */
 	struct sock_filter *load_nr = new_instr_buf(ONE_INSTR);
 	len = bpf_load_syscall_nr(load_nr);
-	append_filter_block(head, load_nr, len);
+	append_filter_block(prologue, load_nr, len);
 
 	/* If logging failures, allow the necessary syscalls first. */
 	if (allow_logging)
-		allow_logging_syscalls(head);
+		allow_logging_syscalls(prologue);
 
-	if (compile_file(filename, initial_file, head, &arg_blocks, &labels,
+	if (compile_file(filename, initial_file, &policy_list, &labels,
 			 use_ret_trap, allow_logging,
 			 0 /* include_level */) != 0) {
 		warn("compile_filter: compile_file() failed");
@@ -706,29 +817,59 @@ int compile_filter(const char *filename, FILE *initial_file,
 	 * or return TRAP.
 	 */
 	if (!use_ret_trap)
-		append_ret_kill(head);
+		append_ret_kill(epilogue);
 	else
-		append_ret_trap(head);
+		append_ret_trap(epilogue);
 
 	/* Allocate the final buffer, now that we know its size. */
 	size_t final_filter_len =
-	    head->total_len + (arg_blocks ? arg_blocks->total_len : 0);
+	    prologue->total_len + epilogue->total_len +
+	    syscall_policy_list_filter_length(policy_list);
 	if (final_filter_len > BPF_MAXINSNS) {
 		ret = -1;
 		goto free_filter;
 	}
 
-	struct sock_filter *final_filter =
-	    calloc(final_filter_len, sizeof(struct sock_filter));
+	struct sock_filter *final_filter = new_instr_buf(final_filter_len);
 
-	if (flatten_block_list(head, final_filter, 0, final_filter_len) < 0) {
+	/*
+	 * The structure of the generated BPF program is as follows:
+	 *
+	 * - The prologue, consisting of the architecture validation, loading
+	 *   the syscall number into the register, and (optionally)
+	 *   whitelisting the necessary syscalls for logging.
+	 * - The policy list, which just goes through the list of syscalls,
+	 *   performing the specified action for each one. If a filter
+	 *   expression was given, the code for the filter will not be
+	 *   generated in this block; instead, a jump to the filter block will
+	 *   be inserted. This keeps the code reasonably simple and compact.
+	 * - The epilogue, which contains the default KILL / TRAP action.
+	 * - The list of all programs that perform argument filtering.
+	 */
+	size_t index = 0;
+	if (flatten_block_list(prologue, final_filter, &index,
+			       final_filter_len) < 0) {
 		free(final_filter);
 		ret = -1;
 		goto free_filter;
 	}
 
-	if (flatten_block_list(arg_blocks, final_filter, head->total_len,
+	if (flatten_policy_list(policy_list, final_filter, &index,
+				final_filter_len, use_ret_trap) < 0) {
+		free(final_filter);
+		ret = -1;
+		goto free_filter;
+	}
+
+	if (flatten_block_list(epilogue, final_filter, &index,
 			       final_filter_len) < 0) {
+		free(final_filter);
+		ret = -1;
+		goto free_filter;
+	}
+
+	if (flatten_policy_filters(policy_list, final_filter, &index,
+				   final_filter_len) < 0) {
 		free(final_filter);
 		ret = -1;
 		goto free_filter;
@@ -744,37 +885,20 @@ int compile_filter(const char *filename, FILE *initial_file,
 	prog->len = final_filter_len;
 
 free_filter:
-	free_block_list(head);
-	free_block_list(arg_blocks);
+	free_block_list(prologue);
+	free_block_list(epilogue);
+	free_policy_list(policy_list);
 	free_label_strings(&labels);
 	return ret;
 }
 
-int flatten_block_list(struct filter_block *head, struct sock_filter *filter,
-		       size_t index, size_t cap)
+void free_policy_list(struct syscall_policy_entry *policy_list)
 {
-	size_t _index = index;
+	struct syscall_policy_entry *current, *prev;
 
-	struct filter_block *curr;
-	size_t i;
-
-	for (curr = head; curr; curr = curr->next) {
-		for (i = 0; i < curr->len; i++) {
-			if (_index >= cap)
-				return -1;
-			filter[_index++] = curr->instrs[i];
-		}
-	}
-	return 0;
-}
-
-void free_block_list(struct filter_block *head)
-{
-	struct filter_block *current, *prev;
-
-	current = head;
+	current = policy_list;
 	while (current) {
-		free(current->instrs);
+		free_block_list(current->filter_block);
 		prev = current;
 		current = current->next;
 		free(prev);

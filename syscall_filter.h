@@ -9,6 +9,8 @@
 #ifndef SYSCALL_FILTER_H
 #define SYSCALL_FILTER_H
 
+#include <stdbool.h>
+
 #include "bpf.h"
 
 #ifdef __cplusplus
@@ -24,6 +26,25 @@ struct filter_block {
 	size_t total_len;
 };
 
+enum syscall_policy_action {
+	SYSCALL_POLICY_ACTION_ALLOW,
+	SYSCALL_POLICY_ACTION_DENY,
+	SYSCALL_POLICY_ACTION_ERRNO,
+	SYSCALL_POLICY_ACTION_FILTER
+};
+
+struct syscall_policy_entry {
+	int nr;
+	enum syscall_policy_action action;
+	int errno_val;
+	int lbl_id;
+
+	struct filter_block *filter_block;
+
+	struct syscall_policy_entry *next;
+	struct syscall_policy_entry *last;
+};
+
 struct parser_state {
 	const char *filename;
 	size_t line_number;
@@ -31,23 +52,18 @@ struct parser_state {
 
 struct bpf_labels;
 
-struct filter_block *compile_policy_line(struct parser_state *state, int nr,
-					 const char *policy_line,
-					 unsigned int label_id,
-					 struct bpf_labels *labels,
-					 int do_ret_trap);
+struct syscall_policy_entry *
+compile_policy_line(struct parser_state *state, int nr, const char *policy_line,
+		    struct bpf_labels *labels, int do_ret_trap);
 int compile_file(const char *filename, FILE *policy_file,
-		 struct filter_block *head, struct filter_block **arg_blocks,
+		 struct syscall_policy_entry **policy_list,
 		 struct bpf_labels *labels, int use_ret_trap, int allow_logging,
 		 unsigned int include_level);
 int compile_filter(const char *filename, FILE *policy_file,
 		   struct sock_fprog *prog, int do_ret_trap,
 		   int add_logging_syscalls);
 
-struct filter_block *new_filter_block(void);
-int flatten_block_list(struct filter_block *head, struct sock_filter *filter,
-		       size_t index, size_t cap);
-void free_block_list(struct filter_block *head);
+void free_policy_list(struct syscall_policy_entry *policy_list);
 
 int seccomp_can_softfail(void);
 

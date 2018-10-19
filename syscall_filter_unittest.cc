@@ -52,27 +52,24 @@ int test_compile_filter(
                         add_logging_syscalls);
 }
 
-int test_compile_file(
-    std::string filename,
-    FILE* policy_file,
-    struct filter_block* head,
-    struct filter_block** arg_blocks,
-    struct bpf_labels* labels,
-    enum ret_trap use_ret_trap = USE_RET_KILL,
-    enum use_logging allow_logging = NO_LOGGING,
-    unsigned int include_level = 0) {
-  return compile_file(filename.c_str(), policy_file, head, arg_blocks, labels,
+int test_compile_file(std::string filename,
+                      FILE* policy_file,
+                      struct syscall_policy_entry** policy_list,
+                      struct bpf_labels* labels,
+                      enum ret_trap use_ret_trap = USE_RET_KILL,
+                      enum use_logging allow_logging = NO_LOGGING,
+                      unsigned int include_level = 0) {
+  return compile_file(filename.c_str(), policy_file, policy_list, labels,
                       use_ret_trap, allow_logging, include_level);
 }
 
-struct filter_block* test_compile_policy_line(
+struct syscall_policy_entry* test_compile_policy_line(
     struct parser_state* state,
     int nr,
     std::string policy_line,
-    unsigned int label_id,
     struct bpf_labels* labels,
     enum ret_trap do_ret_trap = USE_RET_KILL) {
-  return compile_policy_line(state, nr, policy_line.c_str(), label_id, labels,
+  return compile_policy_line(state, nr, policy_line.c_str(), labels,
                              do_ret_trap);
 }
 
@@ -395,54 +392,54 @@ class ArgFilterTest : public ::testing::Test {
   virtual void TearDown() { free_label_strings(&labels_); }
   struct bpf_labels labels_;
   int nr_ = 1;
-  unsigned int id_ = 0;
   struct parser_state state_;
 };
 
 TEST_F(ArgFilterTest, empty_atom) {
   std::string fragment = "";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, whitespace_atom) {
   std::string fragment = "\t    ";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, no_comparison) {
   std::string fragment = "arg0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, no_constant) {
   std::string fragment = "arg0 ==";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, arg0_equals) {
   std::string fragment = "arg0 == 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-  ASSERT_NE(block, nullptr);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -468,21 +465,22 @@ TEST_F(ArgFilterTest, arg0_equals) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, arg0_short_gt_ge_comparisons) {
   for (std::string fragment :
        {"arg1 < 0xff", "arg1 <= 0xff", "arg1 > 0xff", "arg1 >= 0xff"}) {
-    struct filter_block* block =
-        test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+    struct syscall_policy_entry* entry =
+        test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-    ASSERT_NE(block, nullptr);
+    ASSERT_NE(entry, nullptr);
+    ASSERT_NE(entry->filter_block, nullptr);
     size_t exp_total_len = 1 + (BPF_ARG_SHORT_GT_GE_COMP_LEN + 1) + 2 + 1 + 2;
-    EXPECT_EQ(block->total_len, exp_total_len);
+    EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
     // First block is a label.
-    struct filter_block* curr_block = block;
+    struct filter_block* curr_block = entry->filter_block;
     ASSERT_NE(curr_block, nullptr);
     EXPECT_EQ(curr_block->len, 1U);
     EXPECT_LBL(curr_block->instrs);
@@ -508,7 +506,7 @@ TEST_F(ArgFilterTest, arg0_short_gt_ge_comparisons) {
 
     EXPECT_EQ(curr_block->next, nullptr);
 
-    free_block_list(block);
+    free_policy_list(entry);
   }
 }
 
@@ -517,15 +515,16 @@ TEST_F(ArgFilterTest, arg0_long_gt_ge_comparisons) {
   for (std::string fragment :
        {"arg1 < 0xbadc0ffee0ddf00d", "arg1 <= 0xbadc0ffee0ddf00d",
         "arg1 > 0xbadc0ffee0ddf00d", "arg1 >= 0xbadc0ffee0ddf00d"}) {
-    struct filter_block* block =
-        test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+    struct syscall_policy_entry* entry =
+        test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-    ASSERT_NE(block, nullptr);
+    ASSERT_NE(entry, nullptr);
+    ASSERT_NE(entry->filter_block, nullptr);
     size_t exp_total_len = 1 + (BPF_ARG_GT_GE_COMP_LEN + 1) + 2 + 1 + 2;
-    EXPECT_EQ(block->total_len, exp_total_len);
+    EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
     // First block is a label.
-    struct filter_block* curr_block = block;
+    struct filter_block* curr_block = entry->filter_block;
     ASSERT_NE(curr_block, nullptr);
     EXPECT_EQ(curr_block->len, 1U);
     EXPECT_LBL(curr_block->instrs);
@@ -551,7 +550,7 @@ TEST_F(ArgFilterTest, arg0_long_gt_ge_comparisons) {
 
     EXPECT_EQ(curr_block->next, nullptr);
 
-    free_block_list(block);
+    free_policy_list(entry);
   }
 }
 #endif
@@ -559,15 +558,16 @@ TEST_F(ArgFilterTest, arg0_long_gt_ge_comparisons) {
 TEST_F(ArgFilterTest, arg0_mask) {
   std::string fragment = "arg1 & O_RDWR";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-  ASSERT_NE(block, nullptr);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -593,21 +593,22 @@ TEST_F(ArgFilterTest, arg0_mask) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, arg0_flag_set_inclusion) {
   std::string fragment = "arg0 in O_RDONLY|O_CREAT";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-  ASSERT_NE(block, nullptr);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -634,21 +635,22 @@ TEST_F(ArgFilterTest, arg0_flag_set_inclusion) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, arg0_eq_mask) {
   std::string fragment = "arg1 == O_WRONLY|O_CREAT";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
 
-  ASSERT_NE(block, nullptr);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -677,20 +679,21 @@ TEST_F(ArgFilterTest, arg0_eq_mask) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, and_or) {
   std::string fragment = "arg0 == 0 && arg1 == 0 || arg0 == 1";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_NE(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + 3 * (BPF_ARG_COMP_LEN + 1) + 2 + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -732,20 +735,21 @@ TEST_F(ArgFilterTest, and_or) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, ret_errno) {
   std::string fragment = "arg0 == 0 || arg0 == 1; return 1";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_NE(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + 2 * (BPF_ARG_COMP_LEN + 1) + 2 + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -785,106 +789,91 @@ TEST_F(ArgFilterTest, ret_errno) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, unconditional_errno) {
   std::string fragment = "return 1";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_NE(block, nullptr);
-  size_t exp_total_len = 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_NE(entry, nullptr);
+  EXPECT_EQ(entry->filter_block, nullptr);
+  EXPECT_EQ(entry->action, SYSCALL_POLICY_ACTION_ERRNO);
+  EXPECT_EQ(entry->errno_val, 1);
 
-  /* First block is a label. */
-  struct filter_block *curr_block = block;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_EQ(curr_block->len, 1U);
-  EXPECT_LBL(curr_block->instrs);
-
-  /* Second block is SECCOMP_RET_ERRNO. */
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_EQ(curr_block->len, 1U);
-  EXPECT_EQ_STMT(curr_block->instrs,
-                 BPF_RET + BPF_K,
-                 SECCOMP_RET_ERRNO | (1 & SECCOMP_RET_DATA));
-
-  EXPECT_EQ(curr_block->next, nullptr);
-
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, invalid_arg_token) {
   std::string fragment = "org0 == 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, invalid_arg_number) {
   std::string fragment = "argnn == 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, extra_chars_in_arg_token) {
   std::string fragment = "arg0n == 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, invalid_operator) {
   std::string fragment = "arg0 invalidop 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, invalid_constant) {
   std::string fragment = "arg0 == INVALIDCONSTANT";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, extra_tokens) {
   std::string fragment = "arg0 == 0 EXTRATOKEN";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, invalid_errno) {
   std::string fragment = "arg0 == 0 && arg1 == 1; return errno";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_EQ(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_EQ(entry, nullptr);
 }
 
 TEST_F(ArgFilterTest, log_no_ret_error) {
   std::string fragment = "arg0 == 0";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_,
-                               USE_RET_TRAP);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_, USE_RET_TRAP);
 
-  ASSERT_NE(block, nullptr);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -911,20 +900,21 @@ TEST_F(ArgFilterTest, log_no_ret_error) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, log_bad_ret_error) {
   std::string fragment = "arg0 == 0; return";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_);
-  ASSERT_NE(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -953,21 +943,21 @@ TEST_F(ArgFilterTest, log_bad_ret_error) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 TEST_F(ArgFilterTest, no_log_bad_ret_error) {
   std::string fragment = "arg0 == 0; return";
 
-  struct filter_block* block =
-      test_compile_policy_line(&state_, nr_, fragment, id_, &labels_,
-                               USE_RET_TRAP);
-  ASSERT_NE(block, nullptr);
+  struct syscall_policy_entry* entry =
+      test_compile_policy_line(&state_, nr_, fragment, &labels_, USE_RET_TRAP);
+  ASSERT_NE(entry, nullptr);
+  ASSERT_NE(entry->filter_block, nullptr);
   size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(block->total_len, exp_total_len);
+  EXPECT_EQ(entry->filter_block->total_len, exp_total_len);
 
   /* First block is a label. */
-  struct filter_block *curr_block = block;
+  struct filter_block* curr_block = entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
   EXPECT_LBL(curr_block->instrs);
@@ -997,7 +987,7 @@ TEST_F(ArgFilterTest, no_log_bad_ret_error) {
 
   EXPECT_EQ(curr_block->next, nullptr);
 
-  free_block_list(block);
+  free_policy_list(entry);
 }
 
 namespace {
@@ -1044,17 +1034,14 @@ class FileTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
     labels_.count = 0;
-    head_ = new_filter_block();
-    arg_blocks_ = nullptr;
+    entry_list_ = nullptr;
   }
   virtual void TearDown() {
     free_label_strings(&labels_);
-    free_block_list(head_);
-    free_block_list(arg_blocks_);
+    free_policy_list(entry_list_);
   }
   struct bpf_labels labels_;
-  struct filter_block *head_;
-  struct filter_block *arg_blocks_;
+  struct syscall_policy_entry* entry_list_;
 };
 
 }  // namespace
@@ -1065,8 +1052,7 @@ TEST_F(FileTest, malformed_policy) {
 
   FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);
-  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
-                              &labels_);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
   fclose(policy_file);
 
   /*
@@ -1082,8 +1068,7 @@ TEST_F(FileTest, double_free_on_compile_error) {
 
   FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);
-  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
-                              &labels_);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
   fclose(policy_file);
 
   /*
@@ -1098,8 +1083,7 @@ TEST_F(FileTest, invalid_return) {
 
   FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);
-  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
-                              &labels_);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
   fclose(policy_file);
 
   /*
@@ -1117,28 +1101,31 @@ TEST_F(FileTest, seccomp_mode1) {
 
   FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);
-  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
-                              &labels_);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
   fclose(policy_file);
 
   /*
    * Checks return value and that the blocks only allow expected syscalls.
    */
   ASSERT_EQ(res, 0);
-  struct filter_block *curr_block = head_;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_read);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_write);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_rt_sigreturn);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_exit);
+  struct syscall_policy_entry* curr_entry = entry_list_;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_read);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_write);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_rt_sigreturn);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  EXPECT_EQ(curr_entry->nr, __NR_exit);
 
-  EXPECT_EQ(curr_block->next, nullptr);
+  EXPECT_EQ(curr_entry->next, nullptr);
 }
 
 TEST_F(FileTest, seccomp_read) {
@@ -1150,42 +1137,28 @@ TEST_F(FileTest, seccomp_read) {
 
   const int LABEL_ID = 0;
 
-    FILE* policy_file = write_policy_to_pipe(policy);
+  FILE* policy_file = write_policy_to_pipe(policy);
   ASSERT_NE(policy_file, nullptr);
-  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
-                              &labels_);
+  int res = test_compile_file("policy", policy_file, &entry_list_, &labels_);
   fclose(policy_file);
 
   /*
    * Checks return value, that the blocks only allow expected syscalls, and that
-   * labels between |head_| and |arg_blocks_| match.
+   * labels between |head_| and |entry_list_| match.
    */
   ASSERT_EQ(res, 0);
-  struct filter_block *curr_block = head_;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL_ARGS(curr_block->instrs,
-                            __NR_read,
-                            LABEL_ID,
-                            JUMP_JT,
-                            JUMP_JF);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_write);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_rt_sigreturn);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_exit);
-
-  ASSERT_NE(arg_blocks_, nullptr);
-  size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
-  EXPECT_EQ(arg_blocks_->total_len, exp_total_len);
+  struct syscall_policy_entry* curr_entry = entry_list_;
+  ASSERT_NE(curr_entry, nullptr);
+  ASSERT_NE(curr_entry->filter_block, nullptr);
+  EXPECT_EQ(curr_entry->nr, __NR_read);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_FILTER);
 
   /* First block is a label. */
-  curr_block = arg_blocks_;
+  struct filter_block* curr_block = curr_entry->filter_block;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_EQ(curr_block->len, 1U);
+  size_t exp_total_len = 1 + (BPF_ARG_COMP_LEN + 1) + 2 + 1 + 2;
+  EXPECT_EQ(curr_block->total_len, exp_total_len);
   EXPECT_ACTUAL_LBL(curr_block->instrs, LABEL_ID);
 
   /* Second block is a comparison. */
@@ -1208,6 +1181,22 @@ TEST_F(FileTest, seccomp_read) {
   EXPECT_ALLOW(curr_block);
 
   EXPECT_EQ(curr_block->next, nullptr);
+
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->filter_block, nullptr);
+  EXPECT_EQ(curr_entry->nr, __NR_write);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->filter_block, nullptr);
+  EXPECT_EQ(curr_entry->nr, __NR_rt_sigreturn);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
+  curr_entry = curr_entry->next;
+  ASSERT_NE(curr_entry, nullptr);
+  EXPECT_EQ(curr_entry->filter_block, nullptr);
+  EXPECT_EQ(curr_entry->nr, __NR_exit);
+  EXPECT_EQ(curr_entry->action, SYSCALL_POLICY_ACTION_ALLOW);
 }
 
 TEST(FilterTest, seccomp_mode1) {
