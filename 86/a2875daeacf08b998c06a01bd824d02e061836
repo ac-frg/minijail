@@ -1,0 +1,9 @@
+Autosubmit+1: Luis Hector Chavez <lhchavez@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Luis Hector Chavez <lhchavez@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Fri, 19 Oct 2018 00:02:41 +0000
+Reviewed-on: https://android-review.googlesource.com/790782
+Project: platform/external/minijail
+Branch: refs/heads/master
