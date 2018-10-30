@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7040593_5b38cb1e",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-30T02:59:20Z",
+      "side": 1,
+      "message": "existing style suggests there should be two blank lines here",
+      "revId": "4ed9fbda196e4d54e1ff3ecbb9ebfe6f745a3ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9cc7b40_a43f9f53",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-30T02:59:20Z",
+      "side": 1,
+      "message": "we use two tabs for deps, but the rule itself should only be one tab\n\nalso, change constants.json here to $@",
+      "revId": "4ed9fbda196e4d54e1ff3ecbb9ebfe6f745a3ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c7a0eb1_27196998",
+        "filename": "dump_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-30T02:59:20Z",
+      "side": 1,
+      "message": "why do you need the uint64_t cast ?  it\u0027s already an unsigned long which cout should be able to handle.",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "4ed9fbda196e4d54e1ff3ecbb9ebfe6f745a3ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927b9e16_40e9a06c",
+        "filename": "dump_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-30T02:59:20Z",
+      "side": 1,
+      "message": "no tabs",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "4ed9fbda196e4d54e1ff3ecbb9ebfe6f745a3ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
