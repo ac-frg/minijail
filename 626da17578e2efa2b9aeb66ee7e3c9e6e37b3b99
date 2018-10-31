@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2c9f7e_702f8005",
+        "filename": "util.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T17:43:10Z",
+      "side": 1,
+      "message": "return true ?",
+      "revId": "626da17578e2efa2b9aeb66ee7e3c9e6e37b3b99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
