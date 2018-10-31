@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58628b19_061227ff",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T05:35:04Z",
+      "side": 1,
+      "message": "__SANITIZE_ADDRESS__ isn\u0027t defined to 0, so i don\u0027t think we need to check its value",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81b95210_74a85b36",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T05:35:04Z",
+      "side": 1,
+      "message": "indent the code:\n\n # if __has_feature(address_sanitizer)",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33d1d2fc_039f9ecc",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T05:35:04Z",
+      "side": 1,
+      "message": "does this work ?\n\n return __has_feature(address_sanitizer);",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91e34970_e7802e22",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T05:35:04Z",
+      "side": 1,
+      "message": "prob meant to return 0.  although wouldn\u0027t mind changing this to a proper bool.",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
