@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8afb4e5a_35f5ca61",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-31T13:36:46Z",
+      "side": 1,
+      "message": "No, that would return a |struct minijail| instead of a |struct minijail *|.",
+      "parentUuid": "0d7ffbc6_7b32c449",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58628b19_061227ff",
         "filename": "util.h",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dd7540c_5d2da9fc",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-31T13:36:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58628b19_061227ff",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ffbb9cbc_87ebefce",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-31T13:36:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "81b95210_74a85b36",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33d1d2fc_039f9ecc",
         "filename": "util.h",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "3950f7d6_e92387e3",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-31T13:36:46Z",
+      "side": 1,
+      "message": "It did!",
+      "parentUuid": "33d1d2fc_039f9ecc",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91e34970_e7802e22",
         "filename": "util.h",
         "patchSetId": 3
@@ -84,6 +156,24 @@
       "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4866ae74_3cfebf06",
+        "filename": "util.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-10-31T13:36:46Z",
+      "side": 1,
+      "message": "Changed to a proper bool.",
+      "parentUuid": "91e34970_e7802e22",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
