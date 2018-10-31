@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0d7ffbc6_7b32c449",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-10-31T05:40:32Z",
+      "side": 1,
+      "message": "this could be written as *j too instead of j.get() ?",
+      "revId": "76658876b37debe095dbac4b007022a41d5d49bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58628b19_061227ff",
         "filename": "util.h",
         "patchSetId": 3
