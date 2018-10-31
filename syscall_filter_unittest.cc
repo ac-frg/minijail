@@ -141,6 +141,50 @@ TEST(util, parse_constant_signed_toonegative) {
 #endif
 }
 
+TEST(util, parse_constant_complements) {
+  char* end;
+  long int c = 0;
+  std::string constant;
+
+#if defined(BITS32)
+  constant = "~0x005AF0FF|~0xFFA50FFF";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFFFF0000);
+  constant = "0x0F|~(0x005AF000|0x00A50FFF)|0xF0";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFF0000FF);
+
+#elif defined(BITS64)
+  constant = "~0x00005A5AF0F0FFFF|~0xFFFFA5A50F0FFFFF";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFFFFFFFFFFFF0000UL);
+  constant = "0x00FF|~(0x00005A5AF0F00000|0x0000A5A50F0FFFFF)|0xFF00";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFFFF00000000FFFFUL);
+#endif
+}
+
+TEST(util, parse_parenthesized_expresions) {
+  char* end;
+
+  for (const auto* expression : {"(1", "1)", "(1)1", "|(1)", "(1)|"}) {
+    std::string mutable_expression = expression;
+    long int c =
+        parse_constant(const_cast<char*>(mutable_expression.c_str()), &end);
+    EXPECT_EQ(reinterpret_cast<const void*>(end),
+              reinterpret_cast<const void*>(mutable_expression.c_str()));
+    // Error case should return 0.
+    EXPECT_EQ(c, 0) << "For expression: \"" << expression << "\"";
+  }
+
+  for (const auto* expression : {"(1)", "(1)|0", "0|(1)"}) {
+    std::string mutable_expression = expression;
+    long int c =
+        parse_constant(const_cast<char*>(mutable_expression.c_str()), &end);
+    EXPECT_EQ(c, 1) << "For expression: \"" << expression << "\"";
+  }
+}
+
 /* Test that setting one BPF instruction works. */
 TEST(bpf, set_bpf_instr) {
   struct sock_filter instr;
