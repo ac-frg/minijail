@@ -389,13 +389,8 @@ class PolicyCompiler:
                     self._parser_state.error('invalid operator: "%s"',
                                              operator)
                 constant = self.parse_constant(atom[2:])
-                block = bpf.Atom(
-                    arg_index,
-                    operator,
-                    constant,
-                    true_block,
-                    false_block,
-                    arch=self._arch)
+                block = bpf.Atom(arg_index, operator, constant, true_block,
+                                 false_block)
                 true_block = block
             # The previous list of conjunctions will jump into the head of the
             # current list of disjunctions if any of them fail instead of
@@ -436,20 +431,22 @@ class PolicyCompiler:
         accept_action, filter_tokens = self._parse_return_statement(
             filter_tokens)
 
-        if not filter_tokens:
-            flattener = bpf.Flattener(arch=self._arch)
-            accept_action.accept(flattener)
-            policy_entry.filter = flattener.result
-            return policy_entry
+        if filter_tokens:
+            reject_action = bpf.Kill()
+            policy_filter = self._parse_dnf_policy_expression(
+                filter_tokens, accept_action, reject_action)
 
-        reject_action = bpf.Kill()
+            # Lower all Atoms into WideAtoms.
+            lowering_visitor = bpf.LoweringVisitor(arch=self._arch)
+            policy_filter = lowering_visitor.process(policy_filter)
 
-        policy_filter = self._parse_dnf_policy_expression(
-            filter_tokens, accept_action, reject_action)
-
-        flattener = bpf.Flattener(arch=self._arch)
-        policy_filter.accept(flattener)
-        policy_entry.filter = flattener.result
+            # Flatten the IR DAG into a single BasicBlock.
+            flattening_visitor = bpf.FlatteningVisitor(arch=self._arch)
+            policy_filter.accept(flattening_visitor)
+            policy_entry.filter = flattening_visitor.result
+        else:
+            assert isinstance(accept_action, bpf.BasicBlock)
+            policy_entry.filter = accept_action
 
         return policy_entry
 
@@ -486,18 +483,19 @@ class PolicyCompiler:
         """Return a compiled BPF program from the provided policy file."""
         entries = self._parse_file(policy_filename, 0)
 
-        flattener = bpf.Flattener(arch=self._arch)
+        visitor = bpf.FlatteningVisitor(arch=self._arch)
         accept_action = bpf.Allow()
         reject_action = bpf.Kill()
         if optimization_strategy == OptimizationStrategy.BST:
             next_action = _compile_entries_bst(entries, accept_action,
-                                               reject_action, flattener)
+                                               reject_action, visitor)
         else:
             next_action = _compile_entries_linear(entries, accept_action,
-                                                  reject_action, flattener)
-        accept_action.accept(flattener)
-        bpf.ValidateArch(self._arch.arch_nr, next_action).accept(flattener)
-        return flattener.result
+                                                  reject_action, visitor)
+        reject_action.accept(visitor)
+        accept_action.accept(visitor)
+        bpf.ValidateArch(next_action).accept(visitor)
+        return visitor.result
 
 
 def parse_args(argv):

@@ -89,7 +89,6 @@ class AbstractBlock(abc.ABC):
 
     def __init__(self):
         super().__init__()
-        self.offset = None
 
     @abc.abstractmethod
     def accept(self, visitor):
@@ -104,9 +103,7 @@ class BasicBlock(AbstractBlock):
         self._instructions = instructions
 
     def accept(self, visitor):
-        if self.offset is not None:
-            return
-        self.offset = visitor.visit(self._instructions)
+        visitor.visit(self)
 
     @property
     def instructions(self):
@@ -197,29 +194,19 @@ class ReturnErrno(BasicBlock):
     def __init__(self, errno):
         super().__init__(
             [SockFilter(BPF_RET, 0x00, 0x00, SECCOMP_RET_ERRNO | errno)])
+        self.errno = errno
 
 
 class ValidateArch(AbstractBlock):
     """An AbstractBlock that validates the architecture."""
 
-    def __init__(self, arch, next_block):
+    def __init__(self, next_block):
         super().__init__()
-        self._arch = arch
-        self._next_block = next_block
+        self.next_block = next_block
 
     def accept(self, visitor):
-        if self.offset is not None:
-            return
-        self._next_block.accept(visitor)
-        next_block_distance = visitor.distance(self._next_block)
-        instructions = [
-            SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, 4),
-            SockFilter(BPF_JMP | BPF_JEQ | BPF_K, next_block_distance + 1, 0,
-                       self._arch),
-            SockFilter(BPF_RET, 0, 0, SECCOMP_RET_KILL),
-            SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, 0),
-        ]
-        self.offset = visitor.visit(instructions)
+        self.next_block.accept(visitor)
+        visitor.visit(self)
 
 
 class SyscallEntry(AbstractBlock):
@@ -227,29 +214,38 @@ class SyscallEntry(AbstractBlock):
 
     def __init__(self, syscall_number, jt, jf, *, op=BPF_JEQ):
         super().__init__()
-        self._op = op
-        self._syscall_number = syscall_number
-        self._jt = jt
-        self._jf = jf
+        self.op = op
+        self.syscall_number = syscall_number
+        self.jt = jt
+        self.jf = jf
 
     def accept(self, visitor):
-        if self.offset is not None:
-            return
+        self.jt.accept(visitor)
+        self.jf.accept(visitor)
+        visitor.visit(self)
 
-        self._jf.accept(visitor)
-        self._jt.accept(visitor)
-        jt_distance = visitor.distance(self._jt)
-        jf_distance = visitor.distance(self._jf)
 
-        instructions = visitor.jmp_op_32(self._op, self._syscall_number,
-                                         jt_distance, jf_distance)
-        self.offset = visitor.visit(instructions)
+class WideAtom(AbstractBlock):
+    """A BasicBlock that represents an 32-bit wide atom."""
+
+    def __init__(self, arg_offset, op, value, jt, jf):
+        super().__init__()
+        self.arg_offset = arg_offset
+        self.op = op
+        self.value = value
+        self.jt = jt
+        self.jf = jf
+
+    def accept(self, visitor):
+        self.jt.accept(visitor)
+        self.jf.accept(visitor)
+        visitor.visit(self)
 
 
 class Atom(AbstractBlock):
     """A BasicBlock that represents an atom (a simple comparison operation)."""
 
-    def __init__(self, arg_index, op, value, jt, jf, *, arch):
+    def __init__(self, arg_index, op, value, jt, jf):
         super().__init__()
         if op == '==':
             op = BPF_JEQ
@@ -274,59 +270,240 @@ class Atom(AbstractBlock):
             # argument includes a flag that wasn't listed in the original
             # (non-negated) mask. This would be the failure case, so we switch
             # |jt| and |jf|.
-            value = (~value) & ((1 << arch.bits) - 1)
+            value = (~value) & ((1 << 64) - 1)
             jt, jf = jf, jt
         else:
             raise Exception('Unknown operator %s' % op)
 
         self.arg_index = arg_index
-        self._op = op
-        self._jt = jt
-        self._jf = jf
-        self._value = value & ((1 << arch.bits) - 1)
+        self.op = op
+        self.jt = jt
+        self.jf = jf
+        self.value = value
 
     def accept(self, visitor):
-        if self.offset is not None:
+        self.jt.accept(visitor)
+        self.jf.accept(visitor)
+        visitor.visit(self)
+
+
+class AbstractVisitor(abc.ABC):
+    """A visitor that copies Blocks."""
+
+    def process(self, block):
+        block.accept(self)
+        return block
+
+    def visit(self, block):
+        if isinstance(block, Allow):
+            self.visitAllow(block)
+        elif isinstance(block, Kill):
+            self.visitKill(block)
+        elif isinstance(block, Trap):
+            self.visitTrap(block)
+        elif isinstance(block, ReturnErrno):
+            self.visitReturnErrno(block)
+        elif isinstance(block, BasicBlock):
+            self.visitBasicBlock(block)
+        elif isinstance(block, ValidateArch):
+            self.visitValidateArch(block)
+        elif isinstance(block, SyscallEntry):
+            self.visitSyscallEntry(block)
+        elif isinstance(block, WideAtom):
+            self.visitWideAtom(block)
+        elif isinstance(block, Atom):
+            self.visitAtom(block)
+        else:
+            raise Exception('Unknown block type: %r' % block)
+
+    @abc.abstractmethod
+    def visitAllow(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitKill(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitTrap(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitReturnErrno(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitBasicBlock(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitValidateArch(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitSyscallEntry(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitWideAtom(self, block):
+        pass
+
+    @abc.abstractmethod
+    def visitAtom(self, block):
+        pass
+
+
+class CopyingVisitor(AbstractVisitor):
+    """A visitor that copies Blocks."""
+
+    def __init__(self):
+        self._mapping = {}
+
+    def process(self, block):
+        self._mapping = {}
+        block.accept(self)
+        return self._mapping[id(block)]
+
+    def visitAllow(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = Allow()
+
+    def visitKill(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = Kill()
+
+    def visitTrap(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = Trap()
+
+    def visitReturnErrno(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = ReturnErrno(block.errno)
+
+    def visitBasicBlock(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = BasicBlock(block.instructions)
+
+    def visitValidateArch(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = ValidateArch(
+            block.arch, self._mapping[id(block.next_block)])
+
+    def visitSyscallEntry(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = SyscallEntry(
+            block.syscall_number,
+            self._mapping[id(block.jt)],
+            self._mapping[id(block.jf)],
+            op=block.op)
+
+    def visitWideAtom(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = WideAtom(
+            block.arg_offset, block.op, block.value, self._mapping[id(
+                block.jt)], self._mapping[id(block.jf)])
+
+    def visitAtom(self, block):
+        if id(block) in self._mapping:
+            return
+        self._mapping[id(block)] = Atom(block.arg_index, block.op, block.value,
+                                        self._mapping[id(block.jt)],
+                                        self._mapping[id(block.jf)])
+
+
+class LoweringVisitor(CopyingVisitor):
+    """A visitor that lowers Atoms into WideAtoms."""
+
+    def __init__(self, *, arch):
+        super().__init__()
+        self._bits = arch.bits
+
+    def visitAtom(self, block):
+        if id(block) in self._mapping:
             return
 
-        self._jf.accept(visitor)
-        self._jt.accept(visitor)
-        jt_distance = visitor.distance(self._jt)
-        jf_distance = visitor.distance(self._jf)
+        lo = block.value & 0xFFFFFFFF
+        hi = (block.value >> 32) & 0xFFFFFFFF
 
-        instructions = visitor.jmp_op(self.arg_index, self._op, self._value,
-                                      jt_distance, jf_distance)
-        self.offset = visitor.visit(instructions)
+        lo_block = WideAtom(
+            arg_index(block.arg_index, False), block.op, lo,
+            self._mapping[id(block.jt)], self._mapping[id(block.jf)])
+
+        if self._bits == 32:
+            self._mapping[id(block)] = lo_block
+            return
+
+        if block.op in (BPF_JGE, BPF_JGT):
+            # hi_1,lo_1 <op> hi_2,lo_2
+            #
+            # hi_1 > hi_2 || hi_1 == hi_2 && lo_1 <op> lo_2
+            if hi == 0:
+                # Special case: it's not needed to check whether |hi_1 == hi_2|,
+                # because it's true iff the JGT test fails.
+                self._mapping[id(block)] = WideAtom(
+                    arg_index(block.arg_index, True), BPF_JGT, hi,
+                    self._mapping[id(block.jt)], lo_block)
+                return
+            hi_eq_block = WideAtom(
+                arg_index(block.arg_index, True), BPF_JEQ, hi, lo_block,
+                self._mapping[id(block.jf)])
+            self._mapping[id(block)] = WideAtom(
+                arg_index(block.arg_index, True), BPF_JGT, hi,
+                self._mapping[id(block.jt)], hi_eq_block)
+            return
+        if block.op == BPF_JSET:
+            # hi_1,lo_1 & hi_2,lo_2
+            #
+            # hi_1 & hi_2 || lo_1 & lo_2
+            if hi == 0:
+                # Special case: |hi_1 & hi_2| will never be True, so jump
+                # directly into the |lo_1 & lo_2| case.
+                self._mapping[id(block)] = lo_block
+                return
+            self._mapping[id(block)] = WideAtom(
+                arg_index(block.arg_index, True), block.op, hi,
+                self._mapping[id(block.jt)], lo_block)
+            return
+
+        assert block.op == BPF_JEQ, block.op
+
+        # hi_1,lo_1 == hi_2,lo_2
+        #
+        # hi_1 == hi_2 && lo_1 == lo_2
+        self._mapping[id(block)] = WideAtom(
+            arg_index(block.arg_index, True), block.op, hi, lo_block,
+            self._mapping[id(block.jf)])
 
 
-class Flattener(object):
+class FlatteningVisitor:
     """A visitor that flattens a DAG of Block objects."""
 
     def __init__(self, *, arch):
-        self._bits = arch.bits
         self._instructions = []
+        self._arch = arch
+        self._offsets = {}
 
     @property
     def result(self):
         return BasicBlock(self._instructions)
 
-    def distance(self, block):
-        distance = block.offset + len(self._instructions)
+    def _distance(self, block):
+        distance = self._offsets[id(block)] + len(self._instructions)
         assert distance >= 0
         return distance
 
-    def load_arg_32(self, index):
-        return [
-            SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, 4 + 4 + 8 + 8 * index)
-        ]
+    def _emit_load_arg(self, offset):
+        return [SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, offset)]
 
-    def load_arg_64(self, index, hi):
-        return [
-            SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0,
-                       4 + 4 + 8 + 8 * index + 4 * hi)
-        ]
-
-    def jmp_op_32(self, op, value, jt_distance, jf_distance):
+    def _emit_jmp(self, op, value, jt_distance, jf_distance):
         if jt_distance < 0x100 and jf_distance < 0x100:
             return [
                 SockFilter(BPF_JMP | op | BPF_K, jt_distance, jf_distance,
@@ -348,44 +525,33 @@ class Flattener(object):
             SockFilter(BPF_JMP | BPF_JA, 0, 0, jf_distance),
         ]
 
-    def jmp_op(self, arg_index, op, value, jt_distance, jf_distance):
-        lo = value & 0xFFFFFFFF
-        hi = (value >> 32) & 0xFFFFFFFF
+    def visit(self, block):
+        if id(block) in self._offsets:
+            return
 
-        if self._bits == 32:
-            return (self.load_arg_32(arg_index) + self.jmp_op_32(
-                op, value, jt_distance, jf_distance))
-        # Generate the latter part of the instruction in case we need a wide
-        # jump target.
-        lo_instructions = (self.load_arg_64(arg_index, False) + self.jmp_op_32(
-            op, lo, jt_distance, jf_distance))
-        if op in (BPF_JGE, BPF_JGT):
-            if hi == 0:
-                # For > and >=, there is one potential optimization when |hi|
-                # is zero.
-                return (self.load_arg_64(arg_index, True) + self.jmp_op_32(
-                    BPF_JGT, hi, jt_distance + len(lo_instructions), 0) +
-                        lo_instructions)
-            else:
-                lo_instructions = (self.jmp_op_32(
-                    BPF_JEQ, hi, 0, jf_distance + len(lo_instructions)) +
-                                   lo_instructions)
-                return (self.load_arg_64(arg_index, True) + self.jmp_op_32(
-                    BPF_JGT, hi, jt_distance + len(lo_instructions), 0) +
-                        lo_instructions)
-        elif op == BPF_JSET:
-            if hi == 0:
-                # Special case: |A & 0| will never be True, so jump directly
-                # into the |lo| case.
-                return lo_instructions
-            else:
-                return (self.load_arg_64(arg_index, True) + self.jmp_op_32(
-                    BPF_JSET, hi, jt_distance + len(lo_instructions), 0) +
-                        lo_instructions)
-        assert op == BPF_JEQ, op
-        return (self.load_arg_64(arg_index, True) + self.jmp_op_32(
-            op, hi, 0, jf_distance + len(lo_instructions)) + lo_instructions)
+        if isinstance(block, BasicBlock):
+            instructions = block.instructions
+        elif isinstance(block, ValidateArch):
+            instructions = [
+                SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, 4),
+                SockFilter(BPF_JMP | BPF_JEQ | BPF_K,
+                           self._distance(block.next_block) + 1, 0,
+                           self._arch.arch_nr),
+                SockFilter(BPF_RET, 0, 0, SECCOMP_RET_KILL),
+                SockFilter(BPF_LD | BPF_W | BPF_ABS, 0, 0, 0),
+            ]
+        elif isinstance(block, SyscallEntry):
+            instructions = self._emit_jmp(block.op, block.syscall_number,
+                                          self._distance(block.jt),
+                                          self._distance(block.jf))
+        elif isinstance(block, WideAtom):
+            instructions = (
+                self._emit_load_arg(block.arg_offset) + self._emit_jmp(
+                    block.op, block.value, self._distance(block.jt),
+                    self._distance(block.jf)))
+        else:
+            raise Exception('Unknown block type: %r' % block)
 
-    def visit(self, instructions):
         self._instructions = instructions + self._instructions
-        return -len(self._instructions)
+        self._offsets[id(block)] = -len(self._instructions)
+        return

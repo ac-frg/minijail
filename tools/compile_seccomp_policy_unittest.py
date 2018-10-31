@@ -225,14 +225,14 @@ class ParsePolicyLineTests(unittest.TestCase):
                 bpf.SockFilter(bpf.BPF_LD | bpf.BPF_W | bpf.BPF_ABS, 0, 0,
                                bpf.arg_index(0, True)),
                 # Jump to KILL if the high word does not match.
-                bpf.SockFilter(bpf.BPF_JMP | bpf.BPF_JEQ | bpf.BPF_K, 0, 3, 0),
+                bpf.SockFilter(bpf.BPF_JMP | bpf.BPF_JEQ | bpf.BPF_K, 0, 2, 0),
                 bpf.SockFilter(bpf.BPF_LD | bpf.BPF_W | bpf.BPF_ABS, 0, 0,
                                bpf.arg_index(0, False)),
                 # Jump to KILL if the low word does not match.
-                bpf.SockFilter(bpf.BPF_JMP | bpf.BPF_JEQ | bpf.BPF_K, 0, 1,
+                bpf.SockFilter(bpf.BPF_JMP | bpf.BPF_JEQ | bpf.BPF_K, 1, 0,
                                0x100),
+                bpf.SockFilter(bpf.BPF_RET, 0, 0, bpf.SECCOMP_RET_KILL),
                 bpf.SockFilter(bpf.BPF_RET, 0, 0, bpf.SECCOMP_RET_ALLOW),
-                bpf.SockFilter(bpf.BPF_RET, 0, 0, bpf.SECCOMP_RET_KILL)
             ])
 
     def test_arg0_comparison_operators(self):
