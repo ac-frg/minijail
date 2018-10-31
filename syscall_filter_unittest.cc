@@ -141,6 +141,23 @@ TEST(util, parse_constant_signed_toonegative) {
 #endif
 }
 
+TEST(util, parse_constant_complements) {
+  char *end;
+  long int c = 0;
+  std::string constant;
+
+#if defined(BITS32)
+  constant = "~0xF0F0FFFF|~0x0F0FFFFF";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFFFF0000);
+
+#elif defined(BITS64)
+  constant = "~0x00005A5AF0F0FFFF|~0xFFFFA5A50F0FFFFF";
+  c = parse_constant(const_cast<char*>(constant.c_str()), &end);
+  EXPECT_EQ(c, 0xFFFFFFFFFFFF0000UL);
+#endif
+}
+
 /* Test that setting one BPF instruction works. */
 TEST(bpf, set_bpf_instr) {
   struct sock_filter instr;

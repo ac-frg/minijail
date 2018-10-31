@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -168,12 +169,17 @@ long int parse_single_constant(char *constant_str, char **endptr)
 {
 	const struct constant_entry *entry = constant_table;
 	long int res = 0;
+	bool negate = false;
+	if (*constant_str == '~') {
+		negate = true;
+		++constant_str;
+	}
 	for (; entry->name; ++entry) {
 		if (!strcmp(entry->name, constant_str)) {
 			if (endptr)
 				*endptr = constant_str + strlen(constant_str);
 
-			return entry->value;
+			return negate ? ~entry->value : entry->value;
 		}
 	}
 
@@ -204,7 +210,7 @@ long int parse_single_constant(char *constant_str, char **endptr)
 			res = 0;
 		}
 	}
-	return res;
+	return negate ? ~res : res;
 }
 
 long int parse_constant(char *constant_str, char **endptr)
