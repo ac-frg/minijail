@@ -19,6 +19,7 @@
 from __future__ import print_function
 
 import os.path
+import random
 import shutil
 import tempfile
 import unittest
@@ -33,6 +34,9 @@ ARCH_64 = arch.Arch(
     syscalls={
         'read': 0,
         'write': 1,
+        'open': 2,
+        'close': 3,
+        **dict(('syscall_%d' % i, i) for i in range(4, 100)),
     },
     constants={
         'O_RDONLY': 0,
@@ -555,7 +559,7 @@ class CompileFileTests(unittest.TestCase):
             'test.policy', """
             # Comment.
             read: 1 [frequency=1]
-            write: 1 [frequency=10]
+            close: 1 [frequency=10]
         """)
 
         program = self.compiler.compile_file(
@@ -563,7 +567,7 @@ class CompileFileTests(unittest.TestCase):
         self.assertGreater(
             program.simulate(self.arch.arch_nr, self.arch.syscalls['read'],
                              0)[0],
-            program.simulate(self.arch.arch_nr, self.arch.syscalls['write'],
+            program.simulate(self.arch.arch_nr, self.arch.syscalls['close'],
                              0)[0],
         )
 
@@ -573,7 +577,7 @@ class CompileFileTests(unittest.TestCase):
             'test.policy', """
             # Comment.
             read: 1 [frequency=1]
-            write: 1 [frequency=10]
+            close: 1 [frequency=10]
         """)
 
         program = self.compiler.compile_file(
@@ -584,8 +588,34 @@ class CompileFileTests(unittest.TestCase):
             program.simulate(self.arch.arch_nr, self.arch.syscalls['read'],
                              0)[1], 'ALLOW')
         self.assertEqual(
-            program.simulate(self.arch.arch_nr, self.arch.syscalls['write'],
+            program.simulate(self.arch.arch_nr, self.arch.syscalls['close'],
                              0)[1], 'ALLOW')
+
+    def test_compile_simulate(self):
+        """Ensure policy reflects script by testing some random scripts."""
+        iterations = 10
+        for i in range(iterations):
+            num_entries = len(self.arch.syscalls) * (i + 1) // iterations
+            syscalls = dict(
+                zip(
+                    random.sample(self.arch.syscalls.keys(), num_entries),
+                    (random.randint(1, 1024) for _ in range(num_entries)),
+                ))
+
+            policy_contents = '\n'.join(
+                '%s: 1 [frequency=%d]' % s for s in syscalls.items())
+
+            path = self._write_file('test.policy', policy_contents)
+
+            for strategy in list(compile_seccomp_policy.OptimizationStrategy):
+                program = self.compiler.compile_file(path, strategy)
+                for name, number in self.arch.syscalls.items():
+                    expected_result = 'ALLOW' if name in syscalls else 'KILL'
+                    self.assertEqual(
+                        program.simulate(self.arch.arch_nr, number,
+                                         0)[1], expected_result,
+                        'syscall name: %s, syscall number: %d, strategy: %s, policy:\n%s'
+                        % (name, number, strategy, policy_contents))
 
 
 if __name__ == '__main__':

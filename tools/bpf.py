@@ -114,6 +114,11 @@ class BasicBlock(AbstractBlock):
     def opcodes(self):
         return b''.join(i.encode() for i in self._instructions)
 
+    def __eq__(self, o):
+        if not isinstance(o, BasicBlock):
+            return False
+        return self._instructions == o._instructions
+
     def simulate(self, arch, syscall_number, *args):
         """Simulate a BPF program with the given arguments."""
         args = (args + (0, ) * (6 - len(args)))[:6]
