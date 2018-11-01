@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70884ac7_1eaa4096",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-01T05:51:44Z",
+      "side": 1,
+      "message": "if you use .data() instead of .c_str(), would that avoid the need for casts ?",
+      "revId": "561548f04311a6af213d22be1e0da7cf12f5b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b982182_347bd8e6",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-01T05:51:44Z",
+      "side": 1,
+      "message": "personally i find declaring the datasets as a vector outside of the looping structure easier to read/work with, especially when adding more inputs\n\nin terms of bad inputs, how about things like:\n\n* ()\n* (\n* ((\n* (()\n* (()1\n* 1(0)",
+      "revId": "561548f04311a6af213d22be1e0da7cf12f5b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08465c72_ba445763",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-01T05:51:44Z",
+      "side": 1,
+      "message": "how about (1)|(0) ?\n\nwould it help to check for 3 args ?  or do you think 0|1|2 (and related) doesn\u0027t provide useful coverage ?\n\nhow about nested parens ?  ((1)) ?  0|(1|2) ?",
+      "revId": "561548f04311a6af213d22be1e0da7cf12f5b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
