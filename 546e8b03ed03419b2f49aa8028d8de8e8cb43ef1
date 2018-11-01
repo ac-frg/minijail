@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9c16fb2_172712e4",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-01T15:55:41Z",
+      "side": 1,
+      "message": "add a dangling comma so the formatter unwraps the final };",
+      "revId": "546e8b03ed03419b2f49aa8028d8de8e8cb43ef1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d0d37d_201f5558",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-01T15:55:41Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "546e8b03ed03419b2f49aa8028d8de8e8cb43ef1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
