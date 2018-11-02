@@ -305,8 +305,8 @@ class CompileFileTests(unittest.TestCase):
             outf.write(contents)
         return path
 
-    def test_compile_linear(self):
-        """Reject empty / malformed lines."""
+    def test_compile(self):
+        """Ensure compilation works with all strategies."""
         self._write_file(
             'test.frequency', """
             read: 1
@@ -343,21 +343,26 @@ class CompileFileTests(unittest.TestCase):
             close: 1
         """)
 
-        program = self.compiler.compile_file(
-            path, optimization_strategy=compiler.OptimizationStrategy.BST,
-            kill_action=bpf.KillProcess())
-        # BST for very few syscalls does not make a lot of sense and does
-        # introduce some overhead, so there will be no checking for cost.
-        self.assertEqual(
-            program.simulate(self.arch.arch_nr, self.arch.syscalls['read'],
-                             0)[1], 'ALLOW')
-        self.assertEqual(
-            program.simulate(self.arch.arch_nr, self.arch.syscalls['close'],
-                             0)[1], 'ALLOW')
+        for strategy in list(compiler.OptimizationStrategy):
+            program = self.compiler.compile_file(
+                path, optimization_strategy=strategy,
+                kill_action=bpf.KillProcess())
+            self.assertGreater(
+                program.simulate(self.arch.arch_nr, self.arch.syscalls['read'],
+                                 0)[0],
+                program.simulate(self.arch.arch_nr,
+                                 self.arch.syscalls['close'], 0)[0],
+            )
+            self.assertEqual(
+                program.simulate(self.arch.arch_nr, self.arch.syscalls['read'],
+                                 0)[1], 'ALLOW')
+            self.assertEqual(
+                program.simulate(self.arch.arch_nr,
+                                 self.arch.syscalls['close'], 0)[1], 'ALLOW')
 
     def test_compile_simulate(self):
         """Ensure policy reflects script by testing some random scripts."""
-        iterations = 10
+        iterations = 5
         for i in range(iterations):
             num_entries = len(self.arch.syscalls) * (i + 1) // iterations
             syscalls = dict(
