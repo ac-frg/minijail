@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f051edcd_5c482dd3",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "i would drop this sentence.  i think the next one \"This is similar to \\fB-S\\fR, ...\" is sufficient.",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 43
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfdfbd2b_c903e42e",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "hmm, this is a bit murky\n\nin theory, a kernel version could change syscall #\u0027s, but that\u0027s extremely unlikely, and upstream Linux has a hard policy against doing so, and i don\u0027t think we\u0027ve ever done that in CrOS.\n\nmaybe this is referring to syscall arguments ?\n\nor maybe it\u0027s referring to the property that, when running on newer kernels with newer syscalls, userland might try using those vs if it was running on an older kernel ?\n\ni don\u0027t know what \"mode\" is referring to.\n\nsyscall #\u0027s are different across architectures, but i think most people really care about ABI\u0027s.  although the mental model of \"ABI\" and \"architecture\" is a bit nebulous as they often share the same surface.  e.g. x86_64 \u0026 x32 syscalls are fully exposed to a 64-bit x86_64 process.  if it\u0027s running in x86_64 mode, it\u0027ll stick to x86_64-specific ones, but if it\u0027s running in x32 mode, it\u0027ll use some x86_64 and some x32-specific ones.  same for mips and its various ABIs.\n\nmaybe this (and the -S option) should just say a bit more vague \"the filter might be different based on the runtime environment; see minijail(5) for more details\", and we can get into all of these lovely details there.  or we send a patch to man-pages for their seccomp(2) man page to get into all the gory details and point people to that.",
+      "range": {
+        "startLine": 295,
+        "startChar": 13,
+        "endLine": 295,
+        "endChar": 50
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13c304d5_59b675aa",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "imo all asm/ and linux/ headers should come after all C lib includes.  this helps with symbol collisions in my experience.",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d63efc_7ca09d67",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "should use ftello and off_t instead of the legacy interfaces",
+      "range": {
+        "startLine": 419,
+        "startChar": 51,
+        "endLine": 419,
+        "endChar": 56
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aef6a5cd_049238da",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "i think you forgot \"or\" after the last \",\" here",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10cf3245_e207fd47",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82e486a_fe0df103",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "we should be able to just do:\n\n filter_path \u003d optarg;\n\nwe aren\u0027t mutating the argv memory, so what optarg is pointing to should be stable\n\nthen we don\u0027t need any string/memory/fixed-sized-stack buffers",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89da10cf_f803e9ea",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-02T19:10:37Z",
+      "side": 1,
+      "message": "i guess you\u0027re super serious about breaking out ? ;)",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
