@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d97b7945_fd55a49c",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T13:43:41Z",
+      "side": 1,
+      "message": "argh, i knew i was somewhat right being paranoid. turns out this was not defined in Android.bp. I only tried compiling it on a 64-bit Android target locally and fell into a false sense of security.\n\nin any case, I added -D_FILE_OFFSET_BITS\u003d64 to Android.bp, so we should be good now.",
+      "parentUuid": "a964f2f9_7cbd2add",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "548eb21f_d207a175",
         "filename": "minijail0_cli.c",
         "patchSetId": 5
