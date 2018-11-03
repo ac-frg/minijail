@@ -1408,6 +1408,92 @@ TEST(FilterTest, invalid_tokens) {
   ASSERT_NE(res, 0);
 }
 
+TEST(FilterTest, unclosed_attributes) {
+  struct sock_fprog actual;
+  std::string policy = "read: arg0 == 1 [";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  ASSERT_NE(res, 0);
+}
+
+TEST(FilterTest, invalid_attributes) {
+  struct sock_fprog actual;
+  std::string policy = "read: arg0 == 1 [invalid]";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  ASSERT_NE(res, 0);
+}
+
+TEST(FilterTest, attribute_frequency_missing_value) {
+  struct sock_fprog actual;
+  std::string policy = "read: arg0 == 1 [frequency=]";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  ASSERT_NE(res, 0);
+}
+
+TEST(FilterTest, empty_attributes) {
+  struct sock_fprog actual;
+  std::string policy = "read: 1 []";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  /* Checks return value and filter length. */
+  ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
+                            ALLOW_SYSCALL_LEN + 1 /* ret kill */);
+  free(actual.filter);
+}
+
+TEST(FilterTest, attribute_frequency) {
+  struct sock_fprog actual;
+  std::string policy = "read: 1 [frequency = 1]";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  /* Checks return value and filter length. */
+  ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
+                            ALLOW_SYSCALL_LEN + 1 /* ret kill */);
+  free(actual.filter);
+}
+
+TEST(FilterTest, attribute_arch) {
+  struct sock_fprog actual;
+  std::string policy =
+      "nonexistent: 1 [arch = nonexistent] # this will be ignored\n"
+      "read: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+  /* Checks return value and filter length. */
+  ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
+                            ALLOW_SYSCALL_LEN + 1 /* ret kill */);
+  free(actual.filter);
+}
+
 TEST(FilterTest, nonexistent) {
   struct sock_fprog actual;
   int res = test_compile_filter("policy", nullptr, &actual);

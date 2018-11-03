@@ -29,8 +29,8 @@ Running a process with a seccomp filter policy at reduced privileges:
 .SH SECCOMP_FILTER POLICY
 The policy file supplied to the \fB-S\fR argument supports the following syntax:
 
-  \fB<syscall_name>\fR:\fB<ftrace filter policy>\fR
-  \fB<syscall_number>\fR:\fB<ftrace filter policy>\fR
+  \fB<syscall_name|syscall_number>\fR:\fB<ftrace filter policy>\fR
+  \fB<syscall_name|syscall_number>\fR:\fB<ftrace filter policy>\fR [\fB<attribute-list>\fR]
   \fB<empty line>\fR
   \fB# any single line comment\fR
 
@@ -126,6 +126,21 @@ separated by a semicolon:
 
 This is, if the first argument to read is 0, then allow the syscall;
 else, block the syscall, return -1, and set \fBerrno\fR to EBADF.
+
+.SS Attributes
+
+After each filter policy, an optional comma-separated list of attributes in
+\fBkey\fR=\fBvalue\fR form can be added.  The list of attributes supported is
+the following:
+
+.IP
+\[bu] \fIarch\fR: This allows you to specify the list of architectures in which
+the filter applies. If the currently running architecture is not explicitly
+present in the list, the policy will be skipped altogether.  This allows policy
+authors to create a single file that can be used in all architectures instead
+of having to split the policy.
+.RE
+
 
 .SH SECCOMP_FILTER POLICY WRITING
 
