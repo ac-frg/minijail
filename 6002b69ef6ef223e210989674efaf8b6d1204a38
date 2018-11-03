@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "0fc46f9e_66a6039e",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T16:02:17Z",
+      "side": 1,
+      "message": "Nope, just this one: https://android.googlesource.com/platform/bionic/+/master/docs/32-bit-abi.md#32_bit-and\n\nThe fact that tests are happy this time also agrees with that.",
+      "parentUuid": "3f53a8ea_73853931",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "548eb21f_d207a175",
         "filename": "minijail0_cli.c",
         "patchSetId": 5
