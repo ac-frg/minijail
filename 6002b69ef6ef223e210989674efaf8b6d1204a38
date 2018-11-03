@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7c821ce_a480f4e0",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-03T04:41:28Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be necessary -- common.mk already sets this up",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "548eb21f_d207a175",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-03T04:41:28Z",
+      "side": 1,
+      "message": "you can drop this check too.  let the OS handle it when you try to open it and we error check then.",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f90f1445_5541e4e3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-03T04:41:28Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
