@@ -4,6 +4,7 @@
  */
 
 #include <errno.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -499,6 +500,66 @@ int parse_include_statement(struct parser_state *state, char *policy_line,
 	return 0;
 }
 
+static int compile_attributes(struct parser_state *state, char *line,
+			      bool *enabled_for_arch)
+{
+	char *attribute_str = strrchr(line, '[');
+	if (!attribute_str) {
+		return 0;
+	}
+
+	/* Splits the string into the policy line and the attributes. */
+	*(attribute_str++) = '\0';
+	char *closing_bracket = strrchr(attribute_str, ']');
+	if (!closing_bracket) {
+		compiler_warn(state, "unclosed attribute expression");
+		return -1;
+	}
+	*closing_bracket = '\0';
+	strip(line);
+
+	char *attribute_list_ptr = NULL;
+	for (char *attribute =
+		 strtok_r(attribute_str, ";", &attribute_list_ptr);
+	     attribute; attribute = strtok_r(NULL, ";", &attribute_list_ptr)) {
+		char *attribute_ptr = NULL;
+		char *attribute_name = strtok_r(attribute, "=", &attribute_ptr);
+		attribute_name = strip(attribute_name);
+		char *attribute_value = strtok_r(NULL, "=", &attribute_ptr);
+		if (!attribute_value) {
+			compiler_warn(state, "missing attribute value for %s",
+				      attribute_name);
+			return -1;
+		}
+		attribute_value = strip(attribute_value);
+
+		if (strcmp(attribute_name, "arch") == 0) {
+			char *arch_name_ptr = NULL;
+			/*
+			 * We found the arch metadata attribute, so now it is
+			 * not enabled unless it is explicitly mentioned in the
+			 * arch list.
+			 */
+			*enabled_for_arch = false;
+			for (char *arch_name =
+				 strtok_r(attribute_value, ",", &arch_name_ptr);
+			     arch_name;
+			     arch_name = strtok_r(NULL, ",", &arch_name_ptr)) {
+				if (strcmp(arch_name, ARCH_NAME) == 0) {
+					*enabled_for_arch = true;
+					break;
+				}
+			}
+		} else {
+			compiler_warn(state,
+				      "ignoring unknown metadata attribute: %s",
+				      attribute_name);
+		}
+	}
+
+	return 0;
+}
+
 int compile_file(const char *filename, FILE *policy_file,
 		 struct filter_block *head, struct filter_block **arg_blocks,
 		 struct bpf_labels *labels, int use_ret_trap, int allow_logging,
@@ -567,6 +628,14 @@ int compile_file(const char *filename, FILE *policy_file,
 			fclose(included_file);
 			continue;
 		}
+
+		bool enabled_for_arch = true;
+		if (compile_attributes(&state, line, &enabled_for_arch) != 0) {
+			ret = -1;
+			goto free_line;
+		}
+		if (!enabled_for_arch)
+			continue;
 
 		/*
 		 * If it's not a comment, or an empty line, or an @include
