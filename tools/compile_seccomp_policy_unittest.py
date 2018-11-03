@@ -30,6 +30,7 @@ import compile_seccomp_policy
 
 ARCH_64 = arch.Arch(
     arch_nr=0xDEADBEEF,
+    arch_name='test',
     bits=64,
     syscalls={
         'read': 0,
@@ -513,6 +514,21 @@ class ParsePolicyLineTests(unittest.TestCase):
         block = self.compiler.parse_policy_line(
             ['read', ':', '1', '[', 'frequency', '=', '2', ']'])
         self.assertEqual(block.frequency, 2)
+
+    def test_arch_attribute(self):
+        """Skip lines with mismatching arch metadata attribute."""
+        block = self.compiler.parse_policy_line(
+            ['nonexistent', ':', '1', '[', 'arch', '=', 'nonexistent', ']'])
+        self.assertIsNone(block)
+
+    def test_arch_attribute_invalid(self):
+        """Reject lines with malformed arch metadata attribute."""
+        with self.assertRaisesRegex(compile_seccomp_policy.ParseException,
+                                    'invalid arch list: ", foo foo ,"'):
+            self.compiler.parse_policy_line([
+                'nonexistent', ':', '1', '[', 'arch', '=', ',', 'foo', 'foo',
+                ',', ']'
+            ])
 
     def test_mmap_write_xor_exec(self):
         """Accept the idiomatic filter for mmap."""

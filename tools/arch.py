@@ -20,7 +20,7 @@ import collections
 import json
 
 Arch = collections.namedtuple('Arch',
-                              ['arch_nr', 'bits', 'syscalls', 'constants'])
+                              ['arch_nr', 'arch_name', 'bits', 'syscalls', 'constants'])
 
 
 def load_from_json(json_path):
@@ -29,6 +29,7 @@ def load_from_json(json_path):
         constants = json.load(json_file)
         return Arch(
             arch_nr=constants['arch_nr'],
+            arch_name=constants['arch_name'],
             bits=constants['bits'],
             syscalls=constants['syscalls'],
             constants=constants['constants'],

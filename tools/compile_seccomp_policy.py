@@ -333,6 +333,14 @@ class PolicyCompiler:
                                          attribute[0])
             if attribute[0] == 'frequency':
                 attributes['frequency'] = int(attribute[2])
+            elif attribute[0] == 'arch':
+                arch_list = list(split_list(attribute[2:], ','))
+                for i, arch in enumerate(arch_list):
+                    if len(arch) != 1:
+                        self._parser_state.error('invalid arch list: "%s"',
+                                                 ' '.join(attribute[2:]))
+                    arch_list[i] = arch[0]
+                attributes['arch'] = arch_list
             else:
                 self._parser_state.error('invalid metadata attribute: "%s"',
                                          attribute[0])
@@ -496,11 +504,18 @@ class PolicyCompiler:
         if len(tokens) < 3:
             self._parser_state.error('empty policy line')
 
-        if tokens[0] not in self._arch.syscalls:
-            self._parser_state.error('nonexistent syscall "%s"', tokens[0])
-
         # Parse and remove attributes from |tokens|.
         attributes = self._parse_attributes(tokens)
+
+        if 'arch' in attributes:
+            # Only skip the current line if there's an explicit 'arch'
+            # metadata attribute AND it the current arch name is present
+            # in the list.
+            if self._arch.arch_name not in attributes['arch']:
+                return None
+
+        if tokens[0] not in self._arch.syscalls:
+            self._parser_state.error('nonexistent syscall "%s"', tokens[0])
 
         policy_entry = SyscallPolicyEntry(tokens[0],
                                           self._arch.syscalls[tokens[0]],
@@ -561,7 +576,9 @@ class PolicyCompiler:
 
                 # If it's not a comment, or an empty line, or an @include
                 # statement, treat |line| as a regular policy line.
-                entries.append(self.parse_policy_line(tokens))
+                entry = self.parse_policy_line(tokens)
+                if entry:
+                    entries.append(entry)
         self._parser_states.pop()
         return entries
 
