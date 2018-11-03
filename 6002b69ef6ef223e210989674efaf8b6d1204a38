@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "3f53a8ea_73853931",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2018-11-03T15:52:46Z",
+      "side": 1,
+      "message": "there are three defines that glibc uses. does bionic use them all too?",
+      "parentUuid": "d97b7945_fd55a49c",
+      "revId": "6002b69ef6ef223e210989674efaf8b6d1204a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "548eb21f_d207a175",
         "filename": "minijail0_cli.c",
         "patchSetId": 5
