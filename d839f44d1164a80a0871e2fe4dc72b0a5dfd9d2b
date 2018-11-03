@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36d3f4ac_e862cd8f",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f051edcd_5c482dd3",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 43
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdfbd2b_c903e42e",
         "filename": "minijail0.1",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3dba7a30_3ec4c67b",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "yeah, I was thinking of the x86_64/x32 syscalls with the \"mode\" word. I like not having to overspecify stuff, so linking to minijail0(5) it is!",
+      "parentUuid": "cfdfbd2b_c903e42e",
+      "range": {
+        "startLine": 295,
+        "startChar": 13,
+        "endLine": 295,
+        "endChar": 50
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13c304d5_59b675aa",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -62,6 +110,24 @@
       "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac214229_8723589e",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13c304d5_59b675aa",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "f2453cc9_44cebb34",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d63efc_7ca09d67",
+      "range": {
+        "startLine": 419,
+        "startChar": 51,
+        "endLine": 419,
+        "endChar": 56
+      },
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef6a5cd_049238da",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -102,6 +192,24 @@
       "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a6eae49_c0e322a1",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef6a5cd_049238da",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "ea26e0f8_e1b287e8",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10cf3245_e207fd47",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e82e486a_fe0df103",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -139,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "75698060_e317c941",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e82e486a_fe0df103",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89da10cf_f803e9ea",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -153,6 +297,24 @@
       "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f44cee7_05df8344",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2018-11-03T01:15:13Z",
+      "side": 1,
+      "message": "Hahaha, I guess I was.",
+      "parentUuid": "89da10cf_f803e9ea",
+      "revId": "d839f44d1164a80a0871e2fe4dc72b0a5dfd9d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
