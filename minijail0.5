@@ -150,10 +150,9 @@ of system calls that are needed.  Note that when using libminijail or minijail
 with preloading, supporting initial process setup calls will not be required.
 Be conservative.
 
-It's also possible to analyze the binary checking for all non-dead
-functions and determining if any of them issue system calls.  There is
-no active implementation for this, but something like
-code.google.com/p/seccompsandbox is one possible runtime variant.
+It's also possible to analyze the binary checking for all non-dead functions
+and determining if any of them issue system calls with
+\fBtools/syscall_analyzer\fR.
 
 .SH AUTHOR
 The Chromium OS Authors <chromiumos-dev@chromium.org>
