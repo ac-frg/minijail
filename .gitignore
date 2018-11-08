@@ -27,6 +27,8 @@
 /system_unittest
 /util_unittest
 /parse_seccomp_policy
+/tools/syscall_analyzer/syscall_analyzer
+/tools/syscall_analyzer/syscall_analyzer_unittest
 
 # common.mk TEST().
 *.test
