@@ -34,6 +34,24 @@
       "revId": "d4ca0670b1cb177f55c557ad44ab06f464fe7dc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "403f7d52_84178e2e",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1080683
+      },
+      "writtenOn": "2018-11-12T12:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8b3aa94_c974c25e",
+      "revId": "d4ca0670b1cb177f55c557ad44ab06f464fe7dc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
