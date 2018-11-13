@@ -31,13 +31,85 @@ std::optional<std::pair<uint64_t, uint64_t>> GetContainingRange(
   return std::make_optional(*it);
 }
 
-uint32_t RotateRight(uint32_t x, uint32_t n) {
-  return ((x >> n) | (x << (32 - n)));
+uint64_t RotateRight(uint64_t x, uint64_t n, uint64_t size) {
+  return ((x >> n) | (x << (size - n))) & ((1UL << size) - 1);
 }
 
 uint32_t DecodeARMImmediate(uint64_t imm) {
   return RotateRight(static_cast<uint32_t>(imm & 0xff),
-                     static_cast<uint32_t>((imm >> 7) & 0x1e));
+                     static_cast<uint32_t>((imm >> 7) & 0x1e), 32);
+}
+
+std::optional<uint64_t> DecodeAarch64LogicalImmediate(uint64_t imm,
+                                                      unsigned register_size) {
+  // |imm| is a 13-bit value consisting of three subfields:
+  //
+  //   1 111000 000000
+  //   3 210987 654321
+  //  |n| immr | imms |
+  //
+  // Together, |n| and |imms| encode the number of bits in the pattern:
+  //
+  //  +-+------+-----+------+
+  //  |n| imms | len | bits |
+  //  +-+------+-----+------+
+  //  |0|11110x|   1 |    2 |
+  //  |0|1110xx|   2 |    4 |
+  //  |0|110xxx|   3 |    8 |
+  //  |0|10xxxx|   4 |   16 |
+  //  |0|0xxxxx|   5 |   32 |
+  //  |1|xxxxxx|   6 |   64 |
+  //  +-+------+-----+------+
+  //
+  // Once the number of bits of the pattern is known, length of the pattern is
+  // known, it is filled with a mask of |s+1| 1-bits and rotated right by |r|
+  // bits, where |s| is last |len| bits of |imms| (the bits marked with 'x' in
+  // the above table), and |r| is the last |len| bits of |immr|.
+  //
+  // Finally, the pattern is copied until it fills the whole register.
+  //
+  // Example for |imm| = 0x703 and |register_size| = 32:
+  //
+  //  imm  = 0x703
+  //  s    = 0b0
+  //  immr = 0b011100
+  //  imms = 0b000011
+  //
+  //  len     = 5
+  //  bits    = 32
+  //  s       = 0x3
+  //  r       = 0x28
+  //  pattern = 0b1111 ror 28 = 0xf0
+  //  result  = 0x000000f0
+  uint32_t n = (imm >> 12) & 1;
+  uint32_t immr = (imm >> 6) & 0x3f;
+  uint32_t imms = imm & 0x3f;
+
+  if (register_size != 64 && n != 0) {
+    LOG(WARN) << "invalid logical immediate " << imm;
+    return std::nullopt;
+  }
+  int32_t len = 31 - __builtin_clz((n << 6) | (~imms & 0x3f));
+  if (len < 0) {
+    LOG(WARN) << "invalid logical immediate " << imm;
+    return std::nullopt;
+  }
+  uint32_t size = (1 << len);
+  uint32_t r = immr & (size - 1);
+  uint32_t s = imms & (size - 1);
+  if (s == size - 1) {
+    // All ones patterns are forbidden.
+    LOG(WARN) << "invalid logical immediate " << imm;
+    return std::nullopt;
+  }
+  uint64_t pattern = RotateRight((1ULL << (s + 1)) - 1, r, size);
+
+  // Replicate the pattern to fill |reg_size|.
+  while (size != register_size) {
+    pattern |= (pattern << size);
+    size <<= 1;
+  }
+  return pattern;
 }
 
 // Gets the address into the .got.plt for a PLT entry.
@@ -170,6 +242,27 @@ std::vector<std::unique_ptr<SymbolInfo>> GetSyntheticSymbols(
   return result;
 }
 
+std::optional<uint64_t> LookupRegisterValue(
+    const std::map<uint32_t, uint32_t>& register_map,
+    uint32_t register_number,
+    ProcessorState* processor_state) {
+  auto register_it = register_map.find(register_number);
+  if (register_it == register_map.end())
+    return std::nullopt;
+  auto value_it = processor_state->registers.find(register_it->second);
+  if (value_it == processor_state->registers.end())
+    return std::nullopt;
+  return value_it->second;
+}
+
+template <typename K, typename V>
+std::optional<V> find_optional(const std::map<K, V>& map, const K& key) {
+  const auto it = map.find(key);
+  if (it == map.end())
+    return std::nullopt;
+  return std::make_optional(it->second);
+}
+
 }  // namespace
 
 SymbolInfo::SymbolInfo(uint64_t start, uint64_t end, std::string_view name)
@@ -179,6 +272,18 @@ bool SymbolInfo::operator<(const SymbolInfo& o) const {
   if (start == o.start)
     return end < o.end;
   return start < o.start;
+}
+
+std::ostream& operator<<(std::ostream& os, const ProcessorState& ps) {
+  os << "Registers{";
+  for (const auto it : ps.registers) {
+    os << " reg[" << std::dec << it.first << "] = ";
+    if (it.second == std::nullopt)
+      os << "<clobbered>";
+    else
+      os << std::hex << it.second.value();
+  }
+  return os << " }";
 }
 
 BasicBlock::BasicBlock(uint64_t start, uint64_t end) : start(start), end(end) {}
@@ -363,6 +468,8 @@ bool Disassembler::CreateLLVMObjectsForTriple(
             syscall_register = reg_num;
           else if (register_name == "X0")
             first_arg_register = reg_num;
+          else if (register_name == "XZR")
+            zero_register = reg_num;
           break;
         case llvm::Triple::arm:
           if (register_name == "R7")
@@ -403,6 +510,10 @@ bool Disassembler::CreateLLVMObjectsForTriple(
         << "Could not find the first argument register for this architecture";
     return false;
   }
+  if (triple.getArch() == llvm::Triple::aarch64 && zero_register == 0) {
+    LOG(ERROR) << "Could not find the zero register for this architecture";
+    return false;
+  }
 
   return true;
 }
@@ -413,6 +524,73 @@ Disassembler::~Disassembler() = default;
 std::optional<std::pair<uint64_t, uint64_t>>
 Disassembler::GetExecutableSectionRangeContaining(uint64_t address) {
   return std::nullopt;
+}
+
+void Disassembler::UpdateProcessorState(ProcessorState* processor_state,
+                                        const llvm::MCInst& instruction) {
+  const auto& instruction_desc = mii->get(instruction.getOpcode());
+  const auto& mnemonic = mii->getName(instruction.getOpcode());
+  // Noop does nothing.
+  if (mnemonic.find("NOOP") == 0)
+    return;
+  // This instruction does not explicitly modify any registers.
+  if (instruction_desc.getNumDefs() == 0)
+    return;
+  // This instruction does not modify a register.
+  if (!instruction.getOperand(0).isReg())
+    return;
+  // This instruction modifies a register we don't care about.
+  auto rd_it = register_map.find(instruction.getOperand(0).getReg());
+  if (rd_it == register_map.end())
+    return;
+
+  std::optional<uint64_t> value = std::nullopt;
+  if (instruction_desc.getNumDefs() != 1) {
+    value = std::nullopt;
+  } else if (mnemonic.find("XOR") == 0 &&
+             instruction_desc.getNumOperands() == 3 &&
+             instruction.getOperand(2).isReg() &&
+             instruction.getOperand(0).getReg() ==
+                 instruction.getOperand(2).getReg()) {
+    // Common idiom in x86 to zero out a register.
+    value = std::make_optional(0);
+  } else if (mnemonic == "ORRXrs" && instruction_desc.getNumOperands() == 4 &&
+             instruction.getOperand(2).isReg() &&
+             instruction.getOperand(3).isImm() &&
+             instruction.getOperand(3).getImm() == 0) {
+    // Common idiom in aarch64 (and actual underlying representation) for some
+    // kind of move immediates.
+    value = LookupRegisterValue(
+        register_map, instruction.getOperand(2).getReg(), processor_state);
+  } else if (mnemonic == "ORRWri" && instruction_desc.getNumOperands() == 3 &&
+             instruction.getOperand(1).isReg() &&
+             find_optional(register_map, instruction.getOperand(1).getReg())
+                     .value_or(static_cast<uint32_t>(-1)) == zero_register &&
+             instruction.getOperand(2).isImm()) {
+    // Common idiom in aarch64 (and actual underlying representation) for some
+    // kind of move immediates.
+    value =
+        DecodeAarch64LogicalImmediate(instruction.getOperand(2).getImm(), 32);
+  } else if (instruction_desc.getNumOperands() < 2) {
+    value = std::nullopt;
+  } else if (mnemonic.find("CMOVE") == 0) {
+    // Conditional moves are considered to be clobbering.
+    value = std::nullopt;
+  } else if (instruction.getOperand(1).isReg()) {
+    value = LookupRegisterValue(
+        register_map, instruction.getOperand(1).getReg(), processor_state);
+  } else if (instruction.getOperand(1).isImm()) {
+    value = std::make_optional(instruction.getOperand(1).getImm());
+  }
+  // Now that we have the value, clobber any registers that need clobbering.
+  const auto clobber_list =
+      register_clobber_map.find(instruction.getOperand(0).getReg());
+  if (clobber_list != register_clobber_map.cend()) {
+    for (uint32_t clobber_reg : clobber_list->second)
+      processor_state->registers[clobber_reg] = std::nullopt;
+  }
+  processor_state->registers[rd_it->second] = value;
+  LOG(DEBUG) << "Updated processor state: " << *processor_state;
 }
 
 // static
@@ -483,6 +661,9 @@ bool ELFFileDisassembler::GetSymbols(
       return false;
     }
     if (name->empty())
+      continue;
+    // Skip empty symbols, like ARM mapping symbols.
+    if (symbol.getCommonSize() == 0)
       continue;
 
     LOG(DEBUG) << "Normal symbol " << name->str() << " " << std::hex << *address
