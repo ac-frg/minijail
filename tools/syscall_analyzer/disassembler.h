@@ -18,6 +18,7 @@
 #include <llvm/MC/MCAsmInfo.h>
 #include <llvm/MC/MCContext.h>
 #include <llvm/MC/MCDisassembler/MCDisassembler.h>
+#include <llvm/MC/MCInst.h>
 #include <llvm/MC/MCInstrAnalysis.h>
 #include <llvm/MC/MCInstrInfo.h>
 #include <llvm/MC/MCObjectFileInfo.h>
@@ -40,6 +41,14 @@ struct SymbolInfo {
   bool operator<(const SymbolInfo& o) const;
 };
 
+// The state of the processor. Contains the last-known values of all the
+// registers.
+struct ProcessorState {
+  std::map<uint32_t, std::optional<int64_t>> registers;
+};
+
+std::ostream& operator<<(std::ostream& os, const ProcessorState& ps);
+
 // A contiguous sequence of instructions with no control flow changes (i.e.
 // jumps, method calls, returns), except maybe at the end.
 //
@@ -51,8 +60,8 @@ struct BasicBlock {
   SymbolInfo* symbol = nullptr;
   std::set<BasicBlock*> out_edges;
   std::set<BasicBlock*> in_edges;
-  // The set of registers-values at the block exit.
-  std::map<uint32_t, std::optional<int64_t>> registers;
+  // The state of the processor at the block exit.
+  ProcessorState processor_state;
   bool ends_with_call_to_syscall = false;
   bool is_entry_point = false;
 
@@ -96,6 +105,10 @@ class Disassembler {
   virtual std::optional<std::pair<uint64_t, uint64_t>>
   GetExecutableSectionRangeContaining(uint64_t address);
 
+  // Updates |processor_state| after interpreting |instruction|.
+  void UpdateProcessorState(ProcessorState* processor_state,
+                            const llvm::MCInst& instruction);
+
   // This is the syscall that holds the first argument into a function. Used to
   // figure out what the first argument to syscall(3) is.
   uint32_t first_arg_register = 0;
@@ -103,6 +116,9 @@ class Disassembler {
   // This is the register that holds the syscall number when invoking the
   // syscall software interrupt.
   uint32_t syscall_register = 0;
+
+  // This is the "zero register" in aarch64, which always contains zero.
+  uint32_t zero_register = 0;
 
   // A mapping between register IDs and their largest super-register. Several
   // registers can share the same storage space, so changing one implicitly

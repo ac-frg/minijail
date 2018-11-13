@@ -21,28 +21,6 @@
 
 namespace {
 
-// A helper class that facilitates printing the state of the registers of a
-// BasicBlock, as opposed to information about the block itself.
-struct RegisterState {
-  explicit RegisterState(const BasicBlock& block) : block(&block) {}
-  explicit RegisterState(BasicBlock* block) : block(block) {}
-  explicit RegisterState(const BasicBlock* block) : block(block) {}
-
-  const BasicBlock* const block;
-};
-
-std::ostream& operator<<(std::ostream& os, const RegisterState& rs) {
-  os << "Registers{";
-  for (const auto it : rs.block->registers) {
-    os << " reg[" << std::dec << it.first << "] = ";
-    if (it.second == std::nullopt)
-      os << "<clobbered>";
-    else
-      os << std::hex << it.second.value();
-  }
-  return os << " }";
-}
-
 struct PrintInstruction {
   PrintInstruction(const llvm::MCInst& instruction,
                    const llvm::MCInstrInfo* mii)
@@ -155,6 +133,8 @@ std::optional<std::set<int>> SyscallAnalyzer::GetSyscallsTransitivelyCalledBy(
   }
   if (!symbol)
     return std::nullopt;
+  if (!symbol->entry_point)
+    return {};
 
   std::set<BasicBlock*> visited;
   std::queue<BasicBlock*> q({symbol->entry_point});
@@ -245,6 +225,8 @@ bool SyscallAnalyzer::BuildControlFlowGraph() {
     q.pop();
 
     if (block_starts_.find(bep.address) != block_starts_.end())
+      continue;
+    if (bep.range.first >= bep.range.second)
       continue;
 
     basic_blocks_.emplace_back(std::make_unique<BasicBlock>(
@@ -383,6 +365,10 @@ bool SyscallAnalyzer::BuildControlFlowGraph() {
   // Go through all the basic blocks and make the connection between symbols
   // and basic blocks.
   for (const auto& symbol_info : symbols_) {
+    if (block_starts_.find(symbol_info->start) == block_starts_.end()) {
+      LOG(DEBUG) << "Symbol entry point not found: " << symbol_info->name;
+      continue;
+    }
     symbol_info->entry_point = block_starts_[symbol_info->start];
     symbol_info->entry_point->is_entry_point = true;
 
@@ -421,8 +407,8 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
     LOG(DEBUG) << "========= " << *block << " =========";
     if (!block->is_entry_point) {
       for (auto* parent : block->in_edges) {
-        for (auto it : parent->registers) {
-          auto jt = block->registers.insert(it);
+        for (auto it : parent->processor_state.registers) {
+          auto jt = block->processor_state.registers.insert(it);
           if (jt.second) {
             // Insertion was successful.
             continue;
@@ -436,13 +422,12 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
           jt.first->second = std::nullopt;
         }
       }
-      LOG(DEBUG) << RegisterState{block};
+      LOG(DEBUG) << block->processor_state;
     }
 
     for (auto& addr_instr : block->instructions) {
       const auto address = addr_instr.first;
       const auto& instruction = addr_instr.second;
-      auto& instruction_desc = disassembler_->mii->get(instruction.getOpcode());
       const std::string mnemonic =
           disassembler_->mii->getName(instruction.getOpcode());
 
@@ -451,8 +436,9 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
       if (mnemonic == "SYSCALL" ||
           (mnemonic == "INT" && instruction.getOperand(0).isImm() &&
            instruction.getOperand(0).getImm() == 0x80)) {
-        auto rax = block->registers.find(disassembler_->syscall_register);
-        if (rax == block->registers.end()) {
+        auto rax = block->processor_state.registers.find(
+            disassembler_->syscall_register);
+        if (rax == block->processor_state.registers.end()) {
           LOG(WARN) << "SYSCALL Could not find the value of %rax at "
                     << std::hex << address;
         } else if (rax->second == std::nullopt) {
@@ -464,8 +450,9 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
       }
       if (mnemonic == "SVC" && instruction.getOperand(0).isImm() &&
           instruction.getOperand(0).getImm() == 0x00) {
-        auto x8 = block->registers.find(disassembler_->syscall_register);
-        if (x8 == block->registers.end()) {
+        auto x8 = block->processor_state.registers.find(
+            disassembler_->syscall_register);
+        if (x8 == block->processor_state.registers.end()) {
           LOG(WARN) << "SYSCALL Could not find the value of r8/x8 at "
                     << std::hex << address;
         } else if (x8->second == std::nullopt) {
@@ -475,56 +462,13 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
         }
         continue;
       }
-      if (mnemonic.find("NOOP") == 0)
-        continue;
-      if (instruction_desc.getNumDefs() == 0)
-        continue;
-      if (!instruction.getOperand(0).isReg())
-        continue;
-      auto rd_it =
-          disassembler_->register_map.find(instruction.getOperand(0).getReg());
-      if (rd_it == disassembler_->register_map.end())
-        continue;
-
-      std::optional<uint64_t> value = std::nullopt;
-      if (instruction_desc.getNumDefs() != 1) {
-        value = std::nullopt;
-      } else if (mnemonic.find("XOR") == 0 &&
-                 instruction_desc.getNumOperands() == 3 &&
-                 instruction.getOperand(2).isReg() &&
-                 instruction.getOperand(0).getReg() ==
-                     instruction.getOperand(2).getReg()) {
-        value = std::make_optional(0);
-      } else if (instruction_desc.getNumOperands() < 2) {
-        value = std::nullopt;
-      } else if (mnemonic.find("CMOVE") == 0) {
-        // Conditional moves are considered to be clobbering.
-        value = std::nullopt;
-      } else if (instruction.getOperand(1).isReg()) {
-        auto rn_it = disassembler_->register_map.find(
-            instruction.getOperand(1).getReg());
-        if (rn_it != disassembler_->register_map.end()) {
-          auto value_it = block->registers.find(rn_it->second);
-          if (value_it != block->registers.end())
-            value = value_it->second;
-        }
-      } else if (instruction.getOperand(1).isImm()) {
-        value = std::make_optional(instruction.getOperand(1).getImm());
-      }
-      // Now that we have the value, clobber any registers that need clobbering.
-      for (uint32_t clobber_reg :
-           disassembler_
-               ->register_clobber_map[instruction.getOperand(0).getReg()]) {
-        block->registers[clobber_reg] = std::nullopt;
-      }
-      block->registers[rd_it->second] = value;
-      LOG(DEBUG) << "Updated register state: " << RegisterState{block};
+      disassembler_->UpdateProcessorState(&block->processor_state, instruction);
     }
 
     if (block->ends_with_call_to_syscall) {
-      auto nr_register =
-          block->registers.find(disassembler_->first_arg_register);
-      if (nr_register == block->registers.end()) {
+      auto nr_register = block->processor_state.registers.find(
+          disassembler_->first_arg_register);
+      if (nr_register == block->processor_state.registers.end()) {
         LOG(WARN) << "SYSCALL Could not find the value of the number at "
                   << std::hex << block->end;
       } else if (nr_register->second == std::nullopt) {
