@@ -249,7 +249,7 @@ cc_test {
     ] + unittestSrcFiles,
 
     static_libs: ["libminijail_generated"],
-    shared_libs: minijailCommonLibraries,
+    shared_libs: ["libbase"] + minijailCommonLibraries,
 
     target: {
         android: {

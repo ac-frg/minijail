@@ -15,11 +15,14 @@
 #include <sys/statvfs.h>
 #include <unistd.h>
 
+#include <android-base/file.h>
 #include <gtest/gtest.h>
 
 #include <string>
 
 #include "system.h"
+
+using namespace std::literals;
 
 namespace {
 
@@ -42,83 +45,6 @@ constexpr bool is_android() {
   return false;
 #endif
 }
-
-// Returns a template path that can be used as an argument to mkstemp / mkdtemp.
-constexpr const char* temp_path_pattern() {
-  if (is_android())
-    return "/data/local/tmp/minijail.tests.XXXXXX";
-  else
-    return "minijail.tests.XXXXXX";
-}
-
-// Recursively deletes the subtree rooted at |path|.
-bool rmdir_recursive(const std::string& path) {
-  auto callback = [](const char* child, const struct stat*, int file_type,
-                     struct FTW*) -> int {
-    if (file_type == FTW_DP) {
-      if (rmdir(child) == -1) {
-        fprintf(stderr, "rmdir(%s): %s", child, strerror(errno));
-        return -1;
-      }
-    } else if (file_type == FTW_F) {
-      if (unlink(child) == -1) {
-        fprintf(stderr, "unlink(%s): %s", child, strerror(errno));
-        return -1;
-      }
-    }
-    return 0;
-  };
-
-  return nftw(path.c_str(), callback, 128, FTW_DEPTH) == 0;
-}
-
-// Creates a temporary directory that will be cleaned up upon leaving scope.
-class TemporaryDir {
- public:
-  TemporaryDir() : path(temp_path_pattern()) {
-    if (mkdtemp(const_cast<char*>(path.c_str())) == nullptr)
-      path.clear();
-  }
-  ~TemporaryDir() {
-    if (!is_valid())
-      return;
-    rmdir_recursive(path.c_str());
-  }
-
-  bool is_valid() const { return !path.empty(); }
-
-  std::string path;
-
- private:
-  TemporaryDir(const TemporaryDir&) = delete;
-  TemporaryDir& operator=(const TemporaryDir&) = delete;
-};
-
-// Creates a named temporary file that will be cleaned up upon leaving scope.
-class TemporaryFile {
- public:
-  TemporaryFile() : path(temp_path_pattern()) {
-    int fd = mkstemp(const_cast<char*>(path.c_str()));
-    if (fd == -1) {
-      path.clear();
-      return;
-    }
-    close(fd);
-  }
-  ~TemporaryFile() {
-    if (!is_valid())
-      return;
-    unlink(path.c_str());
-  }
-
-  bool is_valid() const { return !path.empty(); }
-
-  std::string path;
-
- private:
-  TemporaryFile(const TemporaryFile&) = delete;
-  TemporaryFile& operator=(const TemporaryFile&) = delete;
-};
 
 }  // namespace
 
@@ -201,10 +127,10 @@ TEST(write_pid_to_path, bad_path) {
 // Make sure we can write a pid to the file.
 TEST(write_pid_to_path, basic) {
   TemporaryFile tmp;
-  ASSERT_TRUE(tmp.is_valid());
+  ASSERT_NE(-1, tmp.fd);
 
-  EXPECT_EQ(0, write_pid_to_path(1234, tmp.path.c_str()));
-  FILE *fp = fopen(tmp.path.c_str(), "re");
+  EXPECT_EQ(0, write_pid_to_path(1234, tmp.path));
+  FILE *fp = fopen(tmp.path, "re");
   EXPECT_NE(nullptr, fp);
   char data[6] = {};
   EXPECT_EQ(5u, fread(data, 1, sizeof(data), fp));
@@ -226,10 +152,9 @@ TEST(mkdir_p, dest_exists) {
 // Create a directory tree that doesn't exist.
 TEST(mkdir_p, create_tree) {
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   // Run `mkdir -p <path>/a/b/c`.
-  std::string path_a = dir.path + "/a";
+  std::string path_a = dir.path + "/a"s;
   std::string path_a_b = path_a + "/b";
   std::string path_a_b_c = path_a_b + "/c";
 
@@ -266,11 +191,10 @@ TEST(setup_mount_destination, mount_flags) {
   ASSERT_EQ(0, statvfs("/proc", &stvfs_buf));
 
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   unsigned long mount_flags = -1;
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string proc = dir.path + "/proc";
+  std::string proc = dir.path + "/proc"s;
   EXPECT_EQ(0, setup_mount_destination("/proc", proc.c_str(), -1, -1, true,
                                        &mount_flags));
   EXPECT_EQ(stvfs_buf.f_flag, mount_flags);
@@ -278,7 +202,7 @@ TEST(setup_mount_destination, mount_flags) {
 
   // Same thing holds for children of a mount.
   mount_flags = -1;
-  std::string proc_self = dir.path + "/proc_self";
+  std::string proc_self = dir.path + "/proc_self"s;
   EXPECT_EQ(0, setup_mount_destination("/proc/self", proc_self.c_str(), -1, -1,
                                        true, &mount_flags));
   EXPECT_EQ(stvfs_buf.f_flag, mount_flags);
@@ -294,10 +218,9 @@ TEST(setup_mount_destination, reject_relative_bind) {
 // A mount of a pseudo filesystem should make the destination dir.
 TEST(setup_mount_destination, create_pseudo_fs) {
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string no_chmod = dir.path + "/no_chmod";
+  std::string no_chmod = dir.path + "/no_chmod"s;
   EXPECT_EQ(0, setup_mount_destination("none", no_chmod.c_str(), -1, -1, false,
                                        nullptr));
   // We check it's a directory by deleting it as such.
@@ -308,7 +231,7 @@ TEST(setup_mount_destination, create_pseudo_fs) {
   // This results in most user IDs being valid. Instead of trying to find an
   // invalid user ID, just skip this check.
   if (!is_android()) {
-    std::string with_chmod = dir.path + "/with_chmod";
+    std::string with_chmod = dir.path + "/with_chmod"s;
     EXPECT_NE(0, setup_mount_destination("none", with_chmod.c_str(),
                                          UINT_MAX / 2, UINT_MAX / 2, false,
                                          nullptr));
@@ -327,10 +250,9 @@ TEST(setup_mount_destination, missing_source) {
 // A bind mount of a directory should create the destination dir.
 TEST(setup_mount_destination, create_bind_dir) {
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string child_dir = dir.path + "/child_dir";
+  std::string child_dir = dir.path + "/child_dir"s;
   EXPECT_EQ(0, setup_mount_destination(kValidDir, child_dir.c_str(), -1, -1,
                                        true, nullptr));
   // We check it's a directory by deleting it as such.
@@ -340,10 +262,9 @@ TEST(setup_mount_destination, create_bind_dir) {
 // A bind mount of a file should create the destination file.
 TEST(setup_mount_destination, create_bind_file) {
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string child_file = dir.path + "/child_file";
+  std::string child_file = dir.path + "/child_file"s;
   EXPECT_EQ(0, setup_mount_destination(kValidFile, child_file.c_str(), -1, -1,
                                        true, nullptr));
   // We check it's a file by deleting it as such.
@@ -353,10 +274,9 @@ TEST(setup_mount_destination, create_bind_file) {
 // A mount of a character device should create the destination char.
 TEST(setup_mount_destination, create_char_dev) {
   TemporaryDir dir;
-  ASSERT_TRUE(dir.is_valid());
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string child_dev = dir.path + "/child_dev";
+  std::string child_dev = dir.path + "/child_dev"s;
   EXPECT_EQ(0, setup_mount_destination(kValidCharDev, child_dev.c_str(), -1, -1,
                                        false, nullptr));
   // We check it's a directory by deleting it as such.
