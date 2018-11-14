@@ -166,6 +166,18 @@ std::optional<uint64_t> GetGotPltAddress(
             DecodeARMImmediate(instructions[0].first.getOperand(2).getImm()) +
             DecodeARMImmediate(instructions[1].first.getOperand(2).getImm()) +
             instructions[2].first.getOperand(3).getImm());
+  } else if (arch == llvm::Triple::thumb) {
+    if (instructions[0].second != "t2ADDri" ||
+        instructions[1].second != "t2ADDri" ||
+        instructions[2].second != "LDR_PRE_IMM") {
+      return std::nullopt;
+    }
+    // ARM's PC is always pointing to the instruction after the current one,
+    // hence the +8.
+    return (address + 8 +
+            DecodeARMImmediate(instructions[0].first.getOperand(2).getImm()) +
+            DecodeARMImmediate(instructions[1].first.getOperand(2).getImm()) +
+            instructions[2].first.getOperand(3).getImm());
   } else if (arch == llvm::Triple::x86) {
     if (instructions[0].second != "JMP32m" ||
         instructions[1].second != "PUSHi32" ||
@@ -453,6 +465,7 @@ bool Disassembler::CreateLLVMObjectsForTriple(
         is_gp_register_class = reg_class_name == "GPR64";
         break;
       case llvm::Triple::arm:
+      case llvm::Triple::thumb:
         is_gp_register_class = reg_class_name == "GPR";
         break;
       case llvm::Triple::x86:
@@ -477,6 +490,7 @@ bool Disassembler::CreateLLVMObjectsForTriple(
             zero_register = reg_num;
           break;
         case llvm::Triple::arm:
+        case llvm::Triple::thumb:
           if (register_name == "R7")
             syscall_register = reg_num;
           else if (register_name == "R0")
@@ -666,8 +680,11 @@ std::unique_ptr<ELFFileDisassembler> ELFFileDisassembler::OpenFile(
   // We already have a reference to this object in |_obj_|.
   binary.release();
 
-  llvm::Triple triple(llvm::Triple::normalize("unknown-unknown-unknown"));
-  triple.setArch(llvm::Triple::ArchType(disassembler->obj_->getArch()));
+  llvm::Triple triple = disassembler->obj_->makeTriple();
+  if (disassembler->obj_->getFeatures().getString().find("+thumb") !=
+      std::string::npos) {
+    triple = llvm::Triple("thumbv7a-linux-eabi");
+  }
 
   if (!disassembler->CreateLLVMObjectsForTriple(
           triple, disassembler->obj_->getFeatures().getString()))
@@ -743,7 +760,9 @@ bool ELFFileDisassembler::GetSymbols(
     LOG(DEBUG) << "Dynamic symbol " << name->str() << " " << std::hex
                << *address << " type "
                << static_cast<uint32_t>(symbol.getELFType()) << " size "
-               << symbol.getSize();
+               << symbol.getSize() << " thumb "
+               << ((symbol.getFlags() &
+                    llvm::object::BasicSymbolRef::Flags::SF_Thumb) != 0);
 
     out_symbols->emplace_back(std::make_unique<SymbolInfo>(
         *address, *address + symbol.getSize(), name->str()));
@@ -763,4 +782,66 @@ bool ELFFileDisassembler::GetSymbols(
 std::optional<std::pair<uint64_t, uint64_t>>
 ELFFileDisassembler::GetExecutableSectionRangeContaining(uint64_t address) {
   return GetContainingRange(executable_section_ranges_, address);
+}
+
+PrintInstruction::PrintInstruction(const llvm::MCInst& instruction,
+                                   const llvm::MCInstrInfo* mii)
+    : instruction(instruction), mii(mii) {}
+
+std::ostream& operator<<(std::ostream& os, const PrintInstruction& pi) {
+  const std::string mnemonic = pi.mii->getName(pi.instruction.getOpcode());
+  auto& instruction_desc = pi.mii->get(pi.instruction.getOpcode());
+  std::string buf;
+  {
+    llvm::raw_string_ostream os(buf);
+    pi.instruction.dump_pretty(os);
+  }
+  os << mnemonic << " " << buf << " [defs=" << std::dec
+     << instruction_desc.getNumDefs() << ", flags=" << std::hex
+     << instruction_desc.getFlags();
+  if (instruction_desc.isVariadic())
+    os << ", variadic";
+  if (instruction_desc.hasOptionalDef())
+    os << ", optional_def";
+  if (instruction_desc.isPseudo())
+    os << ", pseudo";
+  if (instruction_desc.isReturn())
+    os << ", return";
+  if (instruction_desc.isAdd())
+    os << ", add";
+  if (instruction_desc.isCall())
+    os << ", call";
+  if (instruction_desc.isBarrier())
+    os << ", barrier";
+  if (instruction_desc.isIndirectBranch())
+    os << ", indirect_branch";
+  if (instruction_desc.isBranch())
+    os << ", branch";
+  if (instruction_desc.isUnconditionalBranch())
+    os << ", unconditional_branch";
+  if (instruction_desc.isPredicable())
+    os << ", predicable";
+  if (instruction_desc.isCompare())
+    os << ", compare";
+  if (instruction_desc.isMoveImmediate())
+    os << ", move_immediate";
+  if (instruction_desc.isMoveReg())
+    os << ", move_reg";
+  if (instruction_desc.isBitcast())
+    os << ", bitcast";
+  if (instruction_desc.isSelect())
+    os << ", select";
+  if (instruction_desc.isNotDuplicable())
+    os << ", not_duplicable";
+  if (instruction_desc.hasDelaySlot())
+    os << ", has_delay_slot";
+  if (instruction_desc.hasUnmodeledSideEffects())
+    os << ", has_unmodeled_side_effects";
+  if (instruction_desc.isCommutable())
+    os << ", commutable";
+  if (instruction_desc.isConvertibleTo3Addr())
+    os << ", convertible_to_3addr";
+
+  os << "]";
+  return os;
 }

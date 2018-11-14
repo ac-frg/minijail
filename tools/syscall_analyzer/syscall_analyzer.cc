@@ -21,73 +21,6 @@
 
 namespace {
 
-struct PrintInstruction {
-  PrintInstruction(const llvm::MCInst& instruction,
-                   const llvm::MCInstrInfo* mii)
-      : instruction(instruction), mii(mii) {}
-
-  const llvm::MCInst& instruction;
-  const llvm::MCInstrInfo* const mii;
-};
-
-std::ostream& operator<<(std::ostream& os, const PrintInstruction& pi) {
-  const std::string mnemonic = pi.mii->getName(pi.instruction.getOpcode());
-  auto& instruction_desc = pi.mii->get(pi.instruction.getOpcode());
-  std::string buf;
-  {
-    llvm::raw_string_ostream os(buf);
-    pi.instruction.dump_pretty(os);
-  }
-  os << mnemonic << " " << buf << " [defs=" << std::dec
-     << instruction_desc.getNumDefs() << ", flags=" << std::hex
-     << instruction_desc.getFlags();
-  if (instruction_desc.isVariadic())
-    os << ", variadic";
-  if (instruction_desc.hasOptionalDef())
-    os << ", optional_def";
-  if (instruction_desc.isPseudo())
-    os << ", pseudo";
-  if (instruction_desc.isReturn())
-    os << ", return";
-  if (instruction_desc.isAdd())
-    os << ", add";
-  if (instruction_desc.isCall())
-    os << ", call";
-  if (instruction_desc.isBarrier())
-    os << ", barrier";
-  if (instruction_desc.isIndirectBranch())
-    os << ", indirect_branch";
-  if (instruction_desc.isBranch())
-    os << ", branch";
-  if (instruction_desc.isUnconditionalBranch())
-    os << ", unconditional_branch";
-  if (instruction_desc.isPredicable())
-    os << ", predicable";
-  if (instruction_desc.isCompare())
-    os << ", compare";
-  if (instruction_desc.isMoveImmediate())
-    os << ", move_immediate";
-  if (instruction_desc.isMoveReg())
-    os << ", move_reg";
-  if (instruction_desc.isBitcast())
-    os << ", bitcast";
-  if (instruction_desc.isSelect())
-    os << ", select";
-  if (instruction_desc.isNotDuplicable())
-    os << ", not_duplicable";
-  if (instruction_desc.hasDelaySlot())
-    os << ", has_delay_slot";
-  if (instruction_desc.hasUnmodeledSideEffects())
-    os << ", has_unmodeled_side_effects";
-  if (instruction_desc.isCommutable())
-    os << ", commutable";
-  if (instruction_desc.isConvertibleTo3Addr())
-    os << ", convertible_to_3addr";
-
-  os << "]";
-  return os;
-}
-
 std::ostream& operator<<(std::ostream& os, const std::set<int>& syscalls) {
   os << "syscalls[" << std::dec;
   for (int syscall_nr : syscalls)
@@ -469,6 +402,20 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
           LOG(WARN) << "SYSCALL r8/x8 was clobbered at " << std::hex << address;
         } else {
           direct_syscalls.insert(static_cast<int>(x8->second.value()));
+        }
+        continue;
+      }
+      if (mnemonic == "tSVC" && instruction.getOperand(0).isImm() &&
+          instruction.getOperand(0).getImm() == 0x00) {
+        auto r8 = block->processor_state.registers.find(
+            disassembler_->syscall_register);
+        if (r8 == block->processor_state.registers.end()) {
+          LOG(WARN) << "SYSCALL Could not find the value of r8 at " << std::hex
+                    << address;
+        } else if (r8->second == std::nullopt) {
+          LOG(WARN) << "SYSCALL r8 was clobbered at " << std::hex << address;
+        } else {
+          direct_syscalls.insert(static_cast<int>(r8->second.value()));
         }
         continue;
       }

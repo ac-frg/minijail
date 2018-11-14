@@ -184,4 +184,14 @@ class ELFFileDisassembler : public Disassembler {
   std::unique_ptr<llvm::object::ELFObjectFileBase> obj_;
 };
 
+struct PrintInstruction {
+  PrintInstruction(const llvm::MCInst& instruction,
+                   const llvm::MCInstrInfo* mii);
+
+  const llvm::MCInst& instruction;
+  const llvm::MCInstrInfo* const mii;
+};
+
+std::ostream& operator<<(std::ostream& os, const PrintInstruction& pi);
+
 #endif  // DISASSEMBLER_H_
