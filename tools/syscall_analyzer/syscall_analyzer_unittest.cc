@@ -144,7 +144,7 @@ TEST(Test, test_x86_64_control_flow_graph) {
             std::make_optional(std::set<int>{1, 2, 3}));
 }
 
-TEST(Test, DISABLED_test_x86_control_flow_graph) {
+TEST(Test, test_x86_control_flow_graph) {
   auto disassembler = InMemoryDisassembler::Create(
       "i686-pc-linux-gnu",
       {
@@ -160,15 +160,12 @@ TEST(Test, DISABLED_test_x86_control_flow_graph) {
           {
               "notcalled",
               {
-                  0x83, 0xec, 0x0c,  // sub esp,0xc
-                  0xc7, 0x04, 0x24, 0x04, 0x00, 0x00,
-                  0x00,                          // mov DWORD PTR[esp],0x4
-                  0xe8, 0xe1, 0xff, 0xff, 0xff,  // call <syscall>
+                  0x83, 0xec, 0x08,              // sub esp,0x8
+                  0x6a, 0x04,                    // push 0x4
+                  0xe8, 0xe6, 0xff, 0xff, 0xff,  // call <syscall>
                   0x83, 0xc4, 0x0c,              // add esp,0xc
                   0xc3,                          // ret
-                  0x66, 0x2e, 0x0f, 0x1f, 0x84, 0x00, 0x00, 0x00, 0x00,
-                  0x00,              // nop
-                  0x0f, 0x1f, 0x00,  // nop
+                  0x66, 0x90,                    // nop
               },
           },
           {
@@ -177,7 +174,7 @@ TEST(Test, DISABLED_test_x86_control_flow_graph) {
                   0x83, 0xec, 0x0c,  // sub esp,0xc
                   0xc7, 0x04, 0x24, 0x03, 0x00, 0x00,
                   0x00,                          // mov DWORD PTR[esp],0x3
-                  0xe8, 0xe1, 0xff, 0xff, 0xff,  // call <syscall>
+                  0xe8, 0xd1, 0xff, 0xff, 0xff,  // call <syscall>
                   0x83, 0xec, 0x04,              // sub esp,0x4
                   0x66, 0x2e, 0x0f, 0x1f, 0x84, 0x00, 0x00, 0x00, 0x00,
                   0x00,                    // nop
@@ -192,7 +189,7 @@ TEST(Test, DISABLED_test_x86_control_flow_graph) {
                   0xcd, 0x80,                    // int 0x80
                   0xc7, 0x04, 0x24, 0x02, 0x00, 0x00,
                   0x00,                          // mov DWORD PTR[esp],0x2
-                  0xe8, 0x9a, 0xff, 0xff, 0xff,  // call <syscall>
+                  0xe8, 0xaa, 0xff, 0xff, 0xff,  // call <syscall>
                   0xe8, 0xc5, 0xff, 0xff, 0xff,  // call <exit>
                   0x0f, 0x1f, 0x40, 0x00,        // nop
                   0x90,                          // nop

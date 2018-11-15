@@ -435,7 +435,17 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
                  << PrintInstruction(instruction, disassembler_->mii.get());
       if (mnemonic == "SYSCALL" ||
           (mnemonic == "INT" && instruction.getOperand(0).isImm() &&
-           instruction.getOperand(0).getImm() == 0x80)) {
+           instruction.getOperand(0).getImm() == 0x80) ||
+          (mnemonic == "CALL32m" && instruction.getOperand(0).isReg() &&
+           instruction.getOperand(0).getReg() == 33 &&
+           instruction.getOperand(1).isImm() &&
+           instruction.getOperand(1).getImm() == 1 &&
+           instruction.getOperand(2).isReg() &&
+           instruction.getOperand(2).getReg() == 0 &&
+           instruction.getOperand(3).isImm() &&
+           instruction.getOperand(3).getImm() == 0 &&
+           instruction.getOperand(4).isReg() &&
+           instruction.getOperand(4).getReg() == 0)) {
         auto rax = block->processor_state.registers.find(
             disassembler_->syscall_register);
         if (rax == block->processor_state.registers.end()) {
@@ -466,16 +476,26 @@ const SyscallAnalyzer::SyscallReport& SyscallAnalyzer::GetSyscallsCalledBy(
     }
 
     if (block->ends_with_call_to_syscall) {
-      auto nr_register = block->processor_state.registers.find(
-          disassembler_->first_arg_register);
-      if (nr_register == block->processor_state.registers.end()) {
-        LOG(WARN) << "SYSCALL Could not find the value of the number at "
-                  << std::hex << block->end;
-      } else if (nr_register->second == std::nullopt) {
-        LOG(WARN) << "SYSCALL number was clobbered at " << std::hex
-                  << block->end;
+      if (disassembler_->triple.getArch() == llvm::Triple::x86) {
+        if (block->processor_state.top_stack == std::nullopt) {
+          LOG(WARN) << "SYSCALL number was clobbered at " << std::hex
+                    << block->end;
+        } else {
+          direct_syscalls.insert(
+              static_cast<int>(block->processor_state.top_stack.value()));
+        }
       } else {
-        direct_syscalls.insert(static_cast<int>(nr_register->second.value()));
+        auto nr_register = block->processor_state.registers.find(
+            disassembler_->first_arg_register);
+        if (nr_register == block->processor_state.registers.end()) {
+          LOG(WARN) << "SYSCALL Could not find the value of the number at "
+                    << std::hex << block->end;
+        } else if (nr_register->second == std::nullopt) {
+          LOG(WARN) << "SYSCALL number was clobbered at " << std::hex
+                    << block->end;
+        } else {
+          direct_syscalls.insert(static_cast<int>(nr_register->second.value()));
+        }
       }
     }
 

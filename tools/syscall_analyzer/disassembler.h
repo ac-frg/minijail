@@ -42,9 +42,10 @@ struct SymbolInfo {
 };
 
 // The state of the processor. Contains the last-known values of all the
-// registers.
+// registers and the topmost entry in the stack.
 struct ProcessorState {
   std::map<uint32_t, std::optional<int64_t>> registers;
+  std::optional<int64_t> top_stack;
 };
 
 std::ostream& operator<<(std::ostream& os, const ProcessorState& ps);
@@ -119,6 +120,9 @@ class Disassembler {
 
   // This is the "zero register" in aarch64, which always contains zero.
   uint32_t zero_register = 0;
+
+  // This is the stack register.
+  uint32_t stack_register = 0;
 
   // A mapping between register IDs and their largest super-register. Several
   // registers can share the same storage space, so changing one implicitly

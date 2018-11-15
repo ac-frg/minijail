@@ -169,7 +169,7 @@ std::optional<uint64_t> GetGotPltAddress(
   } else if (arch == llvm::Triple::x86) {
     if (instructions[0].second != "JMP32m" ||
         instructions[1].second != "PUSHi32" ||
-        instructions[2].second != "JMP_4") {
+        instructions[2].second.find("JMP") != 0) {
       return std::nullopt;
     }
     // Bionic x86 assumes that the GOT's address is already on the register.
@@ -283,6 +283,11 @@ std::ostream& operator<<(std::ostream& os, const ProcessorState& ps) {
     else
       os << std::hex << it.second.value();
   }
+  os << " } Stack{ ";
+  if (ps.top_stack == std::nullopt)
+    os << "<clobbered>";
+  else
+    os << std::hex << ps.top_stack.value();
   return os << " }";
 }
 
@@ -483,6 +488,8 @@ bool Disassembler::CreateLLVMObjectsForTriple(
             syscall_register = reg_num;
           else if (register_name == "RDI")
             first_arg_register = reg_num;
+          else if (register_name == "RSP")
+            stack_register = reg_num;
           break;
         default:
           LOG(FATAL) << "Unsupported architecture " << triple_name;
@@ -510,6 +517,10 @@ bool Disassembler::CreateLLVMObjectsForTriple(
         << "Could not find the first argument register for this architecture";
     return false;
   }
+  if (triple.getArch() == llvm::Triple::x86 && stack_register == 0) {
+    LOG(ERROR) << "Could not find the stack register for this architecture";
+    return false;
+  }
   if (triple.getArch() == llvm::Triple::aarch64 && zero_register == 0) {
     LOG(ERROR) << "Could not find the zero register for this architecture";
     return false;
@@ -533,6 +544,41 @@ void Disassembler::UpdateProcessorState(ProcessorState* processor_state,
   // Noop does nothing.
   if (mnemonic.find("NOOP") == 0)
     return;
+  if (mnemonic.find("PUSH") == 0) {
+    if (instruction.getOperand(0).isImm()) {
+      processor_state->top_stack =
+          std::make_optional(instruction.getOperand(0).getImm());
+    } else {
+      processor_state->top_stack = std::nullopt;
+    }
+    LOG(DEBUG) << "Updated processor state: " << *processor_state;
+    return;
+  }
+  if (mnemonic.find("POP") == 0) {
+    processor_state->top_stack = std::nullopt;
+    LOG(DEBUG) << "Updated processor state: " << *processor_state;
+    return;
+  }
+  // This instruction manipulates the stack.
+  if (mnemonic == "MOV32mi" && instruction_desc.getNumOperands() == 6 &&
+      instruction.getOperand(0).isReg() &&
+      find_optional(register_map, instruction.getOperand(0).getReg())
+              .value_or(0) == stack_register &&
+      instruction.getOperand(1).isImm() &&
+      instruction.getOperand(1).getImm() == 1 &&
+      instruction.getOperand(2).isReg() &&
+      instruction.getOperand(2).getReg() == 0 &&
+      instruction.getOperand(3).isImm() &&
+      instruction.getOperand(3).getImm() == 0 &&
+      instruction.getOperand(4).isReg() &&
+      instruction.getOperand(4).getReg() == 0 &&
+      instruction.getOperand(5).isImm()) {
+    // mov DWORD PTR[esp],$imm
+    processor_state->top_stack =
+        std::make_optional(instruction.getOperand(5).getImm());
+    LOG(DEBUG) << "Updated processor state: " << *processor_state;
+    return;
+  }
   // This instruction does not explicitly modify any registers.
   if (instruction_desc.getNumDefs() == 0)
     return;
@@ -543,6 +589,9 @@ void Disassembler::UpdateProcessorState(ProcessorState* processor_state,
   auto rd_it = register_map.find(instruction.getOperand(0).getReg());
   if (rd_it == register_map.end())
     return;
+  // The stack was invalidated.
+  if (rd_it->second == stack_register)
+    processor_state->top_stack = std::nullopt;
 
   std::optional<uint64_t> value = std::nullopt;
   if (instruction_desc.getNumDefs() != 1) {
