@@ -12,6 +12,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <grp.h>
+#include <inttypes.h>
 #include <linux/capability.h>
 #include <linux/filter.h>
 #include <sched.h>
@@ -26,6 +27,7 @@
 #include <sys/param.h>
 #include <sys/prctl.h>
 #include <sys/resource.h>
+#include <sys/signalfd.h>
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <sys/types.h>
@@ -2967,40 +2969,120 @@ int API minijail_kill(struct minijail *j)
 	return st;
 }
 
+/*
+ * The SIGSYS fields are recent additions to the kernel & C lib, so can't rely
+ * on them even being in the struct.  Declare our own instead.
+ */
+struct signalfd_siginfo_hack {
+	uint32_t ssi_signo;
+	int32_t ssi_errno;
+	int32_t ssi_code;
+	uint32_t ssi_pid;
+	uint32_t ssi_uid;
+	int32_t ssi_fd;
+	uint32_t ssi_tid;
+	uint32_t ssi_band;
+	uint32_t ssi_overrun;
+	uint32_t ssi_trapno;
+	int32_t ssi_status;
+	int32_t ssi_int;
+	uint64_t ssi_ptr;
+	uint64_t ssi_utime;
+	uint64_t ssi_stime;
+	uint64_t ssi_addr;
+	uint16_t ssi_addr_lsb;
+	uint16_t __pad2;
+	int32_t ssi_syscall;
+	uint64_t ssi_call_addr;
+	uint32_t ssi_arch;
+	uint8_t __pad[28];
+};
+
 int API minijail_wait(struct minijail *j)
 {
-	int st;
-	if (waitpid(j->initpid, &st, 0) < 0)
-		return -errno;
+	sigset_t mask;
+	int fd;
+	struct signalfd_siginfo info;
 
-	if (!WIFEXITED(st)) {
-		int error_status = st;
-		if (WIFSIGNALED(st)) {
-			int signum = WTERMSIG(st);
-			warn("child process %d received signal %d",
-			     j->initpid, signum);
-			/*
-			 * We return MINIJAIL_ERR_JAIL if the process received
-			 * SIGSYS, which happens when a syscall is blocked by
-			 * seccomp filters.
-			 * If not, we do what bash(1) does:
-			 * $? = 128 + signum
-			 */
-			if (signum == SIGSYS) {
-				error_status = MINIJAIL_ERR_JAIL;
+	sigemptyset(&mask);
+	sigaddset(&mask, SIGCHLD);
+	fd = signalfd(-1, &mask, SFD_CLOEXEC);
+	if (fd >= 0) {
+		/* signalfd codepath */
+		sigprocmask(SIG_BLOCK, &mask, NULL);
+		ssize_t r = read(fd, &info, sizeof(info));
+		sigprocmask(SIG_UNBLOCK, &mask, NULL);
+		int status = -errno;
+		close(fd);
+		if (r <= 0)
+			return status;
+warn("signalfd!");
+	} else {
+		/* signalfd isn't supported, so fallback to waitpid. */
+		int st;
+		if (waitpid(j->initpid, &st, 0) < 0)
+			return -errno;
+
+warn("waitpid!");
+		/* Fake out contents of the siginfo. */
+		memset(&info, 0, sizeof(info));
+		if (WIFEXITED(st)) {
+			info.ssi_code = CLD_EXITED;
+			info.ssi_status = WEXITSTATUS(st);
+		} else {
+			if (WIFSIGNALED(st)) {
+				info.ssi_code = CLD_KILLED;
+				info.ssi_status = WTERMSIG(st);
 			} else {
-				error_status = 128 + signum;
+				info.ssi_status = st;
 			}
 		}
-		return error_status;
 	}
 
-	int exit_status = WEXITSTATUS(st);
-	if (exit_status != 0)
-		info("child process %d exited with status %d",
-		     j->initpid, exit_status);
+	/* Diagnose the exit mode/failure. */
+	switch (info.ssi_code) {
+	case CLD_DUMPED:
+	case CLD_KILLED: {
+		/* Child killed by signal. */
+		int signum = info.ssi_status;
 
-	return exit_status;
+		warn("child process %d received signal %d",
+		     j->initpid, signum);
+
+		/*
+		 * We return MINIJAIL_ERR_JAIL if the process received SIGSYS,
+		 * which happens when a syscall is blocked by seccomp filters.
+		 * If not, we do what bash(1) does:
+		 * $? = 128 + signum
+		 */
+		if (signum == SIGSYS) {
+			/* If the kernel hasn't filled out the fields, ignore it. */
+			struct signalfd_siginfo_hack *sigsysinfo = (void *)&info;
+			if (sigsysinfo->ssi_syscall || 1)
+				warn("SIGSYS details: syscall=%" PRIi32 " addr=%" PRIx64 " arch=%" PRIu32,
+				     sigsysinfo->ssi_syscall, sigsysinfo->ssi_call_addr,
+				     sigsysinfo->ssi_arch);
+
+			return MINIJAIL_ERR_JAIL;
+		} else
+			return 128 + signum;
+	}
+
+	case CLD_EXITED: {
+		/* Child exited. */
+		int status = info.ssi_status;
+
+		if (status != 0)
+			info("child process %d exited with status %d",
+			     j->initpid, status);
+
+		return status;
+	}
+
+	default:
+		/* No idea what happened here. */
+		return info.ssi_status;
+	}
 }
 
 void API minijail_destroy(struct minijail *j)
