@@ -23,6 +23,8 @@ from __future__ import print_function
 import collections
 import re
 
+import bpf
+
 Token = collections.namedtuple('token',
                                ['type', 'value', 'filename', 'line', 'column'])
 
@@ -140,13 +142,22 @@ class ParserState:
 Atom = collections.namedtuple('Atom', ['argument_index', 'op', 'value'])
 """A single boolean comparison within a filter expression."""
 
+Filter = collections.namedtuple('Filter', ['expression', 'action'])
+"""The result of parsing a DNF filter expression, with its action.
+
+Since the expression is in Disjunctive Normal Form, it is composed of two levels
+of lists, one for disjunctions and the inner one for conjunctions. The elements
+of the inner list are Atoms.
+"""
+
 
 # pylint: disable=too-few-public-methods
 class PolicyParser:
     """A parser for the Minijail seccomp policy file format."""
 
-    def __init__(self, arch):
+    def __init__(self, arch, *, kill_action):
         self._parser_states = [ParserState("<memory>")]
+        self._kill_action = kill_action
         self._arch = arch
 
     @property
@@ -280,3 +291,81 @@ class PolicyParser:
         else:
             self._parser_state.error('empty filter expression')
         return clauses
+
+    # action = 'allow' | '1'
+    #        | 'kill-process'
+    #        | 'kill-thread'
+    #        | 'kill'
+    #        | 'trap'
+    #        | 'trace'
+    #        | 'log'
+    #        | 'return' , single-constant
+    #        ;
+    def _parse_action(self, tokens):
+        if not tokens:
+            self._parser_state.error('missing action')
+        action_token = tokens.pop(0)
+        if action_token.type == 'ACTION':
+            if action_token.value == 'allow':
+                return bpf.Allow()
+            if action_token.value == 'kill':
+                return self._kill_action
+            if action_token.value == 'kill-process':
+                return bpf.KillProcess()
+            if action_token.value == 'kill-thread':
+                return bpf.KillThread()
+            if action_token.value == 'trap':
+                return bpf.Trap()
+            if action_token.value == 'trace':
+                return bpf.Trace()
+            if action_token.value == 'log':
+                return bpf.Log()
+        elif action_token.type == 'NUMERIC_CONSTANT':
+            constant = self._parse_single_constant(action_token)
+            if constant == 1:
+                return bpf.Allow()
+        elif action_token.type == 'RETURN':
+            if not tokens:
+                self._parser_state.error('missing return value')
+            return bpf.ReturnErrno(self._parse_single_constant(tokens.pop(0)))
+        return self._parser_state.error('invalid action', token=action_token)
+
+    # single-filter = action
+    #               | filter-expression , [ ';' , action ]
+    #               ;
+    def _parse_single_filter(self, tokens):
+        if not tokens:
+            self._parser_state.error('missing filter')
+        if tokens[0].type == 'ARGUMENT':
+            # Only filter expressions can start with an ARGUMENT token.
+            filter_expression = self.parse_filter_expression(tokens)
+            if tokens and tokens[0].type == 'SEMICOLON':
+                tokens.pop(0)
+                action = self._parse_action(tokens)
+            else:
+                action = bpf.Allow()
+            return Filter(filter_expression, action)
+        else:
+            return Filter(None, self._parse_action(tokens))
+
+    # filter = '{' , single-filter , [ { ',' , single-filter } ] , '}'
+    #        | single-filter
+    #        ;
+    def parse_filter(self, tokens):
+        """Parse a filter and return a list of Filter."""
+        if not tokens:
+            self._parser_state.error('missing filter')
+        filter_expressions = []
+        if tokens[0].type == 'LBRACE':
+            opening_brace = tokens.pop(0)
+            while tokens:
+                filter_expressions.append(self._parse_single_filter(tokens))
+                if not tokens or tokens[0].type != 'COMMA':
+                    break
+                tokens.pop(0)
+            if not tokens or tokens[0].type != 'RBRACE':
+                self._parser_state.error('unclosed brace', token=opening_brace)
+            tokens.pop(0)
+        else:
+            filter_expressions.append(self._parse_single_filter(tokens))
+        return filter_expressions
