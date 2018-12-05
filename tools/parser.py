@@ -382,6 +382,57 @@ class PolicyParser:
             filter_expressions.append(self._parse_single_filter(tokens))
         return filter_expressions
 
+    # key-value-pair = identifier , '=', identifier , [ { ',' , identifier } ]
+    #                ;
+    def _parse_key_value_pair(self, tokens):
+        if not tokens:
+            self._parser_state.error('missing key')
+        key = tokens.pop(0)
+        if key.type != 'IDENTIFIER':
+            self._parser_state.error('invalid key', token=key)
+        if not tokens:
+            self._parser_state.error('missing equal')
+        if tokens[0].type != 'EQUAL':
+            self._parser_state.error('invalid equal', token=tokens[0])
+        tokens.pop(0)
+        value_list = []
+        while tokens:
+            value = tokens.pop(0)
+            if value.type != 'IDENTIFIER':
+                self._parser_state.error('invalid value', token=value)
+            value_list.append(value.value)
+            if not tokens or tokens[0].type != 'COMMA':
+                break
+            tokens.pop(0)
+        else:
+            self._parser_state.error('empty value')
+        return (key.value, value_list)
+
+    # metadata = '[' , key-value-pair , [ { ';' , key-value-pair } ] , ']'
+    #          ;
+    def _parse_metadata(self, tokens):
+        if not tokens:
+            self._parser_state.error('missing opening bracket')
+        opening_bracket = tokens.pop(0)
+        if opening_bracket.type != 'LBRACKET':
+            self._parser_state.error(
+                'invalid opening bracket', token=opening_bracket)
+        metadata = {}
+        while tokens:
+            first_token = tokens[0]
+            key, value = self._parse_key_value_pair(tokens)
+            if key in metadata:
+                self._parser_state.error(
+                    'duplicate metadata key: "%s"' % key, token=first_token)
+            metadata[key] = value
+            if not tokens or tokens[0].type != 'SEMICOLON':
+                break
+            tokens.pop(0)
+        if not tokens or tokens[0].type != 'RBRACKET':
+            self._parser_state.error('unclosed bracket', token=opening_bracket)
+        tokens.pop(0)
+        return metadata
+
     # syscall-descriptor = syscall-name , [ metadata ]
     #                    | libc-function , [ metadata ]
     #                    ;
@@ -396,7 +447,10 @@ class PolicyParser:
             self._parser_state.error(
                 'nonexistent syscall', token=syscall_descriptor)
         # TODO(lhchavez): Support libc function names.
-        # TODO(lhchavez): Support metadata.
+        if tokens and tokens[0].type == 'LBRACKET':
+            metadata = self._parse_metadata(tokens)
+            if 'arch' in metadata and self._arch.arch_name not in metadata['arch']:
+                return ()
         return (Syscall(syscall_descriptor.value,
                         self._arch.syscalls[syscall_descriptor.value]), )
 
