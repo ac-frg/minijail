@@ -34,6 +34,7 @@ _TOKEN_SPECIFICATION = (
     ('COMMENT', r'#.*$'),
     ('WHITESPACE', r'\s+'),
     ('INCLUDE', r'@include'),
+    ('FREQUENCY', r'@frequency'),
     ('PATH', r'(?:\.)?/\S+'),
     ('NUMERIC_CONSTANT', r'-?0[xX][0-9a-fA-F]+|-?0[Oo][0-7]+|-?[0-9]+'),
     ('COLON', r':'),
@@ -182,6 +183,7 @@ class PolicyParser:
     def __init__(self, arch):
         self._parser_states = [ParserState("<memory>")]
         self._default_action = bpf.Kill()
+        self._frequency_mapping = collections.defaultdict(int)
         self._arch = arch
 
     @property
@@ -512,6 +514,67 @@ class PolicyParser:
                 'Could not @include %s' % include_filename, token=include_path)
         return self._parse_policy_file(include_filename)
 
+    def _parse_frequency_file(self, filename):
+        self._parser_states.append(ParserState(filename))
+        try:
+            frequency_mapping = collections.defaultdict(int)
+            with open(filename) as frequency_file:
+                for line in frequency_file:
+                    self._parser_state.set_line(line.rstrip())
+                    tokens = self._parser_state.tokenize()
+
+                    if not tokens:
+                        continue
+
+                    syscall_numbers = self._parse_syscall_descriptor(tokens)
+                    if not tokens:
+                        self._parser_state.error('missing colon')
+                    if tokens[0].type != 'COLON':
+                        self._parser_state.error(
+                            'invalid colon', token=tokens[0])
+                    tokens.pop(0)
+
+                    if not tokens:
+                        self._parser_state.error('missing number')
+                    number = tokens.pop(0)
+                    if number.type != 'NUMERIC_CONSTANT':
+                        self._parser_state.error(
+                            'invalid number', token=number)
+                    number_value = int(number.value, base=0)
+                    if number_value < 0:
+                        self._parser_state.error(
+                            'invalid number', token=number)
+
+                    for syscall_number in syscall_numbers:
+                        frequency_mapping[syscall_number] += number_value
+            return frequency_mapping
+        finally:
+            self._parser_states.pop()
+
+    # frequency-statement = '@frequency' , posix-path
+    #                      ;
+    def _parse_frequency_statement(self, tokens):
+        if not tokens:
+            self._parser_state.error('empty frequency statement')
+        if tokens[0].type != 'FREQUENCY':
+            self._parser_state.error('invalid frequency', token=tokens[0])
+        tokens.pop(0)
+        if not tokens:
+            self._parser_state.error('empty frequency path')
+        frequency_path = tokens.pop(0)
+        if frequency_path.type != 'PATH':
+            self._parser_state.error(
+                'invalid frequency path', token=frequency_path)
+        frequency_filename = os.path.normpath(
+            os.path.join(
+                os.path.dirname(self._parser_state.filename),
+                frequency_path.value))
+        if not os.path.isfile(frequency_filename):
+            self._parser_state.error(
+                'Could not open frequency file %s' % frequency_filename,
+                token=frequency_path)
+        return self._parse_frequency_file(frequency_filename)
+
     def _parse_policy_file(self, filename):
         self._parser_states.append(ParserState(filename))
         try:
@@ -528,6 +591,11 @@ class PolicyParser:
                     if tokens[0].type == 'INCLUDE':
                         statements.extend(
                             self._parse_include_statement(tokens))
+                    elif tokens[0].type == 'FREQUENCY':
+                        for syscall_number, frequency in self._parse_frequency_statement(
+                                tokens).items():
+                            self._frequency_mapping[
+                                syscall_number] += frequency
                     else:
                         statements.append(self.parse_filter_statement(tokens))
 
@@ -540,6 +608,7 @@ class PolicyParser:
 
     def parse_file(self, filename):
         """Parse a file and return the list of FilterStatements."""
+        self._frequency_mapping = collections.defaultdict(int)
         statements = [x for x in self._parse_policy_file(filename)]
 
         # Collapse statements into a single syscall-to-filter-list.
@@ -548,7 +617,10 @@ class PolicyParser:
         for syscalls, filters in statements:
             for syscall in syscalls:
                 if syscall not in syscall_filter_mapping:
-                    filter_statements.append(FilterStatement(syscall, 1, []))
+                    filter_statements.append(
+                        FilterStatement(
+                            syscall, self._frequency_mapping.get(syscall, 1),
+                            []))
                     syscall_filter_mapping[syscall] = filter_statements[-1]
                 syscall_filter_mapping[syscall].filters.extend(filters)
         for filter_statement in filter_statements:
