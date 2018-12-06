@@ -33,6 +33,7 @@ Token = collections.namedtuple('token',
 _TOKEN_SPECIFICATION = (
     ('COMMENT', r'#.*$'),
     ('WHITESPACE', r'\s+'),
+    ('DEFAULT', r'@default'),
     ('INCLUDE', r'@include'),
     ('FREQUENCY', r'@frequency'),
     ('PATH', r'(?:\.)?/\S+'),
@@ -575,6 +576,18 @@ class PolicyParser:
                 token=frequency_path)
         return self._parse_frequency_file(frequency_filename)
 
+    # default-statement = '@default' , action
+    #                   ;
+    def _parse_default_statement(self, tokens):
+        if not tokens:
+            self._parser_state.error('empty default statement')
+        if tokens[0].type != 'DEFAULT':
+            self._parser_state.error('invalid default', token=tokens[0])
+        tokens.pop(0)
+        if not tokens:
+            self._parser_state.error('empty action')
+        return self._parse_action(tokens)
+
     def _parse_policy_file(self, filename):
         self._parser_states.append(ParserState(filename))
         try:
@@ -596,6 +609,9 @@ class PolicyParser:
                                 tokens).items():
                             self._frequency_mapping[
                                 syscall_number] += frequency
+                    elif tokens[0].type == 'DEFAULT':
+                        self._default_action = self._parse_default_statement(
+                            tokens)
                     else:
                         statements.append(self.parse_filter_statement(tokens))
 
