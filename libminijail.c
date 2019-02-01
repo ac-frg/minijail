@@ -2409,15 +2409,18 @@ static int redirect_fds(struct minijail *j)
 /*
  * Structure that specifies how to start a minijail.
  *
- * filename - The program to exec in the child. Required if `exec_in_child` = 1.
- * argv - Arguments for the child program. Required if `exec_in_child` = 1.
+ * filename - The program to exec in the child. Required if |exec_in_child| = 1.
+ * argv - Arguments for the child program. Required if |exec_in_child| = 1.
+ * envp - Environment for the child program. Available if |exec_in_child| = 1.
+       Currently only honored if |use_preload| = 0 and non-NULL.
  * use_preload - If true use LD_PRELOAD.
- * exec_in_child - If true, run `filename`. Otherwise, the child will return to
+ * exec_in_child - If true, run |filename|. Otherwise, the child will return to
  *     the caller.
  */
 struct minijail_run_config {
 	const char *filename;
 	char *const *argv;
+	char *const *envp;
 	int use_preload;
 	int exec_in_child;
 };
@@ -2446,10 +2449,11 @@ int API minijail_run(struct minijail *j, const char *filename,
 		     char *const argv[])
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = true,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = true,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {};
 	return minijail_run_internal(j, &config, &status);
@@ -2459,10 +2463,11 @@ int API minijail_run_pid(struct minijail *j, const char *filename,
 			 char *const argv[], pid_t *pchild_pid)
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = true,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = true,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {
 		.pchild_pid = pchild_pid,
@@ -2474,10 +2479,11 @@ int API minijail_run_pipe(struct minijail *j, const char *filename,
 			  char *const argv[], int *pstdin_fd)
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = true,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = true,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {
 		.pstdin_fd = pstdin_fd,
@@ -2490,10 +2496,11 @@ int API minijail_run_pid_pipes(struct minijail *j, const char *filename,
 			       int *pstdin_fd, int *pstdout_fd, int *pstderr_fd)
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = true,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = true,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {
 		.pstdin_fd = pstdin_fd,
@@ -2508,10 +2515,11 @@ int API minijail_run_no_preload(struct minijail *j, const char *filename,
 				char *const argv[])
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = false,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = false,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {};
 	return minijail_run_internal(j, &config, &status);
@@ -2526,10 +2534,34 @@ int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 					  int *pstderr_fd)
 {
 	struct minijail_run_config config = {
-		.filename = filename,
-		.argv = argv,
-		.use_preload = false,
-		.exec_in_child = true,
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = NULL,
+	    .use_preload = false,
+	    .exec_in_child = true,
+	};
+	struct minijail_run_status status = {
+	    .pstdin_fd = pstdin_fd,
+	    .pstdout_fd = pstdout_fd,
+	    .pstderr_fd = pstderr_fd,
+	    .pchild_pid = pchild_pid,
+	};
+	return minijail_run_internal(j, &config, &status);
+}
+
+int API minijail_run_env_pid_pipes_no_preload(struct minijail *j,
+					      const char *filename,
+					      char *const argv[],
+					      char *const envp[],
+					      pid_t *pchild_pid, int *pstdin_fd,
+					      int *pstdout_fd, int *pstderr_fd)
+{
+	struct minijail_run_config config = {
+	    .filename = filename,
+	    .argv = argv,
+	    .envp = envp,
+	    .use_preload = false,
+	    .exec_in_child = true,
 	};
 	struct minijail_run_status status = {
 		.pstdin_fd = pstdin_fd,
@@ -2954,6 +2986,18 @@ static int minijail_run_internal(struct minijail *j,
 		return 0;
 
 	/*
+	 * If not using LD_PRELOAD, support passing a new environment instead of
+	 * inheriting the parent's.
+	 * When not using LD_PRELOAD there is no need to modify the environment
+	 * to add Minijail-related variables, so passing a new environment is
+	 * fine.
+	 */
+	char *const *child_env = environ;
+	if (!use_preload && config->envp != NULL) {
+		child_env = config->envp;
+	}
+
+	/*
 	 * If we aren't pid-namespaced, or the jailed program asked to be init:
 	 *   calling process
 	 *   -> execve()-ing process
@@ -2962,7 +3006,7 @@ static int minijail_run_internal(struct minijail *j,
 	 *   -> init()-ing process
 	 *      -> execve()-ing process
 	 */
-	ret = execve(config->filename, config->argv, environ);
+	ret = execve(config->filename, config->argv, child_env);
 	if (ret == -1) {
 		pwarn("execve(%s) failed", config->filename);
 	}
