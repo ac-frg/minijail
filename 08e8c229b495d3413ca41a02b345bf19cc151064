@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4de235bd_558e2f33",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2452,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-04T16:22:45Z",
+      "side": 1,
+      "message": "Actually, presubmit script complains. Maybe we need to update the .clang-format file, but I don\u0027t feel strongly about this one.",
+      "parentUuid": "2389eb4c_82cbc84c",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb5e6ebc_8c943405",
         "filename": "libminijail.c",
         "patchSetId": 1
