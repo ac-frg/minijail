@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "592e943e_a85d7282",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2452,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-04T19:37:52Z",
+      "side": 1,
+      "message": "i think clang-format is wrong in this case, but we should just leave out the whitespace changes in this CL.  we can figure out formatting separately.",
+      "parentUuid": "4de235bd_558e2f33",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb5e6ebc_8c943405",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -87,6 +105,23 @@
       "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1860f136_65200354",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-04T19:37:52Z",
+      "side": 1,
+      "message": "how about \"as the full environment\" to make it clear that it\u0027s fully replacing things ?",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     },
     {
       "key": {
@@ -190,6 +225,41 @@
       "side": 1,
       "message": "But the environment in the child (child in this case \u003d\u003d the /bin/sh -c execution) will get its environment replaced in the call to execve(), right? So why does the environment in the parent matter? The shell invocation will see a single env var which will be TEST_VAR, no matter how you call the unit test binary... am I missing something here?",
       "parentUuid": "89fd47d5_6078398d",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53966a59_6f75daf8",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-04T19:37:52Z",
+      "side": 1,
+      "message": "the default POSIX exec behavior is to inherit the parent\u0027s environment.  if the minijail code is buggy and doesn\u0027t actually replace the env, then the sh child execution will end up displaying the parent.\n\nso lets say you comment out this line in libminijail.c:\n\n //child_env \u003d config-\u003eenvp;\n\nthen run the unittests:\n\n TEST_VAR\u003dtest make check\n\nthis test will pass when it should have failed.\n\nyou prob should extend the test to also set a var in the parent and make sure it isn\u0027t set in the child.  i.e. you\u0027re verifying that not only was the env you specified passed through, but it fully replaced the env and didn\u0027t just augment it.\n\n // Parent.\n setenv(\"TEST_PARENT\", \"test\", 1);\n ...\n argv[2] \u003d \"echo \\\"${TEST_PARENT+set}|${TEST_VAR}\\\" \u003e\u00261\";\n\nthen make sure the output is \"|test\"",
+      "parentUuid": "8c4cc136_a3bbfddf",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbfb0af0_8ffa6100",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-04T19:37:52Z",
+      "side": 1,
+      "message": "i think here you could do:\n\n EXPECT_EQ(\"test\", std::string_view(buf));",
       "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
