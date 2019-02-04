@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "8c4cc136_a3bbfddf",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-04T19:14:49Z",
+      "side": 1,
+      "message": "But the environment in the child (child in this case \u003d\u003d the /bin/sh -c execution) will get its environment replaced in the call to execve(), right? So why does the environment in the parent matter? The shell invocation will see a single env var which will be TEST_VAR, no matter how you call the unit test binary... am I missing something here?",
+      "parentUuid": "89fd47d5_6078398d",
+      "revId": "08e8c229b495d3413ca41a02b345bf19cc151064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aeaaf988_a43e13b8",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 1
