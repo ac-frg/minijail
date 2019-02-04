@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbe2a9e4_a0d86fe7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-04T22:09:39Z",
+      "side": 1,
+      "message": "i think you can write:\n\n EXPECT_EQ(\"|test\", std::string(buf));\n\nwe\u0027ve used that pattern in util_unittest.cc",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
