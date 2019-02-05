@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "72a96815_2909f6ba",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-05T01:43:01Z",
+      "side": 1,
+      "message": "latest CL still has the redundant \u003e\u00261 ?",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbe2a9e4_a0d86fe7",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 3
@@ -31,6 +48,24 @@
       "side": 1,
       "message": "We\u0027re actually also reading the trailing \\n, which is why I was using strncmp. Do you still feel strongly about std::string?",
       "parentUuid": "cbe2a9e4_a0d86fe7",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1edd8478_537e8b35",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-05T01:43:01Z",
+      "side": 1,
+      "message": "seems like we want to test the full string and not just accept anything after the first 5 bytes ?\n\npathological, but TEST_VAR\u003d\"testx\" would be considered passing\n\nor change the shell command:\n\n  argv[2] \u003d \"printf %s \\\"${TEST_PARENT+set}|${TEST_VAR}\\\" \u003e\u00261\";\n\nthen there\u0027s no trailing newline",
+      "parentUuid": "ddc1b1fd_fca5b03a",
       "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
