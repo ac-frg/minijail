@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba674a24_a8030a56",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-02-05T16:05:43Z",
+      "side": 1,
+      "message": "nit: this is a precondition. should it be ASSERT_EQ?",
+      "range": {
+        "startLine": 346,
+        "startChar": 2,
+        "endLine": 346,
+        "endChar": 11
+      },
+      "revId": "a184553884a199289fa6ef3904501a1a00d7cbad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
