@@ -545,6 +545,11 @@ void API minijail_remount_proc_readonly(struct minijail *j)
 	j->flags.remount_proc_ro = 1;
 }
 
+void API minijail_skip_remount_proc_readonly(struct minijail *j)
+{
+	j->flags.remount_proc_ro = 0;
+}
+
 void API minijail_namespace_user(struct minijail *j)
 {
 	j->flags.userns = 1;
