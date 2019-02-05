@@ -16,6 +16,24 @@
       "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddc1b1fd_fca5b03a",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-05T01:13:52Z",
+      "side": 1,
+      "message": "We\u0027re actually also reading the trailing \\n, which is why I was using strncmp. Do you still feel strongly about std::string?",
+      "parentUuid": "cbe2a9e4_a0d86fe7",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
