@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "025f3ce8_11738ad7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-05T15:02:46Z",
+      "side": 1,
+      "message": "Because you added it back in your comment below.",
+      "parentUuid": "72a96815_2909f6ba",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbe2a9e4_a0d86fe7",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 3
@@ -69,6 +87,24 @@
       "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f642695b_7898ded7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-05T15:02:46Z",
+      "side": 1,
+      "message": "Let\u0027s just check for the newline and call it a day.",
+      "parentUuid": "1edd8478_537e8b35",
+      "revId": "eb72e4fb20e40aad745058d4b80109606c2cdccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
