@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950cd429_ba650fe8",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-02-06T17:10:39Z",
+      "side": 1,
+      "message": "optional: maybe make this be\n\n minijail_namespace_pids_rw_proc(j);\n j-\u003eflags.remount_proc_ro \u003d 1;",
+      "range": {
+        "startLine": 488,
+        "startChar": 1,
+        "endLine": 492,
+        "endChar": 22
+      },
+      "revId": "0e52ad1a48bb1342bb443cc436d61e5be9dd68cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
