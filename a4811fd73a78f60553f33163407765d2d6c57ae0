@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66df1082_c036239b",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-02-06T16:17:10Z",
+      "side": 1,
+      "message": "I kinda worry that the effect of calling this function changes depending on the order in which this appears vs. minijail_namespace_pids(). Should we add a new flag and/or create a new variant of minijail_namespace_pids()?\n\nAt the very least this should be documented in this file.",
+      "range": {
+        "startLine": 128,
+        "startChar": 5,
+        "endLine": 128,
+        "endChar": 40
+      },
+      "revId": "a4811fd73a78f60553f33163407765d2d6c57ae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
