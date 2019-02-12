@@ -22,6 +22,30 @@
       "revId": "771d4c0c09c05f2b442ca81dba2ceed968f1353d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78ba52ff_cd07f15d",
+        "filename": "scoped_minijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-12T18:45:05Z",
+      "side": 0,
+      "message": "Note that we don\u0027t really have a minijail:: namespace (and adding one would be kind of annoying given all the code that would need to be fixed). So there won\u0027t really be anything in the minijail:: namespace (except for the internal sub-namespace). I don\u0027t mind this.",
+      "parentUuid": "3db52dce_3921d748",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "771d4c0c09c05f2b442ca81dba2ceed968f1353d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
