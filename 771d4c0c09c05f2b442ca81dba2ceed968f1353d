@@ -46,6 +46,30 @@
       "revId": "771d4c0c09c05f2b442ca81dba2ceed968f1353d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d9de8c2_7f58d2e7",
+        "filename": "scoped_minijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-02-12T18:48:13Z",
+      "side": 0,
+      "message": "Aaaactually that doesn\u0027t work:\n\n\"In file included from ../../../../../../../../../mnt/host/source/src/platform2/login_manager/session_manager_impl_test.cc:72:\nIn file included from ../../../../../../../../../mnt/host/source/src/platform2/login_manager/mock_system_utils.h:17:\nIn file included from ../../../../../../../../../mnt/host/source/src/platform2/login_manager/system_utils.h:22:\n../../../../../../../usr/include/chromeos/scoped_minijail.h:13:11: error: redefinition of \u0027minijail\u0027 as different kind of symbol\nnamespace minijail {\n          ^\n../../../../../../../usr/include/chromeos/libminijail.h:32:8: note: previous definition is here\nstruct minijail;\"\n\nminijail_internal anyone?",
+      "parentUuid": "78ba52ff_cd07f15d",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "771d4c0c09c05f2b442ca81dba2ceed968f1353d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
