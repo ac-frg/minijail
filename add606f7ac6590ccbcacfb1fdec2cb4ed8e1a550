@@ -22,6 +22,23 @@
       "revId": "add606f7ac6590ccbcacfb1fdec2cb4ed8e1a550",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a277d8a_afcc54d2",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2329,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-12T02:20:18Z",
+      "side": 1,
+      "message": "add a comment explicitly noting that we want setenv and not putenv ?  can just link to crbug.com for more info.",
+      "revId": "add606f7ac6590ccbcacfb1fdec2cb4ed8e1a550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
