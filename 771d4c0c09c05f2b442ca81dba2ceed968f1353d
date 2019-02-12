@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3db52dce_3921d748",
+        "filename": "scoped_minijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-02-12T18:28:50Z",
+      "side": 0,
+      "message": "can you instead make this into the minijail::internal namespace?\n\nprior art: https://chromium.googlesource.com/chromium/src/+/HEAD/base/files/scoped_file.h",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "771d4c0c09c05f2b442ca81dba2ceed968f1353d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
