@@ -10,7 +10,6 @@
 
 #include "libminijail.h"
 
-namespace {
 struct ScopedMinijailDeleter {
     inline void operator()(minijail *j) const {
         if (j) {
@@ -18,7 +17,6 @@ struct ScopedMinijailDeleter {
         }
     }
 };
-}
 
 using ScopedMinijail = std::unique_ptr<minijail, ScopedMinijailDeleter>;
 
