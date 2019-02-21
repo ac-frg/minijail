@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1940d2ae_ac750778",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2019-02-21T20:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abf46c1_1d169959",
+      "revId": "44621b59f8ac82833ee632fcbc26028c615afecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eab05f5d_b0a6f4af",
         "filename": "Makefile",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "44621b59f8ac82833ee632fcbc26028c615afecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4afbc395_6bd526ba",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2019-02-21T20:55:06Z",
+      "side": 1,
+      "message": "Done. I applied the same change to the other nearby var.",
+      "parentUuid": "eab05f5d_b0a6f4af",
+      "revId": "44621b59f8ac82833ee632fcbc26028c615afecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
