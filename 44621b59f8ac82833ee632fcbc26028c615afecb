@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abf46c1_1d169959",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-21T20:49:43Z",
+      "side": 1,
+      "message": "can you add a comment above this line explaining what this setting is for ?",
+      "revId": "44621b59f8ac82833ee632fcbc26028c615afecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eab05f5d_b0a6f4af",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-02-21T20:49:43Z",
+      "side": 1,
+      "message": "fwiw, i tend to swap quote styles to avoid \\ confusion\n\n DEFAULT_PIVOT_ROOT ?\u003d \"/var/empty\"\n CPPFLAGS +\u003d -DDEFAULT_PIVOT_ROOT\u003d\u0027$(DEFAULT_PIVOT_ROOT)\u0027",
+      "revId": "44621b59f8ac82833ee632fcbc26028c615afecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
