@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80f3919b_75b13ebd",
+        "filename": "Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2019-02-21T22:20:20Z",
+      "side": 1,
+      "message": "This has the same problem you highlighted, but changing it will break the minijail ebuild unless we have a way of landing a CrOS change at the same time.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "ee876076d8e943321019217709cb7a9b57233183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
