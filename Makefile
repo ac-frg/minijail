@@ -9,6 +9,7 @@ LIBDIR ?= /lib
 PRELOADNAME = libminijailpreload.so
 PRELOADPATH = \"$(LIBDIR)/$(PRELOADNAME)\"
 CPPFLAGS += -DPRELOADPATH="$(PRELOADPATH)"
+DEFAULT_PIVOT_ROOT ?= /var/empty
 
 ifeq ($(USE_seccomp),no)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
