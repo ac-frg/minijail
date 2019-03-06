@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9261b96e_442a464d",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:40:13Z",
+      "side": 1,
+      "message": "\"can tokenize\" or \"tokenizes\"",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "6059eba7755d7bd70a7e5b317c1c3463188c56b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b33e55ba_d0ff57f1",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:40:13Z",
+      "side": 1,
+      "message": "Shouldn\u0027t these be part of the same if statement?",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "6059eba7755d7bd70a7e5b317c1c3463188c56b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b09c2d80_9f173df7",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:40:13Z",
+      "side": 1,
+      "message": "Maybe this can be extracted into a \"mask_bit_length\" function or something.",
+      "range": {
+        "startLine": 198,
+        "startChar": 27,
+        "endLine": 198,
+        "endChar": 73
+      },
+      "revId": "6059eba7755d7bd70a7e5b317c1c3463188c56b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7b1dad6_1ed3f3c0",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:40:13Z",
+      "side": 1,
+      "message": "Clarify that pipes are bitwise ORs.",
+      "range": {
+        "startLine": 204,
+        "startChar": 40,
+        "endLine": 204,
+        "endChar": 45
+      },
+      "revId": "6059eba7755d7bd70a7e5b317c1c3463188c56b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
