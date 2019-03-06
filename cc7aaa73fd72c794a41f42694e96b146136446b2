@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24a17ba3_2f851cb1",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:56:30Z",
+      "side": 1,
+      "message": "maybe don\u0027t hardcode this \u003d)",
+      "range": {
+        "startLine": 463,
+        "startChar": 39,
+        "endLine": 463,
+        "endChar": 41
+      },
+      "revId": "cc7aaa73fd72c794a41f42694e96b146136446b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
