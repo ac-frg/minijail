@@ -22,6 +22,30 @@
       "revId": "9211398d4c31b9a86e5e6d8c5dd6071959a13e69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc02385a_2bcec820",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:52:13Z",
+      "side": 1,
+      "message": "hmmm reading this back it does seem confusing. it\u0027s a single list of filters for the whole statement, not one per syscall. Reworded it to be hopefully clearer.",
+      "parentUuid": "0a7058dc_f9c5c21c",
+      "range": {
+        "startLine": 160,
+        "startChar": 67,
+        "endLine": 161,
+        "endChar": 43
+      },
+      "revId": "9211398d4c31b9a86e5e6d8c5dd6071959a13e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
