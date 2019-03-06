@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aefa0558_c1d6d2cb",
+        "filename": "tools/parser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T16:15:10Z",
+      "side": 1,
+      "message": "Extract these to a single file that gets imported in all unit tests files?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 6
+      },
+      "revId": "449cb34a8ff99202e39285cc5fa579410bacf596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
