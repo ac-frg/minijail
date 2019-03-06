@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6c80755_5b87a52c",
+        "filename": "tools/bpf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:51:41Z",
+      "side": 1,
+      "message": "I don\u0027t know how I feel about the use of inheritance here. In general, I\u0027m very much in the \"use composition, not inheritance\" camp of the debate. So I guess the question is, what\u0027s inheritance enabling here?\n\nAll the BasicBlock subclasses could instead be composing a BasicBlock and implementing the Block interface (which can maybe be renamed Visitor), and they would mostly look the same (call .basic_block() instead of super().__init__()).\n\nThoughts?",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 16
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71a83b36_07ccd3f0",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:51:41Z",
+      "side": 1,
+      "message": "Now I\u0027m thinking that maybe this should be called \"argument-expression\".",
+      "range": {
+        "startLine": 334,
+        "startChar": 22,
+        "endLine": 334,
+        "endChar": 28
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb7fb1a_37d9925f",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:51:41Z",
+      "side": 1,
+      "message": "Especially given this.",
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c4694e0_2e5ac1d0",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:51:41Z",
+      "side": 1,
+      "message": "\"Filter objects\" to disambiguate better between \"filter\" and \"Filter\".",
+      "range": {
+        "startLine": 355,
+        "startChar": 47,
+        "endLine": 355,
+        "endChar": 53
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
