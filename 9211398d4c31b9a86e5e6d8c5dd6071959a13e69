@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a7058dc_f9c5c21c",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T15:54:15Z",
+      "side": 1,
+      "message": "Why do we need a list of filters for each syscall/syscall group?",
+      "range": {
+        "startLine": 160,
+        "startChar": 67,
+        "endLine": 161,
+        "endChar": 43
+      },
+      "revId": "9211398d4c31b9a86e5e6d8c5dd6071959a13e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
