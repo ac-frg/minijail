@@ -45,6 +45,20 @@ ARCH_64 = arch.Arch(
         'PROT_WRITE': 2,
         'PROT_EXEC': 4,
     },
+    syscall_groups={
+        'libc': {
+            'io': [
+                'read',
+                'write',
+            ],
+        },
+        'systemd': {
+            'file-io': [
+                'read',
+                'write',
+            ],
+        },
+    },
 )
 
 

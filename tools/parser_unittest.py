@@ -43,6 +43,20 @@ ARCH_64 = arch.Arch(
         'PROT_WRITE': 2,
         'PROT_EXEC': 4,
     },
+    syscall_groups={
+        'libc': {
+            'io': [
+                'read',
+                'write',
+            ],
+        },
+        'systemd': {
+            'file-io': [
+                'read',
+                'write',
+            ],
+        },
+    },
 )
 
 
@@ -410,6 +424,24 @@ class ParseFilterStatementTests(unittest.TestCase):
             ), [
                 parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
             ]))
+        self.assertEqual(
+            self.parser.parse_filter_statement(
+                self._tokenize('io@libc: arg0 == 0')),
+            parser.ParsedFilterStatement((
+                parser.Syscall('read', 0),
+                parser.Syscall('write', 1),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
+            self.parser.parse_filter_statement(
+                self._tokenize('file-io@systemd: arg0 == 0')),
+            parser.ParsedFilterStatement((
+                parser.Syscall('read', 0),
+                parser.Syscall('write', 1),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
 
     def test_parse_metadata(self):
         """Accept valid filter statements with metadata."""
@@ -428,6 +460,11 @@ class ParseFilterStatementTests(unittest.TestCase):
 
     def test_parse_unclosed_brace(self):
         """Reject unclosed brace."""
+        with self.assertRaisesRegex(parser.ParseException, 'unclosed brace'):
+            self.parser.parse_filter(self._tokenize('{ allow'))
+
+    def test_parse_invalid_syscall_group(self):
+        """Reject invalid syscall groups."""
         with self.assertRaisesRegex(parser.ParseException, 'unclosed brace'):
             self.parser.parse_filter_statement(
                 self._tokenize('{ read, write: arg0 == 0'))
