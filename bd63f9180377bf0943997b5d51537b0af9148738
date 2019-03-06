@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f858a795_759040a5",
+        "filename": "tools/bpf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:52:04Z",
+      "side": 1,
+      "message": "I\u0027m mostly in the same camp of preferring composition, but the Visitor pattern pretty much requires inheritance[1]. I\u0027m planning to add type annotations in a later commit (once I have some amount of assurance that it won\u0027t break in the various build systems), and composition wouldn\u0027t cut it here because I would build a huge union type of all the concrete classes :/\n\n\u003e implementing the Block interface (which can maybe be renamed Visitor)\n\ni\u0027m introducing a proper Visitor class in a later commit, so I cannot rename Block.\n\n1: https://en.wikipedia.org/wiki/Visitor_pattern#Structure",
+      "parentUuid": "e6c80755_5b87a52c",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 16
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71a83b36_07ccd3f0",
         "filename": "tools/parser.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b3719668_b06f771d",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:52:04Z",
+      "side": 1,
+      "message": "makes sense.",
+      "parentUuid": "71a83b36_07ccd3f0",
+      "range": {
+        "startLine": 334,
+        "startChar": 22,
+        "endLine": 334,
+        "endChar": 28
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6eb7fb1a_37d9925f",
         "filename": "tools/parser.py",
         "patchSetId": 4
@@ -62,6 +110,24 @@
       "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df792fdf_cbcb62a5",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:52:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eb7fb1a_37d9925f",
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +151,30 @@
       "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beeb5aa5_d789c48a",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:52:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c4694e0_2e5ac1d0",
+      "range": {
+        "startLine": 355,
+        "startChar": 47,
+        "endLine": 355,
+        "endChar": 53
+      },
+      "revId": "bd63f9180377bf0943997b5d51537b0af9148738",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
