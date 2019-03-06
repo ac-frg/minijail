@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db79a1a8_b50f4562",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T16:10:02Z",
+      "side": 1,
+      "message": "Time or nr of instructions?",
+      "range": {
+        "startLine": 12,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 29
+      },
+      "revId": "8d4f014a72a12033f0ad9eb52bbf64eb2b71c45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63bca744_d5d6a9ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-06T16:10:02Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 16,
+        "startChar": 67,
+        "endLine": 17,
+        "endChar": 33
+      },
+      "revId": "8d4f014a72a12033f0ad9eb52bbf64eb2b71c45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
