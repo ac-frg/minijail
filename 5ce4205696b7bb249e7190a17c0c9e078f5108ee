@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "453477b8_b387dcb0",
+        "filename": "tools/bpf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:53:07Z",
+      "side": 1,
+      "message": "good point, let me make it a standalone function.",
+      "parentUuid": "75cd15a9_5cc402eb",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 0
+      },
+      "revId": "5ce4205696b7bb249e7190a17c0c9e078f5108ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c2742e0_5e265f8f",
         "filename": "tools/bpf.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "141f5d95_10d4e2cd",
+        "filename": "tools/bpf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c2742e0_5e265f8f",
+      "range": {
+        "startLine": 283,
+        "startChar": 36,
+        "endLine": 283,
+        "endChar": 38
+      },
+      "revId": "5ce4205696b7bb249e7190a17c0c9e078f5108ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5baa6cd0_78696774",
         "filename": "tools/compiler.py",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "5ce4205696b7bb249e7190a17c0c9e078f5108ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38eb8e89_fb9a761c",
+        "filename": "tools/compiler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-06T22:53:07Z",
+      "side": 1,
+      "message": "yapf\u0027d the whole thing.",
+      "parentUuid": "5baa6cd0_78696774",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 37
+      },
+      "revId": "5ce4205696b7bb249e7190a17c0c9e078f5108ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
