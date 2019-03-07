@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d444ac03_fe45082e",
+        "filename": "tools/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-07T18:37:31Z",
+      "side": 1,
+      "message": "Sorry, I should have been clearer: both if guards are mutually exclusive (single_constant cannot be positive and negative at the same time), so this can be:\n\nif single_constant \u003e ...\nelif single_constant \u003c 0 ...\n\nAm I missing something?",
+      "parentUuid": "d1a6bc1d_15724798",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "6059eba7755d7bd70a7e5b317c1c3463188c56b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b09c2d80_9f173df7",
         "filename": "tools/parser.py",
         "patchSetId": 4
