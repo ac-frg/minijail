@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "41af9a6b_190d08f7",
+        "filename": "examples/cat.policy",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-03-14T18:50:13Z",
+      "side": 1,
+      "message": "add a note that this only works on x86_64 ?",
+      "revId": "013bec852b8149a4f8f14d886a103c2915c5c709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1759d49b_5b8021bc",
         "filename": "examples/cat.policy",
         "patchSetId": 3
