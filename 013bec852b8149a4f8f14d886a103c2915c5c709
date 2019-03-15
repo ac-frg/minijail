@@ -39,6 +39,30 @@
       "revId": "013bec852b8149a4f8f14d886a103c2915c5c709",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b48a2b6_1b5fb058",
+        "filename": "examples/cat.policy",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-15T13:52:05Z",
+      "side": 1,
+      "message": "Maybe, let me give it a shot.",
+      "parentUuid": "1759d49b_5b8021bc",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "013bec852b8149a4f8f14d886a103c2915c5c709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
