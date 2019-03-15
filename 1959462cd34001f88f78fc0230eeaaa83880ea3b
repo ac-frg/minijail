@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c4eda10_a85f025e",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-15T13:11:49Z",
+      "side": 1,
+      "message": "Maybe it\u0027s easier to understand if you flip the condition:\n\n /* If the line does not end in a backslash, we are done. */\n if (ret \u003d\u003d 0 || line[ret - 1] !\u003d \u0027\\\\\u0027)\n     return ret; \n\n /* This line ends in a backslash. Erase it and get the nextline. */\n line[--ret] \u003d \u0027\\0\u0027;\n size_t next_len \u003d 0;\n ...",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 520,
+        "endChar": 13
+      },
+      "revId": "1959462cd34001f88f78fc0230eeaaa83880ea3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "040f1859_2e56e2c6",
+        "filename": "syscall_filter.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-15T13:11:49Z",
+      "side": 1,
+      "message": "Can this be next_n for consistency?",
+      "range": {
+        "startLine": 523,
+        "startChar": 8,
+        "endLine": 523,
+        "endChar": 16
+      },
+      "revId": "1959462cd34001f88f78fc0230eeaaa83880ea3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
