@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65d10207_452f1609",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-03-15T21:01:17Z",
+      "side": 1,
+      "message": "i just realized something: we need to replace this with a space to prevent two unrelated tokens from merging and the parser assuming they are the same:\n\nread:arg0\\\nin 5\n\nwould return this as \"read:arg0in 5\".",
+      "range": {
+        "startLine": 521,
+        "startChar": 16,
+        "endLine": 521,
+        "endChar": 18
+      },
+      "revId": "21b0363642060b43f71d04a61848ea160cfb9f37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
