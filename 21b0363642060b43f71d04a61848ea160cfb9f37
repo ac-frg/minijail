@@ -22,6 +22,30 @@
       "revId": "21b0363642060b43f71d04a61848ea160cfb9f37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d65d64c_5becb724",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-03-15T21:07:56Z",
+      "side": 1,
+      "message": "i was thinking that was WAI, but i\u0027m OK with either behavior\n\ni can add a unittest to cover it",
+      "parentUuid": "65d10207_452f1609",
+      "range": {
+        "startLine": 521,
+        "startChar": 16,
+        "endLine": 521,
+        "endChar": 18
+      },
+      "revId": "21b0363642060b43f71d04a61848ea160cfb9f37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
