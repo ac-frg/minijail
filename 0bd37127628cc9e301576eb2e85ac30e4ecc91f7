@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98c8e33f_dd5669d8",
+        "filename": "tools/compiler_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-03-22T19:28:30Z",
+      "side": 1,
+      "message": "Maybe add a comment that explains that this prevents the combinatorial explosion in the visitor pattern (i.e. the comment in the commit message but just here for extra context.)",
+      "revId": "0bd37127628cc9e301576eb2e85ac30e4ecc91f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
