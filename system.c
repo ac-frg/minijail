@@ -12,6 +12,7 @@
 #include <pwd.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/prctl.h>
@@ -234,22 +235,46 @@ int setup_and_dupe_pipe_end(int fds[2], size_t index, int fd)
 
 int write_pid_to_path(pid_t pid, const char *path)
 {
-	FILE *fp = fopen(path, "we");
+	const char *suffix = ".XXXXXX";
+	size_t temp_path_size = strlen(path) + strlen(suffix) + 1u;
+	char *temp_path = (char *)calloc(temp_path_size, sizeof(char));
+	if (snprintf(temp_path, temp_path_size, "%s%s", path, suffix) < 0) {
+		warn("snprintf(temp_path) failed");
+		free(temp_path);
+		return -1;
+	}
+	int fd = mkstemp(temp_path);
+	if (fd < 0) {
+		pwarn("mkstemp(%s) failed", temp_path);
+		free(temp_path);
+		return -errno;
+	}
 
+	FILE *fp = fdopen(fd, "we");
 	if (!fp) {
-		pwarn("failed to open '%s'", path);
+		pwarn("fdopen(fd, \"we\") failed");
+		free(temp_path);
 		return -errno;
 	}
 	if (fprintf(fp, "%d\n", (int)pid) < 0) {
 		/* fprintf(3) does not set errno on failure. */
 		warn("fprintf(%s) failed", path);
+		free(temp_path);
 		return -1;
 	}
 	if (fclose(fp)) {
 		pwarn("fclose(%s) failed", path);
+		free(temp_path);
 		return -errno;
 	}
 
+	if (rename(temp_path, path) < 0) {
+		pwarn("rename(%s, %s) failed", temp_path, path);
+		free(temp_path);
+		return -errno;
+	}
+
+	free(temp_path);
 	return 0;
 }
 
