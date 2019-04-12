@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80607a80_17ff20e3",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-12T16:20:11Z",
+      "side": 1,
+      "message": "(optional) You can probably inline the suffix here.",
+      "range": {
+        "startLine": 243,
+        "startChar": 29,
+        "endLine": 243,
+        "endChar": 31
+      },
+      "revId": "d39aac84fd8b9056845c8d574ff321d9766617d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
