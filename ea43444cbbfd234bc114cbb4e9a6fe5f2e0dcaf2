@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d262acb6_f46d1f65",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-12T14:42:23Z",
+      "side": 1,
+      "message": "why not asprintf(3) directly? we already use that in a few places in libminijail.c",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 69
+      },
+      "revId": "ea43444cbbfd234bc114cbb4e9a6fe5f2e0dcaf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d541e18_1823be8d",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-12T14:42:23Z",
+      "side": 1,
+      "message": "I just realized that we also need a flose(fp) here. so the previous code could have been leaking an fd.",
+      "range": {
+        "startLine": 262,
+        "startChar": 2,
+        "endLine": 262,
+        "endChar": 18
+      },
+      "revId": "ea43444cbbfd234bc114cbb4e9a6fe5f2e0dcaf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
