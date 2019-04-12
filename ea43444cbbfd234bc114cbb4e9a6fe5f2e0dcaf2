@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "17ead1d3_db09ab49",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-12T15:30:13Z",
+      "side": 1,
+      "message": "should this be pwarn?",
+      "range": {
+        "startLine": 261,
+        "startChar": 2,
+        "endLine": 261,
+        "endChar": 6
+      },
+      "revId": "ea43444cbbfd234bc114cbb4e9a6fe5f2e0dcaf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d541e18_1823be8d",
         "filename": "system.c",
         "patchSetId": 2
@@ -41,6 +64,29 @@
         "startChar": 2,
         "endLine": 262,
         "endChar": 18
+      },
+      "revId": "ea43444cbbfd234bc114cbb4e9a6fe5f2e0dcaf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a37e0aff_214d0ca8",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-12T15:30:13Z",
+      "side": 1,
+      "message": "bah, i also forgot that this needs a best-effort unlink(temp_path).",
+      "range": {
+        "startLine": 274,
+        "startChar": 2,
+        "endLine": 274,
+        "endChar": 16
       },
       "revId": "ea43444cbbfd234bc114cbb4e9a6fe5f2e0dcaf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
