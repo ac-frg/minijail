@@ -106,7 +106,7 @@ static inline int is_android(void)
 #endif
 }
 
-static inline bool running_with_asan(void)
+static inline bool compiled_with_asan(void)
 {
 #if defined(__SANITIZE_ADDRESS__)
 	/* For gcc. */
@@ -117,6 +117,20 @@ static inline bool running_with_asan(void)
 #else
 	return false;
 #endif
+}
+
+void __asan_init(void) attribute_weak;
+void __hwasan_init(void) attribute_weak;
+
+static inline bool running_with_asan(void)
+{
+	/*
+	 * There are some configurations under which ASan needs a dynamic (as
+	 * opposed to compile-time) test. Some Android processes that start
+	 * before /data is mounted run with non-instrumented libminijail.so, so
+	 * the symbol-sniffing code must be present to make the right decision.
+	 */
+	return compiled_with_asan() || &__asan_init != 0 || &__hwasan_init != 0;
 }
 
 int lookup_syscall(const char *name);
