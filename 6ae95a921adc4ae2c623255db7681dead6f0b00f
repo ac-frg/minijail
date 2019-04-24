@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "995ccd23_8a3aff05",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2676,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-04-24T13:44:34Z",
+      "side": 1,
+      "message": "\"configure the child\u0027s runtime environment\"",
+      "range": {
+        "startLine": 2676,
+        "startChar": 35,
+        "endLine": 2676,
+        "endChar": 54
+      },
+      "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
