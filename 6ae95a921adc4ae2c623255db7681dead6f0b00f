@@ -22,6 +22,29 @@
       "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d8e1628_6a0d353d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2679,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-24T15:18:29Z",
+      "side": 1,
+      "message": "for consistency, could we also add {forward_signals,enter_vfs,enter_net} to this set? (i.e. everything before https://android.googlesource.com/platform/external/minijail/+/refs/changes/97/950197/1/libminijail.c#2780 )",
+      "range": {
+        "startLine": 2679,
+        "startChar": 5,
+        "endLine": 2679,
+        "endChar": 20
+      },
+      "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
