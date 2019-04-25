@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f2eb4fbd_f959149f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2676,
+      "author": {
+        "id": 1074340
+      },
+      "writtenOn": "2019-04-25T05:04:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "995ccd23_8a3aff05",
+      "range": {
+        "startLine": 2676,
+        "startChar": 35,
+        "endLine": 2676,
+        "endChar": 54
+      },
+      "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d8e1628_6a0d353d",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9223bca5_a07e3601",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2679,
+      "author": {
+        "id": 1074340
+      },
+      "writtenOn": "2019-04-25T05:04:56Z",
+      "side": 1,
+      "message": "sure; the only reason i\u0027d left this out was because i wasn\u0027t sure that synchronization is needed for all of these. for example, enter_vfs and enter_net are just closing an FD.",
+      "parentUuid": "0d8e1628_6a0d353d",
+      "range": {
+        "startLine": 2679,
+        "startChar": 5,
+        "endLine": 2679,
+        "endChar": 20
+      },
+      "revId": "6ae95a921adc4ae2c623255db7681dead6f0b00f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
