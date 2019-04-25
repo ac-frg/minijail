@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8babbfc5_14871d93",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2682,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-04-25T13:53:05Z",
+      "side": 1,
+      "message": "I don\u0027t know that we need this Luis, what\u0027s the rationale?\n\nI\u0027m tempted to let Dan land pid_file and rlimit, and figure out the others on our own.",
+      "range": {
+        "startLine": 2681,
+        "startChar": 43,
+        "endLine": 2682,
+        "endChar": 30
+      },
+      "revId": "0560ab07d4f20d7ad1233e3c4df0c392993f882f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
