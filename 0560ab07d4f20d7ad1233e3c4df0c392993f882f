@@ -22,6 +22,30 @@
       "revId": "0560ab07d4f20d7ad1233e3c4df0c392993f882f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9df836eb_a91ebecf",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2682,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-04-25T14:56:38Z",
+      "side": 1,
+      "message": "I was thinking of simplifying logic like https://chromium.git.corp.google.com/chromiumos/platform2/+/e5b7a413735ec609f34ef7e0c57455fb1c0eccba/arc/network/init/arc-network.conf#21 but then I remembered that this is run from another process, so that synchronization hack might still need to be there.\n\nDropping these two and us figuring out later sgtm.",
+      "parentUuid": "8babbfc5_14871d93",
+      "range": {
+        "startLine": 2681,
+        "startChar": 43,
+        "endLine": 2682,
+        "endChar": 30
+      },
+      "revId": "0560ab07d4f20d7ad1233e3c4df0c392993f882f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
