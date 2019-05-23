@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f49bfaf8_98978043",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-05-23T18:28:08Z",
+      "side": 1,
+      "message": "maybe just \u0027setsid\u0027, for consistency with other flags that force behavior.",
+      "range": {
+        "startLine": 166,
+        "startChar": 6,
+        "endLine": 166,
+        "endChar": 19
+      },
+      "revId": "82dfa7ba3fcc73fbecc3e60575165ae8792300b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
