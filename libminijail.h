@@ -160,6 +160,9 @@ int minijail_add_to_cgroup(struct minijail *j, const char *path);
  */
 int minijail_forward_signals(struct minijail *j);
 
+/* Sets a flag to always call setsid() in the jailed child process */
+int minijail_always_setsid(struct minijail* j);
+
 /*
  * minijail_enter_chroot: enables chroot() restriction for @j
  * @j   minijail to apply restriction to
