@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1118555f_edc30705",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-05-24T15:27:43Z",
+      "side": 1,
+      "message": "Same formatting nit here.",
+      "range": {
+        "startLine": 738,
+        "startChar": 47,
+        "endLine": 738,
+        "endChar": 48
+      },
+      "revId": "3ce3a7bde931bbeded62e417a7f4ba0c24069752",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20887e0e_3a1bc50f",
+        "filename": "libminijail.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-05-24T15:27:43Z",
+      "side": 1,
+      "message": "Nit: Minijail coding style has this against the argument name, not the type.\n\n(There\u0027s a .clang-format file in this directory if you want to run clang-format locally.)",
+      "range": {
+        "startLine": 164,
+        "startChar": 43,
+        "endLine": 164,
+        "endChar": 45
+      },
+      "revId": "3ce3a7bde931bbeded62e417a7f4ba0c24069752",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
