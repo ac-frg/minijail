@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d57a0f7_3703b9ce",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-03T20:57:31Z",
+      "side": 1,
+      "message": "maybe testvar_len + 2 instead ?",
+      "revId": "4cccfe40a0dbe7a85a4b5b00f74f82fbbe71fde2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
