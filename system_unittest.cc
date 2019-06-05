@@ -254,10 +254,9 @@ TEST(mkdir_p, create_tree) {
 TEST(setup_mount_destination, dest_exists) {
   // Pick some paths that should always exist.  We pass in invalid pointers
   // for other args so we crash if the dest check doesn't short circuit.
-  EXPECT_EQ(0, setup_mount_destination(nullptr, kValidDir, 0, 0, false,
-                                       nullptr));
-  EXPECT_EQ(0, setup_mount_destination(nullptr, "/proc", 0, 0, true, nullptr));
-  EXPECT_EQ(0, setup_mount_destination(nullptr, "/dev", 0, 0, false, nullptr));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, kValidDir, 0, 0, false));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, "/proc", 0, 0, true));
+  EXPECT_EQ(0, setup_mount_destination(nullptr, "/dev", 0, 0, false));
 }
 
 // Mount flags should be obtained for bind-mounts
@@ -269,26 +268,14 @@ TEST(setup_mount_destination, mount_flags) {
   ASSERT_TRUE(dir.is_valid());
 
   unsigned long mount_flags = -1;
-  // Passing -1 for user ID/group ID tells chown to make no changes.
-  std::string proc = dir.path + "/proc";
-  EXPECT_EQ(0, setup_mount_destination("/proc", proc.c_str(), -1, -1, true,
-                                       &mount_flags));
-  EXPECT_EQ(stvfs_buf.f_flag, mount_flags);
-  EXPECT_EQ(0, rmdir(proc.c_str()));
-
-  // Same thing holds for children of a mount.
-  mount_flags = -1;
-  std::string proc_self = dir.path + "/proc_self";
-  EXPECT_EQ(0, setup_mount_destination("/proc/self", proc_self.c_str(), -1, -1,
-                                       true, &mount_flags));
-  EXPECT_EQ(stvfs_buf.f_flag, mount_flags);
-  EXPECT_EQ(0, rmdir(proc_self.c_str()));
+  EXPECT_EQ(0, get_mount_flags_for_directory(dir.path.c_str(), &mount_flags));
+  EXPECT_NE(mount_flags, -1);
 }
 
 // When given a bind mount where the source is relative, reject it.
 TEST(setup_mount_destination, reject_relative_bind) {
   // Pick a destination we know doesn't exist.
-  EXPECT_NE(0, setup_mount_destination("foo", kNoSuchDir, 0, 0, true, nullptr));
+  EXPECT_NE(0, setup_mount_destination("foo", kNoSuchDir, 0, 0, true));
 }
 
 // A mount of a pseudo filesystem should make the destination dir.
@@ -298,8 +285,8 @@ TEST(setup_mount_destination, create_pseudo_fs) {
 
   // Passing -1 for user ID/group ID tells chown to make no changes.
   std::string no_chmod = dir.path + "/no_chmod";
-  EXPECT_EQ(0, setup_mount_destination("none", no_chmod.c_str(), -1, -1, false,
-                                       nullptr));
+  EXPECT_EQ(0,
+            setup_mount_destination("none", no_chmod.c_str(), -1, -1, false));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(no_chmod.c_str()));
 
@@ -310,18 +297,15 @@ TEST(setup_mount_destination, create_pseudo_fs) {
   if (!is_android()) {
     std::string with_chmod = dir.path + "/with_chmod";
     EXPECT_NE(0, setup_mount_destination("none", with_chmod.c_str(),
-                                         UINT_MAX / 2, UINT_MAX / 2, false,
-                                         nullptr));
+                                         UINT_MAX / 2, UINT_MAX / 2, false));
   }
 }
 
 // If the source path does not exist, we should error out.
 TEST(setup_mount_destination, missing_source) {
   // The missing dest path is so we can exercise the source logic.
-  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, false,
-                                       nullptr));
-  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, true,
-                                       nullptr));
+  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, false));
+  EXPECT_NE(0, setup_mount_destination(kNoSuchDir, kNoSuchDir, 0, 0, true));
 }
 
 // A bind mount of a directory should create the destination dir.
@@ -332,7 +316,7 @@ TEST(setup_mount_destination, create_bind_dir) {
   // Passing -1 for user ID/group ID tells chown to make no changes.
   std::string child_dir = dir.path + "/child_dir";
   EXPECT_EQ(0, setup_mount_destination(kValidDir, child_dir.c_str(), -1, -1,
-                                       true, nullptr));
+                                       true));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(child_dir.c_str()));
 }
@@ -345,7 +329,7 @@ TEST(setup_mount_destination, create_bind_file) {
   // Passing -1 for user ID/group ID tells chown to make no changes.
   std::string child_file = dir.path + "/child_file";
   EXPECT_EQ(0, setup_mount_destination(kValidFile, child_file.c_str(), -1, -1,
-                                       true, nullptr));
+                                       true));
   // We check it's a file by deleting it as such.
   EXPECT_EQ(0, unlink(child_file.c_str()));
 }
@@ -358,7 +342,7 @@ TEST(setup_mount_destination, create_char_dev) {
   // Passing -1 for user ID/group ID tells chown to make no changes.
   std::string child_dev = dir.path + "/child_dev";
   EXPECT_EQ(0, setup_mount_destination(kValidCharDev, child_dev.c_str(), -1, -1,
-                                       false, nullptr));
+                                       false));
   // We check it's a directory by deleting it as such.
   EXPECT_EQ(0, rmdir(child_dev.c_str()));
 }
