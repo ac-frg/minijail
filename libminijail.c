@@ -1500,9 +1500,15 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 
 	ret =
 	    setup_mount_destination(m->src, dest, j->uid, j->gid,
-				    (m->flags & MS_BIND), &original_mnt_flags);
+				    (m->flags & MS_BIND));
 	if (ret) {
 		warn("creating mount target '%s' failed", dest);
+		goto error;
+	}
+
+	ret = get_mount_flags_for_directory(m->src, &original_mnt_flags);
+	if (ret) {
+		warn("could not get mount flags of source '%s'", m->src);
 		goto error;
 	}
 
