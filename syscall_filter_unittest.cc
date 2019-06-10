@@ -22,12 +22,10 @@ namespace {
 // TODO(jorgelo): Android unit tests don't currently support data files.
 // Re-enable by creating a temporary policy file at runtime.
 #if !defined(__ANDROID__)
-
 std::string source_path(std::string file) {
-  std::string srcdir = getenv("SRC") ? : ".";
+  std::string srcdir = getenv("SRC") ?: ".";
   return srcdir + "/" + file;
 }
-
 #endif
 
 // Simple C++ -> C wrappers to simplify test code.
@@ -46,10 +44,16 @@ int test_compile_filter(
     std::string filename,
     FILE* policy_file,
     struct sock_fprog* prog,
-    enum ret_trap do_ret_trap = USE_RET_KILL,
-    enum use_logging add_logging_syscalls = NO_LOGGING) {
-  return compile_filter(filename.c_str(), policy_file, prog, do_ret_trap,
-                        add_logging_syscalls);
+    enum ret_trap use_ret_trap = USE_RET_KILL,
+    enum use_logging allow_logging = NO_LOGGING) {
+  enum block_action action =
+      (use_ret_trap == USE_RET_TRAP) ? ACTION_RET_TRAP : ACTION_RET_KILL;
+  struct filter_options filteropts {
+    .action = action,
+    .allow_logging = allow_logging == USE_LOGGING,
+    .allow_syscalls_for_logging = allow_logging == USE_LOGGING,
+  };
+  return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
 }
 
 int test_compile_file(
@@ -61,8 +65,15 @@ int test_compile_file(
     enum ret_trap use_ret_trap = USE_RET_KILL,
     enum use_logging allow_logging = NO_LOGGING,
     unsigned int include_level = 0) {
+  enum block_action action =
+      (use_ret_trap == USE_RET_TRAP) ? ACTION_RET_TRAP : ACTION_RET_KILL;
+  struct filter_options filteropts {
+    .action = action,
+    .allow_logging = allow_logging == USE_LOGGING,
+    .allow_syscalls_for_logging = allow_logging == USE_LOGGING,
+  };
   return compile_file(filename.c_str(), policy_file, head, arg_blocks, labels,
-                      use_ret_trap, allow_logging, include_level);
+                      &filteropts, include_level);
 }
 
 struct filter_block* test_compile_policy_line(
@@ -72,8 +83,9 @@ struct filter_block* test_compile_policy_line(
     unsigned int label_id,
     struct bpf_labels* labels,
     enum ret_trap do_ret_trap = USE_RET_KILL) {
-  return compile_policy_line(state, nr, policy_line.c_str(), label_id, labels,
-                             do_ret_trap);
+  return compile_policy_line(
+      state, nr, policy_line.c_str(), label_id, labels,
+      do_ret_trap == USE_RET_TRAP ? ACTION_RET_TRAP : ACTION_RET_KILL);
 }
 
 }  // namespace
