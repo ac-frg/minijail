@@ -464,3 +464,35 @@ int lookup_group(const char *group, gid_t *gid)
 	*gid = pgr->gr_gid;
 	return 0;
 }
+
+int seccomp_action_is_available(const char *wanted)
+{
+	const char actions_avail_path[] =
+	    "/proc/sys/kernel/seccomp/actions_avail";
+	FILE *f = fopen(actions_avail_path, "re");
+
+	if (!f) {
+		pwarn("fopen(/proc/sys/kernel/seccomp/actions_avail) failed");
+		return 0;
+	}
+
+	char *actions_avail = NULL;
+	size_t buf_size = 0;
+	if (getline(&actions_avail, &buf_size, f) < 0) {
+		pwarn("getline() failed");
+		free(actions_avail);
+		return 0;
+	}
+
+	return strstr(actions_avail, wanted) != NULL;
+}
+
+int seccomp_ret_log_available()
+{
+	return seccomp_action_is_available("log");
+}
+
+int seccomp_ret_kill_process_available()
+{
+	return seccomp_action_is_available("kill_process");
+}

@@ -157,9 +157,11 @@ Run inside a new IPC namespace. This option makes the program's System V IPC
 namespace independent.
 .TP
 \fB-L\fR
-Report blocked syscalls to syslog when using seccomp filter. This option will
-force certain syscalls to be allowed in order to achieve this, depending on the
-system.
+Report blocked syscalls when using seccomp filter. On kernels with support for
+SECCOMP_RET_LOG, every blocked syscall will be reported through the audit
+subsystem. On all other kernels, the first failing syscall will be logged to
+syslog. This latter case will also force certain syscalls to be allowed in order
+to write to syslog.
 .TP
 \fB-m[<uid> <loweruid> <count>[,<uid> <loweruid> <count>]]\fR
 Set the uid mapping of a user namespace (implies \fB-pU\fR). Same arguments as
