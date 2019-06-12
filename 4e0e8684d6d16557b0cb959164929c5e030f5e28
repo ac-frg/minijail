@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "61a03c24_8d4e172b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-12T22:05:01Z",
+      "side": 1,
+      "message": "if the kernel supports it, we should be using RET_KILL_THREAD everywhere.  if we\u0027re using that, what\u0027s described here shouldn\u0027t be done.\n\nif this logic is used to workaround lack of RET_KILL_THREAD support in the kernel, then i\u0027m on board.",
+      "parentUuid": "84af3861_35386713",
+      "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4faa4b2_91324a1e",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -183,6 +201,24 @@
       "side": 1,
       "message": "Minijail should still support the old way of doing things, both for Linux usage and because I don\u0027t know that we\u0027ll be able to backport things as far back as 3.10/3.14. Namely, what Minijail supports and what Chrome OS kernels expose is mostly orthogonal.\n\nHaving said that, the patchset is https://www.redhat.com/archives/linux-audit/2017-February/msg00001.html, not too big, so we should attempt to backport it at least to 4.4 (since we have so many 4.4 devices) and maybe even 3.18.\n\nDetection can be done via\n\n# cat /proc/sys/kernel/seccomp/actions_avail\nkill_process kill_thread trap errno trace log allow\n\nAbsence of the file means \"OG seccomp\", presence of the file directly tells us whether log and kill_process are available.\n\nMy intention is to keep syscall_filter.{h,c} dumb (so that it\u0027s not reading anything from /proc and it\u0027s easy to unit test) and then add the above logic to libminijail.c",
       "parentUuid": "4f3af055_2f0380ee",
+      "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b28621eb_04dd80a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-12T22:05:01Z",
+      "side": 1,
+      "message": "i grok that mj should support both which is why i was asking how you planned on changing behavior.  i mention the backporting to highlight a basic uname check (which is what this commit message implies) would be insufficient.",
+      "parentUuid": "2ff3e0da_5cce759b",
       "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
