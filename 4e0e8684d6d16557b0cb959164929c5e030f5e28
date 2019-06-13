@@ -137,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "eaa16685_95dcd903",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-13T13:29:21Z",
+      "side": 1,
+      "message": "Sorry, I probably wasn\u0027t fully clear.\n\nWe\u0027ve always had RET_KILL_THREAD. When Will first landed seccomp filters, there was only RET_KILL which was equivalent to RET_KILL_THREAD.\n\nWhat we want is the new RET_KILL_PROCESS so that if we enable tsync (which implies that the user knows the process is multi-threaded and moreover wants to restrict all threads), then we can kill the entire process even if only one thread calls a blocked syscall.\n\nThe SIGSYS/RET_TRAP logic is used to workaround the lack of RET_KILL_PROCESS in older kernels.",
+      "parentUuid": "61a03c24_8d4e172b",
+      "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4faa4b2_91324a1e",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -219,6 +237,24 @@
       "side": 1,
       "message": "i grok that mj should support both which is why i was asking how you planned on changing behavior.  i mention the backporting to highlight a basic uname check (which is what this commit message implies) would be insufficient.",
       "parentUuid": "2ff3e0da_5cce759b",
+      "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16739298_3ff09a05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-13T13:29:21Z",
+      "side": 1,
+      "message": "Behaviour is in the follow-up CL but basically: if we have RET_LOG, -L will use RET_LOG and not SIGSYS/RET_TRAP and the SIGSYS handler.\n\nI\u0027ll update the message to imply that we\u0027re testing functionality and not checking versions.",
+      "parentUuid": "b28621eb_04dd80a1",
       "revId": "4e0e8684d6d16557b0cb959164929c5e030f5e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
