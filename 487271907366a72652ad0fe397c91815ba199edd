@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5650c96b_baf9900e",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-14T16:46:35Z",
+      "side": 1,
+      "message": "this file doesn\u0027t use whatever syntax you think it does ;)\n\ndrop all the quotes \u0026 commas",
+      "revId": "487271907366a72652ad0fe397c91815ba199edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
