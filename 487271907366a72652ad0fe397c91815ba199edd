@@ -16,6 +16,24 @@
       "revId": "487271907366a72652ad0fe397c91815ba199edd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3398b6b_25461d39",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2019-06-14T17:11:02Z",
+      "side": 1,
+      "message": "Ah yes, I was using GYP/GN syntax. I have thought about it a bit and opted for keeping the gtest-config with a fallback instead of dropping it altogether since minijail is used outside CrOS. Also I dropped -lgmock because it isn\u0027t included in gtest-config --libs.",
+      "parentUuid": "5650c96b_baf9900e",
+      "revId": "487271907366a72652ad0fe397c91815ba199edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
