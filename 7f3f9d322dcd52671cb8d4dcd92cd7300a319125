@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f0eeace_fbcf08e8",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-06-14T17:41:46Z",
+      "side": 1,
+      "message": "how about \"Bad value for writable\"?",
+      "range": {
+        "startLine": 148,
+        "startChar": 27,
+        "endLine": 148,
+        "endChar": 39
+      },
+      "revId": "7f3f9d322dcd52671cb8d4dcd92cd7300a319125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
