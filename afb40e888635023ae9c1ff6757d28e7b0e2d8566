@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "531d2f2f_9bcc2457",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-14T17:11:49Z",
+      "side": 1,
+      "message": "if these tools don\u0027t exist, we\u0027ll get \"command not found\" errors in the output.  how about adding 2\u003e/dev/null to the gtest-config calls ?",
+      "revId": "afb40e888635023ae9c1ff6757d28e7b0e2d8566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
