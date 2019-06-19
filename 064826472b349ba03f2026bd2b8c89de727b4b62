@@ -1,0 +1,277 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "799ac5a1_57fab183",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "can we write out \"thread sync\" ?",
+      "range": {
+        "startLine": 393,
+        "startChar": 7,
+        "endLine": 393,
+        "endChar": 12
+      },
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3ed9134_829de946",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "move this before the check above and then use filteropts.allow_logging to avoid duplicating the \"is logging allowed\" logic ?",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1dfaade_7b453c3f",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "what\u0027s with casting the const away ?  this implies minijail_set_seccomp_filters should be taking a const instead.",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eac022ab_625507de",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "not a new issue, but this would read better imo if this was \"using a seccomp filter\" -- talk about the filter being used rather than the subsystem itself",
+      "range": {
+        "startLine": 160,
+        "startChar": 29,
+        "endLine": 160,
+        "endChar": 49
+      },
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25f169a0_94f3bc87",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "should we point people at seccomp(2) for more details on SECCOMP_RET_LOG availability ?\n\nand add it to SEE ALSO below",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b7c8b7_d7e5fcf0",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "not a new issue, but we don\u0027t document how -L is disabled for non-debug builds.  maybe just a short side note like:\n\n Note: this option is disabled \u0026 ignored for release builds.",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4a2677_9cb259be",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "i think you can write this simpler w/out losing details:\n\n If the kernel does not support SECCOMP_RET_LOG,",
+      "range": {
+        "startLine": 509,
+        "startChar": 44,
+        "endLine": 509,
+        "endChar": 64
+      },
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8a2c17f_15c59f21",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "you can use %s here to avoid duplicating the string",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a441a28a_3cfc9def",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "this is a substring search.  i guess it\u0027s not a big deal based on the elements currently in there (there\u0027s nothing like \"foolog\" which \"log\" would match).\n\nmaybe just add a comment noting the landmine ?",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1ac0032_acf8f496",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "(void)",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2c80de0_0f32551e",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "should this cache the result so we don\u0027t open+read+close the file multiple times ?\n\nseems like an extra 4 byte static variable is acceptable overhead",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d4374b_20e069fa",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "(void)",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f1b6447_c29f7832",
+        "filename": "system.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "need explicit (void) in C code otherwise it defaults to (...) behavior",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5561ec47_70bd67f1",
+        "filename": "util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "(void)",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ef0d723_0495e766",
+        "filename": "util.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-19T20:58:25Z",
+      "side": 1,
+      "message": "return value is a bool, so you want true/false instead of 1/0",
+      "revId": "064826472b349ba03f2026bd2b8c89de727b4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
