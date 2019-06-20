@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "149dcf20_c65e7f7f",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-20T19:24:30Z",
+      "side": 1,
+      "message": "can you add a comment explaining why this cast is safe ?  i\u0027m not seeing how it\u0027s safe (albeit, it\u0027s not a new issue).\n\nif the user has allocated sock_fprog somewhere themselves and they call minijail_set_seccomp_filters, that func is defined as \"does not take ownership\".  but set_seccomp_filters_internal will set minijail-\u003efilter_prog to it, and both here in set_seccomp_filters_internal \u0026 minijail_destroy we call free(j-\u003efilter_prog-\u003efilter) \u0026 free(j-\u003efilter_prog).  that looks to me like we\u0027re taking ownership of the memory.",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abaafb66_8d969e43",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-20T19:24:30Z",
+      "side": 1,
+      "message": "s/copy/set/ ?",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b4f5cc1_86ddd87d",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-20T19:24:30Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be static since it\u0027s not defined in the headers ?",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
