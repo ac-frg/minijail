@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e4bc263_ac498342",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-20T19:54:21Z",
+      "side": 1,
+      "message": "minijail_set_seccomp_filters will pass |owned| as false so |fprog| below will be a copy of the |filter| argument, so I think things are fine?\n\nI think the larger issue is that there is no point for this to be a single function -- it only saves the duplication of the three last lines of code.\n\nIn other words, if |owned| is true, casting away is fine.",
+      "parentUuid": "149dcf20_c65e7f7f",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "abaafb66_8d969e43",
         "filename": "libminijail.c",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5e827396_87dcd468",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abaafb66_8d969e43",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b4f5cc1_86ddd87d",
         "filename": "system.c",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a53a1078_36bd50b7",
+        "filename": "system.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b4f5cc1_86ddd87d",
+      "revId": "be4a12faf7e18eb821e87d544349fd440e9a8ff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
