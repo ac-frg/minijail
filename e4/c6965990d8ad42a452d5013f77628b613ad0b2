@@ -1,0 +1,10 @@
+Code-Review+1: Yakun Xu <xyk@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Verified+1: Mike Frysinger <vapier@google.com>
+Autosubmit+1: Mike Frysinger <vapier@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 26 Jun 2019 20:43:58 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/999658
+Project: platform/external/minijail
+Branch: refs/heads/master
