@@ -22,6 +22,30 @@
       "revId": "e4c6965990d8ad42a452d5013f77628b613ad0b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a37add32_e2cf268b",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-06-26T19:57:29Z",
+      "side": 1,
+      "message": "oof.  i\u0027ll have to digest that for a while before i\u0027ll feel comfortable with it ...",
+      "parentUuid": "192470c6_086b61c1",
+      "range": {
+        "startLine": 1356,
+        "startChar": 0,
+        "endLine": 1357,
+        "endChar": 38
+      },
+      "revId": "e4c6965990d8ad42a452d5013f77628b613ad0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
