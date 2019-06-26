@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "192470c6_086b61c1",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-06-26T19:55:58Z",
+      "side": 1,
+      "message": "optional: now that this is being compiled as C++, maybe use the fancy delimiter syntax?\n\n std::string policy \u003d R\"policy(\n    read:\n    1\n    openat: arg0\n    in\n\n    5\n    )policy\";",
+      "range": {
+        "startLine": 1356,
+        "startChar": 0,
+        "endLine": 1357,
+        "endChar": 38
+      },
+      "revId": "e4c6965990d8ad42a452d5013f77628b613ad0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
