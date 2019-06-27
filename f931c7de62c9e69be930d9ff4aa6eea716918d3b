@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "609e93ea_f4579d08",
+        "filename": "system.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-27T13:52:26Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 30,
+        "startChar": 60,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "f931c7de62c9e69be930d9ff4aa6eea716918d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2378ce07_86237ee7",
+        "filename": "system.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-06-27T13:52:26Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 365,
+        "startChar": 3,
+        "endLine": 365,
+        "endChar": 12
+      },
+      "revId": "f931c7de62c9e69be930d9ff4aa6eea716918d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
