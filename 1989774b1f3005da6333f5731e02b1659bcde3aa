@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e7ff77f_c80b2b26",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-09-19T01:36:02Z",
+      "side": 1,
+      "message": "s/specificed/specified",
+      "range": {
+        "startLine": 400,
+        "startChar": 47,
+        "endLine": 400,
+        "endChar": 57
+      },
+      "revId": "1989774b1f3005da6333f5731e02b1659bcde3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "171aad16_9f0a64a9",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-09-19T01:36:02Z",
+      "side": 1,
+      "message": "Waits ... and returns ...\n\n(if we want to be consistent with the comments on the function)",
+      "range": {
+        "startLine": 400,
+        "startChar": 3,
+        "endLine": 400,
+        "endChar": 7
+      },
+      "revId": "1989774b1f3005da6333f5731e02b1659bcde3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
