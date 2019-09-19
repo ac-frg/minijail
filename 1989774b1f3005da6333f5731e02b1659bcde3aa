@@ -45,6 +45,54 @@
       "revId": "1989774b1f3005da6333f5731e02b1659bcde3aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "858a23fa_15f70649",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-09-19T20:11:28Z",
+      "side": 1,
+      "message": "Typo fix at https://android-review.googlesource.com/c/platform/external/minijail/+/1125740.",
+      "parentUuid": "7e7ff77f_c80b2b26",
+      "range": {
+        "startLine": 400,
+        "startChar": 47,
+        "endLine": 400,
+        "endChar": 57
+      },
+      "revId": "1989774b1f3005da6333f5731e02b1659bcde3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc40980f_a84a966c",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-09-19T20:11:28Z",
+      "side": 1,
+      "message": "I personally prefer \"descriptive\" comments (\"This does...\") vs imperative comments (\"Do something\"), but most of the functions in this file use the latter so I chose to be consistent with the file.\n\nOf course, minijail_destroy below buckles that trend.",
+      "parentUuid": "171aad16_9f0a64a9",
+      "range": {
+        "startLine": 400,
+        "startChar": 3,
+        "endLine": 400,
+        "endChar": 7
+      },
+      "revId": "1989774b1f3005da6333f5731e02b1659bcde3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
