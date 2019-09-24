@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f771281_39c9a22b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-09-24T19:34:47Z",
+      "side": 1,
+      "message": "Did we not want STDIN? I guess it\u0027s the same thing.",
+      "range": {
+        "startLine": 870,
+        "startChar": 25,
+        "endLine": 870,
+        "endChar": 38
+      },
+      "revId": "3e6a12c4c73bbcd1c9cbf5dfae2a7588e921afa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
