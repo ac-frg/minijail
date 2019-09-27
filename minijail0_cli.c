@@ -403,6 +403,12 @@ static void use_profile(struct minijail *j, const char *profile,
 	}
 }
 
+static void use_new_mount_namespace(struct minijail *j, int *mount_ns)
+{
+	minijail_namespace_vfs(j);
+	*mount_ns = 1;
+}
+
 static void set_remount_mode(struct minijail *j, const char *mode)
 {
 	unsigned long msmode;
@@ -681,11 +687,12 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			add_mount(j, optarg);
 			break;
 		case 'K':
-			if (optarg)
+			if (optarg) {
 				set_remount_mode(j, optarg);
-			else
+			} else {
 				minijail_skip_remount_private(j);
-			skip_remount = 1;
+				skip_remount = 1;
+			}
 			break;
 		case 'P':
 			use_pivot_root(j, optarg, &pivot_root, chroot);
@@ -698,7 +705,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			}
 			break;
 		case 't':
-			minijail_namespace_vfs(j);
+			use_new_mount_namespace(j, &mount_ns);
 			if (!tmp_size) {
 				/*
 				 * Avoid clobbering |tmp_size| if it was already
@@ -713,8 +720,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			}
 			break;
 		case 'v':
-			minijail_namespace_vfs(j);
-			mount_ns = 1;
+			use_new_mount_namespace(j, &mount_ns);
 			break;
 		case 'V':
 			minijail_namespace_enter_vfs(j, optarg);
@@ -815,7 +821,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			forward = 0;
 			break;
 		case 'd':
-			minijail_namespace_vfs(j);
+			use_new_mount_namespace(j, &mount_ns);
 			minijail_mount_dev(j);
 			break;
 		/* Long options. */
@@ -913,9 +919,8 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	 * namespace, so skipping it only applies in that case.
 	 */
 	if (skip_remount && !mount_ns) {
-		fprintf(stderr, "Can't skip marking mounts as MS_PRIVATE"
-				" without mount namespaces.\n");
-		exit(1);
+		fprintf(stderr, "No need to skip marking mounts as MS_PRIVATE "
+				"without mount namespaces.\n");
 	}
 
 	/*
