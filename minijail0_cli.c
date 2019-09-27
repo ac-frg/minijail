@@ -681,11 +681,12 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			add_mount(j, optarg);
 			break;
 		case 'K':
-			if (optarg)
+			if (optarg) {
 				set_remount_mode(j, optarg);
-			else
+			} else {
 				minijail_skip_remount_private(j);
-			skip_remount = 1;
+				skip_remount = 1;
+			}
 			break;
 		case 'P':
 			use_pivot_root(j, optarg, &pivot_root, chroot);
@@ -913,8 +914,10 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	 * namespace, so skipping it only applies in that case.
 	 */
 	if (skip_remount && !mount_ns) {
-		fprintf(stderr, "Can't skip marking mounts as MS_PRIVATE"
-				" without mount namespaces.\n");
+		fprintf(stderr,
+			"No need to use -K (skip marking mounts as MS_PRIVATE) "
+			"without -v (new mount namespace).\n"
+			"Do you need to add '-v' explicitly?\n");
 		exit(1);
 	}
 
