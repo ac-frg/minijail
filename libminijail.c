@@ -3122,8 +3122,13 @@ int API minijail_kill(struct minijail *j)
 int API minijail_wait(struct minijail *j)
 {
 	int st;
-	if (waitpid(j->initpid, &st, 0) < 0)
-		return -errno;
+	while (true) {
+		const int ret = waitpid(j->initpid, &st, 0);
+		if (ret >= 0)
+			break;
+		if (errno != EINTR)
+			return -errno;
+	}
 
 	if (!WIFEXITED(st)) {
 		int error_status = st;
