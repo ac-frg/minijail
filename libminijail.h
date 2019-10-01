@@ -404,8 +404,13 @@ int minijail_run_env_pid_pipes_no_preload(struct minijail *j,
 pid_t minijail_fork(struct minijail *j);
 
 /*
- * Kill the specified minijail. The minijail must have been created with pid
- * namespacing; if it was, all processes inside it are atomically killed.
+ * Send SIGTERM to the process in the minijail and wait for it to terminate.
+ *
+ * Return the same nonnegative exit status as minijail_wait(), or a negative
+ * error code (eg -ESRCH if the process has already been awaited for).
+ *
+ * This is mostly useful if the minijail has been created with PID namespacing
+ * since, in this case, all processes inside it are atomically killed.
  */
 int minijail_kill(struct minijail *j);
 
