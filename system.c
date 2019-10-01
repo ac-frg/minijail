@@ -227,9 +227,12 @@ int setup_and_dupe_pipe_end(int fds[2], size_t index, int fd)
 	if (index > 1)
 		return -1;
 
-	close(fds[1 - index]);
 	/* dup2(2) the corresponding end of the pipe into |fd|. */
-	return dup2(fds[index], fd);
+	fd = dup2(fds[index], fd);
+
+	close(fds[0]);
+	close(fds[1]);
+  return fd;
 }
 
 int write_pid_to_path(pid_t pid, const char *path)
