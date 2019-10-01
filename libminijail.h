@@ -397,8 +397,10 @@ pid_t minijail_fork(struct minijail *j);
 int minijail_kill(struct minijail *j);
 
 /*
- * Wait for the _first_ process spawned in the specified minijail to exit, and
- * return its exit status.
+ * Wait for the first process spawned in the specified minijail to exit, and
+ * return its nonnegative exit status.
+ *
+ * Return a negative error code if it cannot wait for the process.
  */
 int minijail_wait(struct minijail *j);
 
