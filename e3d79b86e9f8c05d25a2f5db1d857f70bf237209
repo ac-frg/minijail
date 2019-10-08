@@ -46,6 +46,30 @@
       "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37c14811_bf493d09",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3131,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-10-08T23:42:12Z",
+      "side": 1,
+      "message": "oh sorry, I meant TEMP_FAILURE_RETRY. It\u0027s part of libc, but bionic also has it[1].\n\n1: https://android.googlesource.com/platform/bionic/+/57f01b91d7812d7432bce4f8167953d72b613e64/libc/include/unistd.h#306",
+      "parentUuid": "61d44487_6088c85f",
+      "range": {
+        "startLine": 3125,
+        "startChar": 0,
+        "endLine": 3131,
+        "endChar": 2
+      },
+      "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
