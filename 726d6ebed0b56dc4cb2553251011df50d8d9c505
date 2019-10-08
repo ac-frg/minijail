@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03c5c8c9_34beffc5",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-10-08T20:07:32Z",
+      "side": 1,
+      "message": "nit: maybe `matches and`? otherwise `_handle_line()` will return.",
+      "range": {
+        "startLine": 119,
+        "startChar": 11,
+        "endLine": 119,
+        "endChar": 25
+      },
+      "revId": "726d6ebed0b56dc4cb2553251011df50d8d9c505",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
