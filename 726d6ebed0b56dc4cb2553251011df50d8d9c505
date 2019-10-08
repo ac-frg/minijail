@@ -22,6 +22,30 @@
       "revId": "726d6ebed0b56dc4cb2553251011df50d8d9c505",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b38e2a36_5beecb3f",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-10-08T20:35:43Z",
+      "side": 1,
+      "message": "yeah, i went back \u0026 forth on this.  i settled on this form because i wanted to keep the handle_line logic more of a black box.  the only reason i used LINE_RE was because it was already here and was convenient to extract out the syscall name.  i can go either way tbh.",
+      "parentUuid": "03c5c8c9_34beffc5",
+      "range": {
+        "startLine": 119,
+        "startChar": 11,
+        "endLine": 119,
+        "endChar": 25
+      },
+      "revId": "726d6ebed0b56dc4cb2553251011df50d8d9c505",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
