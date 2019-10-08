@@ -94,23 +94,33 @@ def parse_trace_file(trace_filename, syscalls, arg_inspection):
                        ('x86' in trace_filename and
                         '64' not in trace_filename))
 
+    def _handle_line(line):
+        """Process the strace log |line|."""
+        matches = LINE_RE.match(line)
+        if not matches:
+            return
+
+        syscall, args = matches.groups()
+        if uses_socketcall and syscall in SOCKETCALLS:
+            syscall = 'socketcall'
+
+        syscalls[syscall] += 1
+
+        args = [arg.strip() for arg in args.split(',')]
+
+        if syscall in arg_inspection:
+            arg_value = args[arg_inspection[syscall].arg_index]
+            arg_inspection[syscall].value_set.add(arg_value)
+
     with open(trace_filename) as trace_file:
+        # Special case the first line which is an exec call normally in strace.
+        line = trace_file.readline()
+        matches = LINE_RE.match(line)
+        if not matches or matches.group(1) != 'execve':
+            _handle_line(line)
+
         for line in trace_file:
-            matches = LINE_RE.match(line)
-            if not matches:
-                continue
-
-            syscall, args = matches.groups()
-            if uses_socketcall and syscall in SOCKETCALLS:
-                syscall = 'socketcall'
-
-            syscalls[syscall] += 1
-
-            args = [arg.strip() for arg in args.split(',')]
-
-            if syscall in arg_inspection:
-                arg_value = args[arg_inspection[syscall].arg_index]
-                arg_inspection[syscall].value_set.add(arg_value)
+            _handle_line(line)
 
 
 def main(argv):
