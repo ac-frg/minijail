@@ -22,6 +22,30 @@
       "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61d44487_6088c85f",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3131,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-10-08T23:20:24Z",
+      "side": 1,
+      "message": "Do we have access to the macro HANDLE_EINTR?\n\nAFAIU, this is pure C code, and it must also compile for Android.",
+      "parentUuid": "dae776c9_2de2e38e",
+      "range": {
+        "startLine": 3125,
+        "startChar": 0,
+        "endLine": 3131,
+        "endChar": 2
+      },
+      "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
