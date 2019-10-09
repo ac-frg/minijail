@@ -70,6 +70,30 @@
       "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2657cfd6_2e1ca0a6",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3131,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-10-09T00:21:19Z",
+      "side": 1,
+      "message": "The TEMP_FAILURE_RETRY macro seems to be a GNU-only thing. Are we sure we want to use it?",
+      "parentUuid": "37c14811_bf493d09",
+      "range": {
+        "startLine": 3125,
+        "startChar": 0,
+        "endLine": 3131,
+        "endChar": 2
+      },
+      "revId": "e3d79b86e9f8c05d25a2f5db1d857f70bf237209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
