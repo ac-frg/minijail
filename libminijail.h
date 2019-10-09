@@ -24,6 +24,9 @@ extern "C" {
 #endif
 
 enum {
+	MINIJAIL_ERR_SIG_BASE = 128,
+	MINIJAIL_ERR_NO_ACCESS = 126,
+	MINIJAIL_ERR_NO_COMMAND = 127,
 	MINIJAIL_ERR_PRELOAD = 252,
 	MINIJAIL_ERR_JAIL = 253,
 	MINIJAIL_ERR_INIT = 254,
@@ -397,8 +400,15 @@ pid_t minijail_fork(struct minijail *j);
 int minijail_kill(struct minijail *j);
 
 /*
- * Wait for the _first_ process spawned in the specified minijail to exit, and
- * return its exit status.
+ * Wait for the first process spawned in the specified minijail to exit, and
+ * return its exit status as following:
+ *
+ * a negative error code if the process cannot be awaited for.
+ * MINIJAIL_ERR_NO_COMMAND if command cannot be found.
+ * MINIJAIL_ERR_NO_ACCESS if command cannot be run.
+ * MINIJAIL_ERR_JAIL if process was killed by SIGSYS.
+ * (MINIJAIL_ERR_SIG_BASE  + n) if process was killed by signal n != SIGSYS.
+ * (n & 0xFF) if process finished by returning code n.
  */
 int minijail_wait(struct minijail *j);
 
