@@ -397,8 +397,14 @@ pid_t minijail_fork(struct minijail *j);
 int minijail_kill(struct minijail *j);
 
 /*
- * Wait for the _first_ process spawned in the specified minijail to exit, and
- * return its exit status.
+ * Wait for the first process spawned in the specified minijail to exit, and
+ * return its exit status as following:
+ * a negative error code if the process cannot be awaited for.
+ * 127 if the command cannot be found.
+ * 126 if the command cannot be run.
+ * MINIJAIL_ERR_JAIL if the process was killed by SIGSYS.
+ * (128 + n) if the process was killed by signal n other than SIGSYS.
+ * (n & 0xFF) if the process finished by returning code n.
  */
 int minijail_wait(struct minijail *j);
 
