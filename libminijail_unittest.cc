@@ -217,59 +217,133 @@ TEST_F(MarshalTest, 0xff) {
   EXPECT_EQ(-EINVAL, minijail_unmarshal(j_, buf_, sizeof(buf_)));
 }
 
-TEST(Test, minijail_run_pid_pipes) {
-  // TODO(crbug.com/895875): The preload library interferes with ASan since they
-  // both need to use LD_PRELOAD.
-  if (running_with_asan()) {
-    SUCCEED();
-    return;
-  }
-  constexpr char teststr[] = "test\n";
+TEST(WaitTest, return_zero)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "exit 0", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 0);
+}
 
-  ScopedMinijail j(minijail_new());
-  minijail_set_preload_path(j.get(), kPreloadPath);
+TEST(WaitTest, return_max)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "exit 255", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 255);
+}
 
-  char* argv[4];
-  argv[0] = const_cast<char*>(kCatPath);
-  argv[1] = nullptr;
-  pid_t pid;
-  int child_stdin, child_stdout;
-  int mj_run_ret = minijail_run_pid_pipes(j.get(), argv[0], argv, &pid,
-                                          &child_stdin, &child_stdout, nullptr);
-  EXPECT_EQ(mj_run_ret, 0);
+TEST(WaitTest, return_modulo)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "exit 256", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 0);
+}
 
-  const size_t teststr_len = strlen(teststr);
-  ssize_t write_ret = write(child_stdin, teststr, teststr_len);
-  EXPECT_EQ(write_ret, static_cast<ssize_t>(teststr_len));
+TEST(WaitTest, killed_by_sigkill)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "kill -KILL $$; sleep 1000", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 128 + SIGKILL);
+}
 
-  char buf[kBufferSize];
-  ssize_t read_ret = read(child_stdout, buf, 8);
-  EXPECT_EQ(read_ret, static_cast<ssize_t>(teststr_len));
-  buf[teststr_len] = 0;
-  EXPECT_EQ(strcmp(buf, teststr), 0);
+TEST(WaitTest, killed_by_sigsys)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "kill -SYS $$; sleep 1000", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), MINIJAIL_ERR_JAIL);
+}
 
-  int status;
-  EXPECT_EQ(kill(pid, SIGTERM), 0);
-  waitpid(pid, &status, 0);
-  ASSERT_TRUE(WIFSIGNALED(status));
-  EXPECT_EQ(WTERMSIG(status), SIGTERM);
+TEST(WaitTest, command_not_found)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"whatever", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), "command that cannot be found", argv),
+		  0);
+	EXPECT_EQ(minijail_wait(j.get()), 127);
+}
 
-  argv[0] = const_cast<char*>(kShellPath);
-  argv[1] = "-c";
-  argv[2] = "echo test >&2";
-  argv[3] = nullptr;
-  int child_stderr;
-  mj_run_ret = minijail_run_pid_pipes(j.get(), argv[0], argv, &pid,
-                                      &child_stdin, &child_stdout,
-                                      &child_stderr);
-  EXPECT_EQ(mj_run_ret, 0);
+TEST(WaitTest, command_not_run)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"whatever", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), "/dev/null", argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 126);
+}
 
-  read_ret = read(child_stderr, buf, sizeof(buf));
-  EXPECT_GE(read_ret, static_cast<ssize_t>(teststr_len));
+TEST(WaitTest, no_child)
+{
+	const ScopedMinijail j(minijail_new());
+	EXPECT_EQ(minijail_wait(j.get()), -ECHILD);
+}
 
-  waitpid(pid, &status, 0);
-  ASSERT_TRUE(WIFEXITED(status));
-  EXPECT_EQ(WEXITSTATUS(status), 0);
+TEST(WaitTest, can_wait_only_once)
+{
+	const ScopedMinijail j(minijail_new());
+	char *const argv[] = {"sh", "-c", "exit 0", nullptr};
+	EXPECT_EQ(minijail_run(j.get(), kShellPath, argv), 0);
+	EXPECT_EQ(minijail_wait(j.get()), 0);
+	EXPECT_EQ(minijail_wait(j.get()), -ECHILD);
+}
+
+
+TEST(Test, minijail_run_pid_pipes)
+{
+	// TODO(crbug.com/895875): The preload library interferes with ASan
+	// since they both need to use LD_PRELOAD.
+	if (running_with_asan()) {
+		SUCCEED();
+		return;
+	}
+	constexpr char teststr[] = "test\n";
+
+	ScopedMinijail j(minijail_new());
+	minijail_set_preload_path(j.get(), kPreloadPath);
+
+	char *argv[4];
+	argv[0] = const_cast<char *>(kCatPath);
+	argv[1] = nullptr;
+	pid_t pid;
+	int child_stdin, child_stdout;
+	int mj_run_ret = minijail_run_pid_pipes(
+	    j.get(), argv[0], argv, &pid, &child_stdin, &child_stdout, nullptr);
+	EXPECT_EQ(mj_run_ret, 0);
+
+	const size_t teststr_len = strlen(teststr);
+	ssize_t write_ret = write(child_stdin, teststr, teststr_len);
+	EXPECT_EQ(write_ret, static_cast<ssize_t>(teststr_len));
+
+	char buf[kBufferSize];
+	ssize_t read_ret = read(child_stdout, buf, 8);
+	EXPECT_EQ(read_ret, static_cast<ssize_t>(teststr_len));
+	buf[teststr_len] = 0;
+	EXPECT_EQ(strcmp(buf, teststr), 0);
+
+	int status;
+	EXPECT_EQ(kill(pid, SIGTERM), 0);
+	waitpid(pid, &status, 0);
+	ASSERT_TRUE(WIFSIGNALED(status));
+	EXPECT_EQ(WTERMSIG(status), SIGTERM);
+
+	argv[0] = const_cast<char *>(kShellPath);
+	argv[1] = "-c";
+	argv[2] = "echo test >&2";
+	argv[3] = nullptr;
+	int child_stderr;
+	mj_run_ret =
+	    minijail_run_pid_pipes(j.get(), argv[0], argv, &pid, &child_stdin,
+				   &child_stdout, &child_stderr);
+	EXPECT_EQ(mj_run_ret, 0);
+
+	read_ret = read(child_stderr, buf, sizeof(buf));
+	EXPECT_GE(read_ret, static_cast<ssize_t>(teststr_len));
+
+	waitpid(pid, &status, 0);
+	ASSERT_TRUE(WIFEXITED(status));
+	EXPECT_EQ(WEXITSTATUS(status), 0);
 }
 
 TEST(Test, minijail_run_pid_pipes_no_preload) {
