@@ -3102,11 +3102,10 @@ static int minijail_run_internal(struct minijail *j,
 	 *   -> init()-ing process
 	 *      -> execve()-ing process
 	 */
-	ret = execve(config->filename, config->argv, child_env);
-	if (ret == -1) {
-		pwarn("execve(%s) failed", config->filename);
-	}
-	_exit(ret);
+	execve(config->filename, config->argv, child_env);
+
+	pwarn("execve(%s) failed", config->filename);
+	_exit(127);
 }
 
 int API minijail_kill(struct minijail *j)
