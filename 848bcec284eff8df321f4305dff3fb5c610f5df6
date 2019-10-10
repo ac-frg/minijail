@@ -16,6 +16,24 @@
       "revId": "848bcec284eff8df321f4305dff3fb5c610f5df6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8063d556_71e0c7fe",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-10-10T04:19:31Z",
+      "side": 1,
+      "message": "Reformatted code with --style\u003dChromium.\n\nNote that this file does not follow the style defined in this project\u0027s .clang-format.",
+      "parentUuid": "649741b0_0bca08e5",
+      "revId": "848bcec284eff8df321f4305dff3fb5c610f5df6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
