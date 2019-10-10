@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09aa8cf5_a0170586",
+        "filename": "libminijail.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-10-10T22:32:06Z",
+      "side": 1,
+      "message": "seems like the enum is sorted by value so this should be after 127\n\nwould help to add a one line comment above each enum so it\u0027s clear what they\u0027re for",
+      "revId": "e2bd85d7e9e3daed12126cde352e7a7aae8b08b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
