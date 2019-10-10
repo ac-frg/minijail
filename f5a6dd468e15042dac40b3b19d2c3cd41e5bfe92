@@ -34,6 +34,24 @@
       "revId": "f5a6dd468e15042dac40b3b19d2c3cd41e5bfe92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3037d62a_56100b0e",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-10-10T04:44:01Z",
+      "side": 1,
+      "message": "we use different styles for C \u0026 C++ files.  unfortunately, .clang-format doesn\u0027t support that.",
+      "parentUuid": "01370d6f_744e7ea7",
+      "revId": "f5a6dd468e15042dac40b3b19d2c3cd41e5bfe92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
