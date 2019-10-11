@@ -34,6 +34,24 @@
       "revId": "e2bd85d7e9e3daed12126cde352e7a7aae8b08b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51767c80_8f4cab6a",
+        "filename": "libminijail.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-10-11T01:07:06Z",
+      "side": 1,
+      "message": "i meant one-liners for each one.  if i\u0027ve never looked at this before and i read these enums, the names aren\u0027t great guidance (and i don\u0027t think it\u0027s easy to make them such).\n\n /* Executing (execv) the program failed. */\n MINIJAIL_ERR_NO_ACCESS \u003d\u003d 126,\n /* The program to run could not be found. */\n MINIJAIL_ERR_NO_COMMAND \u003d 127,",
+      "parentUuid": "943178f3_9c7c12f7",
+      "revId": "e2bd85d7e9e3daed12126cde352e7a7aae8b08b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
