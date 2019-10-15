@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4e1f56a_da51e19c",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 3120,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:22:04Z",
+      "side": 1,
+      "message": "The only unfortunate thing about this is that we\u0027ll print the warnings and info messages below even when we\u0027re explicitly killing (and therefore explicitly causing these warnings).",
+      "range": {
+        "startLine": 3114,
+        "startChar": 0,
+        "endLine": 3120,
+        "endChar": 25
+      },
+      "revId": "d17452447d547fec9d237c6bbdc303272e11b522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc9e3349_dda9954c",
+        "filename": "libminijail.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:22:04Z",
+      "side": 1,
+      "message": "\"waited\"?",
+      "range": {
+        "startLine": 410,
+        "startChar": 57,
+        "endLine": 410,
+        "endChar": 64
+      },
+      "revId": "d17452447d547fec9d237c6bbdc303272e11b522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebb59236_74e39a13",
+        "filename": "libminijail.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:22:04Z",
+      "side": 1,
+      "message": "\"most\"",
+      "range": {
+        "startLine": 412,
+        "startChar": 11,
+        "endLine": 412,
+        "endChar": 17
+      },
+      "revId": "d17452447d547fec9d237c6bbdc303272e11b522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32a0762c_6a6baa53",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:22:04Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 243,
+        "startChar": 25,
+        "endLine": 243,
+        "endChar": 31
+      },
+      "revId": "d17452447d547fec9d237c6bbdc303272e11b522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
