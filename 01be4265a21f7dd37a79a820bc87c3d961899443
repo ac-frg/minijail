@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88c8ca73_7414f2cf",
+        "filename": "system.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:33:45Z",
+      "side": 1,
+      "message": "Maybe it\u0027s time to call this \"dupe_and_close_fd()\"",
+      "range": {
+        "startLine": 225,
+        "startChar": 4,
+        "endLine": 225,
+        "endChar": 27
+      },
+      "revId": "01be4265a21f7dd37a79a820bc87c3d961899443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9ab5989_6a81df2a",
+        "filename": "system.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-10-15T17:33:45Z",
+      "side": 1,
+      "message": "Do we need this? dup2 will explicitly make whatever number |fd| is the new file descriptor.",
+      "range": {
+        "startLine": 231,
+        "startChar": 1,
+        "endLine": 231,
+        "endChar": 6
+      },
+      "revId": "01be4265a21f7dd37a79a820bc87c3d961899443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
