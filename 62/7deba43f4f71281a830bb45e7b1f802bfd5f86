@@ -1,0 +1,10 @@
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Autosubmit+1: Mike Frysinger <vapier@google.com>
+Verified+1: François Degros <fdegros@chromium.org>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 16 Oct 2019 05:28:24 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1136447
+Project: platform/external/minijail
+Branch: refs/heads/master
