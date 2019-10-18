@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7340f0b8_bb4af632",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-10-18T06:34:26Z",
+      "side": 1,
+      "message": "the only undefined behavior that shows up is if the memory is modified which doesn\u0027t happen here or in the C library or in the kernel.  so there is no undefined behavior in the usage here.\n\nunless you can cite exactly how the undefined behavior arises, please don\u0027t refer to it.",
+      "revId": "f5500f9f52060699943bc796f3c464e0ff228319",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
