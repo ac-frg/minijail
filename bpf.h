@@ -204,11 +204,15 @@ size_t bpf_comp_jin(struct sock_filter *filter, unsigned long mask,
 /* Functions called by syscall_filter.c */
 #define ARCH_VALIDATION_LEN 3U
 #define ALLOW_SYSCALL_LEN 2U
+#define ALLOW_SYSCALL_LE_LEN 2U
+#define ALLOW_SYSCALL_RANGE_LEN 3U
 
 size_t bpf_arg_comp(struct sock_filter **pfilter,
 		int op, int argidx, unsigned long c, unsigned int label_id);
 size_t bpf_validate_arch(struct sock_filter *filter);
 size_t bpf_allow_syscall(struct sock_filter *filter, int nr);
+size_t bpf_allow_syscall_le(struct sock_filter *filter, int end);
+size_t bpf_allow_syscall_range(struct sock_filter *filter, int start, int end);
 size_t bpf_allow_syscall_args(struct sock_filter *filter,
 		int nr, unsigned int id);
 
