@@ -144,12 +144,22 @@ void append_ret_log(struct filter_block *head)
 	append_filter_block(head, filter, ONE_INSTR);
 }
 
-void append_allow_syscall(struct filter_block *head, int nr)
+void append_allow_syscall_range(struct filter_block *head, int start, int end)
 {
-	struct sock_filter *filter = new_instr_buf(ALLOW_SYSCALL_LEN);
-	size_t len = bpf_allow_syscall(filter, nr);
-	if (len != ALLOW_SYSCALL_LEN)
-		die("error building syscall number comparison");
+	size_t expected_len = start == end ? ALLOW_SYSCALL_LEN :
+		(start == 0 ? ALLOW_SYSCALL_LE_LEN : ALLOW_SYSCALL_RANGE_LEN);
+	struct sock_filter *filter = new_instr_buf(expected_len);
+	size_t len;
+
+	if (start == end) {
+		len = bpf_allow_syscall(filter, start);
+	} else if (start == 0) {
+		len = bpf_allow_syscall_le(filter, end);
+	} else {
+		len = bpf_allow_syscall_range(filter, start, end);
+	}
+	if (len != expected_len)
+		die("error building syscall range comparison");
 
 	append_filter_block(head, filter, len);
 }
@@ -159,7 +169,8 @@ void allow_logging_syscalls(struct filter_block *head)
 	unsigned int i;
 	for (i = 0; i < log_syscalls_len; i++) {
 		warn("allowing syscall: %s", log_syscalls[i]);
-		append_allow_syscall(head, lookup_syscall(log_syscalls[i]));
+		int nr = lookup_syscall(log_syscalls[i]);
+		append_allow_syscall_range(head, nr, nr);
 	}
 }
 
@@ -583,6 +594,10 @@ int compile_file(const char *filename, FILE *policy_file,
 	size_t len = 0;
 	int ret = 0;
 
+	/* Track inclusive range of unconditionally whitelisted syscalls. */
+	int first_permitted = -1;
+	int last_permitted = -1;
+
 	while (getmultiline(&line, &len, policy_file) != -1) {
 		char *policy_line = line;
 		policy_line = strip(policy_line);
@@ -676,9 +691,26 @@ int compile_file(const char *filename, FILE *policy_file,
 		 * or an arg filter block.
 		 */
 		if (strcmp(policy_line, "1") == 0) {
-			/* Add simple ALLOW. */
-			append_allow_syscall(head, nr);
+			if (first_permitted < 0) {
+				/* Start of white-listed range. */
+				first_permitted = last_permitted = nr;
+			} else if (nr == last_permitted + 1) {
+				/* Extending end of range. */
+				last_permitted = nr;
+			} else {
+				/* Trend has been broken, add prior range. */
+				if (first_permitted >= 0) {
+					append_allow_syscall_range(head, first_permitted, last_permitted);
+					first_permitted = last_permitted = -1;
+				}
+				/* Start a new range. */
+				first_permitted = last_permitted = nr;
+			}
 		} else {
+			if (first_permitted >= 0) {
+				append_allow_syscall_range(head, first_permitted, last_permitted);
+				first_permitted = last_permitted = -1;
+			}
 			/*
 			 * Create and jump to the label that will hold
 			 * the arg filter block.
@@ -712,6 +744,12 @@ int compile_file(const char *filename, FILE *policy_file,
 		}
 		/* Reuse |line| in the next getline() call. */
 	}
+
+	if (first_permitted >= 0) {
+		append_allow_syscall_range(head, first_permitted, last_permitted);
+		first_permitted = last_permitted = -1;
+	}
+
 	/* getline(3) returned -1. This can mean EOF or the below errors. */
 	if (errno == EINVAL || errno == ENOMEM) {
 		if (*arg_blocks) {

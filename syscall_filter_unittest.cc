@@ -1268,16 +1268,142 @@ TEST_F(FileTest, seccomp_mode1) {
   ASSERT_EQ(res, 0);
   struct filter_block *curr_block = head_;
   ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_read);
-  curr_block = curr_block->next;
-  ASSERT_NE(curr_block, nullptr);
-  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_write);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(curr_block->instrs, __NR_write);
   curr_block = curr_block->next;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_rt_sigreturn);
   curr_block = curr_block->next;
   ASSERT_NE(curr_block, nullptr);
   EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_exit);
+
+  EXPECT_EQ(curr_block->next, nullptr);
+}
+
+TEST_F(FileTest, seccomp_mode1_unordered) {
+  std::string policy =
+      "write: 1\n"
+      "read: 1\n"
+      "rt_sigreturn: 1\n"
+      "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
+                              &labels_);
+  fclose(policy_file);
+
+  /*
+   * Checks return value and that the blocks only allow expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
+  struct filter_block *curr_block = head_;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_write);
+  curr_block = curr_block->next;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_read);
+  curr_block = curr_block->next;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_rt_sigreturn);
+  curr_block = curr_block->next;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_exit);
+
+  EXPECT_EQ(curr_block->next, nullptr);
+}
+
+TEST_F(FileTest, seccomp_mode1_all_range_from_zero) {
+  std::string policy =
+      "read: 1\n"
+      "write: 1\n"
+      "open: 1\n"
+      "close: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
+                              &labels_);
+  fclose(policy_file);
+
+  /*
+   * Checks return value and that the blocks only allow expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
+  ASSERT_EQ(__NR_read, 0);
+  ASSERT_EQ(__NR_write, 1);
+  ASSERT_EQ(__NR_open, 2);
+  ASSERT_EQ(__NR_close, 3);
+  struct filter_block *curr_block = head_;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(curr_block->instrs, __NR_close);
+
+  EXPECT_EQ(curr_block->next, nullptr);
+}
+
+TEST_F(FileTest, seccomp_mode1_all_range_from_one) {
+  std::string policy =
+      "write: 1\n"
+      "open: 1\n"
+      "close: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
+                              &labels_);
+  fclose(policy_file);
+
+  /*
+   * Checks return value and that the blocks only allow expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
+  ASSERT_EQ(__NR_write, 1);
+  ASSERT_EQ(__NR_open, 2);
+  ASSERT_EQ(__NR_close, 3);
+  struct filter_block *curr_block = head_;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL_RANGE(curr_block->instrs, __NR_write, __NR_close);
+
+  EXPECT_EQ(curr_block->next, nullptr);
+}
+
+TEST_F(FileTest, seccomp_mode1_two_ranges) {
+  std::string policy =
+      "write: 1\n"
+      "open: 1\n"
+      "close: 1\n"
+      "fstat: 1\n"
+      "lstat: 1\n"
+      "poll: 1\n"
+      "read: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+  int res = test_compile_file("policy", policy_file, head_, &arg_blocks_,
+                              &labels_);
+  fclose(policy_file);
+
+  /*
+   * Checks return value and that the blocks only allow expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
+  ASSERT_EQ(__NR_write, 1);
+  ASSERT_EQ(__NR_open, 2);
+  ASSERT_EQ(__NR_close, 3);
+  ASSERT_EQ(__NR_fstat, 5);
+  ASSERT_EQ(__NR_lstat, 6);
+  ASSERT_EQ(__NR_poll, 7);
+  ASSERT_EQ(__NR_read, 0);
+
+  struct filter_block *curr_block = head_;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL_RANGE(curr_block->instrs, __NR_write, __NR_close);
+  curr_block = curr_block->next;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL_RANGE(curr_block->instrs, __NR_fstat, __NR_poll);
+
+  curr_block = curr_block->next;
+  ASSERT_NE(curr_block, nullptr);
+  EXPECT_ALLOW_SYSCALL(curr_block->instrs, __NR_read);
 
   EXPECT_EQ(curr_block->next, nullptr);
 }
@@ -1406,13 +1532,50 @@ TEST(FilterTest, seccomp_mode1) {
    * only allows expected syscalls.
    */
   ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, 11);
+  EXPECT_ARCH_VALIDATION(actual.filter);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
+                 BPF_LD + BPF_W + BPF_ABS,
+                 syscall_nr);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(actual.filter + ARCH_VALIDATION_LEN + 1,
+				     __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
+                       __NR_rt_sigreturn);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5, __NR_exit);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN + 7,
+                 BPF_RET + BPF_K,
+                 SECCOMP_RET_KILL);
+
+  free(actual.filter);
+}
+
+TEST(FilterTest, seccomp_mode1_unordered) {
+  struct sock_fprog actual;
+  std::string policy =
+      "write: 1\n"
+      "read: 1\n"
+      "rt_sigreturn: 1\n"
+      "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual);
+  fclose(policy_file);
+
+  /*
+   * Checks return value, filter length, and that the filter
+   * validates arch, loads syscall number, and
+   * only allows expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len, 13);
   EXPECT_ARCH_VALIDATION(actual.filter);
   EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
                  BPF_LD + BPF_W + BPF_ABS,
                  syscall_nr);
-  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 1, __NR_read);
-  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 1, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3, __NR_read);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5,
                        __NR_rt_sigreturn);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 7, __NR_exit);
@@ -1444,14 +1607,51 @@ TEST(FilterTest, seccomp_mode1_trap) {
    * only allows expected syscalls.
    */
   ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, 11);
+  EXPECT_ARCH_VALIDATION(actual.filter);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
+      BPF_LD+BPF_W+BPF_ABS, syscall_nr);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(actual.filter + ARCH_VALIDATION_LEN + 1,
+      __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
+      __NR_rt_sigreturn);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5,
+      __NR_exit);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN + 7, BPF_RET+BPF_K,
+      SECCOMP_RET_TRAP);
+
+  free(actual.filter);
+}
+
+TEST(FilterTest, seccomp_mode1_trap_unordered) {
+  struct sock_fprog actual;
+  std::string policy =
+    "write: 1\n"
+    "read: 1\n"
+    "rt_sigreturn: 1\n"
+    "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res =
+      test_compile_filter("policy", policy_file, &actual, ACTION_RET_TRAP);
+  fclose(policy_file);
+
+  /*
+   * Checks return value, filter length, and that the filter
+   * validates arch, loads syscall number, and
+   * only allows expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len, 13);
   EXPECT_ARCH_VALIDATION(actual.filter);
   EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
       BPF_LD+BPF_W+BPF_ABS, syscall_nr);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 1,
-      __NR_read);
-  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
       __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
+      __NR_read);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5,
       __NR_rt_sigreturn);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 7,
@@ -1483,14 +1683,51 @@ TEST(FilterTest, seccomp_mode1_log) {
    * only allows expected syscalls.
    */
   ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, 11);
+  EXPECT_ARCH_VALIDATION(actual.filter);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
+      BPF_LD+BPF_W+BPF_ABS, syscall_nr);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(actual.filter + ARCH_VALIDATION_LEN + 1,
+      __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
+      __NR_rt_sigreturn);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5,
+      __NR_exit);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN + 7, BPF_RET+BPF_K,
+      SECCOMP_RET_LOG);
+
+  free(actual.filter);
+}
+
+TEST(FilterTest, seccomp_mode1_log_unordered) {
+  struct sock_fprog actual;
+  std::string policy =
+    "write: 1\n"
+    "read: 1\n"
+    "rt_sigreturn: 1\n"
+    "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual, ACTION_RET_LOG,
+                                USE_RET_LOG_LOGGING);
+  fclose(policy_file);
+
+  /*
+   * Checks return value, filter length, and that the filter
+   * validates arch, loads syscall number, and
+   * only allows expected syscalls.
+   */
+  ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len, 13);
   EXPECT_ARCH_VALIDATION(actual.filter);
   EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
       BPF_LD+BPF_W+BPF_ABS, syscall_nr);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 1,
-      __NR_read);
-  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
       __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 3,
+      __NR_read);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 5,
       __NR_rt_sigreturn);
   EXPECT_ALLOW_SYSCALL(actual.filter + ARCH_VALIDATION_LEN + 7,
@@ -1676,6 +1913,52 @@ TEST(FilterTest, log) {
    * for logging.
    */
   ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, 11 + 2 * log_syscalls_len);
+  EXPECT_ARCH_VALIDATION(actual.filter);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
+                 BPF_LD + BPF_W + BPF_ABS,
+                 syscall_nr);
+
+  index = ARCH_VALIDATION_LEN + 1;
+  for (i = 0; i < log_syscalls_len; i++)
+    EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
+                         lookup_syscall(log_syscalls[i]));
+
+  index += 2 * log_syscalls_len;
+
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(actual.filter + index, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_rt_sigreturn);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 4, __NR_exit);
+  EXPECT_EQ_STMT(actual.filter + index + 6, BPF_RET + BPF_K, SECCOMP_RET_TRAP);
+
+  free(actual.filter);
+}
+
+TEST(FilterTest, log_unordered) {
+  struct sock_fprog actual;
+  std::string policy =
+      "write: 1\n"
+      "read: 1\n"
+      "rt_sigreturn: 1\n"
+      "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual, ACTION_RET_TRAP,
+                                USE_SIGSYS_LOGGING);
+  fclose(policy_file);
+
+  size_t i;
+  size_t index = 0;
+  /*
+   * Checks return value, filter length, and that the filter
+   * validates arch, loads syscall number, only allows expected syscalls,
+   * and returns TRAP on failure.
+   * NOTE(jorgelo): the filter is longer since we add the syscalls needed
+   * for logging.
+   */
+  ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len, 13 + 2 * log_syscalls_len);
   EXPECT_ARCH_VALIDATION(actual.filter);
   EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
@@ -1689,8 +1972,8 @@ TEST(FilterTest, log) {
 
   index += 2 * log_syscalls_len;
 
-  EXPECT_ALLOW_SYSCALL(actual.filter + index, __NR_read);
-  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_read);
   EXPECT_ALLOW_SYSCALL(actual.filter + index + 4, __NR_rt_sigreturn);
   EXPECT_ALLOW_SYSCALL(actual.filter + index + 6, __NR_exit);
   EXPECT_EQ_STMT(actual.filter + index + 8, BPF_RET + BPF_K, SECCOMP_RET_TRAP);
@@ -1723,6 +2006,52 @@ TEST(FilterTest, allow_log_but_kill) {
    * for logging.
    */
   ASSERT_EQ(res, 0);
+  EXPECT_EQ(actual.len, 11 + 2 * log_syscalls_len);
+  EXPECT_ARCH_VALIDATION(actual.filter);
+  EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
+      BPF_LD+BPF_W+BPF_ABS, syscall_nr);
+
+  index = ARCH_VALIDATION_LEN + 1;
+  for (i = 0; i < log_syscalls_len; i++)
+    EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
+             lookup_syscall(log_syscalls[i]));
+
+  index += 2 * log_syscalls_len;
+
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(actual.filter + index, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_rt_sigreturn);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 4, __NR_exit);
+  EXPECT_EQ_STMT(actual.filter + index + 6, BPF_RET+BPF_K,
+      SECCOMP_RET_KILL);
+
+  free(actual.filter);
+}
+
+TEST(FilterTest, allow_log_but_kill_unordered) {
+  struct sock_fprog actual;
+  std::string policy =
+    "write: 1\n"
+    "read: 1\n"
+    "rt_sigreturn: 1\n"
+    "exit: 1\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual, ACTION_RET_KILL,
+                                USE_SIGSYS_LOGGING);
+  fclose(policy_file);
+
+  size_t i;
+  size_t index = 0;
+  /*
+   * Checks return value, filter length, and that the filter
+   * validates arch, loads syscall number, only allows expected syscalls,
+   * and kills on failure.
+   * NOTE(jorgelo): the filter is longer since we add the syscalls needed
+   * for logging.
+   */
+  ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len, 13 + 2 * log_syscalls_len);
   EXPECT_ARCH_VALIDATION(actual.filter);
   EXPECT_EQ_STMT(actual.filter + ARCH_VALIDATION_LEN,
@@ -1735,8 +2064,8 @@ TEST(FilterTest, allow_log_but_kill) {
 
   index += 2 * log_syscalls_len;
 
-  EXPECT_ALLOW_SYSCALL(actual.filter + index, __NR_read);
-  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index, __NR_write);
+  EXPECT_ALLOW_SYSCALL(actual.filter + index + 2, __NR_read);
   EXPECT_ALLOW_SYSCALL(actual.filter + index + 4, __NR_rt_sigreturn);
   EXPECT_ALLOW_SYSCALL(actual.filter + index + 6, __NR_exit);
   EXPECT_EQ_STMT(actual.filter + index + 8, BPF_RET+BPF_K,
@@ -1884,22 +2213,21 @@ TEST(FilterTest, include) {
   ASSERT_EQ(res_plain, 0);
   ASSERT_EQ(res_with_include, 0);
 
-  EXPECT_EQ(compiled_plain.len, 13);
-  EXPECT_EQ(compiled_with_include.len, 13);
+  EXPECT_EQ(compiled_plain.len, 11);
+  EXPECT_EQ(compiled_with_include.len, 11);
 
   EXPECT_ARCH_VALIDATION(compiled_with_include.filter);
   EXPECT_EQ_STMT(compiled_with_include.filter + ARCH_VALIDATION_LEN,
                  BPF_LD + BPF_W + BPF_ABS,
                  syscall_nr);
-  EXPECT_ALLOW_SYSCALL(compiled_with_include.filter + ARCH_VALIDATION_LEN + 1,
-                       __NR_read);
+  EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(compiled_with_include.filter +
+				     ARCH_VALIDATION_LEN + 1,
+				     __NR_write);
   EXPECT_ALLOW_SYSCALL(compiled_with_include.filter + ARCH_VALIDATION_LEN + 3,
-                       __NR_write);
-  EXPECT_ALLOW_SYSCALL(compiled_with_include.filter + ARCH_VALIDATION_LEN + 5,
                        __NR_rt_sigreturn);
-  EXPECT_ALLOW_SYSCALL(compiled_with_include.filter + ARCH_VALIDATION_LEN + 7,
+  EXPECT_ALLOW_SYSCALL(compiled_with_include.filter + ARCH_VALIDATION_LEN + 5,
                        __NR_exit);
-  EXPECT_EQ_STMT(compiled_with_include.filter + ARCH_VALIDATION_LEN + 9,
+  EXPECT_EQ_STMT(compiled_with_include.filter + ARCH_VALIDATION_LEN + 7,
                  BPF_RET + BPF_K,
                  SECCOMP_RET_KILL);
 
@@ -1925,7 +2253,7 @@ TEST(FilterTest, include_same_syscalls) {
   ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len,
             ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
-                2 * 8 /* check syscalls twice */ + 1 /* filter return */);
+                2 * 6 /* check syscalls twice */ + 1 /* filter return */);
   free(actual.filter);
 }
 
@@ -1944,7 +2272,7 @@ TEST(FilterTest, include_two) {
   ASSERT_EQ(res, 0);
   EXPECT_EQ(actual.len,
             ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
-                2 * 8 /* check syscalls twice */ + 1 /* filter return */);
+                2 * 6 /* check syscalls twice */ + 1 /* filter return */);
   free(actual.filter);
 }
 
