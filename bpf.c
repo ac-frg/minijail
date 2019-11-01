@@ -23,6 +23,22 @@ size_t bpf_validate_arch(struct sock_filter *filter)
 }
 
 /* Syscall number eval functions. */
+size_t bpf_allow_syscall_range(struct sock_filter *filter, int start, int end)
+{
+	if (start == end) {
+		return bpf_allow_syscall(filter, start);
+	}
+	struct sock_filter *curr_block = filter;
+	if (start > 0) {
+		set_bpf_jump(curr_block++, BPF_JMP + BPF_JGE + BPF_K,
+			     start, NEXT, SKIP+SKIP);
+	}
+	set_bpf_jump(curr_block++, BPF_JMP + BPF_JGT + BPF_K, end, SKIP, NEXT);
+	set_bpf_stmt(curr_block++, BPF_RET + BPF_K, SECCOMP_RET_ALLOW);
+	return curr_block - filter;
+}
+
+/* Syscall number eval functions. */
 size_t bpf_allow_syscall(struct sock_filter *filter, int nr)
 {
 	struct sock_filter *curr_block = filter;

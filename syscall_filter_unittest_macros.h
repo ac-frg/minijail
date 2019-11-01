@@ -112,6 +112,24 @@ do {	\
 			BPF_RET+BPF_K, SECCOMP_RET_ALLOW);		\
 } while (0)
 
+#define EXPECT_ALLOW_SYSCALL_RANGE(_filter, _start, _end) \
+do {	\
+	EXPECT_EQ_BLOCK(&(_filter)[0],						\
+			BPF_JMP+BPF_JGE+BPF_K, (_start), NEXT, SKIP+SKIP);	\
+	EXPECT_EQ_BLOCK(&(_filter)[1],						\
+			BPF_JMP+BPF_JGT+BPF_K, (_end), SKIP, NEXT);		\
+	EXPECT_EQ_STMT(&(_filter)[2],						\
+			BPF_RET+BPF_K, SECCOMP_RET_ALLOW);			\
+} while (0)
+
+#define EXPECT_ALLOW_SYSCALL_RANGE_AT_ZERO(_filter, _nr) \
+do {	\
+	EXPECT_EQ_BLOCK(&(_filter)[0],					\
+			BPF_JMP+BPF_JGT+BPF_K, (_nr), SKIP, NEXT);	\
+	EXPECT_EQ_STMT(&(_filter)[1],					\
+			BPF_RET+BPF_K, SECCOMP_RET_ALLOW);		\
+} while (0)
+
 #define EXPECT_ALLOW_SYSCALL_ARGS(_filter, _nr, _id, _jt, _jf) \
 do {	\
 	EXPECT_EQ_BLOCK(&(_filter)[0],					\
