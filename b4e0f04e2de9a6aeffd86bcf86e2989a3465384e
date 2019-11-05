@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "81118f41_82c21d1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-05T22:23:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a848ebb8_fb867b3f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81ef52ab_9d26d13e",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8154a98f_a298eaa5",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2881,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-05T22:23:08Z",
+      "side": 1,
+      "message": "Mostly, I don\u0027t want the current process to be killed if it cannot write into the pipe. Because if the current process is killed, it\u0027s the end of the game.\n\nMy understanding is that setting this signal handler has a global effect on the whole process. I don\u0027t know how this temporary signal handler will interact with other threads, especially if other threads are setting signal handlers at the same time or expecting a SIGPIPE. \n\nSee also https://stackoverflow.com/questions/41190163/disable-sigpipe-signal-on-write2-call-in-library",
+      "parentUuid": "81ef52ab_9d26d13e",
+      "range": {
+        "startLine": 2877,
+        "startChar": 0,
+        "endLine": 2881,
+        "endChar": 42
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a2bd032_f59ee004",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-11-05T15:12:33Z",
       "side": 1,
       "message": "this can probably stay as a tab",
+      "range": {
+        "startLine": 2884,
+        "startChar": 22,
+        "endLine": 2884,
+        "endChar": 23
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60e03076_b29da15a",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2884,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-05T22:23:08Z",
+      "side": 1,
+      "message": "I formatted this whole code block using clang-format and the format spec of this project.\n\nAre you sure you want to keep a formatting that is inconsistent with what clang-format produces?",
+      "parentUuid": "0a2bd032_f59ee004",
       "range": {
         "startLine": 2884,
         "startChar": 22,
