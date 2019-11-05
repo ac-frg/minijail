@@ -220,6 +220,28 @@ static void free_mounts_list(struct minijail *j)
 }
 
 /*
+ * Writes exactly n bytes from buf to file descriptor fd.
+ * Returns 0 on success or a negative error code on error.
+ */
+static int write_exactly(int fd, const void *buf, size_t n)
+{
+	while (n > 0) {
+		const ssize_t written = write(fd, buf, n);
+		if (written < 0) {
+			if (errno == EINTR)
+				continue;
+
+			return -errno;
+		}
+
+		buf += written;
+		n -= written;
+	}
+
+	return 0;
+}
+
+/*
  * Strip out flags meant for the parent.
  * We keep things that are not inherited across execve(2) (e.g. capabilities),
  * or are easier to set after execve(2) (e.g. seccomp filters).
@@ -2348,32 +2370,28 @@ int API minijail_from_fd(int fd, struct minijail *j)
 
 int API minijail_to_fd(struct minijail *j, int fd)
 {
-	char *buf;
 	size_t sz = minijail_size(j);
-	ssize_t written;
-	int r;
-
 	if (!sz)
 		return -EINVAL;
-	buf = malloc(sz);
-	r = minijail_marshal(j, buf, sz);
-	if (r) {
-		free(buf);
-		return r;
-	}
+
+	char *buf = malloc(sz);
+	if (!buf)
+		return -ENOMEM;
+
+	int err = minijail_marshal(j, buf, sz);
+	if (err)
+		goto error;
+
 	/* Sends [size][minijail]. */
-	written = write(fd, &sz, sizeof(sz));
-	if (written != sizeof(sz)) {
-		free(buf);
-		return -EFAULT;
-	}
-	written = write(fd, buf, sz);
-	if (written < 0 || (size_t) written != sz) {
-		free(buf);
-		return -EFAULT;
-	}
+	err = write_exactly(fd, &sz, sizeof(sz));
+	if (err)
+		goto error;
+
+	err = write_exactly(fd, buf, sz);
+
+error:
 	free(buf);
-	return 0;
+	return err;
 }
 
 static int setup_preload(const struct minijail *j attribute_unused,
@@ -2856,13 +2874,23 @@ static int minijail_run_internal(struct minijail *j,
 			parent_setup_complete(child_sync_pipe_fds);
 
 		if (use_preload) {
+      /* Set SIGPIPE handler. */
+      const sighandler_t old_handler = signal(SIGPIPE, SIG_IGN);
+      if (old_handler == SIG_ERR)
+        pdie("failed to set signal handler for SIGPIPE");
+
 			/* Send marshalled minijail. */
 			close(pipe_fds[0]);	/* read endpoint */
 			ret = minijail_to_fd(j, pipe_fds[1]);
 			close(pipe_fds[1]);	/* write endpoint */
+
+      /* Reset SIGPIPE handler. */
+      if (signal(SIGPIPE, old_handler) == SIG_ERR)
+        pdie("failed to reset signal handler for SIGPIPE");
+
 			if (ret) {
+				warn("failed to send marshalled minijail: %s", strerror(-ret));
 				kill(j->initpid, SIGKILL);
-				die("failed to send marshalled minijail");
 			}
 		}
 
