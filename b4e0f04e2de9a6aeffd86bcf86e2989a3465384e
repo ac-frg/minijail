@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a848ebb8_fb867b3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-05T15:12:33Z",
+      "side": 1,
+      "message": "Maybe \"Fix crash when subprocess dies.\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81ef52ab_9d26d13e",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2881,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-05T15:12:33Z",
+      "side": 1,
+      "message": "So you want to get EPIPE instead of getting signalled?",
+      "range": {
+        "startLine": 2877,
+        "startChar": 0,
+        "endLine": 2881,
+        "endChar": 42
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a2bd032_f59ee004",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2884,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-05T15:12:33Z",
+      "side": 1,
+      "message": "this can probably stay as a tab",
+      "range": {
+        "startLine": 2884,
+        "startChar": 22,
+        "endLine": 2884,
+        "endChar": 23
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "518153d5_bb50dcf0",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2886,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-05T15:12:33Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 2886,
+        "startChar": 22,
+        "endLine": 2886,
+        "endChar": 23
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
