@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "b2fa267e_5e81b71a",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2881,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-06T23:58:04Z",
+      "side": 1,
+      "message": "Added a comment, and also a TODO referencing a new bug ticket tracking the fact that Minijail is not completely thread-safe at the moment.\n\nIf we plan to make it thread-safe, then we\u0027d better follow the approach described here:\nhttps://riptutorial.com/posix/example/17424/handle-sigpipe-generated-by-write---in-a-thread-safe-manner\nhttp://www.microhowto.info/howto/ignore_sigpipe_without_affecting_other_threads_in_a_process.html\n\nHowever, I couldn\u0027t use pthread_sigmask since Minijail doesn\u0027t seem to be built with pthreads. Instead, I used sigprocmask, but its effect is unspecified in multithreaded programs. I also noticed that other parts of Minijail already use sigprocmask, so the thread safety of Minijail as a whole is already suspicious.",
+      "parentUuid": "f889dd62_b4a1df66",
+      "range": {
+        "startLine": 2877,
+        "startChar": 0,
+        "endLine": 2881,
+        "endChar": 42
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a2bd032_f59ee004",
         "filename": "libminijail.c",
         "patchSetId": 2
