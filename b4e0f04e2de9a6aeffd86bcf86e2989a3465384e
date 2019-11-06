@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f889dd62_b4a1df66",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2881,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-06T15:04:31Z",
+      "side": 1,
+      "message": "Signal dispositions are a per-process setting, and not per-thread. And technically libminijail can be embedded in any process, including multi-threaded ones.\n\nBut at the same time, it\u0027s probably more important to not fail catastrophically when there\u0027s a small delay in the child process, so this is fine. If we find errors with blocking SIGPIPE in the future, we can revisit.\n\nI\u0027d only ask to add a comment here saying something like:\n\n\"\n/*\n * Set SIGPIPE handler to SIG_IGN to avoid getting killed by SIGPIPE if the\n * child takes too long to set up its end of the pipe.\n */",
+      "parentUuid": "8154a98f_a298eaa5",
+      "range": {
+        "startLine": 2877,
+        "startChar": 0,
+        "endLine": 2881,
+        "endChar": 42
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a2bd032_f59ee004",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "895d3b80_5fbf44fd",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2884,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-06T15:04:31Z",
+      "side": 1,
+      "message": "Interesting, I didn\u0027t think clang-format would use a single-space but clang-format is also always right.",
+      "parentUuid": "60e03076_b29da15a",
+      "range": {
+        "startLine": 2884,
+        "startChar": 22,
+        "endLine": 2884,
+        "endChar": 23
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "518153d5_bb50dcf0",
         "filename": "libminijail.c",
         "patchSetId": 2
@@ -163,6 +211,30 @@
       "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1c0eede_2664e26c",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2886,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-06T15:04:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "518153d5_bb50dcf0",
+      "range": {
+        "startLine": 2886,
+        "startChar": 22,
+        "endLine": 2886,
+        "endChar": 23
+      },
+      "revId": "b4e0f04e2de9a6aeffd86bcf86e2989a3465384e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
