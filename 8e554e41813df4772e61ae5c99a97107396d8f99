@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "597fe0a5_1b855722",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2882,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-13T18:53:29Z",
+      "side": 1,
+      "message": "Use colon \":\" after TODO.",
+      "range": {
+        "startLine": 2882,
+        "startChar": 29,
+        "endLine": 2882,
+        "endChar": 30
+      },
+      "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87709103_6bb4c656",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2901,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-13T18:53:29Z",
+      "side": 1,
+      "message": "Does this not check the return value (beyond seeing if it succeeded) because the only signal in the blocking set is SIGPIPE?\n\nMaybe for completeness here (and as documentation) we should check that the signal waited for is SIGPIPE.",
+      "range": {
+        "startLine": 2901,
+        "startChar": 10,
+        "endLine": 2901,
+        "endChar": 56
+      },
+      "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
