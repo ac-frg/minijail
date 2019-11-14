@@ -22,6 +22,30 @@
       "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23301626_e7da9d37",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2829,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-14T23:33:34Z",
+      "side": 1,
+      "message": "Two of these extra parameters are pointers.\n\nWhat happens if we pass an integer where a pointer is expected on architectures where integers and pointers don\u0027t have the same size?",
+      "parentUuid": "ef800398_011e4412",
+      "range": {
+        "startLine": 2821,
+        "startChar": 0,
+        "endLine": 2829,
+        "endChar": 6
+      },
+      "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
