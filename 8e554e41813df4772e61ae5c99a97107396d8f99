@@ -93,6 +93,30 @@
       "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e688f41_a3573be7",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2901,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-14T15:40:55Z",
+      "side": 1,
+      "message": "This multi-paragraph comment thread suggests that the code will be clearer if we explicitly list which signal we\u0027re waiting for. I would prefer the code to be self-explanatory instead of every single person that reads the code in the future to have to ask themselves the same question that I asked myself.\n\nMinijail code should strive for as much clarity as possible. The code here has a subtle detail which is extremely non-obvious.\n\nMoreover, the comment above the code says \"Accept any pending SIGPIPE\", but then the code itself only does that indirectly via the sigmask, not via the code itself.\n\nSo please update this to check for SIGPIPE.",
+      "parentUuid": "be1fe4df_b7be812b",
+      "range": {
+        "startLine": 2901,
+        "startChar": 10,
+        "endLine": 2901,
+        "endChar": 56
+      },
+      "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
