@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cc89abeb_7deb2893",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2882,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-14T00:07:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "597fe0a5_1b855722",
+      "range": {
+        "startLine": 2882,
+        "startChar": 29,
+        "endLine": 2882,
+        "endChar": 30
+      },
+      "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87709103_6bb4c656",
         "filename": "libminijail.c",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be1fe4df_b7be812b",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2901,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-14T00:07:23Z",
+      "side": 1,
+      "message": "\u003e Does this not check the return value (beyond seeing if it succeeded) because the only signal in the blocking set is SIGPIPE?\n\nThat\u0027s right.\n\n\u003e Maybe for completeness here (and as documentation) we should check that the signal waited for is SIGPIPE.\n\nI don\u0027t think this is necessary. \n\nAt some point, during development, I actually did trace and check the returned value, and I can confirm that SIGPIPE is returned by sigtimedwait when there is a pending SIGPIPE. But it made the code more complex and I couldn\u0027t justify to myself this complexity in production code.\n\nAs you said, the only values that sigtimedwait can return are SIGPIPE (since it is the only signal set in \u0027to_block\u0027) and -1 in case of error. The only error I could observe is EAGAIN, which means that there is no pending signal. I added the handling of EINTR (\"the wait was interrupted by a signal handler for a signal other than one of those in the given set\") although I\u0027m not even sure whether it can happen with a zero timeout.\n\nSee https://linux.die.net/man/2/sigtimedwait\n\n\"If both fields of the timespec structure are specified as 0, a poll is performed: sigtimedwait() returns immediately, either with information about a signal that was pending for the caller, or with an error if none of the signals in set was pending.\"",
+      "parentUuid": "87709103_6bb4c656",
+      "range": {
+        "startLine": 2901,
+        "startChar": 10,
+        "endLine": 2901,
+        "endChar": 56
+      },
+      "revId": "8e554e41813df4772e61ae5c99a97107396d8f99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
