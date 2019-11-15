@@ -46,6 +46,30 @@
       "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f0d1e26_0edad26c",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2829,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-15T20:50:51Z",
+      "side": 1,
+      "message": "Apparently nothing bad, since this hasn\u0027t been a problem before and seems to not be cause the problem in your case.\n\nIn most C implementations NULL is literally defined to 0:\n\nhttps://source.corp.google.com/chromeos_public/src/aosp/toolchain/gcc/gcc-4.9/gcc/system.h;l\u003d44?q\u003d%22%23define%20NULL%22\u0026ss\u003dpiper%2FGoogle%2Fchromeos_public\n\nSo I don\u0027t think this change is buying us much, and it adds complexity to the clone()-ing code.",
+      "parentUuid": "23301626_e7da9d37",
+      "range": {
+        "startLine": 2821,
+        "startChar": 0,
+        "endLine": 2829,
+        "endChar": 6
+      },
+      "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
