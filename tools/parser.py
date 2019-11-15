@@ -518,16 +518,24 @@ class PolicyParser:
         if not tokens:
             self._parser_state.error('missing syscall descriptor')
         syscall_descriptor = tokens.pop(0)
-        if syscall_descriptor.type != 'IDENTIFIER':
+        if syscall_descriptor.type == 'OP' and \
+           syscall_descriptor.value == 'in' and \
+           tokens and tokens[0].type == 'IDENTIFIER':
+            syscall_descriptor = tokens.pop(0)
+            value = 'in' + syscall_descriptor.value
+        else:
+            value = syscall_descriptor.value
+        if syscall_descriptor.type != 'IDENTIFIER' and \
+           not (syscall_descriptor.type == 'ACTION' and value == 'kill'):
             self._parser_state.error(
                 'invalid syscall descriptor', token=syscall_descriptor)
         if tokens and tokens[0].type == 'LBRACKET':
             metadata = self._parse_metadata(tokens)
             if 'arch' in metadata and self._arch.arch_name not in metadata['arch']:
                 return ()
-        if '@' in syscall_descriptor.value:
+        if '@' in value:
             # This is a syscall group.
-            subtokens = syscall_descriptor.value.split('@')
+            subtokens = value.split('@')
             if len(subtokens) != 2:
                 self._parser_state.error(
                     'invalid syscall group name', token=syscall_descriptor)
@@ -543,11 +551,10 @@ class PolicyParser:
                     'nonexistent syscall group', token=syscall_descriptor)
             return (Syscall(name, self._arch.syscalls[name])
                     for name in syscall_namespace[syscall_group_name])
-        if syscall_descriptor.value not in self._arch.syscalls:
+        if value not in self._arch.syscalls:
             self._parser_state.error(
                 'nonexistent syscall', token=syscall_descriptor)
-        return (Syscall(syscall_descriptor.value,
-                        self._arch.syscalls[syscall_descriptor.value]), )
+        return (Syscall(value, self._arch.syscalls[value]), )
 
     # filter-statement = '{' , syscall-descriptor , [ { ',', syscall-descriptor } ] , '}' ,
     #                       ':' , filter
