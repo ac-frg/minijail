@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60eabb17_b47f14cd",
+        "filename": "tools/parser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-11-15T19:50:21Z",
+      "side": 1,
+      "message": "Nit: Capital E.",
+      "range": {
+        "startLine": 87,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "3a80066f68ea331bfaca74b219efba8a59a5ab3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
