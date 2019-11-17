@@ -22,6 +22,30 @@
       "revId": "db3e8bc7d10f7c874cfb185655ea5251e664a1f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879ddf17_a7bdc221",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 2919,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-17T22:47:18Z",
+      "side": 1,
+      "message": "I haven\u0027t changed the logic here.\n\nIf the subprocess already died, then sending it a SIGKILL won\u0027t change anything. It\u0027s already dead.\n\nIf we were not able to send the marshaled config for another reason, then this will unconditionally kill the subprocess. \n\nIn both cases, the subprocess will be watched for termination and its exit code will be returned by minijail_wait. And this is probably what we want. We don\u0027t want the race condition between {minijail_to_fd() finished, subprocess died} to have different outcomes depending on which one comes first. So I would say: no we don\u0027t want to return an early error code here, even if we can detect that there was a possible error.",
+      "parentUuid": "03dcc8cd_55d43c5a",
+      "range": {
+        "startLine": 2919,
+        "startChar": 4,
+        "endLine": 2919,
+        "endChar": 30
+      },
+      "revId": "db3e8bc7d10f7c874cfb185655ea5251e664a1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
