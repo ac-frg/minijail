@@ -70,6 +70,30 @@
       "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddc95215_8a960dea",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2829,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2019-11-21T23:26:16Z",
+      "side": 1,
+      "message": "Out of curiosity, I ran the following program on my workstation:\n\n#include \u003ccstdlib\u003e\n#include \u003ciostream\u003e\n\ntemplate \u003ctypename T\u003e\nstruct TypeDesc {\n  friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 out, TypeDesc x) {\n    return out \u003c\u003c \"type: \" \u003c\u003c typeName(x) \u003c\u003c \", size: \" \u003c\u003c sizeof(T);\n  }\n};\n\nstd::string typeName(TypeDesc\u003cint\u003e) { return \"int\"; }\nstd::string typeName(TypeDesc\u003clong\u003e) { return \"long\"; }\nstd::string typeName(TypeDesc\u003cvoid*\u003e) { return \"void*\"; }\nstd::string typeName(TypeDesc\u003cstd::nullptr_t\u003e) { return \"nullptr_t\"; }\n\nint main() {\n  std::cout \u003c\u003c \"void*: \" \u003c\u003c TypeDesc\u003cvoid*\u003e() \u003c\u003c std::endl;\n  std::cout \u003c\u003c \"int: \" \u003c\u003c TypeDesc\u003cint\u003e() \u003c\u003c std::endl;\n  std::cout \u003c\u003c \"long: \" \u003c\u003c TypeDesc\u003clong\u003e() \u003c\u003c std::endl;\n  std::cout \u003c\u003c \"decltype(NULL): \" \u003c\u003c TypeDesc\u003cdecltype(NULL)\u003e() \u003c\u003c std::endl;\n}\n\n\nand it produces:\n\nvoid*: type: void*, size: 8\nint: type: int, size: 4\nlong: type: long, size: 8\ndecltype(NULL): type: long, size: 8\n\n\n\nSo, on my workstation, NULL has type long, which is neither int nor void*, but which has the same size a void*.\n\n\nSo it\u0027s probably safe to pass three 0L.",
+      "parentUuid": "8f0d1e26_0edad26c",
+      "range": {
+        "startLine": 2821,
+        "startChar": 0,
+        "endLine": 2829,
+        "endChar": 6
+      },
+      "revId": "413cccb6ce67bdc9b8ccfeadf148fff2739dd954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
