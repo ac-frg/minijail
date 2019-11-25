@@ -158,6 +158,7 @@ int minijail_use_alt_syscall(struct minijail *j, const char *table);
 
 /* Sets the given runtime limit. See getrlimit(2). */
 int minijail_rlimit(struct minijail *j, int type, rlim_t cur, rlim_t max);
+int minijail_rlimit64(struct minijail *j, int type, rlim64_t cur, rlim64_t max);
 
 /*
  * Adds the jailed process to the cgroup given by |path|.  |path| should be the

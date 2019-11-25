@@ -93,8 +93,8 @@
 
 struct minijail_rlimit {
 	int type;
-	rlim_t cur;
-	rlim_t max;
+	rlim64_t cur;
+	rlim64_t max;
 };
 
 struct mountpoint {
@@ -757,6 +757,25 @@ int API minijail_add_to_cgroup(struct minijail *j, const char *path)
 }
 
 int API minijail_rlimit(struct minijail *j, int type, rlim_t cur, rlim_t max)
+{
+	rlim64_t cur64, max64;
+
+	if (cur == RLIM_INFINITY) {
+		cur64 = RLIM64_INFINITY;
+	} else {
+		cur64 = cur;
+	}
+	if (max == RLIM_INFINITY) {
+		max64 = RLIM64_INFINITY;
+	} else {
+		max64 = max;
+	}
+
+	return minijail_rlimit64(j, type, cur64, max64);
+}
+
+int API minijail_rlimit64(struct minijail *j, int type, rlim64_t cur,
+			  rlim64_t max)
 {
 	size_t i;
 
@@ -1804,10 +1823,10 @@ static void set_rlimits_or_die(const struct minijail *j)
 	size_t i;
 
 	for (i = 0; i < j->rlimit_count; ++i) {
-		struct rlimit limit;
+		struct rlimit64 limit;
 		limit.rlim_cur = j->rlimits[i].cur;
 		limit.rlim_max = j->rlimits[i].max;
-		if (prlimit(j->initpid, j->rlimits[i].type, &limit, NULL))
+		if (prlimit64(j->initpid, j->rlimits[i].type, &limit, NULL))
 			kill_child_and_die(j, "failed to set rlimit");
 	}
 }

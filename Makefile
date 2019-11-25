@@ -14,6 +14,9 @@ CPPFLAGS += -DPRELOADPATH='$(PRELOADPATH)'
 DEFAULT_PIVOT_ROOT ?= /var/empty
 CPPFLAGS += -DDEFAULT_PIVOT_ROOT='"$(DEFAULT_PIVOT_ROOT)"'
 
+# Needed to get definitions for rlim64_t and struct rlimit64.
+CPPFLAGS += -D_LARGEFILE64_SOURCE
+
 ifeq ($(USE_seccomp),no)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
 endif
