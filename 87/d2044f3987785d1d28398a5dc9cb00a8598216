@@ -1,0 +1,13 @@
+Verified+1: Bill Yang <yangbill@google.com>
+Verified+1: Chun-Yi Lee <easoncylee@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Code-Review+2: Dan Shi <dshi@google.com>
+Code-Review+1: Bill Yang <yangbill@google.com>
+Autosubmit+1: Chun-Yi Lee <easoncylee@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Tue, 03 Dec 2019 06:17:58 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1175045
+Project: platform/external/minijail
+Branch: refs/heads/master
