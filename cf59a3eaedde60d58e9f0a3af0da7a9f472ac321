@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a3777e48_ff991f6d",
+        "filename": "OWNERS.cargo",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T02:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "646982f4_3b11221e",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "029cc12b_4210ee9e",
         "filename": "OWNERS.cargo",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ed53d470_c339de9e",
+        "filename": "OWNERS.cargo",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T02:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "029cc12b_4210ee9e",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53c146d7_9d5d1b8e",
         "filename": "build.rs",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-12-10T01:25:54Z",
       "side": 1,
       "message": "this should not be duplicating existing logic in the Makefile",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8546b019_410402ea",
+        "filename": "build.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T02:00:57Z",
+      "side": 1,
+      "message": "In that case is there any objection to having the Makefile also generate a static libminijail.a? Then I can just invoke the Makefile directly.",
+      "parentUuid": "53c146d7_9d5d1b8e",
       "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "b4ead51e_8780b5ab",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T02:00:57Z",
+      "side": 1,
+      "message": "We could generate it with bindgen, which would guarantee it\u0027s kept in sync with libminijail.h.\n\nThe downside though is that we only have empty crates for bindgen in portage right now, and yanking on that dependency chain is painful: https://chromium.googlesource.com/chromiumos/overlays/chromiumos-overlay/+/refs/heads/master/dev-rust/bindgen/\n\nI knew we\u0027d need it sooner or later, but I guess \"later\" has finally come.",
+      "parentUuid": "be3c4a10_d1c9fe14",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4ba9ba8_94acb755",
         "filename": "libminijail.rs",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2019-12-10T01:25:54Z",
       "side": 1,
       "message": "is /// standard ?",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13b50b39_be484a8d",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T02:00:57Z",
+      "side": 1,
+      "message": "For rust doc comments, yes. https://doc.rust-lang.org/rust-by-example/meta/doc.html#doc-comments",
+      "parentUuid": "a4ba9ba8_94acb755",
       "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
