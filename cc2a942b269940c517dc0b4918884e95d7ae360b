@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c32d3f9f_af846069",
+        "filename": "build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T23:02:28Z",
+      "side": 1,
+      "message": "for people who aren\u0027t rust experts, can you add a file comment explaining the purpose of this ?",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fa32051_4a7a7a1a",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T23:02:28Z",
+      "side": 1,
+      "message": "didn\u0027t Chirantan just fix this ?\n\niirc, rlim_t is going to be 32bit, but this needs to be 64bit.  does bindgen need some other flags when run ?",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

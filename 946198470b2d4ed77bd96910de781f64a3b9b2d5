@@ -16,6 +16,24 @@
       "revId": "946198470b2d4ed77bd96910de781f64a3b9b2d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7599806f_552abe30",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T23:02:28Z",
+      "side": 0,
+      "message": "for the purposes of this header, it is an opaque type.  we don\u0027t want libminijail.h pulling in extra APIs which linux/filter.h does.\n\ncan we put this behind some ugly define like USE_BINDGEN so we only turn it on when needed ?",
+      "parentUuid": "e5c0c93a_e07c0418",
+      "revId": "946198470b2d4ed77bd96910de781f64a3b9b2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
