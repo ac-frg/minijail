@@ -15,6 +15,7 @@
 #ifndef _LIBMINIJAIL_H_
 #define _LIBMINIJAIL_H_
 
+#include <linux/filter.h>
 #include <stdint.h>
 #include <sys/resource.h>
 #include <sys/types.h>
@@ -43,7 +44,6 @@ enum {
 };
 
 struct minijail;
-struct sock_fprog;
 
 /*
  * A hook that can be used to execute code at various events during minijail
