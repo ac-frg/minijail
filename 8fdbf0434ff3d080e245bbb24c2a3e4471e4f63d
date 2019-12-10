@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0002de9c_aefffb85",
+        "filename": "Cargo.toml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1572670
+      },
+      "writtenOn": "2019-12-10T18:21:18Z",
+      "side": 1,
+      "message": "2018 is the newest Rust edition currently available: https://doc.rust-lang.org/edition-guide/rust-2018/index.html",
+      "parentUuid": "84541ab0_6ac65bf0",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "8fdbf0434ff3d080e245bbb24c2a3e4471e4f63d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67845d67_7416bdb6",
         "filename": "build.rs",
         "patchSetId": 3
