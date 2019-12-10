@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84541ab0_6ac65bf0",
+        "filename": "Cargo.toml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-10T17:10:11Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "8fdbf0434ff3d080e245bbb24c2a3e4471e4f63d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67845d67_7416bdb6",
+        "filename": "build.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-10T17:10:11Z",
+      "side": 1,
+      "message": "Nit: Capital M.",
+      "range": {
+        "startLine": 44,
+        "startChar": 7,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "8fdbf0434ff3d080e245bbb24c2a3e4471e4f63d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b00733d7_ad39d6f3",
+        "filename": "build.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-10T17:10:11Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 40
+      },
+      "revId": "8fdbf0434ff3d080e245bbb24c2a3e4471e4f63d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
