@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "0a97baa0_872150b1",
+        "filename": "build.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T22:01:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "337cc9f5_94de1adf",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be3c4a10_d1c9fe14",
         "filename": "libminijail.rs",
         "patchSetId": 2
@@ -193,6 +211,24 @@
       "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c153bdf_58045704",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T22:01:25Z",
+      "side": 1,
+      "message": "libminijail.rs is now generated with bindgen and pub use\u0027d via lib.rs.",
+      "parentUuid": "a20fc2b0_b0c8b47f",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {

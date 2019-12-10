@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5c0c93a_e07c0418",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-10T22:01:25Z",
+      "side": 0,
+      "message": "bindgen treats this as an opaque type unless linux/filter.h is actually included.",
+      "revId": "946198470b2d4ed77bd96910de781f64a3b9b2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
