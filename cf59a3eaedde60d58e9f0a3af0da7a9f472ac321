@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "646982f4_3b11221e",
+        "filename": "OWNERS.cargo",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T01:25:54Z",
+      "side": 1,
+      "message": "OWNERS.rust ?",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "029cc12b_4210ee9e",
+        "filename": "OWNERS.cargo",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T01:25:54Z",
+      "side": 1,
+      "message": "your usernames in this GoB are @google.com",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53c146d7_9d5d1b8e",
+        "filename": "build.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T01:25:54Z",
+      "side": 1,
+      "message": "this should not be duplicating existing logic in the Makefile",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3c4a10_d1c9fe14",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T01:25:54Z",
+      "side": 1,
+      "message": "i don\u0027t suppose we can autogen this somehow, or write a test to make sure they\u0027re kept in sync ?",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4ba9ba8_94acb755",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T01:25:54Z",
+      "side": 1,
+      "message": "is /// standard ?",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
