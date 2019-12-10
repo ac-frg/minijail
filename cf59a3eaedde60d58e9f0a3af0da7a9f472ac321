@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "337cc9f5_94de1adf",
+        "filename": "build.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T02:06:31Z",
+      "side": 1,
+      "message": "i don\u0027t have a prob with adding a libminijail.a target and not putting it on all target.  or making it a knob like BUILD_STATIC\u003dxxx.",
+      "parentUuid": "8546b019_410402ea",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be3c4a10_d1c9fe14",
         "filename": "libminijail.rs",
         "patchSetId": 2
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "We could generate it with bindgen, which would guarantee it\u0027s kept in sync with libminijail.h.\n\nThe downside though is that we only have empty crates for bindgen in portage right now, and yanking on that dependency chain is painful: https://chromium.googlesource.com/chromiumos/overlays/chromiumos-overlay/+/refs/heads/master/dev-rust/bindgen/\n\nI knew we\u0027d need it sooner or later, but I guess \"later\" has finally come.",
       "parentUuid": "be3c4a10_d1c9fe14",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "403fb535_ab228573",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T02:06:31Z",
+      "side": 1,
+      "message": "i\u0027m fine with starting with adding a manual script/phase/whatever that\u0027ll do the gen, and we still commit the generated file",
+      "parentUuid": "b4ead51e_8780b5ab",
       "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -174,6 +210,24 @@
       "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fe62e4_48a2f857",
+        "filename": "libminijail.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-10T02:06:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13b50b39_be484a8d",
+      "revId": "cf59a3eaedde60d58e9f0a3af0da7a9f472ac321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
