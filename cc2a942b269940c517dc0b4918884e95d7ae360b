@@ -105,6 +105,24 @@
       "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb4aa8f_fa8a81dc",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-11T01:42:44Z",
+      "side": 1,
+      "message": "Still ends up resolving to c_ulong, but now rlim_t is typedef\u0027d to rlim64_t. But when the bindings are generated on a 64-bit machine it ends up as \"unsigned long\" vs \"unsigned long long\" on 32-bit. Gross. Bindgen at build time would fix this though.",
+      "parentUuid": "6f241318_5807d2ae",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
