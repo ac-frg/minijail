@@ -123,6 +123,24 @@
       "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c07afb8_b4128ad4",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-11T02:00:03Z",
+      "side": 1,
+      "message": "Manually tweaked to u64s.",
+      "parentUuid": "cfb4aa8f_fa8a81dc",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
