@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4092d721_a8ca1c76",
+        "filename": "build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-11T00:54:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c32d3f9f_af846069",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fa32051_4a7a7a1a",
         "filename": "libminijail.rs",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81f1ed32_753b3e4b",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-11T00:54:43Z",
+      "side": 1,
+      "message": "This ends up resolving above (L110) to ::std::os::raw::c_ulong which in rust is always a u64.",
+      "parentUuid": "7fa32051_4a7a7a1a",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
