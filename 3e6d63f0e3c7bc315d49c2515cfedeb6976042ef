@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1613a170_b2764458",
+        "filename": "Cargo.toml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-11T01:19:14Z",
+      "side": 1,
+      "message": "Updated the version number in case we want to publish this crate to a registry. We won\u0027t be making any backward or forward compatibility guarantees initially.\n\n11 picked arbitrarily from the latest linux tag (linux-v11).",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "3e6d63f0e3c7bc315d49c2515cfedeb6976042ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
