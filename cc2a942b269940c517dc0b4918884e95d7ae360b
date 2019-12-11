@@ -69,6 +69,24 @@
       "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efea8134_36561ba9",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1074798
+      },
+      "writtenOn": "2019-12-11T01:19:15Z",
+      "side": 1,
+      "message": "The docs say this can be 32 or 64 bit: https://doc.rust-lang.org/std/os/raw/type.c_ulong.html",
+      "parentUuid": "81f1ed32_753b3e4b",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
