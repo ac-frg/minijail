@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "323c2f9f_2338ad84",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-12T23:14:59Z",
+      "side": 1,
+      "message": "only need one ,",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65c117c2_a63fed63",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-12T23:14:59Z",
+      "side": 1,
+      "message": "do we not need a manual pub type for this ?  seems like we should given the u8/u16/u32 above ?",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
