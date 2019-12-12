@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0f4d8fc_46dfed15",
+        "filename": "tools/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-12T23:19:17Z",
+      "side": 1,
+      "message": "`` doesn\u0027t work in # headers unfortunately.  it\u0027s a long standing bug with gitiles.",
+      "revId": "8c2cfc80ea0ca2a762bc9a3a588a2df5a586d581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29f54a50_fdf8d5fd",
+        "filename": "tools/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2019-12-12T23:19:17Z",
+      "side": 1,
+      "message": "this tool only works for native builds right ?  we need a big *** block here explaining that caveat as it significantly restricts the usefuleness at this point.",
+      "revId": "8c2cfc80ea0ca2a762bc9a3a588a2df5a586d581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
