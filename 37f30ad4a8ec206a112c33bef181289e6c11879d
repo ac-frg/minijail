@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54896f9e_601bfb42",
+        "filename": "tools/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-12T14:59:04Z",
+      "side": 1,
+      "message": "constants",
+      "range": {
+        "startLine": 29,
+        "startChar": 23,
+        "endLine": 29,
+        "endChar": 32
+      },
+      "revId": "37f30ad4a8ec206a112c33bef181289e6c11879d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
