@@ -141,6 +141,24 @@
       "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "129977be_e9ffe2b3",
+        "filename": "libminijail.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-12T22:05:21Z",
+      "side": 1,
+      "message": "Hacked this up in the bindgen invocation itself, so no need to manually fix up the generated file.",
+      "parentUuid": "3c07afb8_b4128ad4",
+      "revId": "cc2a942b269940c517dc0b4918884e95d7ae360b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
