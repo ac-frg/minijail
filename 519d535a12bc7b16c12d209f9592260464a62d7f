@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b1bb4814_e64c7335",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-12T23:26:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "323c2f9f_2338ad84",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65c117c2_a63fed63",
         "filename": "lib.rs",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f268c1f_48795db1",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2019-12-12T23:26:57Z",
+      "side": 1,
+      "message": "__uint64_t is unused but incorrect for 32-bit (unsigned long), so I just removed it. No need to export a type that is unused.\n\nI haven\u0027t found a better bindgen invocation that will suppress it while still generating the right definitions for all the other integer typedefs.",
+      "parentUuid": "65c117c2_a63fed63",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
