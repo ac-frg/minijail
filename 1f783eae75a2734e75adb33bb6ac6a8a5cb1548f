@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aaa43440_0d784795",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "Ah yes, I had this emit the bitcode at some point, before I found out a way to cut out the bitcode-\u003eIR transformation by adding -S.",
+      "parentUuid": "c3f8aa1f_7a4c22f6",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 44
+      },
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7036be4f_450e6225",
         "filename": "Android.bp",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bd86eb4f_fdde8957",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7036be4f_450e6225",
+      "range": {
+        "startLine": 142,
+        "startChar": 35,
+        "endLine": 142,
+        "endChar": 42
+      },
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f96f3ee_3e754912",
         "filename": "tools/generate_constants_json.py",
         "patchSetId": 1
@@ -62,6 +110,24 @@
       "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "125cd3e3_b7974ad1",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f96f3ee_3e754912",
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "30debec5_21eb504a",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "It\u0027s probably better if it\u0027s an actual error.",
+      "parentUuid": "d8b6b845_7a996f39",
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa1460ff_34756976",
         "filename": "tools/generate_constants_json.py",
         "patchSetId": 1
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "c2ff13a3_0fb38d9b",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1460ff_34756976",
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4f972ea_4e1020a3",
         "filename": "tools/generate_constants_json.py",
         "patchSetId": 1
@@ -113,6 +215,24 @@
       "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a31d7f4a_32b0de18",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T22:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4f972ea_4e1020a3",
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
