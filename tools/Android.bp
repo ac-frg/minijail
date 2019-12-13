@@ -76,3 +76,17 @@ python_test_host {
         },
     },
 }
+
+cc_genrule {
+    name: "minijail_constants_json",
+    host_supported: true,
+    vendor_available: true,
+    recovery_available: true,
+    tool_files: ["generate_constants_json.py"],
+    cmd: "$(location generate_constants_json.py) --output=$(out) $(in)",
+    srcs: [
+        ":libminijail_gen_constants_bitcode",
+        ":libminijail_gen_syscall_bitcode",
+    ],
+    out: ["constants.json"],
+}
