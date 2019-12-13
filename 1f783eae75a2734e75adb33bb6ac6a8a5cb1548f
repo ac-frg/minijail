@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "c3f8aa1f_7a4c22f6",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2019-12-13T22:40:32Z",
+      "side": 1,
+      "message": "Rather than bitcode, can you change this to \"llvmir\"? Bitcode very specifically refers to the binary format, and your rules are generating the human-readable version.",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 44
+      },
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7036be4f_450e6225",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2019-12-13T22:40:32Z",
+      "side": 1,
+      "message": "llvmir",
+      "range": {
+        "startLine": 142,
+        "startChar": 35,
+        "endLine": 142,
+        "endChar": 42
+      },
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f96f3ee_3e754912",
         "filename": "tools/generate_constants_json.py",
         "patchSetId": 1
@@ -13,6 +59,23 @@
       "writtenOn": "2019-12-13T22:32:58Z",
       "side": 1,
       "message": "just import typing",
+      "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8b6b845_7a996f39",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2019-12-13T22:40:32Z",
+      "side": 1,
+      "message": "I\u0027m a bit concerned when I see logging about errors that aren\u0027t an actual error (i.e. this doesn\u0027t indicate to the caller that this failed). If this always fails, and we fail to find any match here, should it be an actual error? I\u0027m just trying to prevent future maintenance issues if for some reason this textual IR format changes (and it does occasionally, but not drastically).",
       "revId": "1f783eae75a2734e75adb33bb6ac6a8a5cb1548f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
