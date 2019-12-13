@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50befbe3_92acd468",
+        "filename": "linux-x86/libconstants.gen.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-13T17:31:41Z",
+      "side": 1,
+      "message": "these whitespace changes are all clang-format :/ apparently the pre-upload hook did not kick in when this file was uploaded.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 4
+      },
+      "revId": "9556867e85c35a4eb99c634d7bf04110a87311ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
