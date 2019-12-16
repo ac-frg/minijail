@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b231cd5e_6f07b3d4",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-16T18:41:44Z",
+      "side": 1,
+      "message": "Nit: \"generates\" (script is singular).",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "ed571fb986432b135221df38064dc50d379acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
