@@ -22,6 +22,30 @@
       "revId": "ed571fb986432b135221df38064dc50d379acf97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc767a5_f9cb6666",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-16T18:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b231cd5e_6f07b3d4",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "ed571fb986432b135221df38064dc50d379acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
