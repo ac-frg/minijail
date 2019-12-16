@@ -22,6 +22,30 @@
       "revId": "f6f2625faebf784b9d335a58a7b71c8f33686d2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17b69a2b_a044637f",
+        "filename": "syscall_filter_unittest_macros.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2019-12-16T18:43:44Z",
+      "side": 1,
+      "message": "yeah, this is all clang-format\u0027s doing :/",
+      "parentUuid": "86ba25c4_c29f96c2",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 58
+      },
+      "revId": "f6f2625faebf784b9d335a58a7b71c8f33686d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
