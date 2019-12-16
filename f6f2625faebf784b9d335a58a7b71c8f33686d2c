@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86ba25c4_c29f96c2",
+        "filename": "syscall_filter_unittest_macros.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2019-12-16T18:20:16Z",
+      "side": 1,
+      "message": "I think we lost the tabs here but whatever clang-format wants to do is fine.",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 58
+      },
+      "revId": "f6f2625faebf784b9d335a58a7b71c8f33686d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
