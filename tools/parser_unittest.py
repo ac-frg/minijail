@@ -403,96 +403,65 @@ class ParseFilterStatementTests(unittest.TestCase):
         # pylint: disable=protected-access
         return list(self.parser._parser_state.tokenize([line]))[0]
 
-    def assertEqualIgnoringToken(self, actual, expected, msg=None):
-        """Similar to assertEqual, but ignores the token field."""
-        if (actual.syscalls != expected.syscalls or
-            actual.filters != expected.filters):
-            self.fail('%r != %r' % (actual, expected), msg)
-
     def test_parse_filter_statement(self):
         """Accept valid filter statements."""
-        self.assertEqualIgnoringToken(
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('read: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(parser.Syscall('read', 0), ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
-        self.assertEqualIgnoringToken(
+            parser.ParsedFilterStatement((parser.Syscall('read', 0), ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('{read, write}: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('read', 0),
-                    parser.Syscall('write', 1),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
-        self.assertEqualIgnoringToken(
+            parser.ParsedFilterStatement((
+                parser.Syscall('read', 0),
+                parser.Syscall('write', 1),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('io@libc: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('read', 0),
-                    parser.Syscall('write', 1),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
-        self.assertEqualIgnoringToken(
+            parser.ParsedFilterStatement((
+                parser.Syscall('read', 0),
+                parser.Syscall('write', 1),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('file-io@systemd: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('read', 0),
-                    parser.Syscall('write', 1),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
-        self.assertEqualIgnoringToken(
+            parser.ParsedFilterStatement((
+                parser.Syscall('read', 0),
+                parser.Syscall('write', 1),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('kill: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('kill', 62),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
+            parser.ParsedFilterStatement((
+                parser.Syscall('kill', 62),
+            ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
 
     def test_parse_metadata(self):
         """Accept valid filter statements with metadata."""
-        self.assertEqualIgnoringToken(
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize('read[arch=test]: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('read', 0),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
-        self.assertEqualIgnoringToken(
+            parser.ParsedFilterStatement((parser.Syscall('read', 0), ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
+        self.assertEqual(
             self.parser.parse_filter_statement(
                 self._tokenize(
                     '{read, nonexistent[arch=nonexistent]}: arg0 == 0')),
-            parser.ParsedFilterStatement(
-                syscalls=(
-                    parser.Syscall('read', 0),
-                ),
-                filters=[
-                    parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
-                ],
-                token=None))
+            parser.ParsedFilterStatement((parser.Syscall('read', 0), ), [
+                parser.Filter([[parser.Atom(0, '==', 0)]], bpf.Allow()),
+            ]))
 
     def test_parse_unclosed_brace(self):
         """Reject unclosed brace."""
@@ -846,9 +815,7 @@ class ParseFileTests(unittest.TestCase):
 
         with self.assertRaisesRegex(
                 parser.ParseException,
-                (r'test.policy\(3:17\): '
-                 r'Syscall read.*already had an unconditional action '
-                 r'applied')):
+                r'Syscall read.*already had an unconditional action applied'):
             self.parser.parse_file(path)
 
         path = self._write_file(
@@ -859,9 +826,7 @@ class ParseFileTests(unittest.TestCase):
 
         with self.assertRaisesRegex(
                 parser.ParseException,
-                (r'test.policy\(3:17\): '
-                 r'Syscall read.*already had an unconditional action '
-                 r'applied')):
+                r'Syscall read.*already had an unconditional action applied'):
             self.parser.parse_file(path)
 
 

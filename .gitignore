@@ -37,8 +37,3 @@
 
 # Google Test.
 googletest-release*
-
-# Cargo build targets.
-/target
-**/*.rs.bk
-Cargo.lock
