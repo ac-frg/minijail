@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95156a66_d357c4c7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-10T21:14:16Z",
+      "side": 1,
+      "message": "Can you update this comment now that we expect other things using @?\n\n/* Allow @ statements.*/",
+      "range": {
+        "startLine": 598,
+        "startChar": 5,
+        "endLine": 598,
+        "endChar": 31
+      },
+      "revId": "1e70db8d39b26825d153d6b145e132028adef20f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
