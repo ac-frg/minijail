@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6fb3c326_11616d26",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-14T03:18:44Z",
+      "side": 1,
+      "message": "nit: prefer comparing against None with `is` and `is not`[1].\n\n1: http://google.github.io/styleguide/pyguide.html#2144-decision",
+      "range": {
+        "startLine": 151,
+        "startChar": 22,
+        "endLine": 151,
+        "endChar": 24
+      },
+      "revId": "26208bc8ac0f0eedf02074b6a43d2f7148be2199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11dbf0b2_6b86dc26",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 1
