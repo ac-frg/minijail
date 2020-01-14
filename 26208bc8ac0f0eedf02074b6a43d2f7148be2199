@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11dbf0b2_6b86dc26",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-14T01:11:35Z",
+      "side": 1,
+      "message": "Nit: no space around \u003d.",
+      "range": {
+        "startLine": 171,
+        "startChar": 52,
+        "endLine": 171,
+        "endChar": 55
+      },
+      "revId": "26208bc8ac0f0eedf02074b6a43d2f7148be2199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ab2f05d_1477cf7f",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-14T01:11:35Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 174,
+        "startChar": 18,
+        "endLine": 174,
+        "endChar": 25
+      },
+      "revId": "26208bc8ac0f0eedf02074b6a43d2f7148be2199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
