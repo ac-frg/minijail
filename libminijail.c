@@ -2196,8 +2196,8 @@ void API minijail_enter(const struct minijail *j)
 		if (j->remount_mode) {
 			if (mount(NULL, "/", NULL, MS_REC | j->remount_mode,
 				  NULL))
-				pdie("mount(NULL, /, NULL, MS_REC | MS_PRIVATE,"
-				     " NULL) failed");
+				pdie("mount(NULL, /, NULL, "
+				     "MS_REC | j->remount_mode, NULL) failed");
 		}
 	}
 
