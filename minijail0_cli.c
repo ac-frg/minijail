@@ -715,6 +715,28 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			break;
 		case 'v':
 			minijail_namespace_vfs(j);
+			/*
+			 * When executing the sandboxed program in a new mount
+			 * namespace the Minijail library will by default
+			 * remount all mounts with the MS_PRIVATE flag. While
+			 * this is an appropriate, safe default for the library,
+			 * MS_PRIVATE can be problematic: unmount events will
+			 * not propagate into mountpoints marked as MS_PRIVATE.
+			 * This means that if a mount is unmounted in the root
+			 * mount namespace, it will not be unmounted in the
+			 * non-root mount namespace.
+			 * This can be problematic because activity in the
+			 * non-root mount namespace can now directly influence
+			 * the root mount namespace (e.g. preventing re-mounts
+			 * of said mount), which would be a privilege inversion.
+			 * Set the default in the command-line tool to MS_SLAVE.
+			 * This will still prevent mounts from leaking out of
+			 * the non-root mount namespace but avoid these
+			 * privilege-inversion issues.
+			 * For cases where mounts should not flow *into* the
+			 * namespace either, the user can pass -Kprivate.
+			 */
+			minijail_remount_mode(j, MS_SLAVE);
 			mount_ns = 1;
 			break;
 		case 'V':
