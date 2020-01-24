@@ -22,6 +22,23 @@
       "revId": "8631566d16440941b9f057fdb80889eb9852b813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b7157e_5e180b87",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1398108
+      },
+      "writtenOn": "2020-01-24T21:07:25Z",
+      "side": 1,
+      "message": "It might be worth noting that mounts that are already labeled private will remain private and not propagate mount/umount events. Private is the kernel default for / and the current setting for CrOS. (Although the first pid will change this to shared on most other systems.) With sub mounts inheriting the parent setting as default most mounts on system will remain private. This means that only the mounts marked shared will now become slave (with mounts marked slave remaining slave). I am a little concerned that the current wording might give folks the impression that we are changing the default to propagate everything all the time.",
+      "revId": "8631566d16440941b9f057fdb80889eb9852b813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
