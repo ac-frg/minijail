@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f530f3d2_36bec10d",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-24T15:55:26Z",
+      "side": 1,
+      "message": "does this need clarification with the new change?",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 11
+      },
+      "revId": "8631566d16440941b9f057fdb80889eb9852b813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
