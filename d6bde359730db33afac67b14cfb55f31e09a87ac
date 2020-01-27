@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50984241_1db79482",
+        "filename": ".github/workflows/build-test-ci.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-27T02:35:40Z",
+      "side": 1,
+      "message": "No make tests?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "d6bde359730db33afac67b14cfb55f31e09a87ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
