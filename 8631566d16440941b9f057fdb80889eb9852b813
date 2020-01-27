@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "529cbe2a_d1e61f5a",
+        "filename": "minijail0.1",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-27T16:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f530f3d2_36bec10d",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 11
+      },
+      "revId": "8631566d16440941b9f057fdb80889eb9852b813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65b7157e_5e180b87",
         "filename": "minijail0_cli.c",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2020-01-24T21:07:25Z",
       "side": 1,
       "message": "It might be worth noting that mounts that are already labeled private will remain private and not propagate mount/umount events. Private is the kernel default for / and the current setting for CrOS. (Although the first pid will change this to shared on most other systems.) With sub mounts inheriting the parent setting as default most mounts on system will remain private. This means that only the mounts marked shared will now become slave (with mounts marked slave remaining slave). I am a little concerned that the current wording might give folks the impression that we are changing the default to propagate everything all the time.",
+      "revId": "8631566d16440941b9f057fdb80889eb9852b813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e0e7b37_48a5221f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-27T16:03:00Z",
+      "side": 1,
+      "message": "That\u0027s a fair point. Will adjust.",
+      "parentUuid": "65b7157e_5e180b87",
       "revId": "8631566d16440941b9f057fdb80889eb9852b813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
