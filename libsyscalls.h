@@ -6,6 +6,10 @@
 #define MINIJAIL_LIBSYSCALLS_H_
 #include <sys/types.h>
 
+/*
+ * If any aspect of this struct is changed then parse_constants.cc will likely
+ * need to be updated to reflect how to parse the data type.
+ */
 struct syscall_entry {
 	const char *name;
 	int nr;

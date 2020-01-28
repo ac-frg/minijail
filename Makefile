@@ -61,6 +61,7 @@ all: CC_BINARY(minijail0) CC_LIBRARY(libminijail.so) \
 
 parse_seccomp_policy: CXX_BINARY(parse_seccomp_policy)
 dump_constants: CXX_STATIC_BINARY(dump_constants)
+parse_constants: CXX_BINARY(parse_constants)
 
 tests: TEST(CXX_BINARY(libminijail_unittest)) \
 	TEST(CXX_BINARY(minijail0_cli_unittest)) \
@@ -153,6 +154,8 @@ CXX_STATIC_BINARY(dump_constants): dump_constants.o \
 		libconstants.gen.o libsyscalls.gen.o
 clean: CLEAN(dump_constants)
 
+CXX_BINARY(parse_constants): parse_constants.o
+clean: CLEAN(parse_constants)
 
 constants.json: CXX_STATIC_BINARY(dump_constants)
 	./dump_constants > $@
