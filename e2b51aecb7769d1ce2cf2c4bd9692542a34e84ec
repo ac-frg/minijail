@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "373b52e9_b2a41aba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-28T14:55:08Z",
+      "side": 1,
+      "message": "What is this useful for? I get the usefulness of --child-ld-preload, but why would we want to set something that we then don\u0027t use?\n\nMy guess is that if we use --child-ld-preload, --child-ld-preload-keep should be implied.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
