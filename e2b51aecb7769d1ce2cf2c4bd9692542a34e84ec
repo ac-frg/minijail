@@ -22,6 +22,30 @@
       "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e1146ba_241565dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-01-28T22:21:12Z",
+      "side": 1,
+      "message": "The only reason I implemented it this way was to retain the original behaviour as a default, which is to completely remove LD_PRELOAD from the environment after the main program is loaded.\nI did not want to change it to avoid breaking some use cases I have no idea of.\n\nNow, if as one of the maintainers you tell me that implying the \"keep\" behaviour as long as --child-ld-preload is used is fine, I can easily modify the patch this way (and adjust the documentation accordingly).\n\nIf we go this route, shall we go for the \"keep\" behaviour for both --child-ld-preload and also \"env LD_PRELOAD\u003dx.so minijail0\", or only when --child-ld-preload is used? My guess is that it would be better to only make it this way when --child-ld-preload is used, precisely to avoid changing the default behaviour of getting rid of LD_PRELOAD when the program is started, if it happens to already be set in the calling environment (maybe some use cases rely on this?).",
+      "parentUuid": "373b52e9_b2a41aba",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
