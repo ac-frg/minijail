@@ -14,13 +14,19 @@
 #include "libconstants.h"
 #include "libsyscalls.h"
 
+// The arch name and bits is stored in an |constant_entry| array to
+// facilitate parsing by parse_constants.cc. If the name of either
+// variable is changed then parse_constants.cc will need an update.
+constant_entry minijail_arch[1] = {{MINIJAIL_ARCH_NAME, MINIJAIL_ARCH_BITS}};
+
 int main() {
   // Numeric values are passed to std::cout via std::to_string() to avoid
   // the use of 'bextr' asm instruction (when compiled with -march=bdver4).
   std::cout << "{\n";
   std::cout << "  \"arch_nr\": " << std::to_string(MINIJAIL_ARCH_NR) << ",\n";
-  std::cout << "  \"arch_name\": \"" << MINIJAIL_ARCH_NAME << "\",\n";
-  std::cout << "  \"bits\": " << std::to_string(MINIJAIL_ARCH_BITS) << ",\n";
+  std::cout << "  \"arch_name\": \"" << minijail_arch[0].name << "\",\n";
+  std::cout << "  \"bits\": " << std::to_string(minijail_arch[0].value)
+            << ",\n";
   std::cout << "  \"syscalls\": {\n";
   bool first = true;
   for (const struct syscall_entry* entry = syscall_table; entry->name;
@@ -40,8 +46,8 @@ int main() {
       first = false;
     else
       std::cout << ",\n";
-    std::cout << "    \"" << entry->name << "\": "
-	      << std::to_string(entry->value);
+    std::cout << "    \"" << entry->name
+              << "\": " << std::to_string(entry->value);
   }
   std::cout << "\n  }\n";
   std::cout << "}\n";

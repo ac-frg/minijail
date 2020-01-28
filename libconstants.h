@@ -5,6 +5,10 @@
 #ifndef MINIJAIL_LIBCONSTANTS_H_
 #define MINIJAIL_LIBCONSTANTS_H_
 
+/*
+ * If any aspect of this struct is changed then parse_constants.cc will likely
+ * need to be updated to reflect how gcc will 'print' the data type.
+ */
 struct constant_entry {
 	const char *name;
 	unsigned long value;
