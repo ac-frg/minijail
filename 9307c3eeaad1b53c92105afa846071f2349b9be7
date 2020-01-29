@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "343a51a9_b23a840d",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T21:53:11Z",
+      "side": 1,
+      "message": "got it. the general consensus seems to be:\n\na) core minijail runtime? C, Linux kernel-style\nb) tests? C++14, Google-style\nc) anything else? Python 3, Google-style.\n\nThis was also the reason why the optimized compiler was written in Python instead of C/C++.",
+      "parentUuid": "f6bc874d_0ff63cc7",
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccb580e4_71f5644d",
         "filename": "parse_constants.cc",
         "patchSetId": 1
