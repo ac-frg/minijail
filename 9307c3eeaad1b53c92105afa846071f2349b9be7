@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f6bc874d_0ff63cc7",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-01-29T21:07:10Z",
+      "side": 1,
+      "message": "The language to use was something I\u0027d pondered--part of me wishes a library would stick to one language.  This initial effort was to see how messy things would get going down this path, but also to quickly cook up a way to generate some pre-built constants.json files [I don\u0027t have am arm handy, and almost all of CrOS only uses 32-bit apps on that arch] should things go down that path (TBD on whether it\u0027d be minijail or another location where these files would be stored, though minijail would be the most central and its linux-x86/ directory is already a step down this path).",
+      "parentUuid": "d3501a13_aec99037",
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccb580e4_71f5644d",
         "filename": "parse_constants.cc",
         "patchSetId": 1
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "6c3dd06b_8e3e82d2",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-01-29T21:07:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e679cec_21a1520e",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 23
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30756532_0140abe1",
         "filename": "parse_constants.cc",
         "patchSetId": 1
@@ -76,6 +118,30 @@
       "writtenOn": "2020-01-29T18:56:16Z",
       "side": 1,
       "message": "I wonder if it\u0027s better to use gdb/mi[1] for this. that will definitely make parsing a lot easier since there is a strict serialization format, so only one case should be needed, and you might have an easier time dealing with gdb oddities. [2] provides an example of how you can interact with gdb/mi (or i can commit it somewhere else if needed, hooray for BSD!).\n\n1: https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI.html\n2: https://github.com/lhchavez/postmortem/blob/master/postmortem.py",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b994444c_f4d2f5db",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-01-29T21:07:10Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll take a look.",
+      "parentUuid": "30756532_0140abe1",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -122,6 +188,30 @@
       "writtenOn": "2020-01-29T18:56:16Z",
       "side": 1,
       "message": "would it be possible to pass in the path as parameter? that way the logic to choose it can be centralized.",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 72,
+        "endChar": 30
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89a2e088_6e931ffd",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-01-29T21:07:10Z",
+      "side": 1,
+      "message": "I had in mind to support both if this had a recent chance of getting committed.",
+      "parentUuid": "4113037c_20cab86b",
       "range": {
         "startLine": 71,
         "startChar": 17,
