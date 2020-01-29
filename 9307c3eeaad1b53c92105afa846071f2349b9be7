@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3501a13_aec99037",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "I wonder if it\u0027s better to implement this in Python like the rest of the scripts that deal with the new optimizing compiler. there\u0027s nothing arch-specific in this file, so it _should_ be okay.",
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccb580e4_71f5644d",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "the public style guide is a bit more reserved about this, but the internal style guide suggests avoiding using-declarations of anything within the std:: namespace: go/totw/47",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e679cec_21a1520e",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "can you put everything (except main()) in the anonymous namespace?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 23
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30756532_0140abe1",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "I wonder if it\u0027s better to use gdb/mi[1] for this. that will definitely make parsing a lot easier since there is a strict serialization format, so only one case should be needed, and you might have an easier time dealing with gdb oddities. [2] provides an example of how you can interact with gdb/mi (or i can commit it somewhere else if needed, hooray for BSD!).\n\n1: https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI.html\n2: https://github.com/lhchavez/postmortem/blob/master/postmortem.py",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1035be_51d52329",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "constexpr char kFilePrefix[] \u003d \"$1 \u003d {\";\n\nis the preferred style nowadays",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 19
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4113037c_20cab86b",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-29T18:56:16Z",
+      "side": 1,
+      "message": "would it be possible to pass in the path as parameter? that way the logic to choose it can be centralized.",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 72,
+        "endChar": 30
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
