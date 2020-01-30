@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "f17e7c82_91539a7c",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-30T19:32:08Z",
+      "side": 1,
+      "message": "another wild idea: can you use qemu to run the per-arch dump_constants binary? that way we don\u0027t need any introspection.",
+      "parentUuid": "b994444c_f4d2f5db",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1035be_51d52329",
         "filename": "parse_constants.cc",
         "patchSetId": 1
