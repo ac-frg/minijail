@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "142e549d_4d098cbe",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-01-30T14:11:59Z",
+      "side": 1,
+      "message": "Pretty much. We have some tools in C (like parse_seccomp_policy). libminijail is C so that it can be easily used by other C programs. There\u0027s a longstanding task to move the minijail0 executable to C++, but that\u0027s low-pri.",
+      "parentUuid": "343a51a9_b23a840d",
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccb580e4_71f5644d",
         "filename": "parse_constants.cc",
         "patchSetId": 1
