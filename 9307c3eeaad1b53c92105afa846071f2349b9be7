@@ -262,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "60dbefbf_00a55551",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-31T05:03:34Z",
+      "side": 1,
+      "message": "it did! but i had to build dump_constants as a static executable to avoid having to fiddle with a nested chroot (which the common.mk script does for you, but this was just PoC):\n\n $ qemu-aarch64 -- /build/arm64-generic/tmp/portage/chromeos-base/minijail-9999/work/build/dump_constants\n {\n   \"arch_nr\": 3221225655,\n   \"arch_name\": \"arm64\",\n   \"bits\": 64,\n   \"syscalls\": {\n ....\n\ni vote for exploring qemu since that\u0027s by far the cleanest solution with zero parsing and pretty much guaranteed success.",
+      "parentUuid": "6c54dbfd_afd179d5",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1035be_51d52329",
         "filename": "parse_constants.cc",
         "patchSetId": 1
