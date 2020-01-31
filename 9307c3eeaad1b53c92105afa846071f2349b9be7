@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "835957b8_b10390a1",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-01-31T00:42:52Z",
+      "side": 1,
+      "message": "For comparison sake I uploaded a draft that has implementations for gdb, gdb/mi, and readelf. The latter 2 are arguably incomplete.  The gdb/mi version doesn\u0027t try to handle the various optional data that the grammar allows in the output (though most seems pertinent for getting additional feedback while running an app [which this doesn\u0027t do]).  For readelf it handles 32-bit vs. 64-bit but currently only handles 1 kind of endian (arm is configurable and apparently CrOS uses the same endian as Intel arch).\n\nAs for qemu, I think that\u0027d bring additional sdk/toolchain dependencies to run, and probably also require per-arch VMs to run the app.",
+      "parentUuid": "f17e7c82_91539a7c",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1035be_51d52329",
         "filename": "parse_constants.cc",
         "patchSetId": 1
