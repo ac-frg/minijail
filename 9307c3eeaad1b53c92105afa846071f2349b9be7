@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "6c54dbfd_afd179d5",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-01-31T03:19:06Z",
+      "side": 1,
+      "message": "\u003e As for qemu, I think that\u0027d bring additional sdk/toolchain dependencies to run, and probably also require per-arch VMs to run the app.\n\nqemu is already available! in fact, some cros unit tests can be run in qemu already: https://source.chromium.org/chromiumos/_/android/platform/external/minijail/+/4ce3ab1d0a90d9e3d5b94f6f8cbc756dc4869903:common.mk;l\u003d623;drc\u003de1f046a67c15121b283d66a6fa8c4c9a13316ec1 no VM needed since it uses Qemu User emulation: https://wiki.debian.org/QemuUserEmulation\n\nin theory within your chroot if you invoke `qemu-arm $PATH_TO/dump_constants` it should \"just work\". it\u0027s been a while since i touch my cros checkout, but i\u0027m trying to sync ~2 years of changes to try to verify this wild claim.",
+      "parentUuid": "835957b8_b10390a1",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1035be_51d52329",
         "filename": "parse_constants.cc",
         "patchSetId": 1
