@@ -199,6 +199,7 @@ struct minijail {
 	struct hook *hooks_tail;
 	struct preserved_fd preserved_fds[MAX_PRESERVED_FDS];
 	size_t preserved_fd_count;
+	char *child_ld_preload;
 };
 
 static void run_hooks_or_die(const struct minijail *j,
@@ -240,6 +241,15 @@ static int write_exactly(int fd, const void *buf, size_t n)
 	}
 
 	return 0;
+}
+
+/*
+ * Returns 1 if child_ld_preload has been set, 0 otherwise.
+ * Only meant to be used by the preload library
+ */
+int minijail_has_child_ld_preload(struct minijail *j)
+{
+	return j->child_ld_preload ? 1 : 0;
 }
 
 /*
@@ -520,6 +530,16 @@ void API minijail_skip_setting_securebits(struct minijail *j,
 					  uint64_t securebits_skip_mask)
 {
 	j->securebits_skip_mask = securebits_skip_mask;
+}
+
+int API minijail_set_child_ld_preload(struct minijail *j, const char *s)
+{
+	if (j->child_ld_preload)
+		free(j->child_ld_preload);
+	j->child_ld_preload = strdup(s);
+	if (!j->child_ld_preload)
+		return -ENOMEM;
+	return 0;
 }
 
 void API minijail_remount_mode(struct minijail *j, unsigned long mode)
@@ -1192,6 +1212,10 @@ void minijail_marshal_helper(struct marshal_state *state,
 		marshal_append(state, j->alt_syscall_table,
 			       strlen(j->alt_syscall_table) + 1);
 	}
+	if (j->child_ld_preload) {
+		marshal_append(state, j->child_ld_preload,
+			       strlen(j->child_ld_preload) + 1);
+	}
 	if (j->flags.seccomp_filter && j->filter_prog) {
 		struct sock_fprog *fp = j->filter_prog;
 		marshal_append(state, (char *)fp->filter,
@@ -1296,6 +1320,15 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto bad_syscall_table;
 	}
 
+	if (j->child_ld_preload) {	/* stale pointer */
+		char *user = consumestr(&serialized, &length);
+		if (!user)
+			goto bad_child_ld_preload;
+		j->child_ld_preload = strdup(user);
+		if (!j->child_ld_preload)
+			goto bad_child_ld_preload;
+	}
+
 	if (j->flags.seccomp_filter && j->filter_len > 0) {
 		size_t ninstrs = j->filter_len;
 		if (ninstrs > (SIZE_MAX / sizeof(struct sock_filter)) ||
@@ -1377,15 +1410,18 @@ bad_filter_prog_instrs:
 	if (j->filter_prog)
 		free(j->filter_prog);
 bad_filters:
+	if (j->child_ld_preload)
+		free(j->child_ld_preload);
+bad_child_ld_preload:
 	if (j->alt_syscall_table)
 		free(j->alt_syscall_table);
 bad_syscall_table:
-	if (j->chrootdir)
-		free(j->chrootdir);
-bad_chrootdir:
 	if (j->hostname)
 		free(j->hostname);
 bad_hostname:
+	if (j->chrootdir)
+		free(j->chrootdir);
+bad_chrootdir:
 	if (j->suppl_gid_list)
 		free(j->suppl_gid_list);
 bad_gid_list:
@@ -1397,6 +1433,7 @@ clear_pointers:
 	j->chrootdir = NULL;
 	j->hostname = NULL;
 	j->alt_syscall_table = NULL;
+	j->child_ld_preload = NULL;
 	j->cgroup_count = 0;
 out:
 	return ret;
@@ -2395,14 +2432,13 @@ error:
 	return err;
 }
 
-static int setup_preload(const struct minijail *j attribute_unused,
-			 const char *oldenv attribute_unused)
+static int append_to_ld_preload_env(const struct minijail *j attribute_unused,
+			 const char *oldenv, const char *lib)
 {
 #if defined(__ANDROID__)
 	/* Don't use LDPRELOAD on Android. */
 	return 0;
 #else
-	const char *preload_path = j->preload_path ?: PRELOADPATH;
 	char *newenv = NULL;
 	int ret = 0;
 
@@ -2411,7 +2447,7 @@ static int setup_preload(const struct minijail *j attribute_unused,
 
 	/* Only insert a separating space if we have something to separate... */
 	if (asprintf(&newenv, "%s%s%s", oldenv, oldenv[0] != '\0' ? " " : "",
-		     preload_path) < 0) {
+		     lib) < 0) {
 		return -1;
 	}
 
@@ -2698,6 +2734,24 @@ static int minijail_run_internal(struct minijail *j,
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
 
+	/* We setup child_ld_preload even if !use_preload,
+	   so that potential children of the program we're about to execve()
+	   inherit the LD_PRELOAD, regardless of the fact that the program
+	   is dynamically or statically linked */
+	if (j->child_ld_preload) {
+		/* We save current LD_PRELOAD env as oldenv_copy before modifying it,
+		   so we can restore it after we've execve'd the program */
+		oldenv = getenv(kLdPreloadEnvVar);
+		if (oldenv) {
+			oldenv_copy = strdup(oldenv);
+			if (!oldenv_copy)
+				return -ENOMEM;
+		}
+
+		if (append_to_ld_preload_env(j, oldenv, j->child_ld_preload))
+			return -EFAULT;
+	}
+
 	if (use_preload) {
 		if (j->hooks_head != NULL)
 			die("Minijail hooks are not supported with LD_PRELOAD");
@@ -2706,14 +2760,18 @@ static int minijail_run_internal(struct minijail *j,
 		if (config->envp != NULL)
 			die("cannot pass a new environment with LD_PRELOAD");
 
+		/* LD_PRELOAD might have been modified above, get the new value */
 		oldenv = getenv(kLdPreloadEnvVar);
-		if (oldenv) {
+
+		/* Only save oldenv_copy if not already done */
+		if (oldenv && !oldenv_copy) {
 			oldenv_copy = strdup(oldenv);
 			if (!oldenv_copy)
 				return -ENOMEM;
 		}
 
-		if (setup_preload(j, oldenv))
+		if (append_to_ld_preload_env(j, oldenv,
+		    j->preload_path ?: PRELOADPATH))
 			return -EFAULT;
 	}
 
@@ -3252,6 +3310,8 @@ void API minijail_destroy(struct minijail *j)
 		free(j->preload_path);
 	if (j->alt_syscall_table)
 		free(j->alt_syscall_table);
+	if (j->child_ld_preload)
+		free(j->child_ld_preload);
 	for (i = 0; i < j->cgroup_count; ++i)
 		free(j->cgroups[i]);
 	free(j);
