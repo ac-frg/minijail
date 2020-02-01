@@ -1,0 +1,10 @@
+Verified+1: Luis Hector Chavez <lhchavez@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Autosubmit+1: Luis Hector Chavez <lhchavez@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Sat, 01 Feb 2020 05:21:34 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1222831
+Project: platform/external/minijail
+Branch: refs/heads/master
