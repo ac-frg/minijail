@@ -310,6 +310,30 @@
     },
     {
       "key": {
+        "uuid": "3127bf91_513cd972",
+        "filename": "parse_constants.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-01T01:49:18Z",
+      "side": 1,
+      "message": "Neat, thanks.  I\u0027ve incorporated this into crrev.com/c/1915163 , which tries to clean up a few loose ends and already has some cqdepends citations for a related dependency.  I was able to use it to compile policies for the x64, arm32, and arm64 versions of crosvm.  Unfortunately some of the arm64 syscalls are missing from the constants.json so I\u0027ve posted another change to minijail that adds a few #defines to make these syscalls appear.",
+      "parentUuid": "9bb54f0b_9f1da32a",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9307c3eeaad1b53c92105afa846071f2349b9be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1035be_51d52329",
         "filename": "parse_constants.cc",
         "patchSetId": 1
