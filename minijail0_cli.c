@@ -397,6 +397,22 @@ static void use_profile(struct minijail *j, const char *profile,
 		}
 		minijail_remount_proc_readonly(j);
 		use_pivot_root(j, DEFAULT_PIVOT_ROOT, pivot_root, chroot);
+	} else if (!strcmp(profile, "minimalistic-mountns-nodev")) {
+		minijail_namespace_vfs(j);
+		if (minijail_bind(j, "/", "/", 0)) {
+			fprintf(stderr, "minijail_bind(/) failed.\n");
+			exit(1);
+		}
+		if (minijail_bind(j, "/proc", "/proc", 0)) {
+			fprintf(stderr, "minijail_bind(/proc) failed.\n");
+			exit(1);
+		}
+		if (!*tmp_size) {
+			/* Avoid clobbering |tmp_size| if it was already set. */
+			*tmp_size = DEFAULT_TMP_SIZE;
+		}
+		minijail_remount_proc_readonly(j);
+		use_pivot_root(j, DEFAULT_PIVOT_ROOT, pivot_root, chroot);
 	} else {
 		fprintf(stderr, "Unrecognized profile name '%s'\n", profile);
 		exit(1);
