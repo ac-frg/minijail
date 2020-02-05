@@ -22,6 +22,30 @@
       "revId": "8380f2ec419d13d8433a49a0865a5e5c51097866",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5eca34c_7dbdfe92",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-05T16:07:50Z",
+      "side": 1,
+      "message": "i debated this for a bit and duplicated so we could keep profiles independent without worrying about changes from one accidentally impacting the other.  perhaps in this particular case it\u0027s not a big deal because minimalistic-mountns is supposed to be a strict superset of minimalistic-mountns-nodev, but i don\u0027t want to encourage the profile merging pattern in general.",
+      "parentUuid": "f2ad781b_40619e40",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 60
+      },
+      "revId": "8380f2ec419d13d8433a49a0865a5e5c51097866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
