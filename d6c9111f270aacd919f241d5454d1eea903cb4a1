@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d59f3272_d726ba6c",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "One space",
+      "range": {
+        "startLine": 92,
+        "startChar": 5,
+        "endLine": 92,
+        "endChar": 7
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ef753d3_7ffb6524",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "End with period.",
+      "range": {
+        "startLine": 94,
+        "startChar": 49,
+        "endLine": 94,
+        "endChar": 58
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79b5c18a_b847565f",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Same.",
+      "range": {
+        "startLine": 97,
+        "startChar": 31,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "211d9398_e7e655c4",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Nit: end the comment with a period.",
+      "range": {
+        "startLine": 248,
+        "startChar": 40,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdd8ca62_450cb657",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Maybe call this \"preload\" or something, \"user\" is quite unrelated.",
+      "range": {
+        "startLine": 1324,
+        "startChar": 8,
+        "endLine": 1324,
+        "endChar": 12
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "682a3cbd_f812d5ad",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2436,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Let\u0027s just call this preload_path.",
+      "range": {
+        "startLine": 2436,
+        "startChar": 36,
+        "endLine": 2436,
+        "endChar": 39
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9540aca_080b9cd2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2737,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Nit: \"set up\", with a space.",
+      "range": {
+        "startLine": 2737,
+        "startChar": 6,
+        "endLine": 2737,
+        "endChar": 12
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0ac1a43_3f4fd50d",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2739,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "\"whether\"",
+      "range": {
+        "startLine": 2739,
+        "startChar": 42,
+        "endLine": 2739,
+        "endChar": 55
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db4c0cf_2bfd6281",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2740,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "General nit: Comments ar of the format:\n\n/* Single-line comment. */\n\nOr:\n\n/*\n * Multi-line\n * comment.\n */\n\nUse * in each line and end all sentences with periods.",
+      "range": {
+        "startLine": 2737,
+        "startChar": 1,
+        "endLine": 2740,
+        "endChar": 42
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "775510e1_11253928",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2741,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Do we really need to save the existing LD_PRELOAD? We\u0027re giving the user the ability to set LD_PRELOAD to whatever they want, I don\u0027t think we need to honor whatever LD_PRELOAD gets set before calling minijail0.",
+      "range": {
+        "startLine": 2741,
+        "startChar": 1,
+        "endLine": 2741,
+        "endChar": 27
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2581fcb6_16bad94e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2742,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Wrap to 80 cols",
+      "range": {
+        "startLine": 2742,
+        "startChar": 0,
+        "endLine": 2742,
+        "endChar": 71
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3d9be4f_0abcfbd8",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2743,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Same here, For multi-line comments use single * on first line, use * on all lines and end with period.",
+      "range": {
+        "startLine": 2742,
+        "startChar": 0,
+        "endLine": 2743,
+        "endChar": 61
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8794b348_4702876e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2763,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 2763,
+        "startChar": 60,
+        "endLine": 2763,
+        "endChar": 65
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b5c037d_017c7ab3",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2766,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 2766,
+        "startChar": 42,
+        "endLine": 2766,
+        "endChar": 46
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61d1db5c_11b5f244",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2774,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "This formatting looks off, there\u0027s a clang-format file in the repo if you want to use clang-format.",
+      "range": {
+        "startLine": 2772,
+        "startChar": 0,
+        "endLine": 2774,
+        "endChar": 38
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78d83f53_e4231415",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "We\u0027re trying to improve the description of the functions in this file, can you add a short comment here?",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 33
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07125e6_835f703f",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Per man page, rindex needs #include \u003cstrings.h\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25d0f16f_a77080af",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Parenthesis on previous line.",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdfe642b_b6e71df2",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "Wrap to 80 cols and format:\n\n/*\n * Comment.\n * Comment line 2.\n */",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4c0ed90_6bf93972",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "While not enforced throughout the codebase, let\u0027s use braces here even though they\u0027re single-line statements, since this is new code.",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4332a051_69a7d9a3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "\"child process\"",
+      "range": {
+        "startLine": 558,
+        "startChar": 51,
+        "endLine": 558,
+        "endChar": 56
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8315d944_e860e6d4",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T16:03:03Z",
+      "side": 1,
+      "message": "\"descendant process\"",
+      "range": {
+        "startLine": 559,
+        "startChar": 39,
+        "endLine": 559,
+        "endChar": 47
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
