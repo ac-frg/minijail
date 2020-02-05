@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2ad781b_40619e40",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-05T15:18:10Z",
+      "side": 1,
+      "message": "Can we extract this into a helper function and reuse it above? The only input is |j|, and the error conditions are all exit(1).",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 60
+      },
+      "revId": "8380f2ec419d13d8433a49a0865a5e5c51097866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
