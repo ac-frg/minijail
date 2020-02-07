@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "df44505a_dee29be3",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d59f3272_d726ba6c",
+      "range": {
+        "startLine": 92,
+        "startChar": 5,
+        "endLine": 92,
+        "endChar": 7
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ef753d3_7ffb6524",
         "filename": "libminijail-private.h",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d9476e2_a6723aed",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef753d3_7ffb6524",
+      "range": {
+        "startLine": 94,
+        "startChar": 49,
+        "endLine": 94,
+        "endChar": 58
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "62577a5a_dd67e565",
+        "filename": "libminijail-private.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79b5c18a_b847565f",
+      "range": {
+        "startLine": 97,
+        "startChar": 31,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "211d9398_e7e655c4",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "a1bb0b08_9d2bf49e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "211d9398_e7e655c4",
+      "range": {
+        "startLine": 248,
+        "startChar": 40,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdd8ca62_450cb657",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -111,6 +207,47 @@
         "endLine": 1324,
         "endChar": 12
       },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0df1fc1d_125d626b",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdd8ca62_450cb657",
+      "range": {
+        "startLine": 1324,
+        "startChar": 8,
+        "endLine": 1324,
+        "endChar": 12
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38ace365_e687c784",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Sorry, I had a comment here that stayed as a draft on my last submission:\nI found out while working on my patch that the order of bad_syscall_table and bad_hostname was reversed here. This could have lead to an invalid-free() crash under ENOMEM conditions.\nThis fix is somehow unrelated to this patch, but please double-check that my new ordering is correct (the dance of labels and frees is a bit headache inducing).",
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -140,6 +277,30 @@
     },
     {
       "key": {
+        "uuid": "1c2b45e1_e7d3a82b",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2436,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "682a3cbd_f812d5ad",
+      "range": {
+        "startLine": 2436,
+        "startChar": 36,
+        "endLine": 2436,
+        "endChar": 39
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9540aca_080b9cd2",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -160,6 +321,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bbdd48e_44ae36c8",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2737,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9540aca_080b9cd2",
+      "range": {
+        "startLine": 2737,
+        "startChar": 6,
+        "endLine": 2737,
+        "endChar": 12
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +371,30 @@
     },
     {
       "key": {
+        "uuid": "807077c1_41ff6735",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2739,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0ac1a43_3f4fd50d",
+      "range": {
+        "startLine": 2739,
+        "startChar": 42,
+        "endLine": 2739,
+        "endChar": 55
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8db4c0cf_2bfd6281",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -209,6 +418,30 @@
     },
     {
       "key": {
+        "uuid": "3eb5445c_b27491b0",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2740,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8db4c0cf_2bfd6281",
+      "range": {
+        "startLine": 2737,
+        "startChar": 1,
+        "endLine": 2740,
+        "endChar": 42
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "775510e1_11253928",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -220,6 +453,30 @@
       "writtenOn": "2020-02-05T16:03:03Z",
       "side": 1,
       "message": "Do we really need to save the existing LD_PRELOAD? We\u0027re giving the user the ability to set LD_PRELOAD to whatever they want, I don\u0027t think we need to honor whatever LD_PRELOAD gets set before calling minijail0.",
+      "range": {
+        "startLine": 2741,
+        "startChar": 1,
+        "endLine": 2741,
+        "endChar": 27
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22d007ff_fce8f2e9",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2741,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "I actually just added the comment (and moved the code), the oldenv_copy mechanism was already there (see the restore part around line 2910), so I left it that way.\nNow, regardless of my patch, as to whether this is really needed or not, I\u0027m not sure this is the case either, as the fate of the minijail parent, after exec\u0027ing the child, is mainly to wait for it to exit, so having LD_PRELOAD set or unset in its env after forking would probably not change anything.\nBut I didn\u0027t remove it as I was under the assumption that it was there for a reason I might have missed.",
+      "parentUuid": "775510e1_11253928",
       "range": {
         "startLine": 2741,
         "startChar": 1,
@@ -255,6 +512,30 @@
     },
     {
       "key": {
+        "uuid": "1d0ded00_9a3da06b",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2742,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2581fcb6_16bad94e",
+      "range": {
+        "startLine": 2742,
+        "startChar": 0,
+        "endLine": 2742,
+        "endChar": 71
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3d9be4f_0abcfbd8",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -275,6 +556,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28e1e066_2e640bea",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2743,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d9be4f_0abcfbd8",
+      "range": {
+        "startLine": 2742,
+        "startChar": 0,
+        "endLine": 2743,
+        "endChar": 61
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +606,30 @@
     },
     {
       "key": {
+        "uuid": "17629db9_74cc8b89",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2763,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8794b348_4702876e",
+      "range": {
+        "startLine": 2763,
+        "startChar": 60,
+        "endLine": 2763,
+        "endChar": 65
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b5c037d_017c7ab3",
         "filename": "libminijail.c",
         "patchSetId": 4
@@ -321,6 +650,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f1a40a0_d66c04a2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2766,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b5c037d_017c7ab3",
+      "range": {
+        "startLine": 2766,
+        "startChar": 42,
+        "endLine": 2766,
+        "endChar": 46
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +700,30 @@
     },
     {
       "key": {
+        "uuid": "d99bf006_997134d0",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2774,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d1db5c_11b5f244",
+      "range": {
+        "startLine": 2772,
+        "startChar": 0,
+        "endLine": 2774,
+        "endChar": 38
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78d83f53_e4231415",
         "filename": "libminijail.h",
         "patchSetId": 4
@@ -367,6 +744,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b59bd5ee_07827b57",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78d83f53_e4231415",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 33
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +794,30 @@
     },
     {
       "key": {
+        "uuid": "4a154c22_59337d66",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07125e6_835f703f",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25d0f16f_a77080af",
         "filename": "libminijailpreload.c",
         "patchSetId": 4
@@ -413,6 +838,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d59473a_90e056d0",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25d0f16f_a77080af",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +888,30 @@
     },
     {
       "key": {
+        "uuid": "c388cf40_fbca1c91",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdfe642b_b6e71df2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4c0ed90_6bf93972",
         "filename": "libminijailpreload.c",
         "patchSetId": 4
@@ -459,6 +932,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e3eb6e_cee4004c",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4c0ed90_6bf93972",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -485,6 +982,30 @@
     },
     {
       "key": {
+        "uuid": "ce25024c_0983d491",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4332a051_69a7d9a3",
+      "range": {
+        "startLine": 558,
+        "startChar": 51,
+        "endLine": 558,
+        "endChar": 56
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8315d944_e860e6d4",
         "filename": "minijail0_cli.c",
         "patchSetId": 4
@@ -505,6 +1026,30 @@
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe70380f_35cbef5b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-07T20:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8315d944_e860e6d4",
+      "range": {
+        "startLine": 559,
+        "startChar": 39,
+        "endLine": 559,
+        "endChar": 47
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
