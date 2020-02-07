@@ -87,6 +87,17 @@ extern void minijail_preexec(struct minijail *j);
  */
 extern void minijail_preenter(struct minijail *j);
 
+
+/* minijail_has_child_ld_preload: check whether child_ld_preload has been set
+ * @j jail to inspect
+ *
+ * Returns 1 if child_ld_preload has been set, 0 otherwise.
+ *
+ * This is only meant to be used by the preload library, to decide whether it
+ * needs to keep LD_PRELOAD or not.
+ */
+extern int minijail_has_child_ld_preload(struct minijail *j);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif

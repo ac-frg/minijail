@@ -557,6 +557,9 @@ static void usage(const char *progn)
 	       "                See the minijail0(1) man page for the full list.\n"
 	       "  --preload-library=<f>:Overrides the path to \"" PRELOADPATH "\".\n"
 	       "                This is only really useful for local testing.\n"
+	       "  --child-ld-preload=<l>:Set <l> as the value of the LD_PRELOAD variable\n"
+	       "                in the environment of the child process before starting it.\n"
+	       "                Any potential descendant process will also inherit it.\n"
 	       "  --seccomp-bpf-binary=<f>:Set a pre-compiled seccomp filter using <f>.\n"
 	       "                E.g., '-S /usr/share/filters/<prog>.$(uname -m).bpf'.\n"
 	       "                Requires -n when not running as root.\n"
@@ -610,6 +613,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"profile", required_argument, 0, 131},
 		{"preload-library", required_argument, 0, 132},
 		{"seccomp-bpf-binary", required_argument, 0, 133},
+		{"child-ld-preload", required_argument, 0, 134},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -862,6 +866,9 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			minijail_use_seccomp_filter(j);
 			filter_path = optarg;
 			use_seccomp_filter_binary = 1;
+			break;
+		case 134: /* Child LD_PRELOAD */
+			minijail_set_child_ld_preload(j, optarg);
 			break;
 		default:
 			usage(argv[0]);
