@@ -72,6 +72,60 @@ static void set_group(struct minijail *j, const char *arg, gid_t *out_gid)
 	}
 }
 
+/*
+ * Helper function used by the -A option (possibly more than once),
+ * to build the supplementary gids array.
+ */
+static void suppl_group_add(size_t *suppl_gids_count, gid_t **suppl_gids,
+                            char *arg) {
+	char *end = NULL;
+	gid_t gid = strtod(arg, &end);
+	if (!*end && *arg) {
+		/* A gid number has been specified, proceed. */
+	}
+	else if (lookup_group(arg, &gid)) {
+		/*
+		 * A group name has been specified,
+		 * but doesn't exist: we bail out.
+		 */
+		fprintf(stderr, "Bad group: '%s'\n", arg);
+		exit(1);
+	}
+
+	/*
+	 * From here, gid is guaranteed to be set and valid,
+	 * we add it to our supplementary gids array.
+	 */
+	*suppl_gids = realloc(*suppl_gids,
+			      sizeof(gid_t) * ++(*suppl_gids_count));
+	if (!*suppl_gids) {
+		fprintf(stderr, "failed to allocate memory.\n");
+		exit(1);
+	}
+
+	(*suppl_gids)[*suppl_gids_count - 1] = gid;
+}
+
+/*
+ * Helper function used by the -y, -G and -A options, to ensure
+ * no more than one of those is specified on our cmdline.
+ */
+static void incompatibility_bailout(int keep_suppl_gids, int inherit_suppl_gids,
+                                    int has_suppl_gids) {
+	if (keep_suppl_gids && inherit_suppl_gids) {
+		fprintf(stderr, "-y and -G are not compatible.\n");
+		exit(1);
+	}
+	if (keep_suppl_gids && has_suppl_gids) {
+		fprintf(stderr, "-y and -A are not compatible.\n");
+		exit(1);
+	}
+	if (inherit_suppl_gids && has_suppl_gids) {
+		fprintf(stderr, "-G and -A are not compatible.\n");
+		exit(1);
+	}
+}
+
 static void skip_securebits(struct minijail *j, const char *arg)
 {
 	uint64_t securebits_skip_mask;
@@ -496,10 +550,13 @@ static void usage(const char *progn)
 	       "  -e[file]:     Enter new network namespace, or existing one if |file| is provided.\n"
 	       "  -f <file>:    Write the pid of the jailed process to <file>.\n"
 	       "  -g <group>:   Change gid to <group>.\n"
-	       "  -G:           Inherit supplementary groups from uid.\n"
-	       "                Not compatible with -y.\n"
-	       "  -y:           Keep uid's supplementary groups.\n"
-	       "                Not compatible with -G.\n"
+	       "  -G:           Inherit supplementary groups from new uid.\n"
+	       "                Not compatible with -y or -A.\n"
+	       "  -y:           Keep original uid's supplementary groups.\n"
+	       "                Not compatible with -G or -A.\n"
+	       "  -A <group>:   Add <group> to uid's supplementary groups,\n"
+	       "                can be specified multiple times to add several groups.\n"
+	       "                Not compatible with -y or -G.\n"
 	       "  -h:           Help (this message).\n"
 	       "  -H:           Seccomp filter help message.\n"
 	       "  -i:           Exit immediately after fork(2). The jailed process will run\n"
@@ -592,6 +649,8 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	bool use_uid = false, use_gid = false;
 	uid_t uid = 0;
 	gid_t gid = 0;
+	gid_t *suppl_gids = NULL;
+	size_t suppl_gids_count = 0;
 	char *uidmap = NULL, *gidmap = NULL;
 	int set_uidmap = 0, set_gidmap = 0;
 	size_t tmp_size = 0;
@@ -599,7 +658,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	int log_to_stderr = -1;
 
 	const char *optstring =
-	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzd";
+	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzdA:";
 	/* clang-format off */
 	const struct option long_options[] = {
 		{"help", no_argument, 0, 'h'},
@@ -727,22 +786,23 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			minijail_remount_proc_readonly(j);
 			break;
 		case 'G':
-			if (keep_suppl_gids) {
-				fprintf(stderr,
-					"-y and -G are not compatible.\n");
-				exit(1);
-			}
-			minijail_inherit_usergroups(j);
 			inherit_suppl_gids = 1;
+			incompatibility_bailout(keep_suppl_gids,
+			                        inherit_suppl_gids,
+			                        suppl_gids_count);
+			minijail_inherit_usergroups(j);
 			break;
 		case 'y':
-			if (inherit_suppl_gids) {
-				fprintf(stderr,
-					"-y and -G are not compatible.\n");
-				exit(1);
-			}
-			minijail_keep_supplementary_gids(j);
 			keep_suppl_gids = 1;
+			incompatibility_bailout(keep_suppl_gids,
+			                        inherit_suppl_gids,
+			                        suppl_gids_count);
+			minijail_keep_supplementary_gids(j);
+			break;
+		case 'A':
+			incompatibility_bailout(keep_suppl_gids,
+			                        inherit_suppl_gids, 1);
+			suppl_group_add(&suppl_gids_count, &suppl_gids, optarg);
 			break;
 		case 'N':
 			minijail_namespace_cgroups(j);
@@ -922,6 +982,16 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 				"without -v (new mount namespace).\n"
 				"Do you need to add '-v' explicitly?\n");
 		exit(1);
+	}
+
+	/*
+	 * Proceed in setting the supplementary gids specified on the
+	 * cmdline options.
+	 */
+	if (suppl_gids_count) {
+		minijail_set_supplementary_gids(j, suppl_gids_count,
+		                                suppl_gids);
+		free(suppl_gids);
 	}
 
 	/*

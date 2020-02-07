@@ -68,6 +68,10 @@ Inherit all the supplementary groups of the user specified with \fB-u\fR. It
 is an error to use this option without having specified a \fBuser name\fR to
 \fB-u\fR.
 .TP
+\fB-A <group>\fR
+Add the specified group to the uid's supplementary groups list. Can be specified
+multiple times to add several groups. Incompatible with -y and -G.
+.TP
 \fB-h\fR
 Print a help message.
 .TP
