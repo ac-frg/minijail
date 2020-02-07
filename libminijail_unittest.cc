@@ -436,6 +436,47 @@ TEST(Test, minijail_run_pid_pipes) {
   EXPECT_EQ(WEXITSTATUS(status), 0);
 }
 
+TEST(Test, minijail_run_env_pid_pipes) {
+  pid_t pid;
+  int child_stdin, child_stdout, child_stderr;
+  int mj_run_ret;
+  ssize_t read_ret;
+  char buf[kBufferSize];
+  int status;
+  char test_envvar[] = "TEST_VAR=test";
+  size_t testvar_len = strlen("test");
+  char *argv[4];
+  char *envp[2];
+
+  struct minijail *j = minijail_new();
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "echo \"${TEST_PARENT+set}|${TEST_VAR}\"";
+  argv[3] = NULL;
+
+  envp[0] = test_envvar;
+  envp[1] = NULL;
+
+  // Set a canary env var in the parent that should not be present in the child.
+  ASSERT_EQ(setenv("TEST_PARENT", "test", 1 /*overwrite*/), 0);
+
+  mj_run_ret = minijail_run_env_pid_pipes(
+      j, argv[0], argv, envp, &pid, &child_stdin, &child_stdout, &child_stderr);
+  EXPECT_EQ(mj_run_ret, 0);
+
+  read_ret = read(child_stdout, buf, sizeof(buf));
+  EXPECT_EQ(read_ret, (int)testvar_len + 2);
+
+  EXPECT_EQ("|test\n", std::string(buf, 0, testvar_len + 2));
+
+  EXPECT_EQ(waitpid(pid, &status, 0), pid);
+  ASSERT_TRUE(WIFEXITED(status));
+  EXPECT_EQ(WEXITSTATUS(status), 0);
+
+  minijail_destroy(j);
+}
+
 TEST(Test, minijail_run_pid_pipes_no_preload) {
   pid_t pid;
   int child_stdin, child_stdout, child_stderr;
