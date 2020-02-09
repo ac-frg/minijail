@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6160986_575270c2",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "how about --add-supp-group ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 5,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5c5a74a_219da09e",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "how about \u003cgroup|gid\u003e so it\u0027s clear that both are acceptable\n\nprob should make the same change to -g",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 21
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bf3fcd8_a6a92bde",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "uid-\u003eprocess\n\nsupplementary groups are associated with processes",
+      "range": {
+        "startLine": 72,
+        "startChar": 31,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5be1576_145e35a9",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "gid should use int here",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a91ab4e2_eab8b3cb",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "cuddle this up to the previous line",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7091c558_4ebc9aba",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-09T04:01:19Z",
+      "side": 1,
+      "message": "i don\u0027t think we need this.  minijail_set_supplementary_gids already calls die with a good error message.",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
