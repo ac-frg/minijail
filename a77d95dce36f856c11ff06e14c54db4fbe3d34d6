@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "48d29e88_021118db",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Why not, I found --add-supplementary-group to be too long, add --add-additional-group to be too weird. Naming things...",
+      "parentUuid": "a6160986_575270c2",
+      "range": {
+        "startLine": 71,
+        "startChar": 5,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac3255d3_c2bd6a8e",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Done, also applied to -g and -u",
+      "parentUuid": "f5c5a74a_219da09e",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 21
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8bf3fcd8_a6a92bde",
         "filename": "minijail0.1",
         "patchSetId": 3
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "18ae93c5_556eb9fb",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bf3fcd8_a6a92bde",
+      "range": {
+        "startLine": 72,
+        "startChar": 31,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5be1576_145e35a9",
         "filename": "minijail0_cli.c",
         "patchSetId": 3
@@ -82,6 +154,24 @@
       "writtenOn": "2020-02-09T04:01:19Z",
       "side": 1,
       "message": "gid should use int here",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97884618_266b62dd",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Actually, if I use int here, I make it impossible to specify any gid \u003e 2^32/2. gid_t size and signedness is system dependent, and I thought it was a good idea to avoid making any assumption about it (and using int does make an assumption, that happens to be wrong on my x86_64 system).\nIf I keep gid_t:\n\n# minijail0 -u 1 -g 2 --add-supp-group $((2**32-2)) /usr/bin/id\nuid\u003d1(daemon) gid\u003d2(bin) groups\u003d2(bin),4294967294\n\nIf I replace it by int:\n# minijail0 -u 1 -g 2 --add-supp-group $((2**32-2)) /usr/bin/id\nuid\u003d1(daemon) gid\u003d2(bin) groups\u003d2(bin),2147483648\n\nNote that actually, this is also true for -u and -g for now as they use int:\n\n# minijail0 -u $((2**32-2)) -g $((2**32-2)) --add-supp-group $((2**32-2)) /usr/bin/id\nuid\u003d2147483648 gid\u003d2147483648 groups\u003d2147483648\n\nSo I\u0027ll use int for this patchset for consistency, but if you agree with me that this is a bug, I can submit a separate patchset to fix -u, -g and --add-supp-group together (because if we do this, I think we want this to be visible in git log).\n\nBTW a fixed version looks like this:\n# minijail0 -u $((2**32-2)) -g $((2**32-2)) --add-supp-group $((2**32-3)) /usr/bin/id\nuid\u003d4294967294 gid\u003d4294967294 groups\u003d4294967294,4294967293",
+      "parentUuid": "d5be1576_145e35a9",
       "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -105,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "1c6a430c_0455b49b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a91ab4e2_eab8b3cb",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7091c558_4ebc9aba",
         "filename": "minijail0_cli.c",
         "patchSetId": 3
@@ -119,6 +227,24 @@
       "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e02d8deb_0db73dae",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-09T12:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7091c558_4ebc9aba",
+      "revId": "a77d95dce36f856c11ff06e14c54db4fbe3d34d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
