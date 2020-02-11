@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0064774e_39380993",
+        "filename": "setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-11T19:19:17Z",
+      "side": 1,
+      "message": "don\u0027t do this.  just \"import os\".",
+      "revId": "723c7764247196007307ee5d1a2a37ab576a53aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
