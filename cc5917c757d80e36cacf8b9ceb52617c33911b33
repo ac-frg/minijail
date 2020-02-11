@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d927378e_bbff7b78",
+        "filename": "tools/compiler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-11T00:33:09Z",
+      "side": 0,
+      "message": "should keep this blank",
+      "revId": "cc5917c757d80e36cacf8b9ceb52617c33911b33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
