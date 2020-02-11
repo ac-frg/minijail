@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "109f7b88_d0b4262e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-11T13:55:52Z",
+      "side": 1,
+      "message": "This might benefit from patching in the Chrome tree and running the Tast tests.",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "e6bc607b4b608b7a7822bcd852c4a61d644d75f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc31c588_64fb4382",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-11T13:55:52Z",
+      "side": 1,
+      "message": "Kernel-style pointer formatting: int *pid.\n\nThere should be a clang-format file in this dir.",
+      "range": {
+        "startLine": 246,
+        "startChar": 29,
+        "endLine": 246,
+        "endChar": 33
+      },
+      "revId": "e6bc607b4b608b7a7822bcd852c4a61d644d75f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60a4501e_ec3f62ab",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2601,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-11T13:55:52Z",
+      "side": 1,
+      "message": "Is this clang-format\u0027s doing?",
+      "range": {
+        "startLine": 2599,
+        "startChar": 0,
+        "endLine": 2601,
+        "endChar": 50
+      },
+      "revId": "e6bc607b4b608b7a7822bcd852c4a61d644d75f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184cecab_b0785da7",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2671,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-11T13:55:52Z",
+      "side": 1,
+      "message": "clang-format here too?",
+      "range": {
+        "startLine": 2665,
+        "startChar": 1,
+        "endLine": 2671,
+        "endChar": 3
+      },
+      "revId": "e6bc607b4b608b7a7822bcd852c4a61d644d75f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea5c780f_a5c4dbec",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2780,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-11T13:55:52Z",
+      "side": 1,
+      "message": "Maybe explicitly compare to NULL?",
+      "range": {
+        "startLine": 2780,
+        "startChar": 4,
+        "endLine": 2780,
+        "endChar": 21
+      },
+      "revId": "e6bc607b4b608b7a7822bcd852c4a61d644d75f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
