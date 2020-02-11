@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4500b702_585ecff7",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-11T02:46:13Z",
+      "side": 1,
+      "message": "Minijail",
+      "parentUuid": "7a3b11d0_ffc8ecea",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26c0aba5_c469a8db",
         "filename": "setup.py",
         "patchSetId": 2
@@ -105,6 +129,30 @@
       "writtenOn": "2020-02-11T01:49:29Z",
       "side": 1,
       "message": "can you add\n\n     classifiers\u003d[\n         \u0027Programming Language :: Python :: 3\u0027,\n         \u0027License :: OSI Approved :: Apache Software License\u0027,\n         \u0027Operating System :: Linux\u0027,\n     ],\n     python_requires\u003d\u0027\u003e\u003d3.5\u0027,\n\n?",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f23172c7_33b78bb3",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-11T02:46:13Z",
+      "side": 1,
+      "message": "lets force 3.6.  Android doesn\u0027t care, and CrOS can require 3.6+.",
+      "parentUuid": "57434077_d4266455",
       "range": {
         "startLine": 35,
         "startChar": 6,
