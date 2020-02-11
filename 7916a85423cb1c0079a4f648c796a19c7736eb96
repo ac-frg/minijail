@@ -118,6 +118,29 @@
     },
     {
       "key": {
+        "uuid": "753d7138_0272a9fb",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T16:13:24Z",
+      "side": 1,
+      "message": "oh almost forgot, can you also add the other two tools that are mentioned from README.md[1]? Additionally, now that you are building support to call this from CrOS, you can also remove the scary note from https://android-review.googlesource.com/c/platform/external/minijail/+/1231931/2/tools/README.md#40\n\n1: https://android.googlesource.com/platform/external/minijail/+/master/tools/",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57434077_d4266455",
         "filename": "setup.py",
         "patchSetId": 2
