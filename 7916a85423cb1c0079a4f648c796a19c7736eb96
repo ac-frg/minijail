@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a47825a4_1682bc5f",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4500b702_585ecff7",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26c0aba5_c469a8db",
         "filename": "setup.py",
         "patchSetId": 2
@@ -69,6 +93,30 @@
       "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bbe2df7_cae14d24",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "I had interpreted \u0027package\u0027 to mean the entire library (e.g. \"LICENSE\" file), rather than just the python part.  I suppose the waters will get more muddied if/when someone comes up with a python API binding for the core minijail functionality.",
+      "parentUuid": "26c0aba5_c469a8db",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "ecf93ebd_239c5254",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "Sound to me like a way to add bloat to the egg package, but okay.",
+      "parentUuid": "70d4a02a_56417ee3",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 55
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "247fb441_bed02bc2",
         "filename": "setup.py",
         "patchSetId": 2
@@ -106,6 +178,30 @@
       "writtenOn": "2020-02-11T01:49:29Z",
       "side": 1,
       "message": "Not sure if we should use \"The Android Open Source Project\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 14,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575a22f6_485f924e",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "I figured the name should go along with the email, so if someone sent an email to \"The Android Open Source Project \u003cminijail-dev@google.com\u003e\" it\u0027d look kinda odd.",
+      "parentUuid": "247fb441_bed02bc2",
       "range": {
         "startLine": 26,
         "startChar": 14,
@@ -138,6 +234,30 @@
       "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61e9414f_a66a8639",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "Okay.  I had previously considered adding the two but figured there wasn\u0027t as much value for someone to be able to run these as standalone.  I suppose I can see a case for generate_seccomp_policy since somebody might run a lot of straces or try to integrate it as a build-time step, though generate_constants_json isn\u0027t very useful without the intermediate build files.  I was leaning more in the direction of baking a default constants.json into the package, but it wasn\u0027t helping my particular use case and was leading me further away from the actual task I\u0027m supposed to get done so I bailed on the approach.",
+      "parentUuid": "753d7138_0272a9fb",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -185,6 +305,30 @@
       "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04fa138b_0d5178f5",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T18:37:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23172c7_33b78bb3",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
