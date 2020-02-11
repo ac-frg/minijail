@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a3b11d0_ffc8ecea",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T01:49:29Z",
+      "side": 1,
+      "message": "do we want to use `libminijail` or `Minijail`?",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26c0aba5_c469a8db",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T01:49:29Z",
+      "side": 1,
+      "message": "all the Python code has the Apache License.",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70d4a02a_56417ee3",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T01:49:29Z",
+      "side": 1,
+      "message": "one suggestion from the packaging docs is to use the contents of README.md:\n\nhttps://packaging.python.org/guides/making-a-pypi-friendly-readme/#including-your-readme-in-your-package-s-metadata\n\nThat way there is no need to have redundancy.",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 55
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "247fb441_bed02bc2",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T01:49:29Z",
+      "side": 1,
+      "message": "Not sure if we should use \"The Android Open Source Project\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 14,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57434077_d4266455",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-11T01:49:29Z",
+      "side": 1,
+      "message": "can you add\n\n     classifiers\u003d[\n         \u0027Programming Language :: Python :: 3\u0027,\n         \u0027License :: OSI Approved :: Apache Software License\u0027,\n         \u0027Operating System :: Linux\u0027,\n     ],\n     python_requires\u003d\u0027\u003e\u003d3.5\u0027,\n\n?",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
