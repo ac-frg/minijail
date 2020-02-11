@@ -16,6 +16,24 @@
       "revId": "cc5917c757d80e36cacf8b9ceb52617c33911b33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b8425b8_634bb7ce",
+        "filename": "tools/compiler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1588408
+      },
+      "writtenOn": "2020-02-11T00:55:40Z",
+      "side": 0,
+      "message": "I\u0027m not sure I understand the suggestion, but I take this to mean to follow Python\u0027s convention of having two blank lines after an import section.",
+      "parentUuid": "d927378e_bbff7b78",
+      "revId": "cc5917c757d80e36cacf8b9ceb52617c33911b33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
