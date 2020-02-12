@@ -1,0 +1,9 @@
+Autosubmit+1: Mattias Nissler <mnissler@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Verified+1: Mattias Nissler <mnissler@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 12 Feb 2020 18:14:28 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1229960
+Project: platform/external/minijail
+Branch: refs/heads/master
