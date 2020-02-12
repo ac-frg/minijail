@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "2aa0109e_770114a3",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1595238
+      },
+      "writtenOn": "2020-02-12T15:59:41Z",
+      "side": 1,
+      "message": "I\u0027m going to assume this was sufficient justification and/or is a cosmetic issue that doesn\u0027t need to hold up the commit.",
+      "parentUuid": "575a22f6_485f924e",
+      "range": {
+        "startLine": 26,
+        "startChar": 14,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "753d7138_0272a9fb",
         "filename": "setup.py",
         "patchSetId": 2
