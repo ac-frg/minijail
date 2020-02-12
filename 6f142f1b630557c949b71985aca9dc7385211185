@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43eeaca5_2fc7946c",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-12T16:21:33Z",
+      "side": 1,
+      "message": "One small nit: maybe \"suppl\" here, or even \"supplementary\", it\u0027s already a long option.",
+      "range": {
+        "startLine": 538,
+        "startChar": 17,
+        "endLine": 538,
+        "endChar": 21
+      },
+      "revId": "6f142f1b630557c949b71985aca9dc7385211185",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
