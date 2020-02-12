@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "21b805c3_62e8fb60",
+        "filename": "setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-02-12T16:05:52Z",
+      "side": 1,
+      "message": "Sorry, \"Minijail Developers\" is fine.",
+      "parentUuid": "2aa0109e_770114a3",
+      "range": {
+        "startLine": 26,
+        "startChar": 14,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "7916a85423cb1c0079a4f648c796a19c7736eb96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "753d7138_0272a9fb",
         "filename": "setup.py",
         "patchSetId": 2
