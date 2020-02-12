@@ -1,0 +1,10 @@
+Verified+1: Matt Delco <delco@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Autosubmit+1: Matt Delco <delco@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 12 Feb 2020 15:59:49 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1231931
+Project: platform/external/minijail
+Branch: refs/heads/master
