@@ -7,7 +7,9 @@
 /// This script prefers linking against a pkg-config provided libminijail, but will fall back to
 /// building libminijail statically.
 use std::env;
-use std::io;
+use std::fs;
+use std::io::{self, Write};
+use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() -> io::Result<()> {
@@ -16,11 +18,15 @@ fn main() -> io::Result<()> {
 
     // Prefer a system-provided Minijail library.
     if pkg_config::Config::new().probe("libminijail").is_ok() {
+        // Stamp out a dummy constants.json.
+
+        let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+        fs::write(out_dir.join("constants.json"), "").unwrap();
         return Ok(());
     }
 
     let current_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
-    let out_dir = env::var("OUT_DIR").unwrap();
+    let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
     let profile = env::var("PROFILE").unwrap();
 
     let status = Command::new("make")
@@ -30,11 +36,12 @@ fn main() -> io::Result<()> {
         .arg("-C")
         .arg(&current_dir)
         .arg("CC_STATIC_LIBRARY(libminijail.pic.a)")
+        .arg("constants.json")
         .status()?;
     if !status.success() {
         std::process::exit(status.code().unwrap_or(1));
     }
-    println!("cargo:rustc-link-search=native={}", &out_dir);
+    println!("cargo:rustc-link-search=native={}", out_dir.display());
     println!("cargo:rustc-link-lib=static=minijail.pic");
     Ok(())
 }

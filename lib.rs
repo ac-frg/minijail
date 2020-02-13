@@ -40,3 +40,5 @@
 #[allow(non_camel_case_types)]
 mod libminijail;
 pub use crate::libminijail::*;
+
+pub mod policy_compiler;

@@ -155,7 +155,7 @@ clean: CLEAN(dump_constants)
 
 
 constants.json: CXX_STATIC_BINARY(dump_constants)
-	./dump_constants > $@
+	$(OUT)/dump_constants > $@
 clean: CLEANFILE(constants.json)
 
 
