@@ -70,6 +70,30 @@
       "revId": "6f142f1b630557c949b71985aca9dc7385211185",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b002800_80ccaa95",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-13T20:44:24Z",
+      "side": 1,
+      "message": "Then --add-suppl-group it is.\n\nWhen/if the feature of adding supplementary groups to an existing non-empty list of supplementary groups (possibly pre-filled with -y or -G) is implemented in the lib, I think we\u0027ll be able to keep it as --add-suppl-group in minijail0, by just calling minijail_set_supplementary_gids() or minijail_add_supplementary_gids() depending on whether we also have -y or -G.",
+      "parentUuid": "7155413a_54f08897",
+      "range": {
+        "startLine": 538,
+        "startChar": 17,
+        "endLine": 538,
+        "endChar": 21
+      },
+      "revId": "6f142f1b630557c949b71985aca9dc7385211185",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
