@@ -38,6 +38,9 @@ extern "C" {
 #define PR_CAP_AMBIENT_CLEAR_ALL 4
 #endif
 
+#define MAX_PWENT_SZ (1 << 20)
+#define MAX_GRENT_SZ (1 << 20)
+
 int secure_noroot_set_and_locked(uint64_t mask);
 int lock_securebits(uint64_t skip_mask, bool require_keep_caps);
 
