@@ -384,32 +384,44 @@ int lookup_user(const char *user, uid_t *uid, gid_t *gid)
 	char *buf = NULL;
 	struct passwd pw;
 	struct passwd *ppw = NULL;
+	/*
+	 * sysconf(_SC_GETPW_R_SIZE_MAX), under glibc, is documented to return
+	 * a suggested starting size for the buffer, so let's try getting this
+	 * size first, and fallback to a default othersise.
+	 */
 	ssize_t sz = sysconf(_SC_GETPW_R_SIZE_MAX);
 	if (sz == -1)
 		sz = 65536; /* your guess is as good as mine... */
 
-	/*
-	 * sysconf(_SC_GETPW_R_SIZE_MAX), under glibc, is documented to return
-	 * the maximum needed size of the buffer, so we don't have to search.
-	 */
-	buf = malloc(sz);
-	if (!buf)
-		return -ENOMEM;
-	getpwnam_r(user, &pw, buf, sz, &ppw);
-	/*
-	 * We're safe to free the buffer here. The strings inside |pw| point
-	 * inside |buf|, but we don't use any of them; this leaves the pointers
-	 * dangling but it's safe. |ppw| points at |pw| if getpwnam_r(3)
-	 * succeeded.
-	 */
-	free(buf);
-	/* getpwnam_r(3) does *not* set errno when |ppw| is NULL. */
-	if (!ppw)
-		return -1;
+	while (sz <= MAX_PWENT_SZ) {
+		buf = malloc(sz);
+		if (!buf)
+			return -ENOMEM;
+		int err = getpwnam_r(user, &pw, buf, sz, &ppw);
+		/*
+		 * We're safe to free the buffer here. The strings inside |pw|
+		 * point inside |buf|, but we don't use any of them; this leaves
+		 * the pointers dangling but it's safe.
+		 * |ppw| points at |pw| if getpwnam_r(3) succeeded.
+		 */
+		free(buf);
+		if (err == ERANGE) {
+			/* |buf| was too small, retry with a bigger one. */
+			sz <<= 1;
+		}
+		else if (!ppw || err != 0) {
+			/* We got an error not related to the size of |buf|. */
+			return -1;
+		}
+		else {
+			*uid = ppw->pw_uid;
+			*gid = ppw->pw_gid;
+			return 0;
+		}
+	}
 
-	*uid = ppw->pw_uid;
-	*gid = ppw->pw_gid;
-	return 0;
+	/* A buffer of size MAX_PWENT_SZ is still too small, return an error. */
+	return -1;
 }
 
 /*
@@ -420,30 +432,43 @@ int lookup_group(const char *group, gid_t *gid)
 	char *buf = NULL;
 	struct group gr;
 	struct group *pgr = NULL;
+	/*
+	 * sysconf(_SC_GETGR_R_SIZE_MAX), under glibc, is documented to return
+	 * a suggested starting size for the buffer, so let's try getting this
+	 * size first, and fallback to a default otherwise.
+	 */
 	ssize_t sz = sysconf(_SC_GETGR_R_SIZE_MAX);
 	if (sz == -1)
 		sz = 65536; /* and mine is as good as yours, really */
 
-	/*
-	 * sysconf(_SC_GETGR_R_SIZE_MAX), under glibc, is documented to return
-	 * the maximum needed size of the buffer, so we don't have to search.
-	 */
-	buf = malloc(sz);
-	if (!buf)
-		return -ENOMEM;
-	getgrnam_r(group, &gr, buf, sz, &pgr);
-	/*
-	 * We're safe to free the buffer here. The strings inside gr point
-	 * inside buf, but we don't use any of them; this leaves the pointers
-	 * dangling but it's safe. pgr points at gr if getgrnam_r succeeded.
-	 */
-	free(buf);
-	/* getgrnam_r(3) does *not* set errno when |pgr| is NULL. */
-	if (!pgr)
-		return -1;
+	while (sz <= MAX_GRENT_SZ) {
+		buf = malloc(sz);
+		if (!buf)
+			return -ENOMEM;
+		int err = getgrnam_r(group, &gr, buf, sz, &pgr);
+		/*
+		 * We're safe to free the buffer here. The strings inside |gr|
+		 * point inside |buf|, but we don't use any of them; this leaves
+		 * the pointers dangling but it's safe.
+		 * |pgr| points at |gr| if getgrnam_r(3) succeeded.
+		 */
+		free(buf);
+		if (err == ERANGE) {
+			/* |buf| was too small, retry with a bigger one. */
+			sz <<= 1;
+		}
+		else if (!pgr || err != 0) {
+			/* We got an error not related to the size of |buf|. */
+			return -1;
+		}
+		else {
+			*gid = pgr->gr_gid;
+			return 0;
+		}
+	}
 
-	*gid = pgr->gr_gid;
-	return 0;
+	/* A buffer of size MAX_GRENT_SZ is still too small, return an error. */
+	return -1;
 }
 
 static int seccomp_action_is_available(const char *wanted)
