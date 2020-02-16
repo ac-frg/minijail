@@ -29,6 +29,8 @@
 #define IDMAP_LEN 32U
 #define DEFAULT_TMP_SIZE (64 * 1024 * 1024)
 
+extern char **environ;
+
 static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 		     gid_t *out_gid)
 {
@@ -587,6 +589,10 @@ static void usage(const char *progn)
 	       "  -z:           Don't forward signals to jailed process.\n"
 	       "  --ambient:    Raise ambient capabilities. Requires -c.\n"
 	       "  --uts[=name]: Enter a new UTS namespace (and set hostname).\n"
+	       "  --clear-env:  Start <program> with an empty environment, instead of inheriting\n"
+	       "                our own environment. Must be positioned before any --set-env option.\n"
+	       "  --set-env <NAME=value>: Adds or replace the specified environment variable <NAME>\n"
+	       "               in the <program>'s environment before starting it.\n"
 	       "  --logging=<s>:Use <s> as the logging system.\n"
 	       "                <s> must be 'auto' (default), 'syslog', or 'stderr'.\n"
 	       "  --profile <p>:Configure minijail0 to run with the <p> sandboxing profile,\n"
@@ -614,9 +620,58 @@ static void seccomp_filter_usage(const char *progn)
 	printf("\nSee minijail0(5) for example policies.\n");
 }
 
+static void set_child_env(char ***envp, const char *optarg, const bool clear_env)
+{
+	/* We expect VAR=value format for optarg. */
+	char *env_name = strdup(optarg);
+	if (!env_name) {
+		exit(1);
+	}
+	char *delim = index(env_name, '=');
+	if (!delim) {
+		fprintf(stderr, "Expected an argument of the "
+			"form VAR=value (got '%s')\n", optarg);
+		free(env_name);
+		exit(1);
+	}
+	*delim = '\0';
+	const char *env_value = delim + 1;
+	if (!*envp && !clear_env) {
+		/*
+		 * We got our first --set-env. If --clear-env
+		 * was not specified, first copy our current
+		 * env to the future child env.
+		 */
+		*envp = minijail_copy_env(environ);
+		if (!*envp) {
+			fprintf(stderr,
+				"Failed to allocate memory.\n");
+			exit(1);
+		}
+	}
+	/*
+	 * minijail_setenv requires to have *envp
+	 * pre-allocated to an empty env.
+	 */
+	if (!*envp) {
+		*envp = malloc(sizeof(char *));
+		if (!*envp) {
+			fprintf(stderr,
+				"Failed to allocate memory.\n");
+			exit(1);
+		}
+		(*envp)[0] = '\0';
+	}
+	if (minijail_setenv(envp, env_name, env_value, 1)) {
+		fprintf(stderr, "minijail_setenv() failed.\n");
+		exit(1);
+	}
+	free(env_name);
+}
+
 int parse_args(struct minijail *j, int argc, char *const argv[],
 	       int *exit_immediately, ElfType *elftype,
-	       const char **preload_path)
+	       const char **preload_path, char ***envp)
 {
 	int opt;
 	int use_seccomp_filter = 0, use_seccomp_filter_binary = 0;
@@ -637,6 +692,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	size_t tmp_size = 0;
 	const char *filter_path = NULL;
 	int log_to_stderr = -1;
+	bool clear_env = false;
 
 	const char *optstring =
 	    "+u:g:sS:c:C:P:b:B:V:f:m::M::k:a:e::R:T:vrGhHinNplLt::IUK::wyYzd";
@@ -651,6 +707,8 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"preload-library", required_argument, 0, 132},
 		{"seccomp-bpf-binary", required_argument, 0, 133},
 		{"add-suppl-group", required_argument, 0, 134},
+		{"set-env", required_argument, 0, 135},
+		{"clear-env", no_argument, 0, 136},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -908,6 +966,17 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			suppl_group_add(&suppl_gids_count, &suppl_gids,
 			                optarg);
 			break;
+		case 135:
+			set_child_env(envp, optarg, clear_env);
+			break;
+		case 136:
+			if (*envp) {
+				fprintf(stderr, "Please specify --clear-env "
+				        "before any --set-env option.\n");
+				exit(1);
+			}
+			clear_env = true;
+			break;
 		default:
 			usage(argv[0]);
 			exit(opt == 'h' ? 0 : 1);
@@ -995,6 +1064,16 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	/* Mount a tmpfs under /tmp and set its size. */
 	if (tmp_size)
 		minijail_mount_tmp_size(j, tmp_size);
+
+	/* Build an empty env for the child. */
+	if (clear_env && !*envp) {
+		*envp = malloc(sizeof(char *));
+		if (!*envp) {
+			fprintf(stderr, "Failed to allocate memory.\n");
+			exit(1);
+		}
+		(*envp)[0] = '\0';
+	}
 
 	/*
 	 * There should be at least one additional unparsed argument: the
