@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "548c359c_8cd1970e",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-16T19:20:39Z",
+      "side": 1,
+      "message": "This removes the dangling \"__MINIJAIL_FD\" variable from the child.",
+      "range": {
+        "startLine": 101,
+        "startChar": 1,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "2b584aef9d4d5e87ebe909710b2fe4efc4e8c8ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
