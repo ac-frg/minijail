@@ -22,8 +22,9 @@ int main(int argc, char *argv[])
 	const char *preload_path = PRELOADPATH;
 	int exit_immediately = 0;
 	ElfType elftype = ELFERROR;
+	char **envp = NULL;
 	int consumed = parse_args(j, argc, argv, &exit_immediately, &elftype,
-				  &preload_path);
+				  &preload_path, &envp);
 	argc -= consumed;
 	argv += consumed;
 
@@ -62,7 +63,12 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 		minijail_set_preload_path(j, preload_path);
-		minijail_run(j, argv[0], argv);
+		if (envp) {
+			minijail_run_env_pid_pipes(j, argv[0], argv, envp,
+			                           NULL, NULL, NULL, NULL);
+		} else {
+			minijail_run(j, argv[0], argv);
+		}
 	} else {
 		fprintf(stderr,
 			"Target program '%s' is not a valid ELF file.\n",
