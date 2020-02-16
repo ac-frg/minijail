@@ -2417,7 +2417,7 @@ static int setup_preload(const struct minijail *j attribute_unused,
 	const char *preload_path = j->preload_path ?: PRELOADPATH;
 	char *newenv = NULL;
 	int ret = 0;
-	const char *oldenv = getenv(kLdPreloadEnvVar);
+	const char *oldenv = minijail_getenv(*child_env, kLdPreloadEnvVar);
 
 	if (!oldenv)
 		oldenv = "";

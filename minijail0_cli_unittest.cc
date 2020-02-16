@@ -58,9 +58,10 @@ class CliTest : public ::testing::Test {
     testing::internal::CaptureStdout();
 
     const char* preload_path = PRELOADPATH;
+    char **envp = NULL;
     int ret =
         parse_args(j, pargv.size(), const_cast<char* const*>(pargv.data()),
-                   exit_immediately, elftype, &preload_path);
+                   exit_immediately, elftype, &preload_path, &envp);
     testing::internal::GetCapturedStdout();
 
     minijail_destroy(j);
@@ -495,4 +496,46 @@ TEST_F(CliTest, invalid_remount_mode) {
   // Unknown mode.
   argv[1] = "-Kfoo";
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+// Valid calls to the clear env option.
+TEST_F(CliTest, valid_clear_env) {
+  std::vector<std::string> argv = {"--clear-env", "/bin/sh"};
+
+  ASSERT_TRUE(parse_args_(argv));
+}
+
+// Valid calls to the set env option.
+TEST_F(CliTest, valid_set_env) {
+  std::vector<std::string> argv1 = {"--set-env", "NAME=value", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv1));
+
+  // multiple occurences are allowed.
+  std::vector<std::string> argv2 = {"--set-env", "A=b",
+                                    "--set-env", "b=C=D", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv2));
+
+  // clear-env is allowed *before* any --set-env
+  std::vector<std::string> argv3 = {"--clear-env", "--set-env", "A=b", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv3));
+}
+
+// Invalid calls to the set env options.
+TEST_F(CliTest, invalid_set_env) {
+
+  // --clear-env must come before --set-env.
+  std::vector<std::string> argv1 = {"--set-env", "A=b", "--clear-env", "/bin/sh"};
+  ASSERT_EXIT(parse_args_(argv1), testing::ExitedWithCode(1), "");
+
+  // invalid env=value arguments.
+  std::vector<std::string> argv2 = {"--set-env", "", "/bin/sh"};
+
+  argv2[1] = "INVALID";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
+
+  argv2[1] = "=";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
+
+  argv2[1] = "=foo";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
 }
