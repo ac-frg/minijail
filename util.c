@@ -543,3 +543,40 @@ int minijail_setenv(char ***env, const char *name, const char *value,
 	*env = new_env;
 	return 0;
 }
+
+char *minijail_getenv(char **env, const char *name) {
+	if (!env || !name) {
+		return NULL;
+	}
+	for (int i = 0; env[i]; i++) {
+		if (!strncmp(env[i], name, strlen(name))) {
+			/*
+			 * If we find a match the size of |name|, we must check
+			 * that the next character is a '=', indicating that
+			 * the full varname of envp[i] is exactly |name| and
+			 * not just happening to start with |name|.
+			 */
+			if ((strlen(env[i]) > strlen(name)) &&
+			     (env[i][strlen(name)] == '=')) {
+				/* Return a ptr to the value after the '='. */
+				return env[i] + strlen(name) + 1;
+			}
+		}
+	}
+	return NULL;
+}
+
+int minijail_unsetenv(char **envp, const char *name)
+{
+	char *env_value = minijail_getenv(envp, name);
+	if (env_value) {
+		/*
+		 * minijail_getenv returns a pointer to the value of the envvar,
+		 * get to the first char of the varname so we can null it.
+		 */
+		char *env_name = env_value - strlen(name) - 1;
+		*env_name = '\0';
+		return 0;
+	}
+	return 1;
+}

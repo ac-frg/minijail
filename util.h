@@ -235,6 +235,32 @@ char **minijail_copy_env(char *const *env);
 int minijail_setenv(char ***env, const char *name, const char *value,
 		    int overwrite);
 
+/*
+ * minjail_getenv: Get an environment variable from @env. Semantics match the
+ * standard getenv() function, but this operates on @env, not the global
+ * environment.
+ *
+ * @env       Address of the environment to read from.
+ * @name      Name of the key to get.
+ *
+ * Returns a pointer to the corresponding environment value. The caller must
+ * take care not to modify the pointed value, as this points directly to memory
+ * pointed to by @env.
+ * If the environment variable name is not found, returns NULL.
+ */
+char *minijail_getenv(char **env, const char *name);
+
+/*
+ * minjail_unsetenv: Clear the environment variable @name from @env.
+ *
+ * @env       Address of the environment to clear the variable from.
+ * @name      Name of the variable to clear.
+ *
+ * Returns 0 and modifies *@env on success, returns 1 otherwise.
+ */
+int minijail_unsetenv(char **envp, const char *name);
+
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif

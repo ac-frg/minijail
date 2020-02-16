@@ -58,9 +58,10 @@ class CliTest : public ::testing::Test {
     testing::internal::CaptureStdout();
 
     const char* preload_path = PRELOADPATH;
+    char **envp = NULL;
     int ret =
         parse_args(j, pargv.size(), const_cast<char* const*>(pargv.data()),
-                   exit_immediately, elftype, &preload_path);
+                   NULL, exit_immediately, elftype, &preload_path, &envp);
     testing::internal::GetCapturedStdout();
 
     minijail_destroy(j);
@@ -525,4 +526,46 @@ TEST_F(CliTest, invalid_remount_mode) {
   // Unknown mode.
   argv[1] = "-Kfoo";
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+// Valid calls to the clear env option.
+TEST_F(CliTest, valid_clear_env) {
+  std::vector<std::string> argv = {"--env-reset", "/bin/sh"};
+
+  ASSERT_TRUE(parse_args_(argv));
+}
+
+// Valid calls to the set env option.
+TEST_F(CliTest, valid_set_env) {
+  std::vector<std::string> argv1 = {"--env-add", "NAME=value", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv1));
+
+  // multiple occurences are allowed.
+  std::vector<std::string> argv2 = {"--env-add", "A=b",
+                                    "--env-add", "b=C=D", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv2));
+
+  // env-reset is allowed *before* any --env-add
+  std::vector<std::string> argv3 = {"--env-reset", "--env-add", "A=b", "/bin/sh"};
+  ASSERT_TRUE(parse_args_(argv3));
+}
+
+// Invalid calls to the set env options.
+TEST_F(CliTest, invalid_set_env) {
+
+  // --env-reset must come before --env-add.
+  std::vector<std::string> argv1 = {"--env-add", "A=b", "--env-reset", "/bin/sh"};
+  ASSERT_EXIT(parse_args_(argv1), testing::ExitedWithCode(1), "");
+
+  // invalid env=value arguments.
+  std::vector<std::string> argv2 = {"--env-add", "", "/bin/sh"};
+
+  argv2[1] = "INVALID";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
+
+  argv2[1] = "=";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
+
+  argv2[1] = "=foo";
+  ASSERT_EXIT(parse_args_(argv2), testing::ExitedWithCode(1), "");
 }

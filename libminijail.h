@@ -339,6 +339,13 @@ int minijail_run_no_preload(struct minijail *j, const char *filename,
 
 /*
  * Run the specified command in the given minijail, execve(2)-style.
+ * Pass |envp| as the full environment for the child.
+ */
+int minijail_run_env(struct minijail *j, const char *filename,
+		 char *const argv[], char *const envp[]);
+
+/*
+ * Run the specified command in the given minijail, execve(2)-style.
  * Update |*pchild_pid| with the pid of the child.
  */
 int minijail_run_pid(struct minijail *j, const char *filename,
