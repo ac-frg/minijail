@@ -282,7 +282,10 @@ namespace to \fIhostname\fR.
 .TP
 \fB--logging=<system>\fR
 Use \fIsystem\fR as the logging system. \fIsystem\fR must be one of
-\fBsyslog\fR (the default) or \fBstderr\fR.
+\fBauto\fR (the default), \fBsyslog\fR, or \fBstderr\fR.
+
+\fBauto\fR will use \fBstderr\fR if connected to a tty (e.g. run directly by a
+user), otherwise it will use \fBsyslog\fR.
 .TP
 \fB--profile <profile>\fR
 Choose from one of the available sandboxing profiles, which are simple way to
@@ -306,6 +309,10 @@ The following sandboxing profiles are supported:
 \fBminimalistic-mountns\fR
 Set up a minimalistic mount namespace.  Equivalent to \fB-v -P /var/empty
 -b / -b /proc -b /dev/log -t -r --mount-dev\fR.
+.TP
+\fBminimalistic-mountns-nodev\fR
+Set up a minimalistic mount namespace with an empty /dev path.  Equivalent to
+\fB-v -P /var/empty -b/ -b/proc -t -r\fR.
 .SH IMPLEMENTATION
 This program is broken up into two parts: \fBminijail0\fR (the frontend) and a helper
 library called \fBlibminijailpreload\fR.  Some jailings can only be achieved
@@ -349,4 +356,6 @@ The Chromium OS Authors <chromiumos-dev@chromium.org>
 Copyright \(co 2011 The Chromium OS Authors
 License BSD-like.
 .SH "SEE ALSO"
-\fBlibminijail.h\fR \fBminijail0\fR(5) \fBseccomp\fR(2)
+.BR libminijail.h ,
+.BR minijail0 (5),
+.BR seccomp (2)
