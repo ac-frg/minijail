@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e8b38502_cdca0fca",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-02-20T17:28:58Z",
+      "side": 1,
+      "message": "period at the end assuming the comment isn\u0027t generated too",
+      "revId": "ec90bab33e23874197fa32fcafabf0f44a8f677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "031f50e1_cacc02ae",
         "filename": "Android.bp",
         "patchSetId": 1
