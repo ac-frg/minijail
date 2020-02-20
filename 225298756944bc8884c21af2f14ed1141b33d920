@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d0b8651_d7cd2866",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-20T17:16:41Z",
+      "side": 1,
+      "message": "If we\u0027re changing the above, can you change this one too?",
+      "range": {
+        "startLine": 419,
+        "startChar": 2,
+        "endLine": 419,
+        "endChar": 6
+      },
+      "revId": "225298756944bc8884c21af2f14ed1141b33d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
