@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "031f50e1_cacc02ae",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-20T17:15:02Z",
+      "side": 1,
+      "message": "What does this suffix mean?",
+      "range": {
+        "startLine": 420,
+        "startChar": 22,
+        "endLine": 420,
+        "endChar": 26
+      },
+      "revId": "ec90bab33e23874197fa32fcafabf0f44a8f677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
