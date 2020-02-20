@@ -22,6 +22,30 @@
       "revId": "225298756944bc8884c21af2f14ed1141b33d920",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b5baa9_8e9074a8",
+        "filename": "system.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-02-20T17:48:31Z",
+      "side": 1,
+      "message": "Sorry, missed it, done. Also done below on the corresponding line in lookup_group().",
+      "parentUuid": "6d0b8651_d7cd2866",
+      "range": {
+        "startLine": 419,
+        "startChar": 2,
+        "endLine": 419,
+        "endChar": 6
+      },
+      "revId": "225298756944bc8884c21af2f14ed1141b33d920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
