@@ -22,6 +22,30 @@
       "revId": "ec90bab33e23874197fa32fcafabf0f44a8f677a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94679718_f5bf6cdd",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1082465
+      },
+      "writtenOn": "2020-02-20T17:26:40Z",
+      "side": 1,
+      "message": "It was the way the dependency was named in crosvm:\n\nhttps://chromium.googlesource.com/chromiumos/platform/crosvm/+/a2d845a569494a3924e587b7d63487832cf55ab8/Cargo.toml#89\n\nSo I just tried getting cargo2android to name this as \"libminijail\" but then it seems to conflict with the existing \"libminijail\" C library (error: external/minijail/Android.bp:419:1: module \"libminijail\" already defined)\n\nSo that could be the reason it was named that way, to avoid conflicts with the C library name when building with different build systems.",
+      "parentUuid": "031f50e1_cacc02ae",
+      "range": {
+        "startLine": 420,
+        "startChar": 22,
+        "endLine": 420,
+        "endChar": 26
+      },
+      "revId": "ec90bab33e23874197fa32fcafabf0f44a8f677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
