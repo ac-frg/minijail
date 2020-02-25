@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66e90364_37752243",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-02-25T14:04:50Z",
+      "side": 1,
+      "message": "maybe \"minijail_change_user(\u0027%s\u0027) failed: %s\\n\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 30
+      },
+      "revId": "6b840d4b670be818a4630fb4ee8dff38748b19a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
