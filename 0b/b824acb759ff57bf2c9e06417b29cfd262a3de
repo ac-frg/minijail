@@ -1,0 +1,11 @@
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Verified+1: Manoj Gupta <manojgupta@google.com>
+Open-Source-Licensing+1: Manoj Gupta <manojgupta@google.com>
+Autosubmit+1: Manoj Gupta <manojgupta@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Wed, 26 Feb 2020 11:56:24 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1243755
+Project: platform/external/minijail
+Branch: refs/heads/master
