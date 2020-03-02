@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34a646ca_afc453e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1110304
+      },
+      "writtenOn": "2020-03-02T21:35:38Z",
+      "side": 1,
+      "message": "drop this, we usually just write \u0027Bug: ####\u0027",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "f4911f404bfead6fbe77d39ae8e27a917f12bc34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
