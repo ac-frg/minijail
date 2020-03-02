@@ -22,6 +22,30 @@
       "revId": "f4911f404bfead6fbe77d39ae8e27a917f12bc34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bc0ca04_16bb94a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1649564
+      },
+      "writtenOn": "2020-03-02T22:10:41Z",
+      "side": 1,
+      "message": "I now did git commmit --amend, fixed the line, and repo upload external/minijail. I believe it\u0027s done",
+      "parentUuid": "34a646ca_afc453e5",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "f4911f404bfead6fbe77d39ae8e27a917f12bc34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
