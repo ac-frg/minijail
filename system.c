@@ -213,28 +213,6 @@ int config_net_loopback(void)
 	return 0;
 }
 
-int setup_pipe_end(int fds[2], size_t index)
-{
-	if (index > 1)
-		return -1;
-
-	close(fds[1 - index]);
-	return fds[index];
-}
-
-int dupe_and_close_fd(int fds[2], size_t index, int fd)
-{
-	if (index > 1)
-		return -1;
-
-	/* dup2(2) the corresponding end of the pipe into |fd|. */
-	fd = dup2(fds[index], fd);
-
-	close(fds[0]);
-	close(fds[1]);
-	return fd;
-}
-
 int write_pid_to_path(pid_t pid, const char *path)
 {
 	FILE *fp = fopen(path, "we");
@@ -417,7 +395,8 @@ int lookup_user(const char *user, uid_t *uid, gid_t *gid)
 	buf = malloc(sz);
 	if (!buf)
 		return -ENOMEM;
-	getpwnam_r(user, &pw, buf, sz, &ppw);
+
+	int ret = getpwnam_r(user, &pw, buf, sz, &ppw);
 	/*
 	 * We're safe to free the buffer here. The strings inside |pw| point
 	 * inside |buf|, but we don't use any of them; this leaves the pointers
@@ -425,9 +404,11 @@ int lookup_user(const char *user, uid_t *uid, gid_t *gid)
 	 * succeeded.
 	 */
 	free(buf);
-	/* getpwnam_r(3) does *not* set errno when |ppw| is NULL. */
+
+	if (ret != 0)
+		return -ret;  /* Error */
 	if (!ppw)
-		return -1;
+		return -ENOENT;  /* Not found */
 
 	*uid = ppw->pw_uid;
 	*gid = ppw->pw_gid;
@@ -453,16 +434,18 @@ int lookup_group(const char *group, gid_t *gid)
 	buf = malloc(sz);
 	if (!buf)
 		return -ENOMEM;
-	getgrnam_r(group, &gr, buf, sz, &pgr);
+	int ret = getgrnam_r(group, &gr, buf, sz, &pgr);
 	/*
 	 * We're safe to free the buffer here. The strings inside gr point
 	 * inside buf, but we don't use any of them; this leaves the pointers
 	 * dangling but it's safe. pgr points at gr if getgrnam_r succeeded.
 	 */
 	free(buf);
-	/* getgrnam_r(3) does *not* set errno when |pgr| is NULL. */
+
+	if (ret != 0)
+		return -ret;  /* Error */
 	if (!pgr)
-		return -1;
+		return -ENOENT;  /* Not found */
 
 	*gid = pgr->gr_gid;
 	return 0;
