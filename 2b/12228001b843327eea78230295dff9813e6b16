@@ -1,0 +1,8 @@
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Jorge Moreira Broche <jemoreira@google.com>
+Submitted-by: Steve Kim <kwstephenkim@google.com>
+Submitted-at: Thu, 05 Mar 2020 02:39:46 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1250508
+Project: platform/external/minijail
+Branch: refs/heads/master
