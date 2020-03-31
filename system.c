@@ -108,15 +108,15 @@ int lock_securebits(uint64_t skip_mask, bool require_keep_caps)
 	return 0;
 }
 
-int write_proc_file(pid_t pid, const char *content, const char *basename)
+int write_proc_file(const char *proc, pid_t pid, const char *content, const char *basename)
 {
 	int fd, ret;
 	size_t sz, len;
 	ssize_t written;
-	char filename[32];
+	char filename[64];
 
 	sz = sizeof(filename);
-	ret = snprintf(filename, sz, "/proc/%d/%s", pid, basename);
+	ret = snprintf(filename, sz, "%s/%d/%s", proc, pid, basename);
 	if (ret < 0 || (size_t)ret >= sz) {
 		warn("failed to generate %s filename", basename);
 		return -1;

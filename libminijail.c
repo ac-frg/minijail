@@ -164,6 +164,7 @@ struct minijail {
 		int new_session_keyring : 1;
 		int forward_signals : 1;
 		int setsid : 1;
+		int early_userns : 1;
 	} flags;
 	uid_t uid;
 	gid_t gid;
@@ -250,6 +251,20 @@ static void close_and_reset(int *pfd)
 	*pfd = -1;
 }
 
+static bool have_cap_sysadmin()
+{
+	cap_t caps = cap_get_proc();
+	cap_flag_value_t value = CAP_CLEAR;
+	if (!caps) {
+		die("can't get process caps");
+	}
+	if (cap_get_flag(caps, CAP_SYS_ADMIN, CAP_EFFECTIVE, &value) != 0) {
+		die("can't get value of CAP_SYSADMIN");
+	}
+
+	return value == CAP_SET;
+}
+
 /*
  * Strip out flags meant for the parent.
  * We keep things that are not inherited across execve(2) (e.g. capabilities),
@@ -286,6 +301,7 @@ void minijail_preexec(struct minijail *j)
 	int uts = j->flags.uts;
 	int remount_proc_ro = j->flags.remount_proc_ro;
 	int userns = j->flags.userns;
+	int early_userns = j->flags.early_userns;
 	if (j->user)
 		free(j->user);
 	j->user = NULL;
@@ -305,6 +321,7 @@ void minijail_preexec(struct minijail *j)
 	j->flags.uts = uts;
 	j->flags.remount_proc_ro = remount_proc_ro;
 	j->flags.userns = userns;
+	j->flags.early_userns = early_userns;
 	/* Note, |pids| will already have been used before this call. */
 }
 
@@ -611,6 +628,8 @@ void API minijail_remount_proc_readonly(struct minijail *j)
 void API minijail_namespace_user(struct minijail *j)
 {
 	j->flags.userns = 1;
+	if (!have_cap_sysadmin())
+		j->flags.early_userns = 1;
 }
 
 void API minijail_namespace_user_disable_setgroups(struct minijail *j)
@@ -1824,15 +1843,15 @@ static void set_rlimits_or_die(const struct minijail *j)
 	}
 }
 
-static void write_ugid_maps_or_die(const struct minijail *j)
+static void write_ugid_maps_or_die(const struct minijail *j, const char *proc, pid_t pid)
 {
-	if (j->uidmap && write_proc_file(j->initpid, j->uidmap, "uid_map") != 0)
+	if (j->uidmap && write_proc_file(proc, pid, j->uidmap, "uid_map") != 0)
 		kill_child_and_die(j, "failed to write uid_map");
 	if (j->gidmap && j->flags.disable_setgroups) {
 		/*
 		 * Older kernels might not have the /proc/<pid>/setgroups files.
 		 */
-		int ret = write_proc_file(j->initpid, "deny", "setgroups");
+		int ret = write_proc_file(proc, pid, "deny", "setgroups");
 		if (ret != 0) {
 			if (ret == -ENOENT) {
 				/* See http://man7.org/linux/man-pages/man7/user_namespaces.7.html. */
@@ -1842,7 +1861,7 @@ static void write_ugid_maps_or_die(const struct minijail *j)
 				    j, "failed to disable setgroups(2)");
 		}
 	}
-	if (j->gidmap && write_proc_file(j->initpid, j->gidmap, "gid_map") != 0)
+	if (j->gidmap && write_proc_file(proc, pid, j->gidmap, "gid_map") != 0)
 		kill_child_and_die(j, "failed to write gid_map");
 }
 
@@ -2245,6 +2264,39 @@ void API minijail_enter(const struct minijail *j)
 
 	/* We have to process all the mounts before we chroot/pivot_root. */
 	process_mounts_or_die(j);
+
+	/*
+	 * Now that we've finished setting up the mounts, enter the user
+	 * namespace if we haven't already.
+	 */
+	if (j->flags.userns && !j->flags.early_userns) {
+		/*
+		 * Create a temp path so that we can mount proc for the current pid
+     * namespace.  This should always succeed because we only do late
+     * user namespace setup when we have CAP_SYSADMIN.  This is necessary
+     * because each /proc mount represents the pid namespace of the process
+     * that mounted it, which would otherwise prevent us from being able to
+     * write the uid_map and gid_map files.
+		 */
+	  char *proc_path = strdup("/tmp/minijail.proc.XXXXXX");
+		if (proc_path == NULL || mkdtemp(proc_path) == NULL)
+			pdie("could not create temp path for /proc");
+
+		if (mount("proc", proc_path, "proc",
+			  MS_NOSUID | MS_NODEV | MS_NOEXEC, NULL) != 0) {
+			pdie("failed to mount proc");
+		}
+
+		if (unshare(CLONE_NEWUSER) != 0)
+			pdie("unshare(CLONE_NEWUSER) failed");
+
+		write_ugid_maps_or_die(j, proc_path, getpid());
+		enter_user_namespace(j);
+
+    if (umount2(proc_path, MNT_DETACH) != 0) {
+      pwarn("unable to unmount temporary proc path");
+    }
+	}
 
 	if (j->flags.chroot && enter_chroot(j))
 		pdie("chroot");
@@ -2852,7 +2904,7 @@ static int minijail_run_internal(struct minijail *j,
 	pid_t child_pid;
 	if (pid_namespace) {
 		unsigned long clone_flags = CLONE_NEWPID | SIGCHLD;
-		if (j->flags.userns)
+		if (j->flags.userns && j->flags.early_userns)
 			clone_flags |= CLONE_NEWUSER;
 
 		child_pid = syscall(SYS_clone, clone_flags, NULL, 0L, 0L, 0L);
@@ -2888,8 +2940,8 @@ static int minijail_run_internal(struct minijail *j,
 		if (j->rlimit_count)
 			set_rlimits_or_die(j);
 
-		if (j->flags.userns)
-			write_ugid_maps_or_die(j);
+		if (j->flags.userns && j->flags.early_userns)
+			write_ugid_maps_or_die(j, "/proc", j->initpid);
 
 		if (j->flags.enter_vfs)
 			close(j->mountns_fd);
@@ -3022,7 +3074,7 @@ static int minijail_run_internal(struct minijail *j,
 	if (sync_child)
 		wait_for_parent_setup(state_out->child_sync_pipe_fds);
 
-	if (j->flags.userns)
+	if (j->flags.userns && j->flags.early_userns)
 		enter_user_namespace(j);
 
 	setup_child_std_fds(j, state_out);

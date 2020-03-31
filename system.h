@@ -47,7 +47,7 @@ int cap_ambient_supported(void);
 int config_net_loopback(void);
 
 int write_pid_to_path(pid_t pid, const char *path);
-int write_proc_file(pid_t pid, const char *content, const char *basename);
+int write_proc_file(const char *proc, pid_t pid, const char *content, const char *basename);
 
 int mkdir_p(const char *path, mode_t mode, bool isdir);
 
