@@ -22,6 +22,30 @@
       "revId": "e3a5cae1bf7d26d7c598e3ff23008963208e9bd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640091f9_52b346cb",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2020-04-09T13:12:53Z",
+      "side": 1,
+      "message": "\"//apex_available:\" is a prefix to distinguish special names \"platform\" and \"anyapex\" from other module names.\n\nfrom go/android.bp\n\n\u003e apex_available list of strings, Availability of this module in APEXes. Only the listed APEXes can contain this module. If the module has stubs then other APEXes and the platform may access it through them (subject to visibility). \"//apex_available:anyapex\" is a pseudo APEX name that matches to any APEX. \"//apex_available:platform\" refers to non-APEX partitions like \"system.img\". Default is [\"//apex_available:platform\"].",
+      "parentUuid": "e8c7f07d_dcaae734",
+      "range": {
+        "startLine": 63,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 11
+      },
+      "revId": "e3a5cae1bf7d26d7c598e3ff23008963208e9bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
