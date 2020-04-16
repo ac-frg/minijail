@@ -210,7 +210,7 @@ TEST_F(CliTest, valid_logging) {
     "syslog",
   };
 
-  for (const auto profile : profiles) {
+  for (const auto& profile : profiles) {
     argv[1] = profile;
     ASSERT_TRUE(parse_args_(argv));
   }
@@ -289,7 +289,7 @@ TEST_F(CliTest, valid_profile) {
     "minimalistic-mountns-nodev",
   };
 
-  for (const auto profile : profiles) {
+  for (const auto& profile : profiles) {
     argv[1] = profile;
     ASSERT_TRUE(parse_args_(argv));
   }
