@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a124d5dd_04d5ee4a",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-04-17T19:10:04Z",
+      "side": 1,
+      "message": "This needs #include \u003ciostream\u003e?",
+      "range": {
+        "startLine": 336,
+        "startChar": 4,
+        "endLine": 336,
+        "endChar": 13
+      },
+      "revId": "b45ccfadf9096e6c840910a60680c8596ad5c499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb16ab2_03a517d2",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-04-17T19:10:04Z",
+      "side": 1,
+      "message": "Tab",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 1
+      },
+      "revId": "b45ccfadf9096e6c840910a60680c8596ad5c499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
