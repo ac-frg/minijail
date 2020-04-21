@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "083caa50_8196f7af",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2020-04-21T00:51:53Z",
+      "side": 1,
+      "message": "Removed traces.",
+      "parentUuid": "0a8af12f_e656234c",
+      "range": {
+        "startLine": 336,
+        "startChar": 4,
+        "endLine": 336,
+        "endChar": 13
+      },
+      "revId": "b45ccfadf9096e6c840910a60680c8596ad5c499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fb16ab2_03a517d2",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 2
@@ -93,6 +117,30 @@
       "revId": "b45ccfadf9096e6c840910a60680c8596ad5c499",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34669b8b_e1280cb4",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1566087
+      },
+      "writtenOn": "2020-04-21T00:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fb16ab2_03a517d2",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 1
+      },
+      "revId": "b45ccfadf9096e6c840910a60680c8596ad5c499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
