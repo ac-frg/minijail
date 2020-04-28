@@ -1591,7 +1591,7 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 	    setup_mount_destination(m->src, dest, j->uid, j->gid,
 				    (m->flags & MS_BIND), &original_mnt_flags);
 	if (ret) {
-		warn("creating mount target '%s' failed", dest);
+		warn("cannot create mount target '%s'", dest);
 		goto error;
 	}
 
@@ -1614,7 +1614,8 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 
 	ret = mount(m->src, dest, m->type, m->flags, m->data);
 	if (ret) {
-		pwarn("bind: %s -> %s flags=%#lx", m->src, dest, m->flags);
+		pwarn("cannot bind-mount '%s' as '%s' with flags %#lx", m->src,
+		      dest, m->flags);
 		goto error;
 	}
 
@@ -1623,8 +1624,10 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 		    mount(m->src, dest, NULL,
 			  m->flags | original_mnt_flags | MS_REMOUNT, m->data);
 		if (ret) {
-			pwarn("bind remount: %s -> %s flags=%#lx", m->src, dest,
-			      m->flags | original_mnt_flags | MS_REMOUNT);
+			pwarn(
+			    "cannot bind-remount '%s' as '%s' with flags %#lx",
+			    m->src, dest,
+			    m->flags | original_mnt_flags | MS_REMOUNT);
 			goto error;
 		}
 	}
@@ -1655,7 +1658,7 @@ static void process_mounts_or_die(const struct minijail *j)
 			mount_dev_cleanup(dev_path);
 			errno = saved_errno;
 		}
-		pdie("mount_one failed");
+		_exit(MINIJAIL_ERR_MOUNT);
 	}
 
 	/*
