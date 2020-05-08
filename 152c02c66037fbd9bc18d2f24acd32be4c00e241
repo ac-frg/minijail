@@ -22,6 +22,30 @@
       "revId": "152c02c66037fbd9bc18d2f24acd32be4c00e241",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a8126ee_c8d1084c",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1579921
+      },
+      "writtenOn": "2020-05-08T10:49:14Z",
+      "side": 1,
+      "message": "The function mount_one() does not guarantee to set errno to any specific value.\nAll the interesting failure cases I could find in mount_one() already log a (more specific) warning message.",
+      "parentUuid": "7648a97e_40fcf202",
+      "range": {
+        "startLine": 1659,
+        "startChar": 2,
+        "endLine": 1659,
+        "endChar": 28
+      },
+      "revId": "152c02c66037fbd9bc18d2f24acd32be4c00e241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
