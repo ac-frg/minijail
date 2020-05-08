@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7648a97e_40fcf202",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-05-08T00:38:42Z",
+      "side": 1,
+      "message": "Why not keep the errno log as pwarn?",
+      "range": {
+        "startLine": 1659,
+        "startChar": 2,
+        "endLine": 1659,
+        "endChar": 28
+      },
+      "revId": "152c02c66037fbd9bc18d2f24acd32be4c00e241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
