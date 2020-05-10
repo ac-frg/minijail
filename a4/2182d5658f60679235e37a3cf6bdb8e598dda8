@@ -1,0 +1,10 @@
+Verified+1: François Degros <fdegros@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Autosubmit+1: François Degros <fdegros@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Sun, 10 May 2020 06:42:50 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1298436
+Project: platform/external/minijail
+Branch: refs/heads/master
