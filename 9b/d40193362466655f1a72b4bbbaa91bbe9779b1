@@ -1,0 +1,9 @@
+Code-Review+2: Chih-hung Hsieh <chh@google.com>
+Code-Review+2: Will Drewry <drewry@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Submitted-by: Andrew Walbran <qwandor@google.com>
+Submitted-at: Sat, 06 Jun 2020 09:36:06 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1324615
+Project: platform/external/minijail
+Branch: refs/heads/master
