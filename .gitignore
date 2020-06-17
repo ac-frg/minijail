@@ -40,5 +40,7 @@ googletest-release*
 
 # Cargo build targets.
 /target
+/rust/target
 **/*.rs.bk
 Cargo.lock
+/rust/Cargo.lock
