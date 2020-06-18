@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2e17d12_20989386",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nit: End with period.",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 20
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df3b4f43_927fa578",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nits: Capital F, end with period.",
+      "range": {
+        "startLine": 648,
+        "startChar": 5,
+        "endLine": 648,
+        "endChar": 30
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2dfa6a2_39b99ed0",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nit: Capital F, end with period.",
+      "range": {
+        "startLine": 660,
+        "startChar": 5,
+        "endLine": 660,
+        "endChar": 30
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfda0300_5c2b44fb",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nit: end with period.",
+      "range": {
+        "startLine": 975,
+        "startChar": 34,
+        "endLine": 975,
+        "endChar": 40
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e019a182_c594da1f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1072,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nit: Capital F, end with period.",
+      "range": {
+        "startLine": 1072,
+        "startChar": 20,
+        "endLine": 1072,
+        "endChar": 45
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13056164_4770c894",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Do we really need to support this?",
+      "range": {
+        "startLine": 545,
+        "startChar": 49,
+        "endLine": 545,
+        "endChar": 56
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d906b91_5a68c0d4",
+        "filename": "util.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-18T15:01:53Z",
+      "side": 1,
+      "message": "Nit: \"with\"",
+      "range": {
+        "startLine": 557,
+        "startChar": 34,
+        "endLine": 557,
+        "endChar": 36
+      },
+      "revId": "0ee7cf56a73b466cbcde839e1ff1ebd37e129d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
