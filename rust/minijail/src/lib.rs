@@ -11,6 +11,7 @@ use std::io;
 use std::os::raw::{c_char, c_ulong, c_ushort};
 use std::os::unix::io::{AsRawFd, RawFd};
 use std::path::{Path, PathBuf};
+use std::process::exit;
 use std::ptr::{null, null_mut};
 
 #[derive(Debug)]
@@ -722,8 +723,8 @@ mod tests {
         j.parse_seccomp_filters(Path::new("src/test_filter.policy"))
             .unwrap();
         j.use_seccomp_filter();
-        unsafe {
-            j.fork(None).unwrap();
+        if unsafe { j.fork(None).unwrap() } == 0 {
+            exit(0);
         }
     }
 
@@ -742,6 +743,7 @@ mod tests {
             if j.fork(Some(&fds)).unwrap() == 0 {
                 assert!(libc::close(second) < 0); // Should fail as second should be closed already.
                 assert_eq!(libc::close(first), 0); // Should succeed as first should be untouched.
+                exit(0);
             }
         }
     }
@@ -751,8 +753,8 @@ mod tests {
     fn chroot() {
         let mut j = Minijail::new().unwrap();
         j.enter_chroot(Path::new(".")).unwrap();
-        unsafe {
-            j.fork(None).unwrap();
+        if unsafe { j.fork(None).unwrap() } == 0 {
+            exit(0);
         }
     }
 
@@ -761,8 +763,8 @@ mod tests {
     fn namespace_vfs() {
         let mut j = Minijail::new().unwrap();
         j.namespace_vfs();
-        unsafe {
-            j.fork(None).unwrap();
+        if unsafe { j.fork(None).unwrap() } == 0 {
+            exit(0);
         }
     }
 
