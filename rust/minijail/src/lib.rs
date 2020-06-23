@@ -163,6 +163,39 @@ impl std::error::Error for Error {}
 
 pub type Result<T> = std::result::Result<T, Error>;
 
+/// Abstracts a file descriptor mapping to maintain API compatibility
+///
+/// Abstracts both lists of file descriptors that are treated as a unity
+/// mapping and lists of one-to-one file descriptor relationships for usage with
+/// `minijail_preserve_fd`.
+pub trait FdMap {
+    type Iter: Iterator<Item = (RawFd, RawFd)>;
+    fn iter(&self) -> Self::Iter;
+
+    /// Returns true if one of the iterator values maps to `fd`.
+    fn contains_child_fd(&self, fd: RawFd) -> bool {
+        self.iter().any(|(_, child_fd)| child_fd == fd)
+    }
+}
+
+impl<'a> FdMap for &'a [RawFd] {
+    // This type is the result of calling `.iter().map(|&i| (i, i))` on a `&[RawFd]`
+    type Iter = std::iter::Map<std::slice::Iter<'a, RawFd>, fn(&'a RawFd) -> (RawFd, RawFd)>;
+
+    fn iter(&self) -> Self::Iter {
+        (*self).iter().map(|&i| (i, i))
+    }
+}
+
+impl<'a> FdMap for &'a [(RawFd, RawFd)] {
+    // This type is the result of calling `.iter().cloned()` on a `&[(RawFd, RawFd)]`
+    type Iter = std::iter::Cloned<std::slice::Iter<'a, (RawFd, RawFd)>>;
+
+    fn iter(&self) -> Self::Iter {
+        (*self).iter().cloned()
+    }
+}
+
 /// Configuration to jail a process based on wrapping libminijail.
 ///
 /// Intentionally leave out everything related to `minijail_run`.  Forking is
@@ -561,7 +594,7 @@ impl Minijail {
     /// FDs 0, 1, and 2 are overwritten with /dev/null FDs unless they are included in the
     /// inheritable_fds list. This function may abort in the child on error because a partially
     /// entered jail isn't recoverable.
-    pub fn run(&self, cmd: &Path, inheritable_fds: &[RawFd], args: &[&str]) -> Result<pid_t> {
+    pub fn run(&self, cmd: &Path, inheritable_fds: impl FdMap, args: &[&str]) -> Result<pid_t> {
         let cmd_os = cmd.to_str().ok_or(Error::PathToCString(cmd.to_owned()))?;
         let cmd_cstr = CString::new(cmd_os).map_err(|_| Error::StrToCString(cmd_os.to_owned()))?;
 
@@ -576,8 +609,8 @@ impl Minijail {
         }
         args_array.push(null());
 
-        for fd in inheritable_fds {
-            let ret = unsafe { minijail_preserve_fd(self.jail, *fd, *fd) };
+        for (src_fd, dst_fd) in inheritable_fds.iter() {
+            let ret = unsafe { minijail_preserve_fd(self.jail, src_fd, dst_fd) };
             if ret < 0 {
                 return Err(Error::PreservingFd(ret));
             }
@@ -591,7 +624,7 @@ impl Minijail {
         // Set stdin, stdout, and stderr to /dev/null unless they are in the inherit list.
         // These will only be closed when this process exits.
         for io_fd in &[libc::STDIN_FILENO, libc::STDOUT_FILENO, libc::STDERR_FILENO] {
-            if !inheritable_fds.contains(io_fd) {
+            if !inheritable_fds.contains_child_fd(*io_fd) {
                 let ret = unsafe { minijail_preserve_fd(self.jail, dev_null.as_raw_fd(), *io_fd) };
                 if ret < 0 {
                     return Err(Error::PreservingFd(ret));
@@ -818,6 +851,7 @@ mod tests {
     #[test]
     fn run() {
         let j = Minijail::new().unwrap();
-        reap_pid(j.run(Path::new("/bin/true"), &[], &[]).unwrap()).unwrap();
+        let fds: [RawFd; 0] = [];
+        reap_pid(j.run(Path::new("/bin/true"), fds.as_ref(), &[]).unwrap()).unwrap();
     }
 }
