@@ -699,9 +699,33 @@ fn is_single_threaded() -> io::Result<bool> {
 
 #[cfg(test)]
 mod tests {
+    use libc::{c_int, pid_t, waitpid};
     use std::process::exit;
 
     use super::*;
+
+    fn reap_process_group(pid: pid_t) -> std::result::Result<(), ()> {
+        let mut status: c_int = 1;
+        let mut code: pid_t;
+        let mut errno_value: c_int;
+        if pid <= 0 {
+            return Err(());
+        }
+        loop {
+            unsafe {
+                code = waitpid(-pid, &mut status, 0);
+                errno_value = std::io::Error::last_os_error().raw_os_error().unwrap_or(0);
+            }
+            // Wait
+            if code <= 0 {
+                return if errno_value == libc::ECHILD {
+                    Ok(())
+                } else {
+                    Err(())
+                };
+            }
+        }
+    }
 
     #[test]
     fn create_and_free() {
@@ -724,8 +748,16 @@ mod tests {
         j.parse_seccomp_filters(Path::new("src/test_filter.policy"))
             .unwrap();
         j.use_seccomp_filter();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
+        match unsafe { j.fork(None).unwrap() } {
+            0 => {
+                exit(0);
+            }
+            -1 => {
+                unreachable!();
+            }
+            pid => {
+                reap_process_group(pid).unwrap();
+            }
         }
     }
 
@@ -741,10 +773,18 @@ mod tests {
             let second = libc::open(FILE_PATH.as_ptr() as *const i8, libc::O_RDONLY);
             assert!(second >= 0);
             let fds: Vec<RawFd> = vec![0, 1, 2, first];
-            if j.fork(Some(&fds)).unwrap() == 0 {
-                assert!(libc::close(second) < 0); // Should fail as second should be closed already.
-                assert_eq!(libc::close(first), 0); // Should succeed as first should be untouched.
-                exit(0);
+            match j.fork(Some(&fds)).unwrap() {
+                0 => {
+                    assert!(libc::close(second) < 0); // Should fail as second should be closed already.
+                    assert_eq!(libc::close(first), 0); // Should succeed as first should be untouched.
+                    exit(0);
+                }
+                -1 => {
+                    unreachable!();
+                }
+                pid => {
+                    reap_process_group(pid).unwrap();
+                }
             }
         }
     }
@@ -754,8 +794,16 @@ mod tests {
     fn chroot() {
         let mut j = Minijail::new().unwrap();
         j.enter_chroot(Path::new(".")).unwrap();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
+        match unsafe { j.fork(None).unwrap() } {
+            0 => {
+                exit(0);
+            }
+            -1 => {
+                unreachable!();
+            }
+            pid => {
+                reap_process_group(pid).unwrap();
+            }
         }
     }
 
@@ -764,14 +812,22 @@ mod tests {
     fn namespace_vfs() {
         let mut j = Minijail::new().unwrap();
         j.namespace_vfs();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
+        match unsafe { j.fork(None).unwrap() } {
+            0 => {
+                exit(0);
+            }
+            -1 => {
+                unreachable!();
+            }
+            pid => {
+                reap_process_group(pid).unwrap();
+            }
         }
     }
 
     #[test]
     fn run() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/bin/true"), &[], &[]).unwrap();
+        reap_process_group(j.run(Path::new("/bin/true"), &[], &[]).unwrap()).unwrap();
     }
 }
