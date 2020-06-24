@@ -22,6 +22,30 @@
       "revId": "13d1f5bedf2a0582f33559e859ea1e6fa1931879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6310e81_ec3dc2c2",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-06-24T14:23:16Z",
+      "side": 1,
+      "message": "It isn\u0027t returning an error code yet.\n\nI can go back and add that in once I know this works, but right now I am seeing a deadlock in my local tests, so I don\u0027t think it will resolve the issue yet. I had been using this CL to push changes to my workstation.",
+      "parentUuid": "201aaaad_b196f789",
+      "range": {
+        "startLine": 714,
+        "startChar": 12,
+        "endLine": 714,
+        "endChar": 19
+      },
+      "revId": "13d1f5bedf2a0582f33559e859ea1e6fa1931879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
