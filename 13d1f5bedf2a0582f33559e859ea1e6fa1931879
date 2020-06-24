@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "201aaaad_b196f789",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-06-24T13:25:52Z",
+      "side": 1,
+      "message": "Would it be useful for this to return the error code? Or is it being returned and I\u0027m missing it?",
+      "range": {
+        "startLine": 714,
+        "startChar": 12,
+        "endLine": 714,
+        "endChar": 19
+      },
+      "revId": "13d1f5bedf2a0582f33559e859ea1e6fa1931879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
