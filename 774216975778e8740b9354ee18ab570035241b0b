@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4ef73223_f855aa18",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2020-06-30T16:24:21Z",
+      "side": 1,
+      "message": "What requirements do you have on what can be passed in? Will it ever be anything other than a slice of RawFd or (RawFd,RawFD)?\n\nWould making fork into fork_remap(\u0026[(RawFd,RawFd)]) and adding a\n\nfork(\u0026[RawFd]) { \n// set identity maps for all fds\n// call fork_remap()\n}\n\nwork? That would have zero API change because fork would have the exact same signature.\n\nThe struct Minijail wrapper could also be fattened to contain the FD map, then it could be pulled out of self.",
+      "parentUuid": "1552e2ef_39d87f54",
+      "range": {
+        "startLine": 672,
+        "startChar": 54,
+        "endLine": 672,
+        "endChar": 64
+      },
+      "revId": "774216975778e8740b9354ee18ab570035241b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57b8222e_6466daef",
         "filename": "rust/minijail/src/lib.rs",
         "patchSetId": 6
