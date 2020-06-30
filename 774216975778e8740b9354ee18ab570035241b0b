@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1db0ba76_63cca7ad",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-06-30T18:08:37Z",
+      "side": 1,
+      "message": "That option sounds good to me.",
+      "parentUuid": "4ef73223_f855aa18",
+      "range": {
+        "startLine": 672,
+        "startChar": 54,
+        "endLine": 672,
+        "endChar": 64
+      },
+      "revId": "774216975778e8740b9354ee18ab570035241b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57b8222e_6466daef",
         "filename": "rust/minijail/src/lib.rs",
         "patchSetId": 6
