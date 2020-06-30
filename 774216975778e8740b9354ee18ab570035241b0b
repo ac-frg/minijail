@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1552e2ef_39d87f54",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-06-30T15:46:19Z",
+      "side": 1,
+      "message": "I thought about dropping FdMap and using \u0026[FdMapItem] instead, but that doesn\u0027t really change the usage that much.",
+      "range": {
+        "startLine": 672,
+        "startChar": 54,
+        "endLine": 672,
+        "endChar": 64
+      },
+      "revId": "774216975778e8740b9354ee18ab570035241b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57b8222e_6466daef",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-06-30T15:46:19Z",
+      "side": 1,
+      "message": "This is an unpleasant consequence of not being able to set a default implementation. This could be resolved if the \"never primitive\" feature is added to stable Rust. The same is true for the similar changes below.",
+      "range": {
+        "startLine": 770,
+        "startChar": 31,
+        "endLine": 770,
+        "endChar": 44
+      },
+      "revId": "774216975778e8740b9354ee18ab570035241b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac3af195_ec89e745",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-06-30T15:46:19Z",
+      "side": 1,
+      "message": "This would be unnecessary if the \"never primitive\" feature is added to stable Rust.",
+      "range": {
+        "startLine": 819,
+        "startChar": 38,
+        "endLine": 819,
+        "endChar": 40
+      },
+      "revId": "774216975778e8740b9354ee18ab570035241b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
