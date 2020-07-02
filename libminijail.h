@@ -167,6 +167,12 @@ void minijail_inherit_usergroups(struct minijail *j);
  */
 int minijail_use_alt_syscall(struct minijail *j, const char *table);
 
+/*
+ * Prevent all threads, and all threads in all child processes, from
+ * running on sibling cores.
+ */
+int minijail_enable_core_sched(struct minijail *j);
+
 /* Sets the given runtime limit. See getrlimit(2). */
 int minijail_rlimit(struct minijail *j, int type, rlim_t cur, rlim_t max);
 

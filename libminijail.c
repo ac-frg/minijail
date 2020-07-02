@@ -47,6 +47,9 @@
 #ifndef PR_ALT_SYSCALL
 # define PR_ALT_SYSCALL 0x43724f53
 #endif
+#ifndef PR_SET_CORE_SCHED
+# define PR_SET_CORE_SCHED 0x200
+#endif
 
 /* Seccomp filter related flags. */
 #ifndef PR_SET_NO_NEW_PRIVS
@@ -157,6 +160,7 @@ struct minijail {
 		int run_as_init : 1;
 		int pid_file : 1;
 		int cgroups : 1;
+		int core_sched : 1;
 		int alt_syscall : 1;
 		int reset_signal_mask : 1;
 		int reset_signal_handlers : 1;
@@ -1133,6 +1137,21 @@ void API minijail_set_seccomp_filters(struct minijail *j,
 	if (set_seccomp_filters_internal(j, filter, false /* owned */) < 0) {
 		die("failed to set seccomp filter");
 	}
+}
+
+int API minijail_enable_core_sched(struct minijail *j)
+{
+    /*
+     * Probe for support by passing an invalid parameter and checking
+     * for ERANGE.
+     */
+    int ret = prctl(PR_SET_CORE_SCHED, 2);
+    if (ret == 0 || errno != ERANGE) {
+        return -ENOTSUP;
+    }
+
+    j->flags.core_sched = 1;
+    return 0;
 }
 
 int API minijail_use_alt_syscall(struct minijail *j, const char *table)
@@ -2308,6 +2327,15 @@ void API minijail_enter(const struct minijail *j)
 		drop_ugid(j);
 		drop_caps(j, last_valid_cap);
 	}
+
+    /*
+     * Flag all threads and all children as untrusted, requesting they do
+     * not share sibling cores.
+     */
+    if (j->flags.core_sched) {
+		if (prctl(PR_SET_CORE_SCHED, 1))
+			pdie("prctl(PR_CORE_SCHED) failed");
+    }
 
 	/*
 	 * Select the specified alternate syscall table.  The table must not
