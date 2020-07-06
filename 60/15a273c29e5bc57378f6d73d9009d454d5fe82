@@ -1,0 +1,6 @@
+Code-Review+2: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-by: android-build-prod (mdb) <android-build-team-robot@google.com>
+Submitted-at: Mon, 06 Jul 2020 16:18:12 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1356082
+Project: platform/external/minijail
+Branch: refs/heads/emu-30-release
