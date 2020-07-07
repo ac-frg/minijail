@@ -247,12 +247,7 @@ impl Minijail {
             minijail_keep_supplementary_gids(self.jail);
         }
     }
-    pub fn set_rlimit(
-        &mut self,
-        kind: libc::c_int,
-        cur: libc::rlim64_t,
-        max: libc::rlim64_t,
-    ) -> Result<()> {
+    pub fn set_rlimit(&mut self, kind: libc::c_int, cur: rlim_t, max: rlim_t) -> Result<()> {
         let errno = unsafe { minijail_rlimit(self.jail, kind, cur, max) };
         if errno == 0 {
             Ok(())
