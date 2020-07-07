@@ -52,6 +52,23 @@
       "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6639f05_a761d9bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2020-07-07T19:45:28Z",
+      "side": 1,
+      "message": "Please also bump the minijail crate version (0.1.0 -\u003e 0.2.0) since this is technically an incompatible API change.",
+      "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
