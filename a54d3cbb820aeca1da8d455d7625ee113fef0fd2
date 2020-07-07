@@ -16,6 +16,24 @@
       "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a4d34fd_342a3a21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2020-07-07T15:50:48Z",
+      "side": 1,
+      "message": "minijail_sys::rlim_t is defined to be u64 in minijail-sys/libminijail.rs.\n\nlibc::rlim64_t is defined to be u64 on linux, uclibc, emscripten and fuchsia, but undefined on android, because the C (i.e. Bionic) headers on Android don\u0027t define it.\n\n`struct rlimit64_t` in Bionic (https://cs.android.com/android/platform/superproject/+/master:bionic/libc/kernel/uapi/linux/resource.h;l\u003d50?q\u003drlimit\u0026sq\u003d\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:bionic%2F) uses __u64 for its members directly.",
+      "parentUuid": "e6673868_7d1cb0a2",
+      "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
