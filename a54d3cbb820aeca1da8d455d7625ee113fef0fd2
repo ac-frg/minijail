@@ -139,6 +139,24 @@
       "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db0bd7ac_75bf7345",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1074798
+      },
+      "writtenOn": "2020-07-08T11:03:52Z",
+      "side": 1,
+      "message": "If it\u0027s guaranteed that minijail_sys::rlim_t will always be u64 then it should be fine.  I think that might be the case because bindgen takes the compiler flags into account when generating the bindings but it would be nice to be sure.\n\n\nPersonally I still think fixing android\u0027s broken libc is the right way to handle this but I\u0027m not the owner of minijail so I\u0027ll defer to one of them.",
+      "parentUuid": "1a65c419_bb32cf9f",
+      "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
