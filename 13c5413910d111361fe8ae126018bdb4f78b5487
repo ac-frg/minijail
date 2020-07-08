@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f02ed519_4cb9391d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398108
+      },
+      "writtenOn": "2020-07-08T18:55:25Z",
+      "side": 1,
+      "message": "PTAL Want to add support for tagging processes not to share sibling cores where the kernel can support this.\n\nAccessible only from libminijail and not brought out to minijail0 executable as a CLI option. Do we have a use case for that?\n\nIntended to be plumbed down through run_oci-\u003elibcontainer to keep Android code away from sibling cores running trusted CrOS code. (eg crrev.com/c/2284200 crrev.com/c/2284199)",
+      "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
