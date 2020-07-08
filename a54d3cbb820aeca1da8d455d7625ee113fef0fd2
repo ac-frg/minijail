@@ -157,6 +157,24 @@
       "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0f111f2_72036cd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2020-07-08T11:09:58Z",
+      "side": 1,
+      "message": "rlim_t is defined as __rlim64_t, which according to the comments in minijail-sys/lib.rs, is explicitly passed as a flag to bindgen:\n\n--blacklist-type \u0027__rlim64_t\u0027 \\\n--raw-line \u0027pub type __rlim64_t \u003d u64;\u0027 \\",
+      "parentUuid": "db0bd7ac_75bf7345",
+      "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
