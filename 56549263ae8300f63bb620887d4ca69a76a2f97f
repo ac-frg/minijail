@@ -16,6 +16,23 @@
       "revId": "56549263ae8300f63bb620887d4ca69a76a2f97f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "703e25a0_fa6a074b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-07-08T19:09:21Z",
+      "side": 1,
+      "message": "Can we add this explanation to a comment somewhere, so that we know what\u0027s going on the next time this comes up, and we don\u0027t need to ping Chirantan again?",
+      "revId": "56549263ae8300f63bb620887d4ca69a76a2f97f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
