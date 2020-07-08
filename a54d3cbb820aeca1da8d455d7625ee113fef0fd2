@@ -86,6 +86,23 @@
       "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39fe54c7_1bd706ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1074798
+      },
+      "writtenOn": "2020-07-08T04:52:56Z",
+      "side": 1,
+      "message": "As Mike said, https://r.android.com/1173796 is the previous incarnation of this.\n\nBasically my understanding is that the rust bindings have to be explicitly 64-bits because the minijail ABI expects a 64-bit value.  It does this by setting some flags:\n\n     CPPFLAGS +\u003d -D_FILE_OFFSET_BITS\u003d64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE\n\nso that rlim_t is the same as rlim64_t.  However, the rust toolchain doesn\u0027t see those flags so when compiling a 32-bit executable (all of chrome os arm userspace currently) it defines rlim_t to be a 32-bit value.  Landing this change will break chrome os arm userspace.\n\nI see 2 ways to fix this:\n\n  1. bionic can define the symbol.  Every other libc does it so this is clearly a bionic problem that should be fixed in bionic and not worked around everywhere else.\n  2. We define a minijail::rlim_t type that\u0027s explicitly 64 bits and use it in the bindings instead of libc::rlim_t.",
+      "revId": "a54d3cbb820aeca1da8d455d7625ee113fef0fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
