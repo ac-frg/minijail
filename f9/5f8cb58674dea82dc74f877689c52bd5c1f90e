@@ -1,0 +1,9 @@
+Autosubmit+1: Andrew Walbran <qwandor@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Thu, 09 Jul 2020 16:00:14 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1355741
+Project: platform/external/minijail
+Branch: refs/heads/master
