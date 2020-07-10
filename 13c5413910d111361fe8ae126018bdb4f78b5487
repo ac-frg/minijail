@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "2421278e_242eeb4b",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2338,
+      "author": {
+        "id": 1066743
+      },
+      "writtenOn": "2020-07-10T18:12:19Z",
+      "side": 1,
+      "message": "and on that note, would running this in the context of MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS help avoid this?\n\nsomething like \n\n  static int set_core_sched(void* payload) {\n    return prctl(PR_SET_CORE_SCHED);\n  }\n  // ...\n  minijail_add_hook(j, \u0026set_core_sched, nullptr,\n                    MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS);",
+      "parentUuid": "cfe39515_684be57c",
+      "range": {
+        "startLine": 2331,
+        "startChar": 0,
+        "endLine": 2338,
+        "endChar": 5
+      },
+      "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "feb4c217_bd2ab003",
         "filename": "libminijail.h",
         "patchSetId": 3
