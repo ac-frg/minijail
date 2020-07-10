@@ -16,6 +16,75 @@
       "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28c8961c_e8579b2b",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-07-10T18:06:58Z",
+      "side": 1,
+      "message": "Same, use \"scheduling\"",
+      "range": {
+        "startLine": 163,
+        "startChar": 11,
+        "endLine": 163,
+        "endChar": 16
+      },
+      "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe39515_684be57c",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2338,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-07-10T18:06:58Z",
+      "side": 1,
+      "message": "This can fail if the seccomp policy above has blocked prctl, so it might make sense to do it before it, maybe right before line 2309. You can imagine that a process where you set core scheduling might be untrusted enough that you might also want to prevent it from calling prctl() (and you might not want to force users to allow this specific call to prctl().",
+      "range": {
+        "startLine": 2331,
+        "startChar": 0,
+        "endLine": 2338,
+        "endChar": 5
+      },
+      "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feb4c217_bd2ab003",
+        "filename": "libminijail.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-07-10T18:06:58Z",
+      "side": 1,
+      "message": "This can probably spell out the entire word.",
+      "range": {
+        "startLine": 174,
+        "startChar": 25,
+        "endLine": 174,
+        "endChar": 30
+      },
+      "revId": "13c5413910d111361fe8ae126018bdb4f78b5487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
