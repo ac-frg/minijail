@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7e1e90a_251974d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2020-07-17T01:51:16Z",
+      "side": 1,
+      "message": "It took a bit of digging to find why some MS_* flags were accepted in \u0027-k\u0027 and not others...\n\n... I also notice there are several ARC scripts that resort to hex because of this.",
+      "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
