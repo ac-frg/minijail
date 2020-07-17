@@ -16,6 +16,23 @@
       "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6abea509_65d7959c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2020-07-17T02:35:43Z",
+      "side": 1,
+      "message": "hmm, apparently there be dragons here.\n\nout/soong/.intermediates/external/minijail/libminijail_gen_constants/android_arm_armv8-a_cortex-a53/gen/libconstants.c:2625:19: error: initializer element is not a compile-time constant\n  { \"FLT_ROUNDS\", (unsigned long) FLT_ROUNDS },\n                  ^~~~~~~~~~~~~~~~~~~~~~~~~~\n\nI may see if there\u0027s anything smarter I can do.",
+      "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
