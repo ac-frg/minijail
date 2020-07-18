@@ -50,6 +50,24 @@
       "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed9f4be1_0d0573d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096846
+      },
+      "writtenOn": "2020-07-18T00:12:00Z",
+      "side": 1,
+      "message": "Funny.\n\nI\u0027d expect I could just do a match specifically for things that look like bit-shifting, to at least catch a few more things without as many false (non-const) positives.",
+      "parentUuid": "8fab7eeb_3e49abe6",
+      "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
