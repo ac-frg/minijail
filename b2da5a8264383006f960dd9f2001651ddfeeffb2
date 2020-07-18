@@ -33,6 +33,23 @@
       "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8fab7eeb_3e49abe6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-07-18T00:03:17Z",
+      "side": 1,
+      "message": "https://r.android.com/932707 :/",
+      "revId": "b2da5a8264383006f960dd9f2001651ddfeeffb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
