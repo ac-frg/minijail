@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "343063b4_54854934",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2020-07-21T08:35:33Z",
+      "side": 1,
+      "message": "How come this is here rather than under rust/minijail? Also, is this using the latest version of cargo2android.py? I thought it was generating rust_library rules now rather than rust_library_rlib.",
+      "revId": "fc0174cd4eaaebccf15e60cb6087e7a5e789af15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
