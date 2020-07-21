@@ -16,6 +16,24 @@
       "revId": "fc0174cd4eaaebccf15e60cb6087e7a5e789af15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89f3714d_49cf3ea1",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-07-21T15:27:36Z",
+      "side": 1,
+      "message": "Actually, I just copied it from above and hand-edited it.\n\nI couldn\u0027t get \"mmma\" to pass on this project because target rust wasn\u0027t building for me. Seems to be a bug with the way target rust\u0027s dependencies are tracked if you have erased your OUT_DIR.",
+      "parentUuid": "343063b4_54854934",
+      "revId": "fc0174cd4eaaebccf15e60cb6087e7a5e789af15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
