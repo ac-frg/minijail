@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29c37881_ae5f2add",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-07-22T20:57:38Z",
+      "side": 1,
+      "message": "This is going to need another pass for the changes in patchset 4 because I had to make some non-trivial changes to address an issue with return codes being treated as large signal numbers.",
+      "revId": "f2384e5d364a6be041b9ee6cf9518d77750e93fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
