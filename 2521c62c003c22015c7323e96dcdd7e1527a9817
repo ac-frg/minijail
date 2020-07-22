@@ -16,6 +16,46 @@
       "revId": "2521c62c003c22015c7323e96dcdd7e1527a9817",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd571d97_59bd7189",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2020-07-22T20:22:48Z",
+      "side": 1,
+      "message": "LGTM % comment nit",
+      "revId": "2521c62c003c22015c7323e96dcdd7e1527a9817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc929288_54ab42a4",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1080833
+      },
+      "writtenOn": "2020-07-22T20:22:48Z",
+      "side": 1,
+      "message": "Should this comment be before the unsafe block on 735?",
+      "range": {
+        "startLine": 732,
+        "startChar": 0,
+        "endLine": 732,
+        "endChar": 61
+      },
+      "revId": "2521c62c003c22015c7323e96dcdd7e1527a9817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
