@@ -16,6 +16,29 @@
       "revId": "2e8c25c11b429f44c368c99fc323306c22e7f2fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a5d7fbc_3986cb08",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-07-22T19:45:32Z",
+      "side": 1,
+      "message": "Tiny nit: end this and below with period?",
+      "range": {
+        "startLine": 80,
+        "startChar": 58,
+        "endLine": 80,
+        "endChar": 67
+      },
+      "revId": "2e8c25c11b429f44c368c99fc323306c22e7f2fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
