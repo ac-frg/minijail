@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1065977_5566e757",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2020-07-22T19:17:56Z",
+      "side": 1,
+      "message": "This is the CL I am working on. The wait_noaccess and wait_nocommand tests are failing.\n\nTo reproduce the failure inside the chroot:\n1) cd ~/trunk/src/aosp/external/minijail/rust/minijail\n2) cargo test",
+      "revId": "2e8c25c11b429f44c368c99fc323306c22e7f2fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
