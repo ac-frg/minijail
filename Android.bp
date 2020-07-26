@@ -489,4 +489,9 @@ rust_library {
         "liblibc",
         "libminijail_sys",
     ],
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
 }
