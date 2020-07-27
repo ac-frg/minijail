@@ -1,0 +1,10 @@
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Code-Review+2: Alistair Delva <adelva@google.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Autosubmit+1: Yo Chiang <yochiang@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Mon, 27 Jul 2020 04:08:58 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1371726
+Project: platform/external/minijail
+Branch: refs/heads/master
