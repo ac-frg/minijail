@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67bf12b1_551116e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-24T21:26:53Z",
+      "side": 1,
+      "message": "i\u0027m guessing this is only needed when generating the constants tables not all minijail code ?\n\nmight be better if we move these to the C files as we\u0027ll be able to test it better, and work with distros outside of Android.\n\ngen_syscalls.c would have the __NR fallbacks.  gen_constants-inl.h would have the ioctl fallbacks.",
+      "revId": "622448346c3dcd0e4a5bedddc63e44311d09a7af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
