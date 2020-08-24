@@ -40,6 +40,35 @@ cc_defaults {
         "-Werror",
     ],
     target: {
+        // Workaround for old glibc host toolchain
+        linux_glibc: {
+            cflags: [
+                "-DFS_IOC_FSGETXATTR=0x801c581f",
+                "-DFS_IOC_FSSETXATTR=0x401c5820",
+                "-DFS_IOC_GET_ENCRYPTION_POLICY=0x400c6615",
+                "-DFS_IOC_SET_ENCRYPTION_POLICY=0x800c6613",
+            ],
+        },
+        // Workaround for old glibc host toolchain (32-bit)
+        linux_glibc_x86: {
+            cflags: [
+                "-D__NR_copy_file_range=377",
+                "-D__NR_getrandom=355",
+                "-D__NR_memfd_create=356",
+                "-D__NR_renameat2=353",
+                "-D__NR_statx=383",
+            ],
+        },
+        // Workaround for old glibc host toolchain (64-bit)
+        linux_glibc_x86_64: {
+            cflags: [
+                "-D__NR_copy_file_range=326",
+                "-D__NR_getrandom=318",
+                "-D__NR_memfd_create=319",
+                "-D__NR_renameat2=316",
+                "-D__NR_statx=332",
+            ],
+        },
         darwin: {
             enabled: false,
         },
