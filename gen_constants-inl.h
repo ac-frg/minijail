@@ -28,3 +28,39 @@
 // build errors on such broken systems.
 #undef BLKTRACESETUP
 #undef FS_IOC_FIEMAP
+
+// The old glibc bundled with the Android host toolchain is missing some ioctl
+// definitions used by minijail policy in crosvm and other projects. Locally
+// define them below.
+// This UAPI is taken from sanitized bionic headers
+
+// <linux/fs.h>
+#if !defined(FS_IOC_FSGETXATTR) && \
+    !defined(FS_IOC_FSSETXATTR)
+struct fsxattr {
+  __u32 fsx_xflags;
+  __u32 fsx_extsize;
+  __u32 fsx_nextents;
+  __u32 fsx_projid;
+  __u32 fsx_cowextsize;
+  unsigned char fsx_pad[8];
+};
+#define FS_IOC_FSGETXATTR _IOR('X', 31, struct fsxattr)
+#define FS_IOC_FSSETXATTR _IOW('X', 32, struct fsxattr)
+#endif // !FS_IOC_FSGETXATTR && !FS_IOC_FSSETXATTR
+
+// <linux/fscrypt.h>
+#if !defined(FS_IOC_SET_ENCRYPTION_POLICY) && \
+    !defined(FS_IOC_GET_ENCRYPTION_POLICY)
+#define FSCRYPT_KEY_DESCRIPTOR_SIZE 8
+struct fscrypt_policy_v1 {
+  __u8 version;
+  __u8 contents_encryption_mode;
+  __u8 filenames_encryption_mode;
+  __u8 flags;
+  __u8 master_key_descriptor[FSCRYPT_KEY_DESCRIPTOR_SIZE];
+};
+#define fscrypt_policy fscrypt_policy_v1
+#define FS_IOC_SET_ENCRYPTION_POLICY _IOR('f', 19, struct fscrypt_policy)
+#define FS_IOC_GET_ENCRYPTION_POLICY _IOW('f', 21, struct fscrypt_policy)
+#endif // !FS_IOC_SET_ENCRYPTION_POLICY && !FS_IOC_GET_ENCRYPTION_POLICY
