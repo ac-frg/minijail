@@ -227,6 +227,24 @@
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e83f99a_d60625f9",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-25T05:30:14Z",
+      "side": 1,
+      "message": "feel free to add it if you want it, but tbh, this is all dead code on CrOS as we have up-to-date kernel headers",
+      "parentUuid": "63868a11_7da88075",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
