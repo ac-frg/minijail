@@ -209,6 +209,24 @@
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63868a11_7da88075",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T05:22:08Z",
+      "side": 1,
+      "message": "Okay, so I make this #elif __arm64__. Do you want __arm__ as well? I noticed there is a 32-bit seccomp policy for crosvm, so I assume yes?",
+      "parentUuid": "46b98902_11a1f5b2",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
