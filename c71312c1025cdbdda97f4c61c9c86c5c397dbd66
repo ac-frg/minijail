@@ -191,6 +191,24 @@
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b98902_11a1f5b2",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-25T02:22:53Z",
+      "side": 1,
+      "message": "even asm-generic arches are messy with some syscalls when it comes to compat symbols.  i\u0027m reluctant to start relying on that pattern and then having to remember whether it\u0027s a \"safe\" symbol.  see the stat and related symbols.\n\nif that weren\u0027t a problem, i\u0027m not sure there\u0027s an easy way to determine whether the current target is an asm-generic arch.  we could sniff header defines but i really like to avoid those :/.",
+      "parentUuid": "d26eebea_b25b44eb",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
