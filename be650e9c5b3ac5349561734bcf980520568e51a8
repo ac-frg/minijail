@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71e79452_f21ca476",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-08-25T12:32:20Z",
+      "side": 1,
+      "message": "Did you take a quick look at the generated files to ensure they\u0027re reasonable?",
+      "revId": "be650e9c5b3ac5349561734bcf980520568e51a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
