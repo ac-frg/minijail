@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0c862e5a_a5a1f68e",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T02:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f6870ae_79345778",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15c70f4f_95ead7b2",
         "filename": "gen_syscalls-inl.h",
         "patchSetId": 5
@@ -50,6 +68,24 @@
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19e4ae26_6acb1496",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T02:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c70f4f_95ead7b2",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "2aec3bec_13581f8e",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T02:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f203de_a08bf325",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6955529_39557341",
         "filename": "gen_syscalls-inl.h",
         "patchSetId": 5
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "96c57e6c_bd6e181c",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T02:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6955529_39557341",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aad46f31_f96b1a73",
         "filename": "gen_syscalls-inl.h",
         "patchSetId": 5
@@ -98,6 +170,24 @@
       "writtenOn": "2020-08-25T01:42:55Z",
       "side": 1,
       "message": "this needs to be tied to a specific arch.  there is no \"else\".",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d26eebea_b25b44eb",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T02:07:30Z",
+      "side": 1,
+      "message": "The idea here was for \"#else\" to be the architectures using asm-generic (which is a quite a few, including arm64), but it\u0027s true that 32-bit ARM does not use asm-generic and it\u0027s missing here. Would you prefer to just not define it for the \"generic\" architectures?",
+      "parentUuid": "aad46f31_f96b1a73",
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
