@@ -245,6 +245,24 @@
       "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5c0efb7_a930b626",
+        "filename": "gen_syscalls-inl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T14:26:37Z",
+      "side": 1,
+      "message": "I\u0027ll add arm64 and not arm. We are working to add host arm64 support to the Android build system; it likely won\u0027t use this old glibc toolchain, but if it does, we\u0027ll be ready for it..",
+      "parentUuid": "4e83f99a_d60625f9",
+      "revId": "c71312c1025cdbdda97f4c61c9c86c5c397dbd66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
