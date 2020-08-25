@@ -16,6 +16,24 @@
       "revId": "622448346c3dcd0e4a5bedddc63e44311d09a7af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5980a053_e694c5df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-25T00:21:25Z",
+      "side": 1,
+      "message": "\u003e i\u0027m guessing this is only needed when generating the constants tables not all minijail code ?\n\u003e \n\u003e might be better if we move these to the C files as we\u0027ll be able to test it better, and work with distros outside of Android.\n\u003e \n\u003e gen_syscalls.c would have the __NR fallbacks.  gen_constants-inl.h would have the ioctl fallbacks.\n\nThanks for the feedback. Re-implemented my workarounds in C code, so other platforms and architectures should be able to take advantage if compiling against older uapi headers / libcs.",
+      "parentUuid": "67bf12b1_551116e6",
+      "revId": "622448346c3dcd0e4a5bedddc63e44311d09a7af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
