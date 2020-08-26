@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25c1e9b5_587d1296",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-26T13:57:05Z",
+      "side": 1,
+      "message": "Fixing merge conflict after change 1407288 \"libminijailpreload: clear __MINIJAIL_FD before running main()\" was merged as 35b9596.\n\nThis change was already included in my patch, hence the conflict.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
