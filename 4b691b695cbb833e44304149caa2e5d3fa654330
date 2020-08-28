@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8005730c_4bbb6528",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 0,
+      "message": "you should move this to util.c as minijail_unsetenv.  that will make it easy to write an --unset-env option too so people can remove single env vars before executing.",
+      "revId": "4b691b695cbb833e44304149caa2e5d3fa654330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cbc1fb_7fab411c",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 0,
+      "message": "this func is buggy which your change fixes -- it\u0027s doing a prefix search on the name.  this would need something like:\n\n if (!strncmp(envp[i], name, strlen(name)) \u0026\u0026 envp[i][strlen(name)] \u003d\u003d \u0027\u003d\u0027)",
+      "revId": "4b691b695cbb833e44304149caa2e5d3fa654330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

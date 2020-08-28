@@ -16,6 +16,343 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acbe87a8_1ed12a36",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "we never do this.  the prototype must live in a header file that both modules include.  sprinkling prototypes in other files makes it trivial for them to fall out of sync and lead to hard to debug crashes when signatures change, and the compiler will never catch it.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6690920e_7b074555",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "\"null\" -\u003e \"clear\"",
+      "range": {
+        "startLine": 41,
+        "startChar": 52,
+        "endLine": 41,
+        "endChar": 56
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bfdfebf_88294719",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "delete \"the\" here",
+      "range": {
+        "startLine": 55,
+        "startChar": 38,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdaec3e1_c6667116",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "never use rindex() -- it\u0027s a deprecated/dead func.  use strrchr() instead.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d44b5a2_eadbb102",
+        "filename": "minijail0.1",
+        "patchSetId": 9
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "\"our own\" -\u003e \"the active\"",
+      "range": {
+        "startLine": 287,
+        "startChar": 74,
+        "endLine": 288,
+        "endChar": 3
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bba8257c_93562bfa",
+        "filename": "minijail0.1",
+        "patchSetId": 9
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "positioned-\u003ecome",
+      "range": {
+        "startLine": 289,
+        "startChar": 29,
+        "endLine": 289,
+        "endChar": 39
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f2b6e39_6cba1fc5",
+        "filename": "minijail0.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "i\u0027m inclined to add a minijail_run_env variant that\u0027s like minijail_run but also accepts the envp",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a96ad10_e372d45b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "don\u0027t use this.  update the main func to accept the envp.\n\n int main(int argc, char *argv[], char **environ)\n\nthen you can pass it down as needed.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c10426_20b84d28",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "positioned-\u003ecome",
+      "range": {
+        "startLine": 595,
+        "startChar": 54,
+        "endLine": 595,
+        "endChar": 64
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24529dc6_3c43fade",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "\"our own\"-\u003e\"the active\"",
+      "range": {
+        "startLine": 595,
+        "startChar": 25,
+        "endLine": 595,
+        "endChar": 32
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c375c253_caf60f3d",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "|optarg| is a global name that should not be shadowed.  call it |arg| like all the other funcs.",
+      "range": {
+        "startLine": 625,
+        "startChar": 52,
+        "endLine": 625,
+        "endChar": 58
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87f417ee_a5e1b433",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "there\u0027s no need to mark the arg as |const|.  we don\u0027t do that in other helpers in this file, and it means you can avoid having to use strdup() below.  just mutate the string in place.",
+      "range": {
+        "startLine": 625,
+        "startChar": 40,
+        "endLine": 625,
+        "endChar": 45
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19046c3c_ffa90673",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "all exit paths must have an accompanying error message",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76d9d487_3bd51b1b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "never use index() -- it\u0027s a deprecated/dead func.  use strchr() instead.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a29c8c7_8e6b15b3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "no need to free when exiting",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "044cd211_9e508c70",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "fairly certain this is incorrect\n\nenvp is a pointer to a pointer to an array of pointers.  it\u0027s stored on the stack, so it\u0027s always valid.\n\n*envp is a pointer to an array of pointers which needs to be NULL terminated.  it starts off NULL.  you allocated a single entry above.\n\n(*envp)[0] is a pointer to a string.  \u0027\\0\u0027 is a character, not a pointer.  it happens to work out to be 0 which is the same \"value\" as NULL, but it\u0027s not the same at the language level.  you need to assign NULL here.\n\nor you could simply use calloc() which zeros the memory for you.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d08e75_0944d88a",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-28T04:44:38Z",
+      "side": 1,
+      "message": "same comment here as above",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
