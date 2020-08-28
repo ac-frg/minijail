@@ -29,6 +29,20 @@
 #define IDMAP_LEN 32U
 #define DEFAULT_TMP_SIZE (64 * 1024 * 1024)
 
+/*
+ * A malloc() that aborts on failure.  We only implement this in the CLI as
+ * the library should return ENOMEM errors when allocations fail.
+ */
+static void *xmalloc(size_t size)
+{
+	void *ret = malloc(size);
+	if (!ret) {
+		perror("malloc() failed");
+		exit(1);
+	}
+	return ret;
+}
+
 static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 		     gid_t *out_gid)
 {
@@ -289,7 +303,7 @@ static void add_mount(struct minijail *j, char *arg)
 static char *build_idmap(id_t id, id_t lowerid)
 {
 	int ret;
-	char *idmap = malloc(IDMAP_LEN);
+	char *idmap = xmalloc(IDMAP_LEN);
 	ret = snprintf(idmap, IDMAP_LEN, "%d %d 1", id, lowerid);
 	if (ret < 0 || (size_t)ret >= IDMAP_LEN) {
 		free(idmap);
@@ -487,12 +501,7 @@ static void read_seccomp_filter(const char *filter_path,
 	rewind(f);
 
 	filter->len = filter_size / sizeof(struct sock_filter);
-	filter->filter = malloc(filter_size);
-	if (!filter->filter) {
-		fclose(f);
-		fprintf(stderr, "failed to allocate memory for filter: %m");
-		exit(1);
-	}
+	filter->filter = xmalloc(filter_size);
 	if (fread(filter->filter, sizeof(struct sock_filter), filter->len, f) !=
 	    filter->len) {
 		fclose(f);
