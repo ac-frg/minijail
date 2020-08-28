@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cce8e90_ff308004",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-08-28T13:30:05Z",
+      "side": 1,
+      "message": "Nit: maybe \"final BPF filter\".",
+      "range": {
+        "startLine": 823,
+        "startChar": 26,
+        "endLine": 823,
+        "endChar": 42
+      },
+      "revId": "c2db2055292c7a7e32a6c57be2c41676df45fede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
