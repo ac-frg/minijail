@@ -36,6 +36,41 @@
     },
     {
       "key": {
+        "uuid": "81088d1c_4f6835e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Thanks for the review, applied your suggestions.",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4973b975_15b1c090",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Probably a good idea, especially because at some point I think it would be nice to add a new option: --env-passthrough (or --env-keep?), that passes this specific environment variable to the child, copying the current env value. Only meaningful if we have --env-clear before, of course.\n\nThis would be of use to sanitize the env with e.g. `--env-clear --env-keep HOME --env-keep USER`\n\nIn fact, we may want to mimic sudo\u0027s semantic and naming, they have:\n- env_reset, which is what\u0027s we\u0027re calling --env-clear\n- env_delete, lists the vars to remove if env_reset is NOT in effect (this is our --unset-env)\n- env_keep, lists the vars to keep if env_reset IS is effect\n\nI think I like their naming better. This would leave us with:\n--env-reset (was: clear)\n--env-delete VARNAME (was: unset)\n--env-keep VARNAME (not yet implemented)\n--env-add VARNAME (was: set, this is to be consistent with \"delete\" vs \"unset\")\n\nDoes that sound good?",
+      "parentUuid": "4caf132c_86e2e6ca",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "acbe87a8_1ed12a36",
         "filename": "libminijailpreload.c",
         "patchSetId": 9
@@ -50,6 +85,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9318d52_ab005a5d",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "You\u0027re right, I moved it to util.h where it belongs, then #included util.h here.\nI had to change the name of the \"die\" func in this file to \"fatal\" however, as it was colliding with a #define in new newly #included util.h.\nThe name collision was probably the (bad) reason I did this in the first place.",
+      "parentUuid": "acbe87a8_1ed12a36",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +129,30 @@
     },
     {
       "key": {
+        "uuid": "9ff4a0ef_eed79e7c",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6690920e_7b074555",
+      "range": {
+        "startLine": 41,
+        "startChar": 52,
+        "endLine": 41,
+        "endChar": 56
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bfdfebf_88294719",
         "filename": "libminijailpreload.c",
         "patchSetId": 9
@@ -99,6 +176,30 @@
     },
     {
       "key": {
+        "uuid": "d11585e8_8a01c156",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bfdfebf_88294719",
+      "range": {
+        "startLine": 55,
+        "startChar": 38,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdaec3e1_c6667116",
         "filename": "libminijailpreload.c",
         "patchSetId": 9
@@ -113,6 +214,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd924344_6c6ff79d",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdaec3e1_c6667116",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -139,6 +258,30 @@
     },
     {
       "key": {
+        "uuid": "d437e1a4_3549f757",
+        "filename": "minijail0.1",
+        "patchSetId": 9
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d44b5a2_eadbb102",
+      "range": {
+        "startLine": 287,
+        "startChar": 74,
+        "endLine": 288,
+        "endChar": 3
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bba8257c_93562bfa",
         "filename": "minijail0.1",
         "patchSetId": 9
@@ -162,6 +305,30 @@
     },
     {
       "key": {
+        "uuid": "0fd6d2d3_202d93cf",
+        "filename": "minijail0.1",
+        "patchSetId": 9
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bba8257c_93562bfa",
+      "range": {
+        "startLine": 289,
+        "startChar": 29,
+        "endLine": 289,
+        "endChar": 39
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f2b6e39_6cba1fc5",
         "filename": "minijail0.c",
         "patchSetId": 9
@@ -179,6 +346,24 @@
     },
     {
       "key": {
+        "uuid": "295da944_cd52da57",
+        "filename": "minijail0.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f2b6e39_6cba1fc5",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a96ad10_e372d45b",
         "filename": "minijail0_cli.c",
         "patchSetId": 9
@@ -193,6 +378,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9de3757_3b16ad0c",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a96ad10_e372d45b",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -242,6 +445,54 @@
     },
     {
       "key": {
+        "uuid": "ec5ee355_c7d2f717",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4c10426_20b84d28",
+      "range": {
+        "startLine": 595,
+        "startChar": 54,
+        "endLine": 595,
+        "endChar": 64
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "690a5718_e19773e2",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24529dc6_3c43fade",
+      "range": {
+        "startLine": 595,
+        "startChar": 25,
+        "endLine": 595,
+        "endChar": 32
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c375c253_caf60f3d",
         "filename": "minijail0_cli.c",
         "patchSetId": 9
@@ -288,6 +539,54 @@
     },
     {
       "key": {
+        "uuid": "8b46fa2a_f28a89d5",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c375c253_caf60f3d",
+      "range": {
+        "startLine": 625,
+        "startChar": 52,
+        "endLine": 625,
+        "endChar": 58
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef2cdfc_9da05294",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f417ee_a5e1b433",
+      "range": {
+        "startLine": 625,
+        "startChar": 40,
+        "endLine": 625,
+        "endChar": 45
+      },
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19046c3c_ffa90673",
         "filename": "minijail0_cli.c",
         "patchSetId": 9
@@ -302,6 +601,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25d072fb_80a5a420",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19046c3c_ffa90673",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -322,6 +639,24 @@
     },
     {
       "key": {
+        "uuid": "5b50f9fb_694b9c94",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76d9d487_3bd51b1b",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a29c8c7_8e6b15b3",
         "filename": "minijail0_cli.c",
         "patchSetId": 9
@@ -336,6 +671,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd8a8aa_9c95880b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a29c8c7_8e6b15b3",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -356,6 +709,24 @@
     },
     {
       "key": {
+        "uuid": "3ff1c5a5_549918f7",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Good catch, used calloc() instead.",
+      "parentUuid": "044cd211_9e508c70",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6d08e75_0944d88a",
         "filename": "minijail0_cli.c",
         "patchSetId": 9
@@ -370,6 +741,24 @@
       "revId": "106818f2323dba924880177ed86bcd40de42cc15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "997cebdf_e01be7f0",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-08-29T15:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6d08e75_0944d88a",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
