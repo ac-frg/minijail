@@ -22,6 +22,30 @@
       "revId": "c2db2055292c7a7e32a6c57be2c41676df45fede",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e332d23_ffb67959",
+        "filename": "syscall_filter.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-08-29T06:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cce8e90_ff308004",
+      "range": {
+        "startLine": 823,
+        "startChar": 26,
+        "endLine": 823,
+        "endChar": 42
+      },
+      "revId": "c2db2055292c7a7e32a6c57be2c41676df45fede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
