@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "999d463e_3e29d6c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-01T09:02:24Z",
+      "side": 1,
+      "message": "i think this CL came in while i was on vacation ...\n\nafaict, this will largely impact all the minijail users *not* using --profile (and related pivot root/chroot) options.  --profile/etc... setups will create a sanitized mount namespace in general where mounts wouldn\u0027t propagate because they wouldn\u0027t be visible in the first place.  and we want services to use --profile whenever possible.",
+      "revId": "8f410f13cc8b729574e647f080631226351c0b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "330c9449_89eb8a2b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-01T09:02:24Z",
+      "side": 1,
+      "message": "optarg is a pointer to argv[] strings which don\u0027t change.  so it should be safe to save it directly \u0026 not worry about allocations.  we do this with filter_path above for example.\n\nplus you don\u0027t have to fix the memory leak here when using e.g. -Kprivate -Kslave.",
+      "revId": "8f410f13cc8b729574e647f080631226351c0b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
