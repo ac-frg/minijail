@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "16fdd0d4_71f1f7e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1244290
+      },
+      "writtenOn": "2020-09-02T20:49:03Z",
+      "side": 1,
+      "message": "FTR I still think this CL is nice to have although the mount/umount event propagation isn\u0027t as bulletproof as I initially thought: while the event is propagated inside the namespace, it\u0027s success/failure isn\u0027t surfaced at all.\n\nI think this solves the issues Ereth encountered in one fell swoop since the esdfs mount is mounted under an MS_SHARED subtree IIRC: the mitigation could still fail though if any service actually holds a file handle into the esdfs mount, but anecdotally these issues seem more related to accidental broad usage of minijail opts.\n\nFor the same issue(s) on the stateful partition, the distribution leans more towards services that really needed access to the stateful partition but were accidentally left running during shutdown. So, my effort there is now more towards limiting the lifetime of Upstart jobs instead.",
+      "parentUuid": "d4a755fa_0b7e1eea",
+      "revId": "8f410f13cc8b729574e647f080631226351c0b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "330c9449_89eb8a2b",
         "filename": "minijail0_cli.c",
         "patchSetId": 2
