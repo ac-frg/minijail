@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "d4a755fa_0b7e1eea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398108
+      },
+      "writtenOn": "2020-09-02T18:44:14Z",
+      "side": 1,
+      "message": "I think the issues were fixed by cleaning up the minijail invocations. The end result was better sandboxing for each of these other processes so that is good.\n\nRecently dlcservice introduced a similar mount cloning issue. Here the symptom is autoclean loop devices that remain active to serve the cloned loop mounts. See crbug.com/1123529, b/164027725, and also got mixed into b/165165074. (A rough pass at a fix on crrev.com/c/2389360 but it needs input from the DLC folks.)\n\nIf everyone just always used --profile and specified the required paths I would be happiest of all. But I expect we will have new cases periodically.",
+      "parentUuid": "4f2d2e16_9b5c1e76",
+      "revId": "8f410f13cc8b729574e647f080631226351c0b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "330c9449_89eb8a2b",
         "filename": "minijail0_cli.c",
         "patchSetId": 2
