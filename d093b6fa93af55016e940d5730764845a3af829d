@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "046071c6_68b52eaa",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2527,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "i guess there\u0027s no way around this ?  seems like it\u0027ll limit the usefulness of this feature as we utilize this a lot :/.",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "496650c9_ee2e6464",
         "filename": "libminijail.h",
         "patchSetId": 2
@@ -42,6 +59,98 @@
         "endLine": 99,
         "endChar": 32
       },
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fa549d6_59edd0e9",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "we should add comment blocks for all new funcs in this header.  some of these are obvious to us, but i think many are not obvious to most developers :/.",
+      "parentUuid": "496650c9_ee2e6464",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 32
+      },
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68773e27_0573cb44",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "see the --mount-dev style above for this",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a601a77e_9a5b32ee",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "we don\u0027t use yoda style",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fae8d92_9dc0df36",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "O_CLOEXEC too ?  if not, should add an explicit comment explaining why it\u0027s omitted.",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c802e83_58f3a9be",
+        "filename": "system.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-04T20:26:28Z",
+      "side": 1,
+      "message": "you don\u0027t need this: free(NULL) is valid",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
