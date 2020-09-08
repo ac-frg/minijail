@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4dc26084_38872523",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-08T16:33:44Z",
+      "side": 1,
+      "message": "should be const",
+      "revId": "8487cbb1965574b14d63aed1ec8a5d3404255994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ceffd0d5_890d5c39",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-08T16:33:44Z",
+      "side": 1,
+      "message": "doesn\u0027t this collapse down to a single assignment now ?\n\n remount_mode \u003d optarg;",
+      "range": {
+        "startLine": 750,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 4
+      },
+      "revId": "8487cbb1965574b14d63aed1ec8a5d3404255994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
