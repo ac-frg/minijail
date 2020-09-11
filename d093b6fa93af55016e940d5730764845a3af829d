@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "895a293c_97964cb7",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-09-11T16:03:45Z",
+      "side": 1,
+      "message": "after https://r.android.com/1424781, you can use marshal_append_string here for a little simpler logic",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b410f1c6_488fdfc2",
         "filename": "libminijail.c",
         "patchSetId": 2
