@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30d2fe89_8fb699a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2020-10-09T18:35:30Z",
+      "side": 1,
+      "message": "Any news? I\u0027m always open to comments if changes still need to be done, of course.",
+      "revId": "f95254de81c6d61f8d504a730386d6e9a5680dff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
