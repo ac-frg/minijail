@@ -76,8 +76,21 @@ struct filter_block *new_filter_block(void)
 	return block;
 }
 
-void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
-			 size_t len)
+void copy_parser_state(struct parser_state *src, struct parser_state *dest)
+{
+	size_t str_size = strlen(src->filename);
+	char *filename = calloc(str_size, sizeof(char));
+	if (!filename)
+		die("could not allocate filename buffer");
+	strncpy(filename, src->filename, str_size);
+
+	dest->line_number = src->line_number;
+	dest->syscall_num = src->syscall_num;
+	dest->filename = filename;
+}
+
+void append_filter_block(struct parser_state *state, struct filter_block *head,
+			 struct sock_filter *instrs, size_t len)
 {
 	struct filter_block *new_last;
 
@@ -100,6 +113,8 @@ void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
 
 	new_last->instrs = instrs;
 	new_last->total_len = new_last->len = len;
+
+	copy_parser_state(state, &(new_last->state));
 	new_last->last = new_last->next = NULL;
 }
 
@@ -116,50 +131,54 @@ void extend_filter_block_list(struct filter_block *list,
 	list->total_len += another->total_len;
 }
 
-void append_ret_kill(struct filter_block *head)
+void append_ret_kill(struct parser_state *state, struct filter_block *head)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_kill(filter);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(state, head, filter, ONE_INSTR);
 }
 
-void append_ret_trap(struct filter_block *head)
+void append_ret_trap(struct parser_state *state, struct filter_block *head)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_trap(filter);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(state, head, filter, ONE_INSTR);
 }
 
-void append_ret_errno(struct filter_block *head, int errno_val)
+void append_ret_errno(struct parser_state *state, struct filter_block *head,
+		      int errno_val)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_errno(filter, errno_val);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(state, head, filter, ONE_INSTR);
 }
 
-void append_ret_log(struct filter_block *head)
+void append_ret_log(struct parser_state *state, struct filter_block *head)
 {
 	struct sock_filter *filter = new_instr_buf(ONE_INSTR);
 	set_bpf_ret_log(filter);
-	append_filter_block(head, filter, ONE_INSTR);
+	append_filter_block(state, head, filter, ONE_INSTR);
 }
 
-void append_allow_syscall(struct filter_block *head, int nr)
+void append_allow_syscall(struct parser_state *state, struct filter_block *head,
+			  int nr)
 {
 	struct sock_filter *filter = new_instr_buf(ALLOW_SYSCALL_LEN);
 	size_t len = bpf_allow_syscall(filter, nr);
 	if (len != ALLOW_SYSCALL_LEN)
 		die("error building syscall number comparison");
 
-	append_filter_block(head, filter, len);
+	append_filter_block(state, head, filter, len);
 }
 
-void allow_logging_syscalls(struct filter_block *head)
+void allow_logging_syscalls(struct parser_state *state,
+			    struct filter_block *head)
 {
 	unsigned int i;
 	for (i = 0; i < log_syscalls_len; i++) {
 		warn("allowing syscall: %s", log_syscalls[i]);
-		append_allow_syscall(head, lookup_syscall(log_syscalls[i]));
+		append_allow_syscall(state, head,
+				     lookup_syscall(log_syscalls[i]));
 	}
 }
 
@@ -271,7 +290,7 @@ int compile_atom(struct parser_state *state, struct filter_block *head,
 	if (len == 0)
 		return -1;
 
-	append_filter_block(head, comp_block, len);
+	append_filter_block(state, head, comp_block, len);
 	return 0;
 }
 
@@ -297,14 +316,14 @@ int compile_errno(struct parser_state *state, struct filter_block *head,
 			return -1;
 		}
 
-		append_ret_errno(head, errno_val);
+		append_ret_errno(state, head, errno_val);
 	} else {
 		switch (action) {
 		case ACTION_RET_KILL:
-			append_ret_kill(head);
+			append_ret_kill(state, head);
 			break;
 		case ACTION_RET_TRAP:
-			append_ret_trap(head);
+			append_ret_trap(state, head);
 			break;
 		case ACTION_RET_LOG:
 			compiler_warn(state, "invalid action: ACTION_RET_LOG");
@@ -378,7 +397,7 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	 */
 	struct sock_filter *entry_label = new_instr_buf(ONE_INSTR);
 	set_bpf_lbl(entry_label, entry_lbl_id);
-	append_filter_block(head, entry_label, ONE_INSTR);
+	append_filter_block(state, head, entry_label, ONE_INSTR);
 
 	/* Checks whether we're unconditionally blocking this syscall. */
 	if (strncmp(line, "return", strlen("return")) == 0) {
@@ -427,7 +446,7 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 		 */
 		id = group_end_lbl(labels, nr, grp_idx++);
 		len += set_bpf_lbl(group_end_block + len, id);
-		append_filter_block(head, group_end_block, len);
+		append_filter_block(state, head, group_end_block, len);
 	}
 
 	/*
@@ -445,13 +464,13 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	} else {
 		switch (action) {
 		case ACTION_RET_KILL:
-			append_ret_kill(head);
+			append_ret_kill(state, head);
 			break;
 		case ACTION_RET_TRAP:
-			append_ret_trap(head);
+			append_ret_trap(state, head);
 			break;
 		case ACTION_RET_LOG:
-			append_ret_log(head);
+			append_ret_log(state, head);
 			break;
 		}
 	}
@@ -464,7 +483,7 @@ struct filter_block *compile_policy_line(struct parser_state *state, int nr,
 	struct sock_filter *success_block = new_instr_buf(TWO_INSTRS);
 	len = set_bpf_lbl(success_block, id);
 	len += set_bpf_ret_allow(success_block + len);
-	append_filter_block(head, success_block, len);
+	append_filter_block(state, head, success_block, len);
 
 	free(line);
 	return head;
@@ -573,6 +592,7 @@ int compile_file(const char *filename, FILE *policy_file,
 	struct parser_state state = {
 		.filename = filename,
 		.line_number = 0,
+                .syscall_num = -1,
 	};
 	/* clang-format on */
 	/*
@@ -684,13 +704,16 @@ int compile_file(const char *filename, FILE *policy_file,
 			goto free_line;
 		}
 
+		/* Update parser_state with the syscall number */
+		state.syscall_num = nr;
+
 		/*
 		 * For each syscall, add either a simple ALLOW,
 		 * or an arg filter block.
 		 */
 		if (strcmp(policy_line, "1") == 0) {
 			/* Add simple ALLOW. */
-			append_allow_syscall(head, nr);
+			append_allow_syscall(&state, head, nr);
 		} else {
 			/*
 			 * Create and jump to the label that will hold
@@ -700,7 +723,8 @@ int compile_file(const char *filename, FILE *policy_file,
 			struct sock_filter *nr_comp =
 			    new_instr_buf(ALLOW_SYSCALL_LEN);
 			bpf_allow_syscall_args(nr_comp, nr, id);
-			append_filter_block(head, nr_comp, ALLOW_SYSCALL_LEN);
+			append_filter_block(&state, head, nr_comp,
+					    ALLOW_SYSCALL_LEN);
 
 			/* Build the arg filter block. */
 			struct filter_block *block =
@@ -723,6 +747,8 @@ int compile_file(const char *filename, FILE *policy_file,
 				*arg_blocks = block;
 			}
 		}
+		/* Reset syscall_num now that we have processed the line */
+		state.syscall_num = -1;
 		/* Reuse |line| in the next getline() call. */
 	}
 	/* getline(3) returned -1. This can mean EOF or the below errors. */
@@ -756,15 +782,23 @@ int compile_filter(const char *filename, FILE *initial_file,
 	struct filter_block *head = new_filter_block();
 	struct filter_block *arg_blocks = NULL;
 
+	/* clang-format off */
+	struct parser_state state = {
+		.filename = filename,
+		.line_number = 0,
+                .syscall_num = -1,
+	};
+	/* clang-format on */
+
 	/* Start filter by validating arch. */
 	struct sock_filter *valid_arch = new_instr_buf(ARCH_VALIDATION_LEN);
 	size_t len = bpf_validate_arch(valid_arch);
-	append_filter_block(head, valid_arch, len);
+	append_filter_block(&state, head, valid_arch, len);
 
 	/* Load syscall number. */
 	struct sock_filter *load_nr = new_instr_buf(ONE_INSTR);
 	len = bpf_load_syscall_nr(load_nr);
-	append_filter_block(head, load_nr, len);
+	append_filter_block(&state, head, load_nr, len);
 
 	/*
 	 * On kernels without SECCOMP_RET_LOG, Minijail can attempt to write the
@@ -772,7 +806,7 @@ int compile_filter(const char *filename, FILE *initial_file,
 	 * some syscalls need to be unconditionally allowed.
 	 */
 	if (filteropts->allow_syscalls_for_logging)
-		allow_logging_syscalls(head);
+		allow_logging_syscalls(&state, head);
 
 	if (compile_file(filename, initial_file, head, &arg_blocks, &labels,
 			 filteropts, 0 /* include_level */) != 0) {
@@ -781,20 +815,22 @@ int compile_filter(const char *filename, FILE *initial_file,
 		goto free_filter;
 	}
 
+	// TODO(nvaa): Do the actual duplicate syscall checking here.
+
 	/*
 	 * If none of the syscalls match, either fall through to LOG, TRAP, or
 	 * KILL.
 	 */
 	switch (filteropts->action) {
 	case ACTION_RET_KILL:
-		append_ret_kill(head);
+		append_ret_kill(&state, head);
 		break;
 	case ACTION_RET_TRAP:
-		append_ret_trap(head);
+		append_ret_trap(&state, head);
 		break;
 	case ACTION_RET_LOG:
 		if (filteropts->allow_logging) {
-			append_ret_log(head);
+			append_ret_log(&state, head);
 		} else {
 			warn("compile_filter: cannot use RET_LOG without "
 			     "allowing logging");
@@ -863,6 +899,7 @@ int flatten_block_list(struct filter_block *head, struct sock_filter *filter,
 		for (i = 0; i < curr->len; i++) {
 			if (_index >= cap)
 				return -1;
+			free(curr->state.filename);
 			filter[_index++] = curr->instrs[i];
 		}
 	}

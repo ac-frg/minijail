@@ -15,18 +15,20 @@
 extern "C" {
 #endif
 
+struct parser_state {
+	const char *filename;
+	size_t line_number;
+	int syscall_num;
+};
+
 struct filter_block {
 	struct sock_filter *instrs;
 	size_t len;
+	struct parser_state state;
 
 	struct filter_block *next;
 	struct filter_block *last;
 	size_t total_len;
-};
-
-struct parser_state {
-	const char *filename;
-	size_t line_number;
 };
 
 enum block_action { ACTION_RET_KILL = 0, ACTION_RET_TRAP, ACTION_RET_LOG };
