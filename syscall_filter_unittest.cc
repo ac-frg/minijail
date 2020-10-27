@@ -45,7 +45,7 @@ enum use_logging {
 
 int test_compile_filter(
     std::string filename,
-    FILE* policy_file,
+    FILE *policy_file,
     struct sock_fprog* prog,
     enum block_action action = ACTION_RET_KILL,
     enum use_logging allow_logging = NO_LOGGING) {
@@ -56,7 +56,6 @@ int test_compile_filter(
   };
   return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
 }
-
 int test_compile_file(
     std::string filename,
     FILE* policy_file,
@@ -71,17 +70,24 @@ int test_compile_file(
     .allow_logging = allow_logging != NO_LOGGING,
     .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
   };
-  return compile_file(filename.c_str(), policy_file, head, arg_blocks, labels,
-                      &filteropts, include_level);
+  int num_syscalls = get_num_syscalls();
+  struct parser_state **previous_syscalls =
+      (struct parser_state **)calloc(num_syscalls,
+                                     sizeof(struct parser_state *));
+  int res = compile_file(filename.c_str(), policy_file, head, arg_blocks,
+                      labels, &filteropts, previous_syscalls,
+                      include_level);
+  free_previous_syscalls(previous_syscalls);
+  return res;
 }
-
 struct filter_block* test_compile_policy_line(
     struct parser_state* state,
     int nr,
     std::string policy_line,
     unsigned int label_id,
     struct bpf_labels* labels,
-    enum block_action action = ACTION_RET_KILL) {
+    enum block_action action = ACTION_RET_KILL)
+{
   return compile_policy_line(state, nr, policy_line.c_str(), label_id,
            labels, action);
 }
@@ -1571,7 +1577,7 @@ TEST(FilterTest, log) {
   index = ARCH_VALIDATION_LEN + 1;
   for (i = 0; i < log_syscalls_len; i++)
     EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
-                         lookup_syscall(log_syscalls[i]));
+                         lookup_syscall(log_syscalls[i], NULL));
 
   index += 2 * log_syscalls_len;
 
@@ -1617,7 +1623,7 @@ TEST(FilterTest, allow_log_but_kill) {
   index = ARCH_VALIDATION_LEN + 1;
   for (i = 0; i < log_syscalls_len; i++)
     EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
-             lookup_syscall(log_syscalls[i]));
+                         lookup_syscall(log_syscalls[i], NULL));
 
   index += 2 * log_syscalls_len;
 
@@ -1821,11 +1827,7 @@ TEST(FilterTest, include_same_syscalls) {
   int res = test_compile_filter("policy", policy_file, &actual);
   fclose(policy_file);
 
-  ASSERT_EQ(res, 0);
-  EXPECT_EQ(actual.len,
-            ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
-                2 * 8 /* check syscalls twice */ + 1 /* filter return */);
-  free(actual.filter);
+  ASSERT_EQ(res, -1);
 }
 
 TEST(FilterTest, include_two) {
@@ -1840,11 +1842,7 @@ TEST(FilterTest, include_two) {
   int res = test_compile_filter("policy", policy_file, &actual);
   fclose(policy_file);
 
-  ASSERT_EQ(res, 0);
-  EXPECT_EQ(actual.len,
-            ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
-                2 * 8 /* check syscalls twice */ + 1 /* filter return */);
-  free(actual.filter);
+  ASSERT_EQ(res, -1);
 }
 
 TEST(FilterTest, include_invalid_policy) {
