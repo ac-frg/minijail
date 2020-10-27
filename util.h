@@ -142,6 +142,7 @@ static inline bool debug_logging_allowed(void) {
 #endif
 }
 
+size_t get_num_syscalls();
 int lookup_syscall(const char *name);
 const char *lookup_syscall_name(int nr);
 
