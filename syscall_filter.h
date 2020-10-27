@@ -49,6 +49,7 @@ int compile_file(const char *filename, FILE *policy_file,
 		 struct filter_block *head, struct filter_block **arg_blocks,
 		 struct bpf_labels *labels,
 		 const struct filter_options *filteropts,
+		 struct parser_state **previous_syscalls,
 		 unsigned int include_level);
 
 int compile_filter(const char *filename, FILE *policy_file,
@@ -59,6 +60,7 @@ struct filter_block *new_filter_block(void);
 int flatten_block_list(struct filter_block *head, struct sock_filter *filter,
 		       size_t index, size_t cap);
 void free_block_list(struct filter_block *head);
+void free_previous_syscalls(struct parser_state **previous_syscalls);
 
 int seccomp_can_softfail(void);
 
