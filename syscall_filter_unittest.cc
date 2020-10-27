@@ -43,50 +43,52 @@ enum use_logging {
   USE_RET_LOG_LOGGING = 2,
 };
 
-int test_compile_filter(
-    std::string filename,
-    FILE* policy_file,
-    struct sock_fprog* prog,
-    enum block_action action = ACTION_RET_KILL,
-    enum use_logging allow_logging = NO_LOGGING) {
-  struct filter_options filteropts {
-    .action = action,
-    .allow_logging = allow_logging != NO_LOGGING,
-    .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
-  };
-  return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
+int test_compile_filter(std::string filename, FILE *policy_file,
+			struct sock_fprog *prog,
+			enum block_action action = ACTION_RET_KILL,
+			enum use_logging allow_logging = NO_LOGGING)
+{
+	struct filter_options filteropts {
+		.action = action, .allow_logging = allow_logging != NO_LOGGING,
+		.allow_syscalls_for_logging =
+		    allow_logging == USE_SIGSYS_LOGGING,
+	};
+	return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
 }
 
-int test_compile_file(
-    std::string filename,
-    FILE* policy_file,
-    struct filter_block* head,
-    struct filter_block** arg_blocks,
-    struct bpf_labels* labels,
-    enum block_action action = ACTION_RET_KILL,
-    enum use_logging allow_logging = NO_LOGGING,
-    unsigned int include_level = 0) {
-  struct filter_options filteropts {
-    .action = action,
-    .allow_logging = allow_logging != NO_LOGGING,
-    .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
-  };
-  return compile_file(filename.c_str(), policy_file, head, arg_blocks, labels,
-                      &filteropts, include_level);
+int test_compile_file(std::string filename, FILE *policy_file,
+		      struct filter_block *head,
+		      struct filter_block **arg_blocks,
+		      struct bpf_labels *labels,
+		      enum block_action action = ACTION_RET_KILL,
+		      enum use_logging allow_logging = NO_LOGGING,
+		      unsigned int include_level = 0)
+{
+	struct filter_options filteropts {
+		.action = action, .allow_logging = allow_logging != NO_LOGGING,
+		.allow_syscalls_for_logging =
+		    allow_logging == USE_SIGSYS_LOGGING,
+	};
+	int num_syscalls = get_num_syscalls();
+	struct parser_state **previous_syscalls =
+	    (struct parser_state **)calloc(num_syscalls,
+					   sizeof(struct parser_state *));
+	return compile_file(filename.c_str(), policy_file, head, arg_blocks,
+			    labels, &filteropts, previous_syscalls,
+			    include_level);
 }
 
-struct filter_block* test_compile_policy_line(
-    struct parser_state* state,
-    int nr,
-    std::string policy_line,
-    unsigned int label_id,
-    struct bpf_labels* labels,
-    enum block_action action = ACTION_RET_KILL) {
-  return compile_policy_line(state, nr, policy_line.c_str(), label_id,
-           labels, action);
+struct filter_block *
+test_compile_policy_line(struct parser_state *state, int nr,
+			 std::string policy_line, unsigned int label_id,
+			 struct bpf_labels *labels,
+			 enum block_action action = ACTION_RET_KILL)
+{
+	return compile_policy_line(state, nr, policy_line.c_str(), label_id,
+				   labels, action);
 }
 
-}  // namespace
+} // namespace
 
 /* Test that setting one BPF instruction works. */
 TEST(bpf, set_bpf_instr) {
