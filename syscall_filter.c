@@ -100,6 +100,7 @@ void append_filter_block(struct filter_block *head, struct sock_filter *instrs,
 
 	new_last->instrs = instrs;
 	new_last->total_len = new_last->len = len;
+
 	new_last->last = new_last->next = NULL;
 }
 
@@ -154,12 +155,48 @@ void append_allow_syscall(struct filter_block *head, int nr)
 	append_filter_block(head, filter, len);
 }
 
-void allow_logging_syscalls(struct filter_block *head)
+void copy_parser_state(struct parser_state *src, struct parser_state *dest)
+{
+	size_t str_size = strlen(src->filename);
+	char *filename = calloc(str_size, sizeof(char));
+	if (!filename)
+		die("could not allocate filename buffer");
+	strncpy(filename, src->filename, str_size);
+
+	dest->line_number = src->line_number;
+	dest->filename = filename;
+}
+
+void check_duplicate_syscall(struct parser_state **previous_syscalls,
+			     struct parser_state *state, int nr)
+{
+	struct parser_state *prev_state_ptr = previous_syscalls[nr];
+	if (prev_state_ptr == NULL) {
+		previous_syscalls[nr] = calloc(1, sizeof(struct parser_state));
+		if (!previous_syscalls[nr])
+			die("could not allocate parser_state buffer");
+		copy_parser_state(state, previous_syscalls[nr]);
+	} else {
+		compiler_warn(prev_state_ptr, "syscall %s defined here",
+			      lookup_syscall_name(nr));
+		compiler_warn(state, "syscall %s also defined here",
+			      lookup_syscall_name(nr));
+	}
+}
+
+void allow_logging_syscalls(struct parser_state **previous_syscalls,
+			    struct filter_block *head)
 {
 	unsigned int i;
+	struct parser_state state;
+	state.filename = "_logging";
+	state.line_number = -1;
+
 	for (i = 0; i < log_syscalls_len; i++) {
 		warn("allowing syscall: %s", log_syscalls[i]);
-		append_allow_syscall(head, lookup_syscall(log_syscalls[i]));
+		int nr = lookup_syscall(log_syscalls[i]);
+		check_duplicate_syscall(previous_syscalls, &state, nr);
+		append_allow_syscall(head, nr);
 	}
 }
 
@@ -567,6 +604,7 @@ int compile_file(const char *filename, FILE *policy_file,
 		 struct filter_block *head, struct filter_block **arg_blocks,
 		 struct bpf_labels *labels,
 		 const struct filter_options *filteropts,
+		 struct parser_state **previous_syscalls,
 		 unsigned int include_level)
 {
 	/* clang-format off */
@@ -630,6 +668,7 @@ int compile_file(const char *filename, FILE *policy_file,
 			}
 			if (compile_file(filename, included_file, head,
 					 arg_blocks, labels, filteropts,
+					 previous_syscalls,
 					 include_level + 1) == -1) {
 				compiler_warn(&state, "'@include %s' failed",
 					      filename);
@@ -683,6 +722,8 @@ int compile_file(const char *filename, FILE *policy_file,
 			ret = -1;
 			goto free_line;
 		}
+
+		check_duplicate_syscall(previous_syscalls, &state, nr);
 
 		/*
 		 * For each syscall, add either a simple ALLOW,
@@ -748,6 +789,12 @@ int compile_filter(const char *filename, FILE *initial_file,
 	struct bpf_labels labels;
 	labels.count = 0;
 
+	/* Create the data structure that will keep track of what system calls
+	 * we have already defined */
+	int num_syscalls = get_num_syscalls();
+	struct parser_state **previous_syscalls =
+	    calloc(num_syscalls, sizeof(struct parser_state *));
+
 	if (!initial_file) {
 		warn("compile_filter: |initial_file| is NULL");
 		return -1;
@@ -772,10 +819,11 @@ int compile_filter(const char *filename, FILE *initial_file,
 	 * some syscalls need to be unconditionally allowed.
 	 */
 	if (filteropts->allow_syscalls_for_logging)
-		allow_logging_syscalls(head);
+		allow_logging_syscalls(previous_syscalls, head);
 
 	if (compile_file(filename, initial_file, head, &arg_blocks, &labels,
-			 filteropts, 0 /* include_level */) != 0) {
+			 filteropts, previous_syscalls,
+			 0 /* include_level */) != 0) {
 		warn("compile_filter: compile_file() failed");
 		ret = -1;
 		goto free_filter;
@@ -848,6 +896,7 @@ free_filter:
 	free_block_list(head);
 	free_block_list(arg_blocks);
 	free_label_strings(&labels);
+	free_previous_syscalls(previous_syscalls);
 	return ret;
 }
 
@@ -879,5 +928,20 @@ void free_block_list(struct filter_block *head)
 		prev = current;
 		current = current->next;
 		free(prev);
+	}
+}
+
+void free_previous_syscalls(struct parser_state **previous_syscalls)
+{
+	int num_syscalls = get_num_syscalls();
+	struct parser_state *state = NULL;
+	char *filename = NULL;
+	for (int i = 0; i < num_syscalls; i++) {
+		if ((state = previous_syscalls[i])) {
+			if ((filename = (char *)state->filename)) {
+				free(filename);
+			}
+			free(state);
+		}
 	}
 }
