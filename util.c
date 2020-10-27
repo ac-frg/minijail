@@ -149,6 +149,15 @@ void do_log(int priority, const char *format, ...)
 	dprintf(logging_config.fd, "\n");
 }
 
+int get_num_syscalls()
+{
+	int num_syscalls = 0;
+	const struct syscall_entry *entry = syscall_table;
+	for (; entry->name && entry->nr >= 0; ++entry)
+		num_syscalls++;
+	return num_syscalls;
+}
+
 int lookup_syscall(const char *name)
 {
 	const struct syscall_entry *entry = syscall_table;
