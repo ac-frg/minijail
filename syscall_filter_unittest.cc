@@ -43,6 +43,10 @@ enum use_logging {
   USE_RET_LOG_LOGGING = 2,
 };
 
+/*
+ * TODO(crbug.com/1146502) Add more tests for greater granularity for checking
+ * for duplicate syscalls.
+ */
 int test_compile_filter(
     std::string filename,
     FILE* policy_file,
@@ -53,6 +57,7 @@ int test_compile_filter(
     .action = action,
     .allow_logging = allow_logging != NO_LOGGING,
     .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
+    .check_duplicate_syscalls = false,
   };
   return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
 }
@@ -70,9 +75,12 @@ int test_compile_file(
     .action = action,
     .allow_logging = allow_logging != NO_LOGGING,
     .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
+    .check_duplicate_syscalls = false,
   };
-  return compile_file(filename.c_str(), policy_file, head, arg_blocks, labels,
-                      &filteropts, include_level);
+  int res = compile_file(filename.c_str(), policy_file, head, arg_blocks,
+                         labels, &filteropts, NULL,
+                         include_level);
+  return res;
 }
 
 struct filter_block* test_compile_policy_line(
@@ -1571,7 +1579,7 @@ TEST(FilterTest, log) {
   index = ARCH_VALIDATION_LEN + 1;
   for (i = 0; i < log_syscalls_len; i++)
     EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
-                         lookup_syscall(log_syscalls[i]));
+                         lookup_syscall(log_syscalls[i], NULL));
 
   index += 2 * log_syscalls_len;
 
@@ -1617,7 +1625,7 @@ TEST(FilterTest, allow_log_but_kill) {
   index = ARCH_VALIDATION_LEN + 1;
   for (i = 0; i < log_syscalls_len; i++)
     EXPECT_ALLOW_SYSCALL(actual.filter + (index + 2 * i),
-             lookup_syscall(log_syscalls[i]));
+                         lookup_syscall(log_syscalls[i], NULL));
 
   index += 2 * log_syscalls_len;
 

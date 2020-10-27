@@ -82,6 +82,7 @@ int main(int argc, char** argv) {
     .action = ACTION_RET_KILL,
     .allow_logging = 0,
     .allow_syscalls_for_logging = 0,
+    .check_duplicate_syscalls = false,
   };
 
   struct sock_fprog fp;
