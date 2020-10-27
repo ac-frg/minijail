@@ -1058,6 +1058,9 @@ static int parse_seccomp_filters(struct minijail *j, const char *filename,
 	filteropts.allow_syscalls_for_logging =
 	    filteropts.allow_logging && !seccomp_ret_log_available();
 
+	/* Whether to fail on duplicate syscalls or not. */
+	filteropts.check_duplicate_syscalls = check_duplicate_syscalls();
+
 	if (compile_filter(filename, policy_file, fprog, &filteropts)) {
 		free(fprog);
 		return -1;

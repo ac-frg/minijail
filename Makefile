@@ -37,6 +37,11 @@ ifeq ($(USE_EXIT_ON_DIE),yes)
 CPPFLAGS += -DUSE_EXIT_ON_DIE
 endif
 
+# Setting this flag turns on duplicate syscall checking.
+ifeq ($(CHECK_DUP_SYSCALLS),yes)
+CPPFLAGS += -DCHECK_DUP_SYSCALLS
+endif
+
 MJ_COMMON_FLAGS = -Wunused-parameter -Wextra -Wno-missing-field-initializers
 CFLAGS += $(MJ_COMMON_FLAGS)
 CXXFLAGS += $(MJ_COMMON_FLAGS)
