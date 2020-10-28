@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd19d63_30854596",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Also sorry if you aren\u0027t the person to ask for code review, I just added all the owners for the package.",
+      "parentUuid": "1313e15c_20bbb6d5",
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09992b86_29b4d5c2",
@@ -31,6 +49,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "hygiene nit: please use strnlen() or comment that filename will always terminate and be safe, etc.",
+      "range": {
+        "startLine": 159,
+        "startChar": 19,
+        "endLine": 159,
+        "endChar": 25
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b79d04a5_f058b3cb",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09992b86_29b4d5c2",
       "range": {
         "startLine": 159,
         "startChar": 19,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11de7d85_d64e00bf",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Totally forgot about that syscall. I\u0027ll change it. Is there any guidance for what the maximum length for a filename should be? Or at least what number should be used for strndup.",
+      "parentUuid": "c2681cec_55928412",
+      "range": {
+        "startLine": 163,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 8
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5ee45d9_0f3436db",
         "filename": "syscall_filter.c",
         "patchSetId": 6
@@ -77,6 +143,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "nit: worth checking nr \u003c syscall_count? (or noting that callers are always within range)",
+      "range": {
+        "startLine": 172,
+        "startChar": 57,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ebfab0_cf5e754d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ee45d9_0f3436db",
       "range": {
         "startLine": 172,
         "startChar": 57,
@@ -100,6 +190,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "nit: maybe comment here indicating that shadowed syscalls cause failure propagated back from here?",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 9
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cbcfb36_b510a25d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done. I did also want to confirm with someone who knows the code well that setting ret to -1 here would properly propagate the error though and that it would not get reset somewhere.",
+      "parentUuid": "f79b7b95_b820e649",
       "range": {
         "startLine": 179,
         "startChar": 8,
@@ -135,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bad3232_8e5c52b0",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done. I think keeping the temporary variable outside of the loop is fine because reusing the value for each iteration of the loop doesn\u0027t make a difference. We expect the check never to fail for allowing logging syscalls.",
+      "parentUuid": "3553a466_e14c1144",
+      "range": {
+        "startLine": 199,
+        "startChar": 2,
+        "endLine": 199,
+        "endChar": 5
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "241ade56_5e366863",
         "filename": "syscall_filter.c",
         "patchSetId": 6
@@ -146,6 +284,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "should failure on duplication be parameterized or is it expected that syscall shadowing is always an error?",
+      "range": {
+        "startLine": 728,
+        "startChar": 46,
+        "endLine": 728,
+        "endChar": 49
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c6f2c5_ff683860",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "I believe that it should always be an error, but this is definitely negotiable. The only reason I say it should be an error is that the current behavior is failure on duplication anyways later on in the label creation phase (https://bugs.chromium.org/p/chromium/issues/detail?id\u003d901411).",
+      "parentUuid": "241ade56_5e366863",
       "range": {
         "startLine": 728,
         "startChar": 46,
@@ -179,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "384ce536_73e35b80",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "One of the goals of the change was better error messages which includes emitting which file the duplicate syscall was first defined in. I agree that it does feel a bit heavy, but I don\u0027t really see a better way to do it.",
+      "parentUuid": "0b48a58c_6b5f5d8d",
+      "range": {
+        "startLine": 798,
+        "startChar": 26,
+        "endLine": 798,
+        "endChar": 32
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "256d6262_c1850330",
@@ -192,6 +378,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "can this declaration move into the loop?",
+      "range": {
+        "startLine": 939,
+        "startChar": 22,
+        "endLine": 939,
+        "endChar": 27
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a7bcb1_aa1a313b",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "256d6262_c1850330",
       "range": {
         "startLine": 939,
         "startChar": 22,
@@ -225,6 +435,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87482b67_aba82d1f",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "353737c5_123b2d75",
+      "range": {
+        "startLine": 940,
+        "startChar": 6,
+        "endLine": 940,
+        "endChar": 7
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "647f012b_570432ac",
@@ -248,6 +482,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad5651b_f7c7c9cd",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "647f012b_570432ac",
+      "range": {
+        "startLine": 944,
+        "startChar": 9,
+        "endLine": 944,
+        "endChar": 17
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "926c5a02_b1031562",
@@ -261,6 +519,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "nit: previous_syscalls[i] \u003d NULL;",
+      "range": {
+        "startLine": 946,
+        "startChar": 0,
+        "endLine": 946,
+        "endChar": 15
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a9b9ff2_b30640e1",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "926c5a02_b1031562",
       "range": {
         "startLine": 946,
         "startChar": 0,
@@ -296,6 +578,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "663f2a72_b665d7ea",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "The file ended up auto-formatted on write and I wasn\u0027t sure whether to include all the reformatting in the change (which seemed noisy). Do people have strong opinions either way?",
+      "parentUuid": "4e2c5bbe_1242891a",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 3
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6523f85a_5311d95e",
         "filename": "util.c",
         "patchSetId": 6
@@ -307,6 +613,30 @@
       "writtenOn": "2020-10-28T22:05:11Z",
       "side": 1,
       "message": "Can you use ARRAY_SIZE() or similar here instead?\n\nE.g.,\n     const size_t syscall_count \u003d ARRAY_SIZE(syscall_table);\n\nor whatever",
+      "range": {
+        "startLine": 155,
+        "startChar": 37,
+        "endLine": 155,
+        "endChar": 50
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86048b56_bb4e7d43",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-10-28T22:58:03Z",
+      "side": 1,
+      "message": "I don\u0027t think that will work. When I try to do that I get this error:\nerror: invalid application of ‘sizeof’ to incomplete type ‘const struct syscall_entry[]’\n\nI did want to confirm that this would give me the number of possible syscalls, however, and that the loop would not encounter a blank entry for whatever reason.",
+      "parentUuid": "6523f85a_5311d95e",
       "range": {
         "startLine": 155,
         "startChar": 37,
