@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1313e15c_20bbb6d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "Random nits but looks good otherwise (not that I know this part of the code)\n\nthanks!",
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09992b86_29b4d5c2",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "hygiene nit: please use strnlen() or comment that filename will always terminate and be safe, etc.",
+      "range": {
+        "startLine": 159,
+        "startChar": 19,
+        "endLine": 159,
+        "endChar": 25
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2681cec_55928412",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "nit: all fine but could collapse into strndup() too",
+      "range": {
+        "startLine": 163,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 8
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ee45d9_0f3436db",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "nit: worth checking nr \u003c syscall_count? (or noting that callers are always within range)",
+      "range": {
+        "startLine": 172,
+        "startChar": 57,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79b7b95_b820e649",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "nit: maybe comment here indicating that shadowed syscalls cause failure propagated back from here?",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 9
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3553a466_e14c1144",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "this declaration should happen before the warn (dep on C vers)\nWould it make sense to put the temp declaration here too?",
+      "range": {
+        "startLine": 199,
+        "startChar": 2,
+        "endLine": 199,
+        "endChar": 5
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "241ade56_5e366863",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "should failure on duplication be parameterized or is it expected that syscall shadowing is always an error?",
+      "range": {
+        "startLine": 728,
+        "startChar": 46,
+        "endLine": 728,
+        "endChar": 49
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b48a58c_6b5f5d8d",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "this feels a bit heavy to achieve the goal, but it makes sense to just reuse the existing parser state struct! I don\u0027t have a better suggestion though. If you wanted to avoid extra management, you could calloc(num_syscalls, sizeof(struct parser_state)) then use state.file !\u003d NULL to determine if a syscall was pre-allocated.  But *shrug*.\n\nDo you think there will ever be a need to emit which file assigned which syscall? If so, the other option would be to just keep a syscall_nr bit vector and on first definition emit syscall-defined-here and on subsequent emit syscall-redefined-here.  But we wouldn\u0027t want to have that noise on by default!",
+      "range": {
+        "startLine": 798,
+        "startChar": 26,
+        "endLine": 798,
+        "endChar": 32
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "256d6262_c1850330",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "can this declaration move into the loop?",
+      "range": {
+        "startLine": 939,
+        "startChar": 22,
+        "endLine": 939,
+        "endChar": 27
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "353737c5_123b2d75",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "can this move into the if (state \u003d ... ) block? (if this is needed!)",
+      "range": {
+        "startLine": 940,
+        "startChar": 6,
+        "endLine": 940,
+        "endChar": 7
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647f012b_570432ac",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "hygiene nit: \nfree(state-\u003efilename);\nstate-\u003efilename \u003d NULL;\n\nOr is there a reason to use a temp variable?",
+      "range": {
+        "startLine": 944,
+        "startChar": 9,
+        "endLine": 944,
+        "endChar": 17
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926c5a02_b1031562",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "nit: previous_syscalls[i] \u003d NULL;",
+      "range": {
+        "startLine": 946,
+        "startChar": 0,
+        "endLine": 946,
+        "endChar": 15
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2c5bbe_1242891a",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "The retabination doesn\u0027t match the rest of the file. Do you mind fixing that up -- one way or the other!",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 3
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6523f85a_5311d95e",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2020-10-28T22:05:11Z",
+      "side": 1,
+      "message": "Can you use ARRAY_SIZE() or similar here instead?\n\nE.g.,\n     const size_t syscall_count \u003d ARRAY_SIZE(syscall_table);\n\nor whatever",
+      "range": {
+        "startLine": 155,
+        "startChar": 37,
+        "endLine": 155,
+        "endChar": 50
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
