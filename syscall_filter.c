@@ -4,6 +4,7 @@
  */
 
 #include <errno.h>
+#include <linux/limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -156,51 +157,39 @@ void append_allow_syscall(struct filter_block *head, int nr)
 
 void copy_parser_state(struct parser_state *src, struct parser_state *dest)
 {
-	size_t str_size = strlen(src->filename);
-	char *filename = calloc(str_size, sizeof(char));
+	char *filename = strndup(src->filename, PATH_MAX);
 	if (!filename)
-		die("could not allocate filename buffer");
-	strncpy(filename, src->filename, str_size);
+		die("strndup failed to create new filename copy");
 
 	dest->line_number = src->line_number;
 	dest->filename = filename;
 }
 
-void check_duplicate_syscall(struct parser_state **previous_syscalls, int *ret,
-			     struct parser_state *state, int nr)
+/* Returns -1 if it is a duplicate system call and 0 if it is not. */
+int check_duplicate_syscall(struct parser_state **previous_syscalls,
+			    struct parser_state *state, int nr)
 {
+	if (nr > (int)get_num_syscalls()) {
+		die("syscall number invalid/outside of range: %d", nr);
+	}
 	struct parser_state *prev_state_ptr = previous_syscalls[nr];
 	if (prev_state_ptr == NULL) {
 		previous_syscalls[nr] = calloc(1, sizeof(struct parser_state));
 		if (!previous_syscalls[nr])
 			die("could not allocate parser_state buffer");
 		copy_parser_state(state, previous_syscalls[nr]);
-	} else {
-		/* If we encounter a duplicate system call we want the return
-		 * value from compile_file to be -1 indicating a failure.
-		 */
-		*ret = -1;
-		compiler_warn(prev_state_ptr, "syscall %s defined here",
-			      lookup_syscall_name(nr));
-		compiler_warn(state, "syscall %s also defined here",
-			      lookup_syscall_name(nr));
+		return 0;
 	}
+	return -1;
 }
 
-void allow_logging_syscalls(struct parser_state **previous_syscalls,
-			    struct filter_block *head)
+void allow_logging_syscalls(struct filter_block *head)
 {
 	unsigned int i;
-	/* Create a temporary int for passing as ret to check_dup */
-	int temp = 0;
-	struct parser_state state;
-	state.filename = "_logging";
-	state.line_number = -1;
 
 	for (i = 0; i < log_syscalls_len; i++) {
 		int nr = lookup_syscall(log_syscalls[i]);
 		warn("allowing syscall: %s", log_syscalls[i]);
-		check_duplicate_syscall(previous_syscalls, &temp, &state, nr);
 		append_allow_syscall(head, nr);
 	}
 }
@@ -628,6 +617,7 @@ int compile_file(const char *filename, FILE *policy_file,
 	 */
 	char *line = NULL;
 	size_t len = 0;
+	bool duplicate = false;
 	int ret = 0;
 
 	while (getmultiline(&line, &len, policy_file) != -1) {
@@ -728,7 +718,16 @@ int compile_file(const char *filename, FILE *policy_file,
 			goto free_line;
 		}
 
-		check_duplicate_syscall(previous_syscalls, &ret, &state, nr);
+		int is_duplicate_syscall =
+		    check_duplicate_syscall(previous_syscalls, &state, nr);
+		if (is_duplicate_syscall == -1) {
+			duplicate = true;
+			compiler_warn(previous_syscalls[nr],
+				      "syscall %s defined here",
+				      lookup_syscall_name(nr));
+			compiler_warn(&state, "syscall %s also defined here",
+				      lookup_syscall_name(nr));
+		}
 
 		/*
 		 * For each syscall, add either a simple ALLOW,
@@ -783,6 +782,9 @@ int compile_file(const char *filename, FILE *policy_file,
 
 free_line:
 	free(line);
+	if (duplicate) {
+		ret = -1;
+	}
 	return ret;
 }
 
@@ -794,8 +796,8 @@ int compile_filter(const char *filename, FILE *initial_file,
 	struct bpf_labels labels;
 	labels.count = 0;
 
-	/* Create the data structure that will keep track of what system calls
-	 * we have already defined */
+	/* Create the data structure that will keep track of what system
+	 * calls we have already defined */
 	int num_syscalls = get_num_syscalls();
 	struct parser_state **previous_syscalls =
 	    calloc(num_syscalls, sizeof(struct parser_state *));
@@ -824,7 +826,7 @@ int compile_filter(const char *filename, FILE *initial_file,
 	 * some syscalls need to be unconditionally allowed.
 	 */
 	if (filteropts->allow_syscalls_for_logging)
-		allow_logging_syscalls(previous_syscalls, head);
+		allow_logging_syscalls(head);
 
 	if (compile_file(filename, initial_file, head, &arg_blocks, &labels,
 			 filteropts, previous_syscalls,
