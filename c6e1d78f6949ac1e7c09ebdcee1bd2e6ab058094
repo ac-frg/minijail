@@ -602,6 +602,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77314eda_c6d29533",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-02T17:06:45Z",
+      "side": 1,
+      "message": "Make this a size_t.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 3
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a5dd23_f6af15a0",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-02T17:06:45Z",
+      "side": 1,
+      "message": "static size_t num_syscalls \u003d 0;\n\nif num_syscalls \u003d\u003d 0 { calculate }\nelse return num_syscalls;",
+      "range": {
+        "startLine": 154,
+        "startChar": 1,
+        "endLine": 154,
+        "endChar": 22
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6523f85a_5311d95e",
         "filename": "util.c",
         "patchSetId": 6
