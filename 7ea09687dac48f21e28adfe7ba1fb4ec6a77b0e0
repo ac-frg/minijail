@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319b85ed_87724f08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:19:27Z",
+      "side": 1,
+      "message": "please don\u0027t reformat files",
+      "revId": "7ea09687dac48f21e28adfe7ba1fb4ec6a77b0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
