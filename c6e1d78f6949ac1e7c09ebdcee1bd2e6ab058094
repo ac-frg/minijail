@@ -672,6 +672,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d78f67af_49e0e225",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T23:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "663f2a72_b665d7ea",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 3
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77314eda_c6d29533",
