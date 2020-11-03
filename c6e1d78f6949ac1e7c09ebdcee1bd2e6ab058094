@@ -130,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f24625_6bb6fe42",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11de7d85_d64e00bf",
+      "range": {
+        "startLine": 163,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 8
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ee45d9_0f3436db",
@@ -271,6 +295,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce8d8a8b_2763efc2",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bad3232_8e5c52b0",
+      "range": {
+        "startLine": 199,
+        "startChar": 2,
+        "endLine": 199,
+        "endChar": 5
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "241ade56_5e366863",
@@ -308,6 +356,30 @@
       "side": 1,
       "message": "I believe that it should always be an error, but this is definitely negotiable. The only reason I say it should be an error is that the current behavior is failure on duplication anyways later on in the label creation phase (https://bugs.chromium.org/p/chromium/issues/detail?id\u003d901411).",
       "parentUuid": "241ade56_5e366863",
+      "range": {
+        "startLine": 728,
+        "startChar": 46,
+        "endLine": 728,
+        "endChar": 49
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab1391f_1c3850f7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "For now we will keep it as failure every time, but we may revisit this and try to be smart about combining syscall filter definitions.",
+      "parentUuid": "f7c6f2c5_ff683860",
       "range": {
         "startLine": 728,
         "startChar": 46,
@@ -623,6 +695,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90797c4a_1764fe9d",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77314eda_c6d29533",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 3
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a5dd23_f6af15a0",
@@ -636,6 +732,30 @@
       "writtenOn": "2020-11-02T17:06:45Z",
       "side": 1,
       "message": "static size_t num_syscalls \u003d 0;\n\nif num_syscalls \u003d\u003d 0 { calculate }\nelse return num_syscalls;",
+      "range": {
+        "startLine": 154,
+        "startChar": 1,
+        "endLine": 154,
+        "endChar": 22
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1ad6f48_d9e6a901",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5a5dd23_f6af15a0",
       "range": {
         "startLine": 154,
         "startChar": 1,
@@ -683,6 +803,30 @@
       "side": 1,
       "message": "I don\u0027t think that will work. When I try to do that I get this error:\nerror: invalid application of ‘sizeof’ to incomplete type ‘const struct syscall_entry[]’\n\nI did want to confirm that this would give me the number of possible syscalls, however, and that the loop would not encounter a blank entry for whatever reason.",
       "parentUuid": "6523f85a_5311d95e",
+      "range": {
+        "startLine": 155,
+        "startChar": 37,
+        "endLine": 155,
+        "endChar": 50
+      },
+      "revId": "c6e1d78f6949ac1e7c09ebdcee1bd2e6ab058094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1e5e075_a4df235f",
+        "filename": "util.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T01:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86048b56_bb4e7d43",
       "range": {
         "startLine": 155,
         "startChar": 37,
