@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16a3de76_0c583ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T17:29:29Z",
+      "side": 1,
+      "message": "POSIX defines a hash table API:\nhttps://pubs.opengroup.org/onlinepubs/9699919799/functions/hcreate.html\n\nglibc implements it:\nhttps://man7.org/linux/man-pages/man3/hsearch.3.html\n\ni don\u0027t know about bionic\n\nsince you\u0027re \"just\" hashing the syscall NR\u0027s, you could use a bitmap instead.  that wouldn\u0027t be nearly as hard to do an ad-hoc implementation of.  on arm32, it would \"only\" result in ~120KiB memory usage.\n\ni don\u0027t have syscall tables offhand for all ABIs to check this assumption though.  x32 does weird things with setting high bits, but i don\u0027t recall if it shows up in the NR or is only an implementation detail.  i guess if you wrote a func like get_highest_nr() you could put an assert/abort if it exceeded something like 0x100000 as that would still be ~128KiB.  then wait for user reports.\n\nthat should be fine for CrOS \u0026 Android at least as we only support like 4 ABIs atm.\nhttps://chromium.googlesource.com/chromiumos/docs/+/HEAD/constants/syscalls.md",
+      "parentUuid": "54f920ea_01a928fe",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c38206c_5d256c15",
