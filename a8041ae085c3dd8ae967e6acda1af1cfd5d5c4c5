@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f920ea_01a928fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T16:05:50Z",
+      "side": 1,
+      "message": "You\u0027re right, I misunderstood how the syscall_table structure worked. I guess the options now would be to have a hashtable instead of a simple array (which I believe Jorge said that minjail does not have a hash table library) or to mimic the syscall_table data structure for previous_syscalls (which would add an extra O(n) check for every syscall policy definition in addition to the O(n) lookup that already exists in lookup_syscall to find the syscall nr info).",
+      "parentUuid": "dcc2726d_2227c1bf",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c38206c_5d256c15",
