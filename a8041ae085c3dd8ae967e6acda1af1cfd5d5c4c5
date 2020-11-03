@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcc2726d_2227c1bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "fairly certain this is fundamentally flawed.  please let me know if i fundamentally misunderstood it :).",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c38206c_5d256c15",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "use \"bool\" for true/false return values",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60faafa_1674b86b",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "this is not a good allocation pattern.  it assumes that the syscall table is always rooted at 0, generally increases monotonically, and is generally small.  arm32 for example has syscall numbers like 983045 which means this will allocate 3,932,180 bytes just for the array of pointers.  x32 has even larger syscall numbers.\n\nfurther, this code is buggy.  it assumes that the syscall map is linear (starting at 0) and has no holes.  get_num_syscalls returns the number of syscalls, not the nr values themselves which can be much larger.",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e761fd36_60f669d6",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "get_num_syscalls returns a size_t, not an int",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f670dd3_fdc58e85",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "use sizeof(*previous_syscalls) instead",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f2a093_95311cf4",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "get_num_syscalls returns a size_t, not an int.",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c8724e_7cfae879",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "this NULL assignment is pointless when you assign it on the next line",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c25ca2_c1af670f",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "never inline assignments in if() statements",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb5ac78_34510096",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "this is C, so the cast is not necessary",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c903d1a9_f5f9a774",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "we don\u0027t refer to \"this CL\" in the code itself as there is no CL context.  you can just delete this line entirely.",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea79010d_f87b1875",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "(void)",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09691fde_69edfdda",
+        "filename": "util.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-03T08:36:07Z",
+      "side": 1,
+      "message": "this is C, so you must write (void)",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
