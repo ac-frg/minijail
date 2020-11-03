@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1ddb39a_90b87315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-03T21:20:19Z",
+      "side": 1,
+      "message": "Ok, it actually would also work to just index the previous_definition table in the same way that we index the syscall_table so any time we lookup a syscall we could just get an index from that and use that number to index the previous_definition table. So we are essentially using the index of the syscall_table as the hashing function so we can make it a simple array instead but still have O(1) lookup (with the O(n) cost already being incurred in lookup_syscall).",
+      "parentUuid": "16a3de76_0c583ddd",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c38206c_5d256c15",
