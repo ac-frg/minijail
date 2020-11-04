@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7e0d9ac_de30fa6c",
+        "filename": "syscall_filter.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T21:06:12Z",
+      "side": 1,
+      "message": "I think I\u0027d still prefer to show this as:\n\npdie(\"strdup(src-\u003efilename) failed\")\n\n(pdie will print errno as well.)",
+      "range": {
+        "startLine": 163,
+        "startChar": 7,
+        "endLine": 163,
+        "endChar": 49
+      },
+      "revId": "8358fdaf67dfb485645e96f81b09f2dfb75befb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6887d455_eb41addb",
+        "filename": "util.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T21:06:12Z",
+      "side": 1,
+      "message": "You can elide this.",
+      "range": {
+        "startLine": 154,
+        "startChar": 36,
+        "endLine": 154,
+        "endChar": 53
+      },
+      "revId": "8358fdaf67dfb485645e96f81b09f2dfb75befb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
