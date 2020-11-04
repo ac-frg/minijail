@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74c1149_85529a1a",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "It also inserts the syscall, right?",
+      "range": {
+        "startLine": 168,
+        "startChar": 3,
+        "endLine": 168,
+        "endChar": 66
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f09a798_277e34f7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "Maybe \"check_and_insert_syscall\"\n\nAlso, why not make this a bool?",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 27
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cdde81_bf625924",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "This should be a size_t since it\u0027s an index into an array",
+      "range": {
+        "startLine": 170,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 42
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee78bb76_8930042b",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "This has to be \u003e\u003d, right?\n\nIf there are 10 syscalls, the valid indexes are 0..9.",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 10
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97101468_846beb73",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "I\u0027d shorten this too:\n\ndie(\"syscall index %d out of range: %d total syscalls\", num_syscalls - 1);",
+      "range": {
+        "startLine": 173,
+        "startChar": 7,
+        "endLine": 173,
+        "endChar": 49
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a5df8b_74b2ca86",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "How about we modify this to return the number and (optionally) populate the index in the pointer if the pointer is non-NULL (this is, switch the current implementation). That way this code doesn\u0027t need to change.",
+      "range": {
+        "startLine": 192,
+        "startChar": 2,
+        "endLine": 192,
+        "endChar": 39
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f753421e_4aebd7fd",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "This technically requires including \u003cstdbool.h\u003e (https://en.cppreference.com/w/c/types/boolean)",
+      "range": {
+        "startLine": 621,
+        "startChar": 1,
+        "endLine": 621,
+        "endChar": 5
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a4fae2f_d141daaa",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 700,
+        "startChar": 2,
+        "endLine": 700,
+        "endChar": 5
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c9ad7b5_0e72386e",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "I don\u0027t think we care about |ind| being \u003c 0 here.",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 23
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb44619a_fb5c9f10",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "For multi-line comments we leave an empty line first:\n\n/*\n * Multi\n * line\n * comment.\n */",
+      "range": {
+        "startLine": 801,
+        "startChar": 1,
+        "endLine": 802,
+        "endChar": 36
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eeff4c1_43a04e5a",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "Why not allocate this after checking whether the initial file is valid, and therefore saving the need to free the struct if the file is not valid?",
+      "range": {
+        "startLine": 803,
+        "startChar": 0,
+        "endLine": 805,
+        "endChar": 56
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8de4be_a1545caa",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "This should be declared before its usage?",
+      "range": {
+        "startLine": 945,
+        "startChar": 5,
+        "endLine": 945,
+        "endChar": 27
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc210a50_b461d50c",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "There are some unnecessary formatting changes here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de823ed_5ed17584",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "And here",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 4
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec7ed54_b0bfc181",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "And here.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 45
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0504b38d_fce83463",
+        "filename": "util.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "Maybe \"compile time\" or \"compile-time\"",
+      "range": {
+        "startLine": 152,
+        "startChar": 50,
+        "endLine": 152,
+        "endChar": 61
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c378f82_6c459bd9",
+        "filename": "util.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "Leave first line empty:\n\n/*\n * TODO: ...\n\n\nAlso, I think we try to associate all TODOs with bugs, so can you file a bug for this in crbug.com under component OS\u003eSystem\u003eMinijail?",
+      "range": {
+        "startLine": 152,
+        "startChar": 3,
+        "endLine": 152,
+        "endChar": 10
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b8f782_ffaa3abd",
+        "filename": "util.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "Leave first line empty:\n\n/*\n * Returns...",
+      "range": {
+        "startLine": 167,
+        "startChar": 3,
+        "endLine": 167,
+        "endChar": 10
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c4b5095_7340207e",
+        "filename": "util.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "As per other comment, I\u0027d flip this.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 11
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c15f9976_a64f39d9",
+        "filename": "util.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T15:33:08Z",
+      "side": 1,
+      "message": "This will be the index and should be a size_t.",
+      "range": {
+        "startLine": 170,
+        "startChar": 37,
+        "endLine": 170,
+        "endChar": 44
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
