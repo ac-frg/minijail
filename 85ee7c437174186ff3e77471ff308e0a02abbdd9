@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06df0cd7_33fe5510",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "This is looking pretty good. Some small nits.",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d2ac9c_f81458c6",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "Nit: \"\u0027ind\u0027\" or \"|ind|\" to signify that this is an identifier in code.",
+      "range": {
+        "startLine": 171,
+        "startChar": 9,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd41dd0_f5dfaef0",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "I think I would switch teh polarity here: since the function name starts with \"insert\", it should return true if inserting succeeds.",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 172,
+        "endChar": 58
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662224f0_d8d09c7a",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "|ind| or \u0027ind\u0027 (existing code uses ||).",
+      "range": {
+        "startLine": 729,
+        "startChar": 5,
+        "endLine": 729,
+        "endChar": 8
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1c4b4a_cef1b4fe",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 74,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 5
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be573996_98a9a541",
+        "filename": "util.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "Sorry, I should have clarified the format here:\n\nTODO(crbug.com/1145660): We would ...\n\nCode search will linkify in that way.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 36
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479e6184_7e31050f",
+        "filename": "util.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "|ind|",
+      "range": {
+        "startLine": 170,
+        "startChar": 3,
+        "endLine": 170,
+        "endChar": 6
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1a4228_8e1d82bf",
+        "filename": "util.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "As per previous comment I\u0027d just do *ind \u003d 0 here\n\n(Has the added advantage that nobody can inadvertently use |ind| and address invalid memory.)",
+      "range": {
+        "startLine": 185,
+        "startChar": 2,
+        "endLine": 185,
+        "endChar": 11
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

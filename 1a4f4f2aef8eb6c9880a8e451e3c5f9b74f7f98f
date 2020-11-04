@@ -379,6 +379,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b82f77a4_04ad3ced",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "|nr| will already be negative in that case, right? I\u0027d keep that as the sentinel value for the function failing, and keep index as a size_t.\n\nAlternatively the function can return bool and return both values as pointers.",
+      "parentUuid": "314091a4_513f6e58",
+      "range": {
+        "startLine": 700,
+        "startChar": 2,
+        "endLine": 700,
+        "endChar": 5
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c9ad7b5_0e72386e",
         "filename": "syscall_filter.c",
         "patchSetId": 10
@@ -414,6 +438,30 @@
       "side": 1,
       "message": "ind is -1 if the syscall is not in the array. This check should be redundant with nr \u003c 0 because they are both set to -1 at the same time, but it is still better to be more explicit.",
       "parentUuid": "0c9ad7b5_0e72386e",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 23
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35c747f_c710f954",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "As per the above I think we should avoid the numerical conversion and just use the return value of the function as error reporting.",
+      "parentUuid": "b298b150_fcf59f78",
       "range": {
         "startLine": 701,
         "startChar": 12,
@@ -555,6 +603,30 @@
       "side": 1,
       "message": "I was following the convention of free_block_list which is declared at the end of the file and defined in the header file.",
       "parentUuid": "ed8de4be_a1545caa",
+      "range": {
+        "startLine": 945,
+        "startChar": 5,
+        "endLine": 945,
+        "endChar": 27
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68988a76_bda4d653",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-04T19:43:36Z",
+      "side": 1,
+      "message": "Since this function is not expected to be used by consumers of this code (or is it?) it might make sense to not declare it in the header file and just declare it above its usage (and make it exclusive to this file.)",
+      "parentUuid": "18cf61ca_7fab501a",
       "range": {
         "startLine": 945,
         "startChar": 5,
