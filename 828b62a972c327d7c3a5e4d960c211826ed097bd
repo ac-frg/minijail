@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d129311_0d9ae110",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "can you go through the comments and make sure they\u0027re all closed/resolved ?",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab9cebb_6f609028",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "unused -\u003e delete",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1402f3_97cd70b7",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "there\u0027s no need for this.  we do ret\u003d-1 directly in this func already.",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a311926_5054fc45",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "thinking about how clang/gcc normally diagnosis this, what if we inverted the order and phrased it:\n\n compiler_warn(\u0026state, \"syscall %s redefined\", syscall_name);\n compiler_warn(previous_syscalls[ind], \"previous definition is here\");",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b76721b_282ba194",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "no need for this if statement -- free(NULL) is safe",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c82a5976_d1274dde",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "no need for the cast",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4008e8f0_6fa7ac46",
+        "filename": "syscall_filter.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T22:26:53Z",
+      "side": 1,
+      "message": "not sure we need this defensive mechanism when we free the array below.  i don\u0027t think we normally bother clearing memory when we\u0027re done with it.",
+      "revId": "828b62a972c327d7c3a5e4d960c211826ed097bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
