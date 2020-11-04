@@ -401,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c6634f_6a677210",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-04T20:49:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b82f77a4_04ad3ced",
+      "range": {
+        "startLine": 700,
+        "startChar": 2,
+        "endLine": 700,
+        "endChar": 5
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c9ad7b5_0e72386e",
@@ -462,6 +486,30 @@
       "side": 1,
       "message": "As per the above I think we should avoid the numerical conversion and just use the return value of the function as error reporting.",
       "parentUuid": "b298b150_fcf59f78",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 23
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e919cd7_ddfbbc4c",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-04T20:49:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e35c747f_c710f954",
       "range": {
         "startLine": 701,
         "startChar": 12,
@@ -627,6 +675,30 @@
       "side": 1,
       "message": "Since this function is not expected to be used by consumers of this code (or is it?) it might make sense to not declare it in the header file and just declare it above its usage (and make it exclusive to this file.)",
       "parentUuid": "18cf61ca_7fab501a",
+      "range": {
+        "startLine": 945,
+        "startChar": 5,
+        "endLine": 945,
+        "endChar": 27
+      },
+      "revId": "1a4f4f2aef8eb6c9880a8e451e3c5f9b74f7f98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48be6a92_43b1a69c",
+        "filename": "syscall_filter.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-04T20:49:55Z",
+      "side": 1,
+      "message": "It actually is used in syscall_filter_unittest to cleanup in test_compile_file.",
+      "parentUuid": "68988a76_bda4d653",
       "range": {
         "startLine": 945,
         "startChar": 5,
