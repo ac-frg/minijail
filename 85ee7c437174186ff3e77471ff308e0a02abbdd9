@@ -18,6 +18,86 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb4eeb14_4fa5504a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "calculating the size of the table at build time is easy to do: https://paste.googleplex.com/5545601308557312",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e44d197b_f53443eb",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "why do you need this ?",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10786a2c_c7477816",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "this should be const",
+      "range": {
+        "startLine": 161,
+        "startChar": 1,
+        "endLine": 161,
+        "endChar": 5
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "016b09bf_4cdd7bd3",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "use strdup.  there\u0027s no need for strndup here.",
+      "range": {
+        "startLine": 161,
+        "startChar": 18,
+        "endLine": 161,
+        "endChar": 25
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53d2ac9c_f81458c6",
@@ -66,6 +146,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "246c03bc_ea84af95",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "ind is aize_t, not long.  you need to use %zu instead.",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "662224f0_d8d09c7a",
         "filename": "syscall_filter.c",
         "patchSetId": 13
@@ -83,6 +180,74 @@
         "endLine": 729,
         "endChar": 8
       },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55520ddb_005dc636",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "you don\u0027t need to cast ind to size_t",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49934263_62be1d69",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "store lookup_syscall_name in a string to avoid calling it twice",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cea340_b0218677",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "don\u0027t inline assignments like this.  move it to the init above.",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c0ffe6_b46f8224",
+        "filename": "syscall_filter.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "the cast isn\u0027t needed",
       "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -112,6 +277,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34b88668_1be16d24",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "indent is off",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be573996_98a9a541",
         "filename": "util.c",
         "patchSetId": 13
@@ -129,6 +311,23 @@
         "endLine": 154,
         "endChar": 36
       },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb248d8_17ab377c",
+        "filename": "util.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "this needs to be (void)",
       "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -174,6 +373,46 @@
         "startChar": 2,
         "endLine": 185,
         "endChar": 11
+      },
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146495e5_3865e412",
+        "filename": "util.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "this needs to be (void)",
+      "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ea43fb_47642868",
+        "filename": "util.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-04T20:04:23Z",
+      "side": 1,
+      "message": "shouldn\u0027t ind be size_t ?",
+      "range": {
+        "startLine": 146,
+        "startChar": 37,
+        "endLine": 146,
+        "endChar": 45
       },
       "revId": "85ee7c437174186ff3e77471ff308e0a02abbdd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
