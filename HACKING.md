@@ -35,6 +35,13 @@ $ make tests
 
 Building the tests will automatically execute them.
 
+## Code Review
+
+We use [Android Review] for minijail code review. The easiest way to submit
+changes for review is using `repo upload` on a Chromium OS or Android checkout.
+Go [here] to obtain credentials to push code. For more detailed instructions see
+the [android source documentation] or the [chromium os documentation].
+
 ## Source Style
 
 *   Minijail uses kernel coding style:
@@ -66,9 +73,14 @@ Please keep it in sync with [minijail0_cli.c].
 
 [minijail0.5] documents the syntax of config files (e.g. seccomp filters).
 
+[android source documentation]: https://source.android.com/setup/start
+[chromium os documentation]:
+https://chromium.googlesource.com/chromiumos/docs/+/master/developer_guide.md
+[here]: https://android-review.googlesource.com/settings/#HTTPCredentials
 [libcap]: https://git.kernel.org/pub/scm/linux/kernel/git/morgan/libcap.git/
 [minijail0.1]: ./minijail0.1
 [minijail0.5]: ./minijail0.5
 [minijail0_cli.c]: ./minijail0_cli.c
+[Android Review]: https://android-review.googlesource.com/
 [Google Markdown style guide]: https://github.com/google/styleguide/blob/gh-pages/docguide/style.md
 [Google Test]: https://github.com/google/googletest
