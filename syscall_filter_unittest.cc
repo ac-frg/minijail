@@ -43,21 +43,18 @@ enum use_logging {
   USE_RET_LOG_LOGGING = 2,
 };
 
-/*
- * TODO(crbug.com/1146502) Add more tests for greater granularity for checking
- * for duplicate syscalls.
- */
 int test_compile_filter(
     std::string filename,
     FILE* policy_file,
     struct sock_fprog* prog,
     enum block_action action = ACTION_RET_KILL,
-    enum use_logging allow_logging = NO_LOGGING) {
+    enum use_logging allow_logging = NO_LOGGING,
+    bool allow_dup_syscalls = true) {
   struct filter_options filteropts {
     .action = action,
     .allow_logging = allow_logging != NO_LOGGING,
     .allow_syscalls_for_logging = allow_logging == USE_SIGSYS_LOGGING,
-    .allow_duplicate_syscalls = true,
+    .allow_duplicate_syscalls = allow_dup_syscalls,
   };
   return compile_filter(filename.c_str(), policy_file, prog, &filteropts);
 }
@@ -70,7 +67,8 @@ int test_compile_file(
     struct bpf_labels* labels,
     enum block_action action = ACTION_RET_KILL,
     enum use_logging allow_logging = NO_LOGGING,
-    unsigned int include_level = 0) {
+    unsigned int include_level = 0,
+    bool check_dup_syscalls = false) {
   struct filter_options filteropts {
     .action = action,
     .allow_logging = allow_logging != NO_LOGGING,
@@ -1839,6 +1837,25 @@ TEST(FilterTest, include_same_syscalls) {
             ARCH_VALIDATION_LEN + 1 /* load syscall nr */ +
                 2 * 8 /* check syscalls twice */ + 1 /* filter return */);
   free(actual.filter);
+}
+
+TEST(FilterTest, include_same_syscalls_with_check) {
+  struct sock_fprog actual;
+  std::string policy =
+      "read: 1\n"
+      "write: 1\n"
+      "rt_sigreturn: 1\n"
+      "exit: 1\n"
+      "@include " + source_path("test/seccomp.policy") + "\n";
+
+  FILE* policy_file = write_policy_to_pipe(policy);
+  ASSERT_NE(policy_file, nullptr);
+
+  int res = test_compile_filter("policy", policy_file, &actual,
+                                ACTION_RET_KILL, NO_LOGGING, false);
+  fclose(policy_file);
+
+  ASSERT_EQ(res, -1);
 }
 
 TEST(FilterTest, include_two) {
