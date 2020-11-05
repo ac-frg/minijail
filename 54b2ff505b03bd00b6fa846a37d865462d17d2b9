@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00fa9e59_014caf97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-05T14:48:40Z",
+      "side": 1,
+      "message": "This looks pretty ready to go in. Marking +2 but please fix the extra parens.\n\nI think we probably want to land a CL immediately after this one to have the size of the table known at compile time (per Mike\u0027s suggestion at https://paste.googleplex.com/5545601308557312).",
+      "revId": "54b2ff505b03bd00b6fa846a37d865462d17d2b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fceed16_a2a3ec90",
+        "filename": "syscall_filter.c",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-05T14:48:40Z",
+      "side": 1,
+      "message": "Extra parens",
+      "range": {
+        "startLine": 162,
+        "startChar": 36,
+        "endLine": 162,
+        "endChar": 37
+      },
+      "revId": "54b2ff505b03bd00b6fa846a37d865462d17d2b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
