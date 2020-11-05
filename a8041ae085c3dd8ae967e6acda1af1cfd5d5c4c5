@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3abb27ae_4d903930",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c38206c_5d256c15",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d60faafa_1674b86b",
@@ -102,6 +120,24 @@
       "writtenOn": "2020-11-03T08:36:07Z",
       "side": 1,
       "message": "this is not a good allocation pattern.  it assumes that the syscall table is always rooted at 0, generally increases monotonically, and is generally small.  arm32 for example has syscall numbers like 983045 which means this will allocate 3,932,180 bytes just for the array of pointers.  x32 has even larger syscall numbers.\n\nfurther, this code is buggy.  it assumes that the syscall map is linear (starting at 0) and has no holes.  get_num_syscalls returns the number of syscalls, not the nr values themselves which can be much larger.",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bba33a1_7f87f162",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60faafa_1674b86b",
       "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -123,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1650e31_c77025c5",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e761fd36_60f669d6",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f670dd3_fdc58e85",
@@ -136,6 +190,24 @@
       "writtenOn": "2020-11-03T08:36:07Z",
       "side": 1,
       "message": "use sizeof(*previous_syscalls) instead",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec151332_09b44faa",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f670dd3_fdc58e85",
       "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -157,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "898cd7bb_45f4714f",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60f2a093_95311cf4",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10c8724e_7cfae879",
@@ -170,6 +260,24 @@
       "writtenOn": "2020-11-03T08:36:07Z",
       "side": 1,
       "message": "this NULL assignment is pointless when you assign it on the next line",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e378f4_e1814e97",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c8724e_7cfae879",
       "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -191,6 +299,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6949401d_d48e6157",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8c25ca2_c1af670f",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeb5ac78_34510096",
@@ -204,6 +330,24 @@
       "writtenOn": "2020-11-03T08:36:07Z",
       "side": 1,
       "message": "this is C, so the cast is not necessary",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b49e483_027d51b6",
+        "filename": "syscall_filter.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eeb5ac78_34510096",
       "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -225,6 +369,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "904e5e26_f828449b",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c903d1a9_f5f9a774",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea79010d_f87b1875",
@@ -242,6 +404,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e858fa8_33f6c7e2",
+        "filename": "util.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea79010d_f87b1875",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09691fde_69edfdda",
@@ -255,6 +435,24 @@
       "writtenOn": "2020-11-03T08:36:07Z",
       "side": 1,
       "message": "this is C, so you must write (void)",
+      "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db124f3f_14432f79",
+        "filename": "util.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-05T15:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09691fde_69edfdda",
       "revId": "a8041ae085c3dd8ae967e6acda1af1cfd5d5c4c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
