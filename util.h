@@ -9,6 +9,7 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
+#include "libsyscalls.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -142,7 +143,11 @@ static inline bool debug_logging_allowed(void) {
 #endif
 }
 
-size_t get_num_syscalls(void);
+static inline size_t get_num_syscalls(void)
+{
+	return syscall_table_size;
+}
+
 int lookup_syscall(const char *name, size_t *ind);
 const char *lookup_syscall_name(int nr);
 
