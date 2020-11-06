@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9bd460_e2390e28",
+        "filename": "HACKING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-06T16:08:16Z",
+      "side": 1,
+      "message": "Minijail",
+      "range": {
+        "startLine": 40,
+        "startChar": 28,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "597c54a914418cdcbd674f50fbe5b3ccc44cee02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5637ffa0_fef4e444",
+        "filename": "HACKING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-06T16:08:16Z",
+      "side": 1,
+      "message": "I normally try to avoid using vague words like \"here\" with this type of link.\n\nIdeally the links that we use in this format (where the link definition is not inline) would be self-descriptive.\n\nSuggestion: Go to [Android Review HTTP Credentials] to obtain credentials to push code.",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 9
+      },
+      "revId": "597c54a914418cdcbd674f50fbe5b3ccc44cee02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
