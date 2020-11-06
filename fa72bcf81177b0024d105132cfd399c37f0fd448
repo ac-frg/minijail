@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85f918b6_6e0a20d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-06T19:05:33Z",
+      "side": 1,
+      "message": "the flag should be enabled by default.  let Android turn it off in their blueprint file.\n\nimo the flag should be whether duplicate syscalls are fatal, not whether we warn.",
+      "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b5b35e4_207cf92d",
+        "filename": "libminijail.c",
+        "patchSetId": 22
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-06T19:05:33Z",
+      "side": 1,
+      "message": "nit: \"or not\" is redundant when saying \"whether\"",
+      "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "216ab6ee_83733362",
+        "filename": "syscall_filter.c",
+        "patchSetId": 22
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-06T19:05:33Z",
+      "side": 1,
+      "message": "this should be a static inline in the header",
+      "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
