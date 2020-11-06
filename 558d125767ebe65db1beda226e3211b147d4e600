@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ec0bcba_5d5f26f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-06T18:57:14Z",
+      "side": 1,
+      "message": "It turns out the Android probably relies on being able to use duplicate syscalls so we will hide this feature behind a flag.",
+      "revId": "558d125767ebe65db1beda226e3211b147d4e600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
