@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7eeffde_aba3804e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-06T19:11:08Z",
+      "side": 1,
+      "message": "Wrap to 72 cols.",
+      "range": {
+        "startLine": 9,
+        "startChar": 61,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "392d7e030faa9a87ff8249c46907640e6c23f0fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a6a7ad3_3f1e5f79",
+        "filename": "Makefile",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-06T19:11:08Z",
+      "side": 1,
+      "message": "I think we can spell this out fully.\n\nOr I guess per Mike\u0027s comment this would go away and the flag would be called something like ALLOW_DUPLICATE_SYSCALLS.",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 17
+      },
+      "revId": "392d7e030faa9a87ff8249c46907640e6c23f0fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
