@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b075813_a6fa8361",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-09T16:56:20Z",
+      "side": 1,
+      "message": "It might make sense to extract this to a separate CL -- this CL\u0027s title suggests it\u0027s only about getting the number of syscalls at compile-time.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 1861,
+        "endChar": 31
+      },
+      "revId": "ed5e7b2b54a816e569212977c1bdef921d6b315a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
