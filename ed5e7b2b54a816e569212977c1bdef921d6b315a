@@ -22,6 +22,30 @@
       },
       "revId": "ed5e7b2b54a816e569212977c1bdef921d6b315a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f33302f_a4ca8af9",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-09T22:56:21Z",
+      "side": 1,
+      "message": "Yep, going to do that now. Had it in another commit and got merged into this one for some reason.",
+      "parentUuid": "1b075813_a6fa8361",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 1861,
+        "endChar": 31
+      },
+      "revId": "ed5e7b2b54a816e569212977c1bdef921d6b315a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
