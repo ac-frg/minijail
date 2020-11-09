@@ -33,6 +33,24 @@
       "message": "i vaguely recall discussing this before, but the docs/manpages cover this different behavior already right ?",
       "revId": "d23ad7927113a86d4b023e18660aabe9697c4a71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38bb66e0_f4c8a88a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-09T21:28:25Z",
+      "side": 1,
+      "message": "I don\u0027t think this is explicit, I can send a follow-up to update things.",
+      "parentUuid": "f575638f_f43b4eb7",
+      "revId": "d23ad7927113a86d4b023e18660aabe9697c4a71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
