@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5de0b3ca_b85cfff5",
+        "filename": "libminijail.c",
+        "patchSetId": 22
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-09T16:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b5b35e4_207cf92d",
+      "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "216ab6ee_83733362",
@@ -48,6 +66,24 @@
       "writtenOn": "2020-11-06T19:05:33Z",
       "side": 1,
       "message": "this should be a static inline in the header",
+      "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8fd7806_e1e03186",
+        "filename": "syscall_filter.c",
+        "patchSetId": 22
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2020-11-09T16:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "216ab6ee_83733362",
       "revId": "fa72bcf81177b0024d105132cfd399c37f0fd448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
