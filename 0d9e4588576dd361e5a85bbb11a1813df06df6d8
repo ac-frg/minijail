@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce1535e9_ff09ce74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-10T19:50:03Z",
+      "side": 1,
+      "message": "I think we should go back to PS24.",
+      "revId": "0d9e4588576dd361e5a85bbb11a1813df06df6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a69cbeb_19e48d7b",
+        "filename": "syscall_filter.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-10T19:50:03Z",
+      "side": 1,
+      "message": "Indentation.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 2
+      },
+      "revId": "0d9e4588576dd361e5a85bbb11a1813df06df6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4433c56a_90cd1b9a",
+        "filename": "syscall_filter.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-10T19:50:03Z",
+      "side": 1,
+      "message": "Uhm, this is ALLOW_DUPLICATE_SYSCALLS right? This is probably why things were not passing.",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 30
+      },
+      "revId": "0d9e4588576dd361e5a85bbb11a1813df06df6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
