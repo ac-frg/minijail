@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f823c65_3b6f430f",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1335,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-11T13:27:59Z",
+      "side": 1,
+      "message": "It might be useful to do:\n\nfalse /*allow_dup_syscalls*/ or\n/*allow_dup_syscalls\u003d*/false\n\nto make things easier to read.",
+      "range": {
+        "startLine": 1335,
+        "startChar": 61,
+        "endLine": 1335,
+        "endChar": 66
+      },
+      "revId": "533dd931a95f3a99a58ba805189d2d9dce0444a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c73930_741632f8",
+        "filename": "syscall_filter_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1938,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-11T13:27:59Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 1938,
+        "startChar": 61,
+        "endLine": 1938,
+        "endChar": 66
+      },
+      "revId": "533dd931a95f3a99a58ba805189d2d9dce0444a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
