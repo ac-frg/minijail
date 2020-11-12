@@ -1,0 +1,9 @@
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Autosubmit+1: Justin Yun <justinyun@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Thu, 12 Nov 2020 02:16:53 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1495981
+Project: platform/external/minijail
+Branch: refs/heads/master
