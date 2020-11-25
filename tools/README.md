@@ -17,8 +17,61 @@ after that point in a sandboxed process.
 
 ```shell
 strace -f -e raw=all -o strace.txt -- <program>
-./tools/generate_seccomp_policy.py strace.txt > <program>.policy
+./tools/generate_seccomp_policy.py --trace strace.txt > <program>.policy
 ```
+
+### (Experimental) Using linux audit logs to generate policy
+
+Linux kernel v4.14+ support `SECCOMP_RET_LOG`. This allows minijail to log
+syscalls via the `audit` subsystem instead of blocking them. One caveat of this
+approach is that `SECCOMP_RET_LOG` does not log syscall arguments for finer
+grained filtering.
+The `audit` subsystem itself has a mechanism to log all syscalls. Though a
+`SYSCALL` event is more voluminous than a corresponding `SECCOMP` event.
+We employ here a combination of both techniques. We rely on `SECCOMP` for all
+except the syscalls for which we want finer grained filtering.
+
+Note that this requires python3 bindings for `auparse` which are generally
+available in distro packages named `python3-audit` or `python-audit`.
+
+#### Per-boot setup of audit rules on DUT
+
+Set up `audit` rules and an empty seccomp policy for later use. This can be
+done in the `pre-start` section of your upstart conf.
+
+`$UID` is the uid for your process. Using root will lead to logspam.
+
+As mentioned above, these extra audit rules enable `SYSCALL` auditing which
+in turn lets the tool inspect arguments for a pre-selected subset of syscalls.
+The list of syscalls here matches the list of keys  in `arg_inspection`.
+
+```shell
+for arch in b32 b64; do
+  auditctl -a exit,always -F uid=$UID -F arch=$arch -S ioctl -S socket \
+           -S prctl -S mmap -S mprotect \
+           $([ "$arch" == "b32" ] && echo "-S mmap2")
+done
+touch /tmp/empty.policy
+```
+
+#### Run your program under minijail with an empty policy
+
+Again, this can be done via your upstart conf. Just be sure to stimulate all
+corner cases, error conditions, etc for comprehensive coverage.
+
+```shell
+minijail0 -u $UID -g $GID -L -S /tmp/empty.policy -- <program>
+```
+
+#### Generate policy using audit.log
+
+```shell
+./tools/generate_seccomp_policy.py --audit-log audit.log \
+    --audit-comm $PROGRAM_NAME > $PROGRAM_NAME.policy
+```
+
+Note that the tool can also consume multiple audit logs and/or strace traces to
+produce one unified policy.
 
 ## compile_seccomp_policy.py
 
