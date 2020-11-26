@@ -106,6 +106,7 @@ void minijail_use_seccomp(struct minijail *j);
 void minijail_no_new_privs(struct minijail *j);
 void minijail_use_seccomp_filter(struct minijail *j);
 void minijail_set_seccomp_filter_tsync(struct minijail *j);
+void minijail_set_seccomp_filter_allow_speculation(struct minijail *j);
 /* Does not take ownership of |filter|. */
 void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
