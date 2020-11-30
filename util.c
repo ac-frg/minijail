@@ -149,12 +149,24 @@ void do_log(int priority, const char *format, ...)
 	dprintf(logging_config.fd, "\n");
 }
 
-int lookup_syscall(const char *name)
+/*
+ * Returns the syscall nr and optionally populates the index in the pointer
+ * |ind| if it is non-NULL.
+ */
+int lookup_syscall(const char *name, size_t *ind)
 {
+	size_t ind_tmp = 0;
 	const struct syscall_entry *entry = syscall_table;
-	for (; entry->name && entry->nr >= 0; ++entry)
-		if (!strcmp(entry->name, name))
+	for (; entry->name && entry->nr >= 0; ++entry) {
+		if (!strcmp(entry->name, name)) {
+			if (ind != NULL)
+				*ind = ind_tmp;
 			return entry->nr;
+		}
+		ind_tmp++;
+	}
+	if (ind != NULL)
+		*ind = -1;
 	return -1;
 }
 

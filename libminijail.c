@@ -1045,10 +1045,15 @@ static int parse_seccomp_filters(struct minijail *j, const char *filename,
 		else
 			filteropts.action = ACTION_RET_TRAP;
 	} else {
-		if (j->flags.seccomp_filter_tsync)
-			filteropts.action = ACTION_RET_TRAP;
-		else
+		if (j->flags.seccomp_filter_tsync) {
+			if (seccomp_ret_kill_process_available()) {
+				filteropts.action = ACTION_RET_KILL_PROCESS;
+			} else {
+				filteropts.action = ACTION_RET_TRAP;
+			}
+		} else {
 			filteropts.action = ACTION_RET_KILL;
+		}
 	}
 
 	/*
@@ -1057,6 +1062,9 @@ static int parse_seccomp_filters(struct minijail *j, const char *filename,
 	 */
 	filteropts.allow_syscalls_for_logging =
 	    filteropts.allow_logging && !seccomp_ret_log_available();
+
+	/* Whether to fail on duplicate syscalls. */
+	filteropts.allow_duplicate_syscalls = allow_duplicate_syscalls();
 
 	if (compile_filter(filename, policy_file, fprog, &filteropts)) {
 		free(fprog);
