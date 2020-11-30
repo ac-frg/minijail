@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ce5c5065_a3abef4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1807652
+      },
+      "writtenOn": "2020-11-30T03:32:57Z",
+      "side": 1,
+      "message": "Done, but the upload hook doesn\u0027t like it.",
+      "parentUuid": "06355fd0_ece28fc9",
+      "revId": "5e5f5bc90818ae7cfd2b0737c94393cf179b7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cba55f0a_99ecd9b4",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2020-11-27T04:41:15Z",
       "side": 1,
       "message": "please update the manpages.  this will give you space to explain what \"speculation\" means.  imagine someone reading this who has never heard of spectre/etc...",
+      "revId": "5e5f5bc90818ae7cfd2b0737c94393cf179b7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "167d8658_6b94035c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1807652
+      },
+      "writtenOn": "2020-11-30T03:32:57Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "cba55f0a_99ecd9b4",
       "revId": "5e5f5bc90818ae7cfd2b0737c94393cf179b7eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2020-11-27T04:41:15Z",
       "side": 1,
       "message": "all new APIs should have proper docs.  i know we have a lot of existing ones without them, but we shouldn\u0027t keep adding.",
+      "revId": "5e5f5bc90818ae7cfd2b0737c94393cf179b7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5ae613_96801815",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1807652
+      },
+      "writtenOn": "2020-11-30T03:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "838a9576_9ec21586",
       "revId": "5e5f5bc90818ae7cfd2b0737c94393cf179b7eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
