@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3351b7_9084218d",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-30T08:43:41Z",
+      "side": 1,
+      "message": "nit: \"JavaScript\" ;)",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 13
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deff3359_596c6cf4",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-11-30T08:43:41Z",
+      "side": 1,
+      "message": "the current help text doesn\u0027t provide any examples of why one would ever use this option ...",
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
