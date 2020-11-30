@@ -3,6 +3,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18e0e24f_16072687",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "I\u0027d say \"speculative execution\" to make it clearer what this is referring to.",
+      "range": {
+        "startLine": 7,
+        "startChar": 29,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd357a9_78b37533",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "I\u0027d say \"speculative execution\" here too.",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd1d8c0b_66b3713c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "And here.",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9443766f_0abaec8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "And here.",
+      "range": {
+        "startLine": 11,
+        "startChar": 60,
+        "endLine": 11,
+        "endChar": 71
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5eca925_7f56abff",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "This doesn\u0027t really parse as English.\n\n\"allowing speculative execution on seccomp processes not supported\"",
+      "range": {
+        "startLine": 1007,
+        "startChar": 9,
+        "endLine": 1007,
+        "endChar": 34
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e3351b7_9084218d",
         "filename": "libminijail.h",
         "patchSetId": 2
@@ -26,6 +141,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de8be1be_43ef9e7d",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "I would elide this. We shouldn\u0027t recommend something by saying vague things like \"measured performance impact.\" Realistically, nobody should be using this.\n\nEven better:\n\n\"This is only safe to use for processes that do not execute untrusted code.\" and elide the mention of Javascript.",
+      "range": {
+        "startLine": 116,
+        "startChar": 14,
+        "endLine": 116,
+        "endChar": 70
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deff3359_596c6cf4",
         "filename": "minijail0.1",
         "patchSetId": 2
@@ -37,6 +175,52 @@
       "writtenOn": "2020-11-30T08:43:41Z",
       "side": 1,
       "message": "the current help text doesn\u0027t provide any examples of why one would ever use this option ...",
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e65468_cd7b1d36",
+        "filename": "minijail0.1",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "speculative-execution",
+      "range": {
+        "startLine": 312,
+        "startChar": 11,
+        "endLine": 312,
+        "endChar": 22
+      },
+      "revId": "4910a2951cac929b6257116693972e83d49d3510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce2e254_5fff024d",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-11-30T14:53:03Z",
+      "side": 1,
+      "message": "speculative-execution",
+      "range": {
+        "startLine": 624,
+        "startChar": 19,
+        "endLine": 624,
+        "endChar": 30
+      },
       "revId": "4910a2951cac929b6257116693972e83d49d3510",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
