@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef05542_765ca794",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "Nit: End with period.",
+      "range": {
+        "startLine": 30,
+        "startChar": 48,
+        "endLine": 30,
+        "endChar": 56
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4d4f5f0_d6dbaa8a",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "How much is this actually buying us? Normally we try to minimize the dependencies required by Minijail -- is this easier than just splitting the audit line by spaces and then parsing key\u003dvalue pairs?",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ed3a1e1_a18d3eb9",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "I don\u0027t think these should be mutually exclusive. You should be able to feed this script a bunch of files from strace and audit and it should spit out a valid policy.\n\nBonus points for removing the command line arguments and just detecting the files automatically.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 72
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e76e01f_17de340f",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "Linux",
+      "range": {
+        "startLine": 136,
+        "startChar": 45,
+        "endLine": 136,
+        "endChar": 50
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a5ea590_d33a6216",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "audit.log file",
+      "range": {
+        "startLine": 136,
+        "startChar": 18,
+        "endLine": 136,
+        "endChar": 27
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c8b0b2_7207d0cf",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-01T21:42:16Z",
+      "side": 1,
+      "message": "lowercase m",
+      "range": {
+        "startLine": 150,
+        "startChar": 19,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
