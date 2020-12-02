@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bda8cfcb_9b1fcc89",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T18:08:52Z",
+      "side": 1,
+      "message": "The RULE_CLEAR/RULE_OR for searching looks like a pretty standard declarative pattern. I do agree that the find_field is non-intuitive. It\u0027s because the python bindings are backed by a C library with a C API. So in that sense writing our helper wrappers on top of the C API doesn\u0027t seem out of the ordinary.\n\nWhat auparse buys us is that it already exists, it\u0027s part of the official audit API, and it works. Writing scripts to generate mappings (both syscall and args) per ELF arch, checking them into source control, and writing code for parsing and lookup is just (partially) reinventing the auparse wheel. Might as well use the official library instead of inventing our own. Philosophically, the auparse dependency is subsumed in the dependency on audit that we want to add here.\n\nWe can start with numbers but that will break the argument specific hacks that exist for mmap et al. Those will have to be handled separately.",
+      "parentUuid": "bb06fcf2_d3205bff",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ed3a1e1_a18d3eb9",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 3
