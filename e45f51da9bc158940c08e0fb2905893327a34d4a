@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "853d112a_7829be59",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ef05542_765ca794",
+      "range": {
+        "startLine": 30,
+        "startChar": 48,
+        "endLine": 30,
+        "endChar": 56
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4d4f5f0_d6dbaa8a",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf14d1bc_1ed21917",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "I did briefly consider dropping this also because of how clunky the API is. Parsing is one aspect. I agree that for our purposes, a simple regex or split will do the job. The other, bigger advantage of using auparse is interpret_field(). auparse has lookup tables to convert syscall numbers and integer arguments from audit logs into human readable names. That gives us easy parity with strace parsing. IMO this is worth the dependency.\nList of builtin lookup tables for reference: https://git.io/JITmR\n\nI know this doesn\u0027t allay your philosophical concern fully but auparse seems to be available by default in the Chrome OS chroot at least.",
+      "parentUuid": "d4d4f5f0_d6dbaa8a",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ed3a1e1_a18d3eb9",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 3
@@ -60,6 +108,30 @@
       "writtenOn": "2020-12-01T21:42:16Z",
       "side": 1,
       "message": "I don\u0027t think these should be mutually exclusive. You should be able to feed this script a bunch of files from strace and audit and it should spit out a valid policy.\n\nBonus points for removing the command line arguments and just detecting the files automatically.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 72
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c99847a_1a05943c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "Done. I was on the fence about this before. The tool now correctly handles any number of strace and/or audit logs.\n\nOne way to auto detect file formats would be to let auparse have the first pass at parsing. If auparse fails, treat the file as a strace log. Though that adds a strong dependency on auparse. I can\u0027t think of any other great heuristics that would be worth the added convenience. The files don\u0027t have any headers, for example. Let me know what you think.",
+      "parentUuid": "3ed3a1e1_a18d3eb9",
       "range": {
         "startLine": 75,
         "startChar": 0,
@@ -116,6 +188,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96cadfd_ccc1940d",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e76e01f_17de340f",
+      "range": {
+        "startLine": 136,
+        "startChar": 45,
+        "endLine": 136,
+        "endChar": 50
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0104f9d7_05100d54",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5ea590_d33a6216",
+      "range": {
+        "startLine": 136,
+        "startChar": 18,
+        "endLine": 136,
+        "endChar": 27
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45c8b0b2_7207d0cf",
@@ -129,6 +249,30 @@
       "writtenOn": "2020-12-01T21:42:16Z",
       "side": 1,
       "message": "lowercase m",
+      "range": {
+        "startLine": 150,
+        "startChar": 19,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "322a74b9_1684411f",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-02T02:11:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45c8b0b2_7207d0cf",
       "range": {
         "startLine": 150,
         "startChar": 19,
