@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb06fcf2_d3205bff",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-02T14:54:45Z",
+      "side": 1,
+      "message": "I don\u0027t see that auparse is buying us much, if anything. You need to define a helper function because of its weirdness parsing records (_find_field_in_current_record). The definition of stuff to search for is pretty much identical to what you would do for text search:\n\n\"\"\"\nau.search_add_item(\u0027type\u0027, \u0027\u003d\u0027, \u0027SECCOMP\u0027, auparse.AUSEARCH_RULE_CLEAR)\n    au.search_add_item(\u0027type\u0027, \u0027\u003d\u0027, \u0027SYSCALL\u0027, auparse.AUSEARCH_RULE_OR)\n    au.search_add_item(\u0027comm\u0027, \u0027\u003d\u0027, \u0027\"%s\"\u0027 % audit_comm,\n\"\"\"\n\nAnd it adds the weirdness of keeping state with RULE_CLEAR and RULE_OR.\n\nAt this point my preference would be to not use this. Moreover, we already have a mapping of syscall numbers to syscall names (https://source.corp.google.com/chromeos_public/src/aosp/external/minijail/gen_syscalls.sh) which can be easily adapted to also spit out the mapping as a python file.\n\nEven more, our syscall code supports syscall numbers as well as syscall names so you can start by just printing syscall numbers into the policy and things will work, at least during development.",
+      "parentUuid": "bf14d1bc_1ed21917",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ed3a1e1_a18d3eb9",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 3
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Done. I was on the fence about this before. The tool now correctly handles any number of strace and/or audit logs.\n\nOne way to auto detect file formats would be to let auparse have the first pass at parsing. If auparse fails, treat the file as a strace log. Though that adds a strong dependency on auparse. I can\u0027t think of any other great heuristics that would be worth the added convenience. The files don\u0027t have any headers, for example. Let me know what you think.",
       "parentUuid": "3ed3a1e1_a18d3eb9",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 72
+      },
+      "revId": "e45f51da9bc158940c08e0fb2905893327a34d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c33af19_0e201b8c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-02T14:54:45Z",
+      "side": 1,
+      "message": "Per the above, I think we should get rid of auparse.\n\nThis script is a helper script. It doesn\u0027t need to be bulletproof and it doesn\u0027t need to solve the entire problem at once. If I were coding this I\u0027d search for type\u003dSECCOMP or type\u003dSYSCALL in the file, if it\u0027s found it\u0027s audit, otherwise it\u0027s strace.",
+      "parentUuid": "3c99847a_1a05943c",
       "range": {
         "startLine": 75,
         "startChar": 0,
