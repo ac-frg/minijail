@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706f5453_96440f5b",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "set auparse \u003d None here",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57bcfb46_10a48784",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "i don\u0027t think option flags \u0026 multiple nargs are good CLI patterns.  they\u0027re pretty rare, and they\u0027re confusing as a result.  delete nargs\u003d \u0026 metavar\u003d and use action\u003d\u0027append\u0027 instead (and prob rename --trace).",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bb11ed_76b632c0",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "use - in flags instead of _",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69414ba7_23929ae9",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "why is it nargs\u003d\u0027?\u0027 ?  passing the flag but not giving it a value doesn\u0027t make much sense.",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bba340ea_f4d71b4e",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "metavar are normally uppercase",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e6791a_2fcbe782",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "change to \"not auparse\" once you change the import logic above",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db74270_a396a27c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "use parser.parse to show errors from bad CLI options.  uncaught exceptions are very unfriendly to users.",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5131b4c_822c16ab",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "avoid \"sanity check\".  you can write \"validity check\" or \"smoke test\" instead.",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71d5ff3_99b55c7c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "use fstrings here (and below) to make these much more manageable\n\n raise ValueError(f\u0027Unable to parse audit log file {audit_log.name}`)",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed23092_60de3418",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-03T02:21:08Z",
+      "side": 1,
+      "message": "bad indent",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
