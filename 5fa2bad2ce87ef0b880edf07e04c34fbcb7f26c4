@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eed7adb_9e986a0b",
+        "filename": "tools/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "FYI - This is now covered by https://chromium-review.googlesource.com/c/chromiumos/overlays/chromiumos-overlay/+/2570308",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd670e5_2098962e",
+        "filename": "tools/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "ARM requires some minor ebuild changes. I\u0027ll fix them in crbug/855250",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "706f5453_96440f5b",
@@ -14,6 +48,24 @@
       "writtenOn": "2020-12-03T02:21:08Z",
       "side": 1,
       "message": "set auparse \u003d None here",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b543bf8_d4cb76f4",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "706f5453_96440f5b",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -35,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c6a3739_ab49db94",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "IMO argparse makes this harder than it needs to be. Multiple nargs are no problem if something like a comma is used to separate the values. Anything other than a whitespace.\n\nAnyway.. done. I retained the plural variable names for consistency (using dest) and the metavar for a nicer help.",
+      "parentUuid": "57bcfb46_10a48784",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4bb11ed_76b632c0",
@@ -48,6 +118,24 @@
       "writtenOn": "2020-12-03T02:21:08Z",
       "side": 1,
       "message": "use - in flags instead of _",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97ce843_8aa53abe",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4bb11ed_76b632c0",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +157,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb210b39_7db82a13",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "You\u0027re right. Fixed --policy and --frequency too.",
+      "parentUuid": "69414ba7_23929ae9",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bba340ea_f4d71b4e",
@@ -86,6 +192,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afaf6072_55bcbbb9",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bba340ea_f4d71b4e",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34e6791a_2fcbe782",
@@ -99,6 +223,24 @@
       "writtenOn": "2020-12-03T02:21:08Z",
       "side": 1,
       "message": "change to \"not auparse\" once you change the import logic above",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b478e34_6a459551",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34e6791a_2fcbe782",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +264,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20fceaf9_4f73bab3",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "There\u0027s no straightforward way to add interdependent options with argparse afaict.\n\nI did make this friendlier though by printing the help message followed by the specific error. No stacktrace because of SystemExit - which is what parse_args raises afaict. PTAL.",
+      "parentUuid": "0db74270_a396a27c",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5131b4c_822c16ab",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 7
@@ -133,6 +293,24 @@
       "writtenOn": "2020-12-03T02:21:08Z",
       "side": 1,
       "message": "avoid \"sanity check\".  you can write \"validity check\" or \"smoke test\" instead.",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f0947e_14a26ae1",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Good call. Fixed.",
+      "parentUuid": "a5131b4c_822c16ab",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +332,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4849f78_6c5327c0",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done. Though that wasn\u0027t consistent with the rest of the file so I changed all existing occurrences as well. I agree it reads better :)",
+      "parentUuid": "a71d5ff3_99b55c7c",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ed23092_60de3418",
@@ -167,6 +363,24 @@
       "writtenOn": "2020-12-03T02:21:08Z",
       "side": 1,
       "message": "bad indent",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e350dcf_e94a107c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-04T23:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ed23092_60de3418",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
