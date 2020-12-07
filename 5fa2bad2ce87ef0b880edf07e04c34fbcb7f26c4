@@ -105,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d00ff53_27f5d5ba",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-07T02:41:10Z",
+      "side": 1,
+      "message": "i don\u0027t think that\u0027s accurate.  what you describe is a complicated CLI which means it\u0027s complicated for users.  whether it be argparse or something else, it won\u0027t be easy to support because it isn\u0027t straight forward.\n\nsupporting args that are comma or whitespace delimited is actually fairly easy in argparse.  it doesn\u0027t mean it\u0027s a good idea though as both of those are valid filename components.  i understand that this is \"standard\" in the google3 world, but that\u0027s because the google3 world constrains itself and doesn\u0027t care about anything beyond its limited world view.",
+      "parentUuid": "7c6a3739_ab49db94",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4bb11ed_76b632c0",
@@ -282,6 +300,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3fd1b19_7e728c38",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-07T02:41:10Z",
+      "side": 1,
+      "message": "argparse does have APIs for defining conflicting options, but that\u0027s not really the crux of the issue here -- throwing uncaught exceptions is.\n\nthrowing SystemExit addresses the raw traceback, but it\u0027s a really unnatural way of just calling sys.exit().  and still isn\u0027t the standard for handling CLI\u0027s.\n\nparser.error() is the clean standard way for communicating to the user \"there\u0027s a problem with your arguments\".  it should be used, not ad-hoc error display (print/sys.exit/SystemExit/whatever), and not ad-hoc re-implementation of it like you\u0027ve done here with this try+except block.\n\nwhat is the problem with just using parser.error() like every other python tool utilizing argparse ?",
+      "parentUuid": "20fceaf9_4f73bab3",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5131b4c_822c16ab",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 7
@@ -346,6 +382,24 @@
       "side": 1,
       "message": "Done. Though that wasn\u0027t consistent with the rest of the file so I changed all existing occurrences as well. I agree it reads better :)",
       "parentUuid": "a71d5ff3_99b55c7c",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6688278_14cf008a",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-07T02:41:10Z",
+      "side": 1,
+      "message": "the scripts in here were written when we had to support Python 2, and we migrated them up to a version of Python 3 that predated 3.6.  so we didn\u0027t go back and convert them to f-strings as a nicety.  too many other things to do :(.",
+      "parentUuid": "d4849f78_6c5327c0",
       "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
