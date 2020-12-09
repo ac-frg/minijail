@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7f9b5dd_8e42cc1e",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-09T16:49:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "247ab1cf_812187c0",
+      "range": {
+        "startLine": 951,
+        "startChar": 0,
+        "endLine": 951,
+        "endChar": 8
+      },
+      "revId": "ef7893ea71366669cbc1eef629ea3ce61c86dbd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e6902f9_97805fb4",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b77420e_e2dd704c",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-09T16:49:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e6902f9_97805fb4",
+      "range": {
+        "startLine": 1006,
+        "startChar": 1,
+        "endLine": 1006,
+        "endChar": 24
+      },
+      "revId": "ef7893ea71366669cbc1eef629ea3ce61c86dbd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d11e2b4_a49bf6ed",
@@ -60,6 +108,30 @@
       "writtenOn": "2020-12-09T14:54:32Z",
       "side": 1,
       "message": "Formatting",
+      "range": {
+        "startLine": 2119,
+        "startChar": 1,
+        "endLine": 2119,
+        "endChar": 5
+      },
+      "revId": "ef7893ea71366669cbc1eef629ea3ce61c86dbd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88820308_2f132a1f",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2119,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-09T16:49:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d11e2b4_a49bf6ed",
       "range": {
         "startLine": 2119,
         "startChar": 1,
