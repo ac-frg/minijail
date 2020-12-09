@@ -22,6 +22,30 @@
       },
       "revId": "58b56a0d1dfb1dbeafa24b6a607b852d4165cf9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "835efe1a_c2ee31d2",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1807652
+      },
+      "writtenOn": "2020-12-09T11:47:00Z",
+      "side": 1,
+      "message": "SG. I\u0027ve massaged it a bit to be consistent with the rest of the man page, and for formatting.",
+      "parentUuid": "a6355a17_4d7270d2",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 77
+      },
+      "revId": "58b56a0d1dfb1dbeafa24b6a607b852d4165cf9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
