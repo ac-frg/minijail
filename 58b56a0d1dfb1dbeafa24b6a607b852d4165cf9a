@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6355a17_4d7270d2",
+        "filename": "minijail0.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2020-12-09T01:40:24Z",
+      "side": 1,
+      "message": "I\u0027d say something like:\n\n\"\"\"\nAllow speculative execution features that may cause data leaks across processes.\nThis passes the \\fISECCOMP_FILTER_FLAG_SPEC_ALLOW\\fR flag to seccomp which\ndisables mitigations against certain speculative execution attacks; namely\nBranch Target Injection (spectre-v2) and Speculative Store Bypass (spectre-v4). These mitigations incur a runtime performance hit, so it\u0027s useful to be able to\ndisable them in order to quantify their performance impact.\n*WARNING:* It\u0027s dangerous to use this option on programs that process untrusted input, which normally is what Minijail is used for. Do not enable unless you know what you\u0027re doing.\nSee the kernel documentation \\fIDocumentation/userspace-api/spec_ctrl.rst\\fR\nand \\fIDocumentation/admin-guide/hw-vuln/spectre.rst\\fR for more information.",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 77
+      },
+      "revId": "58b56a0d1dfb1dbeafa24b6a607b852d4165cf9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
