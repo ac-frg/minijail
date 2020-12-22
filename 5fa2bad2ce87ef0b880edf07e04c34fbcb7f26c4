@@ -316,6 +316,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "858e4428_a8f2808b",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2020-12-22T19:15:48Z",
+      "side": 1,
+      "message": "Ahh.. parser.error() is good. I was looking for a parser.parse() per your first comment and wasn\u0027t sure what you meant.",
+      "parentUuid": "b3fd1b19_7e728c38",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5131b4c_822c16ab",
