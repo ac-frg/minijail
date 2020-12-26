@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e806e311_2d335338",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T07:33:20Z",
+      "side": 1,
+      "message": "Jorge: looks like Luis has moved on.  if we wanted to move forward on this, we\u0027d have to take it over.\n\ndo we happen to know of scenarios in CrOS where this would be useful ?",
+      "revId": "d093b6fa93af55016e940d5730764845a3af829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "895a293c_97964cb7",
         "filename": "libminijail.c",
@@ -14,10 +32,10 @@
       "side": 1,
       "message": "after https://r.android.com/1424781, you can use marshal_append_string here for a little simpler logic",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b410f1c6_488fdfc2",
         "filename": "libminijail.c",
@@ -37,10 +55,10 @@
         "endChar": 29
       },
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "046071c6_68b52eaa",
         "filename": "libminijail.c",
@@ -54,10 +72,10 @@
       "side": 1,
       "message": "i guess there\u0027s no way around this ?  seems like it\u0027ll limit the usefulness of this feature as we utilize this a lot :/.",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "496650c9_ee2e6464",
         "filename": "libminijail.h",
@@ -77,10 +95,10 @@
         "endChar": 32
       },
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6fa549d6_59edd0e9",
         "filename": "libminijail.h",
@@ -101,10 +119,10 @@
         "endChar": 32
       },
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "68773e27_0573cb44",
         "filename": "minijail0_cli.c",
@@ -118,10 +136,10 @@
       "side": 1,
       "message": "see the --mount-dev style above for this",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a601a77e_9a5b32ee",
         "filename": "minijail0_cli.c",
@@ -135,10 +153,10 @@
       "side": 1,
       "message": "we don\u0027t use yoda style",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8fae8d92_9dc0df36",
         "filename": "system.c",
@@ -152,10 +170,10 @@
       "side": 1,
       "message": "O_CLOEXEC too ?  if not, should add an explicit comment explaining why it\u0027s omitted.",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0c802e83_58f3a9be",
         "filename": "system.c",
@@ -169,8 +187,7 @@
       "side": 1,
       "message": "you don\u0027t need this: free(NULL) is valid",
       "revId": "d093b6fa93af55016e940d5730764845a3af829d",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
