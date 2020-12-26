@@ -334,6 +334,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b525ef_13075fa7",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "sorry about that typo",
+      "parentUuid": "858e4428_a8f2808b",
+      "revId": "5fa2bad2ce87ef0b880edf07e04c34fbcb7f26c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5131b4c_822c16ab",

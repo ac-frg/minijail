@@ -1,0 +1,197 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d06306b3_ece4735e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "just nits for the most part",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfd56f2_efae2263",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "what makes this experimental ?  in a year, how will we know if it\u0027s still experimental ?\n\nyou could drop this tag and put a *** block at the top of this section explaining what makes it experimental and what to look out for.",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b05a9fb5_6da5152a",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "instead of using `audit` in code blocks (since there is no actual program/symbol/etc... with that name), maybe linkify [audit subsystem] and point it to the https://people.redhat.com/sgrubb/audit/ homepage.",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e833b93_1eb719c9",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "use \u003d with [ as \u003d\u003d is only valid with [[",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae7b6808_de7cc579",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "move this to the top after the imports",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd0b357_9fa8b46e",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "the doc style is to use an Attributes: section akin to Args:",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060ad8be_4182dece",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "always use encoding\u003d\u0027utf-8\u0027 when opening files",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283143f5_a620d770",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "put the nargs\u003d\u0027+\u0027 option at the end",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d0a45c_d52f16f0",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "technically the f prefix is only used when you use {} which only happens on the last string here\n\nwhen splitting, prefer to split at \\n when possible to make it easier to read",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41a3c81_2c477aca",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "please avoid banners like this.  it\u0027s just noise at the end of the day.",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c30752_2b16bb86",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2020-12-26T03:11:20Z",
+      "side": 1,
+      "message": "how about omitting these by default and adding a --verbose command line option ?",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
