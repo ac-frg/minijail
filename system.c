@@ -18,6 +18,7 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/statvfs.h>
+#include <sys/un.h>
 #include <unistd.h>
 
 #include <linux/securebits.h>
@@ -533,4 +534,81 @@ int seccomp_ret_kill_process_available(void)
 		    seccomp_action_is_available("kill_process");
 
 	return ret_kill_process_available;
+}
+
+int send_fd(int sockfd, int fd)
+{
+	union {
+		char buf[CMSG_SPACE(sizeof(int))];
+		struct cmsghdr align;
+	} cmsg_buf;
+
+	char data = 0;
+	struct iovec iov = {
+	    .iov_base = &data,
+	    .iov_len = sizeof(data),
+	};
+	struct msghdr msg = {
+	    .msg_name = NULL,
+	    .msg_namelen = 0,
+	    .msg_iov = &iov,
+	    .msg_iovlen = 1,
+	    .msg_control = cmsg_buf.buf,
+	    .msg_controllen = sizeof(cmsg_buf.buf),
+	    .msg_flags = 0,
+	};
+
+	struct cmsghdr *cmsg = CMSG_FIRSTHDR(&msg);
+	cmsg->cmsg_level = SOL_SOCKET;
+	cmsg->cmsg_type = SCM_RIGHTS;
+	cmsg->cmsg_len = CMSG_LEN(sizeof(int));
+	memcpy(CMSG_DATA(cmsg), &fd, sizeof(int));
+
+	if (sendmsg(sockfd, &msg, MSG_NOSIGNAL) == -1)
+		return -errno;
+
+	return 0;
+}
+
+int receive_fd(int sockfd)
+{
+	union {
+		char buf[CMSG_SPACE(sizeof(int))];
+		struct cmsghdr align;
+	} cmsg_buf;
+
+	char data = 0;
+	struct iovec iov = {
+	    .iov_base = &data,
+	    .iov_len = sizeof(data),
+	};
+	struct msghdr msg = {
+	    .msg_name = NULL,
+	    .msg_namelen = 0,
+	    .msg_iov = &iov,
+	    .msg_iovlen = 1,
+	    .msg_control = cmsg_buf.buf,
+	    .msg_controllen = sizeof(cmsg_buf.buf),
+	    .msg_flags = 0,
+	};
+
+	if (recvmsg(sockfd, &msg,
+		    MSG_TRUNC | MSG_CTRUNC | MSG_CMSG_CLOEXEC | MSG_NOSIGNAL) ==
+	    -1)
+		return -errno;
+
+	if ((msg.msg_flags & MSG_TRUNC))
+		return -EMSGSIZE;
+	if ((msg.msg_flags & MSG_CTRUNC))
+		return -EMSGSIZE;
+
+	struct cmsghdr *cmsg = CMSG_FIRSTHDR(&msg);
+	if (cmsg == NULL || cmsg->cmsg_len != CMSG_LEN(sizeof(int)) ||
+	    cmsg->cmsg_level != SOL_SOCKET || cmsg->cmsg_type != SCM_RIGHTS) {
+		return -EBADMSG;
+	}
+
+	int fd;
+	memcpy(&fd, CMSG_DATA(cmsg), sizeof(int));
+	return fd;
 }
