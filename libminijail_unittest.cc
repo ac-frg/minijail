@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <sys/mount.h>
 #include <sys/stat.h>
+#include <sys/syscall.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -19,9 +20,12 @@
 
 #include <functional>
 #include <map>
+#include <mutex>
 #include <set>
 #include <string>
+#include <thread>
 
+#include "bpf.h"
 #include "libminijail-private.h"
 #include "libminijail.h"
 #include "scoped_minijail.h"
@@ -1089,4 +1093,170 @@ TEST(Test, default_no_new_session) {
 
 TEST(Test, create_new_session) {
   TestCreateSession(/*create_session=*/true);
+}
+
+// Structs needed to communicate with the userspace notification mechanism of
+// seccomp.
+struct seccomp_notif_sizes {
+  __u16 seccomp_notif;
+  __u16 seccomp_notif_resp;
+  __u16 seccomp_data;
+};
+
+struct seccomp_notif {
+  __u64 id;
+  __u32 pid;
+  __u32 flags;
+  struct seccomp_data data;
+};
+
+struct seccomp_notif_resp {
+  __u64 id;
+  __s64 val;
+  __s32 error;
+  __u32 flags;
+};
+
+#define SECCOMP_IOC_MAGIC   '!'
+#define SECCOMP_IO(nr)      _IO(SECCOMP_IOC_MAGIC, nr)
+#define SECCOMP_IOR(nr, type)   _IOR(SECCOMP_IOC_MAGIC, nr, type)
+#define SECCOMP_IOW(nr, type)   _IOW(SECCOMP_IOC_MAGIC, nr, type)
+#define SECCOMP_IOWR(nr, type)    _IOWR(SECCOMP_IOC_MAGIC, nr, type)
+
+// Flags for seccomp notification fd ioctl.
+#define SECCOMP_IOCTL_NOTIF_RECV  SECCOMP_IOWR(0, struct seccomp_notif)
+#define SECCOMP_IOCTL_NOTIF_SEND  SECCOMP_IOWR(1, \
+                struct seccomp_notif_resp)
+
+void HandleSeccompUserNotificationRequest(int notify_fd, pid_t fake_tid) {
+  // Normally this is obtained by calling seccomp(SECCOMP_GET_NOTIF_SIZES, 0,
+  // &sizes), but that causes some linker errors in the test. Instead, hardcode
+  // a buffer size that's large enough to hold any possible buffer.
+  constexpr size_t kNotificationBufferSizes = 1024;
+
+  uint8_t req_buf[kNotificationBufferSizes];
+  struct seccomp_notif *req = reinterpret_cast<struct seccomp_notif *>(req_buf);
+
+  // The kernel expects this to be completely empty.
+  memset(req, 0, sizeof(req_buf));
+  ASSERT_EQ(ioctl(notify_fd, SECCOMP_IOCTL_NOTIF_RECV, req), 0);
+  EXPECT_EQ(req->data.nr, __NR_gettid);
+
+  uint8_t resp_buf[kNotificationBufferSizes];
+  struct seccomp_notif_resp *resp = reinterpret_cast<struct seccomp_notif_resp *>(resp_buf);
+  memset(resp, 0, sizeof(resp_buf));
+
+  resp->id = req->id;
+  resp->val = fake_tid;
+
+  ASSERT_EQ(ioctl(notify_fd, SECCOMP_IOCTL_NOTIF_SEND, resp), 0);
+  close(notify_fd);
+}
+
+TEST(UserNotificationTest, minijail_fork) {
+  ScopedMinijail j(minijail_new());
+  struct sock_filter filter[] = {
+    // This does not do any 32/64-bit validation for test simplicity.
+    BPF_STMT(BPF_LD | BPF_W | BPF_ABS, (offsetof(struct seccomp_data, nr))),
+
+    // gettid() will be intercepted.
+    BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_gettid, 0, 1),
+    BPF_STMT(BPF_RET + BPF_K, SECCOMP_RET_USER_NOTIF),
+
+    // Every other system call is allowed
+    BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
+  };
+
+  struct sock_fprog prog;
+  prog.filter = filter;
+  prog.len = ARRAY_SIZE(filter);
+
+  minijail_close_open_fds(j.get());
+  minijail_no_new_privs(j.get());
+  minijail_set_seccomp_filter_install_user_notification(j.get());
+  minijail_use_seccomp_filter(j.get());
+  minijail_set_seccomp_filters(j.get(), &prog);
+
+  int pipe_fds[2];
+  ASSERT_EQ(pipe(pipe_fds), 0);
+  ASSERT_EQ(minijail_preserve_fd(j.get(), pipe_fds[1], pipe_fds[1]), 0);
+
+  // Since the minijail has not been entered, this is not yet available.
+  EXPECT_EQ(minijail_seccomp_filter_user_notification_fd(j.get()), -1);
+
+  pid_t mj_fork_ret = minijail_fork(j.get());
+  ASSERT_GE(mj_fork_ret, 0);
+  if (mj_fork_ret == 0) {
+    pid_t tid = gettid();
+    ASSERT_NE(tid, -1);
+    ASSERT_EQ(write(pipe_fds[1], &tid, sizeof(tid)), sizeof(tid));
+    exit(0);
+  }
+
+  int notify_fd = minijail_seccomp_filter_user_notification_fd(j.get());
+  ASSERT_NE(notify_fd, -1);
+  EXPECT_EQ(minijail_seccomp_filter_user_notification_fd(j.get()), -1);
+
+  constexpr pid_t kFakeTid = 0xDEADBEEF;
+  HandleSeccompUserNotificationRequest(notify_fd, kFakeTid);
+
+  pid_t tid;
+  EXPECT_EQ(read(pipe_fds[0], &tid, sizeof(tid)), sizeof(tid));
+  EXPECT_EQ(tid, kFakeTid);
+  int status;
+  waitpid(mj_fork_ret, &status, 0);
+  ASSERT_TRUE(WIFEXITED(status));
+  EXPECT_EQ(WEXITSTATUS(status), 0);
+}
+
+TEST(UserNotificationTest, minijail_enter) {
+  ScopedMinijail j(minijail_new());
+  struct sock_filter filter[] = {
+    // This does not do any 32/64-bit validation for test simplicity.
+    BPF_STMT(BPF_LD | BPF_W | BPF_ABS, (offsetof(struct seccomp_data, nr))),
+
+    // gettid() will be intercepted.
+    BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_gettid, 0, 1),
+    BPF_STMT(BPF_RET + BPF_K, SECCOMP_RET_USER_NOTIF),
+
+    // sendmsg() will be forbidden.
+    BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_sendmsg, 0, 1),
+    BPF_STMT(BPF_RET + BPF_K, SECCOMP_RET_KILL),
+
+    // Every other system call is allowed
+    BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
+  };
+
+  struct sock_fprog prog;
+  prog.filter = filter;
+  prog.len = ARRAY_SIZE(filter);
+
+  minijail_close_open_fds(j.get());
+  minijail_no_new_privs(j.get());
+  minijail_set_seccomp_filter_install_user_notification(j.get());
+  minijail_use_seccomp_filter(j.get());
+  minijail_set_seccomp_filters(j.get(), &prog);
+
+  // Since the minijail has not been entered, this is not yet available.
+  EXPECT_EQ(minijail_seccomp_filter_user_notification_fd(j.get()), -1);
+
+  minijail_enter(j.get());
+
+  pid_t tid;
+  std::mutex tid_mutex;
+  std::thread thread([&tid, &tid_mutex]() {
+    std::unique_lock<std::mutex> _lock(tid_mutex);
+    tid = gettid();
+  });
+
+  int notify_fd = minijail_seccomp_filter_user_notification_fd(j.get());
+  ASSERT_NE(notify_fd, -1);
+  EXPECT_EQ(minijail_seccomp_filter_user_notification_fd(j.get()), -1);
+
+  constexpr pid_t kFakeTid = 0xDEADBEEF;
+  HandleSeccompUserNotificationRequest(notify_fd, kFakeTid);
+
+  thread.join();
+  std::unique_lock<std::mutex> _lock(tid_mutex);
+  EXPECT_EQ(tid, kFakeTid);
 }
