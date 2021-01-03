@@ -479,7 +479,7 @@ int lookup_group(const char *group, gid_t *gid)
 	return -ERANGE;
 }
 
-static int seccomp_action_is_available(const char *wanted)
+static bool seccomp_action_is_available(const char *wanted)
 {
 	if (is_android()) {
 		/*
@@ -488,7 +488,7 @@ static int seccomp_action_is_available(const char *wanted)
 		 * TODO(crbug.com/978022, jorgelo): Remove once the denial is
 		 * fixed.
 		 */
-		return 0;
+		return false;
 	}
 	const char actions_avail_path[] =
 	    "/proc/sys/kernel/seccomp/actions_avail";
@@ -496,7 +496,7 @@ static int seccomp_action_is_available(const char *wanted)
 
 	if (!f) {
 		pwarn("fopen(%s) failed", actions_avail_path);
-		return 0;
+		return false;
 	}
 
 	char *actions_avail = NULL;
@@ -504,7 +504,7 @@ static int seccomp_action_is_available(const char *wanted)
 	if (getline(&actions_avail, &buf_size, f) < 0) {
 		pwarn("getline() failed");
 		free(actions_avail);
-		return 0;
+		return false;
 	}
 
 	/*
@@ -513,7 +513,9 @@ static int seccomp_action_is_available(const char *wanted)
 	 * seccomp actions which include other actions though, so we're good for
 	 * now. Eventually we might want to split the string by spaces.
 	 */
-	return strstr(actions_avail, wanted) != NULL;
+	bool available = strstr(actions_avail, wanted) != NULL;
+	free(actions_avail);
+	return available;
 }
 
 int seccomp_ret_log_available(void)
