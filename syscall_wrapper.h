@@ -33,6 +33,14 @@ extern "C" {
 #ifndef SECCOMP_FILTER_FLAG_SPEC_ALLOW
 # define SECCOMP_FILTER_FLAG_SPEC_ALLOW (1 << 2)
 #endif
+
+#ifndef SECCOMP_FILTER_FLAG_NEW_LISTENER
+# define SECCOMP_FILTER_FLAG_NEW_LISTENER (1 << 3)
+#endif
+
+#ifndef SECCOMP_FILTER_FLAG_TSYNC_ESRCH
+# define SECCOMP_FILTER_FLAG_TSYNC_ESRCH (1 << 4)
+#endif
 /* End seccomp filter related flags. */
 
 int sys_seccomp(unsigned int operation, unsigned int flags, void *args);
