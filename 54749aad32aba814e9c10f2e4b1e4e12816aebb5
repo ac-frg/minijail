@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84d7fdf_52a0ba27",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-03T14:57:19Z",
+      "side": 1,
+      "message": "had to restore this to the 1.8-era googletest convention to avoid depending on the uprev.",
+      "range": {
+        "startLine": 534,
+        "startChar": 0,
+        "endLine": 535,
+        "endChar": 11
+      },
+      "revId": "54749aad32aba814e9c10f2e4b1e4e12816aebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
