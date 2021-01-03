@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b10d93d_9adb7381",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-03T03:45:36Z",
+      "side": 1,
+      "message": "AFAICT, Android already uses HEAD for googletest, so this should be fine. I could not find a good confirmation that Chromium is in the same state, though.",
+      "revId": "acce05c03a05b5f24eb897ecbfa65229e4d85c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
