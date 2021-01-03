@@ -478,10 +478,8 @@ TEST(Test, close_original_pipes_after_dup2) {
 TEST(Test, minijail_run_env_pid_pipes) {
   // TODO(crbug.com/895875): The preload library interferes with ASan since they
   // both need to use LD_PRELOAD.
-  if (running_with_asan()) {
-    SUCCEED();
-    return;
-  }
+  if (running_with_asan())
+    GTEST_SKIP();
 
   ScopedMinijail j(minijail_new());
   minijail_set_preload_path(j.get(), kPreloadPath);
@@ -866,10 +864,8 @@ TEST_F(NamespaceTest, test_tmpfs_userns) {
   constexpr uid_t kTargetUid = 1000;  // Any non-zero value will do.
   constexpr gid_t kTargetGid = 1000;
 
-  if (!userns_supported_) {
-    SUCCEED();
-    return;
-  }
+  if (!userns_supported_)
+    GTEST_SKIP();
 
   struct minijail *j = minijail_new();
 
@@ -906,10 +902,8 @@ TEST_F(NamespaceTest, test_namespaces) {
 
   // TODO(crbug.com/895875): The preload library interferes with ASan since they
   // both need to use LD_PRELOAD.
-  if (!userns_supported_ || running_with_asan()) {
-    SUCCEED();
-    return;
-  }
+  if (!userns_supported_ || running_with_asan())
+    GTEST_SKIP();
 
   std::string uidmap = "0 " + std::to_string(getuid()) + " 1";
   std::string gidmap = "0 " + std::to_string(getgid()) + " 1";
@@ -991,10 +985,8 @@ TEST_F(NamespaceTest, test_namespaces) {
 TEST_F(NamespaceTest, test_enter_ns) {
   char uidmap[kBufferSize], gidmap[kBufferSize];
 
-  if (!userns_supported_) {
-    SUCCEED();
-    return;
-  }
+  if (!userns_supported_)
+    GTEST_SKIP();
 
   // We first create a child in a new userns so we have privs to run more tests.
   // We can't combine the steps as the kernel disallows many resource sharing
@@ -1166,8 +1158,7 @@ TEST(UserNotificationTest, minijail_fork) {
   // libminijail does not allow setting seccomp filters with (HW)ASan enabled.
   if (!seccomp_filter_flags_available(SECCOMP_FILTER_FLAG_NEW_LISTENER) ||
       running_with_asan()) {
-    SUCCEED();
-    return;
+    GTEST_SKIP();
   }
 
   ScopedMinijail j(minijail_new());
@@ -1229,8 +1220,7 @@ TEST(UserNotificationTest, minijail_enter) {
   // libminijail does not allow setting seccomp filters with (HW)ASan enabled.
   if (!seccomp_filter_flags_available(SECCOMP_FILTER_FLAG_NEW_LISTENER) ||
       running_with_asan()) {
-    SUCCEED();
-    return;
+    GTEST_SKIP();
   }
 
   ScopedMinijail j(minijail_new());
