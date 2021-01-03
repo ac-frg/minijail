@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3eb54fe_2b71b584",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-03T04:34:54Z",
+      "side": 1,
+      "message": "you\u0027ll want to fix your gitconfig settings",
+      "revId": "acce05c03a05b5f24eb897ecbfa65229e4d85c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4b10d93d_9adb7381",
@@ -14,6 +31,24 @@
       "writtenOn": "2021-01-03T03:45:36Z",
       "side": 1,
       "message": "AFAICT, Android already uses HEAD for googletest, so this should be fine. I could not find a good confirmation that Chromium is in the same state, though.",
+      "revId": "acce05c03a05b5f24eb897ecbfa65229e4d85c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c124822_ae070b39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-03T04:34:54Z",
+      "side": 1,
+      "message": "CrOS isn\u0027t using the 1.10 release.  we updated to 5ec7f0c4a113e2f18ac2c6cc7df51ad6afc24081 a while back which is like halfway between 1.8.1 \u0026 1.10.0 (it was the latest at that time).\n\nlet\u0027s see how the upgrade do:\nhttps://crrev.com/c/2607488",
+      "parentUuid": "4b10d93d_9adb7381",
       "revId": "acce05c03a05b5f24eb897ecbfa65229e4d85c3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
