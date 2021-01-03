@@ -52,6 +52,7 @@ enum {
 #define SECCOMP_RET_KILL	 SECCOMP_RET_KILL_THREAD
 #define SECCOMP_RET_TRAP	 0x00030000U /* return SIGSYS */
 #define SECCOMP_RET_ERRNO	 0x00050000U /* return -1 and set errno */
+#define SECCOMP_RET_USER_NOTIF	 0x7fc00000U /* notifies userspace */
 #define SECCOMP_RET_LOG		 0x7ffc0000U /* allow after logging */
 #define SECCOMP_RET_ALLOW	 0x7fff0000U /* allow */
 

@@ -306,7 +306,7 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn minijail_enter(j: *const minijail);
+    pub fn minijail_enter(j: *mut minijail);
 }
 extern "C" {
     pub fn minijail_run(
