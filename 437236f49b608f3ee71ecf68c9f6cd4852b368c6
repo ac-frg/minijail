@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5007b5e2_dd426bc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-03T04:38:41Z",
+      "side": 1,
+      "message": "you\u0027ll want to fix your gitconfig",
+      "revId": "437236f49b608f3ee71ecf68c9f6cd4852b368c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
