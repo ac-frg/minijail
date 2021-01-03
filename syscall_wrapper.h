@@ -6,6 +6,8 @@
 #ifndef _SYSCALL_WRAPPER_H_
 #define _SYSCALL_WRAPPER_H_
 
+#include "bpf.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -33,7 +35,26 @@ extern "C" {
 #ifndef SECCOMP_FILTER_FLAG_SPEC_ALLOW
 # define SECCOMP_FILTER_FLAG_SPEC_ALLOW (1 << 2)
 #endif
+
+#ifndef SECCOMP_FILTER_FLAG_NEW_LISTENER
+# define SECCOMP_FILTER_FLAG_NEW_LISTENER (1 << 3)
+#endif
+
+#ifndef SECCOMP_FILTER_FLAG_TSYNC_ESRCH
+# define SECCOMP_FILTER_FLAG_TSYNC_ESRCH (1 << 4)
+#endif
 /* End seccomp filter related flags. */
+
+#define SECCOMP_IOC_MAGIC   '!'
+#define SECCOMP_IO(nr)      _IO(SECCOMP_IOC_MAGIC, nr)
+#define SECCOMP_IOR(nr, type)   _IOR(SECCOMP_IOC_MAGIC, nr, type)
+#define SECCOMP_IOW(nr, type)   _IOW(SECCOMP_IOC_MAGIC, nr, type)
+#define SECCOMP_IOWR(nr, type)    _IOWR(SECCOMP_IOC_MAGIC, nr, type)
+
+/* Flags for seccomp notification fd ioctl. */
+#define SECCOMP_IOCTL_NOTIF_RECV  SECCOMP_IOWR(0, struct seccomp_notif)
+#define SECCOMP_IOCTL_NOTIF_SEND  SECCOMP_IOWR(1, \
+                struct seccomp_notif_resp)
 
 int sys_seccomp(unsigned int operation, unsigned int flags, void *args);
 

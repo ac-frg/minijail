@@ -28,9 +28,11 @@
 #include <sys/prctl.h>
 #include <sys/resource.h>
 #include <sys/select.h>
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <sys/types.h>
+#include <sys/un.h>
 #include <sys/user.h>
 #include <sys/wait.h>
 #include <syscall.h>
@@ -137,6 +139,9 @@ struct minijail {
 		int seccomp_filter_tsync : 1;
 		int seccomp_filter_logging : 1;
 		int seccomp_filter_allow_speculation : 1;
+		int seccomp_filter_install_user_notification : 1;
+		int filter_socket_fds : 1;
+		int filter_user_notification_fd : 1;
 		int chroot : 1;
 		int pivot_root : 1;
 		int mount_dev : 1;
@@ -172,6 +177,8 @@ struct minijail {
 	char *preload_path;
 	size_t filter_len;
 	struct sock_fprog *filter_prog;
+	int filter_socket_fds[2];
+	int filter_user_notification_fd;
 	char *alt_syscall_table;
 	struct mountpoint *mounts_head;
 	struct mountpoint *mounts_tail;
@@ -447,6 +454,27 @@ void API minijail_set_seccomp_filter_allow_speculation(struct minijail *j)
 	}
 
 	j->flags.seccomp_filter_allow_speculation = 1;
+}
+
+void API
+minijail_set_seccomp_filter_install_user_notification(struct minijail *j)
+{
+	if (j->filter_len > 0 && j->filter_prog != NULL) {
+		die("minijail_set_seccomp_filter_install_user_notification() "
+		    "must be called before minijail_parse_seccomp_filters()");
+	}
+
+	j->flags.seccomp_filter_install_user_notification = 1;
+}
+
+int API minijail_seccomp_filter_user_notification_fd(struct minijail *j)
+{
+	if (!j->flags.filter_user_notification_fd)
+		return -1;
+	j->flags.filter_user_notification_fd = 0;
+	int filter_user_notification_fd = j->filter_user_notification_fd;
+	j->filter_user_notification_fd = -1;
+	return filter_user_notification_fd;
 }
 
 void API minijail_log_seccomp_filter_failures(struct minijail *j)
@@ -982,8 +1010,18 @@ static void clear_seccomp_options(struct minijail *j)
 	j->flags.seccomp_filter_tsync = 0;
 	j->flags.seccomp_filter_logging = 0;
 	j->flags.seccomp_filter_allow_speculation = 0;
+	j->flags.seccomp_filter_install_user_notification = 0;
 	j->filter_len = 0;
 	j->filter_prog = NULL;
+	if (j->flags.filter_socket_fds) {
+		j->flags.filter_socket_fds = 0;
+		close_and_reset(&j->filter_socket_fds[0]);
+		close_and_reset(&j->filter_socket_fds[1]);
+	}
+	if (j->flags.filter_user_notification_fd) {
+		j->flags.filter_user_notification_fd = 0;
+		close_and_reset(&j->filter_user_notification_fd);
+	}
 	j->flags.no_new_privs = 0;
 	if (j->seccomp_policy_path) {
 		free(j->seccomp_policy_path);
@@ -1043,6 +1081,19 @@ static int seccomp_should_use_filters(struct minijail *j)
 			warn("allowing speculative execution on seccomp "
 			     "processes not supported");
 			j->flags.seccomp_filter_allow_speculation = 0;
+		}
+	}
+	if (j->flags.seccomp_filter_install_user_notification) {
+		int filter_flags = SECCOMP_FILTER_FLAG_NEW_LISTENER;
+		if (j->flags.seccomp_filter_tsync) {
+			filter_flags |= SECCOMP_FILTER_FLAG_TSYNC |
+					SECCOMP_FILTER_FLAG_TSYNC_ESRCH;
+		}
+		/* Is the NEW_LISTENER flag supported? */
+		if (!seccomp_filter_flags_available(filter_flags)) {
+			warn("user notification on seccomp "
+			     "processes not supported");
+			j->flags.seccomp_filter_install_user_notification = 0;
 		}
 	}
 	return 1;
@@ -2164,7 +2215,7 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 	cap_free(caps);
 }
 
-static void set_seccomp_filter(const struct minijail *j)
+static void set_seccomp_filter(struct minijail *j)
 {
 	/*
 	 * Set no_new_privs. See </kernel/seccomp.c> and </kernel/sys.c>
@@ -2218,17 +2269,58 @@ static void set_seccomp_filter(const struct minijail *j)
 	 */
 	if (j->flags.seccomp_filter) {
 		if (j->flags.seccomp_filter_tsync ||
-		    j->flags.seccomp_filter_allow_speculation) {
-			int filter_flags =
-			    (j->flags.seccomp_filter_tsync
-				 ? SECCOMP_FILTER_FLAG_TSYNC
-				 : 0) |
-			    (j->flags.seccomp_filter_allow_speculation
-				 ? SECCOMP_FILTER_FLAG_SPEC_ALLOW
-				 : 0);
-			if (sys_seccomp(SECCOMP_SET_MODE_FILTER, filter_flags,
-					j->filter_prog)) {
-				pdie("seccomp(tsync) failed");
+		    j->flags.seccomp_filter_allow_speculation ||
+		    j->flags.seccomp_filter_install_user_notification) {
+			int filter_flags = 0;
+			if (j->flags.seccomp_filter_allow_speculation)
+				filter_flags |= SECCOMP_FILTER_FLAG_SPEC_ALLOW;
+			if (j->flags.seccomp_filter_tsync)
+				filter_flags |= SECCOMP_FILTER_FLAG_TSYNC;
+			if (j->flags.seccomp_filter_install_user_notification) {
+				/*
+				 * The TSYNC and NEW_LISTENER flags are mutually
+				 * exclusive, except if the TSYNC_ESRCH flag has
+				 * been explicitly provided.
+				 */
+				if (j->flags.seccomp_filter_tsync) {
+					filter_flags |=
+					    SECCOMP_FILTER_FLAG_TSYNC_ESRCH;
+				}
+				filter_flags |=
+				    SECCOMP_FILTER_FLAG_NEW_LISTENER;
+			}
+
+			int ret = sys_seccomp(SECCOMP_SET_MODE_FILTER,
+					      filter_flags, j->filter_prog);
+			if (ret < 0)
+				pdie("seccomp(%#x) failed", filter_flags);
+			if (j->flags.seccomp_filter_install_user_notification) {
+				if (j->flags.filter_socket_fds) {
+					/*
+					 * Send the notification fd to the
+					 * parent.
+					 */
+					if (send_fd(j->filter_socket_fds[0],
+						    ret))
+						pdie("send_fd() failed");
+					close(ret);
+					close_and_reset(
+					    &j->filter_socket_fds[0]);
+					j->flags.filter_socket_fds = 0;
+				} else {
+					/*
+					 * minijail_enter() was called in the
+					 * same process, so the notification fd
+					 * can be set directly.
+					 */
+					if (j->flags
+						.filter_user_notification_fd)
+						close_and_reset(
+						    &j->filter_user_notification_fd);
+					j->filter_user_notification_fd = ret;
+					j->flags.filter_user_notification_fd =
+					    1;
+				}
 			}
 		} else {
 			if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER,
@@ -2312,7 +2404,7 @@ static void run_hooks_or_die(const struct minijail *j,
 	}
 }
 
-void API minijail_enter(const struct minijail *j)
+void API minijail_enter(struct minijail *j)
 {
 	/*
 	 * If we're dropping caps, get the last valid cap from /proc now,
@@ -3179,6 +3271,17 @@ static int minijail_run_internal(struct minijail *j,
 	}
 
 	/*
+	 * If the caller requested to install userspace notifications for the
+	 * seccomp filter, a socketpair is created so that the child process can
+	 * send the notification file descriptor back to the parent.
+	 */
+	if (j->flags.seccomp_filter_install_user_notification) {
+		if (socketpair(AF_UNIX, SOCK_STREAM, 0, j->filter_socket_fds))
+			return -errno;
+		j->flags.filter_socket_fds = 1;
+	}
+
+	/*
 	 * Use sys_clone() if and only if we're creating a pid namespace.
 	 *
 	 * tl;dr: WARNING: do not mix pid namespaces and multithreading.
@@ -3320,6 +3423,27 @@ static int minijail_run_internal(struct minijail *j,
 			}
 		}
 
+		/* Receive the seccomp user notification file descriptor. */
+		if (j->flags.filter_socket_fds) {
+			close_and_reset(&j->filter_socket_fds[0]);
+			int ret = receive_fd(j->filter_socket_fds[1]);
+			close_and_reset(&j->filter_socket_fds[1]);
+			j->flags.filter_socket_fds = 0;
+			if (ret < 0) {
+				warn("failed to receive user notification fd: "
+				     "%s",
+				     strerror(-ret));
+				kill(j->initpid, SIGKILL);
+				return ret;
+			}
+
+			if (j->flags.filter_user_notification_fd)
+				close_and_reset(
+				    &j->filter_user_notification_fd);
+			j->filter_user_notification_fd = ret;
+			j->flags.filter_user_notification_fd = 1;
+		}
+
 		return 0;
 	}
 
@@ -3346,6 +3470,9 @@ static int minijail_run_internal(struct minijail *j,
 			}
 		}
 	}
+
+	if (j->flags.filter_socket_fds)
+		close_and_reset(&j->filter_socket_fds[1]);
 
 	if (j->flags.close_open_fds) {
 		const size_t kMaxInheritableFdsSize = 11 + MAX_PRESERVED_FDS;
@@ -3376,6 +3503,10 @@ static int minijail_run_internal(struct minijail *j,
 			minijail_preserve_fd(j, j->mountns_fd, j->mountns_fd);
 		if (j->flags.enter_net)
 			minijail_preserve_fd(j, j->netns_fd, j->netns_fd);
+		if (j->flags.filter_socket_fds) {
+			minijail_preserve_fd(j, j->filter_socket_fds[0],
+					     j->filter_socket_fds[0]);
+		}
 
 		for (size_t i = 0; i < j->preserved_fd_count; i++) {
 			/*
@@ -3661,6 +3792,12 @@ void API minijail_destroy(struct minijail *j)
 		free(j->cgroups[i]);
 	if (j->seccomp_policy_path)
 		free(j->seccomp_policy_path);
+	if (j->flags.filter_socket_fds) {
+		close_and_reset(&j->filter_socket_fds[0]);
+		close_and_reset(&j->filter_socket_fds[1]);
+	}
+	if (j->flags.filter_user_notification_fd)
+		close_and_reset(&j->filter_user_notification_fd);
 	free(j);
 }
 
