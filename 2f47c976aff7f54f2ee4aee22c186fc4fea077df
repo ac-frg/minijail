@@ -185,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fec9945_fe841751",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T03:49:59Z",
+      "side": 1,
+      "message": "the only other option that i can think of is to have the user pass in one half of the socketpair to the `minijail_set_seccomp_filter_install_user_notification()` function and let them do the `receive_fd()` bit. but that has the downside of forcing the caller to whitelist the `sendmsg(2)` syscall (which I wanted to avoid doing, since we do have one use case where that needs to not be allowed).",
+      "parentUuid": "a8e20b39_06c8ef15",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "847c28eb_c3abd32b",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 9
