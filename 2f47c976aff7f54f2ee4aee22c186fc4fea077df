@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "018f3440_78bcc4af",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1739c1c_cc913209",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2193e1b_8f53bd26",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-01-04T02:03:07Z",
       "side": 1,
       "message": "delete \"be\"",
+      "range": {
+        "startLine": 127,
+        "startChar": 62,
+        "endLine": 127,
+        "endChar": 64
+      },
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8b0490_bd75dde4",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2193e1b_8f53bd26",
       "range": {
         "startLine": 127,
         "startChar": 62,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b007d1b7_26804020",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26ef6de8_b2cb3b0a",
+      "range": {
+        "startLine": 130,
+        "startChar": 16,
+        "endLine": 130,
+        "endChar": 23
+      },
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f290e285_7fd0db8b",
@@ -77,6 +143,24 @@
       "writtenOn": "2021-01-04T02:03:07Z",
       "side": 1,
       "message": "this change is very unfortunate.  are you sure we can\u0027t structure this differently ?",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06abab62_85c377ba",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "One thing I tried was to introduce a `minijail_enter_internal` that takes two arguments (the const `struct minijail *j` and a pointer to a mutable struct that holds the FD), but that required a significant rewiring. Plus I couldn\u0027t find any instance of any caller in Android or CrOS where the constness mattered.\n\nI can take this change back to that state if the code size and complexity increase is tolerable.",
+      "parentUuid": "f290e285_7fd0db8b",
       "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd7e2e12_a632c950",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "Debated internally about where to place them, and the fact that they are only used once made me choose this initially. Had to move them to bpf.h so that all the structs could be defined together, but done.",
+      "parentUuid": "847c28eb_c3abd32b",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ab6e400_a5e6cedc",
@@ -111,6 +213,24 @@
       "writtenOn": "2021-01-04T02:03:07Z",
       "side": 1,
       "message": "should be in an anonymous namespace",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e36f2a9_d10b80d3",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:32:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ab6e400_a5e6cedc",
       "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
