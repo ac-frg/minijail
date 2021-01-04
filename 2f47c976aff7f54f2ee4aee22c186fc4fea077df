@@ -167,6 +167,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8e20b39_06c8ef15",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T02:41:35Z",
+      "side": 1,
+      "message": "ah scratch that, I just remembered that it would make `minijail_enter()` to not support the notification fd at all, since there is no way of notifying back the fd to the caller. even passing it through a fd could cause the state to be invalid if somebody tried to call `minijail_enter()` multiple times with the same object (which is something that\u0027s completely legal to do right now).\n\nso there needs to be _some_ API change to make this work :/ this was the path of least resistance / change.",
+      "parentUuid": "06abab62_85c377ba",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "847c28eb_c3abd32b",
         "filename": "libminijail_unittest.cc",
         "patchSetId": 9
