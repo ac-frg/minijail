@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d8c26a9_cf74255e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-04T13:43:38Z",
+      "side": 1,
+      "message": "welp, why did the tests fail? is there any way to have access to the logs as a mere mortal?",
+      "revId": "1fce03e0eb551762cdba10c8b07c1aa20feba013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
