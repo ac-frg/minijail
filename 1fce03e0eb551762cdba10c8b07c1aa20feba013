@@ -16,6 +16,24 @@
       "message": "welp, why did the tests fail? is there any way to have access to the logs as a mere mortal?",
       "revId": "1fce03e0eb551762cdba10c8b07c1aa20feba013",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1d434a_7b523f97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T15:18:04Z",
+      "side": 1,
+      "message": "mj_system_unittest_gtest: ld.lld: error: undefined symbol: sys_seccomp",
+      "parentUuid": "1d8c26a9_cf74255e",
+      "revId": "1fce03e0eb551762cdba10c8b07c1aa20feba013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
