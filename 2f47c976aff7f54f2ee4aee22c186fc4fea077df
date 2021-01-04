@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1739c1c_cc913209",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "sort ?",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2193e1b_8f53bd26",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "delete \"be\"",
+      "range": {
+        "startLine": 127,
+        "startChar": 62,
+        "endLine": 127,
+        "endChar": 64
+      },
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ef6de8_b2cb3b0a",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "\"ever be\"",
+      "range": {
+        "startLine": 130,
+        "startChar": 16,
+        "endLine": 130,
+        "endChar": 23
+      },
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f290e285_7fd0db8b",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "this change is very unfortunate.  are you sure we can\u0027t structure this differently ?",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "847c28eb_c3abd32b",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "would these be better in syscall_wrapper.h ?",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab6e400_a5e6cedc",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-04T02:03:07Z",
+      "side": 1,
+      "message": "should be in an anonymous namespace",
+      "revId": "2f47c976aff7f54f2ee4aee22c186fc4fea077df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
