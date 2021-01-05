@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c889a1_e323d644",
+        "filename": "bpf.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1326e7dd_d23812c1",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 2
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3057664c_5efef85a",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-01-05T15:03:52Z",
       "side": 1,
       "message": "Should this maybe be \"minijail_seccomp_install_user_notification\"?\n\nI get trying to match the scheme of the other functions but this is getting a little long.",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 53
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b091a4_91feaa99",
+        "filename": "libminijail.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Let\u0027s do it! Also renamed the other function for consistency.",
+      "parentUuid": "3057664c_5efef85a",
       "range": {
         "startLine": 430,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f17c8a6_8fe97744",
+        "filename": "libminijail.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2186,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Yeah :/ but the combinatorial explosion was going to start becoming an issue.",
+      "parentUuid": "bb94b470_a59d5d82",
+      "range": {
+        "startLine": 2186,
+        "startChar": 4,
+        "endLine": 2186,
+        "endChar": 30
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1650e53c_94640d26",
         "filename": "libminijail.c",
         "patchSetId": 11
@@ -83,6 +155,30 @@
       "writtenOn": "2021-01-05T15:03:52Z",
       "side": 1,
       "message": "Can we extract this to a helper function \u0027set_notification_fd\u0027 or something?",
+      "range": {
+        "startLine": 2188,
+        "startChar": 4,
+        "endLine": 2213,
+        "endChar": 5
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27cc3b11_7af507e2",
+        "filename": "libminijail.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1650e53c_94640d26",
       "range": {
         "startLine": 2188,
         "startChar": 4,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4561c955_e3d9b398",
+        "filename": "libminijail.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 3113,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4d87b80_d870d769",
+      "range": {
+        "startLine": 3111,
+        "startChar": 0,
+        "endLine": 3113,
+        "endChar": 25
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0eac15a_2f5e95c6",
@@ -129,6 +249,30 @@
       "writtenOn": "2021-01-05T15:03:52Z",
       "side": 1,
       "message": "Is this indicated anywhere?",
+      "range": {
+        "startLine": 126,
+        "startChar": 62,
+        "endLine": 127,
+        "endChar": 27
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "286ab87d_907b1a8d",
+        "filename": "libminijail.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "This is the indication ^^;; Let me rephrase that.",
+      "parentUuid": "b0eac15a_2f5e95c6",
       "range": {
         "startLine": 126,
         "startChar": 62,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1612a9c0_96dee1f1",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1803c7_7554e15c",
+      "range": {
+        "startLine": 1146,
+        "startChar": 34,
+        "endLine": 1146,
+        "endChar": 41
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35ffa800_d38b3fb5",
@@ -175,6 +343,30 @@
       "writtenOn": "2021-01-05T15:03:52Z",
       "side": 1,
       "message": "Maybe mention where these were gotten from?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b9d87a_fdb4e872",
+        "filename": "syscall_wrapper.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T16:50:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35ffa800_d38b3fb5",
       "range": {
         "startLine": 48,
         "startChar": 0,
