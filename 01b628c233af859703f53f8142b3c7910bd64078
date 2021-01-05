@@ -34,6 +34,23 @@
       "parentUuid": "8ea421c5_fb66e091",
       "revId": "01b628c233af859703f53f8142b3c7910bd64078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b709b29_86ca336d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-05T00:21:57Z",
+      "side": 1,
+      "message": "hmm, i wonder if Autosubmit+1 is blocked by Verified+1",
+      "revId": "01b628c233af859703f53f8142b3c7910bd64078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
