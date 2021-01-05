@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "587a4880_d9479d79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-05T14:57:41Z",
+      "side": 1,
+      "message": "Can someone help me tick the Autosubmit+1? I have lost permissions to submit/autosubmit changes since I left 😭",
+      "revId": "d8e9ba1fada7f1b45dee6e8a689aed60c4f8cba4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
