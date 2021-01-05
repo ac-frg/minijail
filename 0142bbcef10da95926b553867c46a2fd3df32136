@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ae7884_06865a81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-05T21:44:31Z",
+      "side": 1,
+      "message": "this regressed again ? :)",
+      "revId": "0142bbcef10da95926b553867c46a2fd3df32136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
