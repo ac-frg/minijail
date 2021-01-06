@@ -16,6 +16,24 @@
       "message": "this regressed again ? :)",
       "revId": "0142bbcef10da95926b553867c46a2fd3df32136",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1065d6fd_d6c5ae52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-06T00:39:10Z",
+      "side": 1,
+      "message": "rats! although this field doesn\u0027t matter that much since TreeHugger will be the committer once it\u0027s automerged.\n\nFixed.",
+      "parentUuid": "d1ae7884_06865a81",
+      "revId": "0142bbcef10da95926b553867c46a2fd3df32136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
