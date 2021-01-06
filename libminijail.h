@@ -115,6 +115,29 @@ void minijail_set_seccomp_filter_tsync(struct minijail *j);
  * This is only safe to use for processes that do not execute untrusted code.
  */
 void minijail_set_seccomp_filter_allow_speculation(struct minijail *j);
+/*
+ * Install a userspace notification mechanism. This will make any system calls
+ * marked with SECCOMP_RET_USER_NOTIF to pause execution of the thread, notify
+ * the parent process through the file descriptor (that can be obtained by
+ * calling minijail_seccomp_user_notification_fd() after the jail has
+ * been entered) and wait for the parent to reply with the action that should
+ * be taken.
+ *
+ * If the minijail is being installed in a child process, the notification fd
+ * will be sent to the parent process via a sendmsg(2) system call, which means
+ * that it needs to be allowed in the syscall filter to avoid a deadlock.
+ * Otherwise the system call will be blocked by the kernel during the attempt
+ * to send the file descriptor to the parent, and the parent won't be able to
+ * notify the kernel that the system call should proceed since it will still be
+ * blocked on the recvmsg(2) call waiting for the file descriptor to arrive.
+ */
+void minijail_seccomp_install_user_notification(struct minijail *j);
+/*
+ * Returns the user notification fd that was created during the installation of
+ * the seccomp filter. After this has been returned once (or if the user
+ * notification fd was never created), this will return -1.
+ */
+int minijail_seccomp_user_notification_fd(struct minijail *j);
 /* Does not take ownership of |filter|. */
 void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
@@ -328,7 +351,7 @@ int minijail_set_preload_path(struct minijail *j, const char *preload_path);
  * Some restrictions cannot be enabled this way (pid namespaces) and attempting
  * to do so will cause an abort.
  */
-void minijail_enter(const struct minijail *j);
+void minijail_enter(struct minijail *j);
 
 /*
  * Run the specified command in the given minijail, execve(2)-style.
