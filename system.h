@@ -61,6 +61,9 @@ int seccomp_ret_log_available(void);
 int seccomp_ret_kill_process_available(void);
 bool seccomp_filter_flags_available(unsigned int flags);
 
+int send_fd(int sockfd, int fd);
+int receive_fd(int sockfd);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif
