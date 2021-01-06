@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3766c372_eb9f6a11",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-06T21:29:10Z",
+      "side": 1,
+      "message": "the \\ aren\u0027t needed",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89096645_9ce5dd66",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-06T21:29:10Z",
+      "side": 1,
+      "message": "if you switch to parser.error (see below) you can delete this line and then inline the resulting one line above",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dadd916d_b4c48ebd",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-06T21:29:10Z",
+      "side": 1,
+      "message": "parser.error(CONSTANTS_ERR_MSG) handles this and more",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e57f67_a93f4385",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-06T21:29:10Z",
+      "side": 1,
+      "message": "since you\u0027re using this just as the epilog, it\u0027d be better imo to name it as such.  \u0027HELP_EPILOG\u0027 or something.",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
