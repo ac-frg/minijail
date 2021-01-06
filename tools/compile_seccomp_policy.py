@@ -23,6 +23,7 @@ BPF program suitable for use with Minijail in the current architecture.
 from __future__ import print_function
 
 import argparse
+import os
 import sys
 
 try:
@@ -35,6 +36,10 @@ except ImportError:
     from minijail import bpf
     from minijail import compiler
     from minijail import parser
+
+
+CONSTANTS_ERR_MSG = """Could not find \'constants.json\' file.
+See \'generate_constants_json.py -h\'."""
 
 
 def parse_args(argv):
@@ -74,6 +79,10 @@ def main(argv=None):
         argv = sys.argv[1:]
 
     opts = parse_args(argv)
+    if not os.path.exists(opts.arch_json):
+        print(CONSTANTS_ERR_MSG, file=sys.stderr)
+        return 1
+
     parsed_arch = arch.Arch.load_from_json(opts.arch_json)
     policy_compiler = compiler.PolicyCompiler(parsed_arch)
     if opts.use_kill_process:
