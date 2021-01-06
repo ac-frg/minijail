@@ -1,0 +1,10 @@
+Verified+1: Luis Héctor Chávez <lhchavez@lhchavez.com>
+Code-Review+2: Mike Frysinger <vapier@google.com>
+Code-Review+2: Jorge Lucangeli Obes <jorgelo@google.com>
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Presubmit-Verified+2: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Mike Frysinger <vapier@google.com>
+Submitted-at: Wed, 06 Jan 2021 18:16:57 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/minijail/+/1539262
+Project: platform/external/minijail
+Branch: refs/heads/master
