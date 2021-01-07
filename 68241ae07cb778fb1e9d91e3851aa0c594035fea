@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa94c65_927fd117",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-07T21:19:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3766c372_eb9f6a11",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89096645_9ce5dd66",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-01-06T21:29:10Z",
       "side": 1,
       "message": "if you switch to parser.error (see below) you can delete this line and then inline the resulting one line above",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8278c207_2c1a4e8f",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-07T21:19:03Z",
+      "side": 1,
+      "message": "But this is printing \"generate_constants_json.py\", which is a different script.\n\nI.e. we want to let folks using compile_seccomp_policy.py know that if they don\u0027t have a constants.json file, they need to run generate_constants_json.py.",
+      "parentUuid": "89096645_9ce5dd66",
       "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54cb254c_e1b853e0",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-07T21:19:03Z",
+      "side": 1,
+      "message": "This would require returning the parser as well as the opts though.",
+      "parentUuid": "dadd916d_b4c48ebd",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23e57f67_a93f4385",
@@ -71,6 +131,24 @@
       "writtenOn": "2021-01-06T21:29:10Z",
       "side": 1,
       "message": "since you\u0027re using this just as the epilog, it\u0027d be better imo to name it as such.  \u0027HELP_EPILOG\u0027 or something.",
+      "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "721f37b6_110c6c12",
+        "filename": "tools/generate_constants_json.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-07T21:19:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23e57f67_a93f4385",
       "revId": "68241ae07cb778fb1e9d91e3851aa0c594035fea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
