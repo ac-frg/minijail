@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "781e13ab_299cb3ea",
+        "filename": "libminijail.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2186,
+      "author": {
+        "id": 1825476
+      },
+      "writtenOn": "2021-01-07T01:22:46Z",
+      "side": 1,
+      "message": "ok, it\u0027s a bit weird since I added an unconditional `0|` to make it manageable, but it\u0027s now stringified again.",
+      "parentUuid": "3f17c8a6_8fe97744",
+      "range": {
+        "startLine": 2186,
+        "startChar": 4,
+        "endLine": 2186,
+        "endChar": 30
+      },
+      "revId": "771ffc1215cbbac996b88417d2fc89019fcc6df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1650e53c_94640d26",
