@@ -3,6 +3,7 @@
  * found in the LICENSE file.
  */
 
+#include <asm-generic/errno-base.h>
 #define _BSD_SOURCE
 #define _DEFAULT_SOURCE
 #define _GNU_SOURCE
@@ -34,8 +35,8 @@
 #include <syscall.h>
 #include <unistd.h>
 
-#include "libminijail.h"
 #include "libminijail-private.h"
+#include "libminijail.h"
 
 #include "signal_handler.h"
 #include "syscall_filter.h"
@@ -45,12 +46,12 @@
 
 /* Until these are reliably available in linux/prctl.h. */
 #ifndef PR_ALT_SYSCALL
-# define PR_ALT_SYSCALL 0x43724f53
+#define PR_ALT_SYSCALL 0x43724f53
 #endif
 
 /* New cgroup namespace might not be in linux-headers yet. */
 #ifndef CLONE_NEWCGROUP
-# define CLONE_NEWCGROUP 0x02000000
+#define CLONE_NEWCGROUP 0x02000000
 #endif
 
 #define MAX_CGROUPS 10 /* 10 different controllers supported by Linux. */
@@ -84,6 +85,12 @@ struct mountpoint {
 	int has_data;
 	unsigned long flags;
 	struct mountpoint *next;
+};
+
+struct minijail_remount {
+	unsigned long remount_mode;
+	char *mount_name;
+	struct minijail_remount *next;
 };
 
 struct hook {
@@ -169,6 +176,8 @@ struct minijail {
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
 	unsigned long remount_mode;
+	struct minijail_remount *remounts_head;
+	struct minijail_remount *remounts_tail;
 	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
@@ -197,6 +206,18 @@ static void free_mounts_list(struct minijail *j)
 	}
 	// No need to clear mounts_head as we know it's NULL after the loop.
 	j->mounts_tail = NULL;
+}
+
+static void free_remounts_list(struct minijail *j)
+{
+	while (j->remounts_head) {
+		struct minijail_remount *m = j->remounts_head;
+		j->remounts_head = j->remounts_head->next;
+		free(m->mount_name);
+		free(m);
+	}
+	// No need to clear remounts_head as we know it's NULL after the loop.
+	j->remounts_tail = NULL;
 }
 
 /*
@@ -276,6 +297,7 @@ void minijail_preexec(struct minijail *j)
 		free(j->preload_path);
 	j->preload_path = NULL;
 	free_mounts_list(j);
+	free_remounts_list(j);
 	memset(&j->flags, 0, sizeof(j->flags));
 	/* Now restore anything we meant to keep. */
 	j->flags.vfs = vfs;
@@ -345,7 +367,8 @@ void API minijail_set_supplementary_gids(struct minijail *j, size_t size,
 	j->flags.set_suppl_gids = 1;
 }
 
-void API minijail_keep_supplementary_gids(struct minijail *j) {
+void API minijail_keep_supplementary_gids(struct minijail *j)
+{
 	j->flags.keep_suppl_gids = 1;
 }
 
@@ -432,7 +455,8 @@ void API minijail_log_seccomp_filter_failures(struct minijail *j)
 		 * SECCOMP_RET_TRAP to both kill the entire process and report
 		 * failing syscalls, since it will be brittle. Just bail.
 		 */
-		die("SECCOMP_RET_LOG not available, cannot use thread sync with "
+		die("SECCOMP_RET_LOG not available, cannot use thread sync "
+		    "with "
 		    "logging at the same time");
 	}
 
@@ -700,7 +724,7 @@ char API *minijail_get_original_path(struct minijail *j,
 		 */
 		if (!strncmp(b->dest, path_inside_chroot, strlen(b->dest))) {
 			const char *relative_path =
-				path_inside_chroot + strlen(b->dest);
+			    path_inside_chroot + strlen(b->dest);
 			return path_join(b->src, relative_path);
 		}
 		b = b->next;
@@ -776,7 +800,8 @@ int API minijail_forward_signals(struct minijail *j)
 	return 0;
 }
 
-int API minijail_create_session(struct minijail *j) {
+int API minijail_create_session(struct minijail *j)
+{
 	j->flags.setsid = 1;
 	return 0;
 }
@@ -870,6 +895,32 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 	return minijail_mount(j, src, dest, "", flags);
 }
 
+int API minijail_add_remount(struct minijail *j, const char *mount_name,
+			     unsigned long remount_mode)
+{
+	struct minijail_remount *m;
+
+	m = calloc(1, sizeof(*m));
+	if (!m)
+		return -ENOMEM;
+	m->mount_name = strdup(mount_name);
+	if (!m->mount_name) {
+		free(m->mount_name);
+		free(m);
+		return -ENOMEM;
+	}
+
+	m->remount_mode = remount_mode;
+
+	if (j->remounts_tail)
+		j->remounts_tail->next = m;
+	else
+		j->remounts_head = m;
+	j->remounts_tail = m;
+
+	return 0;
+}
+
 int API minijail_add_hook(struct minijail *j, minijail_hook_t hook,
 			  void *payload, minijail_hook_event_t event)
 {
@@ -933,25 +984,28 @@ static int seccomp_should_use_filters(struct minijail *j)
 {
 	if (prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, NULL) == -1) {
 		/*
-		 * |errno| will be set to EINVAL when seccomp has not been
-		 * compiled into the kernel. On certain platforms and kernel
-		 * versions this is not a fatal failure. In that case, and only
-		 * in that case, disable seccomp and skip loading the filters.
+		 * |errno| will be set to EINVAL when seccomp has not
+		 * been compiled into the kernel. On certain platforms
+		 * and kernel versions this is not a fatal failure. In
+		 * that case, and only in that case, disable seccomp and
+		 * skip loading the filters.
 		 */
 		if ((errno == EINVAL) && seccomp_can_softfail()) {
-			warn("not loading seccomp filters, seccomp filter not "
+			warn("not loading seccomp filters, seccomp "
+			     "filter not "
 			     "supported");
 			clear_seccomp_options(j);
 			return 0;
 		}
 		/*
-		 * If |errno| != EINVAL or seccomp_can_softfail() is false,
-		 * we can proceed. Worst case scenario minijail_enter() will
-		 * abort() if seccomp fails.
+		 * If |errno| != EINVAL or seccomp_can_softfail() is
+		 * false, we can proceed. Worst case scenario
+		 * minijail_enter() will abort() if seccomp fails.
 		 */
 	}
 	if (j->flags.seccomp_filter_tsync) {
-		/* Are the seccomp(2) syscall and the TSYNC option supported? */
+		/* Are the seccomp(2) syscall and the TSYNC option
+		 * supported? */
 		if (sys_seccomp(SECCOMP_SET_MODE_FILTER,
 				SECCOMP_FILTER_FLAG_TSYNC, NULL) == -1) {
 			int saved_errno = errno;
@@ -961,16 +1015,17 @@ static int seccomp_should_use_filters(struct minijail *j)
 				return 0;
 			} else if (saved_errno == EINVAL &&
 				   seccomp_can_softfail()) {
-				warn(
-				    "seccomp filter thread sync not supported");
+				warn("seccomp filter thread sync not "
+				     "supported");
 				clear_seccomp_options(j);
 				return 0;
 			}
 			/*
-			 * Similar logic here. If seccomp_can_softfail() is
-			 * false, or |errno| != ENOSYS, or |errno| != EINVAL,
-			 * we can proceed. Worst case scenario minijail_enter()
-			 * will abort() if seccomp or TSYNC fail.
+			 * Similar logic here. If seccomp_can_softfail()
+			 * is false, or |errno| != ENOSYS, or |errno| !=
+			 * EINVAL, we can proceed. Worst case scenario
+			 * minijail_enter() will abort() if seccomp or
+			 * TSYNC fail.
 			 */
 		}
 	}
@@ -994,8 +1049,8 @@ static int set_seccomp_filters_internal(struct minijail *j,
 
 	if (owned) {
 		/*
-		 * If |owned| is true, it's OK to cast away the const-ness since
-		 * we'll own the pointer going forward.
+		 * If |owned| is true, it's OK to cast away the
+		 * const-ness since we'll own the pointer going forward.
 		 */
 		fprog = (struct sock_fprog *)filter;
 	} else {
@@ -1057,8 +1112,8 @@ static int parse_seccomp_filters(struct minijail *j, const char *filename,
 	}
 
 	/*
-	 * If SECCOMP_RET_LOG is not available, need to allow extra syscalls
-	 * for logging.
+	 * If SECCOMP_RET_LOG is not available, need to allow extra
+	 * syscalls for logging.
 	 */
 	filteropts.allow_syscalls_for_logging =
 	    filteropts.allow_logging && !seccomp_ret_log_available();
@@ -1085,7 +1140,8 @@ void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 	}
 
 	if (parse_seccomp_filters(j, path, file) != 0) {
-		die("failed to compile seccomp filter BPF program in '%s'",
+		die("failed to compile seccomp filter BPF program in "
+		    "'%s'",
 		    path);
 	}
 	fclose(file);
@@ -1112,7 +1168,8 @@ void API minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd)
 	free(fd_path);
 
 	if (parse_seccomp_filters(j, path ? path : "<fd>", file) != 0) {
-		die("failed to compile seccomp filter BPF program from fd %d",
+		die("failed to compile seccomp filter BPF program from "
+		    "fd %d",
 		    fd);
 	}
 	free(path);
@@ -1126,14 +1183,15 @@ void API minijail_set_seccomp_filters(struct minijail *j,
 		return;
 
 	if (j->flags.seccomp_filter_logging) {
-		die("minijail_log_seccomp_filter_failures() is incompatible "
+		die("minijail_log_seccomp_filter_failures() is "
+		    "incompatible "
 		    "with minijail_set_seccomp_filters()");
 	}
 
 	/*
 	 * set_seccomp_filters_internal() can only fail with ENOMEM.
-	 * Furthermore, since we won't own the incoming filter, it will not be
-	 * modified.
+	 * Furthermore, since we won't own the incoming filter, it will
+	 * not be modified.
 	 */
 	if (set_seccomp_filters_internal(j, filter, false /* owned */) < 0) {
 		die("failed to set seccomp filter");
@@ -1263,11 +1321,13 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	j->gidmap = NULL;
 	j->mounts_head = NULL;
 	j->mounts_tail = NULL;
+	j->remounts_head = NULL;
+	j->remounts_tail = NULL;
 	j->filter_prog = NULL;
 	j->hooks_head = NULL;
 	j->hooks_tail = NULL;
 
-	if (j->user) {		/* stale pointer */
+	if (j->user) { /* stale pointer */
 		char *user = consumestr(&serialized, &length);
 		if (!user)
 			goto clear_pointers;
@@ -1276,7 +1336,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto clear_pointers;
 	}
 
-	if (j->suppl_gid_list) {	/* stale pointer */
+	if (j->suppl_gid_list) { /* stale pointer */
 		if (j->suppl_gid_count > NGROUPS_MAX) {
 			goto bad_gid_list;
 		}
@@ -1293,7 +1353,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 		memcpy(j->suppl_gid_list, gid_list_bytes, gid_list_size);
 	}
 
-	if (j->chrootdir) {	/* stale pointer */
+	if (j->chrootdir) { /* stale pointer */
 		char *chrootdir = consumestr(&serialized, &length);
 		if (!chrootdir)
 			goto bad_chrootdir;
@@ -1302,7 +1362,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto bad_chrootdir;
 	}
 
-	if (j->hostname) {	/* stale pointer */
+	if (j->hostname) { /* stale pointer */
 		char *hostname = consumestr(&serialized, &length);
 		if (!hostname)
 			goto bad_hostname;
@@ -1311,7 +1371,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 			goto bad_hostname;
 	}
 
-	if (j->alt_syscall_table) {	/* stale pointer */
+	if (j->alt_syscall_table) { /* stale pointer */
 		char *alt_syscall_table = consumestr(&serialized, &length);
 		if (!alt_syscall_table)
 			goto bad_syscall_table;
@@ -1360,8 +1420,8 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 		type = consumestr(&serialized, &length);
 		if (!type)
 			goto bad_mounts;
-		has_data = consumebytes(sizeof(*has_data), &serialized,
-					&length);
+		has_data =
+		    consumebytes(sizeof(*has_data), &serialized, &length);
 		if (!has_data)
 			goto bad_mounts;
 		if (*has_data) {
@@ -1392,6 +1452,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 
 bad_cgroups:
 	free_mounts_list(j);
+	free_remounts_list(j);
 	for (i = 0; i < j->cgroup_count; ++i)
 		free(j->cgroups[i]);
 bad_mounts:
@@ -1433,26 +1494,36 @@ struct dev_spec {
 };
 
 static const struct dev_spec device_nodes[] = {
-	{
-		"null",
-		S_IFCHR | 0666, 1, 3,
-	},
-	{
-		"zero",
-		S_IFCHR | 0666, 1, 5,
-	},
-	{
-		"full",
-		S_IFCHR | 0666, 1, 7,
-	},
-	{
-		"urandom",
-		S_IFCHR | 0444, 1, 9,
-	},
-	{
-		"tty",
-		S_IFCHR | 0666, 5, 0,
-	},
+    {
+	"null",
+	S_IFCHR | 0666,
+	1,
+	3,
+    },
+    {
+	"zero",
+	S_IFCHR | 0666,
+	1,
+	5,
+    },
+    {
+	"full",
+	S_IFCHR | 0666,
+	1,
+	7,
+    },
+    {
+	"urandom",
+	S_IFCHR | 0444,
+	1,
+	9,
+    },
+    {
+	"tty",
+	S_IFCHR | 0666,
+	5,
+	0,
+    },
 };
 
 struct dev_sym_spec {
@@ -1460,16 +1531,31 @@ struct dev_sym_spec {
 };
 
 static const struct dev_sym_spec device_symlinks[] = {
-	{ "ptmx", "pts/ptmx", },
-	{ "fd", "/proc/self/fd", },
-	{ "stdin", "fd/0", },
-	{ "stdout", "fd/1", },
-	{ "stderr", "fd/2", },
+    {
+	"ptmx",
+	"pts/ptmx",
+    },
+    {
+	"fd",
+	"/proc/self/fd",
+    },
+    {
+	"stdin",
+	"fd/0",
+    },
+    {
+	"stdout",
+	"fd/1",
+    },
+    {
+	"stderr",
+	"fd/2",
+    },
 };
 
 /*
- * Clean up the temporary dev path we had setup previously.  In case of errors,
- * we don't want to go leaking empty tempdirs.
+ * Clean up the temporary dev path we had setup previously.  In case of
+ * errors, we don't want to go leaking empty tempdirs.
  */
 static void mount_dev_cleanup(char *dev_path)
 {
@@ -1491,16 +1577,16 @@ static int mount_dev(char **dev_path_ret)
 	char *dev_path;
 
 	/*
-	 * Create a temp path for the /dev init.  We'll relocate this to the
-	 * final location later on in the startup process.
+	 * Create a temp path for the /dev init.  We'll relocate this to
+	 * the final location later on in the startup process.
 	 */
 	dev_path = *dev_path_ret = strdup("/tmp/minijail.dev.XXXXXX");
 	if (dev_path == NULL || mkdtemp(dev_path) == NULL)
 		pdie("could not create temp path for /dev");
 
 	/* Set up the empty /dev mount point first. */
-	ret = mount("minijail-devfs", dev_path, "tmpfs",
-	            MS_NOEXEC | MS_NOSUID, "size=5M,mode=755");
+	ret = mount("minijail-devfs", dev_path, "tmpfs", MS_NOEXEC | MS_NOSUID,
+		    "size=5M,mode=755");
 	if (ret) {
 		rmdir(dev_path);
 		return ret;
@@ -1510,7 +1596,7 @@ static int mount_dev(char **dev_path_ret)
 	mask = umask(0);
 
 	/* Get a handle to the temp dev path for *at funcs below. */
-	dev_fd = open(dev_path, O_DIRECTORY|O_PATH|O_CLOEXEC);
+	dev_fd = open(dev_path, O_DIRECTORY | O_PATH | O_CLOEXEC);
 	if (dev_fd < 0) {
 		ret = 1;
 		goto done;
@@ -1520,7 +1606,7 @@ static int mount_dev(char **dev_path_ret)
 	for (i = 0; i < ARRAY_SIZE(device_nodes); ++i) {
 		const struct dev_spec *ds = &device_nodes[i];
 		ret = mknodat(dev_fd, ds->name, ds->mode,
-		              makedev(ds->major, ds->minor));
+			      makedev(ds->major, ds->minor));
 		if (ret)
 			goto done;
 	}
@@ -1539,7 +1625,7 @@ static int mount_dev(char **dev_path_ret)
 		goto done;
 
 	/* Restore old mask. */
- done:
+done:
 	close(dev_fd);
 	umask(mask);
 
@@ -1563,14 +1649,14 @@ static int mount_dev_finalize(const struct minijail *j, char *dev_path)
 	if (umount2("/dev", MNT_DETACH))
 		goto done;
 
-	if (asprintf(&dest, "%s/dev", j->chrootdir ? : "") < 0)
+	if (asprintf(&dest, "%s/dev", j->chrootdir ?: "") < 0)
 		goto done;
 
 	if (mount(dev_path, dest, NULL, MS_MOVE, NULL))
 		goto done;
 
 	ret = 0;
- done:
+done:
 	free(dest);
 	mount_dev_cleanup(dev_path);
 
@@ -1595,7 +1681,8 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 	/* We assume |dest| has a leading "/". */
 	if (dev_path && strncmp("/dev/", m->dest, 5) == 0) {
 		/*
-		 * Since the temp path is rooted at /dev, skip that dest part.
+		 * Since the temp path is rooted at /dev, skip that dest
+		 * part.
 		 */
 		if (asprintf(&dest, "%s%s", dev_path, m->dest + 4) < 0)
 			return -ENOMEM;
@@ -1613,18 +1700,19 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 	}
 
 	/*
-	 * Bind mounts that change the 'ro' flag have to be remounted since
-	 * 'bind' and other flags can't both be specified in the same command.
-	 * Remount after the initial mount.
+	 * Bind mounts that change the 'ro' flag have to be remounted
+	 * since 'bind' and other flags can't both be specified in the
+	 * same command. Remount after the initial mount.
 	 */
 	if ((m->flags & MS_BIND) &&
 	    ((m->flags & MS_RDONLY) != (original_mnt_flags & MS_RDONLY))) {
 		remount = 1;
 		/*
-		 * Restrict the mount flags to those that are user-settable in a
-		 * MS_REMOUNT request, but excluding MS_RDONLY. The
-		 * user-requested mount flags will dictate whether the remount
-		 * will have that flag or not.
+		 * Restrict the mount flags to those that are
+		 * user-settable in a MS_REMOUNT request, but excluding
+		 * MS_RDONLY. The user-requested mount flags will
+		 * dictate whether the remount will have that flag or
+		 * not.
 		 */
 		original_mnt_flags &= (MS_USER_SETTABLE_MASK & ~MS_RDONLY);
 	}
@@ -1641,10 +1729,10 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 		    mount(m->src, dest, NULL,
 			  m->flags | original_mnt_flags | MS_REMOUNT, m->data);
 		if (ret) {
-			pwarn(
-			    "cannot bind-remount '%s' as '%s' with flags %#lx",
-			    m->src, dest,
-			    m->flags | original_mnt_flags | MS_REMOUNT);
+			pwarn("cannot bind-remount '%s' as '%s' with "
+			      "flags %#lx",
+			      m->src, dest,
+			      m->flags | original_mnt_flags | MS_REMOUNT);
 			goto error;
 		}
 	}
@@ -1662,8 +1750,8 @@ error:
 static void process_mounts_or_die(const struct minijail *j)
 {
 	/*
-	 * We have to mount /dev first in case there are bind mounts from
-	 * the original /dev into the new unique tmpfs one.
+	 * We have to mount /dev first in case there are bind mounts
+	 * from the original /dev into the new unique tmpfs one.
 	 */
 	char *dev_path = NULL;
 	if (j->flags.mount_dev && mount_dev(&dev_path))
@@ -1677,8 +1765,8 @@ static void process_mounts_or_die(const struct minijail *j)
 	}
 
 	/*
-	 * Once all bind mounts have been processed, move the temp dev to
-	 * its final /dev home.
+	 * Once all bind mounts have been processed, move the temp dev
+	 * to its final /dev home.
 	 */
 	if (j->flags.mount_dev && mount_dev_finalize(j, dev_path))
 		pdie("mount_dev_finalize failed");
@@ -1726,20 +1814,21 @@ static int enter_pivot_root(const struct minijail *j)
 		pdie("pivot_root");
 
 	/*
-	 * Now the old root is mounted on top of the new root. Use fchdir(2) to
-	 * change to the old root and unmount it.
+	 * Now the old root is mounted on top of the new root. Use
+	 * fchdir(2) to change to the old root and unmount it.
 	 */
 	if (fchdir(oldroot))
 		pdie("failed to fchdir to old /");
 
 	/*
 	 * If skip_remount_private was enabled for minijail_enter(),
-	 * there could be a shared mount point under |oldroot|. In that case,
-	 * mounts under this shared mount point will be unmounted below, and
-	 * this unmounting will propagate to the original mount namespace
-	 * (because the mount point is shared). To prevent this unexpected
-	 * unmounting, remove these mounts from their peer groups by recursively
-	 * remounting them as MS_PRIVATE.
+	 * there could be a shared mount point under |oldroot|. In that
+	 * case, mounts under this shared mount point will be unmounted
+	 * below, and this unmounting will propagate to the original
+	 * mount namespace (because the mount point is shared). To
+	 * prevent this unexpected unmounting, remove these mounts from
+	 * their peer groups by recursively remounting them as
+	 * MS_PRIVATE.
 	 */
 	if (mount(NULL, ".", NULL, MS_REC | MS_PRIVATE, NULL))
 		pdie("failed to mount(/, private) before umount(/)");
@@ -1765,7 +1854,8 @@ static int enter_pivot_root(const struct minijail *j)
 static int mount_tmp(const struct minijail *j)
 {
 	const char fmt[] = "size=%zu,mode=1777";
-	/* Count for the user storing ULLONG_MAX literally + extra space. */
+	/* Count for the user storing ULLONG_MAX literally + extra
+	 * space. */
 	char data[sizeof(fmt) + sizeof("18446744073709551615ULL")];
 	int ret;
 
@@ -1784,39 +1874,41 @@ static int remount_proc_readonly(const struct minijail *j)
 	const char *kProcPath = "/proc";
 	const unsigned int kSafeFlags = MS_NODEV | MS_NOEXEC | MS_NOSUID;
 	/*
-	 * Right now, we're holding a reference to our parent's old mount of
-	 * /proc in our namespace, which means using MS_REMOUNT here would
-	 * mutate our parent's mount as well, even though we're in a VFS
-	 * namespace (!). Instead, remove their mount from our namespace lazily
-	 * (MNT_DETACH) and make our own.
+	 * Right now, we're holding a reference to our parent's old
+	 * mount of /proc in our namespace, which means using MS_REMOUNT
+	 * here would mutate our parent's mount as well, even though
+	 * we're in a VFS namespace (!). Instead, remove their mount
+	 * from our namespace lazily (MNT_DETACH) and make our own.
 	 *
-	 * However, we skip this in the user namespace case because it will
-	 * invariably fail. Every mount namespace is "owned" by the
-	 * user namespace of the process that creates it. Mount namespace A is
-	 * "less privileged" than mount namespace B if A is created off of B,
-	 * and B is owned by a different user namespace.
-	 * When a less privileged mount namespace is created, the mounts used to
-	 * initialize it (coming from the more privileged mount namespace) come
-	 * as a unit, and are locked together. This means that code running in
-	 * the new mount (and user) namespace cannot piecemeal unmount
-	 * individual mounts inherited from a more privileged mount namespace.
-	 * See https://man7.org/linux/man-pages/man7/mount_namespaces.7.html,
+	 * However, we skip this in the user namespace case because it
+	 * will invariably fail. Every mount namespace is "owned" by the
+	 * user namespace of the process that creates it. Mount
+	 * namespace A is "less privileged" than mount namespace B if A
+	 * is created off of B, and B is owned by a different user
+	 * namespace. When a less privileged mount namespace is created,
+	 * the mounts used to initialize it (coming from the more
+	 * privileged mount namespace) come as a unit, and are locked
+	 * together. This means that code running in the new mount (and
+	 * user) namespace cannot piecemeal unmount individual mounts
+	 * inherited from a more privileged mount namespace. See
+	 * https://man7.org/linux/man-pages/man7/mount_namespaces.7.html,
 	 * "Restrictions on mount namespaces" for details.
 	 *
-	 * This happens in our use case because we first enter a new user
-	 * namespace (on clone(2)) and then we unshare(2) a new mount namespace,
-	 * which means the new mount namespace is less privileged than its
-	 * parent mount namespace. This would also happen if we entered a new
-	 * mount namespace on clone(2), since the user namespace is created
-	 * first.
-	 * In all other non-user-namespace cases the new mount namespace is
-	 * similarly privileged as the parent mount namespace so unmounting a
+	 * This happens in our use case because we first enter a new
+	 * user namespace (on clone(2)) and then we unshare(2) a new
+	 * mount namespace, which means the new mount namespace is less
+	 * privileged than its parent mount namespace. This would also
+	 * happen if we entered a new mount namespace on clone(2), since
+	 * the user namespace is created first. In all other
+	 * non-user-namespace cases the new mount namespace is similarly
+	 * privileged as the parent mount namespace so unmounting a
 	 * single mount is allowed.
 	 *
-	 * We still remount /proc as read-only in the user namespace case
-	 * because while a process with CAP_SYS_ADMIN in the new user namespace
-	 * can unmount the RO mount and get at the RW mount, an attacker with
-	 * access only to a write primitive will not be able to modify /proc.
+	 * We still remount /proc as read-only in the user namespace
+	 * case because while a process with CAP_SYS_ADMIN in the new
+	 * user namespace can unmount the RO mount and get at the RW
+	 * mount, an attacker with access only to a write primitive will
+	 * not be able to modify /proc.
 	 */
 	if (!j->flags.userns && umount2(kProcPath, MNT_DETACH))
 		return -errno;
@@ -1866,12 +1958,15 @@ static void write_ugid_maps_or_die(const struct minijail *j)
 		kill_child_and_die(j, "failed to write uid_map");
 	if (j->gidmap && j->flags.disable_setgroups) {
 		/*
-		 * Older kernels might not have the /proc/<pid>/setgroups files.
+		 * Older kernels might not have the
+		 * /proc/<pid>/setgroups files.
 		 */
 		int ret = write_proc_file(j->initpid, "deny", "setgroups");
 		if (ret != 0) {
 			if (ret == -ENOENT) {
-				/* See http://man7.org/linux/man-pages/man7/user_namespaces.7.html. */
+				/* See
+				 * http://man7.org/linux/man-pages/man7/user_namespaces.7.html.
+				 */
 				warn("could not disable setgroups(2)");
 			} else
 				kill_child_and_die(
@@ -1921,8 +2016,10 @@ static void wait_for_parent_setup(int *pipe_fds)
 static void drop_ugid(const struct minijail *j)
 {
 	if (j->flags.inherit_suppl_gids + j->flags.keep_suppl_gids +
-	    j->flags.set_suppl_gids > 1) {
-		die("can only do one of inherit, keep, or set supplementary "
+		j->flags.set_suppl_gids >
+	    1) {
+		die("can only do one of inherit, keep, or set "
+		    "supplementary "
 		    "groups");
 	}
 
@@ -1934,10 +2031,10 @@ static void drop_ugid(const struct minijail *j)
 			pdie("setgroups(suppl_gids) failed");
 	} else if (!j->flags.keep_suppl_gids && !j->flags.disable_setgroups) {
 		/*
-		 * Only attempt to clear supplementary groups if we are changing
-		 * users or groups, and if the caller did not request to disable
-		 * setgroups (used when entering a user namespace as a
-		 * non-privileged user).
+		 * Only attempt to clear supplementary groups if we are
+		 * changing users or groups, and if the caller did not
+		 * request to disable setgroups (used when entering a
+		 * user namespace as a non-privileged user).
 		 */
 		if ((j->flags.uid || j->flags.gid) && setgroups(0, NULL))
 			pdie("setgroups(0, NULL) failed");
@@ -1958,7 +2055,8 @@ static void drop_capbset(uint64_t keep_mask, unsigned int last_valid_cap)
 		if (keep_mask & (one << i))
 			continue;
 		if (prctl(PR_CAPBSET_DROP, i))
-			pdie("could not drop capability from bounding set");
+			pdie("could not drop capability from bounding "
+			     "set");
 	}
 }
 
@@ -1993,22 +2091,24 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 		die("can't apply initial cleaned capset");
 
 	/*
-	 * Instead of dropping the bounding set first, do it here in case
-	 * the caller had a more permissive bounding set which could
-	 * have been used above to raise a capability that wasn't already
-	 * present. This requires CAP_SETPCAP, so we raised/kept it above.
+	 * Instead of dropping the bounding set first, do it here in
+	 * case the caller had a more permissive bounding set which
+	 * could have been used above to raise a capability that wasn't
+	 * already present. This requires CAP_SETPCAP, so we raised/kept
+	 * it above.
 	 *
 	 * However, if we're asked to skip setting *and* locking the
 	 * SECURE_NOROOT securebit, also skip dropping the bounding set.
-	 * If the caller wants to regain all capabilities when executing a
-	 * set-user-ID-root program, allow them to do so. The default behavior
-	 * (i.e. the behavior without |securebits_skip_mask| set) will still put
-	 * the jailed process tree in a capabilities-only environment.
+	 * If the caller wants to regain all capabilities when executing
+	 * a set-user-ID-root program, allow them to do so. The default
+	 * behavior (i.e. the behavior without |securebits_skip_mask|
+	 * set) will still put the jailed process tree in a
+	 * capabilities-only environment.
 	 *
 	 * We check the negated skip mask for SECURE_NOROOT and
-	 * SECURE_NOROOT_LOCKED. If the bits are set in the negated mask they
-	 * will *not* be skipped in lock_securebits(), and therefore we should
-	 * drop the bounding set.
+	 * SECURE_NOROOT_LOCKED. If the bits are set in the negated mask
+	 * they will *not* be skipped in lock_securebits(), and
+	 * therefore we should drop the bounding set.
 	 */
 	if (secure_noroot_set_and_locked(~j->securebits_skip_mask)) {
 		drop_capbset(j->caps, last_valid_cap);
@@ -2016,7 +2116,8 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 		warn("SECURE_NOROOT not set, not dropping bounding set");
 	}
 
-	/* If CAP_SETPCAP wasn't specifically requested, now we remove it. */
+	/* If CAP_SETPCAP wasn't specifically requested, now we remove
+	 * it. */
 	if ((j->caps & (one << CAP_SETPCAP)) == 0) {
 		flag[0] = CAP_SETPCAP;
 		if (cap_set_flag(caps, CAP_EFFECTIVE, 1, flag, CAP_CLEAR))
@@ -2031,8 +2132,8 @@ static void drop_caps(const struct minijail *j, unsigned int last_valid_cap)
 		die("can't apply final cleaned capset");
 
 	/*
-	 * If ambient capabilities are supported, clear all capabilities first,
-	 * then raise the requested ones.
+	 * If ambient capabilities are supported, clear all capabilities
+	 * first, then raise the requested ones.
 	 */
 	if (j->flags.set_ambient_caps) {
 		if (!cap_ambient_supported()) {
@@ -2063,7 +2164,8 @@ static void set_seccomp_filter(const struct minijail *j)
 {
 	/*
 	 * Set no_new_privs. See </kernel/seccomp.c> and </kernel/sys.c>
-	 * in the kernel source tree for an explanation of the parameters.
+	 * in the kernel source tree for an explanation of the
+	 * parameters.
 	 */
 	if (j->flags.no_new_privs) {
 		if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0))
@@ -2073,15 +2175,15 @@ static void set_seccomp_filter(const struct minijail *j)
 	/*
 	 * Code running with ASan
 	 * (https://github.com/google/sanitizers/wiki/AddressSanitizer)
-	 * will make system calls not included in the syscall filter policy,
-	 * which will likely crash the program. Skip setting seccomp filter in
-	 * that case.
-	 * 'running_with_asan()' has no inputs and is completely defined at
-	 * build time, so this cannot be used by an attacker to skip setting
-	 * seccomp filter.
+	 * will make system calls not included in the syscall filter
+	 * policy, which will likely crash the program. Skip setting
+	 * seccomp filter in that case. 'running_with_asan()' has no
+	 * inputs and is completely defined at build time, so this
+	 * cannot be used by an attacker to skip setting seccomp filter.
 	 */
 	if (j->flags.seccomp_filter && running_with_asan()) {
-		warn("running with (HW)ASan, not setting seccomp filter");
+		warn("running with (HW)ASan, not setting seccomp "
+		     "filter");
 		return;
 	}
 
@@ -2094,8 +2196,8 @@ static void set_seccomp_filter(const struct minijail *j)
 				 * install the SIGSYS handler first.
 				 */
 				if (install_sigsys_handler())
-					pdie(
-					    "failed to install SIGSYS handler");
+					pdie("failed to install SIGSYS "
+					     "handler");
 			}
 		} else if (j->flags.seccomp_filter_tsync) {
 			/*
@@ -2104,7 +2206,8 @@ static void set_seccomp_filter(const struct minijail *j)
 			 * the entire thread group is killed.
 			 */
 			if (signal(SIGSYS, SIG_DFL) == SIG_ERR)
-				pdie("failed to reset SIGSYS disposition");
+				pdie("failed to reset SIGSYS "
+				     "disposition");
 		}
 	}
 
@@ -2136,8 +2239,7 @@ static void set_seccomp_filter(const struct minijail *j)
 
 static pid_t forward_pid = -1;
 
-static void forward_signal(int sig,
-			   siginfo_t *siginfo attribute_unused,
+static void forward_signal(int sig, siginfo_t *siginfo attribute_unused,
 			   void *void_context attribute_unused)
 {
 	if (forward_pid != -1) {
@@ -2156,8 +2258,9 @@ static void install_signal_handlers(void)
 	/* Handle all signals, except SIGCHLD. */
 	for (int sig = 1; sig < NSIG; sig++) {
 		/*
-		 * We don't care if we get EINVAL: that just means that we
-		 * can't handle this signal, so let's skip it and continue.
+		 * We don't care if we get EINVAL: that just means that
+		 * we can't handle this signal, so let's skip it and
+		 * continue.
 		 */
 		sigaction(sig, &act, NULL);
 	}
@@ -2203,7 +2306,8 @@ static void run_hooks_or_die(const struct minijail *j,
 			pdie("%s hook (index %d) failed",
 			     lookup_hook_name(event), hook_index);
 		}
-		/* Only increase the index within the same hook event type. */
+		/* Only increase the index within the same hook event
+		 * type. */
 		++hook_index;
 	}
 }
@@ -2211,8 +2315,9 @@ static void run_hooks_or_die(const struct minijail *j,
 void API minijail_enter(const struct minijail *j)
 {
 	/*
-	 * If we're dropping caps, get the last valid cap from /proc now,
-	 * since /proc can be unmounted before drop_caps() is called.
+	 * If we're dropping caps, get the last valid cap from /proc
+	 * now, since /proc can be unmounted before drop_caps() is
+	 * called.
 	 */
 	unsigned int last_valid_cap = 0;
 	if (j->flags.capbset_drop || j->flags.use_caps)
@@ -2223,13 +2328,14 @@ void API minijail_enter(const struct minijail *j)
 		    " try minijail_run()?");
 
 	if (j->flags.inherit_suppl_gids && !j->user)
-		die("cannot inherit supplementary groups without setting a "
+		die("cannot inherit supplementary groups without "
+		    "setting a "
 		    "username");
 
 	/*
-	 * We can't recover from failures if we've dropped privileges partially,
-	 * so we don't even try. If any of our operations fail, we abort() the
-	 * entire process.
+	 * We can't recover from failures if we've dropped privileges
+	 * partially, so we don't even try. If any of our operations
+	 * fail, we abort() the entire process.
 	 */
 	if (j->flags.enter_vfs) {
 		if (setns(j->mountns_fd, CLONE_NEWNS))
@@ -2241,9 +2347,10 @@ void API minijail_enter(const struct minijail *j)
 		if (unshare(CLONE_NEWNS))
 			pdie("unshare(CLONE_NEWNS) failed");
 		/*
-		 * By default, remount all filesystems as private, unless
-		 * - Passed a specific remount mode, in which case remount with
-		 *   that,
+		 * By default, remount all filesystems as private,
+		 * unless
+		 * - Passed a specific remount mode, in which case
+		 * remount with that,
 		 * - Asked not to remount at all, in which case skip the
 		 *   mount(2) call.
 		 * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
@@ -2252,7 +2359,19 @@ void API minijail_enter(const struct minijail *j)
 			if (mount(NULL, "/", NULL, MS_REC | j->remount_mode,
 				  NULL))
 				pdie("mount(NULL, /, NULL, "
-				     "MS_REC | j->remount_mode, NULL) failed");
+				     "MS_REC | j->remount_mode, NULL) "
+				     "failed");
+		}
+
+		struct minijail_remount *temp = j->remounts_head;
+		while (temp) {
+			if (mount(NULL, temp->mount_name, NULL,
+				  MS_REC | temp->remount_mode, NULL))
+				pdie("mount(NULL, %s, NULL, "
+				     "MS_REC | temp->remount_mode, NULL) "
+				     "failed",
+				     temp->mount_name);
+			temp = temp->next;
 		}
 	}
 
@@ -2264,7 +2383,8 @@ void API minijail_enter(const struct minijail *j)
 		if (unshare(CLONE_NEWUTS))
 			pdie("unshare(CLONE_NEWUTS) failed");
 
-		if (j->hostname && sethostname(j->hostname, strlen(j->hostname)))
+		if (j->hostname &&
+		    sethostname(j->hostname, strlen(j->hostname)))
 			pdie("sethostname(%s) failed", j->hostname);
 	}
 
@@ -2283,10 +2403,12 @@ void API minijail_enter(const struct minijail *j)
 
 	if (j->flags.new_session_keyring) {
 		if (syscall(SYS_keyctl, KEYCTL_JOIN_SESSION_KEYRING, NULL) < 0)
-			pdie("keyctl(KEYCTL_JOIN_SESSION_KEYRING) failed");
+			pdie("keyctl(KEYCTL_JOIN_SESSION_KEYRING) "
+			     "failed");
 	}
 
-	/* We have to process all the mounts before we chroot/pivot_root. */
+	/* We have to process all the mounts before we
+	 * chroot/pivot_root. */
 	process_mounts_or_die(j);
 
 	if (j->flags.chroot && enter_chroot(j))
@@ -2304,23 +2426,24 @@ void API minijail_enter(const struct minijail *j)
 	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_DROP_CAPS);
 
 	/*
-	 * If we're only dropping capabilities from the bounding set, but not
-	 * from the thread's (permitted|inheritable|effective) sets, do it now.
+	 * If we're only dropping capabilities from the bounding set,
+	 * but not from the thread's (permitted|inheritable|effective)
+	 * sets, do it now.
 	 */
 	if (j->flags.capbset_drop) {
 		drop_capbset(j->cap_bset, last_valid_cap);
 	}
 
 	/*
-	 * POSIX capabilities are a bit tricky. We must set SECBIT_KEEP_CAPS
-	 * before drop_ugid() below as the latter would otherwise drop all
-	 * capabilities.
+	 * POSIX capabilities are a bit tricky. We must set
+	 * SECBIT_KEEP_CAPS before drop_ugid() below as the latter would
+	 * otherwise drop all capabilities.
 	 */
 	if (j->flags.use_caps) {
 		/*
-		 * When using ambient capabilities, CAP_SET{GID,UID} can be
-		 * inherited across execve(2), so SECBIT_KEEP_CAPS is not
-		 * strictly needed.
+		 * When using ambient capabilities, CAP_SET{GID,UID} can
+		 * be inherited across execve(2), so SECBIT_KEEP_CAPS is
+		 * not strictly needed.
 		 */
 		bool require_keep_caps = !j->flags.set_ambient_caps;
 		if (lock_securebits(j->securebits_skip_mask,
@@ -2332,8 +2455,9 @@ void API minijail_enter(const struct minijail *j)
 	if (j->flags.no_new_privs) {
 		/*
 		 * If we're setting no_new_privs, we can drop privileges
-		 * before setting seccomp filter. This way filter policies
-		 * don't need to allow privilege-dropping syscalls.
+		 * before setting seccomp filter. This way filter
+		 * policies don't need to allow privilege-dropping
+		 * syscalls.
 		 */
 		drop_ugid(j);
 		drop_caps(j, last_valid_cap);
@@ -2341,10 +2465,11 @@ void API minijail_enter(const struct minijail *j)
 	} else {
 		/*
 		 * If we're not setting no_new_privs,
-		 * we need to set seccomp filter *before* dropping privileges.
-		 * WARNING: this means that filter policies *must* allow
-		 * setgroups()/setresgid()/setresuid() for dropping root and
-		 * capget()/capset()/prctl() for dropping caps.
+		 * we need to set seccomp filter *before* dropping
+		 * privileges. WARNING: this means that filter policies
+		 * *must* allow setgroups()/setresgid()/setresuid() for
+		 * dropping root and capget()/capset()/prctl() for
+		 * dropping caps.
 		 */
 		set_seccomp_filter(j);
 		drop_ugid(j);
@@ -2352,8 +2477,8 @@ void API minijail_enter(const struct minijail *j)
 	}
 
 	/*
-	 * Select the specified alternate syscall table.  The table must not
-	 * block prctl(2) if we're using seccomp as well.
+	 * Select the specified alternate syscall table.  The table must
+	 * not block prctl(2) if we're using seccomp as well.
 	 */
 	if (j->flags.alt_syscall) {
 		if (prctl(PR_ALT_SYSCALL, 1, j->alt_syscall_table))
@@ -2390,8 +2515,9 @@ static void init(pid_t rootpid)
 	/* TODO(wad): self jail with seccomp filters here. */
 	while ((pid = wait(&status)) > 0) {
 		/*
-		 * This loop will only end when either there are no processes
-		 * left inside our pid namespace or we get a signal.
+		 * This loop will only end when either there are no
+		 * processes left inside our pid namespace or we get a
+		 * signal.
 		 */
 		if (pid == rootpid)
 			init_exitstatus = status;
@@ -2409,7 +2535,7 @@ int API minijail_from_fd(int fd, struct minijail *j)
 	int r;
 	if (sizeof(sz) != bytes)
 		return -EINVAL;
-	if (sz > USHRT_MAX)	/* arbitrary sanity check */
+	if (sz > USHRT_MAX) /* arbitrary sanity check */
 		return -E2BIG;
 	buf = malloc(sz);
 	if (!buf)
@@ -2465,7 +2591,8 @@ static int setup_preload(const struct minijail *j attribute_unused,
 	if (!oldenv)
 		oldenv = "";
 
-	/* Only insert a separating space if we have something to separate... */
+	/* Only insert a separating space if we have something to
+	 * separate... */
 	if (asprintf(&newenv, "%s%s%s", oldenv, oldenv[0] != '\0' ? " " : "",
 		     preload_path) < 0) {
 		return -1;
@@ -2509,8 +2636,8 @@ static int close_open_fds(int *inheritable_fds, size_t size)
 			continue;
 		}
 		/*
-		 * We might have set up some pipes that we want to share with
-		 * the parent process, and should not be closed.
+		 * We might have set up some pipes that we want to share
+		 * with the parent process, and should not be closed.
 		 */
 		for (i = 0; i < size; ++i) {
 			if (fd == inheritable_fds[i]) {
@@ -2539,8 +2666,8 @@ static int redirect_fds(struct minijail *j)
 		}
 	}
 	/*
-	 * After all fds have been duped, we are now free to close all parent
-	 * fds that are *not* child fds.
+	 * After all fds have been duped, we are now free to close all
+	 * parent fds that are *not* child fds.
 	 */
 	for (size_t i = 0; i < j->preserved_fd_count; i++) {
 		int closeable = true;
@@ -2555,7 +2682,8 @@ static int redirect_fds(struct minijail *j)
 }
 
 /*
- * Structure holding resources and state created when running a minijail.
+ * Structure holding resources and state created when running a
+ * minijail.
  */
 struct minijail_run_state {
 	pid_t child_pid;
@@ -2612,13 +2740,15 @@ static void setup_child_std_fds(struct minijail *j,
 	}
 
 	/*
-	 * If any of stdin, stdout, or stderr are TTYs, or setsid flag is
-	 * set, create a new session. This prevents the jailed process from
-	 * using the TIOCSTI ioctl to push characters into the parent process
-	 * terminal's input buffer, therefore escaping the jail.
+	 * If any of stdin, stdout, or stderr are TTYs, or setsid flag
+	 * is set, create a new session. This prevents the jailed
+	 * process from using the TIOCSTI ioctl to push characters into
+	 * the parent process terminal's input buffer, therefore
+	 * escaping the jail.
 	 *
-	 * Since it has just forked, the child will not be a process group
-	 * leader, and this call to setsid() should always succeed.
+	 * Since it has just forked, the child will not be a process
+	 * group leader, and this call to setsid() should always
+	 * succeed.
 	 */
 	if (j->flags.setsid || isatty(STDIN_FILENO) || isatty(STDOUT_FILENO) ||
 	    isatty(STDERR_FILENO)) {
@@ -2631,14 +2761,13 @@ static void setup_child_std_fds(struct minijail *j,
 /*
  * Structure that specifies how to start a minijail.
  *
- * filename - The program to exec in the child. Required if |exec_in_child| = 1.
- * argv - Arguments for the child program. Required if |exec_in_child| = 1.
- * envp - Environment for the child program. Available if |exec_in_child| = 1.
- * use_preload - If true use LD_PRELOAD.
- * exec_in_child - If true, run |filename|. Otherwise, the child will return to
- *     the caller.
- * pstdin_fd - Filled with stdin pipe if non-NULL.
- * pstdout_fd - Filled with stdout pipe if non-NULL.
+ * filename - The program to exec in the child. Required if
+ * |exec_in_child| = 1. argv - Arguments for the child program. Required
+ * if |exec_in_child| = 1. envp - Environment for the child program.
+ * Available if |exec_in_child| = 1. use_preload - If true use
+ * LD_PRELOAD. exec_in_child - If true, run |filename|. Otherwise, the
+ * child will return to the caller. pstdin_fd - Filled with stdin pipe
+ * if non-NULL. pstdout_fd - Filled with stdout pipe if non-NULL.
  * pstderr_fd - Filled with stderr pipe if non-NULL.
  * pchild_pid - Filled with the pid of the child process if non-NULL.
  */
@@ -2751,10 +2880,8 @@ int API minijail_run_no_preload(struct minijail *j, const char *filename,
 
 int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 					  const char *filename,
-					  char *const argv[],
-					  pid_t *pchild_pid,
-					  int *pstdin_fd,
-					  int *pstdout_fd,
+					  char *const argv[], pid_t *pchild_pid,
+					  int *pstdin_fd, int *pstdout_fd,
 					  int *pstderr_fd)
 {
 	struct minijail_run_config config = {
@@ -2804,24 +2931,29 @@ static int minijail_run_internal(struct minijail *j,
 {
 	int sync_child = 0;
 	int ret;
-	/* We need to remember this across the minijail_preexec() call. */
+	/* We need to remember this across the minijail_preexec() call.
+	 */
 	int pid_namespace = j->flags.pids;
 	/*
-	 * Create an init process if we are entering a pid namespace, unless the
-	 * user has explicitly opted out by calling minijail_run_as_init().
+	 * Create an init process if we are entering a pid namespace,
+	 * unless the user has explicitly opted out by calling
+	 * minijail_run_as_init().
 	 */
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
 
 	if (use_preload) {
 		if (j->hooks_head != NULL)
-			die("Minijail hooks are not supported with LD_PRELOAD");
+			die("Minijail hooks are not supported with "
+			    "LD_PRELOAD");
 		if (!config->exec_in_child)
-			die("minijail_fork is not supported with LD_PRELOAD");
+			die("minijail_fork is not supported with "
+			    "LD_PRELOAD");
 
 		/*
-		 * Before we fork(2) and execve(2) the child process, we need
-		 * to open a pipe(2) to send the minijail configuration over.
+		 * Before we fork(2) and execve(2) the child process, we
+		 * need to open a pipe(2) to send the minijail
+		 * configuration over.
 		 */
 		state_out->child_env =
 		    minijail_copy_env(config->envp ? config->envp : environ);
@@ -2835,12 +2967,14 @@ static int minijail_run_internal(struct minijail *j,
 	if (!use_preload) {
 		if (j->flags.use_caps && j->caps != 0 &&
 		    !j->flags.set_ambient_caps) {
-			die("non-empty, non-ambient capabilities are not "
+			die("non-empty, non-ambient capabilities are "
+			    "not "
 			    "supported without LD_PRELOAD");
 		}
 	}
 
-	/* Create pipes for stdin/stdout/stderr as requested by caller. */
+	/* Create pipes for stdin/stdout/stderr as requested by caller.
+	 */
 	struct {
 		bool requested;
 		int *pipe_fds;
@@ -2858,8 +2992,8 @@ static int minijail_run_internal(struct minijail *j,
 
 	/*
 	 * If the parent process needs to configure the child's runtime
-	 * environment after forking, create a pipe(2) to block the child until
-	 * configuration is done.
+	 * environment after forking, create a pipe(2) to block the
+	 * child until configuration is done.
 	 */
 	if (j->flags.forward_signals || j->flags.pid_file || j->flags.cgroups ||
 	    j->rlimit_count || j->flags.userns) {
@@ -2869,45 +3003,50 @@ static int minijail_run_internal(struct minijail *j,
 	}
 
 	/*
-	 * Use sys_clone() if and only if we're creating a pid namespace.
+	 * Use sys_clone() if and only if we're creating a pid
+	 * namespace.
 	 *
 	 * tl;dr: WARNING: do not mix pid namespaces and multithreading.
 	 *
-	 * In multithreaded programs, there are a bunch of locks inside libc,
-	 * some of which may be held by other threads at the time that we call
-	 * minijail_run_pid(). If we call fork(), glibc does its level best to
-	 * ensure that we hold all of these locks before it calls clone()
-	 * internally and drop them after clone() returns, but when we call
-	 * sys_clone(2) directly, all that gets bypassed and we end up with a
-	 * child address space where some of libc's important locks are held by
-	 * other threads (which did not get cloned, and hence will never release
-	 * those locks). This is okay so long as we call exec() immediately
-	 * after, but a bunch of seemingly-innocent libc functions like setenv()
-	 * take locks.
+	 * In multithreaded programs, there are a bunch of locks inside
+	 * libc, some of which may be held by other threads at the time
+	 * that we call minijail_run_pid(). If we call fork(), glibc
+	 * does its level best to ensure that we hold all of these locks
+	 * before it calls clone() internally and drop them after
+	 * clone() returns, but when we call sys_clone(2) directly, all
+	 * that gets bypassed and we end up with a child address space
+	 * where some of libc's important locks are held by other
+	 * threads (which did not get cloned, and hence will never
+	 * release those locks). This is okay so long as we call exec()
+	 * immediately after, but a bunch of seemingly-innocent libc
+	 * functions like setenv() take locks.
 	 *
-	 * Hence, only call sys_clone() if we need to, in order to get at pid
-	 * namespacing. If we follow this path, the child's address space might
-	 * have broken locks; you may only call functions that do not acquire
-	 * any locks.
+	 * Hence, only call sys_clone() if we need to, in order to get
+	 * at pid namespacing. If we follow this path, the child's
+	 * address space might have broken locks; you may only call
+	 * functions that do not acquire any locks.
 	 *
-	 * Unfortunately, fork() acquires every lock it can get its hands on, as
-	 * previously detailed, so this function is highly likely to deadlock
-	 * later on (see "deadlock here") if we're multithreaded.
+	 * Unfortunately, fork() acquires every lock it can get its
+	 * hands on, as previously detailed, so this function is highly
+	 * likely to deadlock later on (see "deadlock here") if we're
+	 * multithreaded.
 	 *
-	 * We might hack around this by having the clone()d child (init of the
-	 * pid namespace) return directly, rather than leaving the clone()d
-	 * process hanging around to be init for the new namespace (and having
-	 * its fork()ed child return in turn), but that process would be
-	 * crippled with its libc locks potentially broken. We might try
-	 * fork()ing in the parent before we clone() to ensure that we own all
-	 * the locks, but then we have to have the forked child hanging around
-	 * consuming resources (and possibly having file descriptors / shared
-	 * memory regions / etc attached). We'd need to keep the child around to
-	 * avoid having its children get reparented to init.
+	 * We might hack around this by having the clone()d child (init
+	 * of the pid namespace) return directly, rather than leaving
+	 * the clone()d process hanging around to be init for the new
+	 * namespace (and having its fork()ed child return in turn), but
+	 * that process would be crippled with its libc locks
+	 * potentially broken. We might try fork()ing in the parent
+	 * before we clone() to ensure that we own all the locks, but
+	 * then we have to have the forked child hanging around
+	 * consuming resources (and possibly having file descriptors /
+	 * shared memory regions / etc attached). We'd need to keep the
+	 * child around to avoid having its children get reparented to
+	 * init.
 	 *
-	 * TODO(ellyjones): figure out if the "forked child hanging around"
-	 * problem is fixable or not. It would be nice if we worked in this
-	 * case.
+	 * TODO(ellyjones): figure out if the "forked child hanging
+	 * around" problem is fixable or not. It would be nice if we
+	 * worked in this case.
 	 */
 	pid_t child_pid;
 	if (pid_namespace) {
@@ -2919,8 +3058,11 @@ static int minijail_run_internal(struct minijail *j,
 
 		if (child_pid < 0) {
 			if (errno == EPERM)
-				pdie("clone(CLONE_NEWPID | ...) failed with EPERM; "
-				     "is this process missing CAP_SYS_ADMIN?");
+				pdie("clone(CLONE_NEWPID | ...) failed "
+				     "with "
+				     "EPERM; "
+				     "is this process missing "
+				     "CAP_SYS_ADMIN?");
 			pdie("clone(CLONE_NEWPID | ...) failed");
 		}
 	} else {
@@ -2962,13 +3104,13 @@ static int minijail_run_internal(struct minijail *j,
 
 		if (use_preload) {
 			/*
-			 * Add SIGPIPE to the signal mask to avoid getting
-			 * killed if the child process finishes or closes its
-			 * end of the pipe prematurely.
+			 * Add SIGPIPE to the signal mask to avoid
+			 * getting killed if the child process finishes
+			 * or closes its end of the pipe prematurely.
 			 *
-			 * TODO(crbug.com/1022170): Use pthread_sigmask instead
-			 * of sigprocmask if Minijail is used in multithreaded
-			 * programs.
+			 * TODO(crbug.com/1022170): Use pthread_sigmask
+			 * instead of sigprocmask if Minijail is used in
+			 * multithreaded programs.
 			 */
 			sigset_t to_block, to_restore;
 			if (sigemptyset(&to_block) < 0)
@@ -2986,22 +3128,27 @@ static int minijail_run_internal(struct minijail *j,
 			/* Accept any pending SIGPIPE. */
 			while (true) {
 				const struct timespec zero_time = {0, 0};
-				const int sig = sigtimedwait(&to_block, NULL, &zero_time);
+				const int sig =
+				    sigtimedwait(&to_block, NULL, &zero_time);
 				if (sig < 0) {
 					if (errno != EINTR)
 						break;
 				} else {
 					if (sig != SIGPIPE)
-						die("unexpected signal %d", sig);
+						die("unexpected signal "
+						    "%d",
+						    sig);
 				}
 			}
 
-			/* Restore the signal mask to its original state. */
+			/* Restore the signal mask to its original
+			 * state. */
 			if (sigprocmask(SIG_SETMASK, &to_restore, NULL) < 0)
 				pdie("sigprocmask failed");
 
 			if (ret) {
-				warn("failed to send marshalled minijail: %s",
+				warn("failed to send marshalled "
+				     "minijail: %s",
 				     strerror(-ret));
 				kill(j->initpid, SIGKILL);
 			}
@@ -3023,12 +3170,13 @@ static int minijail_run_internal(struct minijail *j,
 		int signum;
 		for (signum = 0; signum <= SIGRTMAX; signum++) {
 			/*
-			 * Ignore EINVAL since some signal numbers in the range
-			 * might not be valid.
+			 * Ignore EINVAL since some signal numbers in
+			 * the range might not be valid.
 			 */
 			if (signal(signum, SIG_DFL) == SIG_ERR &&
 			    errno != EINVAL) {
-				pdie("failed to reset signal %d disposition",
+				pdie("failed to reset signal %d "
+				     "disposition",
 				     signum);
 			}
 		}
@@ -3055,9 +3203,10 @@ static int minijail_run_internal(struct minijail *j,
 		}
 
 		/*
-		 * Preserve namespace file descriptors over the close_open_fds()
-		 * call. These are closed in minijail_enter() so they won't leak
-		 * into the child process.
+		 * Preserve namespace file descriptors over the
+		 * close_open_fds() call. These are closed in
+		 * minijail_enter() so they won't leak into the child
+		 * process.
 		 */
 		if (j->flags.enter_vfs)
 			minijail_preserve_fd(j, j->mountns_fd, j->mountns_fd);
@@ -3066,8 +3215,8 @@ static int minijail_run_internal(struct minijail *j,
 
 		for (size_t i = 0; i < j->preserved_fd_count; i++) {
 			/*
-			 * Preserve all parent_fds. They will be dup2(2)-ed in
-			 * the child later.
+			 * Preserve all parent_fds. They will be
+			 * dup2(2)-ed in the child later.
 			 */
 			inheritable_fds[size++] = j->preserved_fds[i].parent_fd;
 		}
@@ -3087,18 +3236,20 @@ static int minijail_run_internal(struct minijail *j,
 
 	setup_child_std_fds(j, state_out);
 
-	/* If running an init program, let it decide when/how to mount /proc. */
+	/* If running an init program, let it decide when/how to mount
+	 * /proc. */
 	if (pid_namespace && !do_init)
 		j->flags.remount_proc_ro = 0;
 
 	if (use_preload) {
-		/* Strip out flags that cannot be inherited across execve(2). */
+		/* Strip out flags that cannot be inherited across
+		 * execve(2). */
 		minijail_preexec(j);
 	} else {
 		/*
-		 * If not using LD_PRELOAD, do all jailing before execve(2).
-		 * Note that PID namespaces can only be entered on fork(2),
-		 * so that flag is still cleared.
+		 * If not using LD_PRELOAD, do all jailing before
+		 * execve(2). Note that PID namespaces can only be
+		 * entered on fork(2), so that flag is still cleared.
 		 */
 		j->flags.pids = 0;
 	}
@@ -3112,14 +3263,15 @@ static int minijail_run_internal(struct minijail *j,
 
 	if (config->exec_in_child && pid_namespace && do_init) {
 		/*
-		 * pid namespace: this process will become init inside the new
-		 * namespace. We don't want all programs we might exec to have
-		 * to know how to be init. Normally (do_init == 1) we fork off
-		 * a child to actually run the program. If |do_init == 0|, we
-		 * let the program keep pid 1 and be init.
+		 * pid namespace: this process will become init inside
+		 * the new namespace. We don't want all programs we
+		 * might exec to have to know how to be init. Normally
+		 * (do_init == 1) we fork off a child to actually run
+		 * the program. If |do_init == 0|, we let the program
+		 * keep pid 1 and be init.
 		 *
-		 * If we're multithreaded, we'll probably deadlock here. See
-		 * WARNING above.
+		 * If we're multithreaded, we'll probably deadlock here.
+		 * See WARNING above.
 		 */
 		child_pid = fork();
 		if (child_pid < 0) {
@@ -3128,10 +3280,11 @@ static int minijail_run_internal(struct minijail *j,
 			minijail_free_run_state(state_out);
 
 			/*
-			 * Best effort. Don't bother checking the return value.
+			 * Best effort. Don't bother checking the return
+			 * value.
 			 */
 			prctl(PR_SET_NAME, "minijail-init");
-			init(child_pid);	/* Never returns. */
+			init(child_pid); /* Never returns. */
 		}
 		state_out->child_pid = child_pid;
 	}
@@ -3142,13 +3295,13 @@ static int minijail_run_internal(struct minijail *j,
 		return 0;
 
 	/*
-	 * We're going to execve(), so make sure any remaining resources are
-	 * freed. Exceptions are:
-	 *  1. The child environment. No need to worry about freeing it since
-	 *     execve reinitializes the heap anyways.
-	 *  2. The read side of the LD_PRELOAD pipe, which we need to hand down
-	 *     into the target in which the preloaded code will read from it and
-	 *     then close it.
+	 * We're going to execve(), so make sure any remaining resources
+	 * are freed. Exceptions are:
+	 *  1. The child environment. No need to worry about freeing it
+	 * since execve reinitializes the heap anyways.
+	 *  2. The read side of the LD_PRELOAD pipe, which we need to
+	 * hand down into the target in which the preloaded code will
+	 * read from it and then close it.
 	 */
 	state_out->pipe_fds[0] = -1;
 	char *const *child_env = state_out->child_env;
@@ -3156,8 +3309,8 @@ static int minijail_run_internal(struct minijail *j,
 	minijail_free_run_state(state_out);
 
 	/*
-	 * If we aren't pid-namespaced, or the jailed program asked to be init:
-	 *   calling process
+	 * If we aren't pid-namespaced, or the jailed program asked to
+	 * be init: calling process
 	 *   -> execve()-ing process
 	 * If we are:
 	 *   calling process
@@ -3168,7 +3321,8 @@ static int minijail_run_internal(struct minijail *j,
 		child_env = config->envp ? config->envp : environ;
 	execve(config->filename, config->argv, child_env);
 
-	ret = (errno == ENOENT ? MINIJAIL_ERR_NO_COMMAND : MINIJAIL_ERR_NO_ACCESS);
+	ret = (errno == ENOENT ? MINIJAIL_ERR_NO_COMMAND
+			       : MINIJAIL_ERR_NO_ACCESS);
 	pwarn("execve(%s) failed", config->filename);
 	_exit(ret);
 }
@@ -3192,7 +3346,8 @@ minijail_run_config_internal(struct minijail *j,
 		if (config->pchild_pid)
 			*config->pchild_pid = state.child_pid;
 
-		/* Grab stdin/stdout/stderr descriptors requested by caller. */
+		/* Grab stdin/stdout/stderr descriptors requested by
+		 * caller. */
 		struct {
 			int *pfd;
 			int *psrc;
@@ -3247,13 +3402,13 @@ int API minijail_wait(struct minijail *j)
 		int error_status = st;
 		if (WIFSIGNALED(st)) {
 			int signum = WTERMSIG(st);
-			warn("child process %d received signal %d",
-			     j->initpid, signum);
+			warn("child process %d received signal %d", j->initpid,
+			     signum);
 			/*
-			 * We return MINIJAIL_ERR_JAIL if the process received
-			 * SIGSYS, which happens when a syscall is blocked by
-			 * seccomp filters.
-			 * If not, we do what bash(1) does:
+			 * We return MINIJAIL_ERR_JAIL if the process
+			 * received SIGSYS, which happens when a syscall
+			 * is blocked by seccomp filters. If not, we do
+			 * what bash(1) does:
 			 * $? = 128 + signum
 			 */
 			if (signum == SIGSYS) {
@@ -3267,8 +3422,8 @@ int API minijail_wait(struct minijail *j)
 
 	int exit_status = WEXITSTATUS(st);
 	if (exit_status != 0)
-		info("child process %d exited with status %d",
-		     j->initpid, exit_status);
+		info("child process %d exited with status %d", j->initpid,
+		     exit_status);
 
 	return exit_status;
 }
@@ -3282,6 +3437,7 @@ void API minijail_destroy(struct minijail *j)
 		free(j->filter_prog);
 	}
 	free_mounts_list(j);
+	free_remounts_list(j);
 	while (j->hooks_head) {
 		struct hook *c = j->hooks_head;
 		j->hooks_head = c->next;

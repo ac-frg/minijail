@@ -39,7 +39,8 @@ enum {
 	/* Command cannot be found */
 	MINIJAIL_ERR_NO_COMMAND = 127,
 
-	/* (MINIJAIL_ERR_SIG_BASE + n) if process killed by signal n != SIGSYS */
+	/* (MINIJAIL_ERR_SIG_BASE + n) if process killed by signal n != SIGSYS
+	 */
 	MINIJAIL_ERR_SIG_BASE = 128,
 
 	/* Cannot mount a file or folder in mount namespace */
@@ -290,6 +291,18 @@ int minijail_bind(struct minijail *j, const char *src, const char *dest,
 		  int writeable);
 
 /*
+ * minijail_add_remount: when entering minijail @j, remounts @mount_name as
+ * @remount_mode rather than the default MS_PRIVATE
+ * @j             minijail to bind inside
+ * @mount_name    mount to remount
+ * @remount_mode  remount mode to use
+ *
+ * This may be called multiple times; this overrides j->remount_mode for the
+ * given mount.
+ */
+int minijail_add_remount(struct minijail *j, const char *mount_name,
+			 unsigned long remount_mode);
+/*
  * minijail_add_hook: adds @hook to the list of hooks that will be
  * invoked when @event is reached during minijail setup. The caller is
  * responsible for the lifetime of @payload.
@@ -298,8 +311,7 @@ int minijail_bind(struct minijail *j, const char *src, const char *dest,
  * @payload   an opaque pointer
  * @event     the event that will trigger the hook
  */
-int minijail_add_hook(struct minijail *j,
-		      minijail_hook_t hook, void *payload,
+int minijail_add_hook(struct minijail *j, minijail_hook_t hook, void *payload,
 		      minijail_hook_event_t event);
 
 /*
@@ -335,8 +347,7 @@ void minijail_enter(const struct minijail *j);
  * If minijail_namespace_pids() or minijail_namespace_user() are used,
  * this or minijail_fork() is required instead of minijail_enter().
  */
-int minijail_run(struct minijail *j, const char *filename,
-		 char *const argv[]);
+int minijail_run(struct minijail *j, const char *filename, char *const argv[]);
 
 /*
  * Run the specified command in the given minijail, execve(2)-style.
