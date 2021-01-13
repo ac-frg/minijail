@@ -102,7 +102,8 @@ static void set_group(struct minijail *j, const char *arg, gid_t *out_gid)
  * to build the supplementary gids array.
  */
 static void suppl_group_add(size_t *suppl_gids_count, gid_t **suppl_gids,
-                            char *arg) {
+			    char *arg)
+{
 	char *end = NULL;
 	int groupid = strtod(arg, &end);
 	gid_t gid;
@@ -123,8 +124,8 @@ static void suppl_group_add(size_t *suppl_gids_count, gid_t **suppl_gids,
 	 * From here, gid is guaranteed to be set and valid,
 	 * we add it to our supplementary gids array.
 	 */
-	*suppl_gids = realloc(*suppl_gids,
-			      sizeof(gid_t) * ++(*suppl_gids_count));
+	*suppl_gids =
+	    realloc(*suppl_gids, sizeof(gid_t) * ++(*suppl_gids_count));
 	if (!suppl_gids) {
 		fprintf(stderr, "failed to allocate memory.\n");
 		exit(1);
@@ -221,8 +222,8 @@ static void add_rlimit(struct minijail *j, char *arg)
 	char *cur = tokenize(&arg, ",");
 	char *max = tokenize(&arg, ",");
 	char *end;
-	if (!type || type[0] == '\0' || !cur || cur[0] == '\0' ||
-	    !max || max[0] == '\0' || arg != NULL) {
+	if (!type || type[0] == '\0' || !cur || cur[0] == '\0' || !max ||
+	    max[0] == '\0' || arg != NULL) {
 		fprintf(stderr, "Bad rlimit '%s'.\n", arg);
 		exit(1);
 	}
@@ -271,8 +272,8 @@ static void add_mount(struct minijail *j, char *arg)
 	char *flags = tokenize(&arg, ",");
 	char *data = tokenize(&arg, ",");
 	char *end;
-	if (!src || src[0] == '\0' || !dest || dest[0] == '\0' ||
-	    !type || type[0] == '\0') {
+	if (!src || src[0] == '\0' || !dest || dest[0] == '\0' || !type ||
+	    type[0] == '\0') {
 		fprintf(stderr, "Bad mount: %s %s %s\n", src, dest, type);
 		exit(1);
 	}
@@ -303,8 +304,7 @@ static void add_mount(struct minijail *j, char *arg)
 		}
 	}
 
-	if (minijail_mount_with_data(j, src, dest, type,
-				     mountflags, data)) {
+	if (minijail_mount_with_data(j, src, dest, type, mountflags, data)) {
 		fprintf(stderr, "minijail_mount failed.\n");
 		exit(1);
 	}
@@ -450,7 +450,8 @@ static void use_profile(struct minijail *j, const char *profile,
 		}
 		if (!strcmp(profile, "minimalistic-mountns")) {
 			if (minijail_bind(j, "/dev/log", "/dev/log", 0)) {
-				fprintf(stderr, "minijail_bind(/dev/log) failed.\n");
+				fprintf(stderr,
+					"minijail_bind(/dev/log) failed.\n");
 				exit(1);
 			}
 			minijail_mount_dev(j);
@@ -483,6 +484,33 @@ static void set_remount_mode(struct minijail *j, const char *mode)
 		exit(1);
 	}
 	minijail_remount_mode(j, msmode);
+}
+
+static void add_remount(struct minijail *j, char *mount_info)
+{
+	/* mount_info should be in the format: <mount_mode>:<mount_name> */
+	char *mode = tokenize(&mount_info, ":");
+	char *mount_name = tokenize(&mount_info, ":");
+	unsigned long msmode;
+
+	if (!mode || mode[0] == '\0' || !mount_name || mount_name[0] == '\0') {
+		fprintf(stderr, "Bad remount: %s %s\n", mode, mount_name);
+		exit(1);
+	}
+
+	if (!strcmp(mode, "shared"))
+		msmode = MS_SHARED;
+	else if (!strcmp(mode, "private"))
+		msmode = MS_PRIVATE;
+	else if (!strcmp(mode, "slave"))
+		msmode = MS_SLAVE;
+	else if (!strcmp(mode, "unbindable"))
+		msmode = MS_UNBINDABLE;
+	else {
+		fprintf(stderr, "Unknown remount mode: '%s'\n", mode);
+		exit(1);
+	}
+	minijail_add_remount(j, mount_name, msmode);
 }
 
 static void read_seccomp_filter(const char *filter_path,
@@ -566,6 +594,8 @@ static void usage(const char *progn)
 	       "  -I:           Run <program> as init (pid 1) inside a new pid namespace (implies -p).\n"
 	       "  -K:           Do not change share mode of any existing mounts.\n"
 	       "  -K<mode>:     Mark all existing mounts as <mode> instead of MS_PRIVATE.\n"
+               "  --mount-propagation <mode>:<mount>: Mark the given <mount>\n"
+               "                as <mode> instead of MS_PRIVATE.\n"
 	       "  -l:           Enter new IPC namespace.\n"
 	       "  -L:           Report blocked syscalls when using seccomp filter.\n"
 	       "                If the kernel does not support SECCOMP_RET_LOG,\n"
@@ -676,6 +706,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"seccomp-bpf-binary", required_argument, 0, 133},
 		{"add-suppl-group", required_argument, 0, 134},
 		{"allow-speculative-execution", no_argument, 0, 135},
+                {"mount-propagation", required_argument, 0, 136},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -957,11 +988,13 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			use_seccomp_filter_binary = 1;
 			break;
 		case 134:
-			suppl_group_add(&suppl_gids_count, &suppl_gids,
-			                optarg);
+			suppl_group_add(&suppl_gids_count, &suppl_gids, optarg);
 			break;
 		case 135:
 			minijail_set_seccomp_filter_allow_speculation(j);
+			break;
+		case 136:
+			add_remount(j, optarg);
 			break;
 		default:
 			usage(argv[0]);
@@ -1039,7 +1072,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	 */
 	if (suppl_gids_count) {
 		minijail_set_supplementary_gids(j, suppl_gids_count,
-		                                suppl_gids);
+						suppl_gids);
 		free(suppl_gids);
 	}
 
