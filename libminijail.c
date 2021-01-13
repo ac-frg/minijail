@@ -86,6 +86,12 @@ struct mountpoint {
 	struct mountpoint *next;
 };
 
+struct minijail_remount {
+	unsigned long remount_mode;
+	char *mount_name;
+	struct minijail_remount *next;
+};
+
 struct hook {
 	minijail_hook_t hook;
 	void *payload;
@@ -169,6 +175,8 @@ struct minijail {
 	struct mountpoint *mounts_tail;
 	size_t mounts_count;
 	unsigned long remount_mode;
+	struct minijail_remount *remounts_head;
+	struct minijail_remount *remounts_tail;
 	size_t tmpfs_size;
 	char *cgroups[MAX_CGROUPS];
 	size_t cgroup_count;
@@ -197,6 +205,18 @@ static void free_mounts_list(struct minijail *j)
 	}
 	// No need to clear mounts_head as we know it's NULL after the loop.
 	j->mounts_tail = NULL;
+}
+
+static void free_remounts_list(struct minijail *j)
+{
+	while (j->remounts_head) {
+		struct minijail_remount *m = j->remounts_head;
+		j->remounts_head = j->remounts_head->next;
+		free(m->mount_name);
+		free(m);
+	}
+	// No need to clear remounts_head as we know it's NULL after the loop.
+	j->remounts_tail = NULL;
 }
 
 /*
@@ -276,6 +296,7 @@ void minijail_preexec(struct minijail *j)
 		free(j->preload_path);
 	j->preload_path = NULL;
 	free_mounts_list(j);
+	free_remounts_list(j);
 	memset(&j->flags, 0, sizeof(j->flags));
 	/* Now restore anything we meant to keep. */
 	j->flags.vfs = vfs;
@@ -870,6 +891,32 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 	return minijail_mount(j, src, dest, "", flags);
 }
 
+int API minijail_add_remount(struct minijail *j, const char *mount_name,
+			     unsigned long remount_mode)
+{
+	struct minijail_remount *m;
+
+	m = calloc(1, sizeof(*m));
+	if (!m)
+		return -ENOMEM;
+	m->mount_name = strdup(mount_name);
+	if (!m->mount_name) {
+		free(m->mount_name);
+		free(m);
+		return -ENOMEM;
+	}
+
+	m->remount_mode = remount_mode;
+
+	if (j->remounts_tail)
+		j->remounts_tail->next = m;
+	else
+		j->remounts_head = m;
+	j->remounts_tail = m;
+
+	return 0;
+}
+
 int API minijail_add_hook(struct minijail *j, minijail_hook_t hook,
 			  void *payload, minijail_hook_event_t event)
 {
@@ -1263,11 +1310,13 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 	j->gidmap = NULL;
 	j->mounts_head = NULL;
 	j->mounts_tail = NULL;
+	j->remounts_head = NULL;
+	j->remounts_tail = NULL;
 	j->filter_prog = NULL;
 	j->hooks_head = NULL;
 	j->hooks_tail = NULL;
 
-	if (j->user) {		/* stale pointer */
+	if (j->user) { /* stale pointer */
 		char *user = consumestr(&serialized, &length);
 		if (!user)
 			goto clear_pointers;
@@ -1392,6 +1441,7 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 
 bad_cgroups:
 	free_mounts_list(j);
+	free_remounts_list(j);
 	for (i = 0; i < j->cgroup_count; ++i)
 		free(j->cgroups[i]);
 bad_mounts:
@@ -2252,7 +2302,19 @@ void API minijail_enter(const struct minijail *j)
 			if (mount(NULL, "/", NULL, MS_REC | j->remount_mode,
 				  NULL))
 				pdie("mount(NULL, /, NULL, "
-				     "MS_REC | j->remount_mode, NULL) failed");
+				     "MS_REC | j->remount_mode, NULL) "
+				     "failed");
+		}
+
+		struct minijail_remount *temp = j->remounts_head;
+		while (temp) {
+			if (mount(NULL, temp->mount_name, NULL,
+				  MS_REC | temp->remount_mode, NULL))
+				pdie("mount(NULL, %s, NULL, "
+				     "MS_REC | temp->remount_mode, NULL) "
+				     "failed",
+				     temp->mount_name);
+			temp = temp->next;
 		}
 	}
 
@@ -3282,6 +3344,7 @@ void API minijail_destroy(struct minijail *j)
 		free(j->filter_prog);
 	}
 	free_mounts_list(j);
+	free_remounts_list(j);
 	while (j->hooks_head) {
 		struct hook *c = j->hooks_head;
 		j->hooks_head = c->next;
