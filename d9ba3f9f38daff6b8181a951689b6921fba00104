@@ -16,6 +16,97 @@
       "message": "Hmmm I didn\u0027t think it was going to be this many. Also, it does not appear vim was trying to format the entire file? Because I don\u0027t recall this many changes in your previous CL.\n\nMaybe we start with the formatting changes that snuck into your latest CL.",
       "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b87cbff_dc273661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-15T21:56:15Z",
+      "side": 1,
+      "message": "guessing vim isn\u0027t really related ... it\u0027s just `clang-format` under the hood\n\nwe might need to work a bit more on our .clang-format and/or comments to disable clang-format for some chunks",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c8595d_eb54d8db",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-15T21:56:15Z",
+      "side": 1,
+      "message": "i don\u0027t think we want this.  we indent the content after # quite a bit, and flattening them would make it unreadable.  see arch.h as an extreme example.",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d23905_513477b8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-15T21:56:15Z",
+      "side": 1,
+      "message": "this should be one string",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 34
+      },
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b730299_be9bcf78",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-15T21:56:15Z",
+      "side": 1,
+      "message": "this reformat seems incorrect when we\u0027re using tabs for indentation everywhere",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd27843a_7e5532b3",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-15T21:56:15Z",
+      "side": 1,
+      "message": "space before labels is desirable for diff context purposes",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
