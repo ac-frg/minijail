@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb173895_8bd6b400",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "No need to list this line if there\u0027s an actual bug to link to.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72cdfd0a_bb953874",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Normally we try to match BUG\u003d/TEST\u003d and Bug:/Test: lines.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15493d16_5ca06314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "It might make sense to add unit tests specifically for this functionality. Also, you can run the unit tests under ASan or Valgrind to make sure we\u0027re not adding memory leaks.",
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fffe047_9b3249a9",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Do you need a count to be able to clean them up properly?",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 40
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb207bc_dc1287fd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Probably best to not change unrelated whitespace.",
+      "range": {
+        "startLine": 1319,
+        "startChar": 15,
+        "endLine": 1319,
+        "endChar": 16
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce26da45_b4e97040",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Same point here about not changing unrelated whitespace, so that we don\u0027t confuse \u0027git blame\u0027.",
+      "range": {
+        "startLine": 2305,
+        "startChar": 0,
+        "endLine": 2307,
+        "endChar": 3
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb52c2fa_a278823a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Hmmm, I wonder if we want this. It\u0027s probably safer to do it, but we should make sure that the help text clarifies that the command-line flag will remount the entire subtree, not just that directory.",
+      "range": {
+        "startLine": 2312,
+        "startChar": 6,
+        "endLine": 2312,
+        "endChar": 12
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f853757c_29e6a192",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "Bear in mind that the default for the *library* is MS_PRIVATE. minijail0 sets it to MS_SLAVE, but if you\u0027re using the library directly the default is MS_PRIVATE.",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 49
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a03da48_6c76dcac",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:30:23Z",
+      "side": 1,
+      "message": "I\u0027d say \"supersedes\" or \"overrides\", this is technically not writing over the j-\u003eremount_mode option in memory.",
+      "range": {
+        "startLine": 299,
+        "startChar": 43,
+        "endLine": 299,
+        "endChar": 53
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
