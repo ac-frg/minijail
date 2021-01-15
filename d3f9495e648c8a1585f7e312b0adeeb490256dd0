@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce6eacc_ae43acb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T16:23:14Z",
+      "side": 1,
+      "message": "I don\u0027t have any further comments beyond Mike\u0027s style and usability nits.",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dfd56f2_efae2263",
