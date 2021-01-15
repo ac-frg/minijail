@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2ed5b7e_0d6c55cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-15T21:47:47Z",
+      "side": 1,
+      "message": "Hmmm I didn\u0027t think it was going to be this many. Also, it does not appear vim was trying to format the entire file? Because I don\u0027t recall this many changes in your previous CL.\n\nMaybe we start with the formatting changes that snuck into your latest CL.",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
