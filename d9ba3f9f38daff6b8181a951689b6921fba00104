@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e9702d7_d3c23b76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-16T00:14:34Z",
+      "side": 1,
+      "message": "I did confirm that this is what clang-formatting the entire file would do, my reference to vim was mostly around trying to get it to only format changed chunks.",
+      "parentUuid": "0b87cbff_dc273661",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c8595d_eb54d8db",
