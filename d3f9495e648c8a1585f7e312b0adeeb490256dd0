@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4f21792_57a474aa",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Fair question :)\n\nThe audit package on ARM was lacking some dependencies at the time of writing though I\u0027ve fixed that since.\n\nThe next cause of hesitation is that any minijail syscalls that appear under arg_inspection get attributed to the sandboxed executable. prctl is a common one though IIUC those are generally harmless. There may be more here, maybe depending on whether any other sandbox features are being used during audit. It\u0027s something I\u0027ve been planning to look into. One way of solving it is letting minijail trigger the syscall audit instead of the manual auditctl invocations below.\nI\u0027ve added a note for now.",
+      "parentUuid": "6dfd56f2_efae2263",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b05a9fb5_6da5152a",
         "filename": "tools/README.md",
         "patchSetId": 12
@@ -71,6 +95,24 @@
       "writtenOn": "2020-12-26T03:11:20Z",
       "side": 1,
       "message": "instead of using `audit` in code blocks (since there is no actual program/symbol/etc... with that name), maybe linkify [audit subsystem] and point it to the https://people.redhat.com/sgrubb/audit/ homepage.",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb8e8c00_4572819d",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done though that\u0027s an unfortunately terrible landing page. So I\u0027ve also added a link to a redhat doc that does a better job of explaining some basics.",
+      "parentUuid": "b05a9fb5_6da5152a",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +134,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0756e92a_fbc3b858",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e833b93_1eb719c9",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae7b6808_de7cc579",
@@ -105,6 +165,24 @@
       "writtenOn": "2020-12-26T03:11:20Z",
       "side": 1,
       "message": "move this to the top after the imports",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ec9247_44b103cf",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae7b6808_de7cc579",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +204,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8936e09e_ee4579af",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done though technically the attributes are added to the argparse namespace object and not to self.",
+      "parentUuid": "fbd0b357_9fa8b46e",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "060ad8be_4182dece",
@@ -143,6 +239,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "022c7cc7_f28db8ff",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "060ad8be_4182dece",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "283143f5_a620d770",
@@ -156,6 +270,24 @@
       "writtenOn": "2020-12-26T03:11:20Z",
       "side": 1,
       "message": "put the nargs\u003d\u0027+\u0027 option at the end",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae00c6ed_755614f1",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "283143f5_a620d770",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -179,6 +311,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d08c91f5_c3252013",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "\u003e technically the f prefix is only used when you use {} which only happens on the last string here\n\nIs there a nicer way to align the literals in that case? Or just have that extra f on the last line?  \n\n\u003e \n\u003e when splitting, prefer to split at \\n when possible to make it easier to read\n\nDone",
+      "parentUuid": "28d0a45c_d52f16f0",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b41a3c81_2c477aca",
         "filename": "tools/generate_seccomp_policy.py",
         "patchSetId": 12
@@ -190,6 +340,24 @@
       "writtenOn": "2020-12-26T03:11:20Z",
       "side": 1,
       "message": "please avoid banners like this.  it\u0027s just noise at the end of the day.",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b068f4f7_2fe58f3c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Removed. I added the banner because IMO it\u0027s easy to miss these messages with NOTICE and the default syscalls that gets printed to stdout every time regardless of input file validity.",
+      "parentUuid": "b41a3c81_2c477aca",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -207,6 +375,24 @@
       "writtenOn": "2020-12-26T03:11:20Z",
       "side": 1,
       "message": "how about omitting these by default and adding a --verbose command line option ?",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "266387ce_17ae209c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-16T00:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22c30752_2b16bb86",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
