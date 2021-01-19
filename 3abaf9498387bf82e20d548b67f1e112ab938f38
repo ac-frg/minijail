@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c38573_9fc5ae88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "For some reason when I just listed the line below it didn\u0027t pass the bug field upload check.",
+      "parentUuid": "cb173895_8bd6b400",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72cdfd0a_bb953874",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-01-15T16:30:23Z",
       "side": 1,
       "message": "Normally we try to match BUG\u003d/TEST\u003d and Bug:/Test: lines.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c81755_2a85e4ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "The upload checker actually seems to only be happy when I do Bug: and TEST\u003d , but that may be me messing something else up.",
+      "parentUuid": "72cdfd0a_bb953874",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1122df1_2d903abf",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "I don\u0027t think so. since it\u0027s a linked list I can iterate through the elements until I hit a null next pointer. Mounts only has a count for use in the unmarshal function and not for cleanup.",
+      "parentUuid": "1fffe047_9b3249a9",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 40
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2eb207bc_dc1287fd",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -100,6 +172,30 @@
       "writtenOn": "2021-01-15T16:30:23Z",
       "side": 1,
       "message": "Probably best to not change unrelated whitespace.",
+      "range": {
+        "startLine": 1319,
+        "startChar": 15,
+        "endLine": 1319,
+        "endChar": 16
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbfa73e1_02f20f06",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "Gah, saving the file automatically reformats and muse have accidentally added this one.",
+      "parentUuid": "2eb207bc_dc1287fd",
       "range": {
         "startLine": 1319,
         "startChar": 15,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e41ad863_01eb2a8d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce26da45_b4e97040",
+      "range": {
+        "startLine": 2305,
+        "startChar": 0,
+        "endLine": 2307,
+        "endChar": 3
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb52c2fa_a278823a",
@@ -146,6 +266,30 @@
       "writtenOn": "2021-01-15T16:30:23Z",
       "side": 1,
       "message": "Hmmm, I wonder if we want this. It\u0027s probably safer to do it, but we should make sure that the help text clarifies that the command-line flag will remount the entire subtree, not just that directory.",
+      "range": {
+        "startLine": 2312,
+        "startChar": 6,
+        "endLine": 2312,
+        "endChar": 12
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6be26a_d2c50c32",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb52c2fa_a278823a",
       "range": {
         "startLine": 2312,
         "startChar": 6,
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a49e85f9_d26a1d01",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f853757c_29e6a192",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 49
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a03da48_6c76dcac",
@@ -192,6 +360,30 @@
       "writtenOn": "2021-01-15T16:30:23Z",
       "side": 1,
       "message": "I\u0027d say \"supersedes\" or \"overrides\", this is technically not writing over the j-\u003eremount_mode option in memory.",
+      "range": {
+        "startLine": 299,
+        "startChar": 43,
+        "endLine": 299,
+        "endChar": 53
+      },
+      "revId": "3abaf9498387bf82e20d548b67f1e112ab938f38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fc951d_de427113",
+        "filename": "libminijail.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T18:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a03da48_6c76dcac",
       "range": {
         "startLine": 299,
         "startChar": 43,
