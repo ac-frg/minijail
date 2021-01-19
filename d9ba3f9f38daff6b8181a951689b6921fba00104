@@ -53,6 +53,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9d12ed0_2af069a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T19:09:09Z",
+      "side": 1,
+      "message": "All of these changes happened when I saved the file, but I tried to pick out and commit only the actual changes that I made. I\u0027ll abandon this, but we can leave it for reference when figuring out what changes we need to make to clang-format.",
+      "parentUuid": "d2ed5b7e_0d6c55cf",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79751f3e_2b457a94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-19T19:09:09Z",
+      "side": 1,
+      "message": "Ok, I\u0027m going to abandon this change and instead file a bug for making clang-format better reflect how we want the files in minijail to be formatted. I have found a temporary workaround for vim auto-formatting on save by using :noautocmd w to save.",
+      "revId": "d9ba3f9f38daff6b8181a951689b6921fba00104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c8595d_eb54d8db",
