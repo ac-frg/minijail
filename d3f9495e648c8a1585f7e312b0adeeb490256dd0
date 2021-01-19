@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbd273c4_280ce1a6",
+        "filename": "tools/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-19T17:46:50Z",
+      "side": 1,
+      "message": "i think if we leave note blocks like you\u0027ve added below we can dispense with the (experimental) tag",
+      "parentUuid": "b4f21792_57a474aa",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b05a9fb5_6da5152a",
         "filename": "tools/README.md",
         "patchSetId": 12
@@ -183,6 +207,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "ae7b6808_de7cc579",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7eb6dac_365b024f",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-19T17:46:50Z",
+      "side": 1,
+      "message": "sorry it wasn\u0027t clear, but i meant just the pylint disable, not the whole func\n\nthis disable line is applying to the whole file, not just this func, so putting it at the top by itself makes that clear",
+      "parentUuid": "36ec9247_44b103cf",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -323,6 +365,24 @@
       "side": 1,
       "message": "\u003e technically the f prefix is only used when you use {} which only happens on the last string here\n\nIs there a nicer way to align the literals in that case? Or just have that extra f on the last line?  \n\n\u003e \n\u003e when splitting, prefer to split at \\n when possible to make it easier to read\n\nDone",
       "parentUuid": "28d0a45c_d52f16f0",
+      "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af6bdfaf_42bae7b4",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-19T17:46:50Z",
+      "side": 1,
+      "message": "there is no satisfactory answer here.  we just omit the f and live with the slight off-by-one.",
+      "parentUuid": "d08c91f5_c3252013",
       "revId": "d3f9495e648c8a1585f7e312b0adeeb490256dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

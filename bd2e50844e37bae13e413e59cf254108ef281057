@@ -16,6 +16,52 @@
       "message": "I still want to do a bit more aarch64 testing but skylab isn\u0027t cooperating right now. Sending this out nonetheless because it at least works for x86.",
       "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7387a0fd_d0d8daa3",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-19T17:46:50Z",
+      "side": 1,
+      "message": "this fits on one line",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8b64c55_ce56c75c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-19T17:46:50Z",
+      "side": 1,
+      "message": "i think these fit on 2 lines",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
