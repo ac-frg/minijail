@@ -485,6 +485,33 @@ static void set_remount_mode(struct minijail *j, const char *mode)
 	minijail_remount_mode(j, msmode);
 }
 
+static void add_remount(struct minijail *j, char *mount_info)
+{
+	/* mount_info should be in the format: <mount_mode>:<mount_name> */
+	char *mode = tokenize(&mount_info, ":");
+	char *mount_name = tokenize(&mount_info, ":");
+	unsigned long msmode;
+
+	if (!mode || mode[0] == '\0' || !mount_name || mount_name[0] == '\0') {
+		fprintf(stderr, "Bad remount: %s %s\n", mode, mount_name);
+		exit(1);
+	}
+
+	if (!strcmp(mode, "shared"))
+		msmode = MS_SHARED;
+	else if (!strcmp(mode, "private"))
+		msmode = MS_PRIVATE;
+	else if (!strcmp(mode, "slave"))
+		msmode = MS_SLAVE;
+	else if (!strcmp(mode, "unbindable"))
+		msmode = MS_UNBINDABLE;
+	else {
+		fprintf(stderr, "Unknown remount mode: '%s'\n", mode);
+		exit(1);
+	}
+	minijail_add_remount(j, mount_name, msmode);
+}
+
 static void read_seccomp_filter(const char *filter_path,
 				struct sock_fprog *filter)
 {
@@ -566,6 +593,8 @@ static void usage(const char *progn)
 	       "  -I:           Run <program> as init (pid 1) inside a new pid namespace (implies -p).\n"
 	       "  -K:           Do not change share mode of any existing mounts.\n"
 	       "  -K<mode>:     Mark all existing mounts as <mode> instead of MS_PRIVATE.\n"
+	       "  --mount-propagation <mode>:<mount>: Mark the given <mount>\n"
+               "                as <mode> instead of MS_PRIVATE.\n"
 	       "  -l:           Enter new IPC namespace.\n"
 	       "  -L:           Report blocked syscalls when using seccomp filter.\n"
 	       "                If the kernel does not support SECCOMP_RET_LOG,\n"
@@ -676,6 +705,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"seccomp-bpf-binary", required_argument, 0, 133},
 		{"add-suppl-group", required_argument, 0, 134},
 		{"allow-speculative-execution", no_argument, 0, 135},
+		{"mount-propagation", required_argument, 0, 136},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -962,6 +992,9 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			break;
 		case 135:
 			minijail_set_seccomp_filter_allow_speculation(j);
+			break;
+		case 136:
+			add_remount(j, optarg);
 			break;
 		default:
 			usage(argv[0]);
