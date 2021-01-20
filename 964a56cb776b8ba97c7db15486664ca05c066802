@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24cf7758_69b4461c",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-20T21:08:34Z",
+      "side": 1,
+      "message": "Nit: surround this with pipes: |j-\u003eremount_mode| to signify that you\u0027re referring to a term in code.",
+      "range": {
+        "startLine": 299,
+        "startChar": 53,
+        "endLine": 299,
+        "endChar": 68
+      },
+      "revId": "964a56cb776b8ba97c7db15486664ca05c066802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
