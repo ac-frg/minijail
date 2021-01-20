@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b636b85_94de35cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-20T23:01:17Z",
+      "side": 1,
+      "message": "Tested manually and will add unit tests in a followup CL",
+      "revId": "964a56cb776b8ba97c7db15486664ca05c066802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24cf7758_69b4461c",
@@ -14,6 +31,30 @@
       "writtenOn": "2021-01-20T21:08:34Z",
       "side": 1,
       "message": "Nit: surround this with pipes: |j-\u003eremount_mode| to signify that you\u0027re referring to a term in code.",
+      "range": {
+        "startLine": 299,
+        "startChar": 53,
+        "endLine": 299,
+        "endChar": 68
+      },
+      "revId": "964a56cb776b8ba97c7db15486664ca05c066802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a40ac5d9_80087963",
+        "filename": "libminijail.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-20T23:01:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24cf7758_69b4461c",
       "range": {
         "startLine": 299,
         "startChar": 53,
