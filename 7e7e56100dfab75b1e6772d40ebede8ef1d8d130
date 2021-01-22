@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38ac9008_01a7285e",
+        "filename": "minijail0.1",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T15:23:59Z",
+      "side": 1,
+      "message": "Wrap this at 80 cols.",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 86
+      },
+      "revId": "7e7e56100dfab75b1e6772d40ebede8ef1d8d130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d770e69_3f235572",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T15:23:59Z",
+      "side": 1,
+      "message": "I feel like swapping these around makes more sense?\n\n\"This directory should be marked with this propagation mode.\"",
+      "range": {
+        "startLine": 588,
+        "startChar": 31,
+        "endLine": 588,
+        "endChar": 45
+      },
+      "revId": "7e7e56100dfab75b1e6772d40ebede8ef1d8d130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db81ef71_70b59579",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T15:23:59Z",
+      "side": 1,
+      "message": "Not technically, right?\n\n\"instead of the global setting (MS_SLAVE if no -K is used, otherwise the result of -K).",
+      "range": {
+        "startLine": 589,
+        "startChar": 53,
+        "endLine": 589,
+        "endChar": 63
+      },
+      "revId": "7e7e56100dfab75b1e6772d40ebede8ef1d8d130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
