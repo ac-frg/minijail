@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81c7fb8a_5e9de647",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T21:05:48Z",
+      "side": 1,
+      "message": "This looks good modulus checking that we\u0027re in the -v/-K case when calling add_remount.",
+      "revId": "396d537440e0841bec375b3890a60e4fb7c6bf47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338259cf_37606f03",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T21:05:48Z",
+      "side": 1,
+      "message": "Stale comment?",
+      "range": {
+        "startLine": 1168,
+        "startChar": 0,
+        "endLine": 1169,
+        "endChar": 13
+      },
+      "revId": "396d537440e0841bec375b3890a60e4fb7c6bf47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
