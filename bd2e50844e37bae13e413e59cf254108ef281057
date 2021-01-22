@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cbdd376_60beca40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T02:21:00Z",
+      "side": 1,
+      "message": "I did some more aarch64 testing and found an issue that\u0027s addressed by a note in the readme.",
+      "parentUuid": "ce36acfc_d79cdb47",
+      "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7387a0fd_d0d8daa3",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ebc9de3_77eb25e7",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T02:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7387a0fd_d0d8daa3",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8b64c55_ce56c75c",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-01-19T17:46:50Z",
       "side": 1,
       "message": "i think these fit on 2 lines",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "bd2e50844e37bae13e413e59cf254108ef281057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40bb9baa_dd9a0294",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T02:21:00Z",
+      "side": 1,
+      "message": "Not quite, unfortunately. Though it did reflow a bit with the \u0027f\u0027 gone.",
+      "parentUuid": "f8b64c55_ce56c75c",
       "range": {
         "startLine": 122,
         "startChar": 0,

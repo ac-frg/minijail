@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d047109_bdc168b2",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T02:21:00Z",
+      "side": 1,
+      "message": "Added a note for an issue I ran into when testing with some ARM logs. It\u0027ll unfortunately require running the script outside of the chroot. This is hopefully okay for now.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
