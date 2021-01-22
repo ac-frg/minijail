@@ -94,6 +94,30 @@
       },
       "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da4c7caf_afc1aae9",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T19:45:54Z",
+      "side": 1,
+      "message": "You\u0027re right that I\u0027m not sure how any of this works. I assumed that the ebuild would be installed under /build and not / but I guess that\u0027s wrong. However I did notice this before -\n\n$ emerge-betty -v audit | grep binding\nchecking whether to create python bindings... no\nchecking whether to create python3 bindings... no\nchecking whether to create Go language bindings... testing\nconfigure: Go bindings will be built  \n\n\n$ equery-betty f audit  | grep py; echo $?\n1\n\nI\u0027ll submit this cl for now with the note and try the upgrade in a followup cl",
+      "parentUuid": "0bfb45f3_37a7eed7",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
