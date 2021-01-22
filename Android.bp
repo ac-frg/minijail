@@ -14,6 +14,17 @@
 
 // Common variables.
 // =========================================================
+package {
+    default_applicable_licenses: ["external_minijail_license"],
+}
+
+license {
+    name: "external_minijail_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["SPDX-license-identifier-Apache-2.0","SPDX-license-identifier-BSD"],
+    license_text: ["LICENSE","NOTICE"],
+}
+
 libminijailSrcFiles = [
     "bpf.c",
     "libminijail.c",
