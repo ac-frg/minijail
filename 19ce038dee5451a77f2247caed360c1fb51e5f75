@@ -46,6 +46,30 @@
       },
       "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cbcdb48_5afc2d14",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-22T18:49:01Z",
+      "side": 1,
+      "message": "That ebuild doesn\u0027t install python bindings. We probably also don\u0027t want those in the built image. IIUC this would require an update to python or site-packages in the SDK itself\n\nSDK:\n$ python3 -c \u0027import auparse; print(auparse.__file__)\u0027                                                                     \n/usr/lib64/python3.6/site-packages/auparse.so\n\nglinux:\n~\u003e python3 -c \u0027import auparse; print(auparse.__file__)\u0027\n/usr/lib/python3/dist-packages/auparse.cpython-38-x86_64-linux-gnu.so",
+      "parentUuid": "3777dd09_e8640c29",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
