@@ -16,6 +16,29 @@
       "message": "This looks ready to go in once the unit tests are working.",
       "revId": "d439e6a991afd87387e89577379cbb16ee15898a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d14a66_104f3116",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-22T21:02:39Z",
+      "side": 1,
+      "message": "I guess we need to decide if this should check whether the -K flag/ j-\u003eremount_mode is set.\n\nPros: we probably want to restrict the usage to cases where -K is set.\n\nCons: technically, j-\u003eremount_mode is always set, unless you call skip_remount_private or set it to 0 using set_remount_mode.\n\nSo maybe what this should do is only let you add remounts if namespace_vfs is set and j-\u003eremount_mode is !\u003d 0, which it will be by default.",
+      "range": {
+        "startLine": 897,
+        "startChar": 0,
+        "endLine": 919,
+        "endChar": 10
+      },
+      "revId": "d439e6a991afd87387e89577379cbb16ee15898a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
