@@ -70,6 +70,30 @@
       },
       "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bfb45f3_37a7eed7",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-22T18:55:49Z",
+      "side": 1,
+      "message": "are you sure about any of that ?\n\n $ qlist dev-lang/python:3.6 | grep site-packages\n \u003cnothing\u003e\n $ emerge -1Opvq sys-process/audit\n[ebuild   R   ] sys-process/audit-2.8.4-r5  USE\u003d\"python -gssapi -ldap -static-libs\" ABI_X86\u003d\"(64) -32 (-x32)\" PYTHON_TARGETS\u003d\"python3_6 -python2_7\"\n $ qlist sys-process/audit | grep python\n/usr/lib/python3.6/site-packages/auparse.so\n/usr/lib/python3.6/site-packages/__pycache__/audit.cpython-36.pyc\n/usr/lib/python3.6/site-packages/__pycache__/audit.cpython-36.opt-1.pyc\n/usr/lib/python3.6/site-packages/_audit.so\n/usr/lib/python3.6/site-packages/audit.py\n $ emerge-betty -1Opvq sys-process/audit\n[ebuild   R   ] sys-process/audit-2.8.4-r5 to /build/betty/ USE\u003d\"-gssapi -ldap -python -static-libs\" ABI_X86\u003d\"(64) -32 (-x32)\" PYTHON_TARGETS\u003d\"python3_6 -python2_7\"\n\nseems to me that just upgrading our audit package to 2.8.5 would solve this.",
+      "parentUuid": "1cbcdb48_5afc2d14",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
