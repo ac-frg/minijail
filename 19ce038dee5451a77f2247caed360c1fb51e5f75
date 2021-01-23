@@ -166,6 +166,30 @@
       },
       "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f535c7c_7e32503f",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-23T01:34:01Z",
+      "side": 1,
+      "message": "I tried the update. Script is still broken with aarch64 logs. Same issue as before.\n\n$ sudo emerge audit                                                                                                                    \nCalculating dependencies... done!                                                                          \n                                                                                                           \n\u003e\u003e\u003e 01:11:12 Emerging (1 of 1) sys-process/audit-2.8.5-r2::chromiumos\n * audit-2.8.5_p80866dc78b5d.tar.gz BLAKE2B SHA512 size ;-) ...          [ ok ]\n * audit-017e6c6ab95df55f34e339d2139def83e5dada1f.patch BLAKE2B SHA512 size ;-) ...          [ ok ]\n[...]\n\n$ equery b auparse.so\n * Searching for auparse.so ... \nsys-process/audit-2.8.5-r2 (/usr/lib/python3.6/site-packages/auparse.so)\n\n\nI\u0027ll probably return to this later. Roughly the problem is that the ARM syscall numbers are looked up in x86_64 tables (likely based on my workstation arch) inside the chroot. I might also be able to translate these fields manually with help from the audit module.\n\nI\u0027ve changed the note to not blame the version mismatch.",
+      "parentUuid": "472e9add_7afde2bc",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
