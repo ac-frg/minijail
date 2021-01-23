@@ -118,6 +118,30 @@
       },
       "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "236f4e34_e56466b0",
+        "filename": "tools/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-01-23T00:01:17Z",
+      "side": 1,
+      "message": "Okay, this is what I was missing before:\n\n$ equery f audit | grep py\n/usr/lib/python3.6\n/usr/lib/python3.6/site-packages\n/usr/lib/python3.6/site-packages/__pycache__\n/usr/lib/python3.6/site-packages/__pycache__/audit.cpython-36.opt-1.pyc\n/usr/lib/python3.6/site-packages/__pycache__/audit.cpython-36.pyc\n/usr/lib/python3.6/site-packages/_audit.so\n/usr/lib/python3.6/site-packages/audit.py\n/usr/lib/python3.6/site-packages/auparse.so\n\nI guess this gets installed in / when the chroot is created/updated? I\u0027ll check if the updated version is adequate.",
+      "parentUuid": "da4c7caf_afc1aae9",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "19ce038dee5451a77f2247caed360c1fb51e5f75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
