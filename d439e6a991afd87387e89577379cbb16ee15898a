@@ -39,6 +39,30 @@
       },
       "revId": "d439e6a991afd87387e89577379cbb16ee15898a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e2ada37_d136c82b",
+        "filename": "libminijail.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-23T00:18:31Z",
+      "side": 1,
+      "message": "I think that adding remount makes sense here even if -K is not set so that it doesn\u0027t matter the order that flags are processed, but I will add that gate to the minijail_enter function.",
+      "parentUuid": "98d14a66_104f3116",
+      "range": {
+        "startLine": 897,
+        "startChar": 0,
+        "endLine": 919,
+        "endChar": 10
+      },
+      "revId": "d439e6a991afd87387e89577379cbb16ee15898a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

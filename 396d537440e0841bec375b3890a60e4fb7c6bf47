@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb518c0_ed45444f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-23T00:18:31Z",
+      "side": 1,
+      "message": "That should be handled in minijail_enter. We can add_remount no matter what, but the functionality which actually remounts something is gated by the vfs flag and I will also add a check that makes sure remount_mode is also set.",
+      "parentUuid": "81c7fb8a_5e9de647",
+      "revId": "396d537440e0841bec375b3890a60e4fb7c6bf47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "338259cf_37606f03",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-01-22T21:05:48Z",
       "side": 1,
       "message": "Stale comment?",
+      "range": {
+        "startLine": 1168,
+        "startChar": 0,
+        "endLine": 1169,
+        "endChar": 13
+      },
+      "revId": "396d537440e0841bec375b3890a60e4fb7c6bf47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15fd4e6d_3c1df5a7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-01-23T00:18:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338259cf_37606f03",
       "range": {
         "startLine": 1168,
         "startChar": 0,
