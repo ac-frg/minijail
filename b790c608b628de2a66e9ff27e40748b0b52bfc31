@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a7527b_e18b9402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-01-26T20:54:27Z",
+      "side": 1,
+      "message": "Jorge gave a +2 earlier, so i\u0027ll repeat it",
+      "revId": "b790c608b628de2a66e9ff27e40748b0b52bfc31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
