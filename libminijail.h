@@ -106,6 +106,15 @@ void minijail_use_seccomp(struct minijail *j);
 void minijail_no_new_privs(struct minijail *j);
 void minijail_use_seccomp_filter(struct minijail *j);
 void minijail_set_seccomp_filter_tsync(struct minijail *j);
+/*
+ * Allow speculative execution features that may cause data leaks across
+ * processes, by setting the SECCOMP_FILTER_FLAG_SPEC_ALLOW seccomp flag.
+ *
+ * WARNING: Enabling this may make the process vulnerable to speculative
+ * execution attacks (Branch Target Injection, and Speculative Store Bypass).
+ * This is only safe to use for processes that do not execute untrusted code.
+ */
+void minijail_set_seccomp_filter_allow_speculation(struct minijail *j);
 /* Does not take ownership of |filter|. */
 void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
@@ -280,6 +289,18 @@ int minijail_mount(struct minijail *j, const char *src, const char *dest,
 int minijail_bind(struct minijail *j, const char *src, const char *dest,
 		  int writeable);
 
+/*
+ * minijail_add_remount: when entering minijail @j, remounts @mount_name and all
+ * subdirectories as @remount_mode rather than the default MS_PRIVATE
+ * @j             minijail to bind inside
+ * @mount_name    mount to remount
+ * @remount_mode  remount mode to use
+ *
+ * This may be called multiple times; this overrides |j->remount_mode| for the
+ * given mount.
+ */
+int minijail_add_remount(struct minijail *j, const char *mount_name,
+			 unsigned long remount_mode);
 /*
  * minijail_add_hook: adds @hook to the list of hooks that will be
  * invoked when @event is reached during minijail setup. The caller is
@@ -473,7 +494,7 @@ void minijail_destroy(struct minijail *j);
 void minijail_log_to_fd(int fd, int min_priority);
 
 #ifdef __cplusplus
-}; /* extern "C" */
+} /* extern "C" */
 #endif
 
 #endif /* !_LIBMINIJAIL_H_ */
