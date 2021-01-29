@@ -16,6 +16,46 @@
       "message": "jorgelo@ Friendly ping for review",
       "revId": "cf6488d11c495e45aa6f2de3bbb73fad8181b7d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8986a19_98465268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-29T20:50:02Z",
+      "side": 1,
+      "message": "LGTM, we can figure out the interplay between --mount-propagation and -K in a follow-up.",
+      "revId": "cf6488d11c495e45aa6f2de3bbb73fad8181b7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056873da_313c583f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-01-29T20:50:02Z",
+      "side": 1,
+      "message": "What about our discussion of a --mount-propagation setting that\u0027s more restrictive than the matching -K setting? Do you want to do that in a follow-up CL?",
+      "range": {
+        "startLine": 1053,
+        "startChar": 0,
+        "endLine": 1056,
+        "endChar": 11
+      },
+      "revId": "cf6488d11c495e45aa6f2de3bbb73fad8181b7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
