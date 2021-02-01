@@ -50,8 +50,12 @@ Change root (using \fBchroot\fR(2)) to \fIdir\fR.
 \fB-d\fR, \fB--mount-dev\fR
 Create a new /dev mount with a minimal set of nodes. Implies \fB-v\fR.
 Additional nodes can be bound with the \fB-b\fR or \fB-k\fR options.
-The initial set of nodes are: full null tty urandom zero.
-Symlinks are also created for: fd ptmx stderr stdin stdout.
+
+.nf
+\[bu] The initial set of nodes are: full null tty urandom zero.
+\[bu] Symlinks are also created for: fd ptmx stderr stdin stdout.
+\[bu] Directores are also created for: shm.
+.re
 .TP
 \fB-e[file]\fR
 Enter a new network namespace, or if \fIfile\fR is specified, enter an existing
@@ -137,11 +141,18 @@ missing parent directories).
 .TP
 \fB-K[mode]\fR
 Don't mark all existing mounts as MS_SLAVE.
-This option is \fBdangerous\fR as it negates most of the functionality of \fB-v\fR.
-You very likely don't need this.
+By default, \fB-v\fR changes all mounts in the new namespace to MS_SLAVE.
+Using \fB-K\fR with no mode means that no mount modes are changed.
+If a mount mode is supplied, the specified mode will be used instead of the
+default MS_SLAVE. This option is \fBdangerous\fR as it negates most of the
+functionality of \fB-v\fR. You very likely don't need this.
+.TP
+\fB--mount-propagation <mount_mode>:<mount>\fR
+Mark the mount specified and entire subtree as the given mount mode. Applied
+after \fB-K\fR, so will override remounts done by \fB-K\fR. A separate
+\fB--mount-propagation\fR must be specified for each specific remount to do.
 
-You may specify a mount propagation mode in which case, that will be used
-instead of the default MS_SLAVE.  See the \fBmount\fR(2) man page and the
+For information about mount modes, see the \fBmount\fR(2) man page and the
 kernel docs \fIDocumentation/filesystems/sharedsubtree.txt\fR for more
 technical details, but a brief guide:
 
@@ -308,6 +319,21 @@ arch-and-kernel-version-specific pre-compiled BPF binary (such as the ones
 produced by \fBparse_seccomp_policy\fR).  Note that the filter might be
 different based on the runtime environment; see \fBminijail0\fR(5) for more
 details.
+.TP
+\fB--allow-speculative-execution\fR
+Allow speculative execution features that may cause data leaks across processes.
+This passes the \fISECCOMP_FILTER_FLAG_SPEC_ALLOW\fR flag to seccomp which
+disables mitigations against certain speculative execution attacks; namely
+Branch Target Injection (spectre-v2) and Speculative Store Bypass (spectre-v4).
+These mitigations incur a runtime performance hit, so it is useful to be able
+to disable them in order to quantify their performance impact.
+
+\fBWARNING:\fR It is dangerous to use this option on programs that process
+untrusted input, which is normally what Minijail is used for. Do not enable
+this option unless you know what you're doing.
+
+See the kernel documentation \fIDocumentation/userspace-api/spec_ctrl.rst\fR
+and \fIDocumentation/admin-guide/hw-vuln/spectre.rst\fR for more information.
 .SH SANDBOXING PROFILES
 The following sandboxing profiles are supported:
 .TP
