@@ -2307,6 +2307,10 @@ void API minijail_enter(const struct minijail *j)
 
 			struct minijail_remount *temp = j->remounts_head;
 			while (temp) {
+				if (temp->remount_mode < j->remount_mode)
+					die("Cannot remount a specific "
+					     "directory as more strict than "
+					     "the root dir");
 				if (mount(NULL, temp->mount_name, NULL,
 					  MS_REC | temp->remount_mode, NULL))
 					pdie("mount(NULL, %s, NULL, "
