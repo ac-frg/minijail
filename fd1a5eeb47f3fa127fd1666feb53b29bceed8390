@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd19930_0223ea39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-05T15:57:34Z",
+      "side": 1,
+      "message": "Maybe \"Don\u0027t allow stricter remounting of specific dir\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c423652_939af418",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-05T15:57:34Z",
+      "side": 1,
+      "message": "Wrap to 72 cols.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce02007c_03379d76",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2311,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-05T15:57:34Z",
+      "side": 1,
+      "message": "Nit: \"cannot\", no need for capital C.",
+      "range": {
+        "startLine": 2311,
+        "startChar": 10,
+        "endLine": 2311,
+        "endChar": 16
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ebe87de_f86cacbe",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-05T15:57:34Z",
+      "side": 1,
+      "message": "Print the directory?",
+      "range": {
+        "startLine": 2311,
+        "startChar": 27,
+        "endLine": 2312,
+        "endChar": 20
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00716cee_7f844d80",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-05T15:57:34Z",
+      "side": 1,
+      "message": "Nit: \"stricter\"",
+      "range": {
+        "startLine": 2312,
+        "startChar": 24,
+        "endLine": 2312,
+        "endChar": 35
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
