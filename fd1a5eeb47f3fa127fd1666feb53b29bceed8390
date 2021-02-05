@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7feb60a2_4cbb0415",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-02-05T16:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd19930_0223ea39",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c423652_939af418",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef13f26a_b93e694c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-02-05T16:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c423652_939af418",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce02007c_03379d76",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-02-05T15:57:34Z",
       "side": 1,
       "message": "Nit: \"cannot\", no need for capital C.",
+      "range": {
+        "startLine": 2311,
+        "startChar": 10,
+        "endLine": 2311,
+        "endChar": 16
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b8c8e1c_4e0cadf9",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2311,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-02-05T16:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce02007c_03379d76",
       "range": {
         "startLine": 2311,
         "startChar": 10,
@@ -106,6 +178,54 @@
       "writtenOn": "2021-02-05T15:57:34Z",
       "side": 1,
       "message": "Nit: \"stricter\"",
+      "range": {
+        "startLine": 2312,
+        "startChar": 24,
+        "endLine": 2312,
+        "endChar": 35
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "910f7dc7_7c77e477",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-02-05T16:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ebe87de_f86cacbe",
+      "range": {
+        "startLine": 2311,
+        "startChar": 27,
+        "endLine": 2312,
+        "endChar": 20
+      },
+      "revId": "fd1a5eeb47f3fa127fd1666feb53b29bceed8390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3aae068_4b9e5af4",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-02-05T16:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00716cee_7f844d80",
       "range": {
         "startLine": 2312,
         "startChar": 24,
