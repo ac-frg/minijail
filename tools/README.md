@@ -77,9 +77,38 @@ minijail0 -u $UID -g $GID -L -S /tmp/empty.policy -- <program>
     > $PROGRAM_NAME.policy
 ```
 
-Note that the tool can also consume multiple audit logs and/or strace traces to
-produce one unified policy.
+Note that the tool can also consume multiple audit logs and/or strace traces
+(below) to produce one unified policy.
 
+### Using strace logs to generate policy
+
+#### Generate and pre-process the strace log
+
+```shell
+strace -f -o strace.log <program>
+```
+
+When sandboxing a dynamically-linked executable, Minijail will default to using
+`LD_PRELOAD` to install the seccomp filter. This will install the filter
+*after* glibc initialization, so remove the syscalls related to glibc
+initialization to obtain a smaller filter (and a tighter sandbox). Those are
+normally everything up to and including the following:
+
+```
+rt_sigaction(SIGRTMIN, {<sa_handler>, [], SA_RESTORER|SA_SIGINFO, <sa_restorer>}, NULL, 8) = 0
+rt_sigaction(SIGRT_1, {<sa_handler>, [], SA_RESTORER|SA_RESTART|SA_SIGINFO, <sa_restorer>}, NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+getrlimit(RLIMIT_STACK, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+brk(NULL)                               = <addr>
+brk(<addr>)                             = <addr>
+```
+
+#### Generate policy using strace.log
+
+```shell
+./tools/generate_seccomp_policy.py strace.log > $PROGRAM_NAME.policy
+
+```
 ## compile_seccomp_policy.py
 
 An external seccomp-bpf compiler that is documented [here][3]. This uses a
