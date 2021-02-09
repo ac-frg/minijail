@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d757124_066137dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-09T15:21:38Z",
+      "side": 1,
+      "message": "LGTM modulus documenting where the numbers come from.",
+      "revId": "9a35cab2a62d35e3ca0f85e8d988b826f562847d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813738b2_28f14c5b",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-09T15:21:38Z",
+      "side": 1,
+      "message": "Document where these numbers come from.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 10
+      },
+      "revId": "9a35cab2a62d35e3ca0f85e8d988b826f562847d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
