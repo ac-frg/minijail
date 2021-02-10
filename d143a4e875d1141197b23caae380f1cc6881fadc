@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4eff87_350c3853",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121894
+      },
+      "writtenOn": "2021-02-10T20:44:10Z",
+      "side": 1,
+      "message": "seems like can\u0027t remove the if condition yet. device tests need some extra push config.",
+      "revId": "d143a4e875d1141197b23caae380f1cc6881fadc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
