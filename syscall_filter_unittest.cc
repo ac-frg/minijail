@@ -19,16 +19,10 @@
 
 namespace {
 
-// TODO(jorgelo): Android unit tests don't currently support data files.
-// Re-enable by creating a temporary policy file at runtime.
-#if !defined(__ANDROID__)
-
 std::string source_path(std::string file) {
   std::string srcdir = getenv("SRC") ? : ".";
   return srcdir + "/" + file;
 }
-
-#endif
 
 // Simple C++ -> C wrappers to simplify test code.
 
@@ -1879,10 +1873,6 @@ TEST(FilterTest, include_nonexistent_file) {
   ASSERT_NE(res, 0);
 }
 
-// TODO(jorgelo): Android unit tests don't currently support data files.
-// Re-enable by creating a temporary policy file at runtime.
-#if !defined(__ANDROID__)
-
 TEST(FilterTest, include) {
   struct sock_fprog compiled_plain;
   struct sock_fprog compiled_with_include;
@@ -2042,8 +2032,6 @@ TEST(FilterTest, include_nested) {
 
   ASSERT_NE(res, 0);
 }
-
-#endif  // !__ANDROID__
 
 TEST(FilterTest, error_cleanup_leak) {
   struct sock_fprog actual;
