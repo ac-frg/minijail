@@ -22,6 +22,30 @@
       },
       "revId": "a5b772fa20d515398eccd307c87fab95a6f5b9ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d862376_d63a646c",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1806960
+      },
+      "writtenOn": "2021-02-11T18:54:48Z",
+      "side": 1,
+      "message": "Its man page section. https://man7.org/linux/man-pages/man0/unistd.h.0p.html\n\nI removed it to avoid further confusion and since it\u0027s obvious either way.",
+      "parentUuid": "bd48c4d7_01180ccc",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "a5b772fa20d515398eccd307c87fab95a6f5b9ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
