@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0575abd4_82ef30e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-02-11T16:23:41Z",
+      "side": 1,
+      "message": "i feel like we should figure out our local imports so they always have an enclosing namespace of \"minijail\".  they have very generic names atm which is a bit confusing.\n\nbut we can land this now to unblock the uprev.",
+      "revId": "3a6e925548e1ddb500c0dffdd2d2c591519f02e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
