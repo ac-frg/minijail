@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd48c4d7_01180ccc",
+        "filename": "tools/generate_seccomp_policy.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-02-11T18:17:39Z",
+      "side": 1,
+      "message": "What does this refer to?",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "a5b772fa20d515398eccd307c87fab95a6f5b9ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
