@@ -33,6 +33,24 @@
       "message": "I\u0027m a bit confused by PS3, why is there a mode change on the read_stdin file, and only a Blueprint change but nothing else?",
       "revId": "d4f7380796d2368339e788c116199989449a3a81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080f8df5_280aec34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121894
+      },
+      "writtenOn": "2021-02-16T15:20:16Z",
+      "side": 1,
+      "message": "Not sure where my reply to this went... Rewriting it:\n\nOur runner tries to run everything that looks executable as part of the tests so in this case the resource script that i am adding is seen as executable and is attempted to run (and fail), which is the PS2 presubmit error.\n\nTo fix it, i simply remove the default permission on the script to avoid that detection.\n\nI filled b/179927725 for atest to auto-push datas so we can re-enable the IF_ELSE disabled tests eventually like i tried in PS1.",
+      "parentUuid": "7ea9da44_a8c51f62",
+      "revId": "d4f7380796d2368339e788c116199989449a3a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
