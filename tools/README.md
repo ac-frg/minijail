@@ -43,8 +43,7 @@ available in distro packages named `python3-audit` or `python-audit`.
 
 #### Per-boot setup of audit rules on DUT
 
-Set up `audit` rules and an empty seccomp policy for later use. This can be
-done in the `pre-start` section of your upstart conf.
+Set up `audit` rules and an empty seccomp policy for later use.
 
 `$UID` is the uid for your process. Using root will lead to logspam.
 
