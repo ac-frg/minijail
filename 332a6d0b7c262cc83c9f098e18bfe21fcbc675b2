@@ -33,6 +33,24 @@
       "message": "the pov of this text is a bit weird when it\u0027s presented this way and it\u0027s not clear that it\u0027s copied \u0026 pasted from an e-mail conversation.  i would rewrite it to use the normal document pov and have it read authoritatively rather than making it sound like we have no idea why it\u0027s named this way either.\n\nthen at the bottom, just write like:\n\n Source: Conversations with original authors, Elly \u0026 Will.",
       "revId": "332a6d0b7c262cc83c9f098e18bfe21fcbc675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d27c7f_4e23f0cb",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2021-03-16T05:03:51Z",
+      "side": 1,
+      "message": "thanks for the feedback, that makes sense. How\u0027s this now.",
+      "parentUuid": "6ad9a81c_f9197520",
+      "revId": "332a6d0b7c262cc83c9f098e18bfe21fcbc675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
