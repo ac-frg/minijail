@@ -51,6 +51,24 @@
       "parentUuid": "6ad9a81c_f9197520",
       "revId": "332a6d0b7c262cc83c9f098e18bfe21fcbc675b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ccb63a_f934e9bb",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-03-17T05:23:11Z",
+      "side": 1,
+      "message": "lgtm, thanks",
+      "parentUuid": "49d27c7f_4e23f0cb",
+      "revId": "332a6d0b7c262cc83c9f098e18bfe21fcbc675b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
