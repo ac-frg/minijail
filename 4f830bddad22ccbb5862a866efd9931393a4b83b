@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd53d7fb_d54cb873",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-03-31T02:30:15Z",
+      "side": 1,
+      "message": "hopefully by the next time we do a minijail uprev, gtest upgrade will be stuck too",
+      "revId": "4f830bddad22ccbb5862a866efd9931393a4b83b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
