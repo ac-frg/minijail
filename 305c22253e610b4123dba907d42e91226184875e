@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6411bb9_a20f162c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-14T14:55:26Z",
+      "side": 1,
+      "message": "should be consistent in tag style",
+      "revId": "305c22253e610b4123dba907d42e91226184875e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
