@@ -16,6 +16,24 @@
       "message": "should be consistent in tag style",
       "revId": "305c22253e610b4123dba907d42e91226184875e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "645e83a6_156d1f3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-14T15:34:36Z",
+      "side": 1,
+      "message": "Done with a bonus:\nhttps://chromium-review.googlesource.com/c/chromiumos/repohooks/+/2826131",
+      "parentUuid": "d6411bb9_a20f162c",
+      "revId": "305c22253e610b4123dba907d42e91226184875e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
