@@ -33,6 +33,24 @@
       "message": "Ha, we were thinking the same thing...\nhttps://android-review.googlesource.com/c/platform/external/minijail/+/1671673/1/rust/minijail/src/lib.rs\nis waiting for approval from an owner.",
       "revId": "d252f7e7b72a1f1948335f8943c881ce93d4448f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5dbbd58_3be7047e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-15T23:40:58Z",
+      "side": 1,
+      "message": "Thanks Dylan! +Jorge for owner.",
+      "parentUuid": "45944e17_d2e043bf",
+      "revId": "d252f7e7b72a1f1948335f8943c881ce93d4448f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
