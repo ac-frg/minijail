@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df5ca1ea_6046b9ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-15T17:31:57Z",
+      "side": 1,
+      "message": "Thanks Allan!  I guess this couldn\u0027t be simply be done in \"mod tests\" (to run in existing CI), since we need a binary to run_remap?",
+      "revId": "43b25c1acf8d4f987c86fd93f345d85555f3e29e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
