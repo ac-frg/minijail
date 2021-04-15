@@ -16,6 +16,24 @@
       "message": "Thanks Allan!  I guess this couldn\u0027t be simply be done in \"mod tests\" (to run in existing CI), since we need a binary to run_remap?",
       "revId": "43b25c1acf8d4f987c86fd93f345d85555f3e29e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "548c1fc8_5a633626",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-15T17:57:43Z",
+      "side": 1,
+      "message": "Calling fork inside a multi-threaded process is risky if any of the other threads might be holding locks when the fork happens because it would cause a deadlock in the child process. Because of this we check if the process is single threaded before allowing fork_remap (except for cfg(test)). It probably makes sense to revisit that and not even allow it for cfg(test) since using a custom test runner lets us force the test to be one thread.",
+      "parentUuid": "df5ca1ea_6046b9ea",
+      "revId": "43b25c1acf8d4f987c86fd93f345d85555f3e29e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
