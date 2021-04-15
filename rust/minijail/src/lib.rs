@@ -595,7 +595,12 @@ impl Minijail {
     /// FDs 0, 1, and 2 are overwritten with /dev/null FDs unless they are included in the
     /// inheritable_fds list. This function may abort in the child on error because a partially
     /// entered jail isn't recoverable.
-    pub fn run(&self, cmd: &Path, inheritable_fds: &[RawFd], args: &[&str]) -> Result<pid_t> {
+    pub fn run<T: AsRef<str>>(
+        &self,
+        cmd: &Path,
+        inheritable_fds: &[RawFd],
+        args: &[T],
+    ) -> Result<pid_t> {
         self.run_remap(
             cmd,
             &inheritable_fds
@@ -608,11 +613,11 @@ impl Minijail {
 
     /// Behaves the same as `run()` except `inheritable_fds` is a list of fd
     /// mappings rather than just a list of fds to preserve.
-    pub fn run_remap(
+    pub fn run_remap<T: AsRef<str>>(
         &self,
         cmd: &Path,
         inheritable_fds: &[(RawFd, RawFd)],
-        args: &[&str],
+        args: &[T],
     ) -> Result<pid_t> {
         let cmd_os = cmd
             .to_str()
@@ -623,8 +628,9 @@ impl Minijail {
         // into a null terminated array, suitable for use as an argv parameter to `execve`.
         let mut args_cstr = Vec::with_capacity(args.len());
         let mut args_array = Vec::with_capacity(args.len());
-        for &arg in args {
-            let arg_cstr = CString::new(arg).map_err(|_| Error::StrToCString(arg.to_owned()))?;
+        for arg in args {
+            let arg_cstr = CString::new(arg.as_ref())
+                .map_err(|_| Error::StrToCString(arg.as_ref().to_owned()))?;
             args_array.push(arg_cstr.as_ptr());
             args_cstr.push(arg_cstr);
         }
@@ -862,7 +868,7 @@ mod tests {
     #[test]
     fn wait_success() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/bin/true"), &[1, 2], &[]).unwrap();
+        j.run::<&str>(Path::new("/bin/true"), &[1, 2], &[]).unwrap();
         expect_result!(j.wait(), Ok(()));
     }
 
@@ -881,21 +887,22 @@ mod tests {
     #[test]
     fn wait_returncode() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/bin/false"), &[1, 2], &[]).unwrap();
+        j.run::<&str>(Path::new("/bin/false"), &[1, 2], &[])
+            .unwrap();
         expect_result!(j.wait(), Err(Error::ReturnCode(1)));
     }
 
     #[test]
     fn wait_noaccess() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/dev/null"), &[1, 2], &[]).unwrap();
+        j.run::<&str>(Path::new("/dev/null"), &[1, 2], &[]).unwrap();
         expect_result!(j.wait(), Err(Error::NoAccess));
     }
 
     #[test]
     fn wait_nocommand() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/bin/does not exist"), &[1, 2], &[])
+        j.run::<&str>(Path::new("/bin/does not exist"), &[1, 2], &[])
             .unwrap();
         expect_result!(j.wait(), Err(Error::NoCommand));
     }
@@ -923,6 +930,13 @@ mod tests {
     #[test]
     fn run() {
         let j = Minijail::new().unwrap();
-        j.run(Path::new("/bin/true"), &[], &[]).unwrap();
+        j.run::<&str>(Path::new("/bin/true"), &[], &[]).unwrap();
+    }
+
+    #[test]
+    fn run_string_vec() {
+        let j = Minijail::new().unwrap();
+        let args = vec!["ignored".to_string()];
+        j.run(Path::new("/bin/true"), &[], &args).unwrap();
     }
 }
