@@ -16,6 +16,24 @@
       "message": "This is from the Cr50 code. I did not put it in a header because I did not want to export it. We could move it to an internal only header.",
       "revId": "49112148be687db4221607fa61a46a95c7f30558",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709b686c_c10525ca",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-16T20:04:13Z",
+      "side": 1,
+      "message": "this style is for projects stuck in the past.  C11 introduced static_assert, so just include assert.h and use that instead.",
+      "parentUuid": "4d071e38_dbc091a3",
+      "revId": "49112148be687db4221607fa61a46a95c7f30558",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
