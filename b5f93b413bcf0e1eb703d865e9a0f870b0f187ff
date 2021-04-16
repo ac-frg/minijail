@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e29e30b_8b09e3bc",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2640,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T17:19:34Z",
+      "side": 1,
+      "message": "I put it in because the caller could potentially re-order their requests to avoid the need for remapping, but we could drop it.",
+      "parentUuid": "43b88e69_231e40dc",
+      "range": {
+        "startLine": 2640,
+        "startChar": 1,
+        "endLine": 2640,
+        "endChar": 5
+      },
+      "revId": "b5f93b413bcf0e1eb703d865e9a0f870b0f187ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "316a86e0_56935954",
         "filename": "rust/minijail/tests/fork_remap.rs",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-16T16:33:39Z",
       "side": 1,
       "message": "nit: stdio?",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "b5f93b413bcf0e1eb703d865e9a0f870b0f187ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e6ada22_7379a328",
+        "filename": "rust/minijail/tests/fork_remap.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T17:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "316a86e0_56935954",
       "range": {
         "startLine": 36,
         "startChar": 12,
@@ -60,6 +108,30 @@
       "writtenOn": "2021-04-16T16:33:39Z",
       "side": 1,
       "message": "This is many-to-one.  Would the current design work for these cases as well?  Not that it\u0027s worth supporting all kind of permutations...\n\n1. [(1, 3), (2, 3), (3, 3)]  # one-to-many\n2. [(3,4), (4,3)]  # cross-over",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "b5f93b413bcf0e1eb703d865e9a0f870b0f187ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7b063c_8ca606fe",
+        "filename": "rust/minijail/tests/fork_remap.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T17:19:34Z",
+      "side": 1,
+      "message": "Yes, I went ahead and updated it to test a cross-over since a loop is the hardest case to handle.",
+      "parentUuid": "e46b63e2_d9ed3125",
       "range": {
         "startLine": 48,
         "startChar": 12,
