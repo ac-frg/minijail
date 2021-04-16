@@ -63,6 +63,30 @@
       },
       "revId": "9f3c7dd242286f6e0c3a30883bc9eafe8263aa53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957dd7e2_0334191b",
+        "filename": "rust/minijail/tests/fork_remap.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-16T19:06:24Z",
+      "side": 1,
+      "message": "Oops, sorry.  What I meant was since we provide the original file, it\u0027d not be necessary to readlink in this loop.  file2 could be /dev/random or whatever.  It\u0027d be easier to read, but otherwise not a big deal for the test.",
+      "parentUuid": "73258ef2_d447313e",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 75
+      },
+      "revId": "9f3c7dd242286f6e0c3a30883bc9eafe8263aa53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
