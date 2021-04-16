@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93e949cf_a4a1d15b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T13:38:10Z",
+      "side": 1,
+      "message": "There is a good chance this is going to have a merge conflict with https://crrev.com/c/1671673 depending on which one lands first.",
+      "revId": "b0f724bb1ed5111b5bcb6cee9737581ce12d2fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42119554_9c4e12bd",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T13:38:10Z",
+      "side": 1,
+      "message": "We should probably add a doc comment along the lines of:\n\n/// Send a SIGTERM to the child process and wait for its return code.",
+      "range": {
+        "startLine": 774,
+        "startChar": 4,
+        "endLine": 774,
+        "endChar": 38
+      },
+      "revId": "b0f724bb1ed5111b5bcb6cee9737581ce12d2fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ff7788_4e049e4d",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T13:38:10Z",
+      "side": 1,
+      "message": "libc::SIGTERM",
+      "range": {
+        "startLine": 925,
+        "startChar": 51,
+        "endLine": 925,
+        "endChar": 54
+      },
+      "revId": "b0f724bb1ed5111b5bcb6cee9737581ce12d2fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
