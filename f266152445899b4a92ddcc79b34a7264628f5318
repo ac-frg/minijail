@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1b3180_0df2e0b6",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T01:42:14Z",
+      "side": 1,
+      "message": "I am curious if you considered writing them like:\n  \u003c\u0027a\u003e(\u0026mut self, path: \u0026\u0027a dyn AsRef\u003cPath\u003e)\nI think it would make the code size smaller if people used more than one type but might have another dereference to execute.",
+      "range": {
+        "startLine": 316,
+        "startChar": 32,
+        "endLine": 316,
+        "endChar": 67
+      },
+      "revId": "f266152445899b4a92ddcc79b34a7264628f5318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
