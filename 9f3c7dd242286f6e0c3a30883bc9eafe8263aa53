@@ -39,6 +39,30 @@
       },
       "revId": "9f3c7dd242286f6e0c3a30883bc9eafe8263aa53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73258ef2_d447313e",
+        "filename": "rust/minijail/tests/fork_remap.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T18:23:32Z",
+      "side": 1,
+      "message": "No, `/proc/self` is a symlink and this actually is the realpath.",
+      "parentUuid": "61f005fd_3dda4415",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 75
+      },
+      "revId": "9f3c7dd242286f6e0c3a30883bc9eafe8263aa53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
