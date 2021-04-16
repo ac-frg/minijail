@@ -10,16 +10,13 @@
 
 use std::fs::{read_link, File, OpenOptions};
 use std::io::{self, Read};
-use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+use std::os::unix::io::{AsRawFd, FromRawFd, IntoRawFd, RawFd};
 use std::path::Path;
 
 use minijail::Minijail;
 
 const DEV_NULL: &str = "/dev/null";
 const DEV_ZERO: &str = "/dev/zero";
-
-const DEST_FD1: RawFd = 7;
-const DEST_FD2: RawFd = 8;
 
 fn open_dev_zero() -> Result<File, io::Error> {
     OpenOptions::new()
@@ -33,17 +30,27 @@ fn main() {
     let mut check_file2 = open_dev_zero().unwrap();
     let j = Minijail::new().unwrap();
 
-    for p in &[0, 1, check_file1.as_raw_fd(), check_file2.as_raw_fd()] {
+    let mut stdio_expected = String::new();
+    for &p in &[0, 1, 2, check_file1.as_raw_fd(), check_file2.as_raw_fd()] {
         let path = format!("/proc/self/fd/{}", p);
         let target = read_link(Path::new(&path));
         eprintln!("P: {} -> {:?}", p, &target);
+        if p == 2 {
+            stdio_expected = target.unwrap().to_string_lossy().to_string();
+        }
     }
+
+    // Swap fd1 and fd2.
+    let dest_fd1: RawFd = check_file2.as_raw_fd();
+    let dest_fd2: RawFd = check_file1.as_raw_fd();
 
     if unsafe {
         j.fork_remap(&[
-            (2, 2),
-            (check_file1.as_raw_fd(), DEST_FD1),
-            (check_file2.as_raw_fd(), DEST_FD2),
+            // fd 0 tests stdio mapped to /dev/null.
+            (2, 1),                              // One-to-many
+            (2, 2),                              // Identity
+            (check_file1.as_raw_fd(), dest_fd1), // Cross-over.
+            (check_file2.as_raw_fd(), dest_fd2), // Cross-over.
         ])
     }
     .unwrap()
@@ -54,21 +61,27 @@ fn main() {
         return;
     }
 
-    // Safe because we are re-taking ownership of a remapped fd after forking.
-    check_file1 = unsafe { File::from_raw_fd(DEST_FD1) };
-    check_file2 = unsafe { File::from_raw_fd(DEST_FD2) };
+    // Safe because we are re-taking ownership of remapped fds after forking.
+    unsafe {
+        check_file1.into_raw_fd();
+        check_file1 = File::from_raw_fd(dest_fd1);
+
+        check_file2.into_raw_fd();
+        check_file2 = File::from_raw_fd(dest_fd2);
+    }
 
     for (p, expected) in &[
         (0, DEV_NULL),
-        (1, DEV_NULL),
-        (DEST_FD1, DEV_ZERO),
-        (DEST_FD2, DEV_ZERO),
+        (1, &stdio_expected),
+        (2, &stdio_expected),
+        (dest_fd1, DEV_ZERO),
+        (dest_fd2, DEV_ZERO),
     ] {
         let path = format!("/proc/self/fd/{}", p);
         let target = read_link(Path::new(&path));
-        eprintln!("C: {} -> {:?}", p, &target);
+        eprintln!("  C: {} -> {:?}", p, &target);
         if !matches!(&target, Ok(p) if p == Path::new(expected)) {
-            panic!("C: got {:?}; expected Ok({:?})", target, expected);
+            panic!("  C: got {:?}; expected Ok({:?})", target, expected);
         }
     }
 
@@ -77,5 +90,9 @@ fn main() {
     check_file1.read_exact(&mut buffer).unwrap();
     assert_eq!(&buffer, &[0u8; BUFFER_LEN]);
 
-    eprintln!("Child done.");
+    buffer = [0xffu8; BUFFER_LEN];
+    check_file2.read_exact(&mut buffer).unwrap();
+    assert_eq!(&buffer, &[0u8; BUFFER_LEN]);
+
+    eprintln!("  Child done.");
 }
