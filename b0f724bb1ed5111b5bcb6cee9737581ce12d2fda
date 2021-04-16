@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a868a19_8e36790e",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-16T16:21:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42119554_9c4e12bd",
+      "range": {
+        "startLine": 774,
+        "startChar": 4,
+        "endLine": 774,
+        "endChar": 38
+      },
+      "revId": "b0f724bb1ed5111b5bcb6cee9737581ce12d2fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12ff7788_4e049e4d",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-16T13:38:10Z",
       "side": 1,
       "message": "libc::SIGTERM",
+      "range": {
+        "startLine": 925,
+        "startChar": 51,
+        "endLine": 925,
+        "endChar": 54
+      },
+      "revId": "b0f724bb1ed5111b5bcb6cee9737581ce12d2fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b0f11ee_333fc8d2",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-16T16:21:06Z",
+      "side": 1,
+      "message": "Done.  Interestingly, since this is used in match, it can\u0027t be done simply by `libc::SIGTERM as u8`.  I need to create a const for the type casting.",
+      "parentUuid": "12ff7788_4e049e4d",
       "range": {
         "startLine": 925,
         "startChar": 51,
