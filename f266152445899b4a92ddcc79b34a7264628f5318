@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb6acc3e_d8f865d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T19:51:09Z",
+      "side": 1,
+      "message": "This ought to be covered by the owners file:\n  per-file *.rs \u003d file:/OWNERS.rust\n\nThere is probably a typo or something.",
+      "revId": "f266152445899b4a92ddcc79b34a7264628f5318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d1b3180_0df2e0b6",
