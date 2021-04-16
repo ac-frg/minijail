@@ -22,6 +22,30 @@
       },
       "revId": "8176c3f7a24372b18ba642c0bf8e59480b327b22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9e38f77_a5a1a6c9",
+        "filename": "rust/minijail/tests/fork_remap.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T18:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5362e2dc_896492a5",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "8176c3f7a24372b18ba642c0bf8e59480b327b22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
