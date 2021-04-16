@@ -16,6 +16,24 @@
       "message": "i have no idea if this works",
       "revId": "66e8635e8b4edeeb7cf9091b90651ba71574378b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33b0fdc_9f0df376",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-16T20:21:22Z",
+      "side": 1,
+      "message": "I looked at the documentation and the claim it takes glob syntax so I used the shell glob syntax to try to test it. I can double check some of the recent CLs after this lands to know for sure.",
+      "parentUuid": "f2b386e5_35312879",
+      "revId": "66e8635e8b4edeeb7cf9091b90651ba71574378b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
