@@ -52,6 +52,24 @@
       "parentUuid": "709b686c_c10525ca",
       "revId": "49112148be687db4221607fa61a46a95c7f30558",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f513baff_08874b2a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-16T20:18:45Z",
+      "side": 1,
+      "message": "Android (finally) moved to C++14, so i don\u0027t think C11 should be a problem.  if it is, we can just delete them ;).",
+      "parentUuid": "35e43a6e_8bc16705",
+      "revId": "49112148be687db4221607fa61a46a95c7f30558",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
