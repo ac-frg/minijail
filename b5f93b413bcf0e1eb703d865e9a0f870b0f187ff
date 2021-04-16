@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3225f023_6364fd72",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2640,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-16T17:38:50Z",
+      "side": 1,
+      "message": "SGTM. Consider mentioning this in the comment above (if not the warning message directly), otherwise the action for the caller wasn\u0027t clear.",
+      "parentUuid": "3e29e30b_8b09e3bc",
+      "range": {
+        "startLine": 2640,
+        "startChar": 1,
+        "endLine": 2640,
+        "endChar": 5
+      },
+      "revId": "b5f93b413bcf0e1eb703d865e9a0f870b0f187ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "316a86e0_56935954",
         "filename": "rust/minijail/tests/fork_remap.rs",
         "patchSetId": 2
