@@ -16,6 +16,23 @@
       "message": "i think this is correct, but not sure how to test",
       "revId": "32a3b69aeca59271b40bed4f59df136b808f1bb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6430835_e842d3e1",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T14:29:09Z",
+      "side": 1,
+      "message": "Any reason not to jump to gnu17?",
+      "revId": "32a3b69aeca59271b40bed4f59df136b808f1bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
