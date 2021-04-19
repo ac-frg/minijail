@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d366252_8c76d779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T16:09:24Z",
+      "side": 1,
+      "message": "I figure there is nothing hurting us from leaving the ifdef in because it means it should be possible to cherry pick this to older branches without needing to pick the c11 change.",
+      "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
