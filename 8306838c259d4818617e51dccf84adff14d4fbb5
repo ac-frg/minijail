@@ -39,6 +39,30 @@
       },
       "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10dafc66_0de93988",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-04-19T20:18:06Z",
+      "side": 1,
+      "message": "Isn\u0027t it already the case?  Sounds like there might be a way to make it less restrict in Rust?  Currently in my code, I need to create new arg as String in run time, and clone some const str as a String.  With this change, I don\u0027t need to create another Vec just to store the references.  The extra String clone is acceptable in my case.",
+      "parentUuid": "0e95a0fe_d17df0bc",
+      "range": {
+        "startLine": 665,
+        "startChar": 14,
+        "endLine": 665,
+        "endChar": 18
+      },
+      "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
