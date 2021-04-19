@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e95a0fe_d17df0bc",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T19:25:59Z",
+      "side": 1,
+      "message": "As written this forces all entries of the slice to be the same S. Out of curiosity what type are you trying to support? Cow\u003cstr\u003e, String, something else?",
+      "range": {
+        "startLine": 665,
+        "startChar": 14,
+        "endLine": 665,
+        "endChar": 18
+      },
+      "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
