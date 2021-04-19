@@ -16,6 +16,23 @@
       "message": "I am trying a rebase to try to get the bots to run it with the already merged:\nhttps://android-review.googlesource.com/c/platform/external/minijail/+/1676907",
       "revId": "53eec661e72699002bf17cf047c4c166fa4a636f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad1d0341_1f9d834f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T20:03:12Z",
+      "side": 1,
+      "message": "I double checked and bionic\u0027s assert.h has static_assert:\n#if !defined(__cplusplus) \u0026\u0026 __STDC_VERSION__ \u003e\u003d 201112L\n# undef static_assert\n# define static_assert _Static_assert\n#endif",
+      "revId": "53eec661e72699002bf17cf047c4c166fa4a636f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
