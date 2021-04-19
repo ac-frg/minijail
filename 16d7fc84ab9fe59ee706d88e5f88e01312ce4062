@@ -70,6 +70,24 @@
       "parentUuid": "74b4c4dd_a248e2aa",
       "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64c2bf60_b00d1f1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T17:26:11Z",
+      "side": 1,
+      "message": "From what I can tell c11 adds the keyword _Static_assert and the macro static_assert.",
+      "parentUuid": "3d7622be_665a987e",
+      "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
