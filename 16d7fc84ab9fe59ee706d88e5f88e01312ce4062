@@ -16,6 +16,24 @@
       "message": "I figure there is nothing hurting us from leaving the ifdef in because it means it should be possible to cherry pick this to older branches without needing to pick the c11 change.",
       "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cac3c8c7_fb75680a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-19T16:21:42Z",
+      "side": 1,
+      "message": "we\u0027ve never had to cherry pick before that i\u0027m aware of.  in CrOS, we\u0027ve had C11 for 3+ years.  if an Android person wants to cherry pick something, they, like any of us, have to deal with the fallout when ToT has moved beyond whatever branch state they\u0027re cherry picking back to.\n\nplus, i don\u0027t see this particular change getting cherry picked back considering this behavior has been with us for years, and it\u0027s under functionality not used by more projects.",
+      "parentUuid": "3d366252_8c76d779",
+      "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
