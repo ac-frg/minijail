@@ -33,6 +33,24 @@
       "message": "Any reason not to jump to gnu17?",
       "revId": "32a3b69aeca59271b40bed4f59df136b808f1bb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e960c737_b9686933",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-19T15:25:18Z",
+      "side": 1,
+      "message": "common.mk is using -std\u003dgnu11, so we should keep in sync\n\nignoring that, i\u0027m not sure of Android C17 status",
+      "parentUuid": "e6430835_e842d3e1",
+      "revId": "32a3b69aeca59271b40bed4f59df136b808f1bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
