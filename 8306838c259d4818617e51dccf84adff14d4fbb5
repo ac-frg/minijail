@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b80a53f_d37a279d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T20:47:24Z",
+      "side": 1,
+      "message": "I have CL that will hopefully fix Rust OWNERS not working in this repo:\nhttps://android-review.googlesource.com/c/platform/external/minijail/+/1680465",
+      "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e95a0fe_d17df0bc",
