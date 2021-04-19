@@ -52,6 +52,24 @@
       "parentUuid": "cac3c8c7_fb75680a",
       "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7622be_665a987e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-04-19T17:21:36Z",
+      "side": 1,
+      "message": "also i\u0027m not sure it\u0027s required that static_assert be a define, so if it weren\u0027t, it wouldn\u0027t fire in general",
+      "parentUuid": "74b4c4dd_a248e2aa",
+      "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
