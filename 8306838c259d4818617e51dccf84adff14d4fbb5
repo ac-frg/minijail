@@ -63,6 +63,30 @@
       },
       "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9d0929_24a02d7a",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T20:20:57Z",
+      "side": 1,
+      "message": "I think that case is good justification for this change.",
+      "parentUuid": "10dafc66_0de93988",
+      "range": {
+        "startLine": 665,
+        "startChar": 14,
+        "endLine": 665,
+        "endChar": 18
+      },
+      "revId": "8306838c259d4818617e51dccf84adff14d4fbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
