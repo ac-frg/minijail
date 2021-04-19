@@ -34,6 +34,24 @@
       "parentUuid": "3d366252_8c76d779",
       "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b4c4dd_a248e2aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-19T16:53:47Z",
+      "side": 1,
+      "message": "Ok. I dropped the ifdef.",
+      "parentUuid": "cac3c8c7_fb75680a",
+      "revId": "16d7fc84ab9fe59ee706d88e5f88e01312ce4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
