@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93b14ad6_95004e07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-04-21T15:39:12Z",
+      "side": 1,
+      "message": "There were weird failures in the CQ related to this (they showed up when building the tests but not during the normal build). I am a bit concerned similar issues may pop up Rust code elsewhere.",
+      "revId": "11395a6982fe8b09e3f2b0beb6c10e978266c4fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
