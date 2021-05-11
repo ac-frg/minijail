@@ -16,6 +16,29 @@
       "message": "I reused the marshall/unmarshall logic to avoid having multiple places that need to know what to copy. \n\nThe try_clone impl used the new minijail_clone internally to generate a new `Minijail` object.",
       "revId": "a1874e9ee704c26f74400de1c4087f71a707a64c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b772d2c_0de9d696",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-05-11T20:58:22Z",
+      "side": 1,
+      "message": "If you put something in here like \u0026[1, 2] for both `j` and `b` it ought to fail before your fix when the clone wasn\u0027t actually a deep clone, and pass after your fix.",
+      "range": {
+        "startLine": 1013,
+        "startChar": 27,
+        "endLine": 1013,
+        "endChar": 30
+      },
+      "revId": "a1874e9ee704c26f74400de1c4087f71a707a64c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
