@@ -484,6 +484,12 @@ int minijail_wait(struct minijail *j);
 void minijail_destroy(struct minijail *j);
 
 /*
+ * Deep copies the minijail in `from` to `out`.
+ * minijail_clone() invalid after a jail has been passed to minijail_fork().
+ */
+int minijail_clone(const struct minijail *from, struct minijail *out);
+
+/*
  * minijail_log_to_fd: redirects the module-wide logging to an FD instead of
  * syslog.
  * @fd           FD to log to. Caller must ensure this is available after
