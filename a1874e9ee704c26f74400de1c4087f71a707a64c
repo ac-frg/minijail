@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "140ede7e_ef7f7ae5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-11T20:52:52Z",
+      "side": 1,
+      "message": "I reused the marshall/unmarshall logic to avoid having multiple places that need to know what to copy. \n\nThe try_clone impl used the new minijail_clone internally to generate a new `Minijail` object.",
+      "revId": "a1874e9ee704c26f74400de1c4087f71a707a64c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
