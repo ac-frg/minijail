@@ -39,6 +39,30 @@
       },
       "revId": "a1874e9ee704c26f74400de1c4087f71a707a64c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca6f556_b69c0639",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-11T21:18:10Z",
+      "side": 1,
+      "message": "Thanks, Before this what failed was calling run/for on `j` more than once. clone didn\u0027t exist.  but I will add the FDs here as it\u0027s a good test that try_clone works in the real world.\n\nI will follow up with another change the prohibits calling run multiple times but I want to figure out a backwards compatible way. For now this unblocks the uprev for crosvm at least.",
+      "parentUuid": "1b772d2c_0de9d696",
+      "range": {
+        "startLine": 1013,
+        "startChar": 27,
+        "endLine": 1013,
+        "endChar": 30
+      },
+      "revId": "a1874e9ee704c26f74400de1c4087f71a707a64c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
