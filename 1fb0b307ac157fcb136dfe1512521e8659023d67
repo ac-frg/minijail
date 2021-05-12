@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf1883c_354cd277",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-05-12T19:04:08Z",
+      "side": 1,
+      "message": "totes fine",
+      "parentUuid": "9aa71e09_8133fc17",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fe274a4e_7147594b",
