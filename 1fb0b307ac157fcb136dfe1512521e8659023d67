@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa71e09_8133fc17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-12T17:30:58Z",
+      "side": 1,
+      "message": "That would make sense to me, I can change it if Jorge is OK with copy.",
+      "parentUuid": "1c28d7cb_6cc0b810",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fe274a4e_7147594b",
