@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11bb2ca_cec90fc9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-12T17:15:30Z",
+      "side": 1,
+      "message": "Good point, I didn\u0027t even thing about the clone(2) conflict.\n\nUpdated to minijail_duplicate_jail as suggested. Thanks.",
+      "parentUuid": "f5efcf73_2aa58700",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fe274a4e_7147594b",
@@ -37,6 +61,23 @@
       "writtenOn": "2021-05-12T13:39:08Z",
       "side": 1,
       "message": "No concerns except for the name.",
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87151530_b3483177",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-12T17:15:30Z",
+      "side": 1,
+      "message": "Thanks all.",
       "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb4b7a9_c8f532c3",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-12T17:15:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39738994_7ba0c0b0",
+      "range": {
+        "startLine": 487,
+        "startChar": 31,
+        "endLine": 487,
+        "endChar": 46
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b95243b1_1d73c54c",
@@ -77,6 +142,24 @@
       "writtenOn": "2021-05-12T03:37:20Z",
       "side": 1,
       "message": "i\u0027m having a hard time processing what this sentence is trying to say",
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc23f7b_565990d3",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1067948
+      },
+      "writtenOn": "2021-05-12T17:15:30Z",
+      "side": 1,
+      "message": "That because it doesn\u0027t make any sense, sorry about that.\n\nI updated it, the goal is to document somewhere that:\nj \u003d minijail_new\nminijail_fork(j)\nminijail_duplicate(j,b)\n\nThe behavior of `kill`, `wait`, etc aren\u0027t going to be deterministic if applied to `j` and `b` since they will both \"control\" the same process.",
+      "parentUuid": "b95243b1_1d73c54c",
       "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
