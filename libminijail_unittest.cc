@@ -221,6 +221,10 @@ TEST_F(MarshalTest, 0xff) {
   EXPECT_EQ(-EINVAL, minijail_unmarshal(j_, buf_, sizeof(buf_)));
 }
 
+TEST_F(MarshalTest, clone_empty) {
+  ASSERT_EQ(0, minijail_clone(m_, j_));
+}
+
 TEST(KillTest, running_process) {
   const ScopedMinijail j(minijail_new());
   char* const argv[] = {"sh", "-c", "sleep 1000", nullptr};
