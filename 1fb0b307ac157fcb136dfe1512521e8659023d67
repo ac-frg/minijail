@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5efcf73_2aa58700",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-05-12T13:39:08Z",
+      "side": 1,
+      "message": "Let\u0027s call it something different than clone. It\u0027s too close to the clone(2) system call and it will be confusing.\n\nminijail_duplicate_jail or something like that. maybe even minijail_clone_jail, but not just plain minijail_clone.",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe274a4e_7147594b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-05-12T13:39:08Z",
+      "side": 1,
+      "message": "No concerns except for the name.",
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39738994_7ba0c0b0",
+        "filename": "libminijail.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-05-12T13:39:08Z",
+      "side": 1,
+      "message": "Prefer using || for arguments.",
+      "range": {
+        "startLine": 487,
+        "startChar": 31,
+        "endLine": 487,
+        "endChar": 46
+      },
+      "revId": "1fb0b307ac157fcb136dfe1512521e8659023d67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b95243b1_1d73c54c",
         "filename": "libminijail.h",
         "patchSetId": 2
