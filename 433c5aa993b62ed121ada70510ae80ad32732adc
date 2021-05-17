@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbf0300_9ca24028",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-05-17T17:07:25Z",
+      "side": 1,
+      "message": "there\u0027s no explanation here for us to evaluate\nhttps://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#Commit-messages",
+      "revId": "433c5aa993b62ed121ada70510ae80ad32732adc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "03235b82_f097a072",
