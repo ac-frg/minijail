@@ -8,6 +8,7 @@
 #define _GNU_SOURCE
 
 #include <asm/unistd.h>
+#include <assert.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -26,6 +27,7 @@
 #include <sys/param.h>
 #include <sys/prctl.h>
 #include <sys/resource.h>
+#include <sys/select.h>
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <sys/types.h>
@@ -57,7 +59,7 @@
 
 #define MAX_RLIMITS 32 /* Currently there are 15 supported by Linux. */
 
-#define MAX_PRESERVED_FDS 32U
+#define MAX_PRESERVED_FDS 128U
 
 /* Keyctl commands. */
 #define KEYCTL_JOIN_SESSION_KEYRING 1
@@ -2516,6 +2518,26 @@ error:
 	return err;
 }
 
+int API minijail_copy_jail(const struct minijail *from, struct minijail *out)
+{
+	size_t sz = minijail_size(from);
+	if (!sz)
+		return -EINVAL;
+
+	char *buf = malloc(sz);
+	if (!buf)
+		return -ENOMEM;
+
+	int err = minijail_marshal(from, buf, sz);
+	if (err)
+		goto error;
+
+	err = minijail_unmarshal(out, buf, sz);
+error:
+	free(buf);
+	return err;
+}
+
 static int setup_preload(const struct minijail *j attribute_unused,
 			 char ***child_env attribute_unused)
 {
@@ -2592,8 +2614,74 @@ static int close_open_fds(int *inheritable_fds, size_t size)
 	return 0;
 }
 
+/* Return true if the specified file descriptor is already open. */
+static int fd_is_open(int fd)
+{
+	return fcntl(fd, F_GETFD) != -1 || errno != EBADF;
+}
+
+static_assert(FD_SETSIZE >= MAX_PRESERVED_FDS * 2 - 1,
+	      "If true, ensure_no_fd_conflict will always find an unused fd.");
+
+/* If p->parent_fd will be used by a child_fd, move it to an unused fd. */
+static int ensure_no_fd_conflict(const fd_set* child_fds,
+				 struct preserved_fd* p)
+{
+	if (!FD_ISSET(p->parent_fd, child_fds)){
+		return 0;
+	}
+
+	/*
+	 * If no other parent_fd matches the child_fd then use it instead of a
+	 * temporary.
+	 */
+	int fd = p->child_fd;
+	if (fd_is_open(fd)) {
+		fd = FD_SETSIZE - 1;
+		while (FD_ISSET(fd, child_fds) || fd_is_open(fd)) {
+			--fd;
+			if (fd < 0) {
+				die("failed to find an unused fd");
+			}
+		}
+	}
+
+	int ret = dup2(p->parent_fd, fd);
+	/*
+	 * warn() opens a file descriptor so it needs to happen after dup2 to
+	 * avoid unintended side effects. This can be avoided by reordering the
+	 * mapping requests so that the source fds with overlap are mapped
+	 * first (unless there are cycles).
+	 */
+	warn("mapped fd overlap: moving %d to %d", p->parent_fd, fd);
+	if (ret == -1) {
+		return -1;
+	}
+
+	p->parent_fd = fd;
+	return 0;
+}
+
 static int redirect_fds(struct minijail *j)
 {
+	fd_set child_fds;
+	FD_ZERO(&child_fds);
+
+	/* Relocate parent_fds that would be replaced by a child_fd. */
+	for (size_t i = 0; i < j->preserved_fd_count; i++) {
+		int child_fd = j->preserved_fds[i].child_fd;
+		if (FD_ISSET(child_fd, &child_fds)) {
+			die("fd %d is mapped more than once", child_fd);
+		}
+
+		if (ensure_no_fd_conflict(&child_fds,
+					  &j->preserved_fds[i]) == -1) {
+			return -1;
+		}
+
+		FD_SET(child_fd, &child_fds);
+	}
+
 	for (size_t i = 0; i < j->preserved_fd_count; i++) {
 		if (j->preserved_fds[i].parent_fd ==
 		    j->preserved_fds[i].child_fd) {
@@ -2609,13 +2697,10 @@ static int redirect_fds(struct minijail *j)
 	 * fds that are *not* child fds.
 	 */
 	for (size_t i = 0; i < j->preserved_fd_count; i++) {
-		int closeable = true;
-		for (size_t i2 = 0; i2 < j->preserved_fd_count; i2++) {
-			closeable &= j->preserved_fds[i].parent_fd !=
-				     j->preserved_fds[i2].child_fd;
+		int parent_fd = j->preserved_fds[i].parent_fd;
+		if (!FD_ISSET(parent_fd, &child_fds)) {
+			close(parent_fd);
 		}
-		if (closeable)
-			close(j->preserved_fds[i].parent_fd);
 	}
 	return 0;
 }
@@ -3284,18 +3369,7 @@ minijail_run_config_internal(struct minijail *j,
 	return ret;
 }
 
-int API minijail_kill(struct minijail *j)
-{
-	if (j->initpid <= 0)
-		return -ECHILD;
-
-	if (kill(j->initpid, SIGTERM))
-		return -errno;
-
-	return minijail_wait(j);
-}
-
-int API minijail_wait(struct minijail *j)
+static int minijail_wait_internal(struct minijail *j, int expected_signal)
 {
 	if (j->initpid <= 0)
 		return -ECHILD;
@@ -3313,8 +3387,10 @@ int API minijail_wait(struct minijail *j)
 		int error_status = st;
 		if (WIFSIGNALED(st)) {
 			int signum = WTERMSIG(st);
-			warn("child process %d received signal %d",
-			     j->initpid, signum);
+			if (signum != expected_signal) {
+				warn("child process %d received signal %d",
+				     j->initpid, signum);
+			}
 			/*
 			 * We return MINIJAIL_ERR_JAIL if the process received
 			 * SIGSYS, which happens when a syscall is blocked by
@@ -3337,6 +3413,22 @@ int API minijail_wait(struct minijail *j)
 		     j->initpid, exit_status);
 
 	return exit_status;
+}
+
+int API minijail_kill(struct minijail *j)
+{
+	if (j->initpid <= 0)
+		return -ECHILD;
+
+	if (kill(j->initpid, SIGTERM))
+		return -errno;
+
+	return minijail_wait_internal(j, SIGTERM);
+}
+
+int API minijail_wait(struct minijail *j)
+{
+	return minijail_wait_internal(j, 0);
 }
 
 void API minijail_destroy(struct minijail *j)
