@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7483fd33_f17cecf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1238042
+      },
+      "writtenOn": "2021-05-21T05:21:07Z",
+      "side": 1,
+      "message": "Since it\u0027s night at PST zone, let me revert the culprit CL first.",
+      "revId": "792166c63d8da3994c4a45fa8bac49a7b65625c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
