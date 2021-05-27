@@ -50,6 +50,7 @@ def parse_args(argv):
                             choices=list(compiler.OptimizationStrategy))
     arg_parser.add_argument('--include-depth-limit', default=10)
     arg_parser.add_argument('--arch-json', default='constants.json')
+    arg_parser.add_argument('--denylist', action='store_true', help=('Compile as a denylist policy rather than the deafult allowlist.'))
     arg_parser.add_argument(
         '--default-action',
         type=str,
@@ -101,7 +102,8 @@ def main(argv=None):
                 optimization_strategy=opts.optimization_strategy,
                 kill_action=kill_action,
                 include_depth_limit=opts.include_depth_limit,
-                override_default_action=override_default_action).opcodes)
+                override_default_action=override_default_action,
+                denylist=opts.denylist).opcodes)
     return 0
 
 
