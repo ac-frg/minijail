@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0266def1_4b1f9e12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-05-27T21:52:06Z",
+      "side": 1,
+      "message": "First pass at generating a denylist seccomp policy using the python seccomp compiler. Tested with a simple, one-line policy.",
+      "revId": "5bcfbe69fc9432690415672d788431e6d717f6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
