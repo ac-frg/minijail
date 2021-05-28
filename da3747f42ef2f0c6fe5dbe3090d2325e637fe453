@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762ffa3c_ce11a413",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-05-28T00:33:14Z",
+      "side": 1,
+      "message": "need to keep within 80 cols\n\ndon\u0027t need inner parens",
+      "revId": "da3747f42ef2f0c6fe5dbe3090d2325e637fe453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
