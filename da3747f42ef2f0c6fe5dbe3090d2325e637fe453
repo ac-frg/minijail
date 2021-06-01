@@ -16,6 +16,24 @@
       "message": "need to keep within 80 cols\n\ndon\u0027t need inner parens",
       "revId": "da3747f42ef2f0c6fe5dbe3090d2325e637fe453",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be56da68_a2fd162e",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-06-01T16:59:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "762ffa3c_ce11a413",
+      "revId": "da3747f42ef2f0c6fe5dbe3090d2325e637fe453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
