@@ -969,6 +969,11 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		}
 	}
 
+	if (seccomp_default_ret_log()) {
+		/* Enable SECCOMP_RET_LOG for all invocations */
+		minijail_log_seccomp_filter_failures(j);
+	}
+
 	if (log_to_stderr == -1) {
 		/* Autodetect default logging output. */
 		log_to_stderr = isatty(STDIN_FILENO) ? 1 : 0;
