@@ -22,6 +22,9 @@ endif
 ALLOW_DEBUG_LOGGING ?= yes
 ifeq ($(ALLOW_DEBUG_LOGGING),yes)
 CPPFLAGS += -DALLOW_DEBUG_LOGGING
+ifeq ($(DEBUG_LOG_NOBLOCK),yes)
+CPPFLAGS += -DDEBUG_LOG_NOBLOCK
+endif
 endif
 
 ifeq ($(USE_ASAN),yes)
