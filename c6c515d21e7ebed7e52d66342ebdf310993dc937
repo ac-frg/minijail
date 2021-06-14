@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a143f8_e5c764df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-14T16:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0b888d7_300ce952",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 51
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "31dd26ee_30f48c99",
@@ -77,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bdd3ca4_5619e8ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-14T16:32:50Z",
+      "side": 1,
+      "message": "Yes, you understood the purpose of this patch correctly 😊 I will update the description to better convey the idea, Thanks.\n\nThere is an additional ebuild change which exposes this logic via a use flag which I have not yet posted on the ChromeOS side because I\u0027m waiting on this review first.\n\nThe use-flag is disabled by default.",
+      "parentUuid": "f632838a_1b9c72f4",
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f14504b1_4e729a9c",
         "filename": "Makefile",
         "patchSetId": 1
@@ -88,6 +130,30 @@
       "writtenOn": "2021-06-14T14:28:38Z",
       "side": 1,
       "message": "I find this name confusing. Without context, it\u0027s impossible to know that this configuration variable refers to seccomp.\n\nI would suggest using something like:\n\nSECCOMP_DEFAULT_RET_LOG\n\nwhich at least signals that this is seccomp related and results in defaulting to SECCOMP_RET_LOG.",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acf61e89_adb7289e",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-14T16:32:50Z",
+      "side": 1,
+      "message": "Thank you, the suggested name makes more sense. I will use it once I update the review.",
+      "parentUuid": "f14504b1_4e729a9c",
       "range": {
         "startLine": 25,
         "startChar": 8,
@@ -123,6 +189,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04b38a47_86f5eeda",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-14T16:32:50Z",
+      "side": 1,
+      "message": "Yes, I will change the name to what Jorge suggested `SECCOMP_DEFAULT_RET_LOG` which I think makes most sense. Will mark this as resolved once I update the review.",
+      "parentUuid": "1775814e_368ea4f9",
+      "range": {
+        "startLine": 972,
+        "startChar": 12,
+        "endLine": 972,
+        "endChar": 29
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef751348_95284e0e",
         "filename": "minijail0_cli.c",
         "patchSetId": 1
@@ -134,6 +224,30 @@
       "writtenOn": "2021-06-14T14:28:38Z",
       "side": 1,
       "message": "This is not going to do what you want. Many Minijail use cases use libminijail directly, which will not be affected by this.\n\nAlso, you should use a construct similar to https://source.corp.google.com/chromeos_public/src/aosp/external/minijail/util.h;l\u003d111 to wrap the #if statement in a function.",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 6
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72babd99_ccf5db67",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-14T16:32:50Z",
+      "side": 1,
+      "message": "Thanks, will try to find a way to enable this in libminijail as well.",
+      "parentUuid": "ef751348_95284e0e",
       "range": {
         "startLine": 972,
         "startChar": 0,
