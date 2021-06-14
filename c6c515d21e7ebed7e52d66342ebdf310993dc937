@@ -58,6 +58,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f632838a_1b9c72f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2021-06-14T14:29:04Z",
+      "side": 1,
+      "message": "Given that any invocation could use -L, is this meant to allow minijail enforcement to be disabled system-wide with a build flag (to enable easy toolchain rolls, etc) without change every callsite?  If so, it\u0027d be great to include that in the change description since it just looks duplicative otherwise!\n\nIf there will be associated ebuild changes, it\u0027d be good to see how we ensure we minimize the chance of this being enabled unintentionally resulting.\n\n(All that said, I\u0027m just an emeritus owner here -- I may be way off!)",
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f14504b1_4e729a9c",
@@ -76,6 +93,29 @@
         "startChar": 8,
         "endLine": 25,
         "endChar": 25
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1775814e_368ea4f9",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2021-06-14T14:29:04Z",
+      "side": 1,
+      "message": "It might make more sense if this was called something like\n\n    DEBUG_FORCE_LOG\n    \nsince the current name feels like it is referring to making logging non-blocking.",
+      "range": {
+        "startLine": 972,
+        "startChar": 12,
+        "endLine": 972,
+        "endChar": 29
       },
       "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
