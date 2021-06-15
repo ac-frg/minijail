@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fe8a54ac_3f416289",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71a143f8_e5c764df",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 51
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "31dd26ee_30f48c99",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -117,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a36440_20b4bffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bdd3ca4_5619e8ba",
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f14504b1_4e729a9c",
@@ -154,6 +196,30 @@
       "side": 1,
       "message": "Thank you, the suggested name makes more sense. I will use it once I update the review.",
       "parentUuid": "f14504b1_4e729a9c",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be665ee_f513efa3",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acf61e89_adb7289e",
       "range": {
         "startLine": 25,
         "startChar": 8,
@@ -211,6 +277,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97664f29_51bea0b3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b38a47_86f5eeda",
+      "range": {
+        "startLine": 972,
+        "startChar": 12,
+        "endLine": 972,
+        "endChar": 29
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef751348_95284e0e",
@@ -248,6 +338,30 @@
       "side": 1,
       "message": "Thanks, will try to find a way to enable this in libminijail as well.",
       "parentUuid": "ef751348_95284e0e",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 6
+      },
+      "revId": "c6c515d21e7ebed7e52d66342ebdf310993dc937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2655c680_481bf492",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72babd99_ccf5db67",
       "range": {
         "startLine": 972,
         "startChar": 0,

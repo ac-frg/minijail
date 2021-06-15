@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e34bad_f8e9603a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-15T20:08:35Z",
+      "side": 1,
+      "message": "Hi, I have posted a new version which should address the opened issues, please re-review, thank you!",
+      "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
