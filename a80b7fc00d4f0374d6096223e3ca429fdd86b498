@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c937c027_f1c3bcd7",
+        "filename": "tools/parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-06-23T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b2a1c19_104768c1",
+      "range": {
+        "startLine": 471,
+        "startChar": 60,
+        "endLine": 471,
+        "endChar": 68
+      },
+      "revId": "a80b7fc00d4f0374d6096223e3ca429fdd86b498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f6cb215_d5962cfa",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6f168ef_a4f47c31",
+        "filename": "tools/parser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-06-23T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f6cb215_d5962cfa",
+      "range": {
+        "startLine": 437,
+        "startChar": 20,
+        "endLine": 437,
+        "endChar": 34
+      },
+      "revId": "a80b7fc00d4f0374d6096223e3ca429fdd86b498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82efaa73_9e5708c6",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-06-23T14:37:26Z",
       "side": 1,
       "message": "Can we include a full policy unit test case that uses \u0027!\u0027?",
+      "range": {
+        "startLine": 941,
+        "startChar": 0,
+        "endLine": 967,
+        "endChar": 19
+      },
+      "revId": "a80b7fc00d4f0374d6096223e3ca429fdd86b498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17957fcf_c59ad49d",
+        "filename": "tools/parser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-06-23T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82efaa73_9e5708c6",
       "range": {
         "startLine": 941,
         "startChar": 0,
