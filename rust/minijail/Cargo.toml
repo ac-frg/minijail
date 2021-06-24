@@ -1,6 +1,6 @@
 [package]
 name = "minijail"
-version = "0.2.1"
+version = "0.2.2"
 description = "Provides a safe Rust friendly interface to libminijail."
 authors = ["The Chromium OS Authors"]
 edition = "2018"
@@ -8,3 +8,8 @@ edition = "2018"
 [dependencies]
 libc = "0.2.44"
 minijail-sys = { path = "../minijail-sys" } # provided by ebuild
+
+[[test]]
+name = "fork_remap"
+path = "tests/fork_remap.rs"
+harness = false
