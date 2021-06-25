@@ -16,6 +16,23 @@
       "message": "i started with FILE* as there\u0027s fewer users and we can bikeshed some details first.  but it\u0027ll be easy to add support for fd\u0027s \u0026 close once that\u0027s settled.\n\nthe API usage is a little unwieldy.  i thought about doing something like:\n\n -#define attribute_cleanup_fp attribute_cleanup(_cleanup_fp)\n +#define ScopedFILE attribute_cleanup(_cleanup_fp) FILE *\n\nthen C code would write:\n\n ScopedFILE included_file \u003d fopen(filename, \"re\");\n\nwhile the decl looks exactly like C++, the usage wouldn\u0027t be the same as you would use the var directly instead of via a .get() method.  maybe if we stuck a \"C\" in there or something it would be less jarring ?\n\n ScopedCFILE ...\n BasicScopedCFILE ...",
       "revId": "85ae1c43cc36ebfab2776723b7bef232e9bc6c21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1187db_fe66663d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-06-25T18:33:28Z",
+      "side": 1,
+      "message": "Is this a gcc-ism that clang supports, or is this C99/C11?",
+      "revId": "85ae1c43cc36ebfab2776723b7bef232e9bc6c21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
