@@ -33,6 +33,24 @@
       "message": "Is this a gcc-ism that clang supports, or is this C99/C11?",
       "revId": "85ae1c43cc36ebfab2776723b7bef232e9bc6c21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73a2fe5e_f75068f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-06-26T00:36:38Z",
+      "side": 1,
+      "message": "afaik, every use of __attribute__ is a compiler extension.  in this case, gcc \u0026 clang both support cleanup, so i think we\u0027re fine.",
+      "parentUuid": "0b1187db_fe66663d",
+      "revId": "85ae1c43cc36ebfab2776723b7bef232e9bc6c21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
