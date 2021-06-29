@@ -50,6 +50,52 @@
       "message": "Friendly ping on this? would like to unblock Adrian. \nThanks",
       "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41dff4b9_38e6db33",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-06-29T19:40:24Z",
+      "side": 1,
+      "message": "I think this is a confusing name. It\u0027s written using the imperative mood, which suggests that the function is doing something, but the function is not actually doing anything, just reporting a boolean. Therefore, I think something like:\n\n\"seccomp_is_logging_allowed\"\n\nwould be a better name.",
+      "range": {
+        "startLine": 198,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 33
+      },
+      "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84bfe1b_d1c09d84",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-06-29T19:40:24Z",
+      "side": 1,
+      "message": "Why do we need this if we have the code in libminijail.h?\n\nThere should be no Minijail CLI involvement for this feature.",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 2
+      },
+      "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
