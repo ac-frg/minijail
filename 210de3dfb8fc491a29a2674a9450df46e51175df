@@ -75,6 +75,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09308c40_a3270c1b",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-30T12:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41dff4b9_38e6db33",
+      "range": {
+        "startLine": 198,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 33
+      },
+      "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a84bfe1b_d1c09d84",
@@ -88,6 +112,30 @@
       "writtenOn": "2021-06-29T19:40:24Z",
       "side": 1,
       "message": "Why do we need this if we have the code in libminijail.h?\n\nThere should be no Minijail CLI involvement for this feature.",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 2
+      },
+      "revId": "210de3dfb8fc491a29a2674a9450df46e51175df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c54c61_dbd6de1e",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1860993
+      },
+      "writtenOn": "2021-06-30T12:10:26Z",
+      "side": 1,
+      "message": "Good point, this is actually redundant for the CLI now. Dropped. Thanks.",
+      "parentUuid": "a84bfe1b_d1c09d84",
       "range": {
         "startLine": 972,
         "startChar": 0,
