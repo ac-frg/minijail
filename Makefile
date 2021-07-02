@@ -65,6 +65,7 @@ all: CC_BINARY(minijail0) CC_LIBRARY(libminijail.so) \
 	CC_LIBRARY(libminijailpreload.so)
 
 parse_seccomp_policy: CXX_BINARY(parse_seccomp_policy)
+sandbox_me: CXX_BINARY(sandbox_me)
 dump_constants: CXX_STATIC_BINARY(dump_constants)
 
 tests: TEST(CXX_BINARY(libminijail_unittest)) \
@@ -150,6 +151,10 @@ clean: CLEAN(util_unittest)
 CXX_BINARY(parse_seccomp_policy): parse_seccomp_policy.o syscall_filter.o \
 		bpf.o util.o libconstants.gen.o libsyscalls.gen.o
 clean: CLEAN(parse_seccomp_policy)
+
+
+CXX_BINARY(sandbox_me): sandbox_me.o
+clean: CLEAN(sandbox_me)
 
 
 # Compiling dump_constants as a static executable makes it easy to run under
