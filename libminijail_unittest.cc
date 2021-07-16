@@ -324,12 +324,14 @@ TEST(WaitTest, can_wait_only_once) {
 
 TEST(Test, minijail_preserve_fd_no_leak) {
   const ScopedMinijail j(minijail_new());
+  // Use 3 for stdin, 4 for stdout, and 5 for stderr to avoid conflicting with
+  // error messages printed by test failures.
   char* const script = R"(
-      echo Hi >&1;
-      exec 1>&-;
-      read line1;
-      read line2;
-      echo "$line1$line2 and Goodbye" >&2;
+      echo Hi >&4;
+      exec 4>&-;
+      read -u 3 line1;
+      read -u 3 line2;
+      echo "$line1$line2 and Goodbye" >&5;
       exit 42;
     )";
   char* const argv[] = {"sh", "-c", script, nullptr};
@@ -346,9 +348,15 @@ TEST(Test, minijail_preserve_fd_no_leak) {
   // input pipe.
   std::swap(fds[0][0], fds[0][1]);
 
+  // Preserve stdin, stdout, stderr so test logging functions as expected.
+  minijail_preserve_fd(j.get(), 0, 0);
+  minijail_preserve_fd(j.get(), 1, 1);
+  minijail_preserve_fd(j.get(), 2, 2);
+
+  // Preserve pipes.
   for (int i = 0; i < npipes; ++i) {
     const int fd = fds[i][1];
-    minijail_preserve_fd(j.get(), fd, i);
+    minijail_preserve_fd(j.get(), fd, i + 3);
   }
 
   minijail_close_open_fds(j.get());
