@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd46b8ba_66d44149",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T20:01:18Z",
+      "side": 1,
+      "message": "import NamedTuple from typing instead.  then you can use annotations \u0026 proper docstrings for it.\n\nsee the TidyReplacement example i linked earlier.",
+      "revId": "af5e2e5e010e886c249ab30efd5519642e57e48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "897b2b11_873cafe5",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T20:01:18Z",
+      "side": 1,
+      "message": "this is for python2-only, so delete it",
+      "revId": "af5e2e5e010e886c249ab30efd5519642e57e48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

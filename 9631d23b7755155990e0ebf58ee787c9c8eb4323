@@ -284,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "157dda3f_fb6e425f",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T20:01:18Z",
+      "side": 1,
+      "message": "my point is that the majority of these are correct already because they disallow W^X, so forcing people to add stub comments is going to cause a lot of churn.  better we don\u0027t deploy a linter to users that causes useless busywork.\n\nso maybe you don\u0027t want to do it in this CL, but i don\u0027t think we can integrate it into `cros lint` until it\u0027s addressed.",
+      "parentUuid": "fcde74bf_d1c26162",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "211d251e_71b2f732",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 2
@@ -523,6 +547,24 @@
       "side": 1,
       "message": "Done. Also out of curiosity, we only want to import at a module level for our defined modules, but importing individual classes is sometimes necessary for 3p modules like this?",
       "parentUuid": "638297ce_e618020b",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02bd629_545b947b",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T20:01:18Z",
+      "side": 1,
+      "message": "the style guide rule has an exception for \"standard\" ones like pathlib Path.\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#224-decision",
+      "parentUuid": "1aafd7a4_1c805e44",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
