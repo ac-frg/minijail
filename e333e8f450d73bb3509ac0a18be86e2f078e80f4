@@ -16,6 +16,75 @@
       "message": "I have some concern minijail might support platforms that do not include this.",
       "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdd42336_06e72491",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T18:09:16Z",
+      "side": 1,
+      "message": "all we care about is it builds on Android (bionic) and CrOS (recent glibc).  no one else has requested or contributed support.\n\nAndroid CQ/treehugger should cover bionic for you automatically.",
+      "parentUuid": "f726d3ae_86bd4d2e",
+      "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9e3dd41_904d02f7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T18:09:16Z",
+      "side": 1,
+      "message": "nullptr",
+      "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be39902a_1d6a00c8",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T18:09:16Z",
+      "side": 1,
+      "message": "nullptr",
+      "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d1aa90_1304b1f9",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T18:09:16Z",
+      "side": 1,
+      "message": "spaces, not tabs, in the C++ files",
+      "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
