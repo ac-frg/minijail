@@ -1,0 +1,317 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a8aa64_f8c6d32f",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "you can drop this in python3 files",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec93b74_7fe3d808",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "we just use |parser|.  should be unambiguous already without the \"arg_\" prefix.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67cf9c0e_b6943ce2",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "should pass encoding\u003d\u0027utf-8\u0027",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2745a91_bca5adc6",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "comments are full sentences so should have periods at the end",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a9458c_8404561c",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "should move it to module scope since it\u0027s a constant",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21893f48_cb674a3f",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "use a tuple instead of a list since it\u0027s a constant",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad17f52_fafac68b",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "these aren\u0027t dangerous as long as they filter W^X",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "211d251e_71b2f732",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "should use f-strings for these",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb71189_34f6e8da",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "don\u0027t use inline comments",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7916e689_0afb61f4",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "this func is weird in that it mixes direct print() output with a returned message",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf23fa2_f9a85bf7",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "use a structured return with NamedTuple like TidyReplacement:\n\nhttps://chromium.googlesource.com/chromiumos/chromite/+/77e0bf882dad054d3880e5c6fde618dbbb0c3886/scripts/tricium_clang_tidy.py#58",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c259c3fa_3b5fa4d6",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "you can drop this in python3 files",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db75da8_c77c0d2d",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "python style guide says to only import modules, not classes/funcs",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "638297ce_e618020b",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "use Path for these\n\n from pathlib import Path\n ...\n self.tempdir \u003d Path(...)",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b847a103_c984850f",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "if you use tempfile.TemporaryDirectory, i don\u0027t think you need tearDown to clean up for you",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c25339b1_56d934cf",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "once you use pathlib:\n\n path \u003d self.tempdir / filename\n path.write_text(contents)\n return path",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e6356c2_404322be",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T00:24:29Z",
+      "side": 1,
+      "message": "once you use pathlib:\n\n self.assertEqual(check_seccomp_policy(path.read_text()), None)",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
