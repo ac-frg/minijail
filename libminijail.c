@@ -2808,7 +2808,9 @@ static void setup_child_std_fds(struct minijail *j,
 /*
  * Structure that specifies how to start a minijail.
  *
- * filename - The program to exec in the child. Required if |exec_in_child| = 1.
+ * filename - The program to exec in the child. Should be NULL if elf_fd is set.
+ * elf_fd - A fd to be used with fexecve. Should be -1 if filename is set.
+ *   NOTE: either filename or elf_fd is required if |exec_in_child| = 1.
  * argv - Arguments for the child program. Required if |exec_in_child| = 1.
  * envp - Environment for the child program. Available if |exec_in_child| = 1.
  * use_preload - If true use LD_PRELOAD.
@@ -2821,6 +2823,7 @@ static void setup_child_std_fds(struct minijail *j,
  */
 struct minijail_run_config {
 	const char *filename;
+	int elf_fd;
 	char *const *argv;
 	char *const *envp;
 	int use_preload;
@@ -2840,6 +2843,7 @@ int API minijail_run(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = true,
@@ -2853,6 +2857,7 @@ int API minijail_run_pid(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = true,
@@ -2867,6 +2872,7 @@ int API minijail_run_pipe(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = true,
@@ -2882,6 +2888,7 @@ int API minijail_run_pid_pipes(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = true,
@@ -2901,6 +2908,27 @@ int API minijail_run_env_pid_pipes(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
+	    .argv = argv,
+	    .envp = envp,
+	    .use_preload = true,
+	    .exec_in_child = true,
+	    .pstdin_fd = pstdin_fd,
+	    .pstdout_fd = pstdout_fd,
+	    .pstderr_fd = pstderr_fd,
+	    .pchild_pid = pchild_pid,
+	};
+	return minijail_run_config_internal(j, &config);
+}
+
+int API minijail_run_fd_env_pid_pipes(struct minijail *j, int elf_fd,
+				      char *const argv[], char *const envp[],
+				      pid_t *pchild_pid, int *pstdin_fd,
+				      int *pstdout_fd, int *pstderr_fd)
+{
+	struct minijail_run_config config = {
+	    .filename = NULL,
+	    .elf_fd = elf_fd,
 	    .argv = argv,
 	    .envp = envp,
 	    .use_preload = true,
@@ -2918,6 +2946,7 @@ int API minijail_run_no_preload(struct minijail *j, const char *filename,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = false,
@@ -2936,6 +2965,7 @@ int API minijail_run_pid_pipes_no_preload(struct minijail *j,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
 	    .use_preload = false,
@@ -2957,6 +2987,7 @@ int API minijail_run_env_pid_pipes_no_preload(struct minijail *j,
 {
 	struct minijail_run_config config = {
 	    .filename = filename,
+	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = envp,
 	    .use_preload = false,
@@ -2989,6 +3020,10 @@ static int minijail_run_internal(struct minijail *j,
 	 */
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
+
+	if (config->filename != NULL && config->elf_fd != -1) {
+		die("filename and elf_fd cannot be set at the same time");
+	}
 
 	if (use_preload) {
 		if (j->hooks_head != NULL)
@@ -3343,10 +3378,15 @@ static int minijail_run_internal(struct minijail *j,
 	 */
 	if (!child_env)
 		child_env = config->envp ? config->envp : environ;
-	execve(config->filename, config->argv, child_env);
+	if (config->elf_fd > -1) {
+		fexecve(config->elf_fd, config->argv, child_env);
+		pwarn("fexecve(%d) failed", config->elf_fd);
+	} else {
+		execve(config->filename, config->argv, child_env);
+		pwarn("execve(%s) failed", config->filename);
+	}
 
 	ret = (errno == ENOENT ? MINIJAIL_ERR_NO_COMMAND : MINIJAIL_ERR_NO_ACCESS);
-	pwarn("execve(%s) failed", config->filename);
 	_exit(ret);
 }
 
