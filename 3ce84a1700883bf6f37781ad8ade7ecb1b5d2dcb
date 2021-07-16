@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664f8843_a0eb8952",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2708,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-16T20:44:11Z",
+      "side": 1,
+      "message": "I am on the fence on whether it makes sense to store and hand off the CLOEXEC state to the child process and restore it.",
+      "revId": "3ce84a1700883bf6f37781ad8ade7ecb1b5d2dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
