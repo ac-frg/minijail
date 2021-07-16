@@ -2629,11 +2629,11 @@ static int fd_is_open(int fd)
 static_assert(FD_SETSIZE >= MAX_PRESERVED_FDS * 2 - 1,
 	      "If true, ensure_no_fd_conflict will always find an unused fd.");
 
-/* If p->parent_fd will be used by a child_fd, move it to an unused fd. */
+/* If parent_fd will be used by a child fd, move it to an unused fd. */
 static int ensure_no_fd_conflict(const fd_set* child_fds,
-				 struct preserved_fd* p)
+				 int child_fd, int* parent_fd)
 {
-	if (!FD_ISSET(p->parent_fd, child_fds)){
+	if (!FD_ISSET(*parent_fd, child_fds)){
 		return 0;
 	}
 
@@ -2641,8 +2641,8 @@ static int ensure_no_fd_conflict(const fd_set* child_fds,
 	 * If no other parent_fd matches the child_fd then use it instead of a
 	 * temporary.
 	 */
-	int fd = p->child_fd;
-	if (fd_is_open(fd)) {
+	int fd = child_fd;
+	if (fd == -1 || fd_is_open(fd)) {
 		fd = FD_SETSIZE - 1;
 		while (FD_ISSET(fd, child_fds) || fd_is_open(fd)) {
 			--fd;
@@ -2652,62 +2652,19 @@ static int ensure_no_fd_conflict(const fd_set* child_fds,
 		}
 	}
 
-	int ret = dup2(p->parent_fd, fd);
+	int ret = dup2(*parent_fd, fd);
 	/*
 	 * warn() opens a file descriptor so it needs to happen after dup2 to
 	 * avoid unintended side effects. This can be avoided by reordering the
 	 * mapping requests so that the source fds with overlap are mapped
 	 * first (unless there are cycles).
 	 */
-	warn("mapped fd overlap: moving %d to %d", p->parent_fd, fd);
+	warn("mapped fd overlap: moving %d to %d", *parent_fd, fd);
 	if (ret == -1) {
 		return -1;
 	}
 
-	p->parent_fd = fd;
-	return 0;
-}
-
-static int redirect_fds(struct minijail *j)
-{
-	fd_set child_fds;
-	FD_ZERO(&child_fds);
-
-	/* Relocate parent_fds that would be replaced by a child_fd. */
-	for (size_t i = 0; i < j->preserved_fd_count; i++) {
-		int child_fd = j->preserved_fds[i].child_fd;
-		if (FD_ISSET(child_fd, &child_fds)) {
-			die("fd %d is mapped more than once", child_fd);
-		}
-
-		if (ensure_no_fd_conflict(&child_fds,
-					  &j->preserved_fds[i]) == -1) {
-			return -1;
-		}
-
-		FD_SET(child_fd, &child_fds);
-	}
-
-	for (size_t i = 0; i < j->preserved_fd_count; i++) {
-		if (j->preserved_fds[i].parent_fd ==
-		    j->preserved_fds[i].child_fd) {
-			continue;
-		}
-		if (dup2(j->preserved_fds[i].parent_fd,
-			 j->preserved_fds[i].child_fd) == -1) {
-			return -1;
-		}
-	}
-	/*
-	 * After all fds have been duped, we are now free to close all parent
-	 * fds that are *not* child fds.
-	 */
-	for (size_t i = 0; i < j->preserved_fd_count; i++) {
-		int parent_fd = j->preserved_fds[i].parent_fd;
-		if (!FD_ISSET(parent_fd, &child_fds)) {
-			close(parent_fd);
-		}
-	}
+	*parent_fd = fd;
 	return 0;
 }
 
@@ -2723,6 +2680,71 @@ struct minijail_run_state {
 	int child_sync_pipe_fds[2];
 	char **child_env;
 };
+
+static int redirect_fds(struct minijail *j, struct minijail_run_state *state)
+{
+	fd_set child_fds;
+	FD_ZERO(&child_fds);
+
+	/* Relocate parent_fds that would be replaced by a child_fd. */
+	for (size_t i = 0; i < j->preserved_fd_count; i++) {
+		int child_fd = j->preserved_fds[i].child_fd;
+		if (FD_ISSET(child_fd, &child_fds)) {
+			die("fd %d is mapped more than once", child_fd);
+		}
+
+		int* parent_fd = &j->preserved_fds[i].parent_fd;
+		if (ensure_no_fd_conflict(&child_fds, child_fd,
+					  parent_fd) == -1) {
+			return -1;
+		}
+
+		FD_SET(child_fd, &child_fds);
+	}
+
+	/* Move pipe_fds if they conflict with a child_fd. */
+	int *pipe_fds[] = {
+	    state->pipe_fds,   state->child_sync_pipe_fds,
+	    state->stdin_fds,  state->stdout_fds,
+	    state->stderr_fds,
+	};
+	for (size_t i = 0; i < ARRAY_SIZE(pipe_fds); ++i) {
+		if (pipe_fds[i][0] != -1 &&
+		    ensure_no_fd_conflict(&child_fds, -1,
+					  &pipe_fds[i][0]) == -1) {
+			return -1;
+		}
+		if (pipe_fds[i][1] != -1 &&
+		    ensure_no_fd_conflict(&child_fds, -1,
+					  &pipe_fds[i][1]) == -1) {
+			return -1;
+		}
+	}
+
+	/* Perform redirection. */
+	for (size_t i = 0; i < j->preserved_fd_count; i++) {
+		if (j->preserved_fds[i].parent_fd ==
+		    j->preserved_fds[i].child_fd) {
+			continue;
+		}
+		if (dup2(j->preserved_fds[i].parent_fd,
+			 j->preserved_fds[i].child_fd) == -1) {
+			return -1;
+		}
+	}
+
+	/*
+	 * After all fds have been duped, we are now free to close all parent
+	 * fds that are *not* child fds.
+	 */
+	for (size_t i = 0; i < j->preserved_fd_count; i++) {
+		int parent_fd = j->preserved_fds[i].parent_fd;
+		if (!FD_ISSET(parent_fd, &child_fds)) {
+			close(parent_fd);
+		}
+	}
+	return 0;
+}
 
 static void minijail_free_run_state(struct minijail_run_state *state)
 {
@@ -3233,7 +3255,7 @@ static int minijail_run_internal(struct minijail *j,
 			die("failed to close open file descriptors");
 	}
 
-	if (redirect_fds(j))
+	if (redirect_fds(j, state_out))
 		die("failed to set up fd redirections");
 
 	if (sync_child)
