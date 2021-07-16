@@ -2968,6 +2968,13 @@ static int minijail_run_internal(struct minijail *j,
 	int do_init = j->flags.do_init && !j->flags.run_as_init;
 	int use_preload = config->use_preload;
 
+	/*
+	 * Redirect the preserved fds early so that fds opened later for pipes
+	 * are not accidentally clobbered.
+	 */
+	if (redirect_fds(j))
+		die("failed to set up fd redirections");
+
 	if (use_preload) {
 		if (j->hooks_head != NULL)
 			die("Minijail hooks are not supported with LD_PRELOAD");
@@ -3220,19 +3227,13 @@ static int minijail_run_internal(struct minijail *j,
 			minijail_preserve_fd(j, j->netns_fd, j->netns_fd);
 
 		for (size_t i = 0; i < j->preserved_fd_count; i++) {
-			/*
-			 * Preserve all parent_fds. They will be dup2(2)-ed in
-			 * the child later.
-			 */
-			inheritable_fds[size++] = j->preserved_fds[i].parent_fd;
+			/* Preserve all redirected fds. */
+			inheritable_fds[size++] = j->preserved_fds[i].child_fd;
 		}
 
 		if (close_open_fds(inheritable_fds, size) < 0)
 			die("failed to close open file descriptors");
 	}
-
-	if (redirect_fds(j))
-		die("failed to set up fd redirections");
 
 	if (sync_child)
 		wait_for_parent_setup(state_out->child_sync_pipe_fds);
