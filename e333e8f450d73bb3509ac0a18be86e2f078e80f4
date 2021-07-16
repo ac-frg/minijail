@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f726d3ae_86bd4d2e",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-16T18:00:53Z",
+      "side": 1,
+      "message": "I have some concern minijail might support platforms that do not include this.",
+      "revId": "e333e8f450d73bb3509ac0a18be86e2f078e80f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
