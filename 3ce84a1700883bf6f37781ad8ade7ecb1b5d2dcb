@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34e82e3a_48b479b8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2707,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T21:11:47Z",
+      "side": 1,
+      "message": "missing space after the ~",
+      "revId": "3ce84a1700883bf6f37781ad8ade7ecb1b5d2dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "664f8843_a0eb8952",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -14,6 +31,41 @@
       "writtenOn": "2021-07-16T20:44:11Z",
       "side": 1,
       "message": "I am on the fence on whether it makes sense to store and hand off the CLOEXEC state to the child process and restore it.",
+      "revId": "3ce84a1700883bf6f37781ad8ade7ecb1b5d2dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f8ba295_53a52d76",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2708,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T21:11:47Z",
+      "side": 1,
+      "message": "at least leave a comment noting this for now",
+      "parentUuid": "664f8843_a0eb8952",
+      "revId": "3ce84a1700883bf6f37781ad8ade7ecb1b5d2dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c995fdf_72928555",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2709,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-16T21:11:47Z",
+      "side": 1,
+      "message": "i think you meant to check the return value of fcntl here",
       "revId": "3ce84a1700883bf6f37781ad8ade7ecb1b5d2dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
