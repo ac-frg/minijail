@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9cac8c_4bb688a5",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82a8aa64_f8c6d32f",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ec93b74_7fe3d808",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "we just use |parser|.  should be unambiguous already without the \"arg_\" prefix.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "425caffd_3808e0ea",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ec93b74_7fe3d808",
       "range": {
         "startLine": 25,
         "startChar": 4,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0810402b_9e738131",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67cf9c0e_b6943ce2",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2745a91_bca5adc6",
@@ -71,6 +131,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "comments are full sentences so should have periods at the end",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96393bd0_e84c0ff1",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2745a91_bca5adc6",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +193,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a0c240_d6423403",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21893f48_cb674a3f",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b430405_168e7a15",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94a9458c_8404561c",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ad17f52_fafac68b",
@@ -128,6 +248,30 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "these aren\u0027t dangerous as long as they filter W^X",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcde74bf_d1c26162",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "We are going to add argument filtering later. For now we will just assume they are dangerous.",
+      "parentUuid": "4ad17f52_fafac68b",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -155,6 +299,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99429202_3d86fecd",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "211d251e_71b2f732",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcb71189_34f6e8da",
@@ -168,6 +330,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "don\u0027t use inline comments",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88772d2_b8eb7da0",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb71189_34f6e8da",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -189,6 +369,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1292c54_52d8ba98",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "True, adding this to message instead.",
+      "parentUuid": "7916e689_0afb61f4",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cf23fa2_f9a85bf7",
@@ -202,6 +400,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "use a structured return with NamedTuple like TidyReplacement:\n\nhttps://chromium.googlesource.com/chromiumos/chromite/+/77e0bf882dad054d3880e5c6fde618dbbb0c3886/scripts/tricium_clang_tidy.py#58",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f63e8ae_296c22d3",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf23fa2_f9a85bf7",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -223,6 +439,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "242debe0_c67cd9b7",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c259c3fa_3b5fa4d6",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1db75da8_c77c0d2d",
@@ -236,6 +470,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "python style guide says to only import modules, not classes/funcs",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27dceec7_b4c69af5",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1db75da8_c77c0d2d",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -257,6 +509,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aafd7a4_1c805e44",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done. Also out of curiosity, we only want to import at a module level for our defined modules, but importing individual classes is sometimes necessary for 3p modules like this?",
+      "parentUuid": "638297ce_e618020b",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b847a103_c984850f",
@@ -270,6 +540,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "if you use tempfile.TemporaryDirectory, i don\u0027t think you need tearDown to clean up for you",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "079c0154_46aa6183",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b847a103_c984850f",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -297,6 +585,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eca497c_195f6910",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c25339b1_56d934cf",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e6356c2_404322be",
@@ -310,6 +622,24 @@
       "writtenOn": "2021-07-16T00:24:29Z",
       "side": 1,
       "message": "once you use pathlib:\n\n self.assertEqual(check_seccomp_policy(path.read_text()), None)",
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61ba208_ef97384b",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-16T15:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e6356c2_404322be",
       "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
