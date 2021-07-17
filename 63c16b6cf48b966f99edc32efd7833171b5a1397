@@ -16,6 +16,24 @@
       "message": "i think this is misaligned.  unless clang-format produced this ...",
       "revId": "63c16b6cf48b966f99edc32efd7833171b5a1397",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8165d82_c0e806d0",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-17T13:33:20Z",
+      "side": 1,
+      "message": "clang-format gives me messed up results for this repo. Maybe you or I should tune the parameters.",
+      "parentUuid": "85c703ac_19a13023",
+      "revId": "63c16b6cf48b966f99edc32efd7833171b5a1397",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
