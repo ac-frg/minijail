@@ -16,6 +16,40 @@
       "message": "Thanks!",
       "revId": "05d16ac57030f1f4b3aa8a470ae92b80d3796e10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba23cd3_36a88983",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2634,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T19:46:05Z",
+      "side": 1,
+      "message": "not a new issue, but while you\u0027re here, missing space before the {",
+      "revId": "05d16ac57030f1f4b3aa8a470ae92b80d3796e10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da86b2d3_0d6c54b1",
+        "filename": "libminijail.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2694,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T19:46:05Z",
+      "side": 1,
+      "message": "we normally use \"int *\" style in here rather than \"int* \"",
+      "revId": "05d16ac57030f1f4b3aa8a470ae92b80d3796e10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
