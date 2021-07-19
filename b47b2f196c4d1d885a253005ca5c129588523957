@@ -1,0 +1,248 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef489fd_64b73e40",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "2021 ;)",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "785a3cda_4db3ad2e",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "period at the end",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7933a92e_dda70c9c",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "i\u0027m not sure about doing partial leading matches on syscall names.  it feels messy.  especially when you\u0027re only catching 2 syscalls here -- execve \u0026 execveat.\n\ncan we just do an exact match and call it a day ?",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f893ba1_487b01cf",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "period at the end",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab2fc84_7af33f86",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "you can import List from typing and then write List[str]",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901591bf_c2889c1e",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "this is simpler:\n\n ^\\s*(%s)",
+      "range": {
+        "startLine": 81,
+        "startChar": 30,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab27892_75e45a32",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "wouldn\u0027t this check make more sense in the case above where |errors| is updated ?\n\nthen again, why limit to 5 ?  what\u0027s wrong with showing them all ?",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366198eb_dfbab571",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "mixing formatting like this is a bit weird.  can\u0027t the caller (i.e. main) handle all of this ?",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b39bdc_875abb4b",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "the pythonic way is:\n\n if ret.errors:",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f075048_d022e60b",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "delete",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7bf1ddf_0bcb4306",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "2021",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11d858e_2b54b6f6",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "use a context manager\n\n with path.open(\u0027r\u0027, encoding\u003d\u0027utf-8\u0027) as check_file:\n     ...\n\ncomes up below too",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a071730_eba23f58",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "would be easier to read if the comment \u0026 syscall were sep lines",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba422f4_6ada58eb",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-19T17:00:16Z",
+      "side": 1,
+      "message": "would be easier to read if the comment \u0026 syscall were sep lines",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
