@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b2215a_503193d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-19T13:46:39Z",
+      "side": 1,
+      "message": "I reverted the unit test changes because while they helped with debugging, they are the most likely reason the android presubmit checks are failing.",
+      "revId": "ae6027d450939355cbf99737c551df8d92a88ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
