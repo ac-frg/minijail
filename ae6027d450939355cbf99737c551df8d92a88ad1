@@ -52,6 +52,24 @@
       "parentUuid": "bb0d014d_243c82c9",
       "revId": "ae6027d450939355cbf99737c551df8d92a88ad1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1bd03d_ff0243d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-19T16:05:25Z",
+      "side": 1,
+      "message": "I mean, if all tests are already passing without this fix, doesn\u0027t it mean the test doesn\u0027t cover this case?",
+      "parentUuid": "ecc0b6ae_66f75f5f",
+      "revId": "ae6027d450939355cbf99737c551df8d92a88ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
