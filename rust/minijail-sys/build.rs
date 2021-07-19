@@ -7,10 +7,12 @@
 /// This script prefers linking against a pkg-config provided libminijail, but will fall back to
 /// building libminijail statically.
 use std::env;
+use std::fs::remove_file;
 use std::io;
+use std::path::Path;
 use std::process::Command;
 
-fn main() -> io::Result<()> {
+fn set_up_libminijail() -> io::Result<()> {
     // Minijail requires libcap at runtime.
     pkg_config::Config::new().probe("libcap").unwrap();
 
@@ -37,4 +39,36 @@ fn main() -> io::Result<()> {
     println!("cargo:rustc-link-search=native={}", &out_dir);
     println!("cargo:rustc-link-lib=static=minijail.pic");
     Ok(())
+}
+
+fn bindings_generation() -> io::Result<()> {
+    let bindgen = match which::which("bindgen") {
+        Ok(v) => v,
+        // Use already generated copy if bindgen is not present.
+        _ => return Ok(()),
+    };
+
+    // If CROS_RUST is set, skip generation.
+    let gen_file = Path::new("./libminijail.rs");
+    if gen_file.exists() {
+        if env::var("CROS_RUST") == Ok(String::from("1")) {
+            return Ok(());
+        }
+        remove_file(gen_file).expect("Failed to remove generated file.");
+    }
+    let header_dir = Path::new("../../");
+    let header_path = header_dir.join("libminijail.h");
+    println!("cargo:rerun-if-changed={}", header_path.display());
+    let status = Command::new(&bindgen)
+        .arg(header_path.to_str().unwrap())
+        .args(&["--output", gen_file.to_str().unwrap()])
+        .args(&["--", "-DUSE_BINDGEN"])
+        .status()?;
+    assert!(status.success());
+    Ok(())
+}
+
+fn main() -> io::Result<()> {
+    set_up_libminijail()?;
+    bindings_generation()
 }
