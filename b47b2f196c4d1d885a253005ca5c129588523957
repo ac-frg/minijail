@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dcc0972_99a755bc",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ef489fd_64b73e40",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "785a3cda_4db3ad2e",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "period at the end",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd38fbd0_b29955d2",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "785a3cda_4db3ad2e",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89ede15d_9591ce4e",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7933a92e_dda70c9c",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f893ba1_487b01cf",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aaccb53_bbceefdd",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f893ba1_487b01cf",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ab2fc84_7af33f86",
@@ -82,6 +154,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "you can import List from typing and then write List[str]",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c2b1453_37da49c4",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ab2fc84_7af33f86",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -109,6 +199,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2b7bf79_6c070cca",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "901591bf_c2889c1e",
+      "range": {
+        "startLine": 81,
+        "startChar": 30,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cab27892_75e45a32",
@@ -122,6 +236,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "wouldn\u0027t this check make more sense in the case above where |errors| is updated ?\n\nthen again, why limit to 5 ?  what\u0027s wrong with showing them all ?",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf793c49_6d47e418",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cab27892_75e45a32",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -143,6 +275,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6090ba_56e025a8",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366198eb_dfbab571",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61b39bdc_875abb4b",
@@ -156,6 +306,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "the pythonic way is:\n\n if ret.errors:",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb491cf4_e52b65a3",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61b39bdc_875abb4b",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -177,6 +345,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "629c7983_b9c4de8c",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f075048_d022e60b",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7bf1ddf_0bcb4306",
@@ -190,6 +376,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "2021",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db15a9cd_a6fbaba9",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7bf1ddf_0bcb4306",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -211,6 +415,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9d64ae1_3f3d1e31",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a11d858e_2b54b6f6",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a071730_eba23f58",
@@ -228,6 +450,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "659607d4_06e11193",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a071730_eba23f58",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aba422f4_6ada58eb",
@@ -241,6 +481,24 @@
       "writtenOn": "2021-07-19T17:00:16Z",
       "side": 1,
       "message": "would be easier to read if the comment \u0026 syscall were sep lines",
+      "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0dd7270_71bdeeda",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T23:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aba422f4_6ada58eb",
       "revId": "b47b2f196c4d1d885a253005ca5c129588523957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
