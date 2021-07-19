@@ -34,6 +34,24 @@
       "parentUuid": "7101c0aa_c1e29c6c",
       "revId": "095339e86b1d636ccefda00fa5c7e8872a030bda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9282b6bc_ec9806a0",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-19T17:22:26Z",
+      "side": 1,
+      "message": "SELinux I think.  If you follow the links (not obvious from the UI to me)... see https://screenshot.googleplex.com/4BMhoD3aifKCcxS and https://screenshot.googleplex.com/9zTaGQmujd3tSBc, and click one of the logcat, I see this denial.\n\n07-19 16:46:52.031  8390  8390 W libminijail_uni: type\u003d1400 audit(0.0:251): avc: denied { setattr } for name\u003d\"memfd:test\" dev\u003d\"tmpfs\" ino\u003d1450 scontext\u003du:r:shell:s0 tcontext\u003du:object_r:appdomain_tmpfs:s0 tclass\u003dfile permissive\u003d0\n\nIf you ever need to modify the policy, feel free to reach out to jgalenson@ (PST friendly).",
+      "parentUuid": "98f5fa0e_82311ace",
+      "revId": "095339e86b1d636ccefda00fa5c7e8872a030bda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
