@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2336f4f9_538bb20d",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T16:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd46b8ba_66d44149",
+      "revId": "af5e2e5e010e886c249ab30efd5519642e57e48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "897b2b11_873cafe5",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-07-16T20:01:18Z",
       "side": 1,
       "message": "this is for python2-only, so delete it",
+      "revId": "af5e2e5e010e886c249ab30efd5519642e57e48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb7cb82_981dfb04",
+        "filename": "tools/seccomp_policy_lint_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T16:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "897b2b11_873cafe5",
       "revId": "af5e2e5e010e886c249ab30efd5519642e57e48c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

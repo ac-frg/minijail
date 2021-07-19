@@ -306,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "462bc343_41867053",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-19T16:09:36Z",
+      "side": 1,
+      "message": "Ok, we will comment those out until we do add argument granularity.",
+      "parentUuid": "157dda3f_fb6e425f",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "9631d23b7755155990e0ebf58ee787c9c8eb4323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "211d251e_71b2f732",
