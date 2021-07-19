@@ -34,6 +34,24 @@
       "parentUuid": "26b2215a_503193d8",
       "revId": "ae6027d450939355cbf99737c551df8d92a88ad1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc0b6ae_66f75f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-19T15:47:12Z",
+      "side": 1,
+      "message": "There is still test coverage. My change was related to moving the test off of the stdio fds so that test failures were easier to troubleshoot. The revert just put the test back on the stdio fds.",
+      "parentUuid": "bb0d014d_243c82c9",
+      "revId": "ae6027d450939355cbf99737c551df8d92a88ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
