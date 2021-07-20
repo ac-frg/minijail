@@ -52,6 +52,24 @@
       "parentUuid": "07cdebbb_437c6e6f",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f7f9454_9c022f57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1208973
+      },
+      "writtenOn": "2021-07-20T17:14:01Z",
+      "side": 1,
+      "message": "I don\u0027t have much context over exactly what you\u0027re doing here.  But currently for third-party crates in Android we run cargo2android.py to generate the Android.bp automatically from a Cargo.toml file (see go/android-rust-importing-crates#auto-generate-the-androidbp-file).  This works well enough for almost all crates, including those that use build.rs files, although we do need to patch a few.  I see you\u0027ve already run this script to generate your rules, although you seem to have tweaked them a bit.\n\nDoes that help?",
+      "parentUuid": "07cdebbb_437c6e6f",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
