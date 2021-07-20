@@ -16,6 +16,23 @@
       "message": "I figure it makes sense to replace the rust owners for minijail. Alternatively, we could remove rust/OWNERS and fall back on the parent OWNERS.",
       "revId": "531c119fc1ad1a6e6aae4e15b0fceaa6cb387b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfa9764_1ff4a3f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-20T17:09:41Z",
+      "side": 1,
+      "message": "I\u0027m not too familiar with the code to justify the ownership :) But if folks think this is fine, I\u0027m happy to share the code review responsibility.  Will add you guys for sure if I see anything beyond my understanding.",
+      "revId": "531c119fc1ad1a6e6aae4e15b0fceaa6cb387b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
