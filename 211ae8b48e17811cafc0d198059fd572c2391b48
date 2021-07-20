@@ -16,6 +16,75 @@
       "message": "This is needed because the tests were intermittently failing for me because of the forks messing up the test runner.",
       "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c571de_e6b92bd2",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-20T23:56:57Z",
+      "side": 1,
+      "message": "nit: I think the safety rationale should be from Rust\u0027s point of view.  So probably something like, pipe2 won\u0027t access the raw pointer to id_fd out of bound?",
+      "range": {
+        "startLine": 877,
+        "startChar": 11,
+        "endLine": 877,
+        "endChar": 51
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9229dc7d_5b150b84",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-20T23:56:57Z",
+      "side": 1,
+      "message": "nit: seems we can just use pipe(2) and forget about the meaning of 0 here.",
+      "range": {
+        "startLine": 878,
+        "startChar": 52,
+        "endLine": 878,
+        "endChar": 53
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82001e2e_f4863bbe",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-20T23:56:57Z",
+      "side": 1,
+      "message": "seems like you can wrap this and run with `bash -c \"...\"`?",
+      "range": {
+        "startLine": 928,
+        "startChar": 12,
+        "endLine": 937,
+        "endChar": 3
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
