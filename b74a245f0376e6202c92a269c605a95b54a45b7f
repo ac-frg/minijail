@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6bdf990_8dd452ad",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-20T00:57:16Z",
+      "side": 1,
+      "message": "this is still doing a prefix match.  you\u0027ll want to do:\n\n fr\u0027^\\s*{syscall}\\s*:\u0027\n\ni guess you don\u0027t even need the () since you aren\u0027t using the result from re.match.  if you were to construct a single regex and run it against the entire input at once with like re.findall, the () group would match.",
+      "revId": "b74a245f0376e6202c92a269c605a95b54a45b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
