@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5d1b35_923e4513",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-20T22:32:47Z",
+      "side": 1,
+      "message": "This is needed because the tests were intermittently failing for me because of the forks messing up the test runner.",
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
