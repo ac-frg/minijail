@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01eeead9_8a57422b",
+        "filename": "libminijail.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 3270,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-20T16:32:02Z",
+      "side": 1,
+      "message": "I need to add elf_fd to inheritable_fds.",
+      "revId": "859a44b8d4e713be844ff1c61d503922750131ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
