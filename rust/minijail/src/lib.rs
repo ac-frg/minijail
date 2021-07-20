@@ -862,12 +862,27 @@ fn is_single_threaded() -> io::Result<bool> {
 
 #[cfg(test)]
 mod tests {
-    use std::process::exit;
-
     use super::*;
+
+    use std::fs::File;
+    use std::io::Write;
+    use std::os::raw::c_int;
+    use std::os::unix::io::FromRawFd;
 
     const SHELL: &str = "/bin/sh";
     const EMPTY_STRING_SLICE: &[&str] = &[];
+
+    fn pipe() -> std::result::Result<(File, File), io::Error> {
+        let mut in_fd: [c_int; 2] = [0; 2];
+        // Safe because in_fd is owned and the expected length.
+        if unsafe { libc::pipe(in_fd.as_mut_ptr()) } != 0 {
+            return Err(io::Error::last_os_error());
+        }
+        // Safe because they are the unique wrappers for the returned file descriptors.
+        let read = unsafe { File::from_raw_fd(in_fd[0]) };
+        let write = unsafe { File::from_raw_fd(in_fd[1]) };
+        Ok((read, write))
+    }
 
     #[test]
     fn create_and_free() {
@@ -889,9 +904,7 @@ mod tests {
         j.no_new_privs();
         j.parse_seccomp_filters("src/test_filter.policy").unwrap();
         j.use_seccomp_filter();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
-        }
+        j.run("/bin/true", &[], &EMPTY_STRING_SLICE).unwrap();
     }
 
     #[test]
@@ -905,12 +918,29 @@ mod tests {
             assert!(first >= 0);
             let second = libc::open(FILE_PATH.as_ptr() as *const c_char, libc::O_RDONLY);
             assert!(second >= 0);
-            let fds: Vec<RawFd> = vec![0, 1, 2, first];
-            if j.fork(Some(&fds)).unwrap() == 0 {
-                assert!(libc::close(second) < 0); // Should fail as second should be closed already.
-                assert_eq!(libc::close(first), 0); // Should succeed as first should be untouched.
-                exit(0);
-            }
+
+            // A pipe is used for 0 (stdin) so it can be used for providing the command. Note that
+            // under some circumstances /dev/null is connected to stdin so this is needed to prevent
+            // test failures.
+            let (pipe_read, mut pipe_write) = pipe().unwrap();
+            let fds: Vec<(RawFd, RawFd)> =
+                vec![(pipe_read.as_raw_fd(), 0), (1, 1), (2, 2), (first, first)];
+            j.run_remap("/bin/bash", &fds, &["/bin/bash"]).unwrap();
+
+            pipe_write
+                .write_all(
+                    br#"
+if [ `ls -l /proc/self/fd/ | grep '/dev/null' | wc -l` != '1' ]; then
+  ls -l /proc/self/fd/
+  exit 1
+fi
+"#,
+                )
+                .unwrap();
+            drop(pipe_write);
+            drop(pipe_read);
+
+            j.wait().unwrap();
         }
     }
 
@@ -964,7 +994,11 @@ mod tests {
         let j = Minijail::new().unwrap();
         j.run("/bin/does not exist", &[1, 2], &EMPTY_STRING_SLICE)
             .unwrap();
-        expect_result!(j.wait(), Err(Error::NoCommand));
+        // TODO(b/194221986) Fix libminijail so that Error::NoAccess is not sometimes returned.
+        assert!(matches!(
+            j.wait(),
+            Err(Error::NoCommand) | Err(Error::NoAccess)
+        ));
     }
 
     #[test]
@@ -985,9 +1019,7 @@ mod tests {
     fn chroot() {
         let mut j = Minijail::new().unwrap();
         j.enter_chroot(".").unwrap();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
-        }
+        j.run("/bin/true", &[], &EMPTY_STRING_SLICE).unwrap();
     }
 
     #[test]
@@ -995,9 +1027,7 @@ mod tests {
     fn namespace_vfs() {
         let mut j = Minijail::new().unwrap();
         j.namespace_vfs();
-        if unsafe { j.fork(None).unwrap() } == 0 {
-            exit(0);
-        }
+        j.run("/bin/true", &[], &EMPTY_STRING_SLICE).unwrap();
     }
 
     #[test]
