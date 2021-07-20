@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4fa40a4_373690fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-20T14:23:26Z",
+      "side": 1,
+      "message": "I plan to unlink rust/minijail-sys/libminijail.rs in the src_prepare step of the ebuild to ensure it is generated during src_compile.",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
