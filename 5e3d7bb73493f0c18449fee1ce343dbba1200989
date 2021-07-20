@@ -34,6 +34,24 @@
       "parentUuid": "e4fa40a4_373690fb",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda03925_31d84312",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-20T17:13:11Z",
+      "side": 1,
+      "message": "It looks like the long term Rust plan on CrOS would be to use bazel instead of cargo. If you all are going that route it should be fine. I don\u0027t plan to remove libminijail.rs from the repo any time soon, but the ebuild will remove it at build time.",
+      "parentUuid": "07cdebbb_437c6e6f",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
