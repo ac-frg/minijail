@@ -10,9 +10,82 @@ use std::os::raw::{c_char, c_ulong, c_ushort};
 use std::os::unix::io::{AsRawFd, IntoRawFd, RawFd};
 use std::path::{Path, PathBuf};
 use std::ptr::{null, null_mut};
+use std::result::Result as StdResult;
 
 use libc::pid_t;
 use minijail_sys::*;
+
+pub trait Runnable {
+    fn validate(&self) -> Result<()>;
+    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t>;
+}
+
+impl<A: AsRef<Path>> Runnable for A {
+    fn validate(&self) -> Result<()> {
+        Ok(())
+    }
+
+    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+        let cmd_os = self
+            .as_ref()
+            .to_str()
+            .ok_or_else(|| Error::PathToCString(self.as_ref().to_owned()))?;
+        let cmd_cstr = CString::new(cmd_os).map_err(|_| Error::StrToCString(cmd_os.to_owned()))?;
+
+        let mut pid: pid_t = 0;
+        let ret = unsafe {
+            minijail_run_pid_pipes(
+                jail.jail,
+                cmd_cstr.as_ptr(),
+                argv.as_ptr() as *const *mut c_char,
+                &mut pid,
+                null_mut(),
+                null_mut(),
+                null_mut(),
+            )
+        };
+        if ret < 0 {
+            return Err(Error::ForkingMinijail(ret));
+        }
+        Ok(pid)
+    }
+}
+
+struct RunnableFd<'a, A: AsRawFd> {
+    fd: &'a A,
+}
+
+impl<'a, A: AsRawFd> From<&'a A> for RunnableFd<'a, A> {
+    fn from(a: &'a A) -> Self {
+        RunnableFd { fd: a }
+    }
+}
+
+impl<'a, A: AsRawFd> Runnable for RunnableFd<'a, A> {
+    fn validate(&self) -> Result<()> {
+        Ok(())
+    }
+
+    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+        let mut pid: pid_t = 0;
+        let ret = unsafe {
+            minijail_run_fd_env_pid_pipes(
+                jail.jail,
+                self.fd.as_raw_fd(),
+                argv.as_ptr() as *const *mut c_char,
+                null_mut(),
+                &mut pid,
+                null_mut(),
+                null_mut(),
+                null_mut(),
+            )
+        };
+        if ret < 0 {
+            return Err(Error::ForkingMinijail(ret));
+        }
+        Ok(pid)
+    }
+}
 
 #[derive(Debug)]
 pub enum Error {
@@ -178,7 +251,7 @@ impl Display for Error {
 
 impl std::error::Error for Error {}
 
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = StdResult<T, Error>;
 
 /// Configuration to jail a process based on wrapping libminijail.
 ///
@@ -657,9 +730,9 @@ impl Minijail {
     /// FDs 0, 1, and 2 are overwritten with /dev/null FDs unless they are included in the
     /// inheritable_fds list. This function may abort in the child on error because a partially
     /// entered jail isn't recoverable.
-    pub fn run<P: AsRef<Path>, S: AsRef<str>>(
+    pub fn run<R: Runnable, S: AsRef<str>>(
         &self,
-        cmd: P,
+        cmd: R,
         inheritable_fds: &[RawFd],
         args: &[S],
     ) -> Result<pid_t> {
@@ -675,18 +748,12 @@ impl Minijail {
 
     /// Behaves the same as `run()` except `inheritable_fds` is a list of fd
     /// mappings rather than just a list of fds to preserve.
-    pub fn run_remap<P: AsRef<Path>, S: AsRef<str>>(
+    pub fn run_remap<R: Runnable, S: AsRef<str>>(
         &self,
-        cmd: P,
+        cmd: R,
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        let cmd_os = cmd
-            .as_ref()
-            .to_str()
-            .ok_or_else(|| Error::PathToCString(cmd.as_ref().to_owned()))?;
-        let cmd_cstr = CString::new(cmd_os).map_err(|_| Error::StrToCString(cmd_os.to_owned()))?;
-
         // Converts each incoming `args` string to a `CString`, and then puts each `CString` pointer
         // into a null terminated array, suitable for use as an argv parameter to `execve`.
         let mut args_cstr = Vec::with_capacity(args.len());
@@ -726,22 +793,7 @@ impl Minijail {
             minijail_close_open_fds(self.jail);
         }
 
-        let mut pid = 0;
-        let ret = unsafe {
-            minijail_run_pid_pipes(
-                self.jail,
-                cmd_cstr.as_ptr(),
-                args_array.as_ptr() as *const *mut c_char,
-                &mut pid,
-                null_mut(),
-                null_mut(),
-                null_mut(),
-            )
-        };
-        if ret < 0 {
-            return Err(Error::ForkingMinijail(ret));
-        }
-        Ok(pid)
+        cmd.run_pid_pipes(&self, &args_array)
     }
 
     /// Forks a child and puts it in the previously configured minijail.
@@ -870,10 +922,12 @@ mod tests {
     use std::os::raw::c_int;
     use std::os::unix::io::FromRawFd;
 
+    use libc::{FD_CLOEXEC, F_GETFD, F_SETFD};
+
     const SHELL: &str = "/bin/sh";
     const EMPTY_STRING_SLICE: &[&str] = &[];
 
-    fn pipe() -> std::result::Result<(File, File), io::Error> {
+    fn pipe() -> StdResult<(File, File), io::Error> {
         let mut in_fd: [c_int; 2] = [0; 2];
         // Safe because in_fd is owned and the expected length.
         if unsafe { libc::pipe(in_fd.as_mut_ptr()) } != 0 {
@@ -883,6 +937,23 @@ mod tests {
         let read = unsafe { File::from_raw_fd(in_fd[0]) };
         let write = unsafe { File::from_raw_fd(in_fd[1]) };
         Ok((read, write))
+    }
+
+    fn clear_cloexec<A: AsRawFd>(fd_owner: &A) -> StdResult<(), io::Error> {
+        let fd = fd_owner.as_raw_fd();
+        // Safe because this operates on copies.
+        let flags = unsafe { libc::fcntl(fd, F_GETFD) };
+        if flags == -1 {
+            return Err(io::Error::last_os_error());
+        }
+
+        let masked_flags = flags & !FD_CLOEXEC;
+        // Safe because this operates on copies.
+        if masked_flags != flags && unsafe { libc::fcntl(fd, F_SETFD, masked_flags) } == -1 {
+            Err(io::Error::last_os_error())
+        } else {
+            Ok(())
+        }
     }
 
     #[test]
@@ -1000,6 +1071,18 @@ fi
             j.wait(),
             Err(Error::NoCommand) | Err(Error::NoAccess)
         ));
+    }
+
+    #[test]
+    fn runnable_fd_success() {
+        let bin_file = File::open("/bin/true").unwrap();
+        // On Chrome OS targets /bin/true is actually a script, so drop CLOEXEC to prevent ENOENT.
+        clear_cloexec(&bin_file).unwrap();
+
+        let j = Minijail::new().unwrap();
+        j.run(RunnableFd::from(&bin_file), &[1, 2], &EMPTY_STRING_SLICE)
+            .unwrap();
+        expect_result!(j.wait(), Ok(()));
     }
 
     #[test]
