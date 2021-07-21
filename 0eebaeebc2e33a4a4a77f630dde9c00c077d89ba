@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad1c4d91_84f1b71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "Looks great, just a few minor comments.",
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcacfea_15f38624",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "Minijail",
+      "range": {
+        "startLine": 118,
+        "startChar": 27,
+        "endLine": 118,
+        "endChar": 35
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68f22f4_29946b0d",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "Maybe `repo sync`",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4744a6a3_238d4161",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "\"Set up\" is usually the verb, \"setup\" is the noun.",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 7
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9f61bb_54eb0667",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "\"with whatever\"",
+      "range": {
+        "startLine": 130,
+        "startChar": 43,
+        "endLine": 130,
+        "endChar": 51
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb326160_1e91ac5c",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "repo start minijail . since we want the branch only in the current repo",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 19
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e9cd43_e3e43f32",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "Minijail-related",
+      "range": {
+        "startLine": 137,
+        "startChar": 18,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625aa0c2_630442e3",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-21T12:23:23Z",
+      "side": 1,
+      "message": "And maybe we can run the Tast tests:\n\n```bash\ncros deploy \u003cDUT\u003e chromeos-base/minijail\ntast run \u003cDUT\u003e security.Minijail security.MinijailSeccomp\n```",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 3
+      },
+      "revId": "0eebaeebc2e33a4a4a77f630dde9c00c077d89ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
