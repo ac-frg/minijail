@@ -70,6 +70,24 @@
       "parentUuid": "07cdebbb_437c6e6f",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c94cb27_0c02d8ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-21T16:05:26Z",
+      "side": 1,
+      "message": "what about people/distros who build it themselves ?  do they have to manually remove it too ?",
+      "parentUuid": "3f7f9454_9c022f57",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
