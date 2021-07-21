@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e32b1013_4aed40c2",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T21:22:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c571de_e6b92bd2",
+      "range": {
+        "startLine": 877,
+        "startChar": 11,
+        "endLine": 877,
+        "endChar": 51
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9229dc7d_5b150b84",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "947c950a_7fbd085d",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T21:22:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9229dc7d_5b150b84",
+      "range": {
+        "startLine": 878,
+        "startChar": 52,
+        "endLine": 878,
+        "endChar": 53
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82001e2e_f4863bbe",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-07-20T23:56:57Z",
       "side": 1,
       "message": "seems like you can wrap this and run with `bash -c \"...\"`?",
+      "range": {
+        "startLine": 928,
+        "startChar": 12,
+        "endLine": 937,
+        "endChar": 3
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c94e95c0_29573491",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T21:22:17Z",
+      "side": 1,
+      "message": "I tried doing it that way, but the problem is then /dev/null gets mapped to stdin (fd 0) under some circumstances. Using a pipe as stdin, prevents that from becoming an issue. See the comment above.",
+      "parentUuid": "82001e2e_f4863bbe",
       "range": {
         "startLine": 928,
         "startChar": 12,
