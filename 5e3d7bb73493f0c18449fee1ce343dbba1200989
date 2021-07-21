@@ -88,6 +88,24 @@
       "parentUuid": "3f7f9454_9c022f57",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b6237a_c73f5411",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T16:55:33Z",
+      "side": 1,
+      "message": "They shouldn\u0027t need to unless they set CROS_RUST.",
+      "parentUuid": "0c94cb27_0c02d8ca",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
