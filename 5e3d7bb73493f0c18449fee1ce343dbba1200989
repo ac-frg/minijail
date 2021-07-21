@@ -124,6 +124,24 @@
       "parentUuid": "95b6237a_c73f5411",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03898bfe_28ee9b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T18:48:51Z",
+      "side": 1,
+      "message": "That is how it was before. If we go that route, it might make sense to regenerate it anyway and fail if it changed.",
+      "parentUuid": "8ef0bc2c_6655d2d4",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
