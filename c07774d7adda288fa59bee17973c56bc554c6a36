@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c11546_4f1ffacd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T14:13:09Z",
+      "side": 1,
+      "message": "There is already a unit test that covers the code added by this CL. I will modify it, so that it covers the remapping case.",
+      "parentUuid": "cba8e737_8b955971",
+      "revId": "c07774d7adda288fa59bee17973c56bc554c6a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d95849e3_a06325a4",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a15e4bd2_a959cbfd",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2676,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T14:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d95849e3_a06325a4",
+      "range": {
+        "startLine": 2676,
+        "startChar": 45,
+        "endLine": 2676,
+        "endChar": 52
+      },
+      "revId": "c07774d7adda288fa59bee17973c56bc554c6a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fac737f8_4b58086a",
@@ -71,6 +113,30 @@
       "writtenOn": "2021-07-21T13:25:38Z",
       "side": 1,
       "message": "fd_set *child_fds_out",
+      "range": {
+        "startLine": 2712,
+        "startChar": 4,
+        "endLine": 2712,
+        "endChar": 25
+      },
+      "revId": "c07774d7adda288fa59bee17973c56bc554c6a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce963a0b_92c1f211",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2712,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-21T14:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fac737f8_4b58086a",
       "range": {
         "startLine": 2712,
         "startChar": 4,
