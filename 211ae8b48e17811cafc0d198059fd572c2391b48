@@ -157,6 +157,30 @@
       },
       "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde2a5a6_c71dd7bc",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-21T22:42:09Z",
+      "side": 1,
+      "message": "It sounds like two different problems though? I suppose you could still override fd 0 to /dev/whatever (if the intention is to make it more static), and still pass the command through `bash -c`?  Not really a big deal, it\u0027s just seems much simpler without the extra pipe.  Or am I missing something?\n\nAlso, the second `ls -l /proc/self/fd/` seems redundant.",
+      "parentUuid": "c94e95c0_29573491",
+      "range": {
+        "startLine": 928,
+        "startChar": 12,
+        "endLine": 937,
+        "endChar": 3
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

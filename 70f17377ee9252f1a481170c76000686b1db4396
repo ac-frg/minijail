@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d306206_6e193f55",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-21T22:42:09Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 919,
+        "startChar": 12,
+        "endLine": 920,
+        "endChar": 33
+      },
+      "revId": "70f17377ee9252f1a481170c76000686b1db4396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
