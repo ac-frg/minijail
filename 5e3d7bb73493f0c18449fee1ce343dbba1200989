@@ -106,6 +106,24 @@
       "parentUuid": "0c94cb27_0c02d8ca",
       "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ef0bc2c_6655d2d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-21T17:08:29Z",
+      "side": 1,
+      "message": "if the file is meant to be always correct \u0026 usable, should we flip the question and use it in CrOS too ?",
+      "parentUuid": "95b6237a_c73f5411",
+      "revId": "5e3d7bb73493f0c18449fee1ce343dbba1200989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
