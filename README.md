@@ -151,3 +151,7 @@ FEATURES=test emerge-${BOARD} chromeos-base/minijail dev-rust/minijail-sys \
 cros deploy <DUT> chromeos-base/minijail
 tast run <DUT> security.Minijail security.MinijailSeccomp
 ```
+
+Finally, when uploading the CL also make sure to include the list of changes
+since the last uprev. The command to generate this is as follows:
+`git log --oneline --no-merges <previous hash in ebuild file>..HEAD`
