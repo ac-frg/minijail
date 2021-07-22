@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81fee55_ac19b88e",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T00:46:15Z",
+      "side": 1,
+      "message": "nit: If",
+      "range": {
+        "startLine": 903,
+        "startChar": 48,
+        "endLine": 903,
+        "endChar": 50
+      },
+      "revId": "1c61602b5448e856ef7c6060f34a02a7c6971cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22e192cb_95c0a7f5",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T00:46:15Z",
+      "side": 1,
+      "message": "nit: not necessary?",
+      "range": {
+        "startLine": 916,
+        "startChar": 2,
+        "endLine": 916,
+        "endChar": 22
+      },
+      "revId": "1c61602b5448e856ef7c6060f34a02a7c6971cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -46,6 +46,30 @@
       },
       "revId": "70f17377ee9252f1a481170c76000686b1db4396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "784a04d7_d009f5a2",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T00:46:15Z",
+      "side": 1,
+      "message": "Ah, make sense!",
+      "parentUuid": "4df81457_2636ab4e",
+      "range": {
+        "startLine": 919,
+        "startChar": 12,
+        "endLine": 920,
+        "endChar": 33
+      },
+      "revId": "70f17377ee9252f1a481170c76000686b1db4396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
