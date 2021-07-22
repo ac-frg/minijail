@@ -16,6 +16,24 @@
       "message": "Looks like this needs a rebase.",
       "revId": "e8551d1fcd6d0910a4fbda2ee6855a6212a1ab5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d02ca04_3d8bdc01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-22T18:25:07Z",
+      "side": 1,
+      "message": "it should rebase just fine which is what we have the Gerrit settings set to.  don\u0027t know why the infra is refusing to do that though.",
+      "parentUuid": "5bd93929_81706aa1",
+      "revId": "e8551d1fcd6d0910a4fbda2ee6855a6212a1ab5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
