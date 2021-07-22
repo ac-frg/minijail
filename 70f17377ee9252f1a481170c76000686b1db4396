@@ -22,6 +22,30 @@
       },
       "revId": "70f17377ee9252f1a481170c76000686b1db4396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4df81457_2636ab4e",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T00:40:25Z",
+      "side": 1,
+      "message": "It is used to test that it gets closed before the script is run in the forked process inside run_remap(). I added a comment to explain.",
+      "parentUuid": "7d306206_6e193f55",
+      "range": {
+        "startLine": 919,
+        "startChar": 12,
+        "endLine": 920,
+        "endChar": 33
+      },
+      "revId": "70f17377ee9252f1a481170c76000686b1db4396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
