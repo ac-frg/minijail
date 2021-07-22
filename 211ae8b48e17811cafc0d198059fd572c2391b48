@@ -205,6 +205,30 @@
       },
       "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbc59d2_f9d91b5e",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T00:43:03Z",
+      "side": 1,
+      "message": "The second ls -l /proc/self/fd prints the open file descriptors and their targets for debugging when the test fails.",
+      "parentUuid": "4da23259_f398f21f",
+      "range": {
+        "startLine": 928,
+        "startChar": 12,
+        "endLine": 937,
+        "endChar": 3
+      },
+      "revId": "211ae8b48e17811cafc0d198059fd572c2391b48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
