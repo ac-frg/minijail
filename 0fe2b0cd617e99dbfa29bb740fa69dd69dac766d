@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d77554_cc06aa94",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T15:30:11Z",
+      "side": 1,
+      "message": "Yes, I reworked it so there is a run_internal that hides the trait.",
+      "parentUuid": "0ba44204_2c0f5374",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 3
+      },
+      "revId": "0fe2b0cd617e99dbfa29bb740fa69dd69dac766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df2773e2_893f5269",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-22T00:07:20Z",
       "side": 1,
       "message": "Will this be public later?  It seems to be only used in the test.  Consider add some document and remind the API user to make sure the FD doesn\u0027t have CLOEXEC (since it isn\u0027t the default in Rust).\n\nBTW, this may fail in TreHugger when it tries to build `libminijail_rust` for Android.  You\u0027d need to allow dead_code.",
+      "range": {
+        "startLine": 54,
+        "startChar": 7,
+        "endLine": 54,
+        "endChar": 17
+      },
+      "revId": "0fe2b0cd617e99dbfa29bb740fa69dd69dac766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "823e376f_ec293621",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T15:30:11Z",
+      "side": 1,
+      "message": "It is now used by the wrapper functions run_fd() and run_fd_remap().",
+      "parentUuid": "df2773e2_893f5269",
       "range": {
         "startLine": 54,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8051f5b_ab8db866",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T15:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95c0ad98_52faf81a",
+      "range": {
+        "startLine": 944,
+        "startChar": 38,
+        "endLine": 944,
+        "endChar": 47
+      },
+      "revId": "0fe2b0cd617e99dbfa29bb740fa69dd69dac766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d53306c_33497886",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-07-22T00:07:20Z",
       "side": 1,
       "message": "nit: How about something like... \"only changes the behavior at the very end of the program\" (thus has no side effect to the current process)?",
+      "range": {
+        "startLine": 951,
+        "startChar": 29,
+        "endLine": 951,
+        "endChar": 47
+      },
+      "revId": "0fe2b0cd617e99dbfa29bb740fa69dd69dac766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c68c8f4_208c2170",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T15:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d53306c_33497886",
       "range": {
         "startLine": 951,
         "startChar": 29,
