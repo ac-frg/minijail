@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95906908_99853453",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T18:48:02Z",
+      "side": 1,
+      "message": "nit: this doesn\u0027t seem to be really used at the moment.  Feel free to keep though if you plan to use soon.",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "e0de5d691b953eb29c928b0679481cb8e5119ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7129e3f0_7e5227d9",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T18:48:02Z",
+      "side": 1,
+      "message": "For the sake of simplicity, this could be `impl Runnable for \u0026Path` if you adjust the caller. WDYT?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "e0de5d691b953eb29c928b0679481cb8e5119ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57b662d1_83d5fbdd",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T18:48:02Z",
+      "side": 1,
+      "message": "Similarly, this could be RawFd.",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 13
+      },
+      "revId": "e0de5d691b953eb29c928b0679481cb8e5119ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac96170_23bb3563",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2021-07-22T18:48:02Z",
+      "side": 1,
+      "message": "nit: I wonder if we should name the \"constructor\" so that the ownership is more clear.  WDYT about something like `impl RunnableFd { fn own_fd(..) {} }`?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "e0de5d691b953eb29c928b0679481cb8e5119ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
