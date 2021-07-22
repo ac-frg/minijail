@@ -16,6 +16,24 @@
       "message": "these really don\u0027t feel like they should be here.  is there some option we should be using to omit all these CPP defines ?",
       "revId": "b454cb42d64343ed27f78e51b88d0256a076996a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "905f7c60_10a400f5",
+        "filename": "rust/minijail-sys/libminijail.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-22T15:29:20Z",
+      "side": 1,
+      "message": "I found the original bindgen invocation arguments in lib.rs, applied them, and uploaded the result.",
+      "parentUuid": "c4220ead_31bc6cbc",
+      "revId": "b454cb42d64343ed27f78e51b88d0256a076996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
