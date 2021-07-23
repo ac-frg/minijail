@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb5a23c_02c4fbd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-23T00:21:36Z",
+      "side": 1,
+      "message": "Bug: None\nTest: check in gitiles\n\n(This is and Android CL, so the commit message format and presubmit checks are slightly different.)",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "a1582760441804114d431dccd0f9e7a71987eefa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63f08c1c_016b34db",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-23T00:21:36Z",
+      "side": 1,
+      "message": "Suggestion: Finally, when uploading the CL, make sure to...\n\nThe original had 3 separate transitions, so you can drop the \"also\".",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 35
+      },
+      "revId": "a1582760441804114d431dccd0f9e7a71987eefa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b0dd532_413e0e6d",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-07-23T00:21:36Z",
+      "side": 1,
+      "message": "Suggestion: the list",
+      "range": {
+        "startLine": 156,
+        "startChar": 46,
+        "endLine": 156,
+        "endChar": 50
+      },
+      "revId": "a1582760441804114d431dccd0f9e7a71987eefa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
