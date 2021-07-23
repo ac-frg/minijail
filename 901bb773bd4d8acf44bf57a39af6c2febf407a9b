@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "057fc431_01353efc",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-23T19:04:36Z",
+      "side": 1,
+      "message": "M",
+      "range": {
+        "startLine": 128,
+        "startChar": 7,
+        "endLine": 128,
+        "endChar": 8
+      },
+      "revId": "901bb773bd4d8acf44bf57a39af6c2febf407a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d1954ba_15c2ae10",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-07-23T19:04:36Z",
+      "side": 1,
+      "message": "I don\u0027t think this is strictly necessary. repo sync will always update the upstream branch. OK to keep it though.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 19
+      },
+      "revId": "901bb773bd4d8acf44bf57a39af6c2febf407a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
