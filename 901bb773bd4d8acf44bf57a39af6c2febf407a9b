@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe446e3b_9b57d3c0",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-27T21:21:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "057fc431_01353efc",
+      "range": {
+        "startLine": 128,
+        "startChar": 7,
+        "endLine": 128,
+        "endChar": 8
+      },
+      "revId": "901bb773bd4d8acf44bf57a39af6c2febf407a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d1954ba_15c2ae10",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "IIUC this was added because Nicole noticed that commits from her local branch were being included.",
       "parentUuid": "4d1954ba_15c2ae10",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 19
+      },
+      "revId": "901bb773bd4d8acf44bf57a39af6c2febf407a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec086442_59e7aafe",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-27T21:21:24Z",
+      "side": 1,
+      "message": "Yeah, the issue is less what repo sync updates and more about the fact that cros_uprev pulls the commit hash from whatever branch you\u0027re on (or at least it seems from testing since it pulled from my local branch a commit that wasn\u0027t merged yet).",
+      "parentUuid": "315bdfdb_3aa1c646",
       "range": {
         "startLine": 130,
         "startChar": 0,
