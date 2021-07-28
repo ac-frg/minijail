@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "323c2f9f_2338ad84",
         "filename": "lib.rs",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "only need one ,",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "b1bb4814_e64c7335",
         "filename": "lib.rs",
@@ -32,10 +33,10 @@
       "message": "Done",
       "parentUuid": "323c2f9f_2338ad84",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "65c117c2_a63fed63",
         "filename": "lib.rs",
@@ -49,10 +50,10 @@
       "side": 1,
       "message": "do we not need a manual pub type for this ?  seems like we should given the u8/u16/u32 above ?",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "8f268c1f_48795db1",
         "filename": "lib.rs",
@@ -67,8 +68,25 @@
       "message": "__uint64_t is unused but incorrect for 32-bit (unsigned long), so I just removed it. No need to export a type that is unused.\n\nI haven\u0027t found a better bindgen invocation that will suppress it while still generating the right definitions for all the other integer typedefs.",
       "parentUuid": "65c117c2_a63fed63",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0365b6_9b0f5346",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-28T16:20:04Z",
+      "side": 1,
+      "message": "it might be unused right now, but what\u0027s stopping it from being used in the future ?\n\ni actually see uint64_t usage in libminijail.h now ...",
+      "parentUuid": "8f268c1f_48795db1",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
