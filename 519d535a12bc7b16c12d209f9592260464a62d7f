@@ -87,6 +87,24 @@
       "parentUuid": "8f268c1f_48795db1",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a9ddb16_88081efd",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-07-28T17:24:46Z",
+      "side": 1,
+      "message": "Just a guess, but I suspect plain old uint64_t is okay and gets translated to u64 everywhere. On the other hand, __u64 (and maybe __uint64_t?) is a typedef from a Linux header that ends up with the wrong type on 32-bit systems, but it is probably not used (directly) by libminijail.h.\n\nAll that said, I don\u0027t see any reason we couldn\u0027t just include a matching __u64 \u003d u64 line like the other __u* types, unless that leads to unused code warnings.",
+      "parentUuid": "2c0365b6_9b0f5346",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
