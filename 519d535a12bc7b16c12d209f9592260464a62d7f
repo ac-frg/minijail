@@ -105,6 +105,24 @@
       "parentUuid": "2c0365b6_9b0f5346",
       "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0912ee1f_0f4ee6f6",
+        "filename": "lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-07-28T19:33:13Z",
+      "side": 1,
+      "message": "adding a __u64 \u003d u64 line seems reasonable.  i guess we\u0027ll revisit with Allen\u0027s refresh here.",
+      "parentUuid": "7a9ddb16_88081efd",
+      "revId": "519d535a12bc7b16c12d209f9592260464a62d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
