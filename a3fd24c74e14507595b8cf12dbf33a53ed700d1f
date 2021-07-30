@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb76145_4dc98a3c",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-30T16:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd4e3f68_771846e1",
+      "revId": "a3fd24c74e14507595b8cf12dbf33a53ed700d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0136155_31512352",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-07-30T01:58:35Z",
       "side": 1,
       "message": "we swap quote style instead of escaping them.  so use \" inside or outside.",
+      "revId": "a3fd24c74e14507595b8cf12dbf33a53ed700d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b9fc3e_0057aba5",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-07-30T16:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0136155_31512352",
       "revId": "a3fd24c74e14507595b8cf12dbf33a53ed700d1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
