@@ -2449,12 +2449,14 @@ static void init_term(int sig attribute_unused)
 	_exit(init_exitstatus);
 }
 
-static void init(pid_t rootpid)
+static void init(const sigset_t* to_restore, pid_t rootpid)
 {
 	pid_t pid;
 	int status;
 	/* So that we exit with the right status. */
 	signal(SIGTERM, init_term);
+	/* Unblock SIGTERM */
+	sigprocmask(SIG_SETMASK, to_restore, NULL);
 	/* TODO(wad): self jail with seccomp filters here. */
 	while ((pid = wait(&status)) > 0) {
 		/*
@@ -3100,7 +3102,21 @@ static int minijail_run_internal(struct minijail *j,
 	 * case.
 	 */
 	pid_t child_pid;
+
+	/*
+	 * Stuff about PID namespaces
+	 */
+	sigset_t signal_mask_restore;
+	if (sigprocmask(SIG_SETMASK, NULL, &signal_mask_restore) != 0)
+		pdie("sigprocmask failed");
+
 	if (pid_namespace) {
+		sigset_t signal_mask_block_term;
+		if (sigfillset(&signal_mask_block_term) < 0)
+			pdie("sigfillset failed");
+		if (sigprocmask(SIG_SETMASK, &signal_mask_block_term, &signal_mask_restore) != 0)
+			pdie("sigprocmask failed");
+
 		unsigned long clone_flags = CLONE_NEWPID | SIGCHLD;
 		if (j->flags.userns)
 			clone_flags |= CLONE_NEWUSER;
@@ -3122,6 +3138,10 @@ static int minijail_run_internal(struct minijail *j,
 
 	state_out->child_pid = child_pid;
 	if (child_pid) {
+		// Restore signals in the parent process
+		if (sigprocmask(SIG_SETMASK, &signal_mask_restore, NULL) != 0)
+			pdie("sigprocmask failed");
+
 		j->initpid = child_pid;
 
 		if (j->flags.forward_signals) {
@@ -3202,11 +3222,20 @@ static int minijail_run_internal(struct minijail *j,
 
 	/* Child process. */
 	if (j->flags.reset_signal_mask) {
-		sigset_t signal_mask;
-		if (sigemptyset(&signal_mask) != 0)
-			pdie("sigemptyset failed");
-		if (sigprocmask(SIG_SETMASK, &signal_mask, NULL) != 0)
-			pdie("sigprocmask failed");
+		if (pid_namespace) {
+			/*
+			 * As the init of a PID namespace we mustn't unblock
+			 * signals until we have installed handlers for them.
+			 */
+			if (sigemptyset(&signal_mask_restore) != 0)
+				pdie("sigemptyset failed");
+		} else {
+			sigset_t signal_mask;
+			if (sigemptyset(&signal_mask) != 0)
+				pdie("sigemptyset failed");
+			if (sigprocmask(SIG_SETMASK, &signal_mask, NULL) != 0)
+				pdie("sigprocmask failed");
+		}
 	}
 
 	if (j->flags.reset_signal_handlers) {
@@ -3321,9 +3350,11 @@ static int minijail_run_internal(struct minijail *j,
 			 * Best effort. Don't bother checking the return value.
 			 */
 			prctl(PR_SET_NAME, "minijail-init");
-			init(child_pid);	/* Never returns. */
+			init(&signal_mask_restore, child_pid);	/* Never returns. */
 		}
 		state_out->child_pid = child_pid;
+		/* Restore signals for non-init child process. */
+		sigprocmask(SIG_SETMASK, &signal_mask_restore, NULL);
 	}
 
 	run_hooks_or_die(j, MINIJAIL_HOOK_EVENT_PRE_EXECVE);
