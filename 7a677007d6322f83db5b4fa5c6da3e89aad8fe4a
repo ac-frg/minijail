@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57c923f8_9a7689f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628388
+      },
+      "writtenOn": "2021-08-10T08:40:28Z",
+      "side": 1,
+      "message": "I got the following error with my seccomp policy\n\n```\ncrosvm[3431]: libminijail[3431]: fopen(/proc/sys/kernel/seccomp/actions_avail) failed: No such file or directory\ncrosvm[3431]: libminijail[3431]: trailing garbage after constant: \u0027KVM_SET_FPU\u0027\ncrosvm[3431]: libminijail[3431]: compile_atom: /usr/share/policy/crosvm/cras_snd_device.policy(19): invalid constant \u0027KVM_SET_FPU\u0027\ncrosvm[3431]: libminijail[3431]: could not allocate filter block\ncrosvm[3431]: libminijail[3431]: compile_filter: compile_file() failed\ncrosvm[3431]: libminijail[3431]: failed to compile seccomp filter BPF program in \u0027/usr/share/policy/crosvm/cras_snd_device.policy\u0027\n```\n\nIs this the right fix?",
+      "revId": "7a677007d6322f83db5b4fa5c6da3e89aad8fe4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
