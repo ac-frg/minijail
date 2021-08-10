@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <linux/fd.h>
 #include <linux/fs.h>
+#include <linux/kvm.h>
 #include <linux/loop.h>
 #include <linux/mman.h>
 #include <linux/net.h>
