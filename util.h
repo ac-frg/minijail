@@ -55,6 +55,9 @@ extern "C" {
 #define attribute_printf(format_idx, check_idx) \
 	__attribute__((__format__(__printf__, format_idx, check_idx)))
 
+#ifndef __cplusplus
+/* If writing C++, use std::unique_ptr with a destructor instead. */
+
 /*
  * Mark a local variable for automatic cleanup when exiting its scope.
  * See attribute_cleanup_fp as an example below.
@@ -72,6 +75,9 @@ extern "C" {
  *   attribute_cleanup_fp FILE *fp = NULL;
  *   ...
  *   fp = fopen(...);
+ *
+ * NB: This will automatically close the underlying fd, so do not use this
+ * with fdopen calls if the fd should be left open.
  */
 #define attribute_cleanup_fp attribute_cleanup(_cleanup_fp)
 static inline void _cleanup_fp(FILE **fp)
@@ -79,6 +85,26 @@ static inline void _cleanup_fp(FILE **fp)
 	if (*fp)
 		fclose(*fp);
 }
+
+/*
+ * Automatically close a fd when exiting its scope.
+ * Make sure the fd is always initialized.
+ * Some examples:
+ *   attribute_cleanup_fd int fd = open(...);
+ *   attribute_cleanup_fd int fd = -1;
+ *   ...
+ *   fd = open(...);
+ *
+ * NB: Be careful when using this with attribute_cleanup_fp and fdopen.
+ */
+#define attribute_cleanup_fd attribute_cleanup(_cleanup_fd)
+static inline void _cleanup_fd(int *fd)
+{
+	if (*fd >= 0)
+		close(*fd);
+}
+
+#endif /* __cplusplus */
 
 /* clang-format off */
 #define die(_msg, ...) \
