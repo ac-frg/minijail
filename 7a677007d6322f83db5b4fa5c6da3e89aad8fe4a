@@ -34,6 +34,24 @@
       "parentUuid": "57c923f8_9a7689f3",
       "revId": "7a677007d6322f83db5b4fa5c6da3e89aad8fe4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ae14b0_55f87db6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628388
+      },
+      "writtenOn": "2021-08-18T04:10:12Z",
+      "side": 1,
+      "message": "Looking at the other commits, I think this is the right fix for the error. However, I actually don\u0027t need those KVM flags in the seccomp policy. Let me close this. Thank you very much",
+      "parentUuid": "a130f0dc_bc01214e",
+      "revId": "7a677007d6322f83db5b4fa5c6da3e89aad8fe4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
