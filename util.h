@@ -55,6 +55,57 @@ extern "C" {
 #define attribute_printf(format_idx, check_idx) \
 	__attribute__((__format__(__printf__, format_idx, check_idx)))
 
+#ifndef __cplusplus
+/* If writing C++, use std::unique_ptr with a destructor instead. */
+
+/*
+ * Mark a local variable for automatic cleanup when exiting its scope.
+ * See attribute_cleanup_fp as an example below.
+ * Make sure any variable using this is always initialized to something.
+ * @func The function to call on (a pointer to) the variable.
+ */
+#define attribute_cleanup(func) \
+	__attribute__((__cleanup__(func)))
+
+/*
+ * Automatically close a FILE* when exiting its scope.
+ * Make sure the pointer is always initialized.
+ * Some examples:
+ *   attribute_cleanup_fp FILE *fp = fopen(...);
+ *   attribute_cleanup_fp FILE *fp = NULL;
+ *   ...
+ *   fp = fopen(...);
+ *
+ * NB: This will automatically close the underlying fd, so do not use this
+ * with fdopen calls if the fd should be left open.
+ */
+#define attribute_cleanup_fp attribute_cleanup(_cleanup_fp)
+static inline void _cleanup_fp(FILE **fp)
+{
+	if (*fp)
+		fclose(*fp);
+}
+
+/*
+ * Automatically close a fd when exiting its scope.
+ * Make sure the fd is always initialized.
+ * Some examples:
+ *   attribute_cleanup_fd int fd = open(...);
+ *   attribute_cleanup_fd int fd = -1;
+ *   ...
+ *   fd = open(...);
+ *
+ * NB: Be careful when using this with attribute_cleanup_fp and fdopen.
+ */
+#define attribute_cleanup_fd attribute_cleanup(_cleanup_fd)
+static inline void _cleanup_fd(int *fd)
+{
+	if (*fd >= 0)
+		close(*fd);
+}
+
+#endif /* __cplusplus */
+
 /* clang-format off */
 #define die(_msg, ...) \
 	do_fatal_log(LOG_ERR, "libminijail[%d]: " _msg, getpid(), ## __VA_ARGS__)
@@ -138,6 +189,14 @@ static inline bool running_with_asan(void)
 
 static inline bool debug_logging_allowed(void) {
 #if defined(ALLOW_DEBUG_LOGGING)
+	return true;
+#else
+	return false;
+#endif
+}
+
+static inline bool seccomp_default_ret_log(void) {
+#if defined(SECCOMP_DEFAULT_RET_LOG)
 	return true;
 #else
 	return false;

@@ -91,7 +91,6 @@ cc_object {
     vendor_available: true,
     product_available: true,
     recovery_available: true,
-    header_libs: ["libc_headers"], // TODO(b/153662223): Clean this up.
     srcs: ["gen_syscalls.c"],
     cflags: [
         "-dD",
@@ -102,6 +101,7 @@ cc_object {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -120,6 +120,7 @@ cc_genrule {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -130,7 +131,6 @@ cc_object {
     vendor_available: true,
     product_available: true,
     recovery_available: true,
-    header_libs: ["libc_headers"], // TODO(b/153662223): Clean this up.
     srcs: ["gen_constants.c"],
     cflags: [
         "-dD",
@@ -141,6 +141,7 @@ cc_object {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -159,6 +160,7 @@ cc_genrule {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -189,6 +191,7 @@ cc_library_static {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -201,7 +204,6 @@ cc_object {
     product_available: true,
     recovery_available: true,
     host_supported: true,
-    header_libs: ["libc_headers"], // TODO(b/153662223): Clean this up.
     cflags: [
         "-S",
         "-O0",
@@ -224,7 +226,6 @@ cc_object {
     product_available: true,
     recovery_available: true,
     host_supported: true,
-    header_libs: ["libc_headers"], // TODO(b/153662223): Clean this up.
     cflags: [
         "-S",
         "-O0",
@@ -277,6 +278,7 @@ cc_library {
     apex_available: [
         "//apex_available:platform",
         "com.android.adbd",
+        "com.android.compos",
         "com.android.media.swcodec",
         "com.android.virt",
     ],
@@ -538,6 +540,7 @@ rust_library {
     ],
     apex_available: [
         "//apex_available:platform",
+        "com.android.compos",
         "com.android.virt",
     ],
 }
@@ -557,6 +560,7 @@ rust_library {
     ],
     apex_available: [
         "//apex_available:platform",
+        "com.android.compos",
         "com.android.virt",
     ],
 }
