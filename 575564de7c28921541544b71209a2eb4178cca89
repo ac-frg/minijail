@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d74f35f_ca985654",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-08-31T20:12:38Z",
+      "side": 1,
+      "message": "Is this right? It looks like the sub architecture is missing and might matter for some ARM targets.\n\nIs there a reason \"TARGET\" isn\u0027t used?\n\nSee: https://doc.rust-lang.org/cargo/appendix/glossary.html#target",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
