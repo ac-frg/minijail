@@ -16,6 +16,24 @@
       "message": "Is this right? It looks like the sub architecture is missing and might matter for some ARM targets.\n\nIs there a reason \"TARGET\" isn\u0027t used?\n\nSee: https://doc.rust-lang.org/cargo/appendix/glossary.html#target",
       "revId": "575564de7c28921541544b71209a2eb4178cca89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae491aad_2f0353ca",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-08-31T20:37:57Z",
+      "side": 1,
+      "message": "Rust uses a different format for the triplets than debian does for the compiler prefix. The CROSS_COMPILE variable is used as a prefix for which compiler to invoke (i.e. arm-linux-gnueabi-gcc instead of armv7-linux-unknown-gnueabi-gcc). I am not sure if this is a convention by debian or gcc. \nI looked into how to compile for sub architectures and it looks like those are set via the `-m` argument to gcc, debian does not seem to ship the compiler for those as separate binaries.\n\nTARGET also contains the \u0027vendor\u0027 part, which is also not used in the GCC prefix.\n\nWe could parse the rust target in the makefile to split it into an -m argument and the right prefix. However, this is all done in common.mk, which will make that quite a bit more complicated I think. \n\nWhat would you suggest?",
+      "parentUuid": "4d74f35f_ca985654",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
