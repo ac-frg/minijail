@@ -34,6 +34,24 @@
       "parentUuid": "4d74f35f_ca985654",
       "revId": "575564de7c28921541544b71209a2eb4178cca89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41cc59d_d47105ec",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-08-31T20:44:15Z",
+      "side": 1,
+      "message": "On Chrome OS are target tripples look like:\n```\naarch64-cros-linux-gnu-clang++\narm-none-eabi-clang++\narmv7a-cros-linux-gnueabihf-clang++\narmv7m-cros-eabi-clang++\ni686-pc-linux-gnu-clang++\nx86_64-cros-linux-gnu-clang++\nx86_64-pc-linux-gnu-clang++\n```\nUnfortunately, that covers both cases. It might be fine to leave this as is, but allow overriding the result with the CROSS_COMPILE environment variable.",
+      "parentUuid": "ae491aad_2f0353ca",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
