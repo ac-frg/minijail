@@ -70,6 +70,24 @@
       "parentUuid": "e41cc59d_d47105ec",
       "revId": "575564de7c28921541544b71209a2eb4178cca89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f4fc2f_f563daee",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-01T21:26:27Z",
+      "side": 1,
+      "message": "IIRC the Rust build is moving towards bazel. I am not sure what would be better for Android, but they already have the Android.bp. Personally, I would be in favor of reducing the number of build files we need to maintain for minijail, so if we could do something that could replace both the Makefile and the Android.bp and support all the downstream consumers of Minijail that would be the best IMO.",
+      "parentUuid": "26776c97_06b6f7e0",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
