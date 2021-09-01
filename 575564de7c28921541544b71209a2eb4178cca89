@@ -52,6 +52,24 @@
       "parentUuid": "ae491aad_2f0353ca",
       "revId": "575564de7c28921541544b71209a2eb4178cca89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26776c97_06b6f7e0",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-09-01T20:39:44Z",
+      "side": 1,
+      "message": "It works as-is for chromeos, as we don\u0027t invoke make here but link minijail through pkg-config. I like the idea of allowing an override though, I have added that to this CL.\n\nFor the longer term.. I wonder how you would feel about migrating the Makefile to meson (We already have other meson builds in ChromeOS)? I think that would make supporting other platforms and cross compilation easier, which would be really helpful for crosvm.",
+      "parentUuid": "e41cc59d_d47105ec",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
