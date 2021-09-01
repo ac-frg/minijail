@@ -88,6 +88,24 @@
       "parentUuid": "26776c97_06b6f7e0",
       "revId": "575564de7c28921541544b71209a2eb4178cca89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c839afd9_84706851",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-09-01T21:49:12Z",
+      "side": 1,
+      "message": "I have been looking around other projects that have a similar problem (maintaining Android.bp + another build system). There doesn\u0027t seem to be a good solution that avoids maintaining both. \n\nHowever, I wonder if that problem will resolve itself as android is migrating towards bazel as well, and we could converge both cros and aosp builds (as well as other downstream users) on bazel.",
+      "parentUuid": "23f4fc2f_f563daee",
+      "revId": "575564de7c28921541544b71209a2eb4178cca89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
