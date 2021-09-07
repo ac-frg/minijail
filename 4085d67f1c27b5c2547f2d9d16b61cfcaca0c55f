@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c9e1eb_676a9e77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "I would start by only doing this when -I is set.",
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8658de71_b10bedbd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2452,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "Please respect formatting.",
+      "range": {
+        "startLine": 2452,
+        "startChar": 17,
+        "endLine": 2452,
+        "endChar": 45
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc098de0_14ad40e3",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2458,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "End comments with periods.",
+      "range": {
+        "startLine": 2458,
+        "startChar": 4,
+        "endLine": 2458,
+        "endChar": 19
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b66a64_9f800115",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3107,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "This needs a better comment.",
+      "range": {
+        "startLine": 3107,
+        "startChar": 4,
+        "endLine": 3107,
+        "endChar": 30
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a9a0cf_a0560596",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3118,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "This can probably be extracted into a helper.",
+      "range": {
+        "startLine": 3114,
+        "startChar": 0,
+        "endLine": 3118,
+        "endChar": 30
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01e19539_fb082773",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "C-style comments please, and end with period.",
+      "range": {
+        "startLine": 3141,
+        "startChar": 2,
+        "endLine": 3141,
+        "endChar": 42
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68caec0d_69789a86",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3227,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-07T21:54:10Z",
+      "side": 1,
+      "message": "init process",
+      "range": {
+        "startLine": 3227,
+        "startChar": 13,
+        "endLine": 3227,
+        "endChar": 17
+      },
+      "revId": "4085d67f1c27b5c2547f2d9d16b61cfcaca0c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
