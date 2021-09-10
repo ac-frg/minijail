@@ -16,6 +16,24 @@
       "message": "This looks wrong to me. We are freeing all values of i when we might not have allocated all of them.",
       "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "851b77c2_f6dc27a4",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-10T18:05:03Z",
+      "side": 1,
+      "message": "NVM, this is based on j-\u003ecgroup_count which is incremented as new entries are allocated.",
+      "parentUuid": "5a13ae1b_b4913d56",
+      "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
