@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57ef9d72_1dd73fe8",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-10T20:47:46Z",
+      "side": 1,
+      "message": "tiny nit:\n\n/*\n * Start comment on this line.\n */",
+      "range": {
+        "startLine": 1472,
+        "startChar": 2,
+        "endLine": 1472,
+        "endChar": 3
+      },
+      "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a13ae1b_b4913d56",
         "filename": "libminijail.c",
         "patchSetId": 1
@@ -32,6 +55,29 @@
       "side": 1,
       "message": "NVM, this is based on j-\u003ecgroup_count which is incremented as new entries are allocated.",
       "parentUuid": "5a13ae1b_b4913d56",
+      "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a03f61fc_038173e1",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3549,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-10T20:47:46Z",
+      "side": 1,
+      "message": "Need to break at 80 cols here.",
+      "range": {
+        "startLine": 3549,
+        "startChar": 9,
+        "endLine": 3549,
+        "endChar": 59
+      },
       "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
