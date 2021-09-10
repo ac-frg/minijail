@@ -27,6 +27,7 @@
 #include "util.h"
 
 #define IDMAP_LEN 32U
+#define CONF_LINE_MAX_SIZE (1024)
 #define DEFAULT_TMP_SIZE (64 * 1024 * 1024)
 
 /*
@@ -517,6 +518,54 @@ static void read_seccomp_filter(const char *filter_path,
 	}
 }
 
+static void parse_conf_file(struct minijail* j, const char *conf_path)
+{
+	attribute_cleanup_fp FILE *f = fopen(conf_path, "r");
+	if (!f) {
+		fprintf(stderr, "failed to open conf file %s: %m", conf_path);
+		exit(1);
+	}
+
+	char *line = xmalloc(CONF_LINE_MAX_SIZE);
+	while (fgets(line, CONF_LINE_MAX_SIZE, f) != NULL) {
+		char *value = line;
+		value = strip(value);
+		/* Skip blank lines and all comments. Comment lines start with '#'. */
+		if (value[0] == '\0' || value[0] == '#') {
+			continue;
+		}
+		/* After tokenize call, value will points to a substring after '='.
+		 * If there is no '=' in the string, key will contains the entire string
+		 * while value will be NULL.
+		 */
+		char* key = tokenize(&value, "=");
+		key = strip(key);
+		value = strip(value);
+		if (!key || !value || key[0] == '\0' || value[0] == '\0') {
+			fprintf(stderr, "unable to parse %s", line);
+		}
+		/* Process allowed keywords.
+		 * It is inefficient to do string comparisons one-by-one. It can be improved
+		 * by a trie or a hash lookup.
+		 */
+		if (strcmp(key, "execute_paths") == 0) {
+			// TODO: process the value as a list of comma separated paths.
+		} else if (strcmp(key, "read_only_paths") == 0) {
+			// TODO: process the value as a list of comma separated paths.
+		} else if (strcmp(key, "write_paths") == 0) {
+			// TODO: process the value as a list of comma separated paths.
+		} else if (strcmp(key, "binding") == 0) {
+			add_binding(j, value);
+		} else if (strcmp(key, "mount") == 0) {
+			add_mount(j, value);
+		} else {
+			fprintf(stderr, "not recognized key encountered: %s", key);
+			exit(1);
+		}
+	}
+
+}
+
 static void usage(const char *progn)
 {
 	size_t i;
@@ -618,7 +667,9 @@ static void usage(const char *progn)
 	       "                The user is responsible for ensuring that the binary\n"
 	       "                was compiled for the correct architecture / kernel version.\n"
 	       "  --allow-speculative-execution:Allow speculative execution and disable\n"
-	       "                mitigations for speculative execution attacks.\n");
+	       "                mitigations for speculative execution attacks.\n"
+	       "  --conf <file>:Set minijail options through a configuration file.\n"
+	       "                Only a limited set of keywords is currently supported.\n");
 	/* clang-format on */
 }
 
@@ -672,6 +723,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 		{"seccomp-bpf-binary", required_argument, 0, 133},
 		{"add-suppl-group", required_argument, 0, 134},
 		{"allow-speculative-execution", no_argument, 0, 135},
+		{"conf", required_argument, 0, 136},
 		{0, 0, 0, 0},
 	};
 	/* clang-format on */
@@ -958,6 +1010,9 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			break;
 		case 135:
 			minijail_set_seccomp_filter_allow_speculation(j);
+			break;
+		case 136:
+			parse_conf_file(j, optarg);
 			break;
 		default:
 			usage(argv[0]);

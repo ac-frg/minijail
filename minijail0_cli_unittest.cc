@@ -526,3 +526,24 @@ TEST_F(CliTest, invalid_remount_mode) {
   argv[1] = "-Kfoo";
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
 }
+
+// Parsing valid conf file.
+TEST_F(CliTest, valid_conf_file) {
+  std::vector<std::string> argv = {"--conf", "", "/bin/sh"};
+  argv[1] = "test/valid.conf";
+  ASSERT_TRUE(parse_args_(argv));
+}
+
+// Parsing invalid conf file.
+TEST_F(CliTest, invalid_conf_file) {
+  std::vector<std::string> argv = {"--conf", "", "/bin/sh"};
+  const std::vector<std::string> invalid_conf_files = {
+    "test/bad_key.conf",
+    "test/missing_key.conf",
+    "test/missing_value.conf",
+  };
+  for (const auto conf_file : invalid_conf_files) {
+    argv[1] = conf_file;
+    ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+  }
+}
