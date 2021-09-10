@@ -61,7 +61,7 @@ const char *log_syscalls[] = {"connect", "fcntl", "sendto", "socket", "writev"};
 const char *log_syscalls[] = {"socket", "connect", "send", "writev"};
 #endif
 #elif defined(__powerpc__) || defined(__ia64__) || defined(__hppa__) ||        \
-      defined(__sparc__) || defined(__mips__)
+    defined(__sparc__) || defined(__mips__)
 const char *log_syscalls[] = {"socket", "connect", "send"};
 #else
 #error "Unsupported platform"
@@ -392,6 +392,8 @@ int parse_size(size_t *result, const char *sizespec)
 
 char *strip(char *s)
 {
+	if (s == NULL)
+		return NULL;
 	char *end;
 	while (*s && isblank(*s))
 		s++;
@@ -555,4 +557,47 @@ int minijail_setenv(char ***env, const char *name, const char *value,
 	new_env[env_len] = NULL;
 	*env = new_env;
 	return 0;
+}
+
+/*
+ * This is like getline() but supports line wrapping with \.
+ */
+ssize_t getmultiline(char **lineptr, size_t *n, FILE *stream)
+{
+	ssize_t ret = getline(lineptr, n, stream);
+	if (ret < 0)
+		return ret;
+
+	char *line = *lineptr;
+	/* Eat the newline to make processing below easier. */
+	if (ret > 0 && line[ret - 1] == '\n')
+		line[--ret] = '\0';
+
+	/* If the line doesn't end in a backslash, we're done. */
+	if (ret <= 0 || line[ret - 1] != '\\')
+		return ret;
+
+	/* This line ends in a backslash. Get the nextline. */
+	line[--ret] = '\0';
+	size_t next_n = 0;
+	char *next_line = NULL;
+	ssize_t next_ret = getmultiline(&next_line, &next_n, stream);
+	if (next_ret == -1) {
+		free(next_line);
+		/* We couldn't fully read the line, so return an error. */
+		return -1;
+	}
+
+	/* Merge the lines. */
+	*n = ret + next_ret + 2;
+	line = realloc(line, *n);
+	if (!line) {
+		free(next_line);
+		return -1;
+	}
+	line[ret] = ' ';
+	memcpy(&line[ret + 1], next_line, next_ret + 1);
+	free(next_line);
+	*lineptr = line;
+	return *n - 1;
 }
