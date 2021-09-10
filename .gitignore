@@ -24,6 +24,7 @@
 
 # Executables when compiling in-tree.
 /dump_constants
+/config_parser_unittest
 /libminijail_unittest
 /minijail0
 /minijail0_cli_unittest
