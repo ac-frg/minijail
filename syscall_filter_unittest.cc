@@ -1041,41 +1041,7 @@ TEST_F(ArgFilterTest, no_log_bad_ret_error) {
 namespace {
 
 FILE* write_policy_to_pipe(std::string policy) {
-  int pipefd[2];
-  if (pipe(pipefd) == -1) {
-    pwarn("pipe(pipefd) failed");
-    return nullptr;
-  }
-
-  size_t len = policy.length();
-  size_t i = 0;
-  unsigned int attempts = 0;
-  ssize_t ret;
-  while (i < len) {
-    ret = write(pipefd[1], policy.c_str() + i, len - i);
-    if (ret == -1) {
-      close(pipefd[0]);
-      close(pipefd[1]);
-      return nullptr;
-    }
-
-    /* If we write 0 bytes three times in a row, fail. */
-    if (ret == 0) {
-      if (++attempts >= 3) {
-        close(pipefd[0]);
-        close(pipefd[1]);
-        warn("write() returned 0 three times in a row");
-        return nullptr;
-      }
-      continue;
-    }
-
-    attempts = 0;
-    i += (size_t)ret;
-  }
-
-  close(pipefd[1]);
-  return fdopen(pipefd[0], "r");
+  return write_to_pipe(policy.c_str());
 }
 
 class FileTest : public ::testing::Test {

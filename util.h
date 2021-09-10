@@ -301,6 +301,8 @@ char **minijail_copy_env(char *const *env);
 int minijail_setenv(char ***env, const char *name, const char *value,
 		    int overwrite);
 
+FILE *write_to_pipe(const char *config);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif
