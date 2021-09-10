@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5efb7ad0_d863d6a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-10T20:57:47Z",
+      "side": 1,
+      "message": "It wouldn\u0027t be too hard to unit test that the value gets set. I looked for existing unit tests to augment, but didn\u0027t find anything related to seccomp.",
+      "parentUuid": "177fdbd6_e3d556ba",
+      "revId": "b9f87a0543e3b898002a371449d489652488dd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57ef9d72_1dd73fe8",
         "filename": "libminijail.c",
         "patchSetId": 1
