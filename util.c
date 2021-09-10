@@ -61,7 +61,7 @@ const char *log_syscalls[] = {"connect", "fcntl", "sendto", "socket", "writev"};
 const char *log_syscalls[] = {"socket", "connect", "send", "writev"};
 #endif
 #elif defined(__powerpc__) || defined(__ia64__) || defined(__hppa__) ||        \
-      defined(__sparc__) || defined(__mips__)
+    defined(__sparc__) || defined(__mips__)
 const char *log_syscalls[] = {"socket", "connect", "send"};
 #else
 #error "Unsupported platform"
@@ -392,6 +392,8 @@ int parse_size(size_t *result, const char *sizespec)
 
 char *strip(char *s)
 {
+	if (s == NULL)
+		return NULL;
 	char *end;
 	while (*s && isblank(*s))
 		s++;
@@ -555,4 +557,43 @@ int minijail_setenv(char ***env, const char *name, const char *value,
 	new_env[env_len] = NULL;
 	*env = new_env;
 	return 0;
+}
+
+FILE *write_to_pipe(const char *config)
+{
+	int pipefd[2];
+	if (pipe(pipefd) == -1) {
+		pwarn("pipe(pipefd) failed");
+		return NULL;
+	}
+
+	size_t len = strlen(config);
+	size_t i = 0;
+	unsigned int attempts = 0;
+	ssize_t ret;
+	while (i < len) {
+		ret = write(pipefd[1], config + i, len - i);
+		if (ret == -1) {
+			close(pipefd[0]);
+			close(pipefd[1]);
+			return NULL;
+		}
+
+		/* If we write 0 bytes three times in a row, fail. */
+		if (ret == 0) {
+			if (++attempts >= 3) {
+				close(pipefd[0]);
+				close(pipefd[1]);
+				warn("write() returned 0 three times in a row");
+				return NULL;
+			}
+			continue;
+		}
+
+		attempts = 0;
+		i += (size_t)ret;
+	}
+
+	close(pipefd[1]);
+	return fdopen(pipefd[0], "r");
 }
