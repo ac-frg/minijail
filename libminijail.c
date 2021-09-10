@@ -189,6 +189,7 @@ struct minijail {
 	struct hook *hooks_tail;
 	struct preserved_fd preserved_fds[MAX_PRESERVED_FDS];
 	size_t preserved_fd_count;
+	char *seccomp_label;
 };
 
 static void run_hooks_or_die(const struct minijail *j,
@@ -983,6 +984,10 @@ static void clear_seccomp_options(struct minijail *j)
 	j->filter_len = 0;
 	j->filter_prog = NULL;
 	j->flags.no_new_privs = 0;
+	if (j->seccomp_label) {
+		free(j->seccomp_label);
+	}
+	j->seccomp_label = NULL;
 }
 
 static int seccomp_should_use_filters(struct minijail *j)
@@ -1144,6 +1149,10 @@ void API minijail_parse_seccomp_filters(struct minijail *j, const char *path)
 		die("failed to compile seccomp filter BPF program in '%s'",
 		    path);
 	}
+	if (j->seccomp_label) {
+		free(j->seccomp_label);
+	}
+	j->seccomp_label = strdup(path);
 }
 
 void API minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd)
@@ -1170,7 +1179,10 @@ void API minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd)
 		die("failed to compile seccomp filter BPF program from fd %d",
 		    fd);
 	}
-	free(path);
+	if (j->seccomp_label) {
+		free(j->seccomp_label);
+	}
+	j->seccomp_label = path;
 }
 
 void API minijail_set_seccomp_filters(struct minijail *j,
@@ -1280,6 +1292,8 @@ static void minijail_marshal_helper(struct marshal_state *state,
 	}
 	for (i = 0; i < j->cgroup_count; ++i)
 		marshal_append_string(state, j->cgroups[i]);
+	if (j->seccomp_label)
+		marshal_append_string(state, j->seccomp_label);
 }
 
 size_t API minijail_size(const struct minijail *j)
@@ -1444,7 +1458,21 @@ int minijail_unmarshal(struct minijail *j, char *serialized, size_t length)
 		++j->cgroup_count;
 	}
 
+	if (j->seccomp_label) {	/* stale pointer */
+		char *seccomp_label = consumestr(&serialized, &length);
+		if (!seccomp_label)
+			goto bad_cgroups;
+		j->seccomp_label = strdup(seccomp_label);
+		if (!j->seccomp_label)
+			goto bad_cgroups;
+	}
+
 	return 0;
+
+	/* If more is added after j->seccomp_label, then this is needed:
+	 * if (j->seccomp_label)
+	 * 	free(j->seccomp_label);
+	 */
 
 bad_cgroups:
 	free_mounts_list(j);
@@ -1479,6 +1507,7 @@ clear_pointers:
 	j->hostname = NULL;
 	j->alt_syscall_table = NULL;
 	j->cgroup_count = 0;
+	j->seccomp_label = NULL;
 out:
 	return ret;
 }
@@ -3515,6 +3544,9 @@ static int minijail_wait_internal(struct minijail *j, int expected_signal)
 			 * $? = 128 + signum
 			 */
 			if (signum == SIGSYS) {
+				warn("child process %d had a policy violation (%s)",
+				     j->initpid,
+				     j->seccomp_label ? j->seccomp_label : "NO-LABEL");
 				error_status = MINIJAIL_ERR_JAIL;
 			} else {
 				error_status = MINIJAIL_ERR_SIG_BASE + signum;
@@ -3583,6 +3615,8 @@ void API minijail_destroy(struct minijail *j)
 		free(j->alt_syscall_table);
 	for (i = 0; i < j->cgroup_count; ++i)
 		free(j->cgroups[i]);
+	if (j->seccomp_label)
+		free(j->seccomp_label);
 	free(j);
 }
 
