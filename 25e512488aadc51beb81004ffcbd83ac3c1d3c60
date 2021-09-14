@@ -16,6 +16,24 @@
       "message": "I think ideally we\u0027d find a way to test this but I\u0027m not sure if we can unit test it -- maybe we can add something in the Tast test.",
       "revId": "25e512488aadc51beb81004ffcbd83ac3c1d3c60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "541a06bd_52ebaadd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-14T13:28:44Z",
+      "side": 1,
+      "message": "I think tast would be ideal because we could cover the whole end-to-end flow through crash_collector.cc.",
+      "parentUuid": "dceda496_066945b0",
+      "revId": "25e512488aadc51beb81004ffcbd83ac3c1d3c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
