@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1460acae_a5794280",
+        "filename": "libminijail-private.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-14T14:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "547e4091_8da7d796",
+      "range": {
+        "startLine": 24,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "dc62c57d72b98a96c56e2275281502a9f177e718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9584511f_adb89f1c",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-13T22:49:29Z",
       "side": 1,
       "message": "an we add a short /**/ comment here with the name of this argument?",
+      "range": {
+        "startLine": 2604,
+        "startChar": 67,
+        "endLine": 2604,
+        "endChar": 68
+      },
+      "revId": "dc62c57d72b98a96c56e2275281502a9f177e718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10af84ec_f0069499",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2604,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-14T14:03:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9584511f_adb89f1c",
       "range": {
         "startLine": 2604,
         "startChar": 67,
