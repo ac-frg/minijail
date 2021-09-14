@@ -639,6 +639,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 {
 	int opt;
 	int use_seccomp_filter = 0, use_seccomp_filter_binary = 0;
+	int use_seccomp_log = 0;
 	int forward = 1;
 	int binding = 0;
 	int chroot = 0, pivot_root = 0;
@@ -726,6 +727,12 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			minijail_namespace_ipc(j);
 			break;
 		case 'L':
+			if (seccomp == 3) {
+				fprintf(stderr,
+					"-L does not work with --seccomp-bpf-binary.\n");
+				exit(1);
+			}
+			use_seccomp_log = 1;
 			minijail_log_seccomp_filter_failures(j);
 			break;
 		case 'b':
@@ -945,6 +952,11 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 				fprintf(stderr,
 					"Do not use -s, -S, or "
 					"--seccomp-bpf-binary together.\n");
+				exit(1);
+			}
+			if (use_seccomp_log == 1) {
+				fprintf(stderr,
+					"-L does not work with --seccomp-bpf-binary.\n");
 				exit(1);
 			}
 			seccomp = 3;
