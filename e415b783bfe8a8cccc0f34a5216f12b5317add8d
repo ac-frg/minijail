@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "787a2829_973de7f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-14T22:57:23Z",
+      "side": 1,
+      "message": "Looks great, just minor nits.",
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b36b3e_ce690e86",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-14T22:57:23Z",
+      "side": 1,
+      "message": "Maybe we can put these three in three separate lines now.",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 25
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6f6d59_7527e9d2",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-14T22:57:23Z",
+      "side": 1,
+      "message": "We should extract these into constants or an enum.",
+      "range": {
+        "startLine": 730,
+        "startChar": 18,
+        "endLine": 730,
+        "endChar": 19
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2c02bd9_ce4446f3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-14T22:57:23Z",
+      "side": 1,
+      "message": "Wrap to 80 cols here.",
+      "range": {
+        "startLine": 732,
+        "startChar": 5,
+        "endLine": 732,
+        "endChar": 54
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a58ce7e6_ff593507",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-14T22:57:23Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 533,
+        "startChar": 25,
+        "endLine": 533,
+        "endChar": 26
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
