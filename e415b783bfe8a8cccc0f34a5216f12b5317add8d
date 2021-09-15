@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8efe8120_4b1d8027",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-15T16:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4b36b3e_ce690e86",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 25
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d6f6d59_7527e9d2",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e66640f_509031c5",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-15T16:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d6f6d59_7527e9d2",
+      "range": {
+        "startLine": 730,
+        "startChar": 18,
+        "endLine": 730,
+        "endChar": 19
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2c02bd9_ce4446f3",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-09-14T22:57:23Z",
       "side": 1,
       "message": "Wrap to 80 cols here.",
+      "range": {
+        "startLine": 732,
+        "startChar": 5,
+        "endLine": 732,
+        "endChar": 54
+      },
+      "revId": "e415b783bfe8a8cccc0f34a5216f12b5317add8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "715a501c_5934ee0b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-15T16:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2c02bd9_ce4446f3",
       "range": {
         "startLine": 732,
         "startChar": 5,
