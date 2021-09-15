@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b080962_fdcf207b",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2605,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-15T16:30:42Z",
+      "side": 1,
+      "message": "sorry for being nitpicky, but is this what clang-format does?",
+      "range": {
+        "startLine": 2604,
+        "startChar": 0,
+        "endLine": 2605,
+        "endChar": 22
+      },
+      "revId": "54afd8cd19a0174133d90a19d675e152f7f8e64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
