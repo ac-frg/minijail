@@ -16,6 +16,92 @@
       "message": "I removed one instance of a COIL word to pass presubmit, and cleaned up a couple wrapped strings, but otherwise this is what you get when running clang format on the included files.",
       "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c3c3399_88780e9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T15:59:36Z",
+      "side": 1,
+      "message": "Only a few suggestions, including one to exclude one struct from the formatting, OK otherwise.",
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4233eaf_de287cc7",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T15:59:36Z",
+      "side": 1,
+      "message": "I think this one I\u0027d surround with clang-format off/clang-format on guards. Is more compact and readable in the original version.",
+      "range": {
+        "startLine": 1523,
+        "startChar": 0,
+        "endLine": 1554,
+        "endChar": 2
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc8f3af_04fd1530",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1983,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T15:59:36Z",
+      "side": 1,
+      "message": "Extra /*\n\n/*\n * See\n * http://..\n */",
+      "range": {
+        "startLine": 1983,
+        "startChar": 5,
+        "endLine": 1983,
+        "endChar": 6
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6befa7e9_4375ba9d",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2379,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T15:59:36Z",
+      "side": 1,
+      "message": "Combine these two?",
+      "range": {
+        "startLine": 2378,
+        "startChar": 0,
+        "endLine": 2379,
+        "endChar": 19
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
