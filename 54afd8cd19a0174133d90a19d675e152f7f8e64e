@@ -22,6 +22,30 @@
       },
       "revId": "54afd8cd19a0174133d90a19d675e152f7f8e64e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25f35a83_470a3576",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2605,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-16T15:32:42Z",
+      "side": 1,
+      "message": "I ran clang-format on the file (see follow-up CL) and pulled back the changes for these lines.",
+      "parentUuid": "0b080962_fdcf207b",
+      "range": {
+        "startLine": 2604,
+        "startChar": 0,
+        "endLine": 2605,
+        "endChar": 22
+      },
+      "revId": "54afd8cd19a0174133d90a19d675e152f7f8e64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
