@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff730e2_9d0bbb7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-16T15:33:49Z",
+      "side": 1,
+      "message": "I removed one instance of a COIL word to pass presubmit, and cleaned up a couple wrapped strings, but otherwise this is what you get when running clang format on the included files.",
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
