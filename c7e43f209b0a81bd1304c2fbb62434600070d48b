@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6702d962_84319d07",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T16:34:37Z",
+      "side": 1,
+      "message": "Can we maybe use clearer names here? What do 1 and 13 mean?",
+      "range": {
+        "startLine": 640,
+        "startChar": 25,
+        "endLine": 640,
+        "endChar": 38
+      },
+      "revId": "c7e43f209b0a81bd1304c2fbb62434600070d48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b510809_1a3f0021",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T16:34:37Z",
+      "side": 1,
+      "message": "Maybe \"binary policy\".",
+      "range": {
+        "startLine": 533,
+        "startChar": 39,
+        "endLine": 533,
+        "endChar": 53
+      },
+      "revId": "c7e43f209b0a81bd1304c2fbb62434600070d48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
