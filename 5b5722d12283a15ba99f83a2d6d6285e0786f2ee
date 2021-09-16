@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8978a84e_c6953f49",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-16T19:55:54Z",
+      "side": 1,
+      "message": "I\u0027m being nitpicky but I\u0027d call this \"FilterWithBinaryPolicy\" just to be extra clear -- it\u0027s still seccomp filter implementation-wise.",
+      "range": {
+        "startLine": 640,
+        "startChar": 41,
+        "endLine": 640,
+        "endChar": 47
+      },
+      "revId": "5b5722d12283a15ba99f83a2d6d6285e0786f2ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
