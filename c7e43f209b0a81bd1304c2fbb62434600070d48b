@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "088515f1_304848d7",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-16T17:44:48Z",
+      "side": 1,
+      "message": "Grabbed this from the minijail0 documentation, but I think Strict and Filter are a bit clearer and accurate representations of the difference.",
+      "parentUuid": "6702d962_84319d07",
+      "range": {
+        "startLine": 640,
+        "startChar": 25,
+        "endLine": 640,
+        "endChar": 38
+      },
+      "revId": "c7e43f209b0a81bd1304c2fbb62434600070d48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b510809_1a3f0021",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-16T16:34:37Z",
       "side": 1,
       "message": "Maybe \"binary policy\".",
+      "range": {
+        "startLine": 533,
+        "startChar": 39,
+        "endLine": 533,
+        "endChar": 53
+      },
+      "revId": "c7e43f209b0a81bd1304c2fbb62434600070d48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4f9aaa7_bcf6fe81",
+        "filename": "minijail0_cli_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-16T17:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b510809_1a3f0021",
       "range": {
         "startLine": 533,
         "startChar": 39,
