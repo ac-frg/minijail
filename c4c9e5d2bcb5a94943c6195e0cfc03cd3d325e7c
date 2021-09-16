@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c446516_d2f17470",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-16T16:05:54Z",
+      "side": 1,
+      "message": "Done, though I made the indentation consistent with the other structs.",
+      "parentUuid": "e4233eaf_de287cc7",
+      "range": {
+        "startLine": 1523,
+        "startChar": 0,
+        "endLine": 1554,
+        "endChar": 2
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cc8f3af_04fd1530",
@@ -81,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71ce4f49_e85a7100",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1983,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-16T16:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cc8f3af_04fd1530",
+      "range": {
+        "startLine": 1983,
+        "startChar": 5,
+        "endLine": 1983,
+        "endChar": 6
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6befa7e9_4375ba9d",
@@ -94,6 +142,30 @@
       "writtenOn": "2021-09-16T15:59:36Z",
       "side": 1,
       "message": "Combine these two?",
+      "range": {
+        "startLine": 2378,
+        "startChar": 0,
+        "endLine": 2379,
+        "endChar": 19
+      },
+      "revId": "c4c9e5d2bcb5a94943c6195e0cfc03cd3d325e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "230c9e9a_7ddcb8a8",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2379,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-16T16:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6befa7e9_4375ba9d",
       "range": {
         "startLine": 2378,
         "startChar": 0,
