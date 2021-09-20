@@ -16,6 +16,29 @@
       "message": "This looks file to me. We shouldn\u0027t be changing those pointers at runtime anyway.",
       "revId": "0a3450b393dfd23fc5033d7fee4222079a4c888a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7bb2ed_7e74d663",
+        "filename": "libminijail-private.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-20T16:24:35Z",
+      "side": 1,
+      "message": "Only double-checking: is this the right formatting?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 75
+      },
+      "revId": "0a3450b393dfd23fc5033d7fee4222079a4c888a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
