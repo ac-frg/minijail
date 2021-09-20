@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "294363f7_cbc9b545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-20T16:23:26Z",
+      "side": 1,
+      "message": "This looks file to me. We shouldn\u0027t be changing those pointers at runtime anyway.",
+      "revId": "0a3450b393dfd23fc5033d7fee4222079a4c888a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
