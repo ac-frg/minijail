@@ -93,6 +93,11 @@ def main(argv=None):
 
     parsed_arch = arch.Arch.load_from_json(opts.arch_json)
     policy_compiler = compiler.PolicyCompiler(parsed_arch)
+    # Set ret_log to true if seccomp debug mode is changed by sed to true for
+    # seccomp in order to globally enable ret_log.
+    SECCOMP_DEBUG_MODE=False
+    if SECCOMP_DEBUG_MODE:
+        opts.use_ret_log = True
     if opts.use_ret_log:
         kill_action = bpf.Log()
     elif opts.denylist:
