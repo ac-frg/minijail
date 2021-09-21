@@ -22,6 +22,30 @@
       },
       "revId": "a8294fa1ca275c033cf4662494e8f6b7dc517361",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cc6c09_1f4f8fbc",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-21T22:21:48Z",
+      "side": 1,
+      "message": "Environment variable would be fine, but I couldn\u0027t find a way to use environment variables in compiled python scripts.",
+      "parentUuid": "248dfa67_3b73cfd6",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "a8294fa1ca275c033cf4662494e8f6b7dc517361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
