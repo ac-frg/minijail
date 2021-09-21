@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248dfa67_3b73cfd6",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-21T22:20:03Z",
+      "side": 1,
+      "message": "Do we really want to make this a build time choice, or would an environment variable be enough? It already isn\u0027t going to be that easy to differentiate builds that run with this enabled / disabled.",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "a8294fa1ca275c033cf4662494e8f6b7dc517361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
