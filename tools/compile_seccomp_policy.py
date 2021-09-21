@@ -93,6 +93,14 @@ def main(argv=None):
 
     parsed_arch = arch.Arch.load_from_json(opts.arch_json)
     policy_compiler = compiler.PolicyCompiler(parsed_arch)
+    # Set ret_log to true if the MINIJAIL_DEFAULT_RET_LOG environment variable
+    # is present
+    if os.environ.get('MINIJAIL_DEFAULT_RET_LOG', None):
+        print("\n**********************")
+        print("Warning: MINJAIL_DEFAULT_RET_LOG is on, policy will not have "
+            "any affect")
+        print("**********************\n")
+        opts.use_ret_log = True
     if opts.use_ret_log:
         kill_action = bpf.Log()
     elif opts.denylist:
