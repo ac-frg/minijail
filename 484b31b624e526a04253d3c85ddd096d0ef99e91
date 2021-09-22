@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b844c83_bc02c359",
+        "filename": "libminijail-private.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-22T18:41:10Z",
+      "side": 1,
+      "message": "if we\u0027re making it a constant, it\u0027d be better to change the style\n\n static const char kFdEnvVar[] \u003d \"__MINIJAIL_FD\";",
+      "revId": "484b31b624e526a04253d3c85ddd096d0ef99e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
