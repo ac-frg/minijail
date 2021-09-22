@@ -16,6 +16,24 @@
       "message": "We still need a way to wire a use flag to setting an env variable inside the chroot. Is that easier to do than using sed in the ebuild?",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86c3393_5c3bc25b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-22T20:35:07Z",
+      "side": 1,
+      "message": "IMO the USE flag ought to belong to the package being built with the logging enabled rather than belonging to minijail. That way it would be clear if you built a package with the logging enabled or not.",
+      "parentUuid": "f36a521f_6f95db7c",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
