@@ -70,6 +70,24 @@
       "parentUuid": "8d3e515d_ec3bb7fe",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1607bd3_150e5be9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-22T22:04:20Z",
+      "side": 1,
+      "message": "The sed approach isn\u0027t fundamentally different than calling export YOUR_VAR_NAME\u003dtrue before running:\n```\n./build_packages --nousepkg ...\n```\n\nYou wouldn\u0027t need to change every single ebuild, just the cros-workon.eclass. The point would be so that portage is able to know when a package needs to be recompiled to include the different policy. Otherwise the developer has to keep track of it themselves which makes it easy to forget about binary packages that would be built with the wrong settings.",
+      "parentUuid": "60a4c635_84382c0b",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
