@@ -52,6 +52,24 @@
       "parentUuid": "a86c3393_5c3bc25b",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a4c635_84382c0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-22T21:56:45Z",
+      "side": 1,
+      "message": "But this defeats the purpose of what the toolchain team needs.\n\nThe toolchain team needs a single use flag that makes every single seccomp policy on the system use SECCOMP_RET_LOG. So unless we want to change every single ebuild that uses minijail to also set the env variable, I think the sed approach is actually clearer.",
+      "parentUuid": "8d3e515d_ec3bb7fe",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
