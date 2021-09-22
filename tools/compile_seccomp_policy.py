@@ -72,12 +72,17 @@ def parse_args(argv):
         action='store_true',
         help=('Change all seccomp failures to return SECCOMP_RET_LOG instead '
               'of killing (requires SECCOMP_RET_LOG kernel support).'))
+    arg_parser.add_argument(
+        '--output-c-file',
+        action='store_true',
+        help=('Output the compiled bpf to a constant variable in a c '
+              'file instead of a binary file (output should not have a .c '
+              'extension, one will be added).'))
     arg_parser.add_argument('policy',
                             help='The seccomp policy.',
                             type=argparse.FileType('r'))
     arg_parser.add_argument('output',
-                            help='The BPF program.',
-                            type=argparse.FileType('wb'))
+                            help='The BPF program.')
     return arg_parser.parse_args(argv), arg_parser
 
 
@@ -108,16 +113,34 @@ def main(argv=None):
         override_default_action = parser.PolicyParser(
             parsed_arch, kill_action=bpf.KillProcess()).parse_action(
                 next(parser_state.tokenize([opts.default_action])))
-    with opts.output as outf:
-        outf.write(
-            policy_compiler.compile_file(
-                opts.policy.name,
-                optimization_strategy=opts.optimization_strategy,
-                kill_action=kill_action,
-                include_depth_limit=opts.include_depth_limit,
-                override_default_action=override_default_action,
-                denylist=opts.denylist,
-                ret_log=opts.use_ret_log).opcodes)
+
+    compiled_policy = policy_compiler.compile_file(
+        opts.policy.name,
+        optimization_strategy=opts.optimization_strategy,
+        kill_action=kill_action,
+        include_depth_limit=opts.include_depth_limit,
+        override_default_action=override_default_action,
+        denylist=opts.denylist,
+        ret_log=opts.use_ret_log)
+    # Outputs the bpf binary to a c file instead of a binary file. The c file
+    # will be of the form:
+    # const char <filename>_binary_seccomp_policy[] = { <bytes>};
+    # const unsigned short policy_size = <size>;
+    if opts.output_c_file:
+        output_file_base = opts.output
+        with open(output_file_base + '.c', 'w') as output_file:
+            output_content = ('const char ' + output_file_base +
+                '_binary_seccomp_policy[] = {\n')
+            for opcode in compiled_policy.opcodes:
+                output_content += '%#4x, ' % opcode
+            output_content = output_content[:-2] + '};\n'
+            output_content += ('const unsigned short policy_size = %d;\n' %
+                len(compiled_policy.opcodes))
+            output_file.write(output_content)
+
+    else:
+        with open(opts.output, 'wb') as outf:
+            outf.write(compiled_policy.opcodes)
     return 0
 
 
