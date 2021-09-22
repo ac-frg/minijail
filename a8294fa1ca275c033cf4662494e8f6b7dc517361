@@ -70,6 +70,30 @@
       },
       "revId": "a8294fa1ca275c033cf4662494e8f6b7dc517361",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc516212_6040aa6b",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-22T18:11:02Z",
+      "side": 1,
+      "message": "You\u0027re totally right, I thought there was another issue with doing it this way, but upon further reflection, that should work fine. When using the feature, the user would just have to make sure to have the environment variable set before building all the packages that use compile_seccomp_policy.",
+      "parentUuid": "5441c56e_87126d10",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "a8294fa1ca275c033cf4662494e8f6b7dc517361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
