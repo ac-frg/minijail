@@ -34,6 +34,24 @@
       "parentUuid": "f36a521f_6f95db7c",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3e515d_ec3bb7fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-22T20:35:49Z",
+      "side": 1,
+      "message": "One way of accomplishing this would be to add the USE flag and environment variable logic to cros-workon.eclass.",
+      "parentUuid": "a86c3393_5c3bc25b",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
