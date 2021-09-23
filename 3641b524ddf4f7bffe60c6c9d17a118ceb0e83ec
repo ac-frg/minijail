@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f8a8d0_46016501",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b017f417_9ccb212b",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5dc0147_ef1a092e",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-09-23T17:39:46Z",
       "side": 1,
       "message": "mingling of the file and the generation makes it a bit hard to read.  if you hoisted this to a module string, it\u0027d be a lot easier to read \u0026 extend.\n\n HEADER_TEMPLATE \u003d \"\"\"/* DO NOT EDIT GENERATED FILE */\n #ifndef MJ_SECCOMP_%(upper_name)s_H\n #define MJ_SECCOMP_%(upper_name)s_H\n \n static const unsigned char %(name)s_binary_seccomp_policy[] \u003d {\n   %(program)s\n };\n ...\n #endif\n \"\"\"\n\nthen here it\u0027d be a single write:\n\n output_file.write(HEADER_TEMPLATE % {\n   \u0027upper_name\u0027: output_file_base.toupper(),\n   \u0027name\u0027: output_file_base,\n   \u0027program\u0027: \u0027, \u0027.join(...),\n })",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a755cb57_4e64d15b",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5dc0147_ef1a092e",
       "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d55c470_eb352d7a",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc9bed7b_3e85cd72",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 51
+      },
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5da58142_a9f07b3c",
@@ -77,6 +143,24 @@
       "writtenOn": "2021-09-23T17:39:46Z",
       "side": 1,
       "message": "missing space after the \u003d",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "686bda62_ef0297a8",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5da58142_a9f07b3c",
       "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5a8921_4af85fd0",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bb4a9a9_b9e4febb",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a8b5ea3_4432f288",
@@ -111,6 +213,24 @@
       "writtenOn": "2021-09-23T17:39:46Z",
       "side": 1,
       "message": "i think we should also output the bpf structure so that it can be passed directly to the kernel and people don\u0027t have to define or understand it themselves.\n\n static const struct {\n     uint16_t cnt;\n     const void *bpf;\n } %(name)s_seccomp_bpf_program \u003d {\n     .cnt \u003d sizeof(%(name)s_binary_seccomp_policy) / 8,\n     .bpf \u003d %(name)s_binary_seccomp_policy,\n };\n\nif we wanted to go even further, we could provide a helper function:\n\n static inline int %(name)s_install(void) __attribute__((__unused__))\n {\n   return prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, \u0026%(name)s_seccomp_bpf_program);\n }\n\nnow the only thing the user has to do is include this header and call \u003cname\u003e_install().",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2450062_d5be7d2b",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-23T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8b5ea3_4432f288",
       "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
