@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4bef4d7_f50b4cbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-23T22:51:46Z",
+      "side": 1,
+      "message": "Are there any other ways to modify the behaviour of the python compiler by changing a single switch? This is functionality that the toolchain folks asked for: change one central setting and have everything use SECCOMP_RET_LOG.",
+      "parentUuid": "3a97d62a_c3ad478c",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c19e6330_687c5059",
         "filename": "tools/compile_seccomp_policy.py",
         "patchSetId": 2
