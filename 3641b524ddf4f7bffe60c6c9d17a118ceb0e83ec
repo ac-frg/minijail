@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b017f417_9ccb212b",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "\"C\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5dc0147_ef1a092e",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "mingling of the file and the generation makes it a bit hard to read.  if you hoisted this to a module string, it\u0027d be a lot easier to read \u0026 extend.\n\n HEADER_TEMPLATE \u003d \"\"\"/* DO NOT EDIT GENERATED FILE */\n #ifndef MJ_SECCOMP_%(upper_name)s_H\n #define MJ_SECCOMP_%(upper_name)s_H\n \n static const unsigned char %(name)s_binary_seccomp_policy[] \u003d {\n   %(program)s\n };\n ...\n #endif\n \"\"\"\n\nthen here it\u0027d be a single write:\n\n output_file.write(HEADER_TEMPLATE % {\n   \u0027upper_name\u0027: output_file_base.toupper(),\n   \u0027name\u0027: output_file_base,\n   \u0027program\u0027: \u0027, \u0027.join(...),\n })",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9bed7b_3e85cd72",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "you can write:\n\n output_content +\u003d \u0027, \u0027.join(\u0027%#4x\u0027 % x for x in compiled_policy.opcodes)",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 51
+      },
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da58142_a9f07b3c",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "missing space after the \u003d",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb4a9a9_b9e4febb",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "isn\u0027t this just sizeof() ?\n\n \u0027static const unsigned short policy_size \u003d sizeof(%s);\\n\u0027 % output_file_base",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8b5ea3_4432f288",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:39:46Z",
+      "side": 1,
+      "message": "i think we should also output the bpf structure so that it can be passed directly to the kernel and people don\u0027t have to define or understand it themselves.\n\n static const struct {\n     uint16_t cnt;\n     const void *bpf;\n } %(name)s_seccomp_bpf_program \u003d {\n     .cnt \u003d sizeof(%(name)s_binary_seccomp_policy) / 8,\n     .bpf \u003d %(name)s_binary_seccomp_policy,\n };\n\nif we wanted to go even further, we could provide a helper function:\n\n static inline int %(name)s_install(void) __attribute__((__unused__))\n {\n   return prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, \u0026%(name)s_seccomp_bpf_program);\n }\n\nnow the only thing the user has to do is include this header and call \u003cname\u003e_install().",
+      "revId": "3641b524ddf4f7bffe60c6c9d17a118ceb0e83ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
