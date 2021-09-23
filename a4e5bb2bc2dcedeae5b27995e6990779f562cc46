@@ -124,6 +124,58 @@
       "parentUuid": "4d2da684_5847cd7a",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a97d62a_c3ad478c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:45:24Z",
+      "side": 1,
+      "message": "env vars are really bad interfaces.  they\u0027re easy to leak, and hard for users to see or use.  we should aim for command line options only whenever possible.",
+      "parentUuid": "eabdb8c0_187ae921",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19e6330_687c5059",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:45:24Z",
+      "side": 1,
+      "message": "more idiomatic:\n\n if \u0027MINIJAIL_DEFAULT_RET_LOG\u0027 in os.environ:",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5ed881_2d99af5f",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T17:45:24Z",
+      "side": 1,
+      "message": "use single quotes.  you could also merge all of these into one call to make it easier to read.\n\n       print(\"\"\"\n *********************\n Warning: .........\n *********************\n \"\"\")",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
