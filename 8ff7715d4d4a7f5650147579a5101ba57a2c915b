@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "526a9bac_2b990e03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T20:09:33Z",
+      "side": 1,
+      "message": "this looks like it\u0027d work.  have you given my crazy idea a try in upstart to see if it actually works ? :)",
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d22363_67e8d226",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T20:09:33Z",
+      "side": 1,
+      "message": "normally includes go inside the multi-ifdef check (i.e. move it below #define MJ_SECCOMP_...)",
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4702f7_171cb2e2",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-23T20:09:33Z",
+      "side": 1,
+      "message": "prob want 4 space indent to match our general C/C++ style guide\n\nsame with fixing the indentation below",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
