@@ -88,6 +88,24 @@
       "parentUuid": "60a4c635_84382c0b",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d2da684_5847cd7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-23T17:27:28Z",
+      "side": 1,
+      "message": "Sounds good. I do worry about ending up with a \"permissive\" compiler and never realizing what\u0027s wrong.\n\nWe can tell folks to just set the env variable in the call to build_packages and the compiler can check for the env variable.",
+      "parentUuid": "c1607bd3_150e5be9",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
