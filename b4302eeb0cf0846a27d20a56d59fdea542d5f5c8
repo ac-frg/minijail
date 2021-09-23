@@ -16,6 +16,24 @@
       "message": "Just so you know minijail upgrades on CrOS are blocked by b:199933855",
       "revId": "b4302eeb0cf0846a27d20a56d59fdea542d5f5c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d4a340_b99e07bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1572670
+      },
+      "writtenOn": "2021-09-23T20:36:10Z",
+      "side": 1,
+      "message": "Thanks, good to know.\n\nAlso, I\u0027m not sure how to submit things in the Android repository; maybe I don\u0027t have the right permissions to set the required labels?",
+      "parentUuid": "102de82f_d1b30b09",
+      "revId": "b4302eeb0cf0846a27d20a56d59fdea542d5f5c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
