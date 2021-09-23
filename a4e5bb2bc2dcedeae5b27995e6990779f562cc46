@@ -106,6 +106,24 @@
       "parentUuid": "c1607bd3_150e5be9",
       "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabdb8c0_187ae921",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-23T17:30:10Z",
+      "side": 1,
+      "message": "Yeah any eclass work could be a follow up. I could through something together as a proof-of-concept after this lands.",
+      "parentUuid": "4d2da684_5847cd7a",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
