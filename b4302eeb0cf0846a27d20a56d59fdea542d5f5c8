@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "102de82f_d1b30b09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-09-23T20:17:19Z",
+      "side": 1,
+      "message": "Just so you know minijail upgrades on CrOS are blocked by b:199933855",
+      "revId": "b4302eeb0cf0846a27d20a56d59fdea542d5f5c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
