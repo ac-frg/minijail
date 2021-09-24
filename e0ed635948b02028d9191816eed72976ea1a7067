@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09eeb8a4_1d35f827",
+        "filename": "Makefile",
+        "patchSetId": 11
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-24T03:39:40Z",
+      "side": 1,
+      "message": "i don\u0027t think it\u0027s difficult to fix this",
+      "range": {
+        "startLine": 123,
+        "startChar": 48,
+        "endLine": 123,
+        "endChar": 66
+      },
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ade1f4a_2af2d7ab",
+        "filename": "config_parser.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-24T03:39:40Z",
+      "side": 1,
+      "message": "this must be initialized to 0",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f069cf3a_ee3f77dd",
+        "filename": "config_parser.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-24T03:39:40Z",
+      "side": 1,
+      "message": "if i never have to review another ad-hoc linked-list implementation again ...\n\ni\u0027m struggling to understand why you need this.  a config file is just a continuous \u0026 frozen vector of lines, like an argv, and once read, you\u0027re not changing it.  so treat it as such ?\n\nyou can use realloc to quickly extend the array of pointers, and a good allocator (like glibc should have) should make it fast by internally carving out space larger than you need.  or you could manage the line count yourself and over allocate too while initially reading.",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "176c75d5_d63c096c",
+        "filename": "util.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-24T03:39:40Z",
+      "side": 1,
+      "message": "given a large enough config file, this will hang.  you cannot shovel unlimited data into a pipe -- the kernel will eventually block when it\u0027s full.\n\nsee \"pipe capacity\" in the pipe(7) man page:\nhttps://man7.org/linux/man-pages/man7/pipe.7.html\n\nsince the pipe wasn\u0027t created with O_NONBLOCK, the \"if write fails 3 times\" logic below won\u0027t kick in.  not that i\u0027m saying \"use nonblocking pipe\" to address this fundamental issue.\n\nthe limitation is prob fine in a small unittest, but not in a general utility module.",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828510ff_b80d5e25",
+        "filename": "util.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-09-24T03:39:40Z",
+      "side": 1,
+      "message": "all funcs in headers need API docs.  see the funcs in here as an example.",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
