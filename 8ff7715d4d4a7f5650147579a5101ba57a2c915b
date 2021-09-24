@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15a551ac_80397d7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-24T15:02:30Z",
+      "side": 1,
+      "message": "I tried it out with a tester program and it works. Haven\u0027t tested it out with upstart yet but I see no reason why it wouldn\u0027t work there as well.\n```\n#include \"test_policy.h\"\n\nint main() {\n\n   if (syscall (SYS_seccomp, SECCOMP_SET_MODE_FILTER, 0, \u0026test_policy_seccomp_bpf_program) \u003c 0) {\n      perror(\"Error\");\n      printf(\"Failed to apply seccomp policy!!!!\\n\");\n      exit (1);\n   }\n   return 0;\n}\n```",
+      "parentUuid": "526a9bac_2b990e03",
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47d22363_67e8d226",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "720122ae_c89a0167",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-24T15:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47d22363_67e8d226",
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa4702f7_171cb2e2",
@@ -48,6 +84,30 @@
       "writtenOn": "2021-09-23T20:09:33Z",
       "side": 1,
       "message": "prob want 4 space indent to match our general C/C++ style guide\n\nsame with fixing the indentation below",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "8ff7715d4d4a7f5650147579a5101ba57a2c915b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f80e15_7d208c03",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-24T15:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa4702f7_171cb2e2",
       "range": {
         "startLine": 49,
         "startChar": 0,
