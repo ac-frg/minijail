@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17cfdd66_a23860ce",
+        "filename": "config_parser.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-09-24T16:17:43Z",
+      "side": 1,
+      "message": "Indeed, I should get an array based implementation. realloc is there.",
+      "parentUuid": "f069cf3a_ee3f77dd",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "176c75d5_d63c096c",
         "filename": "util.c",
         "patchSetId": 11
