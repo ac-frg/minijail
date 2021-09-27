@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fce71518_3f40b6b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-27T20:57:26Z",
+      "side": 1,
+      "message": "Given that this is functionality is something that we promised the toolchain team, I would like to go ahead with this CL unless we have another solution that would let us make a single change at build_packages time that would ensure all policies are compiled in debug mode. Note that command-line options don\u0027t really work if we need to depend on every package using the compiler calling the command-line option.\n\nSo, unless we have a better solution, I would move forward with this approach.",
+      "parentUuid": "d4bef4d7_f50b4cbd",
+      "revId": "a4e5bb2bc2dcedeae5b27995e6990779f562cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c19e6330_687c5059",
         "filename": "tools/compile_seccomp_policy.py",
         "patchSetId": 2
