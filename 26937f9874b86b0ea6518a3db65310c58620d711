@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc91634c_acd8c766",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-29T23:12:14Z",
+      "side": 1,
+      "message": "Because Nicole is rotating out and because we have committed to delivering this for the toolchain folks (and are not planning on heavily promoting this env var) I\u0027m going to +2 this change and we can discuss a better, centralized mechanism in the future.",
+      "revId": "26937f9874b86b0ea6518a3db65310c58620d711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a390fe_9d0bc727",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-29T23:12:14Z",
+      "side": 1,
+      "message": "End with period.",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "26937f9874b86b0ea6518a3db65310c58620d711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd022ea_523025dc",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-09-29T23:12:14Z",
+      "side": 1,
+      "message": "Sp: effect",
+      "range": {
+        "startLine": 101,
+        "startChar": 65,
+        "endLine": 101,
+        "endChar": 71
+      },
+      "revId": "26937f9874b86b0ea6518a3db65310c58620d711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
