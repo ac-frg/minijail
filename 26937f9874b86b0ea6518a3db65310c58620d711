@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc75f19_a2690578",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-30T15:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a390fe_9d0bc727",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "26937f9874b86b0ea6518a3db65310c58620d711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cd022ea_523025dc",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-09-29T23:12:14Z",
       "side": 1,
       "message": "Sp: effect",
+      "range": {
+        "startLine": 101,
+        "startChar": 65,
+        "endLine": 101,
+        "endChar": 71
+      },
+      "revId": "26937f9874b86b0ea6518a3db65310c58620d711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b238e1c_de4ca70b",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1789865
+      },
+      "writtenOn": "2021-09-30T15:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cd022ea_523025dc",
       "range": {
         "startLine": 101,
         "startChar": 65,
