@@ -171,6 +171,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b2e049_2f1488ed",
+        "filename": "util.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "you can\u0027t use a pipe, so you have to look elsewhere\n\na tempfile opened using O_TMPFILE would prob work.  see the API in this CL:\nhttps://crrev.com/c/3003581",
+      "parentUuid": "3522d450_c12c18e3",
+      "revId": "e0ed635948b02028d9191816eed72976ea1a7067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "828510ff_b80d5e25",

@@ -16,6 +16,24 @@
       "message": "Move getmultiline() to util. Still think it would be nice to allow interleaving comment lines in a mutli-line config, but that can be added later. This cl is getting bigger so I intentionally only move function around without adding functionalities.",
       "revId": "f3e330a5369dd2073f1c6609accfe29765b56985",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e165e3_f951dc75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "i don\u0027t follow what you mean.  you want to support inline comments ?  what would that even look like with wrapped lines ?\n\n foo: 1 # comment \\\n is this part of the previous comment ?\n or is \\ ignored because it was itself part of a comment ?\n\ni would simply ban use of inline comments with wrapped lines.",
+      "parentUuid": "eaccf87c_555692f3",
+      "revId": "f3e330a5369dd2073f1c6609accfe29765b56985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

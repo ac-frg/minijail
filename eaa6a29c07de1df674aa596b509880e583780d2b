@@ -1,0 +1,357 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6427bf9d_e8c1ac0d",
+        "filename": ".gitignore",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "can you change this file to ignore all unittests ?\n\n /*_unittest\n\nthen we never have to update it again when adding/removing unittests",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deca0c5c_462da0dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "when the format finalizes, you\u0027ll want to update the minijail0.5 file to document it",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b51997_6da0ddb3",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "do you really need to turn off formatting for a single line ?",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aca943c_d45c71c3",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "don\u0027t need braces for one-line bodies",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "759479bb_acc91dcc",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "free(NULL) is fine, so you don\u0027t need these if checks",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15690547_3d91250c",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "it looks like this is returning pass/fail via 0/-1.  just use a real |bool| type instead of overloading |int|.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 3
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95a8e35_c8f04b89",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "\"contain\"",
+      "range": {
+        "startLine": 76,
+        "startChar": 47,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f5a4dd4_6e149464",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "don\u0027t write to stderr yourself.  use the helper APIs in util.h.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0173dfc6_e5dc1946",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "it looks like this is returning pass/fail via 0/-1.  just use a real |bool| type instead of overloading |int|.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 3
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06d2187_84910e57",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "this doesn\u0027t sound right.  you\u0027ve declared a new_config_entry_list helper for initializing the struct.  either callers are using it and this check won\u0027t run, or they\u0027re not and they\u0027re violating the API.\n\nalso, won\u0027t this \u003d\u003d0 check ever fire once ?  so shouldn\u0027t this be at the top of the func instead of the middle of the loop ?",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39fd6d83_433d6304",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "errno isn\u0027t initialized in this func, nor do i think it\u0027s guaranteed that errno never be changed even if a call succeeds, so this kind of logic is unreliable.  i\u0027m also not sure that EINVAL or ENOMEM will be the only failures you ever see.\n\nany code that fails above needs to set the return value to failed itself.  then you don\u0027t need to check errno at all.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d550be_83df0fba",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "is the caller expected to mutate these values ?  if not, mark them const.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1fdecf_5bc61019",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "how about |entries| ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 22,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea25655_b13efcee",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "|size| is a bit ambiguous -- it could be seen as number of valid entries (like |used|)\n\nhow about something a little more wordy like |num_allocated_| and |num_entries| ?  that _ suffix also shows that it\u0027s meant for internal use and not any callers.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7bfe2f5_cdfcfce1",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "please add comment docs for each of these funcs.  it doesn\u0027t have to go into super detail, but it should be sufficient for anyone working on minijail to glance at this file and know how to use these without needing to read config_parser.c at all.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0353c725_cc1ed7c6",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "i guess this file was copied \u0026 pasted from another.  you should remove unused headers.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2d59fcb_ed871015",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "you write this pattern a lot.  maybe you should add a util func for this in the anonymous namespace above.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 22
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0585d8f1_2e472d78",
+        "filename": "test_util.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "as noted, this still doesn\u0027t handle \"pipe is full\" errors\n\ni think you should add a |len| check above and abort if like more than 1 page (4KiB) is passed in.  i don\u0027t think that limit should be a blocker for your test needs.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "708edc38_8fc13fa4",
+        "filename": "util_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-02T05:43:34Z",
+      "side": 1,
+      "message": "missing newline at the end of the file",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
