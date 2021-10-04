@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1c3870d_545e7315",
+        "filename": ".gitignore",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6427bf9d_e8c1ac0d",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deca0c5c_462da0dd",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "when the format finalizes, you\u0027ll want to update the minijail0.5 file to document it",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01ee21d5_5fc735a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "deca0c5c_462da0dd",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89639437_e429f4fb",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89b51997_6da0ddb3",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aca943c_d45c71c3",
@@ -65,6 +119,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "don\u0027t need braces for one-line bodies",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12aa96c_2e4be80d",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aca943c_d45c71c3",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c96956a6_f99e26c2",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "759479bb_acc91dcc",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15690547_3d91250c",
@@ -99,6 +189,30 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "it looks like this is returning pass/fail via 0/-1.  just use a real |bool| type instead of overloading |int|.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 3
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4025ddc3_66b816b1",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15690547_3d91250c",
       "range": {
         "startLine": 64,
         "startChar": 0,
@@ -132,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09289382_7ef05f80",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c95a8e35_c8f04b89",
+      "range": {
+        "startLine": 76,
+        "startChar": 47,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f5a4dd4_6e149464",
@@ -145,6 +283,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "don\u0027t write to stderr yourself.  use the helper APIs in util.h.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2dc4d6c_59f5b6d7",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f5a4dd4_6e149464",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -172,6 +328,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ab8d0df_edee3160",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0173dfc6_e5dc1946",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 3
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b06d2187_84910e57",
@@ -185,6 +365,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "this doesn\u0027t sound right.  you\u0027ve declared a new_config_entry_list helper for initializing the struct.  either callers are using it and this check won\u0027t run, or they\u0027re not and they\u0027re violating the API.\n\nalso, won\u0027t this \u003d\u003d0 check ever fire once ?  so shouldn\u0027t this be at the top of the func instead of the middle of the loop ?",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0605e4_9671a38a",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Removed the edge case since we fully control the parser code so edge cases should not be handled like this.",
+      "parentUuid": "b06d2187_84910e57",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -208,6 +406,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8173e5b_2137671c",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Shall we make getmultline() behave similarly with getline()? Let me add a comment.",
+      "parentUuid": "39fd6d83_433d6304",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15d550be_83df0fba",
         "filename": "config_parser.h",
         "patchSetId": 15
@@ -219,6 +435,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "is the caller expected to mutate these values ?  if not, mark them const.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b479692_b418b7ef",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "They hold values returned from strdup and I have compiler complaining about free(const char*).",
+      "parentUuid": "15d550be_83df0fba",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -246,6 +480,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c827c157_e0e8e33c",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae1fdecf_5bc61019",
+      "range": {
+        "startLine": 19,
+        "startChar": 22,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ea25655_b13efcee",
@@ -259,6 +517,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "|size| is a bit ambiguous -- it could be seen as number of valid entries (like |used|)\n\nhow about something a little more wordy like |num_allocated_| and |num_entries| ?  that _ suffix also shows that it\u0027s meant for internal use and not any callers.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a59f75_dff4052c",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ea25655_b13efcee",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -280,6 +556,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a2c337_3f7e4d5d",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7bfe2f5_cdfcfce1",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0353c725_cc1ed7c6",
@@ -293,6 +587,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "i guess this file was copied \u0026 pasted from another.  you should remove unused headers.",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f350a42_d6cbe635",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0353c725_cc1ed7c6",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -320,6 +632,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d2fe88_3cef4251",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Ack. I want the to-be-tested function to be called explicitly in the tests. I want to further parameterize the tests using TEST_P. Let me add a follow up commit.",
+      "parentUuid": "e2d59fcb_ed871015",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 22
+      },
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0585d8f1_2e472d78",
@@ -337,6 +673,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5318db_9f8bf06c",
+        "filename": "test_util.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0585d8f1_2e472d78",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "708edc38_8fc13fa4",
@@ -350,6 +704,24 @@
       "writtenOn": "2021-10-02T05:43:34Z",
       "side": 1,
       "message": "missing newline at the end of the file",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98a00358_7df043b3",
+        "filename": "util_unittest.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-04T21:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "708edc38_8fc13fa4",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
