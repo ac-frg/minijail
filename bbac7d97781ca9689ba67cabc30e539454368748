@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02cae2a_08b3d09d",
+        "filename": "config_parser.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-05T19:33:04Z",
+      "side": 1,
+      "message": "Nit: use capital T.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 5
+      },
+      "revId": "bbac7d97781ca9689ba67cabc30e539454368748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36070285_0182ed6d",
+        "filename": "config_parser.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-05T19:33:04Z",
+      "side": 1,
+      "message": "/*\n * Free ...\n */",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 3
+      },
+      "revId": "bbac7d97781ca9689ba67cabc30e539454368748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb833c1_33f29ad8",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-05T19:33:04Z",
+      "side": 1,
+      "message": "Extract to util.c.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "bbac7d97781ca9689ba67cabc30e539454368748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "660d59a7_c7d1f943",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-05T19:33:04Z",
+      "side": 1,
+      "message": "free(head_);",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "bbac7d97781ca9689ba67cabc30e539454368748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
