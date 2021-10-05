@@ -169,7 +169,7 @@ unsigned int get_last_valid_cap(void)
 	} else {
 		const char cap_file[] = "/proc/sys/kernel/cap_last_cap";
 		FILE *fp = fopen(cap_file, "re");
-		if (fscanf(fp, "%u", &last_valid_cap) != 1)
+		if (!fp || fscanf(fp, "%u", &last_valid_cap) != 1)
 			pdie("fscanf(%s)", cap_file);
 		fclose(fp);
 	}
