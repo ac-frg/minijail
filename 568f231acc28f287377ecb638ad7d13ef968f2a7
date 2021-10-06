@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "424aa1d9_b51a86f9",
+        "filename": ".github/workflows/coverity.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-06T18:20:44Z",
+      "side": 1,
+      "message": "no clangy clang?",
+      "range": {
+        "startLine": 16,
+        "startChar": 13,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "568f231acc28f287377ecb638ad7d13ef968f2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
