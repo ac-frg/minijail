@@ -22,6 +22,30 @@
       },
       "revId": "568f231acc28f287377ecb638ad7d13ef968f2a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c35f45f_76ea9f4f",
+        "filename": ".github/workflows/coverity.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-06T18:51:15Z",
+      "side": 1,
+      "message": "ah, we prob should use clang exclusively.  we don\u0027t really need both as we have very little compiler-dependent codepaths.",
+      "parentUuid": "424aa1d9_b51a86f9",
+      "range": {
+        "startLine": 16,
+        "startChar": 13,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "568f231acc28f287377ecb638ad7d13ef968f2a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
