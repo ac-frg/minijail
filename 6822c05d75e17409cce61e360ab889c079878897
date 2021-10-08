@@ -34,6 +34,24 @@
       "parentUuid": "e24ce64b_cb51d9d0",
       "revId": "6822c05d75e17409cce61e360ab889c079878897",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffd1f02_f6a0704f",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-08T19:39:42Z",
+      "side": 1,
+      "message": "hmm, you\u0027re correct it depends on how it\u0027s used\n\nthe intention was to pass it directly to the kernel and not attempt to parse it at all.  the program is in read-only (const) memory.  the kernel isn\u0027t going to read user memory directly, it copies the buffer to its own before manipulating it -- see seccomp_prepare_filter.\n\nhttps://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/tags/v5.10.71/kernel/seccomp.c#543\nhttps://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/tags/v5.10.71/net/core/filter.c#1391\n\ni\u0027ll note that the struct/buffer declared here doesn\u0027t include alignment, so if something attempts to cast it to stricter alignment before using it, it\u0027s arguably a bug in that thing :).  do you have any uses cases of where this would actually show up ?  afaik, mj isn\u0027t going to be parsing this buffer directly.\n\nthat said, adding an explicit 4-byte alignment attribute for the buffer is pretty trivial and cheap.",
+      "parentUuid": "c52f2eac_ff9634dc",
+      "revId": "6822c05d75e17409cce61e360ab889c079878897",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
