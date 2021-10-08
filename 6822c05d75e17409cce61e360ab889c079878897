@@ -88,6 +88,24 @@
       "parentUuid": "1a4b11b4_918cda5c",
       "revId": "6822c05d75e17409cce61e360ab889c079878897",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61138d3f_1a66ba9f",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-08T21:30:07Z",
+      "side": 1,
+      "message": "Patch to emit structs instead of char array: https://android-review.googlesource.com/c/platform/external/minijail/+/1850630 - if nothing else, it makes the output more aesthetically pleasing. :) It\u0027s probably not necessary for passing directly to the kernel as mentioned above.",
+      "parentUuid": "deb79ac7_f5db9e73",
+      "revId": "6822c05d75e17409cce61e360ab889c079878897",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
