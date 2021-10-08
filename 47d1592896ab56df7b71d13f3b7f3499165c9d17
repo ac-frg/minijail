@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b8808ced_fe0eb03f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-08T21:47:26Z",
+      "side": 1,
+      "message": "This LGTM, but I want to give others a chance to comment.",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c7c1b592_5470f581",
         "filename": "tools/compile_seccomp_policy.py",
         "patchSetId": 1
@@ -31,6 +48,47 @@
       "writtenOn": "2021-10-08T21:35:52Z",
       "side": 1,
       "message": "This makes the output look like:\n\n    ...\n    uint16_t code;\n    uint8_t jt;\n    uint8_t jf;\n    uint32_t k;\n} block_device_bpf_binary_seccomp_policy[] \u003d {                        \n    {0x20,   0,   0, 0x00000004},\n    {0x15,   1,   0, 0xc000003e},\n    {0x06,   0,   0, 0x00000000},\n    {0x20,   0,   0, 0x00000000},\n    {0x35,   0,  52, 0x00000002},\n    {0x35,  17,   0, 0x0000002c},\n    ...\n};\n\nIt roughly matches the style used in https://www.kernel.org/doc/Documentation/networking/filter.txt (other opinions on formatting welcome).",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd025da_f76bf49e",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-08T21:47:26Z",
+      "side": 1,
+      "message": "If we want to follow the format of https://www.kernel.org/doc/Documentation/networking/filter.txt\nthere are spaces missing between the brackets and the terms.\n \"{ %#04x, %3d, %3d, %#010x }\" % x\n\nDid you leave them out on purpose?",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed9ae71_3794f262",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-08T21:47:26Z",
+      "side": 1,
+      "message": "If we want to follow the format of https://www.kernel.org/doc/Documentation/networking/filter.txt\nthere are spaces missing between the brackets and the terms.\n \"{ %#04x, %3d, %3d, %#010x }\" % x\n\nclang format in the minijail repo would print it in a much expanded form which hinders readability. Either how it is now or with the spaces makes the most sense IMO.",
+      "parentUuid": "c7c1b592_5470f581",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
