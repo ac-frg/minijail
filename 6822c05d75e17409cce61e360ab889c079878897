@@ -16,6 +16,24 @@
       "message": "I think the program being represented as an array of `unsigned char` may cause undefined behavior when it\u0027s eventually interpreted as a sock_filter pointer.  The alignment of an unsigned char array is just 1, whereas sock_filter contains a u32, bumping its required alignment up to 4 bytes.\n\nThis will happily work on x86 and other platforms that allow unaligned access, but it\u0027s technically undefined behavior, and it likely will crash on stricter architectures if this data happens to be linked at an address that isn\u0027t a multiple of 4. If this gets passed to minijail_set_seccomp_filters(), I suspect it will also always work in practice, since that copies the filter into a malloc()-ed region before accessing it, but by my understanding it\u0027s still technically undefined behavior to create the misaligned pointer by casting, even if it\u0027s never dereferenced.\n\nWould it be straightforward to emit this as an array of struct sock_filter (or an equivalent unnamed struct declared inline), or at least an array of uint32_t instead of unsigned char? I think that would fix any potential alignment problems.\n\nI noticed this because I\u0027d like to extend compile_seccomp_policy.py to emit Rust files too, and libminijail.rs has some checks to ensure the buffer is properly aligned. (It also currently has no API to pass a buffer rather than reading from a file, but that can be added relatively easily.)",
       "revId": "6822c05d75e17409cce61e360ab889c079878897",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52f2eac_ff9634dc",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-08T18:51:48Z",
+      "side": 1,
+      "message": "This is a good point. There are ways of forcing alignment like:\n __attribute__((aligned(16)));",
+      "parentUuid": "e24ce64b_cb51d9d0",
+      "revId": "6822c05d75e17409cce61e360ab889c079878897",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
