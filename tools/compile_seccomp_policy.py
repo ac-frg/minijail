@@ -24,6 +24,7 @@ from __future__ import print_function
 
 import argparse
 import os
+import struct
 import sys
 
 try:
@@ -45,7 +46,12 @@ HEADER_TEMPLATE = """/* DO NOT EDIT GENERATED FILE */
 #define MJ_SECCOMP_%(upper_name)s_H
 #include <stdint.h>
 
-static const unsigned char %(name)s_binary_seccomp_policy[] = {
+static const struct {
+    uint16_t code;
+    uint8_t jt;
+    uint8_t jf;
+    uint32_t k;
+} %(name)s_binary_seccomp_policy[] = {
     %(program)s
 };
 
@@ -105,6 +111,15 @@ def parse_args(argv):
     return arg_parser.parse_args(argv), arg_parser
 
 
+# Split a list of opcodes represented as bytes into a list of tuples
+# representing struct sock_filter fields.
+def split_opcodes(bytes):
+    return map(
+        lambda x: struct.unpack("HBBI", x),
+        (bytes[i : i + 8] for i in range(0, len(bytes), 8))
+    )
+
+
 def main(argv=None):
     """Main entrypoint."""
 
@@ -154,7 +169,10 @@ Warning: MINJAIL_DEFAULT_RET_LOG is on, policy will not have any effect
     if opts.output_header_file:
         output_file_base = opts.output
         with open(output_file_base + '.h', 'w') as output_file:
-            program = ', '.join('%#4x' % x for x in compiled_policy.opcodes)
+            program = ",\n    ".join(
+                "{%#04x, %3d, %3d, %#010x}" % x
+                for x in split_opcodes(compiled_policy.opcodes)
+            )
             output_file.write(HEADER_TEMPLATE % {
                 'upper_name': output_file_base.upper(),
                 'name': output_file_base,
