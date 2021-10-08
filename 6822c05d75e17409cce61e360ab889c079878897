@@ -52,6 +52,24 @@
       "parentUuid": "c52f2eac_ff9634dc",
       "revId": "6822c05d75e17409cce61e360ab889c079878897",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a4b11b4_918cda5c",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-08T19:48:06Z",
+      "side": 1,
+      "message": "Ah, if it\u0027s passed to the kernel directly, then it\u0027s probably OK due to the copy_from_user() to a properly-aligned buffer.\n\nFor the thing I was looking at (building policies into the crosvm binary, https://crbug.com/1052126), we would want to pass the compiled bpf along to minijail so that it can do all of its normal setup stuff.  libminijail.rs\u0027s parse_seccomp_program() is almost what we want, except that reads the bpf from a file rather than accepting a buffer. That function has the alignment checks I ran into, and it seems justified, since it\u0027s passing the buffer to minijail_set_seccomp_filters(), which accesses the buffer through a `struct sock_filter *` inside `struct sock_fprog`.",
+      "parentUuid": "5ffd1f02_f6a0704f",
+      "revId": "6822c05d75e17409cce61e360ab889c079878897",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
