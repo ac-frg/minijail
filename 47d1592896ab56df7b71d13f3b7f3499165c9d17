@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a56ba6ba_b3132333",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-08T21:35:52Z",
+      "side": 1,
+      "message": "My Python is probably bad, so feel free to suggest better ways to do this.",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c1b592_5470f581",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-08T21:35:52Z",
+      "side": 1,
+      "message": "This makes the output look like:\n\n    ...\n    uint16_t code;\n    uint8_t jt;\n    uint8_t jf;\n    uint32_t k;\n} block_device_bpf_binary_seccomp_policy[] \u003d {                        \n    {0x20,   0,   0, 0x00000004},\n    {0x15,   1,   0, 0xc000003e},\n    {0x06,   0,   0, 0x00000000},\n    {0x20,   0,   0, 0x00000000},\n    {0x35,   0,  52, 0x00000002},\n    {0x35,  17,   0, 0x0000002c},\n    ...\n};\n\nIt roughly matches the style used in https://www.kernel.org/doc/Documentation/networking/filter.txt (other opinions on formatting welcome).",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
