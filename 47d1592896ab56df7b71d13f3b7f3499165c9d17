@@ -91,6 +91,30 @@
       "parentUuid": "c7c1b592_5470f581",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bba2237_a113d52f",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-08T21:47:51Z",
+      "side": 1,
+      "message": "NVM this.",
+      "parentUuid": "cbd025da_f76bf49e",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
