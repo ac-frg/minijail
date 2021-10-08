@@ -70,6 +70,24 @@
       "parentUuid": "5ffd1f02_f6a0704f",
       "revId": "6822c05d75e17409cce61e360ab889c079878897",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb79ac7_f5db9e73",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-08T19:54:42Z",
+      "side": 1,
+      "message": "patches welcome :D",
+      "parentUuid": "1a4b11b4_918cda5c",
+      "revId": "6822c05d75e17409cce61e360ab889c079878897",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
