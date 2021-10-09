@@ -37,6 +37,91 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dccfb388_26a2de61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "more feedback than prob should have, but here it is anyways :p",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ad06db9_66629877",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "func comments belong in docstrings, not file level comments.  what is this, rust !?",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af545367_9f29ad6a",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "map() works, but generally, discouraged.  list comprehensions \u0026 generators fulfill all python needs instead.\n\ni think you can write this like (untested):\n\n return (struct.unpack(...) for bytes[i:i + 8] for i in range(0, len(bytes), 8))",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c791263f_5ae9fa3c",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "we use single quotes in here",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ff564a_f5b03a40",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "i think Python style guide says to omit spaces around : in slices",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c7c1b592_5470f581",
         "filename": "tools/compile_seccomp_policy.py",
         "patchSetId": 1
@@ -113,6 +198,24 @@
         "endLine": 173,
         "endChar": 43
       },
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c24f224_d86af2db",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-09T04:50:37Z",
+      "side": 1,
+      "message": "i have two concerns\n\n(minor) these files weren\u0027t meant to be read by humans, and i\u0027m not sure there\u0027s value in beautifying the output.  if we were to pregen the files for all the arches we care about and commit the files to the tree, the resulting file will larger and have more lines changing leading to more noise.  i\u0027m not sure seeing the diff on a per-insn level would ever be useful to humans ?  personally i\u0027ve only found value in seeing the source generation policy/logic ...\n\n(not minor) is the endianness correct ?  we (and prob most people) are going to emit little endian because the python tool is executing in the SDK which is x86_64.\n\nseems like just emitting the raw buffer as-is and setting the alignment to 32-bit would be easier.",
+      "parentUuid": "aed9ae71_3794f262",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
