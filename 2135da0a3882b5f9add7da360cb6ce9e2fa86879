@@ -16,6 +16,23 @@
       "message": "These are old comments.",
       "revId": "2135da0a3882b5f9add7da360cb6ce9e2fa86879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de8424e4_4451f178",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-10T04:34:52Z",
+      "side": 1,
+      "message": "there seems to be lots of little things sneaking in here that is leading to CL churn, and making it hard to keep rereviewing.  can you split these things up so we can merge the things we agree on so they don\u0027t get bogged down ?\n\nfor example:\n* one CL just to make the random unrelated style changes\n* one CL just to pull getmultiline out\n* the last CL which adds the new config file logic",
+      "revId": "2135da0a3882b5f9add7da360cb6ce9e2fa86879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
