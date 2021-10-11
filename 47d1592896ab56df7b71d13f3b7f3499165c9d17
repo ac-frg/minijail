@@ -308,6 +308,24 @@
       "parentUuid": "7c24f224_d86af2db",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f95ab4_0b0d62a6",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-11T21:08:53Z",
+      "side": 1,
+      "message": "BPF is the endianness of the CPU that it executes on.  so the program generated for little endian runtime will be different from big endian.\n\nso you\u0027re right that we already have an endian problem :(.  i guess the upside is that currently CrOS \u0026 Android only care about little endian systems.  and that the compiler toolchain is still under development.\n\ni\u0027m not against adding a pretty formatted output, i just want to make sure it\u0027s actually useful to people vs another thing we have to maintain \u0026 think about :).",
+      "parentUuid": "3f05e28b_d91d9c86",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
