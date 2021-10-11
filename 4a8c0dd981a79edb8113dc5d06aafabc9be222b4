@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe502eb_82a7f8d0",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-11T13:46:10Z",
+      "side": 1,
+      "message": "The only issue I see with this is it conflates the two different error cases.",
+      "range": {
+        "startLine": 172,
+        "startChar": 6,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "4a8c0dd981a79edb8113dc5d06aafabc9be222b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
