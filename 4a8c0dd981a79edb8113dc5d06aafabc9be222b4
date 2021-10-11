@@ -22,6 +22,30 @@
       },
       "revId": "4a8c0dd981a79edb8113dc5d06aafabc9be222b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b66cea7a_2e090ef1",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-11T18:30:00Z",
+      "side": 1,
+      "message": "hmm, fair, the pdie() message can be confusing.  i\u0027ll ad a dedicated one.",
+      "parentUuid": "4fe502eb_82a7f8d0",
+      "range": {
+        "startLine": 172,
+        "startChar": 6,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "4a8c0dd981a79edb8113dc5d06aafabc9be222b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
