@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6261c43a_b65b69b9",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T19:40:14Z",
+      "side": 1,
+      "message": "Do we care about non-GCC/clang compilers? If so, this could be wrapped in #ifdef __GNUC__.",
+      "revId": "3fb514e461be1b3ef60983e43def2571714d48b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
