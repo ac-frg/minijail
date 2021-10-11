@@ -16,6 +16,29 @@
       "message": "The goal is to have this set by default, correct?",
       "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8905d3_48a60002",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-11T20:44:27Z",
+      "side": 1,
+      "message": "you can one-line this\n\n return 1 if check.errors and opts.failures_return_nonzero else 0",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
