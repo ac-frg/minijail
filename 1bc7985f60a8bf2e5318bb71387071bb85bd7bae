@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6617d0ee_9f231a26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-11T21:53:51Z",
+      "side": 1,
+      "message": "The problem is that as far as I can tell, if the linter doesn\u0027t return nonzero, the error messages are not printed.",
+      "parentUuid": "62d0ab28_60925d45",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8905d3_48a60002",
