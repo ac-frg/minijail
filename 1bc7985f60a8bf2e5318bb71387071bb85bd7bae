@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d6bfff_6797f5c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-11T21:31:00Z",
+      "side": 1,
+      "message": "Correct. It should always have been the default, I just forgot to remind Nicole to test uploading a CL (and not just running cros lint). Had I done that we\u0027d realized that a lot more policies are going to fail the presubmit (because the lint looks at the entire file).\n\nI did a very quick check and of ~160 policies in platform2, at least 100 have clone(). We cannot block this many people I don\u0027t think.",
+      "parentUuid": "8f3ae0a2_31ff2b41",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8905d3_48a60002",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-10-11T20:44:27Z",
       "side": 1,
       "message": "you can one-line this\n\n return 1 if check.errors and opts.failures_return_nonzero else 0",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da13247_0ef803ab",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-11T21:31:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad8905d3_48a60002",
       "range": {
         "startLine": 145,
         "startChar": 0,
