@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3ae0a2_31ff2b41",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-11T20:28:35Z",
+      "side": 1,
+      "message": "The goal is to have this set by default, correct?",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
