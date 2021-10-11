@@ -69,6 +69,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6daad180_164f0978",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T17:42:25Z",
+      "side": 1,
+      "message": "D\u0027oh, I knew that at some point but forgot.",
+      "parentUuid": "2ad06db9_66629877",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af545367_9f29ad6a",
@@ -82,6 +100,24 @@
       "writtenOn": "2021-10-09T04:50:37Z",
       "side": 1,
       "message": "map() works, but generally, discouraged.  list comprehensions \u0026 generators fulfill all python needs instead.\n\ni think you can write this like (untested):\n\n return (struct.unpack(...) for bytes[i:i + 8] for i in range(0, len(bytes), 8))",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2324e7e_91f2fcc6",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T17:42:25Z",
+      "side": 1,
+      "message": "Thanks, this is the sort of Python style thing I am woefully unaware of.",
+      "parentUuid": "af545367_9f29ad6a",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +139,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8421b7bc_5a6637a1",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T17:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c791263f_5ae9fa3c",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01ff564a_f5b03a40",
@@ -116,6 +170,24 @@
       "writtenOn": "2021-10-09T04:50:37Z",
       "side": 1,
       "message": "i think Python style guide says to omit spaces around : in slices",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11751b0f_06fcde55",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T17:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01ff564a_f5b03a40",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -216,6 +288,24 @@
       "side": 1,
       "message": "i have two concerns\n\n(minor) these files weren\u0027t meant to be read by humans, and i\u0027m not sure there\u0027s value in beautifying the output.  if we were to pregen the files for all the arches we care about and commit the files to the tree, the resulting file will larger and have more lines changing leading to more noise.  i\u0027m not sure seeing the diff on a per-insn level would ever be useful to humans ?  personally i\u0027ve only found value in seeing the source generation policy/logic ...\n\n(not minor) is the endianness correct ?  we (and prob most people) are going to emit little endian because the python tool is executing in the SDK which is x86_64.\n\nseems like just emitting the raw buffer as-is and setting the alignment to 32-bit would be easier.",
       "parentUuid": "aed9ae71_3794f262",
+      "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f05e28b_d91d9c86",
+        "filename": "tools/compile_seccomp_policy.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2021-10-11T17:42:25Z",
+      "side": 1,
+      "message": "The endianness concern is a good point, although I think the compiler also just uses struct.pack(), so it already won\u0027t be correct if the build and host systems have different endianness: https://android.googlesource.com/platform/external/minijail/+/HEAD/tools/bpf.py#156 (Is there an actual BPF spec somewhere? I couldn\u0027t find a definitive source for the expected endianness, but it seems like it is the host endianness in the case of the Linux kernel implementation.)\n\nI am OK with just setting the alignment to 4 bytes instead.  The human-readable formatting was mostly a fun distraction once I started to look into how to split the fields back out.",
+      "parentUuid": "7c24f224_d86af2db",
       "revId": "47d1592896ab56df7b71d13f3b7f3499165c9d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
