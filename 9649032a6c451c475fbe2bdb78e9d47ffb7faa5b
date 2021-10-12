@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "219e56d5_18cd9264",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-12T19:26:44Z",
+      "side": 1,
+      "message": "You can force this into a set:\n  set(opts.dangerous_syscalls.split(\u0027,\u0027))",
+      "range": {
+        "startLine": 143,
+        "startChar": 25,
+        "endLine": 143,
+        "endChar": 59
+      },
+      "revId": "9649032a6c451c475fbe2bdb78e9d47ffb7faa5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
