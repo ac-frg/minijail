@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93f5d48_203c8fbb",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-12T21:13:00Z",
+      "side": 1,
+      "message": "makes sense\n\n(ftr, argparse could convert its arguments into structured data, but it\u0027d require more code, and i think what you\u0027ve written here is simpler)",
+      "parentUuid": "8fad43c3_8bdc95e4",
+      "revId": "9649032a6c451c475fbe2bdb78e9d47ffb7faa5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "219e56d5_18cd9264",
