@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fad43c3_8bdc95e4",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-12T20:57:58Z",
+      "side": 1,
+      "message": "Alright, I decided to solve this by keeping the argument a string at all times. PTAL.",
+      "parentUuid": "0882e1e4_cdb65781",
+      "revId": "9649032a6c451c475fbe2bdb78e9d47ffb7faa5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "219e56d5_18cd9264",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 1
