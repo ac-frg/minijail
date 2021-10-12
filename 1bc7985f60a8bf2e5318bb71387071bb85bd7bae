@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a83ed5d3_2fb876b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-12T05:59:30Z",
+      "side": 1,
+      "message": "sure, but i\u0027m not sure that\u0027s exactly relevant here\n\nafter this CL, the linter effectively doesn\u0027t do anything anywhere.  instead, people have to opt in to have their policies fail.\n\ni\u0027m suggesting we reduce the syscalls that we throw errors on to just the ones that all (or almost all) policies pass.  then we can start looking at expanding the set of failing syscalls as we clean up policies.",
+      "parentUuid": "6617d0ee_9f231a26",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8905d3_48a60002",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 1
