@@ -117,6 +117,15 @@ def main(argv=None):
 
     parsed_arch = arch.Arch.load_from_json(opts.arch_json)
     policy_compiler = compiler.PolicyCompiler(parsed_arch)
+    # Set ret_log to true if the MINIJAIL_DEFAULT_RET_LOG environment variable
+    # is present.
+    if 'MINIJAIL_DEFAULT_RET_LOG' in os.environ:
+        print("""
+            \n**********************
+Warning: MINJAIL_DEFAULT_RET_LOG is on, policy will not have any effect
+**********************\n
+""")
+        opts.use_ret_log = True
     if opts.use_ret_log:
         kill_action = bpf.Log()
     elif opts.denylist:
@@ -145,7 +154,7 @@ def main(argv=None):
     if opts.output_header_file:
         output_file_base = opts.output
         with open(output_file_base + '.h', 'w') as output_file:
-            program = ', '.join('%#4x' % x for x in compiled_policy.opcodes)
+            program = ', '.join('%i' % x for x in compiled_policy.opcodes)
             output_file.write(HEADER_TEMPLATE % {
                 'upper_name': output_file_base.upper(),
                 'name': output_file_base,
