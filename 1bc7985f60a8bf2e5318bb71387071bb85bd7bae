@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72b73a7c_82187251",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-12T18:15:17Z",
+      "side": 1,
+      "message": "The linter is currently not doing anything anywhere, because it was returning 0 unconditionally -- this CL doesn\u0027t change that. The only thing this CL does is allow us to make the linter do something without changing Minijail.\n\nBecause the presubmit hook does not print any output of the checks that don\u0027t return non-zero, there is really no room for us to \"warn\".",
+      "parentUuid": "a83ed5d3_2fb876b2",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8905d3_48a60002",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 1
