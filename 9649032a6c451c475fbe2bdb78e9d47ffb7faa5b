@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0882e1e4_cdb65781",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-12T20:51:31Z",
+      "side": 1,
+      "message": "Oh noice, although it makes things a bit more annoying because now opts.dangerous_syscalls can be a set or a string.",
+      "parentUuid": "be06812d_6f5b4154",
+      "revId": "9649032a6c451c475fbe2bdb78e9d47ffb7faa5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "219e56d5_18cd9264",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2021-10-12T19:26:44Z",
       "side": 1,
       "message": "You can force this into a set:\n  set(opts.dangerous_syscalls.split(\u0027,\u0027))",
+      "range": {
+        "startLine": 143,
+        "startChar": 25,
+        "endLine": 143,
+        "endChar": 59
+      },
+      "revId": "9649032a6c451c475fbe2bdb78e9d47ffb7faa5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "004919f9_6297492c",
+        "filename": "tools/seccomp_policy_lint.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-12T20:51:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "219e56d5_18cd9264",
       "range": {
         "startLine": 143,
         "startChar": 25,
