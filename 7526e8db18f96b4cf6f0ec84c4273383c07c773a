@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31519b3_666c46fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-13T19:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a9073c5_d211d9ba",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "7526e8db18f96b4cf6f0ec84c4273383c07c773a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e39488ea_2bfa3a4a",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-10-13T03:35:46Z",
       "side": 1,
       "message": "the right fix here is to add a * like the lines above",
+      "revId": "7526e8db18f96b4cf6f0ec84c4273383c07c773a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c72206_e251c7d2",
+        "filename": "util.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-13T19:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e39488ea_2bfa3a4a",
       "revId": "7526e8db18f96b4cf6f0ec84c4273383c07c773a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
