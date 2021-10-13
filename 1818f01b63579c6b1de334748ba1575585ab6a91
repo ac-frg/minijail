@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca6c65ac_ebbc1060",
+        "filename": "test_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-13T19:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f85534e_ca0fcc7a",
+      "revId": "1818f01b63579c6b1de334748ba1575585ab6a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0c67768_8be1b18d",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-10-13T06:03:52Z",
       "side": 1,
       "message": "same here -- use die()",
+      "revId": "1818f01b63579c6b1de334748ba1575585ab6a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a106a829_0cafb777",
+        "filename": "test_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-13T19:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c67768_8be1b18d",
       "revId": "1818f01b63579c6b1de334748ba1575585ab6a91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
