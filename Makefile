@@ -64,6 +64,8 @@ CORE_OBJECT_FILES := libminijail.o syscall_filter.o signal_handler.o \
 		bpf.o util.o system.o syscall_wrapper.o \
 		libconstants.gen.o libsyscalls.gen.o
 
+TEST_UTIL_OBJECTS := test_util.o
+
 all: CC_BINARY(minijail0) CC_LIBRARY(libminijail.so) \
 	CC_LIBRARY(libminijailpreload.so)
 
@@ -126,7 +128,7 @@ ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(syscall_filter_unittest): $(GTEST_LIBS)
 endif
 CXX_BINARY(syscall_filter_unittest): syscall_filter_unittest.o \
-		$(CORE_OBJECT_FILES) testrunner.o
+		$(CORE_OBJECT_FILES) $(TEST_UTIL_OBJECTS) testrunner.o
 clean: CLEAN(syscall_filter_unittest)
 
 
@@ -146,7 +148,7 @@ ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(util_unittest): $(GTEST_LIBS)
 endif
 CXX_BINARY(util_unittest): util_unittest.o \
-		$(CORE_OBJECT_FILES) testrunner.o
+		$(CORE_OBJECT_FILES) $(TEST_UTIL_OBJECTS) testrunner.o
 clean: CLEAN(util_unittest)
 
 
