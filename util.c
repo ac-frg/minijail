@@ -61,7 +61,7 @@ const char *log_syscalls[] = {"connect", "fcntl", "sendto", "socket", "writev"};
 const char *log_syscalls[] = {"socket", "connect", "send", "writev"};
 #endif
 #elif defined(__powerpc__) || defined(__ia64__) || defined(__hppa__) ||        \
-      defined(__sparc__) || defined(__mips__)
+    defined(__sparc__) || defined(__mips__)
 const char *log_syscalls[] = {"socket", "connect", "send"};
 #else
 #error "Unsupported platform"
@@ -392,6 +392,8 @@ int parse_size(size_t *result, const char *sizespec)
 
 char *strip(char *s)
 {
+	if (s == NULL)
+		return NULL;
 	char *end;
 	while (*s && isblank(*s))
 		s++;
