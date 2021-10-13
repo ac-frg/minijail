@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f85534e_ca0fcc7a",
+        "filename": "test_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-13T06:03:52Z",
+      "side": 1,
+      "message": "if it\u0027s only for test code, you can call pdie and abort the test.  no need to force all callers to assert/check the return value themselves right ?",
+      "revId": "1818f01b63579c6b1de334748ba1575585ab6a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c67768_8be1b18d",
+        "filename": "test_util.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-13T06:03:52Z",
+      "side": 1,
+      "message": "same here -- use die()",
+      "revId": "1818f01b63579c6b1de334748ba1575585ab6a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
