@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "254025c4_3179c693",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-13T06:16:28Z",
+      "side": 1,
+      "message": "\u003e it was returning 0 unconditionally\n\nah, i missed that in the diff.  looks like you\u0027ve fixed that now, and we don\u0027t need this additional CLI option once we have cros lint specify the list to fail on ?",
+      "parentUuid": "72b73a7c_82187251",
+      "revId": "1bc7985f60a8bf2e5318bb71387071bb85bd7bae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8905d3_48a60002",
         "filename": "tools/seccomp_policy_lint.py",
         "patchSetId": 1
