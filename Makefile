@@ -62,7 +62,7 @@ endif
 
 CORE_OBJECT_FILES := libminijail.o syscall_filter.o signal_handler.o \
 		bpf.o util.o system.o syscall_wrapper.o \
-		libconstants.gen.o libsyscalls.gen.o
+		config_parser.o libconstants.gen.o libsyscalls.gen.o
 
 TEST_UTIL_OBJECTS := test_util.o
 
@@ -77,6 +77,7 @@ tests: TEST(CXX_BINARY(libminijail_unittest)) \
 	TEST(CXX_BINARY(syscall_filter_unittest)) \
 	TEST(CXX_BINARY(system_unittest)) \
 	TEST(CXX_BINARY(util_unittest)) \
+	TEST(CXX_BINARY(config_parser_unittest)) \
 
 
 CC_BINARY(minijail0): LDLIBS += -lcap -ldl
@@ -120,6 +121,15 @@ CXX_BINARY(minijail0_cli_unittest): minijail0_cli_unittest.o \
 		$(CORE_OBJECT_FILES) minijail0_cli.o elfparse.o testrunner.o
 clean: CLEAN(minijail0_cli_unittest)
 
+
+CXX_BINARY(config_parser_unittest): CXXFLAGS += $(GTEST_CXXFLAGS)
+CXX_BINARY(config_parser_unittest): LDLIBS += -lcap $(GTEST_LIBS)
+ifeq ($(USE_SYSTEM_GTEST),no)
+CXX_BINARY(config_parser_unittest): $(GTEST_LIBS)
+endif
+CXX_BINARY(config_parser_unittest): config_parser_unittest.o \
+		$(CORE_OBJECT_FILES) $(TEST_UTIL_OBJECTS) testrunner.o
+clean: CLEAN(config_parser_unittest)
 
 CXX_BINARY(syscall_filter_unittest): CXXFLAGS += -Wno-write-strings \
 						$(GTEST_CXXFLAGS)
