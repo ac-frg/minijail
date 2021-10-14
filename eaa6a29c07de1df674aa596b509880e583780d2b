@@ -422,6 +422,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f60b39f_5b994d57",
+        "filename": "config_parser.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-14T21:28:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8173e5b_2137671c",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15d550be_83df0fba",
@@ -453,6 +471,24 @@
       "side": 1,
       "message": "They hold values returned from strdup and I have compiler complaining about free(const char*).",
       "parentUuid": "15d550be_83df0fba",
+      "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e3b5311_cdc202b1",
+        "filename": "config_parser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-14T21:28:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b479692_b418b7ef",
       "revId": "eaa6a29c07de1df674aa596b509880e583780d2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
