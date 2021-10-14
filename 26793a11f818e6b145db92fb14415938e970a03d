@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "092c2374_f07a9852",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-14T15:53:41Z",
+      "side": 1,
+      "message": "no pressing reason for it, just noticed there was a new release we could update to",
+      "revId": "26793a11f818e6b145db92fb14415938e970a03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
