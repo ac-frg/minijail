@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b489f553_073aca80",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3122,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-15T20:33:24Z",
+      "side": 1,
+      "message": "This block is primarily what changed to work around the issue.",
+      "revId": "1112be5719e3c0b61bf3053a9cc539b945ba15c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
