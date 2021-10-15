@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e603a87_e2560c7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-10-15T18:24:20Z",
+      "side": 1,
+      "message": "There is one more check that\u0027s triggering on benign policies: we don\u0027t parse multiline statements properly.\n\nI really want to get the linter blocking things so I\u0027m happy to remove this for now.",
+      "revId": "9f40732a6f040d4667a2f9850c5870a3175de0c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
