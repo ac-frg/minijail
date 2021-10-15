@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5860b902_c96c9c54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-15T20:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "280450a2_c3c79bbb",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "a421205105269788b4568c95abcfc4710973f224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97925b06_63a89694",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-10-15T20:47:05Z",
       "side": 1,
       "message": "I\u0027m confused by the comment here.",
+      "range": {
+        "startLine": 2620,
+        "startChar": 0,
+        "endLine": 2628,
+        "endChar": 1
+      },
+      "revId": "a421205105269788b4568c95abcfc4710973f224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f8b8d1_fd1d19d2",
+        "filename": "libminijail.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2628,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-15T20:56:04Z",
+      "side": 1,
+      "message": "I rewrote it to hopefully convey the intended message.",
+      "parentUuid": "97925b06_63a89694",
       "range": {
         "startLine": 2620,
         "startChar": 0,
