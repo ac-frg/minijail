@@ -126,7 +126,7 @@ ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(syscall_filter_unittest): $(GTEST_LIBS)
 endif
 CXX_BINARY(syscall_filter_unittest): syscall_filter_unittest.o \
-		$(CORE_OBJECT_FILES) testrunner.o
+		$(CORE_OBJECT_FILES) test_util.o testrunner.o
 clean: CLEAN(syscall_filter_unittest)
 
 
@@ -146,7 +146,7 @@ ifeq ($(USE_SYSTEM_GTEST),no)
 CXX_BINARY(util_unittest): $(GTEST_LIBS)
 endif
 CXX_BINARY(util_unittest): util_unittest.o \
-		$(CORE_OBJECT_FILES) testrunner.o
+		$(CORE_OBJECT_FILES) test_util.o testrunner.o
 clean: CLEAN(util_unittest)
 
 
@@ -202,7 +202,7 @@ $(eval $(call add_object_rules,libconstants.gen.o,CC,c,CFLAGS))
 ifeq ($(USE_SYSTEM_GTEST),no)
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = googletest-release-1.10.0/googletest
+GTEST_DIR = googletest-release-1.11.0/googletest
 
 # Flags passed to the preprocessor.
 # Set Google Test's header directory as a system directory, such that
