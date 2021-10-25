@@ -16,6 +16,108 @@
       "message": "I could have another round of reviews now.",
       "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e6c0b65_0f6ec706",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "i left feedback in the doc wrt format that i don\u0027t think is covered here, and i thought i mentioned somewhere about documenting the format in the man pages\n\nor is your plan to land this as-is (even though it\u0027s not used yet), and then iterate on top of it to address the other pending feedback ?",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5357f2_a0c4bf86",
+        "filename": "Makefile",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "you\u0027ll prob need to update Android.bp again",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6117bdc8_a5c7914e",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "i know it\u0027s a bit confusing, but in C++ files, we follow the Google C++ style guide.  that means using like 2 space indents.  look at the other unittest files as examples.\n\nyou might be able to run clang-format on them to help ...",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358260de_265df995",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "should assert list_ is not nullptr",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0413f08d_41ae8b22",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "add a FreeDeleter class to test_util.h like ScopedMinijailDeleter we have today that calls free() in its destructor.\n\nthen in this module you can declare a ScopedConfigEntry pointer type (see ScopedMinijail as an example).  then you don\u0027t need to call free manually on any of these exit paths.",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8c8b417_43d74fc9",
+        "filename": "config_parser_unittest.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:34:14Z",
+      "side": 1,
+      "message": "copy the base::ScopedFILE logic from chromium/src/base/files/scoped_file.h to our test_util.h and use that instead",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
