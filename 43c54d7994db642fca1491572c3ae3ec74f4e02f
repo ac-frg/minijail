@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bf57cfb_80d97933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-25T18:36:34Z",
+      "side": 1,
+      "message": "FYI for Zi as this will make your config CL a little simpler",
+      "revId": "43c54d7994db642fca1491572c3ae3ec74f4e02f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
