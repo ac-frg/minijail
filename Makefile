@@ -195,7 +195,7 @@ $(eval $(call add_object_rules,libconstants.gen.o,CC,c,CFLAGS))
 ifeq ($(USE_SYSTEM_GTEST),no)
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = googletest-release-1.11.0/googletest
+GTEST_DIR = $(SRC)/googletest-release-1.11.0/googletest
 
 # Flags passed to the preprocessor.
 # Set Google Test's header directory as a system directory, such that
@@ -211,7 +211,10 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 		$(GTEST_DIR)/include/gtest/internal/*.h
 
 # House-keeping build targets.
-clean: clean_gtest
+clean: clean_src clean_gtest
+
+clean_src:
+	$(QUIET)rm -f $(SRC)/*.[ado] $(SRC)/*.depends $(SRC)/*.gen.c
 
 clean_gtest:
 	$(QUIET)rm -f gtest.a gtest_main.a *.o
