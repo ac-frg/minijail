@@ -392,6 +392,8 @@ int parse_size(size_t *result, const char *sizespec)
 
 char *strip(char *s)
 {
+	if (s == NULL)
+		return NULL;
 	char *end;
 	while (*s && isblank(*s))
 		s++;
