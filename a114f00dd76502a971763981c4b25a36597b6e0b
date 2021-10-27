@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc65aea8_74c2391f",
+        "filename": "Makefile",
+        "patchSetId": 23
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "delete these -- they\u0027re part of UNITTEST_DEPS now",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121b0210_40a2d3aa",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "is there a reason for these NULL checks ?  anyone calling these funcs with NULL are basically doing it wrong, so it should never happen.\n\nwe haven\u0027t written other minijail funcs in general to protect against bad programmers.  look at libminijail and how it doesn\u0027t check that |m| is always non-NULL.\n\nNB: the NULL check in the free func is OK because we explicitly state that calling free(NULL) is safe so that it simplifies our code cleanup paths.",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbdff4c3_cfe60ea8",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "\"will point\" or \"points\"",
+      "range": {
+        "startLine": 68,
+        "startChar": 31,
+        "endLine": 68,
+        "endChar": 42
+      },
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49be9d84_ac674dd5",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "should pull this out of the loop entirely and call getline() to start with",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dabbc09a_6efd7126",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "if you move this up, it\u0027ll be a bit simpler\n\n list-\u003enum_allocated_ *\u003d 2;\n list-\u003eentries \u003d realloc(...\n\nconsidering we leave list-\u003eentries NULL on allocation failure, i don\u0027t think changing num_allocated_ first is a problem.  it\u0027ll be just as meaningless on failure.",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7180b8_3939d066",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "while this is not wrong, imo this is a bit easier to read:\n\n struct config_entry *entry \u003d \u0026list-\u003eentries[list-\u003enum_entries];",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddef9edc_bec34df0",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "with man page sections, we omit the space like \"getline(3)\"",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3879304_0f79b0f7",
+        "filename": "test_util.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "C lib headers use \u003c...\u003e, not \"...\"",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

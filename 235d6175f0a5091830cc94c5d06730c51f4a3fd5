@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4d5a87_24ce1da1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-27T07:32:41Z",
+      "side": 1,
+      "message": "can you go through the design doc and close resolved comments and reply to still open ones ?\n\nwhen comments are left open, it\u0027s unclear to/for reviewers what the expectation is for them.  unresolved comments imply that they haven\u0027t been addressed yet, and the CL owner uploading new revisions is merely working towards closing them, not expecting more reviews yet.\n\nhttps://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#Going-through-review",
+      "parentUuid": "e619989a_ebf79b46",
+      "revId": "235d6175f0a5091830cc94c5d06730c51f4a3fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb5357f2_a0c4bf86",
