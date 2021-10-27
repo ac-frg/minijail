@@ -34,6 +34,24 @@
       "parentUuid": "b9a599f0_712bbc05",
       "revId": "572bab2ebbe013ce778ba22e463e63ccbe8b26fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfab137_832d4ad9",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-27T16:54:55Z",
+      "side": 1,
+      "message": "I am just thinking there is some risk of confusing path comparison bugs if we use a path join operation that always adds the path separator, but I don\u0027t think it is a big enough issue to address in this CL.",
+      "parentUuid": "ec454336_e6f05b92",
+      "revId": "572bab2ebbe013ce778ba22e463e63ccbe8b26fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
