@@ -16,6 +16,24 @@
       "message": "This seems to have broken the `CC_STATIC_LIBRARY(libminijail.pic.a)` target, which in turn breaks the Rust (cargo) build, which breaks cargo2android.py for crosvm.\n\n```\n~/aosp/external/minijail$ make \"CC_STATIC_LIBRARY(libminijail.pic.a)\"\nUsing BASE_VER\u003d0\n/bin/sh: line 1: $\u0027GEN\\t\\tlibconstants.h -\u003e  libconstants.gen.c\u0027: command not found\nmake: *** [Makefile:178: libconstants.gen.c] Error 127\n\n#### failed to build some targets  ####\n```",
       "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb400371_58207842",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-10-28T14:24:04Z",
+      "side": 1,
+      "message": "I am taking a look, but I am skeptical this CL broke it.",
+      "parentUuid": "87032c35_b9c623b6",
+      "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
