@@ -5,6 +5,7 @@
 BASE_VER=0
 include common.mk
 
+ECHO ?= /bin/echo -e
 LIBDIR ?= /lib
 PRELOADNAME = libminijailpreload.so
 PRELOADPATH = "$(LIBDIR)/$(PRELOADNAME)"
