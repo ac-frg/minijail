@@ -88,6 +88,24 @@
       "parentUuid": "cfdbdcf4_363e76f6",
       "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6409b41_7526ef50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2021-10-29T10:58:38Z",
+      "side": 1,
+      "message": "The code that does it is here: https://cs.android.com/android/platform/superproject/+/master:external/minijail/rust/minijail-sys/build.rs;l\u003d45\n\nWhichever way you want to fix it, it\u0027s currently blocking crosvm merges so it needs fixing or rolling back.",
+      "parentUuid": "97bcc8c5_67f63c6a",
+      "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
