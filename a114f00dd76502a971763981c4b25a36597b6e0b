@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a65b917_d08c4c72",
+        "filename": "Makefile",
+        "patchSetId": 23
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Oops missed this when rebasing. Done.",
+      "parentUuid": "bc65aea8_74c2391f",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "121b0210_40a2d3aa",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-10-27T07:32:41Z",
       "side": 1,
       "message": "is there a reason for these NULL checks ?  anyone calling these funcs with NULL are basically doing it wrong, so it should never happen.\n\nwe haven\u0027t written other minijail funcs in general to protect against bad programmers.  look at libminijail and how it doesn\u0027t check that |m| is always non-NULL.\n\nNB: the NULL check in the free func is OK because we explicitly state that calling free(NULL) is safe so that it simplifies our code cleanup paths.",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85ac54c0_760578e2",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Good point. Remove the check since it is basically only for internal use.",
+      "parentUuid": "121b0210_40a2d3aa",
       "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d55ba28_4774c540",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbdff4c3_cfe60ea8",
+      "range": {
+        "startLine": 68,
+        "startChar": 31,
+        "endLine": 68,
+        "endChar": 42
+      },
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49be9d84_ac674dd5",
@@ -71,6 +131,24 @@
       "writtenOn": "2021-10-27T07:32:41Z",
       "side": 1,
       "message": "should pull this out of the loop entirely and call getline() to start with",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ea11007_487cc284",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49be9d84_ac674dd5",
       "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27ff2d3_b1cd540d",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Yes, I agree. Done.",
+      "parentUuid": "dabbc09a_6efd7126",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f7180b8_3939d066",
@@ -105,6 +201,24 @@
       "writtenOn": "2021-10-27T07:32:41Z",
       "side": 1,
       "message": "while this is not wrong, imo this is a bit easier to read:\n\n struct config_entry *entry \u003d \u0026list-\u003eentries[list-\u003enum_entries];",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77de360f_b4d4d7e9",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f7180b8_3939d066",
       "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d69f85_79b0eb8b",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddef9edc_bec34df0",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3879304_0f79b0f7",
@@ -139,6 +271,24 @@
       "writtenOn": "2021-10-27T07:32:41Z",
       "side": 1,
       "message": "C lib headers use \u003c...\u003e, not \"...\"",
+      "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a278ed_e8737192",
+        "filename": "test_util.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-10-29T22:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3879304_0f79b0f7",
       "revId": "a114f00dd76502a971763981c4b25a36597b6e0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
