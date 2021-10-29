@@ -12,53 +12,6 @@ use std::io;
 use std::path::Path;
 use std::process::Command;
 
-/// Returns the target triplet prefix for gcc commands. No prefix is required
-/// for native builds.
-fn get_cross_compile_prefix() -> String {
-    if let Ok(cross_compile) = env::var("CROSS_COMPILE") {
-        return cross_compile;
-    }
-
-    if env::var("HOST").unwrap() == env::var("TARGET").unwrap() {
-        return String::from("");
-    }
-
-    let arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap();
-    let os = env::var("CARGO_CFG_TARGET_OS").unwrap();
-    let env = env::var("CARGO_CFG_TARGET_ENV").unwrap();
-    return format!("{}-{}-{}-", arch, os, env);
-}
-
-fn set_up_libminijail() -> io::Result<()> {
-    // Minijail requires libcap at runtime.
-    pkg_config::Config::new().probe("libcap").unwrap();
-
-    // Prefer a system-provided Minijail library.
-    if pkg_config::Config::new().probe("libminijail").is_ok() {
-        return Ok(());
-    }
-
-    let current_dir = env::var("CARGO_MANIFEST_DIR").unwrap() + "/../..";
-    let out_dir = env::var("OUT_DIR").unwrap();
-    let profile = env::var("PROFILE").unwrap();
-
-    let status = Command::new("make")
-        .current_dir(&out_dir)
-        .env("OUT", &out_dir)
-        .env("MODE", if profile == "release" { "opt" } else { "debug" })
-        .env("CROSS_COMPILE", get_cross_compile_prefix())
-        .arg("-C")
-        .arg(&current_dir)
-        .arg("CC_STATIC_LIBRARY(libminijail.pic.a)")
-        .status()?;
-    if !status.success() {
-        std::process::exit(status.code().unwrap_or(1));
-    }
-    println!("cargo:rustc-link-search=native={}", &out_dir);
-    println!("cargo:rustc-link-lib=static=minijail.pic");
-    Ok(())
-}
-
 fn bindings_generation() -> io::Result<()> {
     let bindgen = match which::which("bindgen") {
         Ok(v) => v,
@@ -105,6 +58,5 @@ fn bindings_generation() -> io::Result<()> {
 }
 
 fn main() -> io::Result<()> {
-    set_up_libminijail()?;
     bindings_generation()
 }
