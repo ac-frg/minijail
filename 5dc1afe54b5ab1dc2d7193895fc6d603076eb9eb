@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4ad9b5_a03e2c52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-29T06:25:39Z",
+      "side": 1,
+      "message": "it\u0027s defined in common.mk",
+      "revId": "5dc1afe54b5ab1dc2d7193895fc6d603076eb9eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2efee41_fe7ed1a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-29T06:25:39Z",
+      "side": 1,
+      "message": "this is not a valid way to build files with our current build system.  it sounds like the rust build code is broken.",
+      "revId": "5dc1afe54b5ab1dc2d7193895fc6d603076eb9eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
