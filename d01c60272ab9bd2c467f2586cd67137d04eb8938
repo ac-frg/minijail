@@ -70,6 +70,24 @@
       "parentUuid": "717d9a93_db7604b9",
       "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bcc8c5_67f63c6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-29T06:24:32Z",
+      "side": 1,
+      "message": "also, running `make \"CC_STATIC_LIBRARY(libminijail.pic.a)\"` is incorrect.  any code doing that needs fixing.",
+      "parentUuid": "cfdbdcf4_363e76f6",
+      "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
