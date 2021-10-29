@@ -106,6 +106,24 @@
       "parentUuid": "97bcc8c5_67f63c6a",
       "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a17207_01c0cc57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-10-29T16:53:01Z",
+      "side": 1,
+      "message": "Allen: why does minijail-sys need to build libminijail at all ?  seems like it\u0027s just reading the header file and nothing else.",
+      "parentUuid": "c6409b41_7526ef50",
+      "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
