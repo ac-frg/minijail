@@ -34,6 +34,24 @@
       "parentUuid": "c4b39bf4_de1941fc",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2d8e59_76e4be7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-01T16:32:08Z",
+      "side": 1,
+      "message": "just to be clear, this static lib is only built as part of the minijail-sys rust bindings.  it\u0027s not part of the minijail build itself.  so unless the outputs of the rust build are being included in the main outputs of minijail, i\u0027m not sure how this particular bit of code is exposing its build artifacts.\n\nif it is indeed the case that rust intermediates are being included in the main set of artifacts, that sounds like a pretty big bug in the Android build system.",
+      "parentUuid": "1d9c5925_df639f7f",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
