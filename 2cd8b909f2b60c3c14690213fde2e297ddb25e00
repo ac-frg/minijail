@@ -142,6 +142,24 @@
       "parentUuid": "60144e6e_981cd7b8",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19e26dec_825b83c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903025
+      },
+      "writtenOn": "2021-11-02T19:54:05Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1266057\n\nIs the driver of the discussion. I\u0027m OK cleaning up the cargo/static lib situation too, but I\u0027m not sure that\u0027s the real cause.\n\nToT minijail fails the same way if I type \"make all\" instead of \"make\".",
+      "parentUuid": "ed75e1cc_d58bfd20",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
