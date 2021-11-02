@@ -52,6 +52,24 @@
       "parentUuid": "1d9c5925_df639f7f",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b8ff09_e845b12e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903025
+      },
+      "writtenOn": "2021-11-02T19:18:13Z",
+      "side": 1,
+      "message": "I think building crosvm out of tree needs the static lib. Or at least I can\u0027t get it to link without it. Dennis might know more since he\u0027s been setting up the external build stuff.",
+      "parentUuid": "9c2d8e59_76e4be7f",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
