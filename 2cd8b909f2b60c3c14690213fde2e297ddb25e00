@@ -70,6 +70,24 @@
       "parentUuid": "9c2d8e59_76e4be7f",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310142ad_ad83c2f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-02T19:27:56Z",
+      "side": 1,
+      "message": "the current minijail-sys logic doesn\u0027t provide the static lib if minijail is installed into the system already (that\u0027s the pkg-config probe logic).  so it seems like dynamic linking against minijail already works.\n\nis the concern that people want to use minijail-sys but not have to be bothered with making sure the minijail package is already installed ?  imo, that\u0027s unreasonable, and a break from how sys bindings work for every other library.",
+      "parentUuid": "66b8ff09_e845b12e",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
