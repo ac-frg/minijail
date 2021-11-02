@@ -160,6 +160,24 @@
       "parentUuid": "ed75e1cc_d58bfd20",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd47ccc_38ef74a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-02T20:24:03Z",
+      "side": 1,
+      "message": "i did a quick survey of random -sys crates in the CrOS tree.  it does look like a good number, but not all, of them have support for local builds or using the installed system copy.  imo this is a huge moral failing in the rust ecosystem because you\u0027re not getting just the bindings, but the actual underlying library, and even if the system fixes their shared copy of the package, the rust bindings are stuck on old ones.\n\nif you really want this in minijail-sys, i think we need:\n* add a BUILD_STATIC_LIBS\u003c/bikeshed\u003e knob to the Makefile that defaults to off and controls adding the relevant static libs to the all target\n* build.rs uses the plain make with BUILD_STATIC_LIBS\u003dyes\n* it would be nice if we could force the user to opt-in to this behavior, but i\u0027m guessing you prefer not to do that\n\ni\u0027ll note that you can\u0027t build minijail-sys in this way without first installing libcap in the system ...",
+      "parentUuid": "19e26dec_825b83c3",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
