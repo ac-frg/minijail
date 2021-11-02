@@ -124,6 +124,24 @@
       "parentUuid": "26c7fd6a_be74eeb7",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed75e1cc_d58bfd20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-11-02T19:44:04Z",
+      "side": 1,
+      "message": "As far as I can tell it is pretty common in -sys crates to have logic to build the underlying library unless one is provided by the system. \n\nWe tried hard to get crosvm to build out of the box with cargo, and that\u0027s pretty much impossible without using build.rs files to build native libraries that crosvm depends on. \n\nI agree it\u0027s not the cleanest solution, but cargo does not give us many options. Is there an active problem caused by this? \n\nFWIW, we are actively looking into migrating crosvm builds to bazel, that should give us better options to do this.",
+      "parentUuid": "60144e6e_981cd7b8",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
