@@ -88,6 +88,24 @@
       "parentUuid": "66b8ff09_e845b12e",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c7fd6a_be74eeb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-11-02T19:28:46Z",
+      "side": 1,
+      "message": "That is correct. Standalone Crosvm builds use this build.rs file to build minijail. Most of our *-sys crates build the underlying static library and tell rustc to link it in a similar fashion. So we do need it there. \n\nIs this causing problems in other build situations?\n\nRe android: If I remember correctly, this should not be used within android as they do not invoke build.rs files (except when running cargo2android to generate build files)",
+      "parentUuid": "66b8ff09_e845b12e",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
