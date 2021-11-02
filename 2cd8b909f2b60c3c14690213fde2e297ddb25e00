@@ -106,6 +106,24 @@
       "parentUuid": "66b8ff09_e845b12e",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60144e6e_981cd7b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-02T19:32:08Z",
+      "side": 1,
+      "message": "to be clear, i\u0027m not against providing static libs in minijail, but build.rs \u0026 minijail-sys are not the place for that logic",
+      "parentUuid": "26c7fd6a_be74eeb7",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
