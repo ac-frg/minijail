@@ -178,6 +178,24 @@
       "parentUuid": "19e26dec_825b83c3",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5dedc7_9e296546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885735
+      },
+      "writtenOn": "2021-11-03T19:39:48Z",
+      "side": 1,
+      "message": "I would say that the bigger moral failing in the ecosystem here is the lack of consistency or predictability because build.rs files let you do whatever the heck you want, which one could argue we are abusing here.\n\nWe were considering if we should create a standardized build.rs implementation which is informed by some metadata on what to do, which would make tooling like cargo2android a lot simpler.\n\nHowever.. I think we are going to migrate to bazel sooner rather than later, so that might not be worthwhile.\n\nYour recommendation on using a knob for this sounds good to me!",
+      "parentUuid": "4cd47ccc_38ef74a6",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
