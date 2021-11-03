@@ -142,6 +142,24 @@
       "parentUuid": "40a17207_01c0cc57",
       "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b76e83_133e80ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-03T20:07:17Z",
+      "side": 1,
+      "message": "we\u0027re resolving it in https://r.android.com/1875413",
+      "parentUuid": "e6101042_bcbcb388",
+      "revId": "d01c60272ab9bd2c467f2586cd67137d04eb8938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
