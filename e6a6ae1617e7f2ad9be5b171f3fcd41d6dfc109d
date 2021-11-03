@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed456305_e3d0bba0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-03T20:06:53Z",
+      "side": 1,
+      "message": "as noted in our oob discussion, the \"only\" thing pending here is documenting the format in minijail0.5",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
