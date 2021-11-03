@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95371a96_4127f389",
+        "filename": "libminijail.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2541,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2021-11-03T18:30:28Z",
+      "side": 0,
+      "message": "I would have preferred to keep the braces but won\u0027t bikeshed it.",
+      "range": {
+        "startLine": 2538,
+        "startChar": 0,
+        "endLine": 2541,
+        "endChar": 2
+      },
+      "revId": "43c54d7994db642fca1491572c3ae3ec74f4e02f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
