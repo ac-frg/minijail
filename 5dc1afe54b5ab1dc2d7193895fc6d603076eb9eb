@@ -33,6 +33,24 @@
       "message": "this is not a valid way to build files with our current build system.  it sounds like the rust build code is broken.",
       "revId": "5dc1afe54b5ab1dc2d7193895fc6d603076eb9eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "994e3daf_c5ff08a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-03T20:08:07Z",
+      "side": 1,
+      "message": "i think https://r.android.com/1875413 should address the rust angle, so shouldn\u0027t need this anymore",
+      "parentUuid": "e2efee41_fe7ed1a0",
+      "revId": "5dc1afe54b5ab1dc2d7193895fc6d603076eb9eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
