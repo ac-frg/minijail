@@ -196,6 +196,24 @@
       "parentUuid": "4cd47ccc_38ef74a6",
       "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a1c2a86_7acdd22c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-03T20:05:43Z",
+      "side": 1,
+      "message": "it\u0027s easy for me to throw stones since i\u0027m not directly invested in or working to improve this ecosystem ;)\n\nif we\u0027re all fine with this approach, then let\u0027s leave it at that (at least for minijail)",
+      "parentUuid": "da5dedc7_9e296546",
+      "revId": "2cd8b909f2b60c3c14690213fde2e297ddb25e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
