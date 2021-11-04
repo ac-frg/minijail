@@ -16,6 +16,74 @@
       "message": "as noted in our oob discussion, the \"only\" thing pending here is documenting the format in minijail0.5",
       "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639e10e9_5d96865e",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-04T07:09:30Z",
+      "side": 1,
+      "message": "i just landed a helper for strings.  so change this line to:\n\n attribute_cleanup_str char *line \u003d strdup(config_line);\n\nthen you can delete all the free(line) calls below in this func",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2bebef8_a8bdef88",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-04T07:09:30Z",
+      "side": 1,
+      "message": "did you want to delete this too per the previous discussion ?\nhttps://r.android.com/c/platform/external/minijail/+/1823874/23..24/config_parser.c#b60",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dae40e0_c56cda2a",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-04T07:09:30Z",
+      "side": 1,
+      "message": "use attribute_cleanup_str here too",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026ee72b_0e991de8",
+        "filename": "util.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-04T07:09:30Z",
+      "side": 1,
+      "message": "did you want to delete this too per the previous discussion ?\nhttps://r.android.com/c/platform/external/minijail/+/1823874/23..24/config_parser.c#b60",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
