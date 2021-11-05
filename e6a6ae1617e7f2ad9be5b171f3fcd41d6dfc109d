@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a8a607a_2ae75ec0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-05T06:03:13Z",
+      "side": 1,
+      "message": "I added a draft but I realize I haven\u0027t add the \u0027-conf\u0027 option to minijail cli yet. Maybe I shouldn\u0027t mention the new cli option in the minijail0.5",
+      "parentUuid": "ed456305_e3d0bba0",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "639e10e9_5d96865e",
         "filename": "config_parser.c",
         "patchSetId": 24
@@ -31,6 +49,24 @@
       "writtenOn": "2021-11-04T07:09:30Z",
       "side": 1,
       "message": "i just landed a helper for strings.  so change this line to:\n\n attribute_cleanup_str char *line \u003d strdup(config_line);\n\nthen you can delete all the free(line) calls below in this func",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6817322f_b0ec7d63",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-05T06:03:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "639e10e9_5d96865e",
       "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f80a1246_c7f70c12",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-05T06:03:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2bebef8_a8bdef88",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dae40e0_c56cda2a",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89295e41_8bd9b9eb",
+        "filename": "config_parser.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-05T06:03:13Z",
+      "side": 1,
+      "message": "Done. Also I can remove the variable |ret|.",
+      "parentUuid": "7dae40e0_c56cda2a",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "026ee72b_0e991de8",
@@ -82,6 +154,24 @@
       "writtenOn": "2021-11-04T07:09:30Z",
       "side": 1,
       "message": "did you want to delete this too per the previous discussion ?\nhttps://r.android.com/c/platform/external/minijail/+/1823874/23..24/config_parser.c#b60",
+      "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63dc7005_702756d1",
+        "filename": "util.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-05T06:03:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "026ee72b_0e991de8",
       "revId": "e6a6ae1617e7f2ad9be5b171f3fcd41d6dfc109d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
