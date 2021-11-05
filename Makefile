@@ -10,6 +10,9 @@ PRELOADNAME = libminijailpreload.so
 PRELOADPATH = "$(LIBDIR)/$(PRELOADNAME)"
 CPPFLAGS += -DPRELOADPATH='$(PRELOADPATH)'
 
+# We don't build static libs by default.
+BUILD_STATIC_LIBS ?= no
+
 # Defines the pivot root path used by the minimalistic-mountns profile.
 DEFAULT_PIVOT_ROOT ?= /var/empty
 CPPFLAGS += -DDEFAULT_PIVOT_ROOT='"$(DEFAULT_PIVOT_ROOT)"'
@@ -49,20 +52,27 @@ MJ_COMMON_FLAGS = -Wunused-parameter -Wextra -Wno-missing-field-initializers
 CFLAGS += $(MJ_COMMON_FLAGS)
 CXXFLAGS += $(MJ_COMMON_FLAGS)
 
+# Dependencies that all gtest based unittests should have.
+UNITTEST_LIBS := -lcap
+UNITTEST_DEPS := testrunner.o test_util.o
+
 USE_SYSTEM_GTEST ?= no
 ifeq ($(USE_SYSTEM_GTEST),no)
 GTEST_CXXFLAGS := -std=gnu++14
 GTEST_LIBS := gtest.a
+UNITTEST_DEPS += $(GTEST_LIBS)
 else
 GTEST_CXXFLAGS := $(shell gtest-config --cxxflags 2>/dev/null || \
   echo "-pthread")
 GTEST_LIBS := $(shell gtest-config --libs 2>/dev/null || \
   echo "-lgtest -pthread -lpthread")
 endif
+UNITTEST_LIBS += $(GTEST_LIBS)
 
 CORE_OBJECT_FILES := libminijail.o syscall_filter.o signal_handler.o \
 		bpf.o util.o system.o syscall_wrapper.o \
 		libconstants.gen.o libsyscalls.gen.o
+UNITTEST_DEPS += $(CORE_OBJECT_FILES)
 
 all: CC_BINARY(minijail0) CC_LIBRARY(libminijail.so) \
 	CC_LIBRARY(libminijailpreload.so)
@@ -91,14 +101,14 @@ CC_STATIC_LIBRARY(libminijail.pic.a): $(CORE_OBJECT_FILES)
 CC_STATIC_LIBRARY(libminijail.pie.a): $(CORE_OBJECT_FILES)
 clean: CLEAN(libminijail.*.a)
 
+ifeq ($(BUILD_STATIC_LIBS),yes)
+all: CC_STATIC_LIBRARY(libminijail.pic.a) CC_STATIC_LIBRARY(libminijail.pie.a)
+endif
+
 CXX_BINARY(libminijail_unittest): CXXFLAGS += -Wno-write-strings \
 						$(GTEST_CXXFLAGS)
-CXX_BINARY(libminijail_unittest): LDLIBS += -lcap $(GTEST_LIBS)
-ifeq ($(USE_SYSTEM_GTEST),no)
-CXX_BINARY(libminijail_unittest): $(GTEST_LIBS)
-endif
-CXX_BINARY(libminijail_unittest): libminijail_unittest.o $(CORE_OBJECT_FILES) \
-		testrunner.o
+CXX_BINARY(libminijail_unittest): LDLIBS += $(UNITTEST_LIBS)
+CXX_BINARY(libminijail_unittest): $(UNITTEST_DEPS) libminijail_unittest.o
 clean: CLEAN(libminijail_unittest)
 
 TEST(CXX_BINARY(libminijail_unittest)): CC_LIBRARY(libminijailpreload.so)
@@ -110,43 +120,28 @@ clean: CLEAN(libminijailpreload.so)
 
 
 CXX_BINARY(minijail0_cli_unittest): CXXFLAGS += $(GTEST_CXXFLAGS)
-CXX_BINARY(minijail0_cli_unittest): LDLIBS += -lcap $(GTEST_LIBS)
-ifeq ($(USE_SYSTEM_GTEST),no)
-CXX_BINARY(minijail0_cli_unittest): $(GTEST_LIBS)
-endif
-CXX_BINARY(minijail0_cli_unittest): minijail0_cli_unittest.o \
-		$(CORE_OBJECT_FILES) minijail0_cli.o elfparse.o testrunner.o
+CXX_BINARY(minijail0_cli_unittest): LDLIBS += $(UNITTEST_LIBS)
+CXX_BINARY(minijail0_cli_unittest): $(UNITTEST_DEPS) minijail0_cli_unittest.o \
+		minijail0_cli.o elfparse.o
 clean: CLEAN(minijail0_cli_unittest)
 
 
 CXX_BINARY(syscall_filter_unittest): CXXFLAGS += -Wno-write-strings \
 						$(GTEST_CXXFLAGS)
-CXX_BINARY(syscall_filter_unittest): LDLIBS += -lcap $(GTEST_LIBS)
-ifeq ($(USE_SYSTEM_GTEST),no)
-CXX_BINARY(syscall_filter_unittest): $(GTEST_LIBS)
-endif
-CXX_BINARY(syscall_filter_unittest): syscall_filter_unittest.o \
-		$(CORE_OBJECT_FILES) test_util.o testrunner.o
+CXX_BINARY(syscall_filter_unittest): LDLIBS += $(UNITTEST_LIBS)
+CXX_BINARY(syscall_filter_unittest): $(UNITTEST_DEPS) syscall_filter_unittest.o
 clean: CLEAN(syscall_filter_unittest)
 
 
 CXX_BINARY(system_unittest): CXXFLAGS += $(GTEST_CXXFLAGS)
-CXX_BINARY(system_unittest): LDLIBS += -lcap $(GTEST_LIBS)
-ifeq ($(USE_SYSTEM_GTEST),no)
-CXX_BINARY(system_unittest): $(GTEST_LIBS)
-endif
-CXX_BINARY(system_unittest): system_unittest.o \
-		$(CORE_OBJECT_FILES) testrunner.o
+CXX_BINARY(system_unittest): LDLIBS += $(UNITTEST_LIBS)
+CXX_BINARY(system_unittest): $(UNITTEST_DEPS) system_unittest.o
 clean: CLEAN(system_unittest)
 
 
 CXX_BINARY(util_unittest): CXXFLAGS += $(GTEST_CXXFLAGS)
-CXX_BINARY(util_unittest): LDLIBS += -lcap $(GTEST_LIBS)
-ifeq ($(USE_SYSTEM_GTEST),no)
-CXX_BINARY(util_unittest): $(GTEST_LIBS)
-endif
-CXX_BINARY(util_unittest): util_unittest.o \
-		$(CORE_OBJECT_FILES) test_util.o testrunner.o
+CXX_BINARY(util_unittest): LDLIBS += $(UNITTEST_LIBS)
+CXX_BINARY(util_unittest): $(UNITTEST_DEPS) util_unittest.o
 clean: CLEAN(util_unittest)
 
 
@@ -173,10 +168,9 @@ libsyscalls.gen.o.depends: libsyscalls.gen.c
 
 # Only regenerate libsyscalls.gen.c if the Makefile or header changes.
 # NOTE! This will not detect if the file is not appropriate for the target.
-libsyscalls.gen.c: $(SRC)/Makefile $(SRC)/libsyscalls.h
-	@printf "Generating target-arch specific $@...\n"
+libsyscalls.gen.c: $(SRC)/libsyscalls.h $(SRC)/Makefile
+	@$(ECHO) "GEN		$(subst $(SRC)/,,$<) ->  $@"
 	$(QUIET)CC="$(CC)" $(SRC)/gen_syscalls.sh "$@"
-	@printf "$@ done.\n"
 clean: CLEAN(libsyscalls.gen.c)
 
 $(eval $(call add_object_rules,libsyscalls.gen.o,CC,c,CFLAGS))
@@ -187,10 +181,9 @@ libconstants.gen.o.depends: libconstants.gen.c
 
 # Only regenerate libconstants.gen.c if the Makefile or header changes.
 # NOTE! This will not detect if the file is not appropriate for the target.
-libconstants.gen.c: $(SRC)/Makefile $(SRC)/libconstants.h
-	@printf "Generating target-arch specific $@...\n"
+libconstants.gen.c: $(SRC)/libconstants.h $(SRC)/Makefile
+	@$(ECHO) "GEN		$(subst $(SRC)/,,$<) ->  $@"
 	$(QUIET)CC="$(CC)" $(SRC)/gen_constants.sh "$@"
-	@printf "$@ done.\n"
 clean: CLEAN(libconstants.gen.c)
 
 $(eval $(call add_object_rules,libconstants.gen.o,CC,c,CFLAGS))
@@ -221,7 +214,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 clean: clean_gtest
 
 clean_gtest:
-	rm -f gtest.a gtest_main.a *.o
+	$(QUIET)rm -f gtest.a gtest_main.a *.o
 
 # Builds gtest.a and gtest_main.a.
 
