@@ -16,6 +16,86 @@
       "message": "Rebased on ToT, please give it another round of review. Thanks!",
       "revId": "35cff18500066ac5fce70090a2e419c094135e24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ee9b32_c28e1774",
+        "filename": "minijail0.5",
+        "patchSetId": 26
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-10T02:04:30Z",
+      "side": 1,
+      "message": "\"specify command line options and other settings\"",
+      "range": {
+        "startLine": 161,
+        "startChar": 44,
+        "endLine": 161,
+        "endChar": 64
+      },
+      "revId": "35cff18500066ac5fce70090a2e419c094135e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49cf95de_39bd6001",
+        "filename": "minijail0.5",
+        "patchSetId": 26
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-10T02:04:30Z",
+      "side": 1,
+      "message": "blank line above this",
+      "revId": "35cff18500066ac5fce70090a2e419c094135e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b38a16c_266003e3",
+        "filename": "minijail0.5",
+        "patchSetId": 26
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-10T02:04:30Z",
+      "side": 1,
+      "message": "add a line like:\n\n This declares the version of the config file format.",
+      "revId": "35cff18500066ac5fce70090a2e419c094135e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a283f440_68def5cc",
+        "filename": "minijail0.5",
+        "patchSetId": 26
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-10T02:04:30Z",
+      "side": 1,
+      "message": "\"contain\"",
+      "range": {
+        "startLine": 172,
+        "startChar": 5,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "35cff18500066ac5fce70090a2e419c094135e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
