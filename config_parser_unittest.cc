@@ -31,6 +31,8 @@ TEST(ParsingConfigTest, valid_config_line) {
       (config_entry *)calloc(1, sizeof(struct config_entry)));
   const std::vector<std::string> valid_conf_lines = {
       "mount=none",
+      "no_arg="
+      "no_arg=   ",
       "binding = none",
       "  xyz = abc  ",
   };
@@ -45,7 +47,6 @@ TEST(ParsingConfigTest, invalid_config_line) {
   ScopedConfigEntry entry(
       (config_entry *)calloc(1, sizeof(struct config_entry)));
   const std::vector<std::string> valid_conf_lines = {
-      "mount=",
       "= none",
       "  malformed",
   };
@@ -85,7 +86,7 @@ TEST_F(ConfigFileTest, wellformed_single_line) {
   std::string config = "% minijail-config-file v0\n"
                        "# Comments \n"
                        "\n"
-                       "mount = none\n"
+                       "uts = \n"
                        "binding = none,/tmp";
   ScopedFILE config_file(write_to_pipe(config));
   ASSERT_NE(config_file.get(), nullptr);
@@ -96,8 +97,8 @@ TEST_F(ConfigFileTest, wellformed_single_line) {
   ASSERT_EQ(list_->num_entries, 2);
   struct config_entry *first_entry = list_->entries;
   struct config_entry *second_entry = list_->entries + 1;
-  ASSERT_EQ(std::string(first_entry->key), "mount");
-  ASSERT_EQ(std::string(first_entry->value), "none");
+  ASSERT_EQ(std::string(first_entry->key), "uts");
+  ASSERT_EQ(std::string(first_entry->value), "");
   ASSERT_EQ(std::string(second_entry->key), "binding");
   ASSERT_EQ(std::string(second_entry->value), "none,/tmp");
 }
