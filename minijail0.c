@@ -11,6 +11,7 @@
 
 #include "libminijail.h"
 
+#include "config_parser.h"
 #include "elfparse.h"
 #include "minijail0_cli.h"
 #include "util.h"
@@ -18,14 +19,16 @@
 int main(int argc, char *argv[])
 {
 	struct minijail *j = minijail_new();
+	struct config_entry_list *conf_entry_list = new_config_entry_list();
 	const char *dl_mesg = NULL;
 	const char *preload_path = PRELOADPATH;
 	int exit_immediately = 0;
 	ElfType elftype = ELFERROR;
 	int consumed = parse_args(j, argc, argv, &exit_immediately, &elftype,
-				  &preload_path);
+				  &preload_path, conf_entry_list);
 	argc -= consumed;
 	argv += consumed;
+	free_config_entry_list(conf_entry_list);
 
 	/*
 	 * Make the process group ID of this process equal to its PID.

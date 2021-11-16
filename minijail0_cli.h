@@ -8,6 +8,7 @@
 #ifndef MINIJAIL_MINIJAIL0_CLI_H_
 #define MINIJAIL_MINIJAIL0_CLI_H_
 
+#include "config_parser.h"
 #include "elfparse.h"
 
 #ifdef __cplusplus
@@ -18,10 +19,11 @@ struct minijail;
 
 int parse_args(struct minijail *j, int argc, char *const argv[],
 	       int *exit_immediately, ElfType *elftype,
-	       const char **preload_path);
+	       const char **preload_path,
+	       struct config_entry_list *conf_entry_list);
 
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif
 
-#endif  /* MINIJAIL_MINIJAIL0_CLI_H_ */
+#endif /* MINIJAIL_MINIJAIL0_CLI_H_ */

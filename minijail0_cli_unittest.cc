@@ -14,8 +14,10 @@
 
 #include <gtest/gtest.h>
 
+#include "config_parser.h"
 #include "libminijail.h"
 #include "minijail0_cli.h"
+#include "test_util.h"
 
 namespace {
 
@@ -30,8 +32,11 @@ class CliTest : public ::testing::Test {
     // Most tests do not care about this logic.  For the few that do, make
     // them opt into it so they can validate specifically.
     elftype_ = ELFDYNAMIC;
+    conf_entry_list_ = new_config_entry_list();
   }
-  virtual void TearDown() {}
+  virtual void TearDown() {
+    free_config_entry_list(conf_entry_list_);
+  }
 
   // We use a vector of strings rather than const char * pointers because we
   // need the backing memory to be writable.  The CLI might mutate the strings
@@ -60,7 +65,7 @@ class CliTest : public ::testing::Test {
     const char* preload_path = PRELOADPATH;
     int ret =
         parse_args(j, pargv.size(), const_cast<char* const*>(pargv.data()),
-                   exit_immediately, elftype, &preload_path);
+                   exit_immediately, elftype, &preload_path, conf_entry_list_);
     testing::internal::GetCapturedStdout();
 
     minijail_destroy(j);
@@ -73,6 +78,7 @@ class CliTest : public ::testing::Test {
   }
 
   ElfType elftype_;
+  struct config_entry_list *conf_entry_list_;
   int exit_immediately_;
 };
 
@@ -539,5 +545,38 @@ TEST_F(CliTest, invalid_L_combo) {
   argv[0] = "--seccomp-bpf-binary";
   argv[1] = "source";
   argv[2] = "-L";
+  ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+TEST_F(CliTest, conf_parsing_invalid_key) {
+  std::string config = "% minijail-config-file v0\n"
+                       "# Comments \n"
+                       "\n"
+                       "bad-key = whatever\n";
+  ScopedFILE config_file(write_to_pipe(config));
+  ASSERT_NE(config_file.get(), nullptr);
+  ASSERT_TRUE(parse_config_file(config_file.get(), conf_entry_list_));
+  std::vector<std::string> argv = {"-v", "/bin/sh"};
+
+  ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+TEST_F(CliTest, conf_parsing) {
+  std::string config = "% minijail-config-file v0\n"
+                       "# Comments \n"
+                       "\n"
+                       "mount = none,/,none\n"
+                       "bind-mount = /tmp,,\n";
+  ScopedFILE config_file(write_to_pipe(config));
+  ASSERT_NE(config_file.get(), nullptr);
+  ASSERT_TRUE(parse_config_file(config_file.get(), conf_entry_list_));
+  std::vector<std::string> argv = {"-v", "/bin/sh"};
+
+  ASSERT_TRUE(parse_args_(argv));
+}
+
+TEST_F(CliTest, conf_must_be_first) {
+  std::vector<std::string> argv = {"-v", "--conf", "/dev/null", "/bin/sh"};
+
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
 }
