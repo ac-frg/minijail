@@ -64,8 +64,8 @@ bool parse_config_line(const char *config_line, struct config_entry *entry)
 	char *value = line;
 
 	/* After tokenize call, |value| will point to a substring after '='.
-	 * If there is no '=' in the string, |key| will contain the entire string
-	 * while |value| will be NULL.
+	 * If there is no '=' in the string, |key| will contain the entire
+	 * string while |value| will be NULL.
 	 */
 	char *key = tokenize(&value, "=");
 	if (key)
