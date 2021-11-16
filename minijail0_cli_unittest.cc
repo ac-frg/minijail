@@ -14,8 +14,10 @@
 
 #include <gtest/gtest.h>
 
+#include "config_parser.h"
 #include "libminijail.h"
 #include "minijail0_cli.h"
+#include "test_util.h"
 
 namespace {
 
@@ -25,7 +27,7 @@ constexpr char kValidGroup[] = "users";
 constexpr char kValidGid[] = "100";
 
 class CliTest : public ::testing::Test {
- protected:
+protected:
   virtual void SetUp() {
     // Most tests do not care about this logic.  For the few that do, make
     // them opt into it so they can validate specifically.
@@ -236,8 +238,8 @@ TEST_F(CliTest, valid_logging) {
 
   // This should list all valid logging targets.
   const std::vector<std::string> profiles = {
-    "stderr",
-    "syslog",
+      "stderr",
+      "syslog",
   };
 
   for (const auto& profile : profiles) {
@@ -315,8 +317,8 @@ TEST_F(CliTest, valid_profile) {
 
   // This should list all valid profiles.
   const std::vector<std::string> profiles = {
-    "minimalistic-mountns",
-    "minimalistic-mountns-nodev",
+      "minimalistic-mountns",
+      "minimalistic-mountns-nodev",
   };
 
   for (const auto& profile : profiles) {
@@ -506,10 +508,10 @@ TEST_F(CliTest, valid_remount_mode) {
 
   // This should list all valid modes.
   const std::vector<std::string> modes = {
-    "shared",
-    "private",
-    "slave",
-    "unbindable",
+      "shared",
+      "private",
+      "slave", # nocheck
+      "unbindable",
   };
 
   for (const auto& mode : modes) {
@@ -539,5 +541,37 @@ TEST_F(CliTest, invalid_L_combo) {
   argv[0] = "--seccomp-bpf-binary";
   argv[1] = "source";
   argv[2] = "-L";
+  ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+// Android unit tests do not support data file yet.
+#if !defined(__ANDROID__)
+
+std::string source_path(std::string file) {
+  std::string srcdir = getenv("SRC") ? : ".";
+  return srcdir + "/" + file;
+}
+
+TEST_F(CliTest, conf_parsing_invalid_key) {
+  std::vector<std::string> argv = {
+      "--config", source_path("test/invalid_minijail_config.policy"),
+      "/bin/sh"};
+
+  ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+}
+
+TEST_F(CliTest, conf_parsing) {
+  std::vector<std::string> argv = {
+      "--config", source_path("test/valid_minijail_config.policy"), "-v",
+      "/bin/sh"};
+
+  ASSERT_TRUE(parse_args_(argv));
+}
+
+#endif  // !__ANDROID__
+
+TEST_F(CliTest, conf_must_be_first) {
+  std::vector<std::string> argv = {"-v", "--conf", "/dev/null", "/bin/sh"};
+
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
 }
