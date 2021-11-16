@@ -11,6 +11,7 @@
 
 #include "libminijail.h"
 
+#include "config_parser.h"
 #include "elfparse.h"
 #include "minijail0_cli.h"
 #include "util.h"
