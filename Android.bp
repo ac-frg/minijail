@@ -444,6 +444,7 @@ cc_test {
         "-DPRELOADPATH=\"/invalid\"",
     ],
     srcs: libminijailSrcFiles + [
+        "config_parser.c",
         "elfparse.c",
         "minijail0_cli.c",
         "minijail0_cli_unittest.cc",
@@ -541,6 +542,7 @@ cc_binary {
     srcs: [
         "elfparse.c",
         "minijail0.c",
+        "config_parser.c",
         "minijail0_cli.c",
     ],
 
