@@ -175,6 +175,12 @@ Keys contain only alphabetic characters and '-'. Values can be any string. Leadi
 and trailing whitespaces around keys and values are permitted but will be stripped
 before processing.
 
+Currently it support all command line long options such as
+\fBmount\fR, \fBbind-mount\fR. For options that require no argument, a literal 'true'
+is required as the config value. For options that accepts an optional argument,
+a literal 'true' value means no argument, and all other strings are interpreted as
+the optional argument.
+
 .SH AUTHOR
 The Chromium OS Authors <chromiumos-dev@chromium.org>
 .SH COPYRIGHT
