@@ -16,6 +16,159 @@
       "message": "Please take a fast look. :)",
       "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f176429f_9862f010",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "i think you can refactor this to avoid the limitations \u0026 global state\n\n getopt_from_conf(...) {\n   struct config_entry *entry \u003d \u0026(*conf_entry_list)-\u003eentries[*conf_index];\n   ... do option search ...\n   (*conf_index)++;\n   if (*conf_index \u003e\u003d *conf_entry_list-\u003enum_entries) {\n     free_config_entry_list(*conf_entry_list);\n     *conf_entry_list \u003d NULL;\n   }\n   ...\n }\n ...\n getopt_conf_or_cli(...) {\n   if (*conf_entry_list !\u003d NULL)\n     return getopt_from_conf(conf_entry_list, conf_index, ...)\n   else\n     return getopt_long(...)\n }\n ...\n parse_args(...) {\n   struct config_entry_list *conf_entry_list \u003d NULL;\n   size_t conf_index \u003d 0;\n   ...\n   while (... getopt_conf_or_cli(..., \u0026conf_entry_list, \u0026conf_index) ...) {\n     ...\n     case 136: {\n       FILE *config_file;\n       if (conf_entry_list !\u003d NULL)\n         ... show error \u0026 exit as recursive config files not allowed ...\n       conf_entry_list \u003d new_config_entry_list();\n       conf_index \u003d 0;\n       config_file \u003d fopen(...)\n       parse_config_file(...)\n       fclose(config_file);\n     }\n   ...",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e22764_b931ea4d",
+        "filename": "minijail0.5",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "update minijail0.1 to document --config and other options",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec81f29_bb75ca6f",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "seems like this logic should be internal to parse_args, not a function arg",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad750a8_05c3aa27",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "look at the style with --mount-dev for how we handle short \u0026 long options",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daaeafe4_786baf1c",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "use --config",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6203fb0e_c2338ea1",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "these funcs are only used once, so just inline them",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05c5f1b_201ffc39",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "move this to the func as an argument to avoid global variables",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b34ca3ab_65eb2d86",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "this is only used in the specific option below, so scope it to that",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d0172e_7da46468",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-23T07:49:29Z",
+      "side": 1,
+      "message": "add error checking for config_file\u003d\u003dNULL",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
