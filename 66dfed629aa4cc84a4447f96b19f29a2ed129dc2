@@ -1,0 +1,271 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd941641_7f514472",
+        "filename": "minijail0.1",
+        "patchSetId": 11
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "this doesn\u0027t explain the purpose of the config file, or what it actually does.  minijail0(5) merely discusses the syntax.",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 35
+      },
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385b5956_3aa9d127",
+        "filename": "minijail0.1",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "omit these blank lines",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a3386e_8e53c052",
+        "filename": "minijail0.5",
+        "patchSetId": 11
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "the code, as written, supports all long option that minijail supports",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f3321b_cb319124",
+        "filename": "minijail0.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "unused now ?  so delete ?",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed45657_2cd89e40",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "bad number of tabs",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d80830a_e1d1b586",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "missing space after the ,",
+      "range": {
+        "startLine": 671,
+        "startChar": 62,
+        "endLine": 671,
+        "endChar": 63
+      },
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "203a2fca_454b32a7",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "fatal error messages like this should use fprintf(stderr, ...",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ced3c0c_6121e618",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "bad indentation",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b536fd0_d8ba0c90",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "bad indentation",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02cf4828_ba789fa8",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "this should be indented to the getopt_conf_or_cli call, not the while",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec28ae4e_f7439eb4",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "why ?  with this new version, multiple uses (and regardless of position) should just work now.  i think you can remove this limitation/requirement.",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e4b0869_1647af41",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "fprintf(stderr here too",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4b2815_ac442132",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "fprintf(stderr here too",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf7d114_9e421667",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "bad indentation",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348e8ceb_81bc668a",
+        "filename": "test/invalid_minijail_config.policy",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T10:31:10Z",
+      "side": 1,
+      "message": "these aren\u0027t policy files, they\u0027re config files, so you prob want .conf names",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
