@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f00c50_4933af0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Changed it to almost like suggested, except that the free operation when getopt_from_conf() is called again with *conf_index \u003d\u003d (*conf_entry_list)-\u003enum_entries. I need to keep the memory of the last entry when the last entry is consumed. And so getopt_conf_or_cli() is adjusted accordingly.",
+      "parentUuid": "f176429f_9862f010",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88e22764_b931ea4d",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-11-23T07:49:29Z",
       "side": 1,
       "message": "update minijail0.1 to document --config and other options",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ffd57f_9b0efb46",
+        "filename": "minijail0.5",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88e22764_b931ea4d",
       "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17e58dbd_a5977bf5",
+        "filename": "minijail0.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done. I was trying not to skip tests with data files in Android but it was almost pretty intrusive to change the parse_arg() function signature.",
+      "parentUuid": "2ec81f29_bb75ca6f",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ad750a8_05c3aa27",
@@ -82,6 +136,24 @@
       "writtenOn": "2021-11-23T07:49:29Z",
       "side": 1,
       "message": "look at the style with --mount-dev for how we handle short \u0026 long options",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1e6fa6_d63db266",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done. I am not sure I got the format spacing right though.",
+      "parentUuid": "4ad750a8_05c3aa27",
       "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4dface_9190fdc7",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daaeafe4_786baf1c",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6203fb0e_c2338ea1",
@@ -116,6 +206,24 @@
       "writtenOn": "2021-11-23T07:49:29Z",
       "side": 1,
       "message": "these funcs are only used once, so just inline them",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84e9dbd_91ce4d2f",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6203fb0e_c2338ea1",
       "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6021e23_8799666a",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e05c5f1b_201ffc39",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b34ca3ab_65eb2d86",
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fea078f5_c98e8a56",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b34ca3ab_65eb2d86",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73d0172e_7da46468",
@@ -167,6 +311,24 @@
       "writtenOn": "2021-11-23T07:49:29Z",
       "side": 1,
       "message": "add error checking for config_file\u003d\u003dNULL",
+      "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85be96fe_dd21d64e",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T02:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73d0172e_7da46468",
       "revId": "7784d831b3fe3f2e67f2e8cf62fdc6747dfba4f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
