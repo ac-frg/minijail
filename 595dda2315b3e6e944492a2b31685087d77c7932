@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beac499c_76db59f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-11-24T03:12:00Z",
+      "side": 1,
+      "message": "got the generated e-mail notifications for builds \u0026 coverity",
+      "revId": "595dda2315b3e6e944492a2b31685087d77c7932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
