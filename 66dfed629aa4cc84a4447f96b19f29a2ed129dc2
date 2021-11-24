@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73391f07_67c1ce1d",
+        "filename": "minijail0.1",
+        "patchSetId": 11
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd941641_7f514472",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 35
+      },
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "385b5956_3aa9d127",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "omit these blank lines",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27923df5_d714c355",
+        "filename": "minijail0.1",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "385b5956_3aa9d127",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85a07d9c_505b836d",
+        "filename": "minijail0.5",
+        "patchSetId": 11
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Yes. As I thought about it, I need to add logic to support optional argument and no argument options. So now we can say \"it supports all long options.\".",
+      "parentUuid": "66a3386e_8e53c052",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9f3321b_cb319124",
@@ -71,6 +131,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "unused now ?  so delete ?",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffff2049_2e746bfb",
+        "filename": "minijail0.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9f3321b_cb319124",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -145,6 +223,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc04d4e_729bd7bc",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fed45657_2cd89e40",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d80830a_e1d1b586",
@@ -185,6 +281,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "875fbdc8_67938853",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d80830a_e1d1b586",
+      "range": {
+        "startLine": 671,
+        "startChar": 62,
+        "endLine": 671,
+        "endChar": 63
+      },
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2053271c_3d533201",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "203a2fca_454b32a7",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ced3c0c_6121e618",
@@ -198,6 +336,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "bad indentation",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9814f37_06c220c1",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ced3c0c_6121e618",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -219,6 +375,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24209910_7a4a5fa3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b536fd0_d8ba0c90",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02cf4828_ba789fa8",
@@ -232,6 +406,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "this should be indented to the getopt_conf_or_cli call, not the while",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc4cec77_e524fdf4",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02cf4828_ba789fa8",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -253,6 +445,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1177093e_c0a11e86",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done. I was still trying to enforce my initial perceived best way to use the config file and see if you agree or not.",
+      "parentUuid": "ec28ae4e_f7439eb4",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e4b0869_1647af41",
@@ -266,6 +476,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "fprintf(stderr here too",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de79cfe_0e76d47d",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e4b0869_1647af41",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -287,6 +515,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6f6110_86c73eeb",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a4b2815_ac442132",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bf7d114_9e421667",
@@ -304,6 +550,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47bf44e_d1639158",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bf7d114_9e421667",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "348e8ceb_81bc668a",
@@ -317,6 +581,24 @@
       "writtenOn": "2021-11-24T10:31:10Z",
       "side": 1,
       "message": "these aren\u0027t policy files, they\u0027re config files, so you prob want .conf names",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f37ae5c_97b3d512",
+        "filename": "test/invalid_minijail_config.policy",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2021-11-24T22:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "348e8ceb_81bc668a",
       "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
