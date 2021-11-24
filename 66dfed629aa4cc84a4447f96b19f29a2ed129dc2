@@ -75,6 +75,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e87018a_896cb0f9",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-11-24T13:56:49Z",
+      "side": 1,
+      "message": "A high level note that: We need to be careful about where we allow configs from because write access to a config can translate to an arbitrary mount primitive.",
+      "revId": "66dfed629aa4cc84a4447f96b19f29a2ed129dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fed45657_2cd89e40",
