@@ -4,6 +4,7 @@
  */
 
 #include <dlfcn.h>
+#include <err.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,8 +39,7 @@ int main(int argc, char *argv[])
 	 */
 	if (setpgid(0 /* use calling PID */, 0 /* make PGID = PID */)) {
 		if (errno != EPERM) {
-			fprintf(stderr, "setpgid(0, 0) failed\n");
-			exit(1);
+			err(1, "setpgid(0, 0) failed");
 		}
 	}
 
@@ -58,17 +58,13 @@ int main(int argc, char *argv[])
 		/* Check that we can dlopen() libminijailpreload.so. */
 		if (!dlopen(preload_path, RTLD_LAZY | RTLD_LOCAL)) {
 			dl_mesg = dlerror();
-			fprintf(stderr, "dlopen(): %s\n", dl_mesg);
+			errx(1, "dlopen(): %s", dl_mesg);
 			return 1;
 		}
 		minijail_set_preload_path(j, preload_path);
 		minijail_run(j, argv[0], argv);
-	} else {
-		fprintf(stderr,
-			"Target program '%s' is not a valid ELF file.\n",
-			argv[0]);
-		return 1;
-	}
+	} else
+		errx(1, "Target program '%s' is not a valid ELF file", argv[0]);
 
 	if (exit_immediately)
 		return 0;
