@@ -16,6 +16,23 @@
       "message": "BTW, how do you run `cargo test` now? It doesn\u0027t work in my AOSP checkout.",
       "revId": "e1a48f50af5af42ebceb88e7df6600fb970a61be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcfde448_a624afa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-12-02T18:59:22Z",
+      "side": 1,
+      "message": "Thanks for the fix",
+      "revId": "e1a48f50af5af42ebceb88e7df6600fb970a61be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
