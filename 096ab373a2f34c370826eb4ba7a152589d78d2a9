@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5664e1ba_4e99b30b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "it\u0027s not --conf anymore",
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a49df8_b7326f73",
+        "filename": "minijail0.1",
+        "patchSetId": 15
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "delete \"the sandbox\"",
+      "range": {
+        "startLine": 332,
+        "startChar": 41,
+        "endLine": 332,
+        "endChar": 52
+      },
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25d05d1_06aed7ff",
+        "filename": "minijail0.5",
+        "patchSetId": 15
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "\"Currently all long command line options are supported such as\"",
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "080f2499_8b2f97ac",
+        "filename": "minijail0.5",
+        "patchSetId": 15
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "this seems counter intuitive.  wouldn\u0027t it make more sense to have no value at all ?\n\n uts \u003d",
+      "range": {
+        "startLine": 179,
+        "startChar": 31,
+        "endLine": 181,
+        "endChar": 40
+      },
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74554d20_2a585fec",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "\"Look\"",
+      "range": {
+        "startLine": 659,
+        "startChar": 4,
+        "endLine": 659,
+        "endChar": 8
+      },
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901ff00c_d69b1ce2",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-03T07:33:14Z",
+      "side": 1,
+      "message": "to avoid excessive nesting, i would invert this logic\n\n if (strcmp(entry-\u003ekey, curr_opt-\u003ename) !\u003d 0)\n   continue;",
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
