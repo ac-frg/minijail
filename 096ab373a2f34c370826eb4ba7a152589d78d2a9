@@ -213,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3bb27b2_024f7e8f",
+        "filename": "minijail0.5",
+        "patchSetId": 15
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-08T20:28:15Z",
+      "side": 1,
+      "message": "i agree that leaving it blank isn\u0027t great.  my qualms is that using \"true\" as a sentinel is also a bit confusing, and doesn\u0027t map well to all possible options.  sometimes we add flags to explicitly disable things.  although minijail\u0027s current set of long options doesn\u0027t encompass it, this is a common pattern we\u0027ve used in CrOS.\n\nconsider minijail\u0027s -N option which enters a new cgroups namespace.  if we made a long option, it might be like --namespace-cgroups.  and if we added a flag to disable it, it\u0027d be --no-namespace-cgroups.  so in the config file, would we write:\n\n no-namespace-cgroups \u003d true\n namespace-cgroups \u003d false\n\nwhat about options that take an argument and we happen to pass \"true\" as the string ?  from reading the config, it\u0027s hard to differentiate them.\n\nconsidering the file syntax, i don\u0027t have a better recommendation than just leaving the value empty.  if we made the \u003d optional, then that might be a good signal ...",
+      "parentUuid": "3958e4e6_af60de58",
+      "range": {
+        "startLine": 179,
+        "startChar": 31,
+        "endLine": 181,
+        "endChar": 40
+      },
+      "revId": "096ab373a2f34c370826eb4ba7a152589d78d2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74554d20_2a585fec",
