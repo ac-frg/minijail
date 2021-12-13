@@ -34,6 +34,24 @@
       "parentUuid": "8d481f8a_90099d98",
       "revId": "5ba80bcf5cd42923d7ac8c076afa24191b86254c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1087691c_c9ac9f37",
+        "filename": "rust/minijail-sys/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2021-12-13T23:34:33Z",
+      "side": 1,
+      "message": "Thanks, I missed the assignment to env for some reason.",
+      "parentUuid": "c829fd0e_e930c133",
+      "revId": "5ba80bcf5cd42923d7ac8c076afa24191b86254c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
