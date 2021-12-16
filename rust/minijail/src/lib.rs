@@ -15,14 +15,35 @@ use std::result::Result as StdResult;
 use libc::pid_t;
 use minijail_sys::*;
 
+struct RunConfig {
+    // Ownership of the backing data of args_cptr is provided by _args_cstr.
+    _args_cstr: Vec<CString>,
+    args_cptr: Vec<*const c_char>,
+}
+
+impl RunConfig {
+    fn new<S: AsRef<str>>(args: &[S]) -> Result<RunConfig> {
+        let (_args_cstr, args_cptr) = to_execve_cstring_array(args)?;
+
+        Ok(RunConfig {
+            _args_cstr,
+            args_cptr,
+        })
+    }
+
+    fn argv(&self) -> *const *mut c_char {
+        self.args_cptr.as_ptr() as *const *mut c_char
+    }
+}
+
 /// Abstracts paths and executable file descriptors in a way that the run implementation can cover
 /// both.
 trait Runnable {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t>;
+    fn run_config(&self, jail: &Minijail, config: RunConfig) -> Result<pid_t>;
 }
 
 impl Runnable for &Path {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+    fn run_config(&self, jail: &Minijail, config: RunConfig) -> Result<pid_t> {
         let cmd_os = self
             .to_str()
             .ok_or_else(|| Error::PathToCString(self.to_path_buf()))?;
@@ -33,7 +54,7 @@ impl Runnable for &Path {
             minijail_run_pid_pipes(
                 jail.jail,
                 cmd_cstr.as_ptr(),
-                argv.as_ptr() as *const *mut c_char,
+                config.argv(),
                 &mut pid,
                 null_mut(),
                 null_mut(),
@@ -48,13 +69,13 @@ impl Runnable for &Path {
 }
 
 impl Runnable for RawFd {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+    fn run_config(&self, jail: &Minijail, config: RunConfig) -> Result<pid_t> {
         let mut pid: pid_t = 0;
         let ret = unsafe {
             minijail_run_fd_env_pid_pipes(
                 jail.jail,
                 *self,
-                argv.as_ptr() as *const *mut c_char,
+                config.argv(),
                 null_mut(),
                 &mut pid,
                 null_mut(),
@@ -779,18 +800,6 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        // Converts each incoming `args` string to a `CString`, and then puts each `CString` pointer
-        // into a null terminated array, suitable for use as an argv parameter to `execve`.
-        let mut args_cstr = Vec::with_capacity(args.len());
-        let mut args_array = Vec::with_capacity(args.len());
-        for arg in args {
-            let arg_cstr = CString::new(arg.as_ref())
-                .map_err(|_| Error::StrToCString(arg.as_ref().to_owned()))?;
-            args_array.push(arg_cstr.as_ptr());
-            args_cstr.push(arg_cstr);
-        }
-        args_array.push(null());
-
         for (src_fd, dst_fd) in inheritable_fds {
             let ret = unsafe { minijail_preserve_fd(self.jail, *src_fd, *dst_fd) };
             if ret < 0 {
@@ -818,7 +827,8 @@ impl Minijail {
             minijail_close_open_fds(self.jail);
         }
 
-        cmd.run_pid_pipes(&self, &args_array)
+        let config = RunConfig::new(args)?;
+        cmd.run_config(&self, config)
     }
 
     /// Forks a child and puts it in the previously configured minijail.
@@ -936,6 +946,26 @@ fn is_single_threaded() -> io::Result<bool> {
         Ok(_) => Ok(false),
         Err(e) => Err(e),
     }
+}
+
+fn to_execve_cstring_array<S: AsRef<str>>(
+    slice: &[S],
+) -> Result<(Vec<CString>, Vec<*const c_char>)> {
+    // Converts each incoming `str` to a `CString`, and then puts each `CString` pointer into a
+    // null terminated array, suitable for use as an argv or envp parameter to `execve`.
+    let mut vec_cstr = Vec::with_capacity(slice.len());
+    let mut vec_cptr = Vec::with_capacity(slice.len() + 1);
+    for s in slice {
+        let cstr =
+            CString::new(s.as_ref()).map_err(|_| Error::StrToCString(s.as_ref().to_owned()))?;
+
+        vec_cstr.push(cstr);
+        vec_cptr.push(vec_cstr.last().unwrap().as_ptr());
+    }
+
+    vec_cptr.push(null());
+
+    Ok((vec_cstr, vec_cptr))
 }
 
 #[cfg(test)]
