@@ -18,22 +18,38 @@ use minijail_sys::*;
 /// Abstracts paths and executable file descriptors in a way that the run implementation can cover
 /// both.
 trait Runnable {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t>;
+    fn run_env_pid_pipes(
+        &self,
+        jail: &Minijail,
+        argv: &[*const c_char],
+        env: Option<&[*const c_char]>,
+    ) -> Result<pid_t>;
 }
 
 impl Runnable for &Path {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+    fn run_env_pid_pipes(
+        &self,
+        jail: &Minijail,
+        argv: &[*const c_char],
+        env: Option<&[*const c_char]>,
+    ) -> Result<pid_t> {
         let cmd_os = self
             .to_str()
             .ok_or_else(|| Error::PathToCString(self.to_path_buf()))?;
         let cmd_cstr = CString::new(cmd_os).map_err(|_| Error::StrToCString(cmd_os.to_owned()))?;
 
+        let envp = match env {
+            Some(slice) => slice.as_ptr() as *const *mut c_char,
+            None => null_mut(),
+        };
+
         let mut pid: pid_t = 0;
         let ret = unsafe {
-            minijail_run_pid_pipes(
+            minijail_run_env_pid_pipes(
                 jail.jail,
                 cmd_cstr.as_ptr(),
                 argv.as_ptr() as *const *mut c_char,
+                envp,
                 &mut pid,
                 null_mut(),
                 null_mut(),
@@ -48,14 +64,24 @@ impl Runnable for &Path {
 }
 
 impl Runnable for RawFd {
-    fn run_pid_pipes(&self, jail: &Minijail, argv: &[*const c_char]) -> Result<pid_t> {
+    fn run_env_pid_pipes(
+        &self,
+        jail: &Minijail,
+        argv: &[*const c_char],
+        env: Option<&[*const c_char]>,
+    ) -> Result<pid_t> {
+        let envp = match env {
+            Some(slice) => slice.as_ptr() as *const *mut c_char,
+            None => null_mut(),
+        };
+
         let mut pid: pid_t = 0;
         let ret = unsafe {
             minijail_run_fd_env_pid_pipes(
                 jail.jail,
                 *self,
                 argv.as_ptr() as *const *mut c_char,
-                null_mut(),
+                envp,
                 &mut pid,
                 null_mut(),
                 null_mut(),
@@ -731,6 +757,7 @@ impl Minijail {
                 .map(|&a| (a, a))
                 .collect::<Vec<(RawFd, RawFd)>>(),
             args,
+            None,
         )
     }
 
@@ -742,7 +769,7 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_ref(), &inheritable_fds, args)
+        self.run_internal(cmd.as_ref(), &inheritable_fds, args, None)
     }
 
     /// Behaves the same as `run()` except cmd is a file descriptor to the executable.
@@ -759,6 +786,7 @@ impl Minijail {
                 .map(|&a| (a, a))
                 .collect::<Vec<(RawFd, RawFd)>>(),
             args,
+            None,
         )
     }
 
@@ -770,7 +798,7 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_raw_fd(), &inheritable_fds, args)
+        self.run_internal(cmd.as_raw_fd(), &inheritable_fds, args, None)
     }
 
     fn run_internal<R: Runnable, S: AsRef<str>>(
@@ -778,8 +806,17 @@ impl Minijail {
         cmd: R,
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
+        env: Option<&[S]>,
     ) -> Result<pid_t> {
         let (_args_cstrs, args_array) = get_execve_cstring_array(args)?;
+
+        let _env_cstrs;
+        let mut env_array = None;
+        if let Some(slice) = env {
+            let (cstrs, cptrs) = get_execve_cstring_array(slice)?;
+            _env_cstrs = cstrs;
+            env_array = Some(cptrs);
+        }
 
         for (src_fd, dst_fd) in inheritable_fds {
             let ret = unsafe { minijail_preserve_fd(self.jail, *src_fd, *dst_fd) };
@@ -808,7 +845,7 @@ impl Minijail {
             minijail_close_open_fds(self.jail);
         }
 
-        cmd.run_pid_pipes(&self, &args_array)
+        cmd.run_env_pid_pipes(&self, &args_array, env_array.as_ref().map(|v| v.as_slice()))
     }
 
     /// Forks a child and puts it in the previously configured minijail.
