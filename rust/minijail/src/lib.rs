@@ -19,20 +19,41 @@ struct RunConfig {
     // Ownership of the backing data of args_cptr is provided by _args_cstr.
     _args_cstr: Vec<CString>,
     args_cptr: Vec<*const c_char>,
+
+    // Ownership of the backing data of env_cptr is provided by _env_cstr.
+    _env_cstr: Option<Vec<CString>>,
+    env_cptr: Option<Vec<*const c_char>>,
 }
 
 impl RunConfig {
-    fn new<S: AsRef<str>>(args: &[S]) -> Result<RunConfig> {
+    fn new<S: AsRef<str>, A: AsRef<str>>(args: &[S], env: Option<&[A]>) -> Result<RunConfig> {
         let (_args_cstr, args_cptr) = to_execve_cstring_array(args)?;
+
+        let (_env_cstr, env_cptr) = match env {
+            Some(env) => {
+                let (env_cstr, env_cptr) = to_execve_cstring_array(env)?;
+                (Some(env_cstr), Some(env_cptr))
+            }
+            None => (None, None),
+        };
 
         Ok(RunConfig {
             _args_cstr,
             args_cptr,
+            _env_cstr,
+            env_cptr,
         })
     }
 
     fn argv(&self) -> *const *mut c_char {
         self.args_cptr.as_ptr() as *const *mut c_char
+    }
+
+    fn envp(&self) -> *const *mut c_char {
+        (match self.env_cptr {
+            Some(ref env_cptr) => env_cptr.as_ptr(),
+            None => null_mut(),
+        }) as *const *mut c_char
     }
 }
 
@@ -51,10 +72,11 @@ impl Runnable for &Path {
 
         let mut pid: pid_t = 0;
         let ret = unsafe {
-            minijail_run_pid_pipes(
+            minijail_run_env_pid_pipes(
                 jail.jail,
                 cmd_cstr.as_ptr(),
                 config.argv(),
+                config.envp(),
                 &mut pid,
                 null_mut(),
                 null_mut(),
@@ -76,7 +98,7 @@ impl Runnable for RawFd {
                 jail.jail,
                 *self,
                 config.argv(),
-                null_mut(),
+                config.envp(),
                 &mut pid,
                 null_mut(),
                 null_mut(),
@@ -752,6 +774,7 @@ impl Minijail {
                 .map(|&a| (a, a))
                 .collect::<Vec<(RawFd, RawFd)>>(),
             args,
+            None::<&[S]>,
         )
     }
 
@@ -763,7 +786,7 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_ref(), &inheritable_fds, args)
+        self.run_internal(cmd.as_ref(), &inheritable_fds, args, None::<&[S]>)
     }
 
     /// Behaves the same as `run()` except cmd is a file descriptor to the executable.
@@ -780,6 +803,7 @@ impl Minijail {
                 .map(|&a| (a, a))
                 .collect::<Vec<(RawFd, RawFd)>>(),
             args,
+            None::<&[S]>,
         )
     }
 
@@ -791,14 +815,15 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_raw_fd(), &inheritable_fds, args)
+        self.run_internal(cmd.as_raw_fd(), &inheritable_fds, args, None::<&[S]>)
     }
 
-    fn run_internal<R: Runnable, S: AsRef<str>>(
+    fn run_internal<R: Runnable, S: AsRef<str>, A: AsRef<str>>(
         &self,
         cmd: R,
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
+        env: Option<&[A]>,
     ) -> Result<pid_t> {
         for (src_fd, dst_fd) in inheritable_fds {
             let ret = unsafe { minijail_preserve_fd(self.jail, *src_fd, *dst_fd) };
@@ -827,7 +852,7 @@ impl Minijail {
             minijail_close_open_fds(self.jail);
         }
 
-        let config = RunConfig::new(args)?;
+        let config = RunConfig::new(args, env)?;
         cmd.run_config(&self, config)
     }
 
