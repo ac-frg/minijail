@@ -779,17 +779,7 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        // Converts each incoming `args` string to a `CString`, and then puts each `CString` pointer
-        // into a null terminated array, suitable for use as an argv parameter to `execve`.
-        let mut args_cstr = Vec::with_capacity(args.len());
-        let mut args_array = Vec::with_capacity(args.len());
-        for arg in args {
-            let arg_cstr = CString::new(arg.as_ref())
-                .map_err(|_| Error::StrToCString(arg.as_ref().to_owned()))?;
-            args_array.push(arg_cstr.as_ptr());
-            args_cstr.push(arg_cstr);
-        }
-        args_array.push(null());
+        let (_args_cstrs, args_array) = get_execve_cstring_array(args)?;
 
         for (src_fd, dst_fd) in inheritable_fds {
             let ret = unsafe { minijail_preserve_fd(self.jail, *src_fd, *dst_fd) };
@@ -936,6 +926,26 @@ fn is_single_threaded() -> io::Result<bool> {
         Ok(_) => Ok(false),
         Err(e) => Err(e),
     }
+}
+
+fn get_execve_cstring_array<S: AsRef<str>>(
+    slice: &[S],
+) -> Result<(Vec<CString>, Vec<*const c_char>)> {
+    // Converts each incoming `str` to a `CString`, and then puts each `CString` pointer into a
+    // null terminated array, suitable for use as an argv or envp parameter to `execve`.
+    let mut cstrs = Vec::with_capacity(slice.len());
+    let mut cptrs = Vec::with_capacity(slice.len() + 1);
+    for s in slice {
+        let cstr =
+            CString::new(s.as_ref()).map_err(|_| Error::StrToCString(s.as_ref().to_owned()))?;
+
+        cstrs.push(cstr);
+        cptrs.push(cstrs.last().unwrap().as_ptr());
+    }
+
+    cptrs.push(null());
+
+    Ok((cstrs, cptrs))
 }
 
 #[cfg(test)]
