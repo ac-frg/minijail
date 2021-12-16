@@ -761,6 +761,25 @@ impl Minijail {
         )
     }
 
+    /// Behaves the same as `run()` except `env` becomes the environment of the child if not None.
+    pub fn run_env<P: AsRef<Path>, S: AsRef<str>>(
+        &self,
+        cmd: P,
+        inheritable_fds: &[RawFd],
+        args: &[S],
+        env: Option<&[S]>,
+    ) -> Result<pid_t> {
+        self.run_internal(
+            cmd.as_ref(),
+            &inheritable_fds
+                .iter()
+                .map(|&a| (a, a))
+                .collect::<Vec<(RawFd, RawFd)>>(),
+            args,
+            env,
+        )
+    }
+
     /// Behaves the same as `run()` except `inheritable_fds` is a list of fd
     /// mappings rather than just a list of fds to preserve.
     pub fn run_remap<P: AsRef<Path>, S: AsRef<str>>(
