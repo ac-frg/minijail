@@ -16,6 +16,165 @@
       "message": "Introduce a separate option list for conf file so we can add conf options independently and no worrying about support all cli options at once.",
       "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c860f1_adb6a2cf",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "we use realloc to get memory which does not guarantee this will be cleared.  so you should write instead:\n\n entry-\u003evalue \u003d value ? strdup(value) : NULL;",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710dedf1_165a6f12",
+        "filename": "minijail0.5",
+        "patchSetId": 23
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "i don\u0027t know what \"string alone should be specified\" means",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3867c4c_d8371987",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "add a comment above this block like:\n\n /* If we\u0027ve consumed all the options in this config, reset it. */",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7d2e7b_1c785bb5",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "prefer a blank line above this",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08db550_afb038b6",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "if you\u0027ve matched an option, why do you need to keep running through the loop ?  shouldn\u0027t this be:\n\n for (curr_opt \u003d \u0026longopts[0]; curr_opt-\u003ename !\u003d NULL; ++curr_opt)\n   if (strcmp(entry-\u003ekey, curr_opt-\u003ename) \u003d\u003d 0)\n     break;\n if (curr_opt-\u003ename \u003d\u003d NULL) {\n   fprintf(stderr, ...);\n   exit(1);\n }\n opt \u003d curr_opt-\u003eval;\n optarg \u003d (char *)entry-\u003evalue;\n (*conf_index)++;\n return opt;",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a47a9f5f_ad16e8e0",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "this lost my fix -- use [] syntax",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f746e18_b132f5f3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "is this something we actually want to do ?  do you have specific things in mind ?  if not, let\u0027s just re-use long_options for now and wait for a new/use-case to show up.",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5235fb50_5c6703cc",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "use the new attribute_cleanup_fp so you don\u0027t have to fclose() it yourself",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d099e51c_9c8635c1",
+        "filename": "test/valid.conf",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 1,
+      "message": "can you include a line w/out a \u003d ?",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

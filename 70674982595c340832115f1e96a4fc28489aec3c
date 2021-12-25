@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d21c23fd_ab96b50c",
+        "filename": "minijail0.5",
+        "patchSetId": 23
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2021-12-25T06:03:27Z",
+      "side": 0,
+      "message": "please update the example to include the new syntax where \u003d is optional",
+      "revId": "70674982595c340832115f1e96a4fc28489aec3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
