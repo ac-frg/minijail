@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1467d234_55bbb9a5",
+        "filename": "config_parser.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99c860f1_adb6a2cf",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "710dedf1_165a6f12",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-12-25T06:03:27Z",
       "side": 1,
       "message": "i don\u0027t know what \"string alone should be specified\" means",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffcdd74c_9893dec4",
+        "filename": "minijail0.5",
+        "patchSetId": 23
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "710dedf1_165a6f12",
       "range": {
         "startLine": 181,
         "startChar": 0,
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f10b49_8dfb2bf5",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3867c4c_d8371987",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a7d2e7b_1c785bb5",
@@ -88,6 +148,24 @@
       "writtenOn": "2021-12-25T06:03:27Z",
       "side": 1,
       "message": "prefer a blank line above this",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b323464_f0d8ca45",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a7d2e7b_1c785bb5",
       "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -109,6 +187,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48773aba_a1a54a4b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b08db550_afb038b6",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a47a9f5f_ad16e8e0",
@@ -122,6 +218,24 @@
       "writtenOn": "2021-12-25T06:03:27Z",
       "side": 1,
       "message": "this lost my fix -- use [] syntax",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df480ca4_7a2e41a3",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47a9f5f_ad16e8e0",
       "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -143,6 +257,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27aec35_80d067dd",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Sure, revert this change. I was thinking that decoupling the options in cli and conf may be good for the moment, as we don\u0027t need to introduce all cli options to conf.",
+      "parentUuid": "6f746e18_b132f5f3",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5235fb50_5c6703cc",
@@ -160,6 +292,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "441fc773_bd151edd",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5235fb50_5c6703cc",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d099e51c_9c8635c1",
@@ -173,6 +323,24 @@
       "writtenOn": "2021-12-25T06:03:27Z",
       "side": 1,
       "message": "can you include a line w/out a \u003d ?",
+      "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0835cb18_23ed1959",
+        "filename": "test/valid.conf",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-04T23:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d099e51c_9c8635c1",
       "revId": "0643d59e54d382ac9db3cd82d345bb766712f95d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
