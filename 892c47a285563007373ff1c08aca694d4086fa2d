@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2391cbed_833c9e06",
+        "filename": "tools/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1930317
+      },
+      "writtenOn": "2022-01-05T06:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d830a1_2c947934",
+      "revId": "892c47a285563007373ff1c08aca694d4086fa2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60871835_e26c0eb2",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-04T19:51:30Z",
       "side": 1,
       "message": "comments are full sentences",
+      "revId": "892c47a285563007373ff1c08aca694d4086fa2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b573e382_83921277",
+        "filename": "tools/parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1930317
+      },
+      "writtenOn": "2022-01-05T06:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60871835_e26c0eb2",
       "revId": "892c47a285563007373ff1c08aca694d4086fa2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
