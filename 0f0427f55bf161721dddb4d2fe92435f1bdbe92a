@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857039f2_c77e13c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-06T13:55:17Z",
+      "side": 1,
+      "message": "Note that this is a (slightly reworked) subset of a previous change that never made it:\nhttps://android-review.googlesource.com/c/platform/external/minijail/+/1217602\n\nOther pieces of aforementioned original change might get submitted later, as we internally still use a forked version of minijail0 including these changes. We\u0027re still interested in upstreaming them, if the features are aligned/compatible with minijail0\u0027s project goals.",
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
