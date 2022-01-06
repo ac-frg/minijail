@@ -590,3 +590,51 @@ ssize_t getmultiline(char **lineptr, size_t *n, FILE *stream)
 	*lineptr = line;
 	return *n - 1;
 }
+
+char *minijail_getenv(char **envp, const char *name) {
+	if (!envp || !name) {
+		return NULL;
+	}
+	for (int i = 0; envp[i]; i++) {
+		if (!strncmp(envp[i], name, strlen(name))) {
+			/*
+			 * If we find a match the size of |name|, we must check
+			 * that the next character is a '=', indicating that
+			 * the full varname of envp[i] is exactly |name| and
+			 * not just happening to start with |name|.
+			 */
+			if ((strlen(envp[i]) > strlen(name)) &&
+			     (envp[i][strlen(name)] == '=')) {
+				/* Return a ptr to the value after the '='. */
+				return envp[i] + strlen(name) + 1;
+			}
+		}
+	}
+	return NULL;
+}
+
+int minijail_unsetenv(char **envp, const char *name)
+{
+	int i;
+	for (i = 0; envp[i]; i++) {
+		if (!strncmp(envp[i], name, strlen(name))) {
+			/*
+			 * If we find a match the size of |name|, we must check
+			 * that the next character is a '=', indicating that
+			 * the full varname of envp[i] is exactly |name| and
+			 * not just happening to start with |name|.
+			 */
+			if ((strlen(envp[i]) > strlen(name)) &&
+			     (envp[i][strlen(name)] == '=')) {
+				/*
+				 * We found a match, copy the rest of the array
+				 * omitting the match we just found
+				 */
+				for(; envp[i]; i++)
+					envp[i] = envp[i+1];
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
