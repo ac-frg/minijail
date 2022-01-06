@@ -509,25 +509,50 @@ char **minijail_copy_env(char *const *env)
 	return copy;
 }
 
+/*
+ * Utility function used by minijail_setenv, minijail_unsetenv and
+ * minijail_getenv, returns the index of the environment variable |name|
+ * from the |envp| array, or -1 if no such variable name is found.
+ */
+static int getenv_index(char **envp, const char *name) {
+	if (!envp || !name) {
+		return -1;
+	}
+	size_t name_len = strlen(name);
+	for (int i = 0; envp[i]; i++) {
+		/*
+		 * If we find a match the size of |name|, we must check
+		 * that the next character is a '=', indicating that
+		 * the full varname of envp[i] is exactly |name| and
+		 * not just happening to start with |name|.
+		 */
+		if (!strncmp(envp[i], name, name_len) &&
+		    (envp[i][name_len] == '=')) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 int minijail_setenv(char ***env, const char *name, const char *value,
 		    int overwrite)
 {
 	if (!env || !*env || !name || !*name || !value)
 		return EINVAL;
 
-	size_t name_len = strlen(name);
-
 	char **dest = NULL;
 	size_t env_len = 0;
-	for (char **entry = *env; *entry; ++entry, ++env_len) {
-		if (!dest && strncmp(name, *entry, name_len) == 0 &&
-		    (*entry)[name_len] == '=') {
-			if (!overwrite)
-				return 0;
 
-			dest = entry;
-		}
+	/* Look in env to check if this var name already exists. */
+	int i = getenv_index(*env, name);
+	if (i >= 0) {
+		if (!overwrite)
+			return 0;
+		dest = (*env) + i;
 	}
+
+	/* Count number of entries in env and store it in env_len. */
+	for (char **entry = *env; *entry; ++entry, ++env_len);
 
 	char *new_entry = NULL;
 	if (asprintf(&new_entry, "%s=%s", name, value) == -1)
@@ -589,4 +614,34 @@ ssize_t getmultiline(char **lineptr, size_t *n, FILE *stream)
 	memcpy(&line[ret + 1], next_line, next_ret + 1);
 	*lineptr = line;
 	return *n - 1;
+}
+
+char *minijail_getenv(char **envp, const char *name) {
+	if (!envp || !name) {
+		return NULL;
+	}
+	int i = getenv_index(envp, name);
+	if (i < 0) {
+		return NULL;
+	}
+	/* Return a ptr to the value after the '='. */
+	return envp[i] + strlen(name) + 1;
+}
+
+int minijail_unsetenv(char **envp, const char *name)
+{
+	if (!envp || !name) {
+		return 1;
+	}
+	int i = getenv_index(envp, name);
+	if (i < 0) {
+		return 1;
+	}
+	/*
+	 * We found a match, copy the rest of the array
+	 * omitting the match we just found
+	 */
+	for(; envp[i]; i++)
+		envp[i] = envp[i+1];
+	return 0;
 }
