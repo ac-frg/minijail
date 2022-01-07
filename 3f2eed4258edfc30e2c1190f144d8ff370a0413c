@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1e17108_62edf99c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "you can drop \"feat:\".  we don\u0027t use feature/bugfix/etc... tags.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "320e16e4_74a59e58",
@@ -14,6 +31,159 @@
       "writtenOn": "2022-01-07T16:29:25Z",
       "side": 1,
       "message": "This looks good to me. Adding Mike for an extra pair of eyes in case I missed something.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48918a3b_a83cdd60",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "drop the braces, and put a blank line where the } is below",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f689cab_73cf2d27",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "we tend to use the \u0026 style instead\n\n dest \u003d \u0026(*env)[i];",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d56e63_85615a3e",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "while i like the functions encapsulating higher level functionality, i\u0027m not a fan of how often we keep rescanning the environ array.\n\nsemi-terrible idea.  what if getenv_index API was:\n\n // Returns true if |name| is found, false if not.\n // If found, |i| is |name|\u0027s index.  If not found, |i| is the length.\n bool getenv_index(char **envp, const char *name, *int i);\n\nthen we wouldn\u0027t have double scanning in these helpers.  we\u0027d still have double scanning across multiple calls, but we have that today, and might be a little harder to avoid when we have to scan the array names anyways.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcbfa15e_8dc88b37",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "this is only needed if dest\u003d\u003dNULL, so you can move this down below\n\nalso use an explicit \"continue;\" body.  makes it easier on readers as that trailing ; is pretty easy to miss since it\u0027s an uncommon construct.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e95b3ac5_83433328",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "drop the braces, and put a blank line where the } is below",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27bd9493_74ade1f5",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "drop the braces, and put a blank line where the } is below",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "296e3d63_30bf1d8a",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "i don\u0027t think we need to maintain ordering.  find the last entry in the array and swap with that.\n\n for (last \u003d i; envp[last]; ++last)\n   continue;\n --last;\n envp[i] \u003d envp[last];\n envp[last] \u003d NULL;\n\nworks even if i \u003d\u003d last",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f9887a_be9e3bc2",
+        "filename": "util.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "imo we should get away from 0/1 for bool funcs.  use stdbool type/values instead.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cac0d8_6e536d7f",
+        "filename": "util.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:11Z",
+      "side": 1,
+      "message": "just one blank line here",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
