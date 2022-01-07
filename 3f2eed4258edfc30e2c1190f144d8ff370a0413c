@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9c63790_9934a5f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-07T21:59:36Z",
+      "side": 1,
+      "message": "also, please add unittests to util_unittest.cc",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48918a3b_a83cdd60",
         "filename": "util.c",
         "patchSetId": 4
