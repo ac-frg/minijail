@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244bbc99_1645515d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "Thanks for the review. I applied your suggestions, more details in the individual answers below.\n`make tests` passed successfully.",
+      "revId": "1aac07f5b5d080a74a574d82ad49742fa6dbb783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

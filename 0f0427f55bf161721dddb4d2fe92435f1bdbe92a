@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a29867_cd6eb74f",
+        "filename": "libminijailpreload.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "You\u0027re right, I suppose the static die func in libminijailpreload.c was to avoid including util.h just for this, but now as we do use a few utility functions there, this original reasoning is moot. Replaced by die().",
+      "parentUuid": "8a4b3d04_c57e9bfc",
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cedfe448_a9798338",
@@ -65,6 +83,30 @@
       "writtenOn": "2022-01-06T19:38:13Z",
       "side": 1,
       "message": "It is probably worth making a temporary for this outside the loop since it is called so many times.\n\n  size_t name_len \u003d strlen(name);",
+      "range": {
+        "startLine": 599,
+        "startChar": 30,
+        "endLine": 599,
+        "endChar": 42
+      },
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77e95570_c411470b",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cedfe448_a9798338",
       "range": {
         "startLine": 599,
         "startChar": 30,
@@ -92,6 +134,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bf6a7dc_77e32344",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5875eac5_ba4766f6",
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90e7cd6d_42564071",
@@ -115,6 +175,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "119e8229_7b4579ab",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90e7cd6d_42564071",
+      "range": {
+        "startLine": 620,
+        "startChar": 30,
+        "endLine": 620,
+        "endChar": 42
+      },
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08df279d_99546d78",
@@ -128,6 +212,24 @@
       "writtenOn": "2022-01-06T19:38:13Z",
       "side": 1,
       "message": "This function up to this point is almost the same as minijail_getenv, so it makes sense to pull the shared code out to in internal helper function that returns the index of the matching **envp entry or -1. It could possibly be used in setenv as well.",
+      "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae2e04d_612c86ca",
+        "filename": "util.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-07T10:53:53Z",
+      "side": 1,
+      "message": "Done, I named it \"getenv_index\" and declared it as static in util.c, as I don\u0027t expect it to be of any use outside of this file.\nIt is used by the 2 new utility funcs added by this change, and I also integrated it in minijail_setenv. Note that for this one, we still need to count the number of vars in the env array, which is not handled by getenv_index (the code complexity would roughly double if it had to optionally implement this feature, which is only required by minijail_setenv, so it defeats our original purpose of simplifying the code). The code is simpler this way, the only drawback being that in minijail_setenv, a portion of the env array will be walked through in getenv_index, then we walk through the entire array again in minijail_setenv to get its size. I think this is a reasonable compromise between code clarity vs execution speed (we\u0027re probably talking microseconds here).",
+      "parentUuid": "08df279d_99546d78",
       "revId": "0f0427f55bf161721dddb4d2fe92435f1bdbe92a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
