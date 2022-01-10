@@ -33,6 +33,24 @@
       "message": "Just saw your comment on https://android-review.googlesource.com/c/platform/external/minijail/+/1217602/comment/4caf132c_86e2e6ca/ .\n\nIf we\u0027re ok with the \"reset, keep, add, delete\" naming, then we might want to reflect that on the function names of util.c?\n\nThis would mean renaming:\nminijail_setenv to minijail_addenv\nminijail_unsetenv to minijail_delenv\n\nThis might just be nitpicking. Waiting for your opinion on this before doing any modification.",
       "revId": "535d58a004d74307127327ffdca6f4917404617b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae22dba_0ef24884",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T18:31:33Z",
+      "side": 1,
+      "message": "i think keeping the C API names the same as the C stdlib APIs makes sense since they\u0027re implementing the same functionality.  i.e. minijail_unsetenv behaves the same as unsetenv.",
+      "parentUuid": "81708205_2625f02e",
+      "revId": "535d58a004d74307127327ffdca6f4917404617b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
