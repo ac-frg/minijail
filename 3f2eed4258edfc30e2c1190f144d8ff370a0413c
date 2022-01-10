@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "95750320_e8abd0a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1e17108_62edf99c",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "320e16e4_74a59e58",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f54a781d_2f9198a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done\n\n```\n$ grep -Eo \u0027minijail_(unset|get)env\u0027 util_unittest.cc | sort | uniq -c\n      8 minijail_getenv\n     10 minijail_unsetenv\n```",
+      "parentUuid": "f9c63790_9934a5f0",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48918a3b_a83cdd60",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-01-07T21:59:11Z",
       "side": 1,
       "message": "drop the braces, and put a blank line where the } is below",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e74d8434_f1917de7",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48918a3b_a83cdd60",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ecc389d_74536a9b",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f689cab_73cf2d27",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4d56e63_85615a3e",
@@ -99,6 +171,24 @@
       "writtenOn": "2022-01-07T21:59:11Z",
       "side": 1,
       "message": "while i like the functions encapsulating higher level functionality, i\u0027m not a fan of how often we keep rescanning the environ array.\n\nsemi-terrible idea.  what if getenv_index API was:\n\n // Returns true if |name| is found, false if not.\n // If found, |i| is |name|\u0027s index.  If not found, |i| is the length.\n bool getenv_index(char **envp, const char *name, *int i);\n\nthen we wouldn\u0027t have double scanning in these helpers.  we\u0027d still have double scanning across multiple calls, but we have that today, and might be a little harder to avoid when we have to scan the array names anyways.",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c83b02_5be213e9",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "I wasn\u0027t really convinced before trying to implement it, having the meaning of |i| depending on the return value of the function, but in the end it turned out way better than I thought. The code is simpler this way, and I think it\u0027s not too hard to read.",
+      "parentUuid": "c4d56e63_85615a3e",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +210,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ecd62aa_d3403f9a",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Line removed as getenv_index now does the job as per previous comment",
+      "parentUuid": "fcbfa15e_8dc88b37",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e95b3ac5_83433328",
@@ -133,6 +241,24 @@
       "writtenOn": "2022-01-07T21:59:11Z",
       "side": 1,
       "message": "drop the braces, and put a blank line where the } is below",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e4975a3_4edbec3e",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e95b3ac5_83433328",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6464a5a_25b2b453",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27bd9493_74ade1f5",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "296e3d63_30bf1d8a",
@@ -167,6 +311,24 @@
       "writtenOn": "2022-01-07T21:59:11Z",
       "side": 1,
       "message": "i don\u0027t think we need to maintain ordering.  find the last entry in the array and swap with that.\n\n for (last \u003d i; envp[last]; ++last)\n   continue;\n --last;\n envp[i] \u003d envp[last];\n envp[last] \u003d NULL;\n\nworks even if i \u003d\u003d last",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b8fdbe4_1a1b45c5",
+        "filename": "util.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "The only drawback I can think of, is for weird/invalid envs with duplicate variable names, where we would possibly alter the behaviour of the app we\u0027re launching, as we wouldn\u0027t maintain the ordering. It\u0027s probably negligible, though. I implemented it as you suggested.",
+      "parentUuid": "296e3d63_30bf1d8a",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +350,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0808f7f9_4cb3c549",
+        "filename": "util.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f9887a_be9e3bc2",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7cac0d8_6e536d7f",
@@ -201,6 +381,24 @@
       "writtenOn": "2022-01-07T21:59:11Z",
       "side": 1,
       "message": "just one blank line here",
+      "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "665c6d0d_0b45f3fc",
+        "filename": "util.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7cac0d8_6e536d7f",
       "revId": "3f2eed4258edfc30e2c1190f144d8ff370a0413c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
