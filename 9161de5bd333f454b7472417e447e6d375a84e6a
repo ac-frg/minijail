@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4511d16_6fccb601",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T19:56:43Z",
+      "side": 1,
+      "message": "i don\u0027t think this is quite fixes the problem either.  the code is still incorrectly using strtod which i expect the original author was thinking was like %d to mean an integer when it\u0027s actually a double.  we should be using strtoul everywhere.",
+      "revId": "9161de5bd333f454b7472417e447e6d375a84e6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
