@@ -16,6 +16,23 @@
       "message": "This one is a bit tricky, and I needed to write down the workflow in all error cases to be extra-sure I got it right.\nThis is the classic construction where we allocate memory several times, and if we fail at some point, we need to free the previously-allocated bits in reverse order.\nI think the misordering of the labels got undetected until now because the error case we must fall in might be extremely rare.",
       "revId": "f2e381d6cb3765328f0f99470223d25bdee58128",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b5c9ac8_0c712f0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T19:52:59Z",
+      "side": 1,
+      "message": "what a pita.  wish we could leverage compiler attributes to do this for us.",
+      "revId": "f2e381d6cb3765328f0f99470223d25bdee58128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
