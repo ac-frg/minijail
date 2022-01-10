@@ -59,4 +59,6 @@ using ScopedConfigEntry =
 
 FILE *write_to_pipe(const std::string& content);
 
+std::string source_path(const std::string& file);
+
 #endif /* _TEST_UTIL_H_ */
