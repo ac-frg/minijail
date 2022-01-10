@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b25f93_753fface",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T10:22:31Z",
+      "side": 1,
+      "message": "Thanks, will take it into account in the reworking of this change, after my other in-flight changes are merged.",
+      "parentUuid": "fd0d752b_bc4d684c",
+      "revId": "106818f2323dba924880177ed86bcd40de42cc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acbe87a8_1ed12a36",
