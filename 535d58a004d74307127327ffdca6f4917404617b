@@ -16,6 +16,23 @@
       "message": "Thanks for the review, suggestions taken into account and unit tests added.",
       "revId": "535d58a004d74307127327ffdca6f4917404617b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81708205_2625f02e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-10T09:22:06Z",
+      "side": 1,
+      "message": "Just saw your comment on https://android-review.googlesource.com/c/platform/external/minijail/+/1217602/comment/4caf132c_86e2e6ca/ .\n\nIf we\u0027re ok with the \"reset, keep, add, delete\" naming, then we might want to reflect that on the function names of util.c?\n\nThis would mean renaming:\nminijail_setenv to minijail_addenv\nminijail_unsetenv to minijail_delenv\n\nThis might just be nitpicking. Waiting for your opinion on this before doing any modification.",
+      "revId": "535d58a004d74307127327ffdca6f4917404617b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
