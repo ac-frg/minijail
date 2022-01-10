@@ -57,7 +57,7 @@ static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 		     gid_t *out_gid)
 {
 	char *end = NULL;
-	int uid = strtod(arg, &end);
+	uid_t uid = strtod(arg, &end);
 	if (!*end && *arg) {
 		*out_uid = uid;
 		minijail_change_uid(j, uid);
@@ -81,7 +81,7 @@ static void set_user(struct minijail *j, const char *arg, uid_t *out_uid,
 static void set_group(struct minijail *j, const char *arg, gid_t *out_gid)
 {
 	char *end = NULL;
-	int gid = strtod(arg, &end);
+	gid_t gid = strtod(arg, &end);
 	if (!*end && *arg) {
 		*out_gid = gid;
 		minijail_change_gid(j, gid);
