@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8608ad76_8745af5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T17:58:56Z",
+      "side": 1,
+      "message": "\"None\"",
+      "revId": "51c1c01d79933a375cfa4b8f3fd6041acffce41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bc658d_fef0044e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T17:58:56Z",
+      "side": 1,
+      "message": "we don\u0027t use s-o-b tags.  this is a Google authored project.",
+      "revId": "51c1c01d79933a375cfa4b8f3fd6041acffce41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
