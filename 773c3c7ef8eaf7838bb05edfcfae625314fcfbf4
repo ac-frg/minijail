@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81a9d436_c5adf844",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T19:39:30Z",
+      "side": 1,
+      "message": "it is, but we use a lot of GNU C extensions, and we\u0027re heavily tied to the OS (Linux), and a bit to the C library.  making this one change doesn\u0027t improve portability.\n\nminijail isn\u0027t targeting bare POSIX for the C library, OS, or compiler.  we explicitly use -std\u003dgnu11 \u0026 -std\u003dgnu++14 and support clang \u0026 gcc.\n\nso what are you using that isn\u0027t those things ?",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c1528d4_e0f5ca2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T19:39:30Z",
+      "side": 1,
+      "message": "\"None\"",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21dc323_cfae5e00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-10T19:39:30Z",
+      "side": 1,
+      "message": "we don\u0027t use s-o-b tags",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
