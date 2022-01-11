@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59c72465_8c626339",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-11T21:17:10Z",
+      "side": 1,
+      "message": "We chose no-exec because in the test image environment, the root-fs isn\u0027t always mounted read-only and we wanted to support more than CrOS. Also, the exec permission maps well to the risks associated with a writable configuration.",
+      "parentUuid": "cc2266ae_a33b8c3a",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1
