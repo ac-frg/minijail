@@ -5,6 +5,7 @@
 
 #include <dlfcn.h>
 #include <errno.h>
+#include <fcntl.h>
 #include <getopt.h>
 #include <inttypes.h>
 #include <stdbool.h>
@@ -14,6 +15,7 @@
 #include <sys/capability.h>
 #include <sys/mount.h>
 #include <sys/types.h>
+#include <sys/vfs.h>
 #include <unistd.h>
 
 #include <linux/filter.h>
@@ -1050,10 +1052,22 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			}
 			conf_entry_list = new_config_entry_list();
 			conf_index = 0;
+#if defined(ENFORCE_NOEXEC_CONF)
+			/* Check that the conf file is in a no-exec mount. */
+			struct statfs stat;
+			if (statfs(optarg, &stat) != 0) {
+				fprintf(stderr, "Failed to statfs %s: %m", optarg);
+				exit(1);
+			}
+			if ((stat.f_flags & MS_NOEXEC) == 0) {
+				fprintf(stderr, "Conf file should be in a no-exec mount: %s\n", optarg);
+				exit(1);
+			}
+#endif
 			attribute_cleanup_fp FILE *config_file =
 			    fopen(optarg, "re");
 			if (!config_file) {
-				fprintf(stderr, "failed to open %s: %m",
+				fprintf(stderr, "Failed to open %s: %m",
 					optarg);
 				exit(1);
 			}

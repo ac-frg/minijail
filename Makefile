@@ -21,6 +21,11 @@ ifeq ($(USE_seccomp),no)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
 endif
 
+ENFORCE_NOEXEC_CONF ?= no
+ifeq ($(ENFORCE_NOEXEC_CONF), yes)
+CPPFLAGS += -DENFORCE_NOEXEC_CONF
+endif
+
 # Allow people to use -L and related flags.
 ALLOW_DEBUG_LOGGING ?= yes
 ifeq ($(ALLOW_DEBUG_LOGGING),yes)
