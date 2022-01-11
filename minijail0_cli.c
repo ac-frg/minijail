@@ -456,7 +456,7 @@ static void read_seccomp_filter(const char *filter_path,
  * bit confusing, and honestly there's no reason to "optimize" here.
  *
  * The long enum values are internal to this file and can freely change at any
- * time without breaking anything.  Don't worry about ordering.
+ * time without breaking anything.  Please keep alphabetically ordered.
  */
 enum {
 	/* Everything after this point only have long options. */
@@ -465,6 +465,8 @@ enum {
 	OPT_ALLOW_SPECULATIVE_EXECUTION,
 	OPT_AMBIENT,
 	OPT_CONFIG,
+	OPT_ENV_ADD,
+	OPT_ENV_RESET,
 	OPT_LOGGING,
 	OPT_PRELOAD_LIBRARY,
 	OPT_PROFILE,
@@ -559,6 +561,10 @@ static void usage(const char *progn)
 	       "  -z:           Don't forward signals to jailed process.\n"
 	       "  --ambient:    Raise ambient capabilities. Requires -c.\n"
 	       "  --uts[=name]: Enter a new UTS namespace (and set hostname).\n"
+	       "  --env-reset:  Clear the current environment instead of having <program> inherit the active\n"
+	       "                environment. Often used to start <program> with a minimal sanitized environment.\n"
+	       "  --env-add <NAME=value>: Sets the specified environment variable <NAME>\n"
+	       "                in the <program>'s environment before starting it.\n"
 	       "  --logging=<s>:Use <s> as the logging system.\n"
 	       "                <s> must be 'auto' (default), 'syslog', or 'stderr'.\n"
 	       "  --profile <p>:Configure minijail0 to run with the <p> sandboxing profile,\n"
@@ -656,6 +662,8 @@ static int getopt_conf_or_cli(int argc, char *const argv[],
 		{"allow-speculative-execution", no_argument, 0,
 		 OPT_ALLOW_SPECULATIVE_EXECUTION},
 		{"config", required_argument, 0, OPT_CONFIG},
+		{"env-add", required_argument, 0, OPT_ENV_ADD},
+		{"env-reset", no_argument, 0, OPT_ENV_RESET},
 		{"mount", required_argument, 0, 'k'},
 		{"bind-mount", required_argument, 0, 'b'},
 		{0, 0, 0, 0},
@@ -669,9 +677,33 @@ static int getopt_conf_or_cli(int argc, char *const argv[],
 	return opt;
 }
 
+static void set_child_env(char ***envp, char *arg, char *const environ[])
+{
+	/* We expect VAR=value format for arg. */
+	char *delim = strchr(arg, '=');
+	if (!delim) {
+		errx(1, "Expected an argument of the "
+		        "form VAR=value (got '%s')", arg);
+	}
+	*delim = '\0';
+	const char *env_value = delim + 1;
+	if (!*envp) {
+		/*
+		 * We got our first --env-add. Initialize *envp by
+		 * copying our current env to the future child env.
+		 */
+		*envp = minijail_copy_env(environ);
+		if (!*envp)
+			err(1, "Failed to allocate memory.");
+	}
+	if (minijail_setenv(envp, arg, env_value, 1))
+		err(1, "minijail_setenv() failed.");
+}
+
 int parse_args(struct minijail *j, int argc, char *const argv[],
-	       int *exit_immediately, ElfType *elftype,
-	       const char **preload_path)
+	       char *const environ[], int *exit_immediately,
+	       ElfType *elftype, const char **preload_path,
+	       char ***envp)
 {
 	enum seccomp_type { None, Strict, Filter, BpfBinaryFilter };
 	enum seccomp_type seccomp = None;
@@ -1009,6 +1041,32 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			}
 			break;
 		}
+		case OPT_ENV_ADD:
+			/*
+			 * We either copy our current env to the child env
+			 * then add the requested envvar to it, or just
+			 * add the requested envvar to the already existing
+			 * envp.
+			 */
+			set_child_env(envp, optarg, environ);
+			break;
+		case OPT_ENV_RESET:
+			if (*envp && *envp != environ) {
+				/*
+				 * We already started to initialize the future
+				 * child env, because we got some --env-add
+				 * earlier on the command-line, so first,
+				 * free the memory we allocated.
+				 * If |*envp| happens to point to |environ|,
+				 * don't attempt to free it.
+				 */
+				minijail_free_env(*envp);
+			}
+			/* Allocate an empty environment for the child. */
+			*envp = calloc(1, sizeof(char *));
+			if (!*envp)
+				err(1, "Failed to allocate memory.");
+			break;
 		default:
 			usage(argv[0]);
 			exit(opt == 'h' ? 0 : 1);
@@ -1101,6 +1159,16 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	/* Mount a tmpfs under /tmp and set its size. */
 	if (tmp_size)
 		minijail_mount_tmp_size(j, tmp_size);
+
+	/*
+	 * Copy our current env to the child if its |*envp| has not
+	 * already been initialized from --env-(reset|add) usage.
+	 */
+	if (!*envp) {
+		*envp = minijail_copy_env(environ);
+		if (!*envp)
+			err(1, "Failed to allocate memory.");
+	}
 
 	/*
 	 * There should be at least one additional unparsed argument: the
