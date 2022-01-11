@@ -5,6 +5,7 @@
 
 #include <dlfcn.h>
 #include <errno.h>
+#include <fcntl.h>
 #include <getopt.h>
 #include <inttypes.h>
 #include <stdbool.h>
@@ -14,6 +15,7 @@
 #include <sys/capability.h>
 #include <sys/mount.h>
 #include <sys/types.h>
+#include <sys/vfs.h>
 #include <unistd.h>
 
 #include <linux/filter.h>
@@ -103,7 +105,8 @@ static void set_group(struct minijail *j, const char *arg, gid_t *out_gid)
  * to build the supplementary gids array.
  */
 static void suppl_group_add(size_t *suppl_gids_count, gid_t **suppl_gids,
-                            char *arg) {
+			    char *arg)
+{
 	char *end = NULL;
 	int groupid = strtod(arg, &end);
 	gid_t gid;
@@ -124,8 +127,8 @@ static void suppl_group_add(size_t *suppl_gids_count, gid_t **suppl_gids,
 	 * From here, gid is guaranteed to be set and valid,
 	 * we add it to our supplementary gids array.
 	 */
-	*suppl_gids = realloc(*suppl_gids,
-			      sizeof(gid_t) * ++(*suppl_gids_count));
+	*suppl_gids =
+	    realloc(*suppl_gids, sizeof(gid_t) * ++(*suppl_gids_count));
 	if (!suppl_gids) {
 		fprintf(stderr, "failed to allocate memory.\n");
 		exit(1);
@@ -304,8 +307,7 @@ static void add_mount(struct minijail *j, char *arg)
 		}
 	}
 
-	if (minijail_mount_with_data(j, src, dest, type,
-				     mountflags, data)) {
+	if (minijail_mount_with_data(j, src, dest, type, mountflags, data)) {
 		fprintf(stderr, "minijail_mount failed.\n");
 		exit(1);
 	}
@@ -1035,8 +1037,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			use_seccomp_filter_binary = 1;
 			break;
 		case 134:
-			suppl_group_add(&suppl_gids_count, &suppl_gids,
-			                optarg);
+			suppl_group_add(&suppl_gids_count, &suppl_gids, optarg);
 			break;
 		case 135:
 			minijail_set_seccomp_filter_allow_speculation(j);
@@ -1050,10 +1051,26 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			}
 			conf_entry_list = new_config_entry_list();
 			conf_index = 0;
+#if defined(ENFORCE_NOEXEC_CONF)
+			/* Check that the conf file is in a no-exec mount. */
+			struct statfs stat;
+			if (statfs(optarg, &stat) != 0) {
+				fprintf(stderr, "Failed to statfs %s: %m",
+					optarg);
+				exit(1);
+			}
+			if ((stat.f_flags & MS_NOEXEC) == 0) {
+				fprintf(stderr,
+					"Conf file should be in a no-exec "
+					"mount: %s\n",
+					optarg);
+				exit(1);
+			}
+#endif
 			attribute_cleanup_fp FILE *config_file =
 			    fopen(optarg, "re");
 			if (!config_file) {
-				fprintf(stderr, "failed to open %s: %m",
+				fprintf(stderr, "Failed to open %s: %m",
 					optarg);
 				exit(1);
 			}
@@ -1144,7 +1161,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 	 */
 	if (suppl_gids_count) {
 		minijail_set_supplementary_gids(j, suppl_gids_count,
-		                                suppl_gids);
+						suppl_gids);
 		free(suppl_gids);
 	}
 
