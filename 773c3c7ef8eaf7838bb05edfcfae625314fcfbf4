@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8376688b_ea59b93f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1368670
+      },
+      "writtenOn": "2022-01-11T12:58:53Z",
+      "side": 1,
+      "message": "\u003e minijail isn\u0027t targeting bare POSIX for the C library, OS, or compiler.  we explicitly use -std\u003dgnu11 \u0026 -std\u003dgnu++14 and support clang \u0026 gcc.\n\nGood to know. Changed it back.\n\nMy original motivation was more readability, though. I had never seen this construct before (neither had a colleague).",
+      "parentUuid": "81a9d436_c5adf844",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c1528d4_e0f5ca2f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b9dbc8_48047a5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1368670
+      },
+      "writtenOn": "2022-01-11T12:58:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c1528d4_e0f5ca2f",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b21dc323_cfae5e00",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-01-10T19:39:30Z",
       "side": 1,
       "message": "we don\u0027t use s-o-b tags",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9517e5b_bf39c770",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1368670
+      },
+      "writtenOn": "2022-01-11T12:58:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b21dc323_cfae5e00",
       "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
