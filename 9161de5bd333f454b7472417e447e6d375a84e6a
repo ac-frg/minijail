@@ -16,6 +16,24 @@
       "message": "i don\u0027t think this is quite fixes the problem either.  the code is still incorrectly using strtod which i expect the original author was thinking was like %d to mean an integer when it\u0027s actually a double.  we should be using strtoul everywhere.",
       "revId": "9161de5bd333f454b7472417e447e6d375a84e6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b313eb_eff2f5f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-11T07:57:38Z",
+      "side": 1,
+      "message": "Eww, indeed, not sure how I missed that. Replaced by strtoul in the 3 funcs.",
+      "parentUuid": "b4511d16_6fccb601",
+      "revId": "9161de5bd333f454b7472417e447e6d375a84e6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
