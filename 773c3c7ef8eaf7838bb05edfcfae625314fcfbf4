@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d7bb39_ecdca2ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-11T16:52:43Z",
+      "side": 1,
+      "message": "i imagine it shows up more in some domains than others.  i don\u0027t know that i\u0027ve seen it in C++ that much, but in C quite a bit as it\u0027s a shorthand for dealing with possibly NULL pointers.",
+      "parentUuid": "8376688b_ea59b93f",
+      "revId": "773c3c7ef8eaf7838bb05edfcfae625314fcfbf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c1528d4_e0f5ca2f",
