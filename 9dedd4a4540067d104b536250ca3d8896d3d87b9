@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e8c4dd_3379e053",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-11T09:40:33Z",
+      "side": 1,
+      "message": "you can omit this.  the braces+comment provide enough stub context.",
+      "revId": "9dedd4a4540067d104b536250ca3d8896d3d87b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
