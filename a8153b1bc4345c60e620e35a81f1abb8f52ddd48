@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d42828c8_e887cdca",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T21:53:24Z",
+      "side": 1,
+      "message": "yeah, my preference is to elide braces only if the if(...) fits on one line, and the body fits on one line (a 2nd line).  otherwise the reader has to figure out which indentation belongs to which section of code.\n\ni didn\u0027t run clang-format, so if that prefers a certain style, and others prefer using that, i won\u0027t bikeshed it.",
+      "parentUuid": "785ec582_56818d52",
+      "range": {
+        "startLine": 440,
+        "startChar": 18,
+        "endLine": 440,
+        "endChar": 19
+      },
+      "revId": "a8153b1bc4345c60e620e35a81f1abb8f52ddd48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1dec166_67f7d9c3",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-12T19:13:05Z",
       "side": 1,
       "message": "I see some cases where a single-statement multi-line if clause has the curly braces and some where it doesn\u0027t. It doesn\u0027t really matter much to me, but I figured I would point it out in case you wanted them to be consistent.",
+      "range": {
+        "startLine": 590,
+        "startChar": 28,
+        "endLine": 590,
+        "endChar": 30
+      },
+      "revId": "a8153b1bc4345c60e620e35a81f1abb8f52ddd48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f306598_8756eebe",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T21:53:24Z",
+      "side": 1,
+      "message": "yeah, i should add them back.  some of this was written before the long lines were wrapped, so they used to be on one line.",
+      "parentUuid": "c1dec166_67f7d9c3",
       "range": {
         "startLine": 590,
         "startChar": 28,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b67edb2f_473dbad9",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T21:53:24Z",
+      "side": 1,
+      "message": "these ones i was trying to avoid changing too much unrelated code, but i can cascade for consistency sake",
+      "parentUuid": "5acd6c19_cfe7f80c",
+      "range": {
+        "startLine": 900,
+        "startChar": 10,
+        "endLine": 900,
+        "endChar": 11
+      },
+      "revId": "a8153b1bc4345c60e620e35a81f1abb8f52ddd48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36f38692_525db63f",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-01-12T19:13:05Z",
       "side": 1,
       "message": "Another set of curly braces you may or may not want to keep.",
+      "range": {
+        "startLine": 941,
+        "startChar": 56,
+        "endLine": 941,
+        "endChar": 58
+      },
+      "revId": "a8153b1bc4345c60e620e35a81f1abb8f52ddd48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "468ff00c_288effdf",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T21:53:24Z",
+      "side": 1,
+      "message": "these i\u0027ll leave since the body doesn\u0027t fit on one line",
+      "parentUuid": "36f38692_525db63f",
       "range": {
         "startLine": 941,
         "startChar": 56,
