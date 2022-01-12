@@ -33,6 +33,23 @@
       "message": "i think i remember reviewing this",
       "revId": "a389911de8627e92957fb5668b09ca777c43d454",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f19335f_651c7f28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T21:47:29Z",
+      "side": 1,
+      "message": "those test failures look relevant, although i don\u0027t know what they mean.  i have no idea how to navigate the android build interface, and they don\u0027t make it easy.",
+      "revId": "a389911de8627e92957fb5668b09ca777c43d454",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
