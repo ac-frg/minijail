@@ -46,6 +46,30 @@
       },
       "revId": "5a1100e43c2471d955ea510b3a709ef7fc04d8d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf50610_280916fd",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-12T23:40:43Z",
+      "side": 1,
+      "message": "into_ often consumes the origin data.  So the current function still looks more like a to_ to me.",
+      "parentUuid": "e65d23bf_8a553ed0",
+      "range": {
+        "startLine": 931,
+        "startChar": 3,
+        "endLine": 931,
+        "endChar": 27
+      },
+      "revId": "5a1100e43c2471d955ea510b3a709ef7fc04d8d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
