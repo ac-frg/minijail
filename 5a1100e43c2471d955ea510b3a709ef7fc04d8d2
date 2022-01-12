@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37d1b661_9f04ca63",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-12T22:12:46Z",
+      "side": 1,
+      "message": "nit: this is not a simple get. How about s/get/to/?",
+      "range": {
+        "startLine": 931,
+        "startChar": 3,
+        "endLine": 931,
+        "endChar": 27
+      },
+      "revId": "5a1100e43c2471d955ea510b3a709ef7fc04d8d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
