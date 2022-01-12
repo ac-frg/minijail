@@ -121,6 +121,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61aa4339_bfac5a3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-12T19:20:29Z",
+      "side": 1,
+      "message": "\u003e does it really ?  /mnt/stateful_partition (i.e. /var) as well as /tmp and /run are all noexec.  i thought we specifically didn\u0027t want our daemons writing \u0026 reading configs from these locations.\n\nMy wording may not have been clear. We want to block no-exec mounts and allow mounts that are executable (e.g. the root-fs) even when they are writeable like after cros-deploy.",
+      "parentUuid": "b0238bfc_f21a3bca",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1
