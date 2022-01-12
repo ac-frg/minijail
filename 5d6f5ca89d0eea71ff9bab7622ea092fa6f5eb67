@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b29654a_06a15076",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-12T22:12:40Z",
+      "side": 1,
+      "message": "Not your fault, but now that you\u0027re increase the use of this function, I\u0027m worried about spreading pointers in more places.\n\nCan you try to make this accepts CString or CStr instead?  E.g. argv could be \u0026[\u0026CStr].",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "5d6f5ca89d0eea71ff9bab7622ea092fa6f5eb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
