@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a09d941d_ea359771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-12T00:16:19Z",
+      "side": 1,
+      "message": "\u003e the exec permission maps well to the risks associated with a writable configuration.\n\ndoes it really ?  /mnt/stateful_partition (i.e. /var) as well as /tmp and /run are all noexec.  i thought we specifically didn\u0027t want our daemons writing \u0026 reading configs from these locations.",
+      "parentUuid": "59c72465_8c626339",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1
