@@ -46,6 +46,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a528dd02_48a239c8",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T02:22:34Z",
+      "side": 1,
+      "message": "We\u0027re probably too far away from the ideal param builder.  For now, I\u0027m only suggesting to have a subset to avoid creating all combinations of run_*.  The subset would just include inheritable_fds, args, and env.  It\u0027ll be a public API of this crate.  WDYT?",
+      "parentUuid": "ffbf2a61_965335f5",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
