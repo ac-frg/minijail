@@ -142,6 +142,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d29ff2_ac3d23c6",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T22:54:43Z",
+      "side": 1,
+      "message": "I feel it just shifts the issue into RunConfig.  For example, a user will need to do\n\n  jail.run_config(\"/usr/bin/ls\", minijail::Config {\n    inheritable_fds: Keep(\u0026[libc::STDOUT_FILENO]),\n    args: \u0026[\"/usr/bin/ls\", \"-l\"],\n    env: Some(\u0026[\"LC_ALL\", \"C\"]),\n  })\n\nor\n\n  jail.run_config(\"/usr/bin/ls\", minijail::Config::new(\n    Keep(\u0026[libc::STDOUT_FILENO]),\n    \u0026[\"/usr/bin/ls\", \"-l\"],\n    Some(\u0026[\"LC_ALL\", \"C\"]));\n\nWe still need run_fd_config, and minijail::Config will full of lifetime specifiers internally.\n\nOn the other hand, if we had a config builder, the example would look like\n\n  jail.run_config(minijail::Config::new(\"/usr/bin/ls\")\n                    .keep_fd(libc::STDOUT_FILENO)\n                    .args(\u0026[\"/usr/bin/ls\", \"-l\"])\n                    .env(\"LC_ALL\", \"C\"));\n\nIt might not seem much, but minijail::Config will be extensible and can have all sorts of convenient methods like std::process::Command does.  Those familiar with std::process::Command also know how to use minijail::Config immediately.",
+      "parentUuid": "7d8abe6b_c1be8046",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
