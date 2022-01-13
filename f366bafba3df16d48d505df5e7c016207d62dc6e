@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fff4c5b_a6a09bd7",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T02:14:16Z",
+      "side": 1,
+      "message": "nit: How about not storing this in `RunConfig`, and instead provide a function that does this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a1c4c3d_5079c029",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T02:14:16Z",
+      "side": 1,
+      "message": "nit: Since this looks like a purely type conversion without side effect to the jail, how about move to right before cmd.run_config?",
+      "range": {
+        "startLine": 801,
+        "startChar": 8,
+        "endLine": 801,
+        "endChar": 43
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
