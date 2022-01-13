@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43bb3bee_93bc9da9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T02:14:47Z",
+      "side": 1,
+      "message": "+2 but please wait for Allen",
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
