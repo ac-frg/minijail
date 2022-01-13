@@ -107,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a71ecbaa_1c1bac05",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T21:18:34Z",
+      "side": 1,
+      "message": "The data is owned by RunConfig, so the lifetime is also the same. The `argv` should always be safe.",
+      "parentUuid": "3f9729a8_b42e1eb5",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a1c4c3d_5079c029",
