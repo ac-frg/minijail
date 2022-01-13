@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44fb1add_44c6ebee",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:28:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99ce3525_bd7942a6",
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fff4c5b_a6a09bd7",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f9729a8_b42e1eb5",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:28:10Z",
+      "side": 1,
+      "message": "Good idea.  Done.",
+      "parentUuid": "1c0137e3_61ee3d49",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a1c4c3d_5079c029",
@@ -78,6 +120,30 @@
       "writtenOn": "2022-01-13T02:14:16Z",
       "side": 1,
       "message": "nit: Since this looks like a purely type conversion without side effect to the jail, how about move to right before cmd.run_config?",
+      "range": {
+        "startLine": 801,
+        "startChar": 8,
+        "endLine": 801,
+        "endChar": 43
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "840d368f_557dbd04",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:28:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a1c4c3d_5079c029",
       "range": {
         "startLine": 801,
         "startChar": 8,
