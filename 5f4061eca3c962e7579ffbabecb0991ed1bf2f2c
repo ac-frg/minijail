@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31dc34e_e22c78be",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:31:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3ffb222_d006097b",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e259b7fd_87efea97",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-01-13T16:18:41Z",
       "side": 1,
       "message": "The same comment above applies here about adding a different generic for env:\n  fn run_internal\u003cR: Runnable, S: AsRef\u003cstr\u003e, A: AsRef\u003cstr\u003e\u003e(\n...\n  env: Option\u003c\u0026[A]\u003e,",
+      "range": {
+        "startLine": 815,
+        "startChar": 33,
+        "endLine": 815,
+        "endChar": 46
+      },
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "642e2bb1_37d31585",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:31:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e259b7fd_87efea97",
       "range": {
         "startLine": 815,
         "startChar": 33,
