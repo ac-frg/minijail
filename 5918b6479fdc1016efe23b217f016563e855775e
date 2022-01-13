@@ -157,6 +157,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a3386f4_72c5d3e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-01-13T21:55:46Z",
+      "side": 1,
+      "message": "We probably want to tie this to cros_debug or something.\n\nWe want to make sure that people don\u0027t accidentally put the config file in a writable partition in production.\n\nWe don\u0027t want to make the system unbootable when we remount / RW after cros deploy.\n\nSo it sounds like we want to identify a debug flag that allows config files to live in a writable directory, but unless that flag is present, config files have to live in a RO dir (or just be in the rootfs.)",
+      "parentUuid": "6d4ccbd9_46b995c9",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1
