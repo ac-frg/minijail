@@ -22,6 +22,30 @@
       },
       "revId": "5d6f5ca89d0eea71ff9bab7622ea092fa6f5eb67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd40b1b_bae1a174",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T01:25:17Z",
+      "side": 1,
+      "message": "argv is NULL-terminated (the array, not the individual elements) but \u0026CStr is non-NULL.  To be able to use \u0026CStr, I would have to move the calls to to_execve_cstring_array to this function, and duplicate the logic for both Path and RawFd.\n\nIn the end, I introduced RunConfig which felt cleaner than the first version.",
+      "parentUuid": "4b29654a_06a15076",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "5d6f5ca89d0eea71ff9bab7622ea092fa6f5eb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
