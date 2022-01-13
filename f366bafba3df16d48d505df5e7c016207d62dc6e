@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99ce3525_bd7942a6",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-13T16:38:12Z",
+      "side": 1,
+      "message": "Please add a comment to document who owns the backing data for _args_cptr:\n // Ownership of the backing data of _args_cptr is provided by _args_cstr.",
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fff4c5b_a6a09bd7",
         "filename": "rust/minijail/src/lib.rs",
         "patchSetId": 2
@@ -14,6 +31,30 @@
       "writtenOn": "2022-01-13T02:14:16Z",
       "side": 1,
       "message": "nit: How about not storing this in `RunConfig`, and instead provide a function that does this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "f366bafba3df16d48d505df5e7c016207d62dc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0137e3_61ee3d49",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-13T16:38:12Z",
+      "side": 1,
+      "message": "The argument for storing it in RunConfig would be if it was accessed several times per RunConfig. If the typical case is to construct the RunConfig, use it, and move on; doing it in a member function of RunConfig sounds like the better option, but the function should not be public to avoid use-after-free\u0027s.",
+      "parentUuid": "3fff4c5b_a6a09bd7",
       "range": {
         "startLine": 27,
         "startChar": 8,
