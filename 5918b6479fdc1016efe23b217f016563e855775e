@@ -139,6 +139,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d4ccbd9_46b995c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-13T08:39:18Z",
+      "side": 1,
+      "message": "OK ... that\u0027s not what the CL is doing though :)\n\nthe design doc also has the conclusion inverted.  so i guess that\u0027s the source of the confusion.",
+      "parentUuid": "61aa4339_bfac5a3f",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1

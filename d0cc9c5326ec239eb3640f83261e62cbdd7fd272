@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5ed7d4_27dfd2cf",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-13T08:39:18Z",
+      "side": 1,
+      "message": "when you rebase, you\u0027ll need to change these to err/errx",
+      "revId": "d0cc9c5326ec239eb3640f83261e62cbdd7fd272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
