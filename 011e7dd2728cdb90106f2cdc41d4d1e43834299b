@@ -70,6 +70,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5469beef_49a1f615",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T17:55:36Z",
+      "side": 1,
+      "message": "run_env has all three of inheritable_fds, args, and env.  Can you be more specific?\n\nLooking at other variants, I will need to deal with whether cmd is path or fd, and whether inheritable_fds remaps or not.  It can be ugly to handle path/fd uniformly.  It should be fine to make inheritable_fds always remap, but it will be less convenient to use.",
+      "parentUuid": "a528dd02_48a239c8",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
