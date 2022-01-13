@@ -22,6 +22,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffbf2a61_965335f5",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T01:44:26Z",
+      "side": 1,
+      "message": "I am not exactly sure I get this.  Do you have something like \"run_params(..., params: MinijailParams)\" where \"struct MinijailParams\" provides the parameters and the function is a super set of all other variants?\n\nI thought about that before, and felt we could follow https://doc.rust-lang.org/std/process/index.html and use a builder pattern.  But I am not super familiar with Rust to design a new set of APIs.  I would also hope to get this in sooner such that I can enable Mesa shader cache and get nice performance boost.",
+      "parentUuid": "c32ac3f7_acae90f5",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
