@@ -15,7 +15,9 @@ use std::result::Result as StdResult;
 use libc::pid_t;
 use minijail_sys::*;
 
-struct RunConfig {
+pub struct RunConfig {
+    inheritable_fds: Vec<(RawFd, RawFd)>,
+
     // Ownership of the backing data of args_cptr is provided by _args_cstr.
     _args_cstr: Vec<CString>,
     args_cptr: Vec<*const c_char>,
@@ -26,7 +28,16 @@ struct RunConfig {
 }
 
 impl RunConfig {
-    fn new<S: AsRef<str>, A: AsRef<str>>(args: &[S], env: Option<&[A]>) -> Result<RunConfig> {
+    pub fn new<S: AsRef<str>, A: AsRef<str>>(
+        keep_fds: &[RawFd],
+        args: &[S],
+        env: Option<&[A]>,
+    ) -> Result<RunConfig> {
+        let inheritable_fds = keep_fds
+            .iter()
+            .map(|&a| (a, a))
+            .collect::<Vec<(RawFd, RawFd)>>();
+
         let (_args_cstr, args_cptr) = to_execve_cstring_array(args)?;
 
         let (_env_cstr, env_cptr) = match env {
@@ -38,11 +49,17 @@ impl RunConfig {
         };
 
         Ok(RunConfig {
+            inheritable_fds,
             _args_cstr,
             args_cptr,
             _env_cstr,
             env_cptr,
         })
+    }
+
+    fn remap_fds(mut self, inheritable_fds: &[(RawFd, RawFd)]) -> RunConfig {
+        self.inheritable_fds = inheritable_fds.to_vec();
+        self
     }
 
     fn argv(&self) -> *const *mut c_char {
@@ -767,34 +784,7 @@ impl Minijail {
         inheritable_fds: &[RawFd],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(
-            cmd.as_ref(),
-            &inheritable_fds
-                .iter()
-                .map(|&a| (a, a))
-                .collect::<Vec<(RawFd, RawFd)>>(),
-            args,
-            None::<&[S]>,
-        )
-    }
-
-    /// Behaves the same as `run()` except `env` becomes the environment of the child if not None.
-    pub fn run_env<P: AsRef<Path>, S: AsRef<str>, A: AsRef<str>>(
-        &self,
-        cmd: P,
-        inheritable_fds: &[RawFd],
-        args: &[S],
-        env: Option<&[A]>,
-    ) -> Result<pid_t> {
-        self.run_internal(
-            cmd.as_ref(),
-            &inheritable_fds
-                .iter()
-                .map(|&a| (a, a))
-                .collect::<Vec<(RawFd, RawFd)>>(),
-            args,
-            env,
-        )
+        self.run_config(cmd, RunConfig::new(inheritable_fds, args, None::<&[S]>)?)
     }
 
     /// Behaves the same as `run()` except `inheritable_fds` is a list of fd
@@ -805,7 +795,14 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_ref(), &inheritable_fds, args, None::<&[S]>)
+        self.run_config(
+            cmd,
+            RunConfig::new(&[], args, None::<&[S]>)?.remap_fds(inheritable_fds),
+        )
+    }
+
+    pub fn run_config<P: AsRef<Path>>(&self, cmd: P, config: RunConfig) -> Result<pid_t> {
+        self.run_internal(cmd.as_ref(), config)
     }
 
     /// Behaves the same as `run()` except cmd is a file descriptor to the executable.
@@ -815,15 +812,7 @@ impl Minijail {
         inheritable_fds: &[RawFd],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(
-            cmd.as_raw_fd(),
-            &inheritable_fds
-                .iter()
-                .map(|&a| (a, a))
-                .collect::<Vec<(RawFd, RawFd)>>(),
-            args,
-            None::<&[S]>,
-        )
+        self.run_fd_config(cmd, RunConfig::new(inheritable_fds, args, None::<&[S]>)?)
     }
 
     /// Behaves the same as `run()` except cmd is a file descriptor to the executable, and
@@ -834,17 +823,18 @@ impl Minijail {
         inheritable_fds: &[(RawFd, RawFd)],
         args: &[S],
     ) -> Result<pid_t> {
-        self.run_internal(cmd.as_raw_fd(), &inheritable_fds, args, None::<&[S]>)
+        self.run_fd_config(
+            cmd,
+            RunConfig::new(&[], args, None::<&[S]>)?.remap_fds(inheritable_fds),
+        )
     }
 
-    fn run_internal<R: Runnable, S: AsRef<str>, A: AsRef<str>>(
-        &self,
-        cmd: R,
-        inheritable_fds: &[(RawFd, RawFd)],
-        args: &[S],
-        env: Option<&[A]>,
-    ) -> Result<pid_t> {
-        for (src_fd, dst_fd) in inheritable_fds {
+    pub fn run_fd_config<F: AsRawFd>(&self, cmd: &F, config: RunConfig) -> Result<pid_t> {
+        self.run_internal(cmd.as_raw_fd(), config)
+    }
+
+    fn run_internal<R: Runnable>(&self, cmd: R, config: RunConfig) -> Result<pid_t> {
+        for (src_fd, dst_fd) in config.inheritable_fds.iter() {
             let ret = unsafe { minijail_preserve_fd(self.jail, *src_fd, *dst_fd) };
             if ret < 0 {
                 return Err(Error::PreservingFd(ret));
@@ -859,7 +849,7 @@ impl Minijail {
         // Set stdin, stdout, and stderr to /dev/null unless they are in the inherit list.
         // These will only be closed when this process exits.
         for io_fd in &[libc::STDIN_FILENO, libc::STDOUT_FILENO, libc::STDERR_FILENO] {
-            if !inheritable_fds.iter().any(|(_, fd)| *fd == *io_fd) {
+            if !config.inheritable_fds.iter().any(|(_, fd)| *fd == *io_fd) {
                 let ret = unsafe { minijail_preserve_fd(self.jail, dev_null.as_raw_fd(), *io_fd) };
                 if ret < 0 {
                     return Err(Error::PreservingFd(ret));
@@ -871,7 +861,6 @@ impl Minijail {
             minijail_close_open_fds(self.jail);
         }
 
-        let config = RunConfig::new(args, env)?;
         cmd.run_config(&self, config)
     }
 
