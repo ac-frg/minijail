@@ -94,6 +94,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8abe6b_c1be8046",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T21:17:24Z",
+      "side": 1,
+      "message": "Sorry for the confusion.  What I\u0027d like to see is `fn run(\u0026self, config: RunConfig)`, instead of run {,_env} x {, _fd} x {,_remap}, which we don\u0027t currently have.  Now there\u0027s RunConfig, you\u0027d only need to move inheritable_fds into it?  You might want to consider adding an `enum InheritableFds`, something along the line with:\n\n enum InheritableFds {\n   Keep(Vec\u003cRawFd\u003e),\n   Remap(Vec\u003c(RawFd, RawFd)\u003e),\n }\n\nWDYT?",
+      "parentUuid": "5469beef_49a1f615",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
