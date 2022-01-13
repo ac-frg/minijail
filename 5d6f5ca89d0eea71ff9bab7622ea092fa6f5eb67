@@ -46,6 +46,30 @@
       },
       "revId": "5d6f5ca89d0eea71ff9bab7622ea092fa6f5eb67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03974051_63914e26",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T02:14:28Z",
+      "side": 1,
+      "message": "Right, I remember having the same problem before.  The RunConfig approach LGTM. Thanks!",
+      "parentUuid": "4dd40b1b_bae1a174",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "5d6f5ca89d0eea71ff9bab7622ea092fa6f5eb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
