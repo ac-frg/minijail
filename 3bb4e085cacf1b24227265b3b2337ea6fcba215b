@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "275f9447_a73facbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T23:31:53Z",
+      "side": 1,
+      "message": "This replaces run_env by run_config, and is for discussion only.\n\nWhat I don\u0027t like about it are\n\n - it requires both run_config and run_fd_config\n - it makes inheritable fds a part of RunConfig while they should be a part of Minijail\n - RunConfig::new is made public and will be deprecated soon (by a set of builder functions, similar to what std::process::Command has)\n\n",
+      "revId": "3bb4e085cacf1b24227265b3b2337ea6fcba215b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
