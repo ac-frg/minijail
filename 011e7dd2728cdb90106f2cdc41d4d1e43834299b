@@ -166,6 +166,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5b5cdb8_b654e707",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-13T23:11:01Z",
+      "side": 1,
+      "message": "Yes, your config build is what I picture in mind :)\n\nBTW, Minijail itself is already a builder.  So the way I think of these together is that, the user builds a Minijail as an execution environment, then a RunConfig to describe what to run in it.",
+      "parentUuid": "16d29ff2_ac3d23c6",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
