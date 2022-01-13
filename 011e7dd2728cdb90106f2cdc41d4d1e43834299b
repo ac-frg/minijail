@@ -190,6 +190,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40630346_90138e76",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-13T23:26:50Z",
+      "side": 1,
+      "message": "Exactly.  And if we keep that separation in mind, some changes are needed\n\n - \u0026Path/RawFd should be in RunConfig\n - inheritable_fds should be in Minijail\n - use this chance to replace \u0026str by \u0026OsStr in the new api?\n\nQuestion is do we add run_env for now and keep RunConfig internal, or do we add run_config and make the semi-ready RunConfig public?",
+      "parentUuid": "b5b5cdb8_b654e707",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
