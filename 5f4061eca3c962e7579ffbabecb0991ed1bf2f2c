@@ -16,6 +16,69 @@
       "message": "+2 but please wait for Allen",
       "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89887f4f_c4972268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-13T16:18:41Z",
+      "side": 1,
+      "message": "It looks good. Just one relatively minor suggestion.",
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ffb222_d006097b",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-13T16:18:41Z",
+      "side": 1,
+      "message": "This is valid and maybe how we want it, but it might be good to allow the environment and the args to be different:\n fn new\u003cS: AsRef\u003cstr\u003e, A: AsRef\u003cstr\u003e\u003e(args: \u0026[S], env: Option\u003c\u0026[A]\u003e) -\u003e Result\u003cRunConfig\u003e {",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e259b7fd_87efea97",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-13T16:18:41Z",
+      "side": 1,
+      "message": "The same comment above applies here about adding a different generic for env:\n  fn run_internal\u003cR: Runnable, S: AsRef\u003cstr\u003e, A: AsRef\u003cstr\u003e\u003e(\n...\n  env: Option\u003c\u0026[A]\u003e,",
+      "range": {
+        "startLine": 815,
+        "startChar": 33,
+        "endLine": 815,
+        "endChar": 46
+      },
+      "revId": "5f4061eca3c962e7579ffbabecb0991ed1bf2f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
