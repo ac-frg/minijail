@@ -193,6 +193,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56d56a90_00b0d91e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-01-13T22:37:05Z",
+      "side": 1,
+      "message": "That\u0027s fair but at the same time we\u0027re now fully mounting this protection directly on top of our W^X guarantees, instead of making it additive.\n\nI.e. if we fail to prevent a W+X mount, now our protection for config files goes away, whereas if we check for st_dev, we don\u0027t.",
+      "parentUuid": "ac553b20_0bdab153",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0812f8cf_bc5bb424",
         "filename": "Makefile",
         "patchSetId": 1
