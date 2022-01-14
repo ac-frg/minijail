@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b95ba01_fba48c95",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "\"excludes\"",
+      "range": {
+        "startLine": 950,
+        "startChar": 30,
+        "endLine": 950,
+        "endChar": 39
+      },
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfe322b_140d0369",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "the point of err is that it adds errno output, so use that instead of errx and don\u0027t use %m\n\ncomes up below too",
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e36668e_9e7df94e",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "should-\u003emust since we\u0027re requiring it",
+      "range": {
+        "startLine": 958,
+        "startChar": 20,
+        "endLine": 958,
+        "endChar": 26
+      },
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93509aad_677e9e6b",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "err/errx include trailing newlines, so don\u0027t add them yourself",
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb530f29_06d48601",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "i think we tend to write the calls the way they\u0027re used\n\n err(1, \"stat(/) failed\");\n ...\n err(1, \"stat(%s) failed\", optarg);",
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca5fe886_cdbe3791",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T18:34:40Z",
+      "side": 1,
+      "message": "\"Conf file must be in the rootfs\"",
+      "range": {
+        "startLine": 971,
+        "startChar": 23,
+        "endLine": 971,
+        "endChar": 36
+      },
+      "revId": "c42216281f877dd5cf60c8412bc5fa82cf81a0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
