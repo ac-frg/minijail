@@ -209,6 +209,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41770d0e_cc703969",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-01-14T00:44:32Z",
+      "side": 1,
+      "message": "I added both checks, the exec mount check and the rootfs device check. Let me know if we can keep both or just choose one to proceed.",
+      "parentUuid": "56d56a90_00b0d91e",
+      "revId": "5918b6479fdc1016efe23b217f016563e855775e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0812f8cf_bc5bb424",
