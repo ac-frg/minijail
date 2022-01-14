@@ -262,6 +262,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64baeeae_44f5cfe0",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-14T18:37:30Z",
+      "side": 1,
+      "message": "SGTM.  The public API in this project does bother me.  In the longer term, I\u0027d love to be able to iterate/evolve the \"pub\" before making them official.  Maybe with cfg.  But that\u0027s clearly beyond the scope here.\n\n`new_for_path` is also sufficient for our purpose (I CC\u0027ed you in a bug), so we won\u0027t need another :)",
+      "parentUuid": "5f3ed973_003fd1ed",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
