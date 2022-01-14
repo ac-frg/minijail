@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "373b52e9_b2a41aba",
         "filename": "/COMMIT_MSG",
@@ -20,10 +21,10 @@
         "endChar": 24
       },
       "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "2e1146ba_241565dc",
         "filename": "/COMMIT_MSG",
@@ -44,10 +45,10 @@
         "endChar": 24
       },
       "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0de0f4a0_e7e69ca8",
         "filename": "/COMMIT_MSG",
@@ -68,8 +69,31 @@
         "endChar": 24
       },
       "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db9c93f_41997915",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T11:19:22Z",
+      "side": 1,
+      "message": "No longer relevant as now LD_PRELOAD can be handled transparently with the generic `--env-add`",
+      "parentUuid": "0de0f4a0_e7e69ca8",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "e2b51aecb7769d1ce2cf2c4bd9692542a34e84ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aabdf7dd_f1f46f81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T11:19:22Z",
+      "side": 1,
+      "message": "I finally pushed this patch using the Change-Id of 2020, as I thought having access to some context might be useful if needed.\n\nThe patchset 11 is reworked to be simpler, as the changes it previously depended upon (and that were integrated in it previously) have been merged in other changes the past few days.\n\nThis also leaves the possibility to later implement --env-keep (envvars that would resist an --env-clear) and --env-delete (selectively delete vars from parent environment before passing it to the child). This is not done here to avoid having a too big changeset.",
+      "revId": "74f7e4f2ca986d01573e1582a6ab9b4a2c0b1cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

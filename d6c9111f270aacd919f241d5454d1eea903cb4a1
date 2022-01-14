@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "d59f3272_d726ba6c",
         "filename": "libminijail-private.h",
@@ -20,10 +21,10 @@
         "endChar": 7
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "df44505a_dee29be3",
         "filename": "libminijail-private.h",
@@ -44,10 +45,10 @@
         "endChar": 7
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4ef753d3_7ffb6524",
         "filename": "libminijail-private.h",
@@ -67,10 +68,10 @@
         "endChar": 58
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "5d9476e2_a6723aed",
         "filename": "libminijail-private.h",
@@ -91,10 +92,10 @@
         "endChar": 58
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "79b5c18a_b847565f",
         "filename": "libminijail-private.h",
@@ -114,10 +115,10 @@
         "endChar": 34
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "62577a5a_dd67e565",
         "filename": "libminijail-private.h",
@@ -138,10 +139,10 @@
         "endChar": 34
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "211d9398_e7e655c4",
         "filename": "libminijail.c",
@@ -161,10 +162,10 @@
         "endChar": 47
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "a1bb0b08_9d2bf49e",
         "filename": "libminijail.c",
@@ -185,10 +186,10 @@
         "endChar": 47
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "bdd8ca62_450cb657",
         "filename": "libminijail.c",
@@ -208,10 +209,10 @@
         "endChar": 12
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "0df1fc1d_125d626b",
         "filename": "libminijail.c",
@@ -232,10 +233,10 @@
         "endChar": 12
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "38ace365_e687c784",
         "filename": "libminijail.c",
@@ -249,10 +250,28 @@
       "side": 1,
       "message": "Sorry, I had a comment here that stayed as a draft on my last submission:\nI found out while working on my patch that the order of bad_syscall_table and bad_hostname was reversed here. This could have lead to an invalid-free() crash under ENOMEM conditions.\nThis fix is somehow unrelated to this patch, but please double-check that my new ordering is correct (the dance of labels and frees is a bit headache inducing).",
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2dd84f_71b484c2",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T11:19:22Z",
+      "side": 1,
+      "message": "No longer part of latest patchset (this change has been merged in another change)",
+      "parentUuid": "38ace365_e687c784",
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "682a3cbd_f812d5ad",
         "filename": "libminijail.c",
@@ -272,10 +291,10 @@
         "endChar": 39
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "1c2b45e1_e7d3a82b",
         "filename": "libminijail.c",
@@ -296,10 +315,10 @@
         "endChar": 39
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a9540aca_080b9cd2",
         "filename": "libminijail.c",
@@ -319,10 +338,10 @@
         "endChar": 12
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "4bbdd48e_44ae36c8",
         "filename": "libminijail.c",
@@ -343,10 +362,10 @@
         "endChar": 12
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "c0ac1a43_3f4fd50d",
         "filename": "libminijail.c",
@@ -366,10 +385,10 @@
         "endChar": 55
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "807077c1_41ff6735",
         "filename": "libminijail.c",
@@ -390,10 +409,10 @@
         "endChar": 55
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8db4c0cf_2bfd6281",
         "filename": "libminijail.c",
@@ -413,10 +432,10 @@
         "endChar": 42
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "3eb5445c_b27491b0",
         "filename": "libminijail.c",
@@ -437,10 +456,10 @@
         "endChar": 42
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "775510e1_11253928",
         "filename": "libminijail.c",
@@ -460,10 +479,10 @@
         "endChar": 27
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "22d007ff_fce8f2e9",
         "filename": "libminijail.c",
@@ -484,10 +503,34 @@
         "endChar": 27
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ca18998_ef44aedb",
+        "filename": "libminijail.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2741,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T11:19:22Z",
+      "side": 1,
+      "message": "Replacing the existing LD_PRELOAD is the behaviour when `--env-add` is used.",
+      "parentUuid": "22d007ff_fce8f2e9",
+      "range": {
+        "startLine": 2741,
+        "startChar": 1,
+        "endLine": 2741,
+        "endChar": 27
+      },
+      "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "2581fcb6_16bad94e",
         "filename": "libminijail.c",
@@ -507,10 +550,10 @@
         "endChar": 71
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "1d0ded00_9a3da06b",
         "filename": "libminijail.c",
@@ -531,10 +574,10 @@
         "endChar": 71
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e3d9be4f_0abcfbd8",
         "filename": "libminijail.c",
@@ -554,10 +597,10 @@
         "endChar": 61
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "28e1e066_2e640bea",
         "filename": "libminijail.c",
@@ -578,10 +621,10 @@
         "endChar": 61
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8794b348_4702876e",
         "filename": "libminijail.c",
@@ -601,10 +644,10 @@
         "endChar": 65
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "17629db9_74cc8b89",
         "filename": "libminijail.c",
@@ -625,10 +668,10 @@
         "endChar": 65
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5b5c037d_017c7ab3",
         "filename": "libminijail.c",
@@ -648,10 +691,10 @@
         "endChar": 46
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "9f1a40a0_d66c04a2",
         "filename": "libminijail.c",
@@ -672,10 +715,10 @@
         "endChar": 46
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "61d1db5c_11b5f244",
         "filename": "libminijail.c",
@@ -695,10 +738,10 @@
         "endChar": 38
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "d99bf006_997134d0",
         "filename": "libminijail.c",
@@ -719,10 +762,10 @@
         "endChar": 38
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "78d83f53_e4231415",
         "filename": "libminijail.h",
@@ -742,10 +785,10 @@
         "endChar": 33
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "b59bd5ee_07827b57",
         "filename": "libminijail.h",
@@ -766,10 +809,10 @@
         "endChar": 33
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a07125e6_835f703f",
         "filename": "libminijailpreload.c",
@@ -789,10 +832,10 @@
         "endChar": 19
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "4a154c22_59337d66",
         "filename": "libminijailpreload.c",
@@ -813,10 +856,10 @@
         "endChar": 19
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "25d0f16f_a77080af",
         "filename": "libminijailpreload.c",
@@ -836,10 +879,10 @@
         "endChar": 3
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "5d59473a_90e056d0",
         "filename": "libminijailpreload.c",
@@ -860,10 +903,10 @@
         "endChar": 3
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "cdfe642b_b6e71df2",
         "filename": "libminijailpreload.c",
@@ -883,10 +926,10 @@
         "endChar": 28
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "c388cf40_fbca1c91",
         "filename": "libminijailpreload.c",
@@ -907,10 +950,10 @@
         "endChar": 28
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e4c0ed90_6bf93972",
         "filename": "libminijailpreload.c",
@@ -930,10 +973,10 @@
         "endChar": 22
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "00e3eb6e_cee4004c",
         "filename": "libminijailpreload.c",
@@ -954,10 +997,10 @@
         "endChar": 22
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4332a051_69a7d9a3",
         "filename": "minijail0_cli.c",
@@ -977,10 +1020,10 @@
         "endChar": 56
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "ce25024c_0983d491",
         "filename": "minijail0_cli.c",
@@ -1001,10 +1044,10 @@
         "endChar": 56
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8315d944_e860e6d4",
         "filename": "minijail0_cli.c",
@@ -1024,10 +1067,10 @@
         "endChar": 47
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "fe70380f_35cbef5b",
         "filename": "minijail0_cli.c",
@@ -1048,8 +1091,7 @@
         "endChar": 47
       },
       "revId": "d6c9111f270aacd919f241d5454d1eea903cb4a1",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
