@@ -214,6 +214,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd52db3b_862435f8",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2022-01-14T00:06:19Z",
+      "side": 1,
+      "message": "\u003e  - inheritable_fds should be in Minijail\n\nI guess this is arguable. Why not? I have no problem to keep it in RunConfig.\n\n\u003e  - use this chance to replace \u0026str by \u0026OsStr in the new api?\n\nDo you mean future client should pass \u0026OsStr to minijail instead of \u0026str?  I don\u0027t have a strong opinion.\n\n\u003e Question is do we add run_env for now and keep RunConfig internal, or do we add run_config and make the semi-ready RunConfig public?\n\nIf the public functions in RunConfig are simple enough and less likely to change, I\u0027d prefer run_config over run_env.\n\nbikeshedding: s/RunConfig/Command/ maybe?",
+      "parentUuid": "40630346_90138e76",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
