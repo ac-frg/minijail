@@ -238,6 +238,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f3ed973_003fd1ed",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-14T01:53:10Z",
+      "side": 1,
+      "message": "Renamed RunConfig to Command, and replaced run_env by run_command.\n\nMinijail::run_command is generic and can replace all run* variants... in the future.  Currently, only Command::new_for_path is public which provides the equivalence of what run_env does.",
+      "parentUuid": "bd52db3b_862435f8",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
