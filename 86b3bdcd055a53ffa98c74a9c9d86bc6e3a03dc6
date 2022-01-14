@@ -16,6 +16,23 @@
       "message": "LGTM but let\u0027s see if Allen has any suggestions as well.",
       "revId": "86b3bdcd055a53ffa98c74a9c9d86bc6e3a03dc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20302b13_77ebbfe4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-14T20:08:51Z",
+      "side": 1,
+      "message": "Thanks you both!  This version is much cleaner than the initial version IMO!",
+      "revId": "86b3bdcd055a53ffa98c74a9c9d86bc6e3a03dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

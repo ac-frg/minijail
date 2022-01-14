@@ -286,6 +286,30 @@
       },
       "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4776bbbb_7729a7b7",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1096171
+      },
+      "writtenOn": "2022-01-14T20:08:51Z",
+      "side": 1,
+      "message": "Great!  Hopefully by the time I need to extend Command again, I am more knowledgeable of rust and can make the param building functionality public.",
+      "parentUuid": "64baeeae_44f5cfe0",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 764,
+        "endChar": 35
+      },
+      "revId": "011e7dd2728cdb90106f2cdc41d4d1e43834299b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
