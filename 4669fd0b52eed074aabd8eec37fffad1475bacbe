@@ -16,6 +16,57 @@
       "message": "Fixed minor merge conflict.",
       "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b1b607c_3daab9f6",
+        "filename": "libminijail.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T14:58:58Z",
+      "side": 1,
+      "message": "bad indentation -- use 8-spaced tabs.  clang-format might help.  or it might make it worse.",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff5075a6_f0451bbd",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T14:58:58Z",
+      "side": 1,
+      "message": "use errx/err now in minijail0_cli.c",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab20805a_311c4dfd",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 1009,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-14T14:58:58Z",
+      "side": 1,
+      "message": "i would just handle this behavior.  i don\u0027t see a strong reason to require these semantics.  i.e. have this part clear the env.",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
