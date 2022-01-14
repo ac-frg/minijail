@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b763aea1_29034f69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T15:16:53Z",
+      "side": 1,
+      "message": "I did not do the change about the ordering of options of --env-reset vs --env-add, please see the corresponding comment.\nIf you are not convinced this is a strong enough reason to keep it this way, I\u0027ll implement it.",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b1b607c_3daab9f6",
@@ -31,6 +48,24 @@
       "writtenOn": "2022-01-14T14:58:58Z",
       "side": 1,
       "message": "bad indentation -- use 8-spaced tabs.  clang-format might help.  or it might make it worse.",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06470b30_0b6c370a",
+        "filename": "libminijail.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T15:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b1b607c_3daab9f6",
       "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b98871a_b4296c11",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T15:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff5075a6_f0451bbd",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab20805a_311c4dfd",
@@ -65,6 +118,24 @@
       "writtenOn": "2022-01-14T14:58:58Z",
       "side": 1,
       "message": "i would just handle this behavior.  i don\u0027t see a strong reason to require these semantics.  i.e. have this part clear the env.",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10ad494_045f9b29",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 1009,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-14T15:16:53Z",
+      "side": 1,
+      "message": "The idea here was that if a user specifies --env-reset after --env-add, then they might be confused, because any --env-add appearing before an --env-reset will be useless.\n\nIndeed the ordering of the options have a meaning in this case, and having some --env-add before an --env-reset is almost entirely likely to be an error.\n\nWhat do you think? Shall we still implement it and not warn the user that what they\u0027ll have is probably not what they intended?",
+      "parentUuid": "ab20805a_311c4dfd",
       "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
