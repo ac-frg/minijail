@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c4740e9_197933d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-20T02:02:03Z",
+      "side": 1,
+      "message": "this doesn\u0027t sound like a good idea.  the config file format should already be able to support duplicate keys.\n\n bind-mount \u003d ...\n bind-mount \u003d ...\n bind-mount \u003d ...",
+      "revId": "4d810cba822cdd4640e788dc14779be2a6872034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
