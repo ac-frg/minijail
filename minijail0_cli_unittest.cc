@@ -421,6 +421,10 @@ TEST_F(CliTest, valid_binding) {
   // Dest is optional.
   argv[1] = "/,,0";
   ASSERT_TRUE(parse_args_(argv));
+
+  // Multiple bindings, separated by ':'.
+  argv[1] = "/,,0:/:/,/";
+  ASSERT_TRUE(parse_args_(argv));
 }
 
 // Invalid calls to the binding option.
@@ -441,6 +445,10 @@ TEST_F(CliTest, invalid_binding) {
 
   // Bad value for <writable>.
   argv = {"-b", "/,,writable", "/bin/sh"};
+  ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
+
+  // Bad bind-mount among valid ones
+  argv = {"-v", "-b", "/,/,0:/,,writable", "/bin/sh"};
   ASSERT_EXIT(parse_args_(argv), testing::ExitedWithCode(1), "");
 }
 

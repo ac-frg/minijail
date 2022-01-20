@@ -201,6 +201,15 @@ static void add_binding(struct minijail *j, char *arg)
 		errx(1, "minijail_bind failed");
 }
 
+static void add_bindings(struct minijail *j, char * arg)
+{
+	while (arg != NULL) {
+		char *binding = tokenize(&arg, ":");
+		binding = strip(binding);
+		add_binding(j, binding);
+	}
+}
+
 static void add_rlimit(struct minijail *j, char *arg)
 {
 	char *type = tokenize(&arg, ",");
@@ -723,7 +732,7 @@ int parse_args(struct minijail *j, int argc, char *const argv[],
 			minijail_log_seccomp_filter_failures(j);
 			break;
 		case 'b':
-			add_binding(j, optarg);
+			add_bindings(j, optarg);
 			binding = 1;
 			break;
 		case 'B':
