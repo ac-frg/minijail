@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0729743_6a4da752",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-24T22:07:03Z",
+      "side": 1,
+      "message": "err()",
+      "revId": "972fe0ff287f573ae4504bb52fe992d8e9cdf32d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f868ffdd_dc91ddc0",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-24T22:07:03Z",
+      "side": 1,
+      "message": "err()",
+      "revId": "972fe0ff287f573ae4504bb52fe992d8e9cdf32d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

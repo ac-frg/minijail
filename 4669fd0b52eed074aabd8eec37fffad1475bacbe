@@ -138,6 +138,24 @@
       "parentUuid": "ab20805a_311c4dfd",
       "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d1ab2e_e85bab61",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 1009,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-24T22:07:03Z",
+      "side": 1,
+      "message": "the behavior you describe i think is entirely expected and normal.  CLI options are basically levers to a state machine.  having ones that clobber previous ones makes it easier to test and easier to write shell scripts.  this philosophy isn\u0027t specific to minijail.\n\ni agree that a user doing `minijail0 --env-add --env-add --env-reset --env-add` doesn\u0027t make much sense.  but if it were written in a script with overrides and args coming from multiple sources, or if i\u0027m doing quick testing on the CLI, it can be helpful.\n\nsay i see a program run and it fails.  i copy \u0026 paste that long command line into my shell and start experimenting.  i want to make sure the env is in a certain state, so i tack on the --env-reset --env-add options to the end.  now it\u0027s how i expect it.  i don\u0027t have to scan the full command line to figure out which ones i have to delete to make the CLI parser happy.\n\nminijail itself doesn\u0027t have too many on/off options that currently fall into this bucket.  but if you look at other tools, it\u0027s easy to recognize the pattern.  consider ls/grep/etc... that have --color options.  if the user has an alias like `alias ls\u003d\u0027ls --color\u0027`, and then they run `ls --color\u003dnever`, should that issue an error ?",
+      "parentUuid": "e10ad494_045f9b29",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
