@@ -156,6 +156,24 @@
       "parentUuid": "e10ad494_045f9b29",
       "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58c84646_f2dae3f1",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 1009,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-25T11:00:20Z",
+      "side": 1,
+      "message": "That\u0027s indeed a reasonable assumption, thanks for expliciting your thoughts, you convinced me: code, tests, help and manpage updated accordingly.",
+      "parentUuid": "d3d1ab2e_e85bab61",
+      "revId": "4669fd0b52eed074aabd8eec37fffad1475bacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

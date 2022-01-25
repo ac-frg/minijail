@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb7c417d_afb298d5",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-25T11:00:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0729743_6a4da752",
+      "revId": "972fe0ff287f573ae4504bb52fe992d8e9cdf32d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f868ffdd_dc91ddc0",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-24T22:07:03Z",
       "side": 1,
       "message": "err()",
+      "revId": "972fe0ff287f573ae4504bb52fe992d8e9cdf32d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "595b7bca_9bf45031",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-25T11:00:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f868ffdd_dc91ddc0",
       "revId": "972fe0ff287f573ae4504bb52fe992d8e9cdf32d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
