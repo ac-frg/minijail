@@ -124,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33ede976_0e65e3cb",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T11:43:29Z",
+      "side": 1,
+      "message": "Sure, that makes sense. This seemed obvious to me so that\u0027s probably why I understood the comment in a different way that you meant writing it.\nI guess clearing up any possibility of misunderstanding does need a more verbose comment indeed. Expliciting (seemingly) obvious stuff never hurts!",
+      "parentUuid": "bab1c22b_b0cd8bd1",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d1a440_e6638062",
