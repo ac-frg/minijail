@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03934602_f60bb233",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-26T11:07:29Z",
+      "side": 1,
+      "message": "sorry, that reordering comment was meant to convey that the value doesn\u0027t matter, so it\u0027s safe to insert new values in the middle.  since LONG_OPTION_BASE is set to 0x100, then OPT_ADD_SUPPL_GROUP is 0x101, and putting something before it would change it to 0x102.",
+      "parentUuid": "0f66a765_2b590f83",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d1a440_e6638062",
@@ -166,6 +184,24 @@
       "side": 1,
       "message": "At first I thought you were right, but then I didn\u0027t understand why I didn\u0027t get yelled at by `valgrind` during my tests. After a closer look, it seems `*envp` is never pointing to `environ` AFAICT. `parse_args` gets called in `minijail0.c` this way:\n\n  char **envp \u003d NULL;\n  int consumed \u003d parse_args(j, argc, argv, environ,                                                                                                       \n    \u0026exit_immediately, \u0026elftype,                                                                                                  \n    \u0026preload_path, \u0026envp);\n    \nSo as far as `parse_args` is concerned, its `*envp` is `NULL`.\nNow, it doesn\u0027t cost anything to add the check you\u0027re suggesting, just in case at some point we change how parse_args gets called, so I implemented your suggestion nevertheless, if that\u0027s alright.\n\nIn digging this comment, I fixed a bug I introduced in the previous patchset, when reworking the \"clear_env\" matter: now, when `--env-reset` and `--env-add` are NOT used, the parent\u0027s env is correctly copied over the child. Sorry I missed that.",
       "parentUuid": "56731d4c_8e3139b7",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dc4ff6f_4ea9d15a",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-26T11:07:29Z",
+      "side": 1,
+      "message": "sorry, when i had looked before, i thought minijail0.c was initializing envp to environ when making the call.  you\u0027re right that\u0027s not how it actually works.\n\nthe bug you fixed was also what set me down that line of thinking ;).",
+      "parentUuid": "8516cb57_3762d158",
       "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
