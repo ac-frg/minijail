@@ -373,6 +373,16 @@ pub struct Minijail {
     jail: *mut minijail,
 }
 
+/// A `Minijail` wrapper that attempts to terminate the jail when it goes
+/// out of scope.
+struct ScopedMinijail(Minijail);
+
+impl Drop for ScopedMinijail {
+    fn drop(&mut self) {
+        let _ = self.0.kill();
+    }
+}
+
 #[link(name = "c")]
 extern "C" {
     fn __libc_current_sigrtmax() -> libc::c_int;
