@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f43f2b18_d6adecba",
+        "filename": "minijail0.1",
+        "patchSetId": 16
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T09:52:13Z",
+      "side": 1,
+      "message": "Suggestion applied. I just changed `it` to `\u003cprogram\u003e` as is done in the rest of the manpage, so that there\u0027s no confusion about what `it` is referring to. Also made the change to `--help`.",
+      "parentUuid": "055f2a13_0bbfc05e",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6547333_c473a30e",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-01-25T17:25:40Z",
       "side": 1,
       "message": "please keep it sorted.  i thought i had left a note saying that, but guess i missed it here.",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f66a765_2b590f83",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T09:52:13Z",
+      "side": 1,
+      "message": "The comment right above actually states \"Don\u0027t worry about ordering.\", so that\u0027s why I added the new consts at the end of the list.\nI\u0027m reordering those by alphabetical order and also correcting your comment, if that\u0027s alright!",
+      "parentUuid": "d6547333_c473a30e",
       "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92a8ac63_0a721a78",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T09:52:13Z",
+      "side": 1,
+      "message": "I think I wanted to be overly precise, but I\u0027m not sure it helps, \"Sets\" just sounds better indeed.",
+      "parentUuid": "81d1a440_e6638062",
+      "range": {
+        "startLine": 566,
+        "startChar": 35,
+        "endLine": 566,
+        "endChar": 50
+      },
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56731d4c_8e3139b7",
@@ -88,6 +148,24 @@
       "writtenOn": "2022-01-25T17:25:40Z",
       "side": 1,
       "message": "the caller passed in environ which might be the initial stack pointers.  will this free actually work ?\n\ndo we need to special case:\n\n if (*envp \u0026\u0026 *envp !\u003d environ) {",
+      "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8516cb57_3762d158",
+        "filename": "minijail0_cli.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T09:52:13Z",
+      "side": 1,
+      "message": "At first I thought you were right, but then I didn\u0027t understand why I didn\u0027t get yelled at by `valgrind` during my tests. After a closer look, it seems `*envp` is never pointing to `environ` AFAICT. `parse_args` gets called in `minijail0.c` this way:\n\n  char **envp \u003d NULL;\n  int consumed \u003d parse_args(j, argc, argv, environ,                                                                                                       \n    \u0026exit_immediately, \u0026elftype,                                                                                                  \n    \u0026preload_path, \u0026envp);\n    \nSo as far as `parse_args` is concerned, its `*envp` is `NULL`.\nNow, it doesn\u0027t cost anything to add the check you\u0027re suggesting, just in case at some point we change how parse_args gets called, so I implemented your suggestion nevertheless, if that\u0027s alright.\n\nIn digging this comment, I fixed a bug I introduced in the previous patchset, when reworking the \"clear_env\" matter: now, when `--env-reset` and `--env-add` are NOT used, the parent\u0027s env is correctly copied over the child. Sorry I missed that.",
+      "parentUuid": "56731d4c_8e3139b7",
       "revId": "d8145abb7f0c8962d124f22823f8a02283b506a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
