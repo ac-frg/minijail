@@ -16,6 +16,24 @@
       "message": "I am wondering if we should name this differently because the C++ ScopedMinijail  just calls minijail_destroy like our struct Minijail. I am fine with leaving the name as is, but I wanted to raise the point in case you had a good idea for a name that would help distinguish the different use cases.",
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5012b30_7eff9a8f",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2022-01-26T23:02:05Z",
+      "side": 1,
+      "message": "I agree, we should have a distinct name, but I am having trouble coming up with a good one. Maybe SelfTerminatingJail? Mike, maybe you have an idea?",
+      "parentUuid": "0c8af4a3_73df249f",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
