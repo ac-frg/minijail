@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f0d7f6_99b3be04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628636
+      },
+      "writtenOn": "2022-01-26T11:30:15Z",
+      "side": 1,
+      "message": "Ironically I had a change 2 years ago that I never submitted to rework the output of `--help` and try to make it clearer / easier to read :) Nice to see I wasn\u0027t the only one!\nMerge conflict fixed.",
+      "revId": "e16ab3ed5f0882b583185b9a07fc4e4bbc11d470",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
