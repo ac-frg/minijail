@@ -81,6 +81,48 @@
       },
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c26a7c25_fa5b3c6d",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-27T08:33:02Z",
+      "side": 1,
+      "message": "all else fails, this seems reasonable",
+      "parentUuid": "59b6a0e1_8d05ac8b",
+      "range": {
+        "startLine": 378,
+        "startChar": 7,
+        "endLine": 378,
+        "endChar": 21
+      },
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c306e23_a350ed01",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-27T08:33:02Z",
+      "side": 1,
+      "message": "does rust have conventions around context manager naming or usage ?  or does it have conventions with methods providing a context manager on the fly such that it could be a method on Minijail ?\n\nor maybe something more heretical: since rust manages life cycles all the time, is there a situation where we would ever actively be leaking a jailed process ?  like, what if this was just how Minijail worked ?",
+      "parentUuid": "f5012b30_7eff9a8f",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
