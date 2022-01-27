@@ -177,6 +177,24 @@
       "parentUuid": "ea852ff1_10698430",
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaad7a0f_e7a043e8",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2022-01-27T21:29:53Z",
+      "side": 1,
+      "message": "This is not about ABI, it is about changing behavior of a library (crate, whatever) without warning.",
+      "parentUuid": "0b887d63_e91c88a7",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
