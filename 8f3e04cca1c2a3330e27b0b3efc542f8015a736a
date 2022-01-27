@@ -123,6 +123,24 @@
       "parentUuid": "f5012b30_7eff9a8f",
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "832bde43_67813d6a",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-01-27T16:15:09Z",
+      "side": 1,
+      "message": "\u003e does rust have conventions around context manager naming or usage ?  or does it have conventions with methods providing a context manager on the fly such that it could be a method on Minijail ?\n\nRust\u0027s std::process::Command is probably the closest parallel I can think of and it has no builtin KillOnDrop functionality. In fact we implement our own KillOnDrop in sys_util here:\nhttps://source.chromium.org/chromium/chromiumos/platform/crosvm/+/HEAD:common/sys_util/src/signal.rs;l\u003d646\n\n\u003e or maybe something more heretical: since rust manages life cycles all the time, is there a situation where we would ever actively be leaking a jailed process ?  like, what if this was just how Minijail worked ?\n\nHeretical indeed ;). The lifecycle of the jail isn\u0027t always tied to the parent process. We could allow a way of leaking the jailed process intentionally. This would definitely be a deviation from how minijail is handled in C/C++, but that is OK IMO. There would be a good deal of refactoring needed, and drop isn\u0027t guaranteed to be called in the process dies ungracefully.",
+      "parentUuid": "0c306e23_a350ed01",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
