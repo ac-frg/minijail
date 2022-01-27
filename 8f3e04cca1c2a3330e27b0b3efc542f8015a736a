@@ -141,6 +141,24 @@
       "parentUuid": "0c306e23_a350ed01",
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea852ff1_10698430",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2022-01-27T20:59:55Z",
+      "side": 1,
+      "message": "minijail is a library that is used in many places, so I do not think we can simply alter the established behavior.",
+      "parentUuid": "832bde43_67813d6a",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
