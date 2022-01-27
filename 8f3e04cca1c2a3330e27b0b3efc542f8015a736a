@@ -159,6 +159,24 @@
       "parentUuid": "832bde43_67813d6a",
       "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b887d63_e91c88a7",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-27T21:27:20Z",
+      "side": 1,
+      "message": "we\u0027re talking about Rust here.  minijail isn\u0027t an installed shared library.  the entire point is that Rust doesn\u0027t do stable ABI.\n\niiuc, Rust also follows semver, so communicating such changes would be by bumping the version number up.\n\nisn\u0027t this par for the course in the Rust world ?",
+      "parentUuid": "ea852ff1_10698430",
+      "revId": "8f3e04cca1c2a3330e27b0b3efc542f8015a736a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
