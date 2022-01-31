@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9260c874_8d5943fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-01-31T18:39:39Z",
+      "side": 1,
+      "message": "i know this is inline with how we name --uts today (and i wrote that).  but if we\u0027re going to standardize this, can we do better ?  if all namespace options were short like this, --time and --pid and --user are pretty confusing names.\n\nwhat if we used --ns-\u003ctype\u003e to communicate this is a namespace option.  then there would be no confusion.  --ns-{mount,uts,pid,time,user,...} would all line up.",
+      "revId": "73bde24b5de3fbfeeb13b7245f9ba21e4bbeff15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
