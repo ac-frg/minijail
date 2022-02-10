@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efbe8d68_0b02d89f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-02-10T18:09:26Z",
+      "side": 1,
+      "message": "Is this a straight revert?\n\nWe should wait for Mike to chime in but I would say this makes sense to me. We should not block the uprev on a mostly aesthetic change.",
+      "revId": "138761fdcc8c2c074bef7700e39b47b44cc5bcc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
