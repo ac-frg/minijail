@@ -16,6 +16,24 @@
       "message": "Is this a straight revert?\n\nWe should wait for Mike to chime in but I would say this makes sense to me. We should not block the uprev on a mostly aesthetic change.",
       "revId": "138761fdcc8c2c074bef7700e39b47b44cc5bcc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8e85d59_c9c4ddce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-02-11T17:03:28Z",
+      "side": 1,
+      "message": "This is not the straight revert. Straight revert will use \"printf\" instead of \"echo\". I like to keep using \"echo\".",
+      "parentUuid": "efbe8d68_0b02d89f",
+      "revId": "138761fdcc8c2c074bef7700e39b47b44cc5bcc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
