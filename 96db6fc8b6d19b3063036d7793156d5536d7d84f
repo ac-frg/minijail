@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8abf459_b701e8a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-02-17T21:52:47Z",
+      "side": 1,
+      "message": "Address comments in https://android-review.googlesource.com/c/platform/external/minijail/+/1831474",
+      "revId": "96db6fc8b6d19b3063036d7793156d5536d7d84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
