@@ -16,6 +16,24 @@
       "message": "if we\u0027re making it a constant, it\u0027d be better to change the style\n\n static const char kFdEnvVar[] \u003d \"__MINIJAIL_FD\";",
       "revId": "484b31b624e526a04253d3c85ddd096d0ef99e91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16862d5f_9eaa091e",
+        "filename": "libminijail-private.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-02-17T21:53:35Z",
+      "side": 1,
+      "message": "fix in https://android-review.googlesource.com/c/platform/external/minijail/+/1991210",
+      "parentUuid": "5b844c83_bc02c359",
+      "revId": "484b31b624e526a04253d3c85ddd096d0ef99e91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
