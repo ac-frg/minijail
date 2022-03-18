@@ -2890,6 +2890,13 @@ static void setup_child_std_fds(struct minijail *j,
 			pdie("setsid() failed");
 		}
 	}
+
+	if (isatty(STDIN_FILENO)) {
+		warn("setting controlling tty");
+		if (ioctl(STDERR_FILENO, TIOCSCTTY, 0) != 0) {
+			pwarn("failed to set controlling terminal:");
+		}
+	}
 }
 
 /*
