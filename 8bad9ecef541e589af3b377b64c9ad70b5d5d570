@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfda37d0_ea0ba642",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-03-18T15:28:12Z",
+      "side": 1,
+      "message": "This gets rid of the\n /bin/sh: can\u0027t access tty; job control turned off\nerror, but Ctrl-C still doesn\u0027t work when I tested it.",
+      "revId": "8bad9ecef541e589af3b377b64c9ad70b5d5d570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
