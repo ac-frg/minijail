@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52959c14_ccb1759d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-03-23T15:38:53Z",
+      "side": 1,
+      "message": "I forgot to rebase. There are some issues.",
+      "revId": "9933ba1127f2413bce133d6508d2f58f33065bb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
