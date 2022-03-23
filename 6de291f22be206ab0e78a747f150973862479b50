@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d12b9e_b554fc8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-03-23T15:57:04Z",
+      "side": 1,
+      "message": "Mike helped me figure out that aosp does not allow OWNERS files with \".suffix\".",
+      "revId": "6de291f22be206ab0e78a747f150973862479b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
