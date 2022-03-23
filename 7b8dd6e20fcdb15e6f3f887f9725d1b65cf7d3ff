@@ -16,6 +16,29 @@
       "message": "I will update OWNERS in a follow-up since the change fails the pre-upload checks without OWENRS.general already landed.",
       "revId": "7b8dd6e20fcdb15e6f3f887f9725d1b65cf7d3ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9730f83_8888529c",
+        "filename": "OWNERS.general",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-03-23T15:30:33Z",
+      "side": 1,
+      "message": "If we\u0027re going to have this file be available for inheriting, I\u0027d remove Will from here.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "7b8dd6e20fcdb15e6f3f887f9725d1b65cf7d3ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
