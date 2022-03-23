@@ -257,7 +257,7 @@ Change users to the specified \fIuser\fR name, or numeric user ID \fIuid\fR.
 \fB-U\fR
 Enter a new user namespace (implies \fB-p\fR).
 .TP
-\fB-v\fR
+\fB-v\fR, \fB--ns-mount\fR
 Run inside a new VFS namespace. This option prevents mounts performed by the
 program from affecting the rest of the system (but see \fB-K\fR).
 .TP
@@ -288,6 +288,16 @@ capability-dumb binaries.  See \fBcapabilities\fR(7).
 \fB--uts[=hostname]\fR
 Create a new UTS/hostname namespace, and optionally set the hostname in the new
 namespace to \fIhostname\fR.
+.TP
+\fB--env-reset\fR
+Clear the current environment instead of having the program inherit the active
+environment. This is often used to start the program with a minimal
+sanitized environment.
+.TP
+\fB--env-add <NAME=value>\fR
+Adds or replace the specified environment variable \fINAME\fR in the program's
+environment before starting it, and set it to the specified \fIvalue\fR.
+This option can be used several times to set any number of environment variables.
 .TP
 \fB--logging=<system>\fR
 Use \fIsystem\fR as the logging system. \fIsystem\fR must be one of

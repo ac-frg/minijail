@@ -2590,7 +2590,7 @@ static int setup_preload(const struct minijail *j attribute_unused,
 	const char *preload_path = j->preload_path ?: PRELOADPATH;
 	char *newenv = NULL;
 	int ret = 0;
-	const char *oldenv = getenv(kLdPreloadEnvVar);
+	const char *oldenv = minijail_getenv(*child_env, kLdPreloadEnvVar);
 
 	if (!oldenv)
 		oldenv = "";
@@ -2889,6 +2889,12 @@ static void setup_child_std_fds(struct minijail *j,
 		if (setsid() < 0) {
 			pdie("setsid() failed");
 		}
+
+		if (isatty(STDIN_FILENO)) {
+			if (ioctl(STDIN_FILENO, TIOCSCTTY, 0) != 0) {
+				pwarn("failed to set controlling terminal");
+			}
+		}
 	}
 }
 
@@ -2933,6 +2939,20 @@ int API minijail_run(struct minijail *j, const char *filename,
 	    .elf_fd = -1,
 	    .argv = argv,
 	    .envp = NULL,
+	    .use_preload = true,
+	    .exec_in_child = true,
+	};
+	return minijail_run_config_internal(j, &config);
+}
+
+int API minijail_run_env(struct minijail *j, const char *filename,
+			 char *const argv[], char *const envp[])
+{
+	struct minijail_run_config config = {
+	    .filename = filename,
+	    .elf_fd = -1,
+	    .argv = argv,
+	    .envp = envp,
 	    .use_preload = true,
 	    .exec_in_child = true,
 	};
