@@ -16,6 +16,23 @@
       "message": "You don\u0027t really need to review this, I mostly just uploaded it to share with others. When trying to run arcvm on 64-bit userspace, processes pretty much across the whole system needed seccomp fixups. It wasn\u0027t always trivial to figure out how to add the flags necessary in all the places and still ended up being one-at-a-time.\n\nIt might be nice to have something more official to enable this, but for now my hack works.",
       "revId": "08e92efa4a00091cd3bca277a4deb0d4ab7dcd30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12d2ba93_65b368c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-04-25T17:54:33Z",
+      "side": 1,
+      "message": "We already have this I thought: https://source.corp.google.com/chromeos_public/src/third_party/chromiumos-overlay/chromeos-base/minijail/minijail-9999.ebuild;l\u003d29, \"default-ret-log\" USE flag will do exactly what you want.",
+      "revId": "08e92efa4a00091cd3bca277a4deb0d4ab7dcd30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
