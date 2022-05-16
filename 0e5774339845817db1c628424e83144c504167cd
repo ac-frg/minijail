@@ -16,6 +16,24 @@
       "message": "Zi, does this change look good to you?",
       "revId": "0e5774339845817db1c628424e83144c504167cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe90fa2d_e58b6657",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889710
+      },
+      "writtenOn": "2022-05-16T16:54:34Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "78f8f52c_6d5ed289",
+      "revId": "0e5774339845817db1c628424e83144c504167cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
