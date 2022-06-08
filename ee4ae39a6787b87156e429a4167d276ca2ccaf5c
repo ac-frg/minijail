@@ -16,6 +16,24 @@
       "message": "You might want to check if this indentation is what clang-format produces.",
       "revId": "ee4ae39a6787b87156e429a4167d276ca2ccaf5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29cd679d_c458f4b4",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-06-08T14:06:03Z",
+      "side": 1,
+      "message": "It was, yeah. That\u0027s why it changed here, I clang-formatted the entire file.",
+      "parentUuid": "38978cb5_9014f41c",
+      "revId": "ee4ae39a6787b87156e429a4167d276ca2ccaf5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
