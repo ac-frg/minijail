@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38978cb5_9014f41c",
+        "filename": "system.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-06-08T13:37:54Z",
+      "side": 1,
+      "message": "You might want to check if this indentation is what clang-format produces.",
+      "revId": "ee4ae39a6787b87156e429a4167d276ca2ccaf5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
