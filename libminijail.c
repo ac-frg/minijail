@@ -1694,6 +1694,7 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 	int ret;
 	char *dest;
 	int remount = 0;
+	int bind = m->flags & MS_BIND;
 	unsigned long original_mnt_flags = 0;
 
 	/* We assume |dest| has a leading "/". */
@@ -1708,29 +1709,45 @@ static int mount_one(const struct minijail *j, struct mountpoint *m,
 			return -ENOMEM;
 	}
 
-	ret =
-	    setup_mount_destination(m->src, dest, j->uid, j->gid,
-				    (m->flags & MS_BIND), &original_mnt_flags);
+	ret = setup_mount_destination(m->src, dest, j->uid, j->gid, bind);
 	if (ret) {
 		warn("cannot create mount target '%s'", dest);
 		goto error;
 	}
 
+	/* If bind mounting, also grab the mount flags of the source. */
+	if (bind && get_mount_flags(m->src, &original_mnt_flags)) {
+		warn("cannot get mount flags for '%s'", m->src);
+		goto error;
+	}
+
 	/*
-	 * Bind mounts that change the 'ro' flag have to be remounted since
-	 * 'bind' and other flags can't both be specified in the same command.
-	 * Remount after the initial mount.
+	 * Bind mounts that add the 'ro' flag have to be remounted since 'bind'
+	 * and other flags can't both be specified in the same command.
+	 * Remount *after* the initial mount.
 	 */
-	if ((m->flags & MS_BIND) &&
+	if (bind &&
 	    ((m->flags & MS_RDONLY) != (original_mnt_flags & MS_RDONLY))) {
-		remount = 1;
 		/*
-		 * Restrict the mount flags to those that are user-settable in a
-		 * MS_REMOUNT request, but excluding MS_RDONLY. The
-		 * user-requested mount flags will dictate whether the remount
-		 * will have that flag or not.
+		 * Only remount when the source is mounted RW and the dest
+		 * is required to be RO.
 		 */
-		original_mnt_flags &= (MS_USER_SETTABLE_MASK & ~MS_RDONLY);
+		if ((original_mnt_flags & MS_RDONLY) == 0) {
+			/* The source is mounted RW. */
+			remount = 1;
+			/*
+			 * Restrict the mount flags to those that are
+			 * user-settable in a MS_REMOUNT request, but excluding
+			 * MS_RDONLY. The user-requested mount flags will
+			 * dictate whether the remount will have that flag or
+			 * not.
+			 */
+			original_mnt_flags &=
+			    (MS_USER_SETTABLE_MASK & ~MS_RDONLY);
+		} else {
+			/* The source is mounted RO. */
+			warn("not remounting '%s' as rw", dest);
+		}
 	}
 
 	ret = mount(m->src, dest, m->type, m->flags, m->data);
