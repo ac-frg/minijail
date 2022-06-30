@@ -188,6 +188,15 @@ int minijail_rlimit(struct minijail *j, int type, rlim_t cur, rlim_t max);
 int minijail_add_to_cgroup(struct minijail *j, const char *path);
 
 /*
+ * These functions are used for Landlock-based filesystem restrictions.
+ */
+int minijail_add_landlock_rx_path(struct minijail *j, const char *path);
+
+int minijail_add_landlock_ro_path(struct minijail *j, const char *path);
+
+int minijail_add_landlock_rw_path(struct minijail *j, const char *path);
+
+/*
  * Install signal handlers in the minijail process that forward received
  * signals to the jailed child process.
  */

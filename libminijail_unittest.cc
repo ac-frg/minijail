@@ -12,17 +12,17 @@
 #include <sys/mman.h>
 #include <sys/mount.h>
 #include <sys/stat.h>
+#include <sys/syscall.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
 #include <gtest/gtest.h>
-
 #include <functional>
 #include <map>
 #include <set>
 #include <string>
 
+#include "landlock.h"
 #include "libminijail-private.h"
 #include "libminijail.h"
 #include "scoped_minijail.h"
@@ -1393,6 +1393,298 @@ TEST_F(NamespaceTest, test_remount_one_shared) {
   status = minijail_wait(j);
   EXPECT_EQ(status, 0);
 
+  minijail_destroy(j);
+}
+
+namespace {
+
+// Tests that require Landlock support.
+//
+// These subclass NamespaceTest because they also require  userns access.
+// TODO(akhna): ideally, Landlock unit tests should be able to run w/o
+// namespace_pids or namespace_user
+class LandlockTest : public NamespaceTest {
+ protected:
+  static void SetUpTestCase() {
+    run_landlock_tests_ = LandlockSupported() && UsernsSupported();
+  }
+
+  // Whether Landlock tests should be run.
+  static bool run_landlock_tests_;
+
+  #ifndef landlock_create_ruleset
+  static inline int landlock_create_ruleset(
+      const struct landlock_ruleset_attr *const attr,
+      const size_t size, const __u32 flags)
+  {
+    return syscall(__NR_landlock_create_ruleset, attr, size, flags);
+  }
+  #endif
+
+  static bool LandlockSupported() {
+    int ruleset_fd = landlock_create_ruleset(
+      NULL, 0, LANDLOCK_CREATE_RULESET_VERSION);
+    if (ruleset_fd < 0 ) {
+      const int err = errno;
+      warn("Skipping Landlock tests");
+      switch(err) {
+      case ENOSYS:
+        warn("Landlock not supported by the current kernel.");
+        break;
+      case EOPNOTSUPP:
+        warn("Landlock is currently disabled.");
+        break;
+      }
+      return false;
+    }
+    return true;
+  }
+
+  // Creates a minijail allowed to make landlock syscalls and child processes.
+  struct minijail* GetNewMinijail() {
+    struct minijail *j = minijail_new();
+    minijail_namespace_pids(j);
+    minijail_namespace_user(j);
+    return j;
+  }
+};
+
+bool LandlockTest::run_landlock_tests_;
+
+// Constants used in Landlock tests
+constexpr char kBinPath[] = "/bin";
+constexpr char kEtcPath[] = "/etc";
+constexpr char kLibPath[] = "/lib";
+constexpr char kLib64Path[] = "/lib64";
+constexpr char kTmpPath[] = "/tmp";
+constexpr char kLsPath[] = "/bin/ls";
+
+}  // namespace
+
+TEST_F(LandlockTest, test_rule_rx_allow) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+
+  argv[0] = const_cast<char*>(kLsPath);
+  argv[1] = const_cast<char*>(kCatPath);
+  argv[2] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_rx_deny) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Add irrelevant landlock rule
+  minijail_add_landlock_rx_path(j, "/var");
+
+  argv[0] = const_cast<char*>(kLsPath);
+  argv[1] = const_cast<char*>(kCatPath);
+  argv[2] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_ro_allow) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+  // Add RO rule
+  minijail_add_landlock_ro_path(j, "/var");
+
+  argv[0] = const_cast<char*>(kLsPath);
+  argv[1] = "/var";
+  argv[2] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_ro_deny) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+  // No RO rule for /var, because we want the cmd to fail.
+
+  argv[0] = const_cast<char*>(kLsPath);
+  argv[1] = "/var";
+  argv[2] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_rw_allow) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+  // Add RW landlock rule
+  minijail_add_landlock_rw_path(j, kTmpPath);
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "exec echo 'bar' > /tmp/baz";
+  argv[3] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_rw_deny) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+  // No RW rule, because we want the cmd to fail.
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "exec echo 'bar' > /tmp/baz";
+  argv[3] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_rx_cannot_write) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_rx_path(j, kBinPath);
+  minijail_add_landlock_rx_path(j, kEtcPath);
+  minijail_add_landlock_rx_path(j, kLibPath);
+  minijail_add_landlock_rx_path(j, kLib64Path);
+  minijail_add_landlock_rx_path(j, kTmpPath);
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "exec echo 'bar' > /tmp/baz";
+  argv[3] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_ro_cannot_wx) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Set up landlock
+  minijail_add_landlock_ro_path(j, kBinPath);
+  minijail_add_landlock_ro_path(j, kEtcPath);
+  minijail_add_landlock_ro_path(j, kLibPath);
+  minijail_add_landlock_ro_path(j, kLib64Path);
+  minijail_add_landlock_ro_path(j, kTmpPath);
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "exec echo 'bar' > /tmp/baz";
+  argv[3] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
+  minijail_destroy(j);
+}
+
+TEST_F(LandlockTest, test_rule_rw_cannot_exec) {
+  int mj_run_ret;
+  int status;
+  char *argv[4];
+  if (!run_landlock_tests_)
+    GTEST_SKIP();
+  struct minijail *j = GetNewMinijail();
+  // Add landlock rules
+  minijail_add_landlock_rw_path(j, kBinPath);
+  minijail_add_landlock_rw_path(j, kEtcPath);
+  minijail_add_landlock_rw_path(j, kLibPath);
+  minijail_add_landlock_rw_path(j, kLib64Path);
+  minijail_add_landlock_rw_path(j, kTmpPath);
+
+  argv[0] = const_cast<char*>(kShellPath);
+  argv[1] = "-c";
+  argv[2] = "exec echo 'bar' > /tmp/baz";
+  argv[3] = NULL;
+
+  mj_run_ret = minijail_run_no_preload(j, argv[0], argv);
+  EXPECT_EQ(mj_run_ret, 0);
+  status = minijail_wait(j);
+  EXPECT_NE(status, 0);
   minijail_destroy(j);
 }
 

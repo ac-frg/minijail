@@ -36,6 +36,7 @@
 #include <syscall.h>
 #include <unistd.h>
 
+#include "landlock.h"
 #include "libminijail-private.h"
 #include "libminijail.h"
 
@@ -190,6 +191,10 @@ struct minijail {
 	struct preserved_fd preserved_fds[MAX_PRESERVED_FDS];
 	size_t preserved_fd_count;
 	char *seccomp_policy_path;
+	// Landlock ruleset file descriptor.
+	int ruleset_fd;
+	// Flag set to nonzero if at least one landlock rule is used.
+	int landlock_used;
 };
 
 static void run_hooks_or_die(const struct minijail *j,
@@ -282,6 +287,121 @@ void minijail_preenter(struct minijail *j)
 	free_remounts_list(j);
 }
 
+/* Landlock definitions */
+#ifndef landlock_create_ruleset
+static inline int landlock_create_ruleset(
+		const struct landlock_ruleset_attr *const attr,
+		const size_t size, const __u32 flags)
+{
+	return syscall(__NR_landlock_create_ruleset, attr, size, flags);
+}
+#endif
+
+#ifndef landlock_add_rule
+static inline int landlock_add_rule(const int ruleset_fd,
+		const enum landlock_rule_type rule_type,
+		const void *const rule_attr, const __u32 flags)
+{
+	return syscall(__NR_landlock_add_rule, ruleset_fd, rule_type,
+			rule_attr, flags);
+}
+#endif
+
+#ifndef landlock_restrict_self
+static inline int landlock_restrict_self(const int ruleset_fd,
+		const __u32 flags)
+{
+	return syscall(__NR_landlock_restrict_self, ruleset_fd, flags);
+}
+#endif
+
+#define ACCESS_FS_ROUGHLY_READONLY ( \
+	LANDLOCK_ACCESS_FS_READ_FILE | \
+	LANDLOCK_ACCESS_FS_READ_DIR)
+
+#define ACCESS_FS_ROUGHLY_READ_EXECUTE ( \
+	LANDLOCK_ACCESS_FS_EXECUTE | \
+	LANDLOCK_ACCESS_FS_READ_FILE | \
+	LANDLOCK_ACCESS_FS_READ_DIR)
+
+#define ACCESS_FS_ROUGHLY_WRITE ( \
+	LANDLOCK_ACCESS_FS_WRITE_FILE | \
+	LANDLOCK_ACCESS_FS_REMOVE_DIR | \
+	LANDLOCK_ACCESS_FS_REMOVE_FILE | \
+	LANDLOCK_ACCESS_FS_MAKE_CHAR | \
+	LANDLOCK_ACCESS_FS_MAKE_DIR | \
+	LANDLOCK_ACCESS_FS_MAKE_REG | \
+	LANDLOCK_ACCESS_FS_MAKE_SOCK | \
+	LANDLOCK_ACCESS_FS_MAKE_FIFO | \
+	LANDLOCK_ACCESS_FS_MAKE_BLOCK | \
+	LANDLOCK_ACCESS_FS_MAKE_SYM)
+
+#define ACCESS_FILE ( \
+	LANDLOCK_ACCESS_FS_EXECUTE | \
+	LANDLOCK_ACCESS_FS_WRITE_FILE | \
+	LANDLOCK_ACCESS_FS_READ_FILE)
+
+/* Landlock helper functions. */
+
+// Populates the landlock ruleset for a path and any needed paths beneath.
+static int populate_ruleset_internal(const char *const path,
+		const int ruleset_fd, const uint64_t allowed_access) {
+	int ret = 1;
+	struct landlock_path_beneath_attr path_beneath = {
+		.parent_fd = -1,
+	};
+	struct stat statbuf;
+	path_beneath.parent_fd = open(path, O_PATH | O_CLOEXEC);
+	if (path_beneath.parent_fd < 0) {
+		pwarn("Failed to open \"%s\": %s\n", path, strerror(errno));
+		return ret;
+	}
+	if (fstat(path_beneath.parent_fd, &statbuf)) {
+		close(path_beneath.parent_fd);
+		return ret;
+	}
+	path_beneath.allowed_access = allowed_access;
+	if (!S_ISDIR(statbuf.st_mode)) {
+		path_beneath.allowed_access &= ACCESS_FILE;
+	}
+	if (landlock_add_rule(ruleset_fd, LANDLOCK_RULE_PATH_BENEATH,
+			&path_beneath, 0)) {
+		pwarn("Failed to update ruleset \"%s\": %s\n", path, strerror(errno));
+		close(path_beneath.parent_fd);
+		return ret;
+	}
+	close(path_beneath.parent_fd);
+	return 0;
+}
+
+// Adds a rule to the landlock ruleset.
+static int add_landlock_rule_internal(struct minijail *j, const char *path,
+				 uint64_t landlock_flags) {
+	if (!j->landlock_used) {
+		struct landlock_ruleset_attr ruleset_attr = {
+			.handled_access_fs = ACCESS_FS_ROUGHLY_READ_EXECUTE |
+				ACCESS_FS_ROUGHLY_WRITE,
+		};
+		j->ruleset_fd = landlock_create_ruleset(
+			&ruleset_attr, sizeof(ruleset_attr), 0);
+		if (j->ruleset_fd < 0) {
+			const int err = errno;
+			perror("Failed to create a ruleset");
+			switch (err) {
+			case ENOSYS:
+				perror("Landlock is not supported by the current kernel.\n");
+				break;
+			case EOPNOTSUPP:
+				perror("Landlock is currently disabled by kernel config.\n");
+				break;
+			}
+			return 1;
+		}
+		j->landlock_used = 1;
+	}
+	return populate_ruleset_internal(path, j->ruleset_fd, landlock_flags);
+}
+
 /*
  * Strip out flags meant for the child.
  * We keep things that are inherited across execve(2).
@@ -324,6 +444,7 @@ struct minijail API *minijail_new(void)
 	struct minijail *j = calloc(1, sizeof(struct minijail));
 	if (j) {
 		j->remount_mode = MS_PRIVATE;
+		j->landlock_used = 0;
 	}
 	return j;
 }
@@ -810,6 +931,20 @@ int API minijail_create_session(struct minijail *j)
 {
 	j->flags.setsid = 1;
 	return 0;
+}
+
+/* Landlock API functions */
+int API minijail_add_landlock_rx_path(struct minijail *j, const char *path) {
+  return add_landlock_rule_internal(j, path, ACCESS_FS_ROUGHLY_READ_EXECUTE);
+}
+
+int API minijail_add_landlock_ro_path(struct minijail *j, const char *path) {
+  return add_landlock_rule_internal(j, path, ACCESS_FS_ROUGHLY_READONLY);
+}
+
+int API minijail_add_landlock_rw_path(struct minijail *j, const char *path) {
+  return add_landlock_rule_internal(j, path,
+  	ACCESS_FS_ROUGHLY_READONLY | ACCESS_FS_ROUGHLY_WRITE);
 }
 
 int API minijail_mount_with_data(struct minijail *j, const char *src,
@@ -3496,6 +3631,18 @@ static int minijail_run_internal(struct minijail *j,
 
 	if (!config->exec_in_child)
 		return 0;
+
+	/*
+	 * Apply Landlock restrictions if enabled. Restrictions are applied after
+	 * forking and before execve, because this helps prevent interfering with
+	 * other minijail system calls.
+	 */
+	if (j->landlock_used && j->ruleset_fd) {
+		if (landlock_restrict_self(j->ruleset_fd, 0)) {
+			perror("Failed to enforce ruleset");
+		}
+		close(j->ruleset_fd);
+	}
 
 	/*
 	 * We're going to execve(), so make sure any remaining resources are
