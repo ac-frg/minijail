@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04de1aee_2f2ffebf",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "would be better i think if these were in a separate module.  libminijail.c is already very large without providing internal things like this.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91305efa_b46be8d0",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "it looks like the `int` return is entirely custom (i.e. you aren\u0027t returning a syscall value directly), and you\u0027re using it as a boolean.  use a proper `bool` instead.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c79e411_d216e394",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "function `{` goes on the first line",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f889e86_41eb1668",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "use `attribute_cleanup_fd` with this fd so you don\u0027t have to manage the cleanup yourself",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62de6082_5679cdc1",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "stick to `/* ... */` comments",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a3ff94_0c782342",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "`perror` is not a minijail API.  guessing you meant `pwarn` instead.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed05424_78bab92a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "bad indentation",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d927c92d_9dcdf5fd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3642,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be `pdie` ?",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6988f2c0_c8609a2d",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "comments are full sentences, and full sentences end in periods\n\nthis comes up multiple times in the CL.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df604961_4944a95b",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-06-30T03:56:15Z",
+      "side": 1,
+      "message": "use `ScopedMinijail` so you don\u0027t have to manage the lifecycle yourself",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
