@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ca5dbe1_c118462d",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done. Moved several items to landlock_util.h, except for one function that involves the minijail object.",
+      "parentUuid": "04de1aee_2f2ffebf",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91305efa_b46be8d0",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-30T03:56:15Z",
       "side": 1,
       "message": "it looks like the `int` return is entirely custom (i.e. you aren\u0027t returning a syscall value directly), and you\u0027re using it as a boolean.  use a proper `bool` instead.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c23bcd6c_ae8abafd",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done. Now using bool in more places, although for the API functions I\u0027m still using int for consistency with the other signatures in libminijail.h.",
+      "parentUuid": "91305efa_b46be8d0",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9f4c90_1ee347ac",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c79e411_d216e394",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f889e86_41eb1668",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-06-30T03:56:15Z",
       "side": 1,
       "message": "use `attribute_cleanup_fd` with this fd so you don\u0027t have to manage the cleanup yourself",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e06d4d4_5c008305",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Hmmm, is there a pattern for using attribute_cleanup_fd when it’s part of a larger structure I’m missing? If I just apply this to where ruleset_fd is currently declared it leads to compile issues (“error: ‘cleanup’ attribute ignored”), and the two examples in util.h (https://android.googlesource.com/platform/external/minijail/+/refs/heads/master/util.h#93) seem to be for local variables.",
+      "parentUuid": "3f889e86_41eb1668",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25bc9be0_e991f806",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62de6082_5679cdc1",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4a3ff94_0c782342",
@@ -99,6 +189,24 @@
       "writtenOn": "2022-06-30T03:56:15Z",
       "side": 1,
       "message": "`perror` is not a minijail API.  guessing you meant `pwarn` instead.",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c495a4de_57929bdc",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a3ff94_0c782342",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34285c79_a53662a4",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed05424_78bab92a",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d927c92d_9dcdf5fd",
@@ -133,6 +259,24 @@
       "writtenOn": "2022-06-30T03:56:15Z",
       "side": 1,
       "message": "shouldn\u0027t this be `pdie` ?",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bef22d8_1960b8e0",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3642,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d927c92d_9dcdf5fd",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +298,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15930b7c_046add55",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done. Added here and several other locations.",
+      "parentUuid": "6988f2c0_c8609a2d",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df604961_4944a95b",
@@ -167,6 +329,24 @@
       "writtenOn": "2022-06-30T03:56:15Z",
       "side": 1,
       "message": "use `ScopedMinijail` so you don\u0027t have to manage the lifecycle yourself",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "179d0e24_cf22c43d",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-01T18:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df604961_4944a95b",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
