@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1643f699_641d823f",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "that\u0027s fine",
+      "parentUuid": "c23bcd6c_ae8abafd",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c79e411_d216e394",
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "Hmmm, is there a pattern for using attribute_cleanup_fd when it’s part of a larger structure I’m missing? If I just apply this to where ruleset_fd is currently declared it leads to compile issues (“error: ‘cleanup’ attribute ignored”), and the two examples in util.h (https://android.googlesource.com/platform/external/minijail/+/refs/heads/master/util.h#93) seem to be for local variables.",
       "parentUuid": "3f889e86_41eb1668",
+      "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c0e0db_24b0c78c",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "assign it to a local variable first, then assign the local var to the structure",
+      "parentUuid": "6e06d4d4_5c008305",
       "revId": "1c611f5b89621f30499a7e302fd5707a244daaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

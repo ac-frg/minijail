@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91f582f_f5e99474",
+        "filename": "landlock.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "we normally set up fallbacks rather than copying in (possibly outdated) headers, and use our own defines rather than clash with Linux ones.  we don\u0027t know what other headers might include for us.",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1839c8b3_af31777b",
+        "filename": "landlock.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "use `__attribute__((__packed__))`",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70d0530_c489d4f7",
+        "filename": "landlock_util.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "please document why you need this.  we normally try to avoid it.",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4719ad8_15cb39c9",
+        "filename": "landlock_util.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "are all these headers actually used ?",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "991dd568_9566a4ad",
+        "filename": "landlock_util.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "pwarn already appends the errno output, and you don\u0027t include the trailing `\\n` yourself",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7936a5fd_b526e094",
+        "filename": "landlock_util.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "who is going to define this ?  why do you need ifdef protection here ?",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90a3a95_29eb88c7",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "never indent `#` preprocessor commands",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0573dbd_3b3255ef",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "why do you need this duplicated here ?  include the new header you wrote.",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d48f7ec_a6a88a15",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "don\u0027t put spaces before `)`",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e11876_c6e2ff0a",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-03T07:14:45Z",
+      "side": 1,
+      "message": "missing space before `(`",
+      "revId": "97ea4f4927176b45032e886999e52ee4e17c509a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
