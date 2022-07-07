@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a56457_104bf06a",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1702,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-07T23:21:50Z",
+      "side": 1,
+      "message": "since this is a bit flag, normally to booleanify this we\u0027d use `!!`\n\n`bool has_bind_flag \u003d !!(m-\u003eflags \u0026 MS_BIND);`",
+      "revId": "b0dcefb5b534415fd587ccb165a22dc985e144d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d158bf34_50387239",
+        "filename": "libminijail.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1805,
+      "author": {
+        "id": 1040868
+      },
+      "writtenOn": "2022-07-07T23:21:50Z",
+      "side": 1,
+      "message": "include `dev_path` in the log ?\n\n`warn(\"mount_one failed with /dev at %s\", dev_path);`",
+      "revId": "b0dcefb5b534415fd587ccb165a22dc985e144d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
