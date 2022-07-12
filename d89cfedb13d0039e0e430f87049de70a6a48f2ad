@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2385134d_ef1b7830",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-12T23:08:04Z",
+      "side": 1,
+      "message": "Nit: I\u0027d say \"Landlock functions and constants\" or \"Landlock function and constant definitions.\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "075a60f0_c676ab75",
         "filename": "landlock_util.h",
         "patchSetId": 10
@@ -14,6 +37,29 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "We should probably include that this returns the ruleset file descriptor on success.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f506e2a_b2a5007a",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-12T23:08:04Z",
+      "side": 1,
+      "message": "This formatting looks weird.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
       "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -94,6 +140,29 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "This isn\u0027t entirely a new issue, but we might want to close `j-\u003eruleset_fd` (and the other missing *_fd fields) here if it is valid.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b14ac8_bced0676",
+        "filename": "libminijail.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-12T23:08:04Z",
+      "side": 1,
+      "message": "If this interface is going to live in libminijail.h I\u0027d avoid mentioning Landlock. In the future we might want to change what LSM we use and we don\u0027t want to change the API. In essence, the API should say \"what\" rather than \"how\".\n\nminijail_add_fs_restriction_ro\nminijail_add_fs_restriction_rw\nminijail_add_fs_restriction_rx",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
       "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

@@ -104,6 +104,30 @@
       },
       "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a57a4bf5_3c92ebf8",
+        "filename": "landlock_util.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-12T23:08:04Z",
+      "side": 1,
+      "message": "That\u0027s a good point. We do normally want to prevent things from operating on pseudofiles.",
+      "parentUuid": "9be98199_f3426109",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
