@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42c2d10_ac95ec76",
+        "filename": "landlock_util.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-12T16:52:31Z",
+      "side": 1,
+      "message": "That’s a good point, renamed accordingly",
+      "parentUuid": "bd24bd94_f9037b7d",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9be98199_f3426109",
