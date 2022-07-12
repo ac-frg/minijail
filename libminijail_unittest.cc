@@ -1435,6 +1435,55 @@ TEST_F(NamespaceTest, test_remount_ro_using_mount) {
   minijail_destroy(j);
 }
 
+// Test that bind mounting with a symlink as source fails.
+TEST_F(NamespaceTest, test_bind_mount_symlink) {
+  int status;
+  char uidmap[kBufferSize], gidmap[kBufferSize];
+  constexpr uid_t kTargetUid = 1000;  // Any non-zero value will do.
+  constexpr gid_t kTargetGid = 1000;
+
+  if (!userns_supported_)
+    GTEST_SKIP();
+
+  struct minijail *j = minijail_new();
+
+  minijail_namespace_pids(j);
+  minijail_namespace_vfs(j);
+  // minijail_mount_tmp(j);
+  minijail_run_as_init(j);
+
+  // Perform userns mapping.
+  minijail_namespace_user(j);
+  snprintf(uidmap, sizeof(uidmap), "%d %d 1", kTargetUid, getuid());
+  snprintf(gidmap, sizeof(gidmap), "%d %d 1", kTargetGid, getgid());
+  minijail_change_uid(j, kTargetUid);
+  minijail_change_gid(j, kTargetGid);
+  minijail_uidmap(j, uidmap);
+  minijail_gidmap(j, gidmap);
+  minijail_namespace_user_disable_setgroups(j);
+
+  // XXX: Create these in a tmpfs.
+  // EXPECT_EQ(mkdir("/tmp/test", 0700), 0);
+  // EXPECT_EQ(mkdir("/tmp/test/src", 0700), 0);
+  // EXPECT_EQ(mkdir("/tmp/test/dest", 0700), 0);
+  // EXPECT_EQ(symlink("/tmp/test/src", "/tmp/test/symlink"), 0);
+
+  int bind_res = minijail_bind(j, "/tmp/test/symlink", "/tmp/test/dest", 0);
+  if (block_bindmounts_on_symlinks()) {
+    EXPECT_NE(bind_res, 0);
+  } else {
+    EXPECT_EQ(bind_res, 0);
+  }
+
+  char *argv[] = {"/bin/true", nullptr};
+  minijail_run_no_preload(j, argv[0], argv);
+
+  status = minijail_wait(j);
+  EXPECT_EQ(status, 0);
+
+  minijail_destroy(j);
+}
+
 void TestCreateSession(bool create_session) {
   int status;
   int pipe_fds[2];

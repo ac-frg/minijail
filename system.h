@@ -63,6 +63,11 @@ int seccomp_ret_log_available(void);
 int seccomp_ret_kill_process_available(void);
 bool seccomp_filter_flags_available(unsigned int flags);
 
+/*
+ * has_basename_symlink: checks whether @path's basename is a symlink.
+ */
+bool has_basename_symlink(const char *path);
+
 #ifdef __cplusplus
 }; /* extern "C" */
 #endif

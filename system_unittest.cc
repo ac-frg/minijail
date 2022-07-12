@@ -331,3 +331,8 @@ TEST(seccomp_actions_available, smoke) {
   seccomp_ret_log_available();
   seccomp_ret_kill_process_available();
 }
+
+TEST(has_basename_symlink, basic) {
+  EXPECT_TRUE(has_basename_symlink("/dev/stdin"));
+  EXPECT_FALSE(has_basename_symlink("/"));
+}

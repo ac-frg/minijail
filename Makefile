@@ -17,15 +17,27 @@ BUILD_STATIC_LIBS ?= no
 DEFAULT_PIVOT_ROOT ?= /var/empty
 CPPFLAGS += -DDEFAULT_PIVOT_ROOT='"$(DEFAULT_PIVOT_ROOT)"'
 
+# These are configurable strictness settings. Not every use case for Minijail
+# has the same requirements.
+
+# Allow seccomp to fail without a warning. You probably don't want this.
 ifeq ($(USE_seccomp),no)
 CPPFLAGS += -DUSE_SECCOMP_SOFTFAIL
 endif
 
+# Prevent Minijail configuration files from residing in a noexec
+# mount/partition.
+# The rationale here is that a configuration file that controls how a program
+# executes should live in an executable partition, so that it's subject to the
+# same restrictions as the executable it controls.
+# For example, in Chrome OS executable partitions are not writable.
 BLOCK_NOEXEC_CONF ?= no
 ifeq ($(BLOCK_NOEXEC_CONF),yes)
 CPPFLAGS += -DBLOCK_NOEXEC_CONF
 endif
 
+# Prevent Minijail configuration files from residing in a partition different
+# from the partition mounted at /. This is primarily used in Chrome OS.
 ENFORCE_ROOTFS_CONF ?= no
 ifeq ($(ENFORCE_ROOTFS_CONF),yes)
 CPPFLAGS += -DENFORCE_ROOTFS_CONF
@@ -38,6 +50,14 @@ CPPFLAGS += -DALLOW_DEBUG_LOGGING
 ifeq ($(SECCOMP_DEFAULT_RET_LOG),yes)
 CPPFLAGS += -DSECCOMP_DEFAULT_RET_LOG
 endif
+endif
+
+# Prevent Minijail from following symlinks when performing bind mounts.
+BINDMOUNT_ALLOWED_PREFIXES ?= /dev,/sys
+CPPFLAGS += -DBINDMOUNT_ALLOWED_PREFIXES='"$(BINDMOUNT_ALLOWED_PREFIXES)"'
+BLOCK_BINDMOUNTS_ON_SYMLINKS ?= no
+ifeq ($(BLOCK_BINDMOUNTS_ON_SYMLINKS),yes)
+CPPFLAGS += -DBLOCK_BINDMOUNTS_ON_SYMLINKS
 endif
 
 ifeq ($(USE_ASAN),yes)
