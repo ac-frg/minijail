@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e59eb6c9_49149e29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2022-07-12T12:47:27Z",
+      "side": 1,
+      "message": "pta",
+      "revId": "3a4a31bf52b4553e61c59d2466a4d45cd2190fe4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a6acb1_1966389f",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1067793
+      },
+      "writtenOn": "2022-07-12T12:47:27Z",
+      "side": 1,
+      "message": "I think somehow this behavior was surprising, and self should be marked mutable? but then that changes the interface and the callers need to be updated.",
+      "range": {
+        "startLine": 926,
+        "startChar": 0,
+        "endLine": 926,
+        "endChar": 83
+      },
+      "revId": "3a4a31bf52b4553e61c59d2466a4d45cd2190fe4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
