@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "075a60f0_c676ab75",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "We should probably include that this returns the ruleset file descriptor on success.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aae74a2_3f62c093",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "This problem/pattern isn\u0027t new to your CL, but arguably most of the `j-\u003esomething_fd` fields should be initialized to -1 instead of 0. I wouldn\u0027t worry about the other cases in your CL, but you could add: `j-\u003eruleset_fd \u003d -1` since 0 is a valid file descriptor (typically stdin).",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "783bbb4e_a89bce34",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3582,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "This should probably be\n```\nj-\u003eruleset_fd \u003e\u003d 0\n```\nsince -1 is still true",
+      "range": {
+        "startLine": 3582,
+        "startChar": 25,
+        "endLine": 3582,
+        "endChar": 38
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8c329e_684c527a",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3586,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "I am wondering if it would be better to move the close into a separate if statement:\n```\n if (j-\u003eruleset_fd \u003e\u003d 0) {\n   close(j-\u003eruleset_fd);\n   j-\u003eruleset_fd \u003d -1;\n }\n```",
+      "range": {
+        "startLine": 3586,
+        "startChar": 2,
+        "endLine": 3586,
+        "endChar": 23
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b8fecd_e51a7f43",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3740,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "This isn\u0027t entirely a new issue, but we might want to close `j-\u003eruleset_fd` (and the other missing *_fd fields) here if it is valid.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f6b43c_7453a50c",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "If this is valid, it should be closed before returning to avoid leaking the file descriptor. Note that the tests are in C++ so you could use something like ScopedGeneric / ScopedFD to take care of this for you, but it probably doesn\u0027t make sense in this case.",
+      "range": {
+        "startLine": 1458,
+        "startChar": 8,
+        "endLine": 1458,
+        "endChar": 18
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

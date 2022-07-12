@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16e0b211_1846f96c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T19:13:36Z",
+      "side": 1,
+      "message": "I have finished a first pass through the CL.",
+      "parentUuid": "352356d8_ea4124ff",
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd24bd94_f9037b7d",
