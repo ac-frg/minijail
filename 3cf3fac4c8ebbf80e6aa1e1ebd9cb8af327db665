@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "352356d8_ea4124ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T16:26:32Z",
+      "side": 1,
+      "message": "I am still going through this, but I had to stop so I figured I would send the comments I already have.",
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd24bd94_f9037b7d",
+        "filename": "landlock_util.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T16:26:32Z",
+      "side": 1,
+      "message": "Do we want write to imply read? If not, maybe `ACCESS_FS_ROUGHLY_READONLY` should be `ACCESS_FS_ROUGHLY_READ` instead since `ACCESS_FS_ROUGHLY_READONLY | ACCESS_FS_ROUGHLY_WRITE` doesn\u0027t sound quite right.",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be98199_f3426109",
+        "filename": "landlock_util.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2022-07-12T16:26:32Z",
+      "side": 1,
+      "message": "We might want to have a basic write and a full write. basic write would be something like:\n        LANDLOCK_ACCESS_FS_WRITE_FILE | \\\n\tLANDLOCK_ACCESS_FS_REMOVE_DIR | \\\n\tLANDLOCK_ACCESS_FS_REMOVE_FILE | \\\n\tLANDLOCK_ACCESS_FS_MAKE_DIR\n(MAKE_SYM and MAKE_SOCK are intentionally left out)",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "3cf3fac4c8ebbf80e6aa1e1ebd9cb8af327db665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
