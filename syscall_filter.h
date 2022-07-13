@@ -10,6 +10,7 @@
 #define SYSCALL_FILTER_H
 
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "bpf.h"
 

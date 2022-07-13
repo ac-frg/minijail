@@ -19,13 +19,23 @@
 #include <sys/resource.h>
 #include <sys/types.h>
 
+
 /*
  * Rust's bindgen needs the actual definition of sock_fprog in order to
  * generate usable bindings.
  */
 #ifdef USE_BINDGEN
+typedef int8_t __s8;
+typedef uint8_t __u8;
+typedef int16_t __s16;
+typedef uint16_t __u16;
+typedef int32_t __s32;
+typedef uint32_t __u32;
 #include <linux/filter.h>
 #endif
+
+#include "syscall_filter.h"
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -120,6 +130,8 @@ void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
 void minijail_parse_seccomp_filters(struct minijail *j, const char *path);
 void minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd);
+int minijail_compile_seccomp_filters(const char *path,
+                  const struct filter_options filteropts,  struct sock_fprog* fprog);
 void minijail_log_seccomp_filter_failures(struct minijail *j);
 /* 'minijail_use_caps' and 'minijail_capbset_drop' are mutually exclusive. */
 void minijail_use_caps(struct minijail *j, uint64_t capmask);

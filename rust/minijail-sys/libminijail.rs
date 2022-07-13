@@ -1,8 +1,8 @@
 pub type __rlim64_t = u64;
-pub type __u8 = u8;
-pub type __u16 = u16;
-pub type __u32 = u32;
 
+pub type __uint8_t = ::std::os::raw::c_uchar;
+pub type __uint16_t = ::std::os::raw::c_ushort;
+pub type __uint32_t = ::std::os::raw::c_uint;
 pub type __uid_t = ::std::os::raw::c_uint;
 pub type __gid_t = ::std::os::raw::c_uint;
 pub type __pid_t = ::std::os::raw::c_int;
@@ -10,7 +10,11 @@ pub type rlim_t = __rlim64_t;
 pub type gid_t = __gid_t;
 pub type uid_t = __uid_t;
 pub type pid_t = __pid_t;
+pub type __u8 = u8;
+pub type __u16 = u16;
+pub type __u32 = u32;
 #[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct sock_filter {
     pub code: __u16,
     pub jt: __u8,
@@ -22,6 +26,22 @@ pub struct sock_filter {
 pub struct sock_fprog {
     pub len: ::std::os::raw::c_ushort,
     pub filter: *mut sock_filter,
+}
+#[repr(u32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum block_action {
+    ACTION_RET_KILL = 0,
+    ACTION_RET_TRAP = 1,
+    ACTION_RET_LOG = 2,
+    ACTION_RET_KILL_PROCESS = 3,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct filter_options {
+    pub action: block_action,
+    pub allow_logging: ::std::os::raw::c_int,
+    pub allow_syscalls_for_logging: ::std::os::raw::c_int,
+    pub allow_duplicate_syscalls: bool,
 }
 pub const MINIJAIL_ERR_NO_ACCESS: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_NO_ACCESS;
 pub const MINIJAIL_ERR_NO_COMMAND: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_NO_COMMAND;
@@ -107,6 +127,13 @@ extern "C" {
 }
 extern "C" {
     pub fn minijail_parse_seccomp_filters_from_fd(j: *mut minijail, fd: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn minijail_compile_seccomp_filters(
+        path: *const ::std::os::raw::c_char,
+        filteropts: filter_options,
+        fprog: *mut sock_fprog,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn minijail_log_seccomp_filter_failures(j: *mut minijail);
