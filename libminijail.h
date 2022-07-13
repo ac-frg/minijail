@@ -15,7 +15,15 @@
 #ifndef _LIBMINIJAIL_H_
 #define _LIBMINIJAIL_H_
 
+#ifndef USE_BINDGEN
 #include <stdint.h>
+#else
+/*
+ * uint64_t is blocklisted in bindgen script, defined here as
+ * placeholder to avoid compilation error
+ */
+typedef unsigned long long uint64_t;
+#endif
 #include <sys/resource.h>
 #include <sys/types.h>
 
@@ -24,8 +32,13 @@
  * generate usable bindings.
  */
 #ifdef USE_BINDGEN
+#define __u8 uint8_t
+#define __u16 uint16_t
+#define __u32 uint32_t
 #include <linux/filter.h>
 #endif
+
+#include "syscall_filter.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -120,6 +133,8 @@ void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
 void minijail_parse_seccomp_filters(struct minijail *j, const char *path);
 void minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd);
+int minijail_compile_seccomp_filters(const char *path,
+                  const struct filter_options filteropts,  struct sock_fprog* fprog);
 void minijail_log_seccomp_filter_failures(struct minijail *j);
 /* 'minijail_use_caps' and 'minijail_capbset_drop' are mutually exclusive. */
 void minijail_use_caps(struct minijail *j, uint64_t capmask);
