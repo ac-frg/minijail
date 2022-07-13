@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79eec9c9_630bc5e0",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2385134d_ef1b7830",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "075a60f0_c676ab75",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "We should probably include that this returns the ruleset file descriptor on success.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b558622c_c4e2c972",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "075a60f0_c676ab75",
       "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85278b3b_b840fade",
+        "filename": "landlock_util.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f506e2a_b2a5007a",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5aae74a2_3f62c093",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8f833a6_ec1dd8f0",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aae74a2_3f62c093",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "783bbb4e_a89bce34",
@@ -94,6 +178,30 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "This should probably be\n```\nj-\u003eruleset_fd \u003e\u003d 0\n```\nsince -1 is still true",
+      "range": {
+        "startLine": 3582,
+        "startChar": 25,
+        "endLine": 3582,
+        "endChar": 38
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d6db7ad_acac2232",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3582,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "783bbb4e_a89bce34",
       "range": {
         "startLine": 3582,
         "startChar": 25,
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86a3f7e5_421fe7d6",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3586,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b8c329e_684c527a",
+      "range": {
+        "startLine": 3586,
+        "startChar": 2,
+        "endLine": 3586,
+        "endChar": 23
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b8fecd_e51a7f43",
@@ -140,6 +272,24 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "This isn\u0027t entirely a new issue, but we might want to close `j-\u003eruleset_fd` (and the other missing *_fd fields) here if it is valid.",
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f9b0da4_153b6f45",
+        "filename": "libminijail.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3740,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Added a close for Landlock here -- however, when I did the same for the other *_fd fields it caused an issue with the unit tests, so I\u0027d suggest investigating and handling that may make more sense in a separate CL.",
+      "parentUuid": "66b8fecd_e51a7f43",
       "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -167,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdb7691_5ed0b5ac",
+        "filename": "libminijail.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b14ac8_bced0676",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14f6b43c_7453a50c",
@@ -180,6 +354,30 @@
       "writtenOn": "2022-07-12T19:13:36Z",
       "side": 1,
       "message": "If this is valid, it should be closed before returning to avoid leaking the file descriptor. Note that the tests are in C++ so you could use something like ScopedGeneric / ScopedFD to take care of this for you, but it probably doesn\u0027t make sense in this case.",
+      "range": {
+        "startLine": 1458,
+        "startChar": 8,
+        "endLine": 1458,
+        "endChar": 18
+      },
+      "revId": "d89cfedb13d0039e0e430f87049de70a6a48f2ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a56c6a5_9fad8b65",
+        "filename": "libminijail_unittest.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1955868
+      },
+      "writtenOn": "2022-07-13T22:50:45Z",
+      "side": 1,
+      "message": "I\u0027ve updated the variable name here. Unlike in libminijail.c, this call just returns an API version number because of the LANDLOCK_CREATE_RULESET_VERSION flag (see https://docs.kernel.org/userspace-api/landlock.html#c.sys_landlock_create_ruleset).\n\nI\u0027ve also added a comment to clarify.",
+      "parentUuid": "14f6b43c_7453a50c",
       "range": {
         "startLine": 1458,
         "startChar": 8,
