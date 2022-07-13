@@ -15,7 +15,15 @@
 #ifndef _LIBMINIJAIL_H_
 #define _LIBMINIJAIL_H_
 
+#ifdef USE_BINDGEN
+/*
+ * uint64_t is blocklisted in bindgen script, defined here as
+ * placeholder to avoid compilation error
+ */
+typedef unsigned long long uint64_t;
+#else
 #include <stdint.h>
+#endif
 #include <sys/resource.h>
 #include <sys/types.h>
 
@@ -24,8 +32,13 @@
  * generate usable bindings.
  */
 #ifdef USE_BINDGEN
+#define __u8 uint8_t
+#define __u16 uint16_t
+#define __u32 uint32_t
 #include <linux/filter.h>
 #endif
+
+#include "syscall_filter.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +52,8 @@ enum {
 	/* Command cannot be found */
 	MINIJAIL_ERR_NO_COMMAND = 127,
 
-	/* (MINIJAIL_ERR_SIG_BASE + n) if process killed by signal n != SIGSYS */
+	/* (MINIJAIL_ERR_SIG_BASE + n) if process killed by signal n != SIGSYS
+	 */
 	MINIJAIL_ERR_SIG_BASE = 128,
 
 	/* Cannot mount a file or folder in mount namespace */
@@ -120,6 +134,9 @@ void minijail_set_seccomp_filters(struct minijail *j,
 				  const struct sock_fprog *filter);
 void minijail_parse_seccomp_filters(struct minijail *j, const char *path);
 void minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd);
+int minijail_compile_seccomp_filters(const char *path,
+				     const struct filter_options *filteropts,
+				     struct sock_fprog *fprog);
 void minijail_log_seccomp_filter_failures(struct minijail *j);
 /* 'minijail_use_caps' and 'minijail_capbset_drop' are mutually exclusive. */
 void minijail_use_caps(struct minijail *j, uint64_t capmask);
@@ -310,8 +327,7 @@ int minijail_add_remount(struct minijail *j, const char *mount_name,
  * @payload   an opaque pointer
  * @event     the event that will trigger the hook
  */
-int minijail_add_hook(struct minijail *j,
-		      minijail_hook_t hook, void *payload,
+int minijail_add_hook(struct minijail *j, minijail_hook_t hook, void *payload,
 		      minijail_hook_event_t event);
 
 /*
@@ -354,8 +370,7 @@ int minijail_run_env(struct minijail *j, const char *filename,
  * If minijail_namespace_pids() or minijail_namespace_user() are used,
  * this or minijail_fork() is required instead of minijail_enter().
  */
-int minijail_run(struct minijail *j, const char *filename,
-		 char *const argv[]);
+int minijail_run(struct minijail *j, const char *filename, char *const argv[]);
 
 /*
  * Run the specified command in the given minijail, execve(2)-style.
@@ -423,7 +438,7 @@ int minijail_run_env_pid_pipes(struct minijail *j, const char *filename,
  * standard error.
  */
 int minijail_run_fd_env_pid_pipes(struct minijail *j, int elf_fd,
-			          char *const argv[], char *const envp[],
+				  char *const argv[], char *const envp[],
 				  pid_t *pchild_pid, int *pstdin_fd,
 				  int *pstdout_fd, int *pstderr_fd);
 

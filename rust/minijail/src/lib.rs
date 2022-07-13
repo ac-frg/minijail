@@ -11,6 +11,7 @@ use std::os::unix::io::{AsRawFd, IntoRawFd, RawFd};
 use std::path::{Path, PathBuf};
 use std::ptr::{null, null_mut};
 use std::result::Result as StdResult;
+use std::slice;
 
 use libc::pid_t;
 use minijail_sys::*;
@@ -231,6 +232,10 @@ pub enum Error {
     ReturnCode(u8),
     /// Failed to wait the process.
     Wait(i32),
+    /// Logging is not allowed for pre-compiled BPF filters.
+    LoggingDisallowed,
+    /// Failed to compile filter policy.
+    CompileFailed,
 }
 
 impl Display for Error {
@@ -319,7 +324,17 @@ impl Display for Error {
             SeccompViolation(s) => write!(f, "seccomp violation syscall #{}", s),
             Killed(s) => write!(f, "killed with signal number {}", s),
             ReturnCode(e) => write!(f, "exited with code {}", e),
-            Wait(errno) => write!(f, "failed to wait: {}", io::Error::from_raw_os_error(*errno)),
+            Wait(errno) => write!(
+                f,
+                "failed to wait: {}",
+                io::Error::from_raw_os_error(*errno)
+            ),
+            LoggingDisallowed => {
+                write!(f, "logging is not allowed for pre-compiled filter programs")
+            }
+            CompileFailed => {
+                write!(f, "failed to compile policy file")
+            }
         }
     }
 }
@@ -552,6 +567,44 @@ impl Minijail {
             minijail_parse_seccomp_filters(self.jail, filename.as_ptr());
         }
         Ok(())
+    }
+    pub fn compile_seccomp_filters<P: AsRef<Path>>(
+        path: P,
+        filter_config: filter_options,
+    ) -> Result<Vec<sock_filter>> {
+        if !path.as_ref().is_file() {
+            return Err(Error::SeccompPath(path.as_ref().to_owned()));
+        }
+        if filter_config.allow_logging != 0 || filter_config.allow_syscalls_for_logging != 0 {
+            return Err(Error::LoggingDisallowed);
+        }
+
+        let pathstring = path
+            .as_ref()
+            .as_os_str()
+            .to_str()
+            .ok_or_else(|| Error::PathToCString(path.as_ref().to_owned()))?;
+        let filename =
+            CString::new(pathstring).map_err(|_| Error::PathToCString(path.as_ref().to_owned()))?;
+
+        let mut compiled_header = sock_fprog {
+            len: 0,
+            filter: std::ptr::null_mut(),
+        };
+        unsafe {
+            match minijail_compile_seccomp_filters(
+                filename.as_ptr(),
+                &filter_config,
+                &mut compiled_header,
+            ) {
+                0 => Ok(slice::from_raw_parts(
+                    compiled_header.filter,
+                    compiled_header.len as usize,
+                )
+                .to_vec()),
+                _ => Err(Error::CompileFailed),
+            }
+        }
     }
     pub fn log_seccomp_filter_failures(&mut self) {
         unsafe {
