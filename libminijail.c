@@ -1186,6 +1186,13 @@ void API minijail_parse_seccomp_filters_from_fd(struct minijail *j, int fd)
 	j->seccomp_policy_path = path;
 }
 
+int API minijail_compile_seccomp_filters(const char *path,
+				 struct filter_options filteropts,  struct sock_fprog* fprog)
+{
+  	attribute_cleanup_fp FILE *file = fopen(path, "re");
+	return compile_filter(path, file, fprog, &filteropts);
+}
+
 void API minijail_set_seccomp_filters(struct minijail *j,
 				      const struct sock_fprog *filter)
 {
