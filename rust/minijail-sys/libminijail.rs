@@ -12,6 +12,7 @@ pub type uid_t = __uid_t;
 pub type pid_t = __pid_t;
 pub type size_t = ::std::os::raw::c_ulong;
 #[repr(C)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct sock_filter {
     pub code: __u16,
     pub jt: __u8,
@@ -24,16 +25,32 @@ pub struct sock_fprog {
     pub len: ::std::os::raw::c_ushort,
     pub filter: *mut sock_filter,
 }
-pub const MINIJAIL_ERR_NO_ACCESS: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_NO_ACCESS;
-pub const MINIJAIL_ERR_NO_COMMAND: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_NO_COMMAND;
-pub const MINIJAIL_ERR_SIG_BASE: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_SIG_BASE;
-pub const MINIJAIL_ERR_MOUNT: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_MOUNT;
-pub const MINIJAIL_ERR_PRELOAD: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_PRELOAD;
-pub const MINIJAIL_ERR_JAIL: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_JAIL;
-pub const MINIJAIL_ERR_INIT: _bindgen_ty_1 = _bindgen_ty_1::MINIJAIL_ERR_INIT;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum _bindgen_ty_1 {
+pub enum block_action {
+    ACTION_RET_KILL = 0,
+    ACTION_RET_TRAP = 1,
+    ACTION_RET_LOG = 2,
+    ACTION_RET_KILL_PROCESS = 3,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct filter_options {
+    pub action: block_action,
+    pub allow_logging: ::std::os::raw::c_int,
+    pub allow_syscalls_for_logging: ::std::os::raw::c_int,
+    pub allow_duplicate_syscalls: bool,
+}
+pub const MINIJAIL_ERR_NO_ACCESS: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_NO_ACCESS;
+pub const MINIJAIL_ERR_NO_COMMAND: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_NO_COMMAND;
+pub const MINIJAIL_ERR_SIG_BASE: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_SIG_BASE;
+pub const MINIJAIL_ERR_MOUNT: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_MOUNT;
+pub const MINIJAIL_ERR_PRELOAD: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_PRELOAD;
+pub const MINIJAIL_ERR_JAIL: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_JAIL;
+pub const MINIJAIL_ERR_INIT: _bindgen_ty_3 = _bindgen_ty_3::MINIJAIL_ERR_INIT;
+#[repr(u32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum _bindgen_ty_3 {
     MINIJAIL_ERR_NO_ACCESS = 126,
     MINIJAIL_ERR_NO_COMMAND = 127,
     MINIJAIL_ERR_SIG_BASE = 128,
@@ -108,6 +125,13 @@ extern "C" {
 }
 extern "C" {
     pub fn minijail_parse_seccomp_filters_from_fd(j: *mut minijail, fd: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn minijail_compile_seccomp_filters(
+        path: *const ::std::os::raw::c_char,
+        filteropts: filter_options,
+        fprog: *mut sock_fprog,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn minijail_log_seccomp_filter_failures(j: *mut minijail);
