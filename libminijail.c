@@ -812,6 +812,45 @@ int API minijail_create_session(struct minijail *j)
 	return 0;
 }
 
+static bool is_valid_bind_path(const char *path)
+{
+	if (!block_symlinks_in_bindmount_paths()) {
+		return true;
+	}
+
+	char *prefixes;
+	size_t prefixes_len = strlen(BINDMOUNT_ALLOWED_PREFIXES);
+	prefixes = malloc(prefixes_len + 1u);
+	/*
+	 * tokenize() will modify both the |prefixes| pointer and the contents
+	 * of the string, so:
+	 * -Copy |BINDMOUNT_ALLOWED_PREFIXES| since it lives in .rodata.
+	 * -Save the original pointer for free()ing.
+	 */
+	strncpy(prefixes, BINDMOUNT_ALLOWED_PREFIXES, prefixes_len + 1u);
+	attribute_cleanup_str char *orig_prefixes = prefixes;
+
+	char *prefix = NULL;
+	bool found_prefix = false;
+	if (has_basename_symlink(path)) {
+		while ((prefix = tokenize(&prefixes, ",")) != NULL) {
+			if (path_is_parent(prefix, path)) {
+				found_prefix = true;
+				break;
+			}
+		}
+		if (!found_prefix) {
+			/*
+			 * If the path does not include one of the allowed
+			 * prefixes, fail.
+			 */
+			warn("path '%s' has a basename symlink", path);
+			return false;
+		}
+	}
+	return true;
+}
+
 int API minijail_mount_with_data(struct minijail *j, const char *src,
 				 const char *dest, const char *type,
 				 unsigned long flags, const char *data)
@@ -894,6 +933,16 @@ int API minijail_bind(struct minijail *j, const char *src, const char *dest,
 		      int writeable)
 {
 	unsigned long flags = MS_BIND;
+
+	if (!is_valid_bind_path(src)) {
+		warn("src '%s' is not a valid bind mount path", src);
+		return -ELOOP;
+	}
+
+	if (!is_valid_bind_path(dest)) {
+		warn("dest '%s' is not a valid bind mount path", dest);
+		return -ELOOP;
+	}
 
 	if (!writeable)
 		flags |= MS_RDONLY;
