@@ -1032,7 +1032,11 @@ TEST(Test, test_bind_mount_symlink) {
   ScopedMinijail j(minijail_new());
   int bind_res = minijail_bind(j.get(), path_sym.c_str(), path_dest.c_str(),
                                0 /*writable*/);
-  EXPECT_EQ(bind_res, 0);
+  if (block_symlinks_in_bindmount_paths()) {
+    EXPECT_NE(bind_res, 0);
+  } else {
+    EXPECT_EQ(bind_res, 0);
+  }
   EXPECT_EQ(unlink(path_sym.c_str()), 0);
 }
 

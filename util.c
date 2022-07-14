@@ -449,6 +449,15 @@ char *path_join(const char *external_path, const char *internal_path)
 		   : path;
 }
 
+bool path_is_parent(const char *parent, const char *child)
+{
+	/*
+	 * strstr(haystack, needle).
+	 * Make sure |child| starts with |parent|.
+	 */
+	return strstr(child, parent) == child;
+}
+
 void *consumebytes(size_t length, char **buf, size_t *buflength)
 {
 	char *p = *buf;
