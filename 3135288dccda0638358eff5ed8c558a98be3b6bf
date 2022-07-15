@@ -16,6 +16,74 @@
       "message": "Adding Daniel since he previously made changes for this, in case he\u0027s got some thoughts",
       "revId": "3135288dccda0638358eff5ed8c558a98be3b6bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442ac7de_1baff402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2022-07-15T21:46:59Z",
+      "side": 1,
+      "message": "If we plan to use this for compiling crosvm policies at build time, does this API actually expose enough for our use case?\n\nIt will presumably need to run on the build system (in the traditional GNU cross compilation sense, so the system where we are running `cargo build`), which doesn\u0027t necessarily match the architecture or syscall number definitions of the system where crosvm will run. We handle this in the crosvm ebuild by using the Python policy compiler and passing the appropriate board/arch-specific Linux header path, but it doesn\u0027t look like this function can handle cross-compilation.\n\nMaybe that\u0027s OK and we have a different plan for cross-compiled builds?",
+      "revId": "3135288dccda0638358eff5ed8c558a98be3b6bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4451a005_76ce03ac",
+        "filename": "libminijail.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2022-07-15T21:46:59Z",
+      "side": 1,
+      "message": "nit: it feels like the bindgen type hacks could be in a separate commit, but I\u0027ll leave it up to the minijail folks.",
+      "revId": "3135288dccda0638358eff5ed8c558a98be3b6bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f12b4578_7a301da3",
+        "filename": "libminijail.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2022-07-15T21:46:59Z",
+      "side": 1,
+      "message": "It would probably be good to add a doc comment for this function that describes the ownership rules about the `fprog-\u003efilter` buffer that is allocated internally. It will leak if the caller doesn\u0027t `free()` it.",
+      "revId": "3135288dccda0638358eff5ed8c558a98be3b6bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36542341_93d96205",
+        "filename": "rust/minijail/src/lib.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1572669
+      },
+      "writtenOn": "2022-07-15T21:46:59Z",
+      "side": 1,
+      "message": "I think this leaks `compiled_header.filter` - we copy it into a new Rust `Vec` with `to_vec()`, but the original allocated with `calloc()` by `compile_filter()` is never freed.",
+      "revId": "3135288dccda0638358eff5ed8c558a98be3b6bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
