@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a48e76_33aabe7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "We plan to use a build.rs to embed pre-compiled minijail config into crosvm, and compiling policies through C interface avoids executing python commands or introducing pyo3 as a new dependency.",
+      "parentUuid": "b3b6ac6f_08b49b48",
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c39cb2c_352f4426",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-15T18:37:36Z",
       "side": 1,
       "message": "Is this being passed by copy?",
+      "range": {
+        "startLine": 1195,
+        "startChar": 22,
+        "endLine": 1195,
+        "endChar": 60
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f3fade9_1af2ec49",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "changed to reference.",
+      "parentUuid": "1c39cb2c_352f4426",
       "range": {
         "startLine": 1195,
         "startChar": 22,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e135d2bc_89cca288",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d6f176_516a1f81",
+      "range": {
+        "startLine": 1194,
+        "startChar": 0,
+        "endLine": 1200,
+        "endChar": 1
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a840b189_978c476e",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-07-15T18:37:36Z",
       "side": 1,
       "message": "Flip the boolean condition: https://engdoc.corp.google.com/eng/doc/tott/episodes/387.md?cl\u003dhead",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 6
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836de096_f7fded8e",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a840b189_978c476e",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d58f03e_6e557c5b",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82799054_79a2bb5b",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 85
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad601757_a7997785",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-07-15T18:37:36Z",
       "side": 1,
       "message": "What is this for?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c3ae8d1_232d3bcf",
+        "filename": "syscall_filter.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1521435
+      },
+      "writtenOn": "2022-07-15T21:05:37Z",
+      "side": 1,
+      "message": "FILE is defined in stdio.h but not included before (and won\u0027t past bindgen without this)",
+      "parentUuid": "ad601757_a7997785",
       "range": {
         "startLine": 13,
         "startChar": 0,
