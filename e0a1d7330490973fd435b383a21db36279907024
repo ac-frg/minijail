@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3b6ac6f_08b49b48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "Why is this change useful?",
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c39cb2c_352f4426",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "Is this being passed by copy?",
+      "range": {
+        "startLine": 1195,
+        "startChar": 22,
+        "endLine": 1195,
+        "endChar": 60
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d6f176_516a1f81",
+        "filename": "libminijail.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "Please use the included clang-format file to format these.",
+      "range": {
+        "startLine": 1194,
+        "startChar": 0,
+        "endLine": 1200,
+        "endChar": 1
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a840b189_978c476e",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "Flip the boolean condition: https://engdoc.corp.google.com/eng/doc/tott/episodes/387.md?cl\u003dhead",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 6
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82799054_79a2bb5b",
+        "filename": "libminijail.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "This is not properly formatted, and it\u0027s using spaces instead of tabs.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 85
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad601757_a7997785",
+        "filename": "syscall_filter.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:37:36Z",
+      "side": 1,
+      "message": "What is this for?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "e0a1d7330490973fd435b383a21db36279907024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
