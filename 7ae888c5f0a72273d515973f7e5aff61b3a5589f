@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca15384_ef54f4bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2022-07-15T18:07:54Z",
+      "side": 1,
+      "message": "PS2 missed a define in the Android.bp file.",
+      "revId": "7ae888c5f0a72273d515973f7e5aff61b3a5589f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
